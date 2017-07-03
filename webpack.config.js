@@ -26,6 +26,8 @@ module.exports = {
         'node_modules',
         path.join(__dirname, '../node_modules'),
         './src',
+        './components',
+        './data'
       ],
   extensions: ['', '.web.jsx', '.web.js', '.js', '.jsx', '.json']
   },
@@ -101,5 +103,8 @@ module.exports = {
         ],
       }
     ]
+  },
+  devServer: {
+    historyApiFallback: true
   }
 };
