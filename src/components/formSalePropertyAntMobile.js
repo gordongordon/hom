@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Picker, List, WhiteSpace, InputItem, Button} from 'antd-mobile';
 import { createForm } from 'rc-form';
-import { district, provinceLite as province } from 'formSaleData';
+import { MTR } from 'MTR';
 
 // 如果不是使用 List.Item 作为 children
 const CustomChildren = props => (
@@ -16,26 +16,27 @@ const CustomChildren = props => (
   </div>
 );
 
+
 const roomSelection = [
   [
   {
     label : '開放式',
-    value:  '2001',
+    value:  '2000',
   }, {
     label : '1房',
-    value:  '2002',
+    value:  '2001',
   }, {
     label : '2房',
-    value:  '2003',
+    value:  '2002',
   }, {
-    value:  '2004',
+    value:  '2003',
     label : '3房',
   }, {
     label : '4房',
-    value:  '2005',
+    value:  '2004',
   }, {
     label : '5房',
-    value:  '2006',
+    value:  '2005',
   }
 ],  [
   {
@@ -43,16 +44,16 @@ const roomSelection = [
     value:  '3001',
   }, {
     label : '2浴室',
-    value:  '4002',
+    value:  '3002',
   }, {
     label : '3浴室',
-    value:  '5003',
+    value:  '3003',
   }, {
-    value:  '5004',
+    value:  '3004',
     label : '4浴室',
   }, {
     label : '5浴室',
-    value:  '5005',
+    value:  '3005',
   }
 ],
 
@@ -128,10 +129,10 @@ class FormSalePropertyAntMobile extends React.Component {
       <List style={{ backgroundColor: 'white' }} className="picker-list">
 
       <Picker cols={2} extra="地鐵線"
-        data={district}
+        data={MTR}
         title="地鐵線"
-        {...getFieldProps('district', {
-          initialValue: ['340000', '341500', '341502'],
+        {...getFieldProps('MTR', {
+          initialValue: ['HKL', 'CWB'],
         })}
         onOk={e => console.log('ok', e)}
         onDismiss={e => console.log('dismiss', e)}
@@ -198,7 +199,7 @@ class FormSalePropertyAntMobile extends React.Component {
                 >Email</InputItem>
 
       <Picker  data={roomSelection}
-        title="选择季节"
+        title="選擇間隔"
         cascade={false}
         extra="请选择(可选)"
         value={this.state.sValue}

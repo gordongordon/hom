@@ -1,19 +1,16 @@
-var express = require('express');
+var webpack = require('webpack');
+var WebpackDevServer = require('webpack-dev-server');
+var config = require('./webpack.config');
 
-// Create our app
-var app = express();
-const PORT = process.env.PORT || 3000;
-
-app.use(function (req, res, next){
-  if (req.headers['x-forwarded-proto'] === 'https') {
-    res.redirect('http://' + req.hostname + req.url);
-  } else {
-    next();
+new WebpackDevServer(webpack(config), {
+  publicPath: config.output.publicPath,
+  hot: true,
+  historyApiFallback: true,
+  host : '0.0.0.0'
+}).listen(3000, '192.168.100.133', function (err, result) {
+  if (err) {
+    console.log(err);
   }
-});
 
-app.use(express.static('dist'));
-
-app.listen(PORT, function () {
-  console.log('Express server is up on port ' + PORT);
+  console.log('Listening at localhost:3000');
 });

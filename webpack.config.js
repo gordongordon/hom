@@ -27,7 +27,9 @@ module.exports = {
         path.join(__dirname, '../node_modules'),
         './src',
         './components',
-        './data'
+        './data',
+        './store',
+        './firebase'
       ],
   extensions: ['', '.web.jsx', '.web.js', '.js', '.jsx', '.json']
   },

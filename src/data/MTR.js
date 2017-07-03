@@ -1,184 +1,168 @@
-(function (global, factory) {
-	if (typeof define === "function" && define.amd) {
-		define(["module"], factory);
-	} else if (typeof exports !== "undefined") {
-		factory(module);
-	} else {
-		var mod = {
-			exports: {}
-		};
-		factory(mod);
-		global.district = mod.exports;
-	}
-})(this, function (module) {
-	"use strict";
 
-	module.exports = [{
-		"value": "340000",
-		"label": "安徽省",
+const MTR = [{
+		"value": "HKL",
+		"label": "港島綫",
 		"children": [{
-			"value": "341500",
-			"label": "六安市",
-			"children": [{
-				"value": "341522",
-				"label": "霍邱县",
-				"children": []
-			}, {
-				"value": "341525",
-				"label": "霍山县",
-				"children": []
-			}, {
-				"value": "341502",
-				"label": "金安区",
-				"children": []
-			}, {
-				"value": "341524",
-				"label": "金寨县",
-				"children": []
-			}, {
-				"value": "341526",
-				"label": "其它区",
-				"children": []
-			}, {
-				"value": "341521",
-				"label": "寿县",
-				"children": []
-			}, {
-				"value": "341523",
-				"label": "舒城县",
-				"children": []
-			}, {
-				"value": "341503",
-				"label": "裕安区",
-				"children": []
-			}]
+			"value": "KDT",
+			"label": "堅尼地城",
+			"children": []
 		}, {
-			"value": "340500",
-			"label": "马鞍山市",
-			"children": [{
-				"value": "340506",
-				"label": "博望区",
-				"children": []
-			}]
+			"value": "HKU",
+			"label": "香港大學",
+			"children": []
 		}, {
-			"value": "341800",
-			"label": "宣城市",
-			"children": [{
-				"value": "341822",
-				"label": "广德县",
-				"children": []
-			}, {
-				"value": "341824",
-				"label": "绩溪县",
-				"children": []
-			}, {
-				"value": "341825",
-				"label": "旌德县",
-				"children": []
-			}]
-		}]
+			"value": "SYP",
+			"label": "西營盤",
+			"children": []
+		}, {
+			"value": "SHW",
+			"label": "上環",
+			"children": []
+		}, {
+			"value": "CTL",
+			"label": "中環",
+			"children": []
+		}, {
+			"value": "ADM",
+			"label": "金鐘",
+			"children": []
+		}, {
+			"value": "WC",
+			"label": "灣仔",
+			"children": []
+		}, {
+			"value": "CWB",
+			"label": "銅鑼灣",
+			"children": []
+		}, {
+			"value": "TIH",
+			"label": "天后",
+			"children": []
+		}, {
+			"value": "FTH",
+			"label": "炮台山",
+			"children": []
+		}, {
+			"value": "NRP",
+			"label": "北角",
+			"children": []
+		}, {
+			"value": "QYB",
+			"label": "鰂魚涌",
+			"children": []
+		}, {
+			"value": "TIK",
+			"label": "太古",
+			"children": []
+		}, {
+			"value": "SWH",
+			"label": "西灣河",
+			"children": []
+		}, {
+			"value": "SKW",
+			"label": "筲箕灣",
+			"children": []
+		}, {
+			"value": "HFC",
+			"label": "杏花邨",
+			"children": []
+		}, {
+			"value": "CIW",
+			"label": "柴灣",
+			"children": []
+		}
+
+	] // End of 港島綫
 	}, {
 		"value": "820000",
-		"label": "澳门特别行政区",
+		"label": "觀塘綫",
 		"children": [{
 			"value": "820100",
-			"label": "澳门半岛",
+			"label": "黃埔",
 			"children": []
 		}, {
 			"value": "820200",
-			"label": "离岛",
+			"label": "何文田",
 			"children": []
 		}]
 	}, {
 		"value": "110000",
-		"label": "北京",
+		"label": "荃灣綫",
 		"children": [{
 			"value": "110100",
-			"label": "北京市",
-			"children": [{
-				"value": "110114",
-				"label": "昌平区",
-				"children": []
-			}, {
-				"value": "110105",
-				"label": "朝阳区",
-				"children": []
-			}, {
-				"value": "110103",
-				"label": "崇文区",
-				"children": []
-			}, {
-				"value": "110115",
-				"label": "大兴区",
-				"children": []
-			}, {
-				"value": "110101",
-				"label": "东城区",
-				"children": []
-			}, {
-				"value": "110111",
-				"label": "房山区",
-				"children": []
-			}, {
-				"value": "110106",
-				"label": "丰台区",
-				"children": []
-			}, {
-				"value": "110108",
-				"label": "海淀区",
-				"children": []
-			}, {
-				"value": "110116",
-				"label": "怀柔区",
-				"children": []
-			}, {
-				"value": "110109",
-				"label": "门头沟区",
-				"children": []
-			}, {
-				"value": "110228",
-				"label": "密云县",
-				"children": []
-			}, {
-				"value": "110117",
-				"label": "平谷区",
-				"children": []
-			}, {
-				"value": "110230",
-				"label": "其它区",
-				"children": []
-			}, {
-				"value": "110107",
-				"label": "石景山区",
-				"children": []
-			}, {
-				"value": "110113",
-				"label": "顺义区",
-				"children": []
-			}, {
-				"value": "110112",
-				"label": "通州区",
-				"children": []
-			}, {
-				"value": "110102",
-				"label": "西城区",
-				"children": []
-			}, {
-				"value": "110104",
-				"label": "宣武区",
-				"children": []
-			}, {
-				"value": "110229",
-				"label": "延庆县",
-				"children": []
-			}]
-		}]
+			"label": "中環",
+			"children": []
+		}, {
+			"value": "110200",
+			"label": "金鐘",
+			"children": []
+		}, {
+			"value": "110300",
+			"label": "尖沙咀",
+			"children": []
+		}, {
+			"value": "110400",
+			"label": "佐敦",
+			"children": []
+		}, {
+			"value": "110500",
+			"label": "油麻地",
+			"children": []
+		}, {
+			"value": "110600",
+			"label": "中環",
+			"children": []
+		}, {
+			"value": "110700",
+			"label": "旺角",
+			"children": []
+		}, {
+			"value": "110800",
+			"label": "太子",
+			"children": []
+		}, {
+			"value": "110900",
+			"label": "深水埗",
+			"children": []
+		}, {
+			"value": "111100",
+			"label": "長沙灣",
+			"children": []
+		}, {
+			"value": "111200",
+			"label": "荔枝角",
+			"children": []
+		}, {
+			"value": "111300",
+			"label": "美孚",
+			"children": []
+		}, {
+			"value": "111400",
+			"label": "荔景",
+			"children": []
+		}, {
+			"value": "111500",
+			"label": "葵芳",
+			"children": []
+		}, {
+			"value": "111600",
+			"label": "葵興",
+			"children": []
+		}, {
+			"value": "111700",
+			"label": "大窩口",
+			"children": []
+		}, {
+			"value": "111800",
+			"label": "荃灣",
+			"children": []
+		}]  // End of 荃灣綫
 	}, {
 		"value": "450000",
-		"label": "广西壮族自治区",
+		"label": "將軍澳綫",
 		"children": [{
 			"value": "450500",
-			"label": "北海市",
+			"label": "北角",
 			"children": [{
 				"value": "450502",
 				"label": "海城区",
@@ -1278,4 +1262,5 @@
 			}]
 		}]
 	}];
-});
+
+	export {MTR};

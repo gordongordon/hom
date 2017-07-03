@@ -2,9 +2,10 @@ import React from 'react';
 // import {map} from 'lodash';
 import { observer } from 'mobx-react';
 import {propertys} from 'propertysViewModel';
-import {SinglePropertyView} from 'singlePropertyView';
-import {SingleCreatePropertyView} from 'singleCreatePropertyView'
-import {SingleMatchPropertyView} from 'singleMatchPropertyView'
+//import {SinglePropertyView} from 'singlePropertyView';
+import {SinglePropertyView} from 'singlePropertyViewAntMobile';
+import {SingleCreatePropertyView} from 'singleCreatePropertyViewAntMobile'
+//import {SingleMatchPropertyView} from 'singleMatchPropertyView'
 //import PaperPropertyView from 'paperPropertyView'
 //import PaperMatchPropertyView from 'paperMatchPropertyView'
 //import CardPropertyView from 'cardPropertyView'
@@ -77,10 +78,10 @@ export class PropertysView extends React.Component {
     return (
         <div>
 
+           {
+             that.renderPropertys( propertys )
+           }
 
-  {
-    that.renderPropertys( propertys )
-  }
 
 
 
