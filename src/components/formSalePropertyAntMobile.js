@@ -2,6 +2,9 @@ import React from 'react'
 import { Card, Picker, List, WhiteSpace, InputItem, Button} from 'antd-mobile';
 import { createForm } from 'rc-form';
 import { MTR } from 'MTR';
+import {Fb} from 'firebase-store'
+import {Property} from 'property'
+
 
 // 如果不是使用 List.Item 作为 children
 const CustomChildren = props => (
@@ -17,51 +20,51 @@ const CustomChildren = props => (
 );
 
 const roomKey = {
-  '2000' : '開放式',
-  '2001' : '1房',
-  '2002' : '2房',
-  '2003' : '3房',
-  '2004' : '4房',
-  '2005' : '5房',
+  '1000' : '開放式',
+  '1001' : '1房',
+  '1002' : '2房',
+  '1003' : '3房',
+  '1004' : '4房',
+  '1005' : '5房',
 }
 
 const roomSelection = [
   [
   {
     label : '開放式',
-    value:  '2000',
+    value:  '0',
   }, {
     label : '1房',
-    value:  '2001',
+    value:  '1',
   }, {
     label : '2房',
-    value:  '2002',
+    value:  '2',
   }, {
-    value:  '2003',
+    value:  '3',
     label : '3房',
   }, {
     label : '4房',
-    value:  '2004',
+    value:  '4',
   }, {
     label : '5房',
-    value:  '2005',
+    value:  '5',
   }
 ],  [
   {
     label : '1浴室',
-    value:  '3001',
+    value:  '1',
   }, {
     label : '2浴室',
-    value:  '3002',
+    value:  '2',
   }, {
     label : '3浴室',
-    value:  '3003',
+    value:  '3',
   }, {
-    value:  '3004',
+    value:  '4',
     label : '4浴室',
   }, {
     label : '5浴室',
-    value:  '3005',
+    value:  '5',
   }
 ],
 
@@ -129,6 +132,27 @@ class FormSalePropertyAntMobile extends React.Component {
     });
   };
 
+
+  addPropertyForSale = ( nearByMtrLine, nearByMtrStop, netSize, salePrice, numOfRoom, numofBathroom, contactName, contactPhone, contactEmail) =>
+  {
+    var p = new Property();
+
+
+    p.nearByMtrLine = nearByMtrLine;
+    p.nearByMtrStop = nearByMtrStop;
+    p.netSize = parseInt(netSize);
+    p.salePrice = parseInt(salePrice);
+    p.numOfRoom = parseInt(numOfRoom);
+    p.numofBathroom = parseInt(numofBathroom);
+    p.contactName = contactName;
+    p.contactPhone = parseInt(contactPhone);
+    p.contactEmail = contactEmail;
+
+    const id = Fb.propertys.push().key;
+    Fb.propertys.update( {[id]:  p.serialize() });
+  }
+
+
   submit = (e) => {
    const value = this.props.form.getFieldsValue();
 
@@ -136,9 +160,13 @@ class FormSalePropertyAntMobile extends React.Component {
    console.log( '地鐵線', value.MTR )
    console.log( '呎', value.netSize)
    console.log( '售價', value.salePrice )
-   console.log( 'email', value.email )
-   console.log( '手 機', value.phone )
+   console.log( 'Name', value.contactName )
+   console.log( 'email', value.contactEmail )
+   console.log( '手 機', value.contactPhone )
    console.log( '間隔', roomKey[value.room[0]] )
+
+   this.addPropertyForSale( '1001', '2001', value.netSize, value.salePrice, value.room[0], value.room[1],
+                        value.contactName, value.contactPhone, value.contactEmail)
 //   console.log(this.props.form.getFieldsValue());
   }
 
@@ -185,6 +213,7 @@ class FormSalePropertyAntMobile extends React.Component {
                   clear
                   extra="呎"
                 >面 積</InputItem>
+
                 <InputItem
                   {...getFieldProps('salePrice', {
                     normalize: (v, prev) => {
@@ -208,15 +237,22 @@ class FormSalePropertyAntMobile extends React.Component {
                   clear
                   extra="萬元"
                 >售價</InputItem>
+
+                <InputItem
+                  {...getFieldProps('contactName') }
+                  type="text"
+                  clear
+                >名稱</InputItem>
+
                 <InputItem
                   clear
-                  {...getFieldProps('phone')}
+                  {...getFieldProps('contactPhone')}
                   type="phone"
                   placeholder="9618 1448"
                 >手 機</InputItem>
 
                 <InputItem
-                  {...getFieldProps('email')}
+                  {...getFieldProps('contactEmail')}
                   clear
                   placeholder="YourEmail@gmail.com"
                 >Email</InputItem>
@@ -226,7 +262,7 @@ class FormSalePropertyAntMobile extends React.Component {
                 title="選擇間隔"
                 cascade={false}
                 {...getFieldProps('room', {
-                    initialValue: ['2001', '3001'],
+                    initialValue: ['1', '1'],
                 })}
                 extra="请选择(可选)"
                 onOk={e => console.log('ok', e)}

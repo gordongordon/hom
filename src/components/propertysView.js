@@ -83,24 +83,24 @@ export class PropertysView extends React.Component {
            }
 
 
-
-
-  <SingleCreatePropertyView key='1' model={propertys} userName={'gordon'} name={'#01'} location={'shatin'} typeTo={'sell'} typeBy={'forSellBy'} typeFor={'buy'} price={'100'} />
-  <SingleCreatePropertyView key='2' model={propertys} userName={'jeff'} name={'#02'} location={'ma on sha'} typeTo={'buy'} typeBy={'forBuyBy'} typeFor={'sell'} price={'200'} />
-  <SingleCreatePropertyView  key='3' model={propertys} userName={'lala'} name={'#03'} location={'shatin'} typeTo={'buy'} typeBy={'forBuyBy'} typeFor={'sell'} price={'300'} />
-  <SingleCreatePropertyView  key='4' model={propertys} userName={'peter'} name={'#04'} location={'shatin'} typeTo={'buy'} typeBy={'forBuyBy'} typeFor={'sell'} price={'400'} />
-  <SingleCreatePropertyView  key='5' model={propertys} userName={'mac'} name={'#05'} location={'shatin'} typeTo={'lease'} typeBy={'forLeaseBy'} typeFor={'rent'} price={'500'} />
-  <SingleCreatePropertyView  key='6' model={propertys} userName={'Machel'} name={'#06'} location={'shatin'} typeTo={'rent'} typeBy={'forRentBy'} typeFor={'lease'} price={'600'} />
-  <SingleCreatePropertyView  key='7' model={propertys} userName={'gordon'} name={'#07'} location={'shatin'} typeTo={'sell'} typeBy={'forSellBy'} typeFor={'buy'} price={'700'} />
-  <SingleCreatePropertyView  key='8' model={propertys} userName={'jeff'} name={'#08'} location={'ma on sha'} typeTo={'buy'} typeBy={'forBuyBy'} typeFor={'sell'} price={'900'} />
-  <SingleCreatePropertyView  key='9' model={propertys} userName={'lala'} name={'#09'} location={'shatin'} typeTo={'buy'} typeBy={'forBuyBy'} typeFor={'sell'} price={'900'} />
-  <SingleCreatePropertyView  key='10' model={propertys} userName={'peter'} name={'#10'} location={'shatin'} typeTo={'buy'} typeBy={'forBuyBy'} typeFor={'sell'} price={'1000'} />
-
       </div>
 
     )
   }
 }
+
+
+// <SingleCreatePropertyView key='1' model={propertys}   userName={'gordon'} nameOfBuilding={'#01'} location={'shatin'} typeTo={'sell'} typeBy={'forSellBy'} typeFor={'buy'} salePrice={'100'} />
+// <SingleCreatePropertyView key='2' model={propertys}   userName={'jeff'} name={'#02'} location={'ma on sha'} typeTo={'buy'} typeBy={'forBuyBy'} typeFor={'sell'} price={'200'} />
+// <SingleCreatePropertyView  key='3' model={propertys}  userName={'lala'} name={'#03'} location={'shatin'} typeTo={'buy'} typeBy={'forBuyBy'} typeFor={'sell'} price={'300'} />
+// <SingleCreatePropertyView  key='4' model={propertys}  userName={'peter'} name={'#04'} location={'shatin'} typeTo={'buy'} typeBy={'forBuyBy'} typeFor={'sell'} price={'400'} />
+// <SingleCreatePropertyView  key='5' model={propertys}  userName={'mac'} name={'#05'} location={'shatin'} typeTo={'lease'} typeBy={'forLeaseBy'} typeFor={'rent'} price={'500'} />
+// <SingleCreatePropertyView  key='6' model={propertys}  userName={'Machel'} name={'#06'} location={'shatin'} typeTo={'rent'} typeBy={'forRentBy'} typeFor={'lease'} price={'600'} />
+// <SingleCreatePropertyView  key='7' model={propertys}  userName={'gordon'} name={'#07'} location={'shatin'} typeTo={'sell'} typeBy={'forSellBy'} typeFor={'buy'} price={'700'} />
+// <SingleCreatePropertyView  key='8' model={propertys}  userName={'jeff'} name={'#08'} location={'ma on sha'} typeTo={'buy'} typeBy={'forBuyBy'} typeFor={'sell'} price={'900'} />
+// <SingleCreatePropertyView  key='9' model={propertys}  userName={'lala'} name={'#09'} location={'shatin'} typeTo={'buy'} typeBy={'forBuyBy'} typeFor={'sell'} price={'900'} />
+// <SingleCreatePropertyView  key='10' model={propertys} userName={'peter'} name={'#10'} location={'shatin'} typeTo={'buy'} typeBy={'forBuyBy'} typeFor={'sell'} price={'1000'} />
+
 
 // {  map( propertys.json, (it, key) => (
 //      <div key={key}>

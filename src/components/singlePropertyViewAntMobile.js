@@ -20,12 +20,13 @@ export class SinglePropertyView extends React.Component{
 
         return ( <div>
                 <List renderHeader={() => 'Single Property'}>
-                  <InputItem type="checkbox" checked={property.done} onChange={e => {property.done = e.target.checked}} />
-                  <InputItem type="text" value={property.text} onChange={e => {property.text = e.target.value}} />
-                  <InputItem type="text" value={property.name} onChange={e => {property.name = e.target.value}} />
-                  <InputItem type="text" value={property.location} onChange={e => {property.location = e.target.value}} />
-                  <InputItem type="text" value={property.typeTo} onChange={e => {property.typeTo = e.target.value}} />
-                  <InputItem type="text" value={property.price} onChange={e => {property.price = e.target.value}} />
+                  <InputItem type="checkbox" checked={property.done} onChange={e => {property.done = e.target.checked}} > Check </InputItem>
+                  <InputItem type="text" value={property.nameOfBuilding} onChange={e => {property.nameOfBuilding = e.target.value}} > Building </InputItem>
+                  <InputItem type="text" value={property.contactName} onChange={e => {property.contactName = e.target.value}} > Name </InputItem>
+                  <InputItem type="text" value={property.nearByMtrLine} onChange={e => {property.nearByMtrStop = e.target.value}} > MTR Line </InputItem>
+                  <InputItem type="text" value={property.nearByMtrStop} onChange={e => {property.nearByMtrStop = e.target.value}} > MTR Stop </InputItem>
+                  <InputItem type="text" value={property.typeTo} onChange={e => {property.typeTo = e.target.value}} > typeTo </InputItem>
+                  <InputItem type="text" value={property.salePrice} onChange={e => {property.salePrice = e.target.value}} > sale Price </InputItem>
                   <Button type="ghost" onClick={() => propertys.del( keyId )}>Delete</Button>
                 </List>
                 </div>

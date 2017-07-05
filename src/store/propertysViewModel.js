@@ -51,10 +51,12 @@ class PropertysViewModel {
 
             var p = new Propertyhk();
             p.done = snapshot.val().done
-            p.text = snapshot.val().text
-            p.name = snapshot.val().name
+            p.contactName = snapshot.val().contactName
+            p.nameOfBuilding = snapshot.val().nameOfBuilding;
             p.location = snapshot.val().location
-            p.price = snapshot.val().price
+            p.nearByMtrLine = snapshot.val().nearByMtrLine
+            p.nearByMtrStop = snapshot.val().nearByMtrStop
+            p.salePrice = snapshot.val().salePrice
             p.typeTo = snapshot.val().typeTo
             p.typeBy = snapshot.val().typeBy
             p.typeFor = snapshot.val().typeFor
@@ -131,14 +133,34 @@ class PropertysViewModel {
     this.update(id, name );
   };
 
+  addPropertyForSale = ( nearByMtrLine, nearByMtrStop, netSize, salePrice, numOfRoom, numofBathroom, contactName, contactPhone, contactEmail) =>
+  {
+    var p = new Property();
+
+
+    p.nearByMtrLine = nearByMtrLine;
+    p.nearByMtrStop = nearByMtrStop;
+    p.netSize = parseInt(netSize);
+    p.salePrice = parseInt(salePrice);
+    p.numOfRoom = parseInt(numOfRoom);
+    p.numofBathroom = parseInt(numofBathroom);
+    p.contactName = contactName;
+    p.contactPhone = parseInt(contactPhone);
+    p.contactEmail = contactEmail;
+
+    const id = Fb.propertys.push().key;
+    Fb.propertys.update( {[id]:  p.serialize() });
+  }
+
+
   // For testing only must create first
-  addProperty(userName, name, location, typeTo, typeBy, typeFor, price ){
+  addProperty(userName, nameOfBuilding, location, typeTo, typeBy, typeFor, price ){
       var p = this.property = new Propertyhk();
       p.done = false
-      p.text = userName
-      p.name = name
+      p.contactName = userName
+      p.nameOfBuilding = nameOfBuilding
       p.location = location
-      p.price = parseInt(price)
+      p.salePrice = parseInt(price)
       p.typeTo = typeTo
       p.typeBy = typeBy
       p.typeFor = typeFor

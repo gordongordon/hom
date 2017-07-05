@@ -21,7 +21,7 @@ export class Property{
     userName = 'none'
     userKey  = null
 
-    name = 'NoName'
+//    name = 'NoName'
     // Should be gunref
     //ownerGun = null;
 
@@ -33,8 +33,42 @@ export class Property{
     // is the todo done?
     @observable done = false
 
-    @observable price = 0;
-    @observable location = 'hk'
+    // Propety information
+    @observable district = "";
+    @observable nameOfBuilding = "";
+    @observable propertyType = "";
+    @observable flatType =  "";
+    @observable nearByMtrLine = "";
+    @observable nearByMtrStop = "";
+
+    // leasing
+    @observable leasePrice = 0;
+    @observable leasePriceWithTax = true;
+    @observable leasePriceWithLandTax = true;
+    @observable leasePriceWithManagementFee = true;
+
+
+    @observable rentBudgetMin = 0;
+    @observable rentBudgetMax = 0;
+
+    // sale pricing
+    @observable salePrice = 0;
+    @observable salePriceMin = 0;
+    @observable salePriceMax = 0;
+    @observable buyBudgetMin = 0;
+    @observable buyBudgetMin = 0;
+
+    // property sizing
+    @observable netSize = 0;
+    @observable netSizeMin = 0;
+    @observable netSizeMax = 0;
+    @observable numOfRroom = 0;
+    @observable numOfBathroom = 0;
+
+    // Contact
+    @observable contactName = "no name";
+    @observable contactPhone = "missing phone";
+    @observable contactEmail = "missing email";
     // Type : sale, buy, rent, lease,
     @observable type = null
     @observable typeTo = 'typeTo'
@@ -58,17 +92,43 @@ export class Property{
     serialize(){
         return {
             id: this.id,
-            text: this.text,
+//            text: this.text,
             done: this.done,
-            price : this.price,
-            location : this.location,
+//            location : this.location,
             type: this.type,
+
             isAgent: this.isAgent,
             createdAt: this.createdAt,
             typeTo : this.typeTo,
             typeBy : this.typeBy,
             typeFor : this.typeFor,
-            name : this.name
+
+            district : this.district,
+            nameOfBuilding: this.nameOfBuilding,
+            propertyType : this.propertyType,
+            flatType : this.flatType,
+            nearByMtrLine : this.nearByMtrLine,
+            nearByMtrStop : this.nearByMtrStop,
+
+
+            salePrice : this.salePrice,
+            salePriceMin : this.salePriceMin,
+            salePriceMax : this.salePriceMax,
+            leasePrice : this.leasePrice,
+            leasePriceWithTax : this.leasePriceWithTax,
+            leasePriceWithLandTax : this.leasePriceWithLandTax,
+            leasePriceWithManagementFee : this.leasePriceWithManagementFee,
+
+            netSize : this.netSize,
+            netSizeMin : this.netSizeMin,
+            netSizeMax : this.netSizeMax,
+            numOfRoom : this.numOfRoom,
+            numOfBathroom : this.numOfBathroom,
+
+            contactName : this.contactName,
+            contactPhone : this.contactPhone,
+            contactEmail : this.contactEmail,
+
           }
     }
 

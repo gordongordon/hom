@@ -12,6 +12,7 @@ class App extends Component {
   render() {
     return (
       <div style={{ margin: 5 }}>
+        <PropertysView />
         <FormSalePropertyAntMobileWrapper />
         <DevTools />
       </div>
