@@ -16,6 +16,14 @@ const CustomChildren = props => (
   </div>
 );
 
+const roomKey = {
+  '2000' : '開放式',
+  '2001' : '1房',
+  '2002' : '2房',
+  '2003' : '3房',
+  '2004' : '4房',
+  '2005' : '5房',
+}
 
 const roomSelection = [
   [
@@ -63,7 +71,7 @@ class FormSalePropertyAntMobile extends React.Component {
   state = {
     data: [],
     cols: 1,
-    pickerValue: [],
+    //pickerValue: [],
     asyncValue: [],
     sValue: ['2001', '3001'],
 
@@ -121,9 +129,23 @@ class FormSalePropertyAntMobile extends React.Component {
     });
   };
 
+  submit = (e) => {
+   const value = this.props.form.getFieldsValue();
+
+   e.preventDefault();
+   console.log( '地鐵線', value.MTR )
+   console.log( '呎', value.netSize)
+   console.log( '售價', value.salePrice )
+   console.log( 'email', value.email )
+   console.log( '手 機', value.phone )
+   console.log( '間隔', roomKey[value.room[0]] )
+//   console.log(this.props.form.getFieldsValue());
+  }
 
   render() {
     const { getFieldProps } = this.props.form;
+
+
 
     return ( <div>
       <WhiteSpace size="lg" />
@@ -194,23 +216,27 @@ class FormSalePropertyAntMobile extends React.Component {
                 >手 機</InputItem>
 
                 <InputItem
-                  {...getFieldProps('inputclear')}
+                  {...getFieldProps('email')}
                   clear
                   placeholder="YourEmail@gmail.com"
                 >Email</InputItem>
 
-      <Picker  data={roomSelection}
-        title="選擇間隔"
-        cascade={false}
-        extra="请选择(可选)"
-        value={this.state.sValue}
-        onChange={v => this.setState({ sValue: v })}
-        >
-          <List.Item arrow="horizontal">間隔</List.Item>
-        </Picker>
+              <Picker  data={roomSelection}
+                cols={2}
+                title="選擇間隔"
+                cascade={false}
+                {...getFieldProps('room', {
+                    initialValue: ['2001', '3001'],
+                })}
+                extra="请选择(可选)"
+                onOk={e => console.log('ok', e)}
+                onDismiss={e => console.log('dismiss', e)}
+               >
+               <List.Item arrow="horizontal">間隔</List.Item>
+              </Picker>
 
         <List.Item
-              extra={<Button type="ghost" size="large" inline>獲得匹配</Button>}
+              extra={<Button type="ghost" size="large" inline onClick={this.submit}>獲得匹配</Button>}
               multipleLine
             >
               HoMatching
