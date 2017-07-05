@@ -121,6 +121,7 @@ class FormSalePropertyAntMobile extends React.Component {
     });
   };
 
+
   render() {
     const { getFieldProps } = this.props.form;
 
@@ -131,9 +132,9 @@ class FormSalePropertyAntMobile extends React.Component {
       <Picker cols={2} extra="地鐵線"
         data={MTR}
         title="地鐵線"
-        {...getFieldProps('MTR', {
-          initialValue: ['HKL', 'CWB'],
-        })}
+         {...getFieldProps('MTR', {
+            initialValue: ['HKL', 'CWB'],
+          })}
         onOk={e => console.log('ok', e)}
         onDismiss={e => console.log('dismiss', e)}
       >
