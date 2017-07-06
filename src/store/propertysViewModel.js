@@ -2,6 +2,7 @@ import {observable, computed, action} from 'mobx';
 import {Fb} from 'firebase-store';
 import {toJS} from 'mobx';
 import {Propertyhk} from 'propertyhk'
+import {Property} from 'property'
 
 // List of user properties, to be .on
 // propertyViewModel
@@ -50,6 +51,8 @@ class PropertysViewModel {
     Fb.propertys.on('child_added', (snapshot) => {
 
             var p = new Propertyhk();
+            //var p = new Property();
+
             p.done = snapshot.val().done
             p.contactName = snapshot.val().contactName
             p.nameOfBuilding = snapshot.val().nameOfBuilding;
@@ -60,6 +63,7 @@ class PropertysViewModel {
             p.typeTo = snapshot.val().typeTo
             p.typeBy = snapshot.val().typeBy
             p.typeFor = snapshot.val().typeFor
+
             p.buildMatchProperty( snapshot.key, p.typeFor, p.location);
             that.propertys.set( snapshot.key, p );
     });

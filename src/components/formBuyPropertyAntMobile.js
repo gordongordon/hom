@@ -3,7 +3,10 @@ import { Card, Picker, List, WhiteSpace, InputItem,
          Button,
          SegmentedControl,
          Checkbox,
-         Switch
+         Switch,
+         WingBlank,
+         Range,
+         Stepper,
        } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import { MTR } from 'MTR';
@@ -75,9 +78,10 @@ const roomSelection = [
   }
 ],
 
-]
+]  // End of room selection
 
-class FormSalePropertyAntMobile extends React.Component {
+class FormBuyPropertyAntMobile extends React.Component {
+
   state = {
     data: [],
     cols: 1,
@@ -96,6 +100,7 @@ class FormSalePropertyAntMobile extends React.Component {
       });
     }, 120);
   };
+
 
   onPickerChange = (val) => {
     console.log(val);
@@ -185,10 +190,25 @@ class FormSalePropertyAntMobile extends React.Component {
   render() {
     const { getFieldProps } = this.props.form;
 
-
+    const log = (name) => {
+      return (value) => {
+        console.log(`${name}: ${value}`);
+      }; }
 
     return ( <div>
-      <WhiteSpace size="lg" />
+
+      <WingBlank size="lg">
+      <p className="title">面 積, 呎</p>
+      <Range
+        min={1}
+        max={30}
+        defaultValue={[1, 30]}
+        onChange={log('change')}
+        onAfterChange={log('afterChange')}
+        disabled
+      />
+    </WingBlank>
+
       <List style={{ backgroundColor: 'white' }} className="picker-list">
       <Picker cols={2} extra="地鐵線"
         data={MTR}
@@ -200,30 +220,9 @@ class FormSalePropertyAntMobile extends React.Component {
         onDismiss={e => console.log('dismiss', e)}
       >
         <List.Item arrow="horizontal">地鐵線</List.Item>
+
+
       </Picker>
-                <InputItem
-                  {...getFieldProps('netSize', {
-                    normalize: (v, prev) => {
-                      if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
-                        if (v === '.') {
-                          return '0.';
-                        }
-                        return prev;
-                      }
-                      return v;
-                    },
-                  })}
-                  type="number"
-                  placeholder="0"
-                  onFocus={() => {
-                    this.setState({
-                      netSizefocused: false,
-                    });
-                  }}
-                  focused={this.state.netSizefocused}
-                  clear
-                  extra="呎"
-                >面 積</InputItem>
 
                 <InputItem
                   {...getFieldProps('salePrice', {
@@ -260,7 +259,33 @@ class FormSalePropertyAntMobile extends React.Component {
                           onClick={(checked) => { console.log(checked); }}
                         />}
 
-                >出售連租賃</List.Item>
+                >我可以賣買連租賃</List.Item>
+
+                <List.Item extra={
+                 <Stepper
+                   style={{ width: '100%', minWidth: '2rem' }}
+                   showNumber
+                   max={3000}
+                   min={100}
+                   defaultValue={100}
+                   step={100}
+                 />}
+               >
+               最少呎
+               </List.Item>
+
+               <List.Item extra={
+                <Stepper
+                  style={{ width: '100%', minWidth: '2rem' }}
+                  showNumber
+                  max={3000}
+                  min={100}
+                  defaultValue={100}
+                  step={100}
+                />}
+              >
+              最大呎
+              </List.Item>
 
 
 
@@ -283,7 +308,7 @@ class FormSalePropertyAntMobile extends React.Component {
                           onClick={(checked) => { console.log(checked); }}
                         />}
 
-                >有樓睇</List.Item>
+                >要求有樓睇</List.Item>
 
 
                 <InputItem
@@ -335,7 +360,7 @@ class FormSalePropertyAntMobile extends React.Component {
   }
 }
 
-export const FormSalePropertyAntMobileWrapper = createForm()(FormSalePropertyAntMobile);
+export const FormBuyPropertyAntMobileWrapper = createForm()(FormBuyPropertyAntMobile);
 
 // ReactDOM.render(<TestWrapper />, mountNode);
 // .picker-list .am-list-item .am-list-line .am-list-extra {

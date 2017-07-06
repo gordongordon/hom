@@ -7,6 +7,7 @@ var config = {
   databaseURL: 'https://todo-app-a2b7c.firebaseio.com',
   storageBucket: 'todo-app-a2b7c.appspot.com',
 };
+
 firebase.initializeApp(config);
 
 const root = firebase.database().ref();

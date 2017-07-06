@@ -46,6 +46,8 @@ export class Property{
     @observable leasePriceWithTax = true;
     @observable leasePriceWithLandTax = true;
     @observable leasePriceWithManagementFee = true;
+    @observable laseDepositPerMonth = 0;
+
 
 
     @observable rentBudgetMin = 0;
@@ -78,6 +80,13 @@ export class Property{
     @observable isAgent = false
     @observable createdAt = moment().format();
 
+    // Lease property
+    @observable isNegotiable = true
+    @observable isViewAble = true
+    @observable hasHomeHardware = false
+
+    @observable isPreferPayAnnually = false
+    @observable isSaleWIthLease = false
 
     // computed values are values derived and automatically updated when the observed
     // observable values changes. For example we use it to determine whenever the todo is valid
@@ -118,6 +127,7 @@ export class Property{
             leasePriceWithTax : this.leasePriceWithTax,
             leasePriceWithLandTax : this.leasePriceWithLandTax,
             leasePriceWithManagementFee : this.leasePriceWithManagementFee,
+            leaseDepositPerMonth : this.leaseDepositPerMonth,
 
             netSize : this.netSize,
             netSizeMin : this.netSizeMin,
@@ -128,6 +138,19 @@ export class Property{
             contactName : this.contactName,
             contactPhone : this.contactPhone,
             contactEmail : this.contactEmail,
+
+            // Sale Property
+            numOfDayClosingDeal : this.numOfDayClosingDeal,
+            isNegotiable : this.isNegotiable,
+            isViewAble : this.isViewAble,
+            isSaleWithLease : this.isSaleWithLease,
+
+            // lease property
+            isNegotiable  : this.isNegotiable,
+            isViewAble    : this.isViewAble,
+            isPreferPayAnnually : this.isPreferPayAnnually,
+            hasHomeHardware : this.hasHomeHardware,
+            isSaleWIthLease : this.isSaleWIthLease,
 
           }
     }

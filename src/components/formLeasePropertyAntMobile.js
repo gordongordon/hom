@@ -26,6 +26,7 @@ const CustomChildren = props => (
 
 const CheckboxItem = Checkbox.CheckboxItem;
 
+
 const roomKey = {
   '0' : '開放式',
   '1' : '1房',
@@ -77,7 +78,7 @@ const roomSelection = [
 
 ]
 
-class FormSalePropertyAntMobile extends React.Component {
+class FormLeasePropertyAntMobile extends React.Component {
   state = {
     data: [],
     cols: 1,
@@ -96,6 +97,10 @@ class FormSalePropertyAntMobile extends React.Component {
       });
     }, 120);
   };
+
+  onChange = (val) => {
+    console.log(val);
+  }
 
   onPickerChange = (val) => {
     console.log(val);
@@ -140,7 +145,7 @@ class FormSalePropertyAntMobile extends React.Component {
   };
 
 
-  addPropertyForSale = ( nearByMtrLine, nearByMtrStop, netSize, salePrice, numOfRoom, numofBathroom, contactName, contactPhone, contactEmail) =>
+  addPropertyForLease = ( nearByMtrLine, nearByMtrStop, netSize, leasePrice, numOfRoom, numofBathroom, contactName, contactPhone, contactEmail) =>
   {
     var p = new Property();
 
@@ -148,7 +153,7 @@ class FormSalePropertyAntMobile extends React.Component {
     p.nearByMtrLine = nearByMtrLine;
     p.nearByMtrStop = nearByMtrStop;
     p.netSize = parseInt(netSize);
-    p.salePrice = parseInt(salePrice);
+    p.leasePrice = parseInt(leasePrice);
     p.numOfRoom = parseInt(numOfRoom);
     p.numofBathroom = parseInt(numofBathroom);
     p.contactName = contactName;
@@ -166,15 +171,15 @@ class FormSalePropertyAntMobile extends React.Component {
    e.preventDefault();
    console.log( '地鐵線', value.MTR )
    console.log( '呎', value.netSize)
-   console.log( '售價', value.salePrice )
+   console.log( '租金', value.leasePrice )
    console.log( 'Name', value.contactName )
-   console.log( 'email', value.contactEmail )
-   console.log( '手 機', value.contactPhone )
+   console.log( '聯絡電郵', value.contactEmail )
+   console.log( '聯絡手機', value.contactPhone )
    console.log( '間隔', roomKey[value.room[0]] )
 
-   this.addPropertyForSale( '1001', '2001', value.netSize, value.salePrice, value.room[0], value.room[1],
+   this.addPropertyForLease( '1001', '2001', value.netSize, value.leasePrice, value.room[0], value.room[1],
                         value.contactName, value.contactPhone, value.contactEmail)
-//   console.log(this.props.form.getFieldsValue());
+   console.log(this.props.form.getFieldsValue());
   }
 
   sale = () => {
@@ -184,6 +189,11 @@ class FormSalePropertyAntMobile extends React.Component {
 // '房東', '租人','賣家','買家'
   render() {
     const { getFieldProps } = this.props.form;
+    const leaseWith = [
+      { value: 0, label: '包差餉' },
+      { value: 1, label: '包地租/稅' },
+      { value: 2, label: '包管理費' },
+    ];
 
 
 
@@ -226,7 +236,7 @@ class FormSalePropertyAntMobile extends React.Component {
                 >面 積</InputItem>
 
                 <InputItem
-                  {...getFieldProps('salePrice', {
+                  {...getFieldProps('leasePrice', {
                     normalize: (v, prev) => {
                       if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
                         if (v === '.') {
@@ -238,7 +248,7 @@ class FormSalePropertyAntMobile extends React.Component {
                     },
                   })}
                   type="number"
-                  placeholder="請求入場價格/每萬"
+                  placeholder=""
                   onFocus={() => {
                     this.setState({
                       netSizefocused: false,
@@ -246,23 +256,27 @@ class FormSalePropertyAntMobile extends React.Component {
                   }}
                   focused={this.state.netSizefocused}
                   clear
-                  extra="萬元"
-                >售價</InputItem>
+                  extra="元"
+                >租金</InputItem>
 
+                <List renderHeader={() => '租金包含'}>
 
+                  {leaseWith.map(i => (
+                    <CheckboxItem key={i.value} onChange={() => this.onChange(i.value)}>
+                      {i.label}
+                    </CheckboxItem>
+                  ))}
 
-                <List.Item
-                extra={<Switch
-                          {...getFieldProps('isSaleWIthLease', {
-                            initialValue: true,
-                            valuePropName: 'checked',
-                          })}
-                          onClick={(checked) => { console.log(checked); }}
-                        />}
+                  <List.Item
+                  extra={<Switch
+                            {...getFieldProps('isPreferPayAnnually', {
+                              initialValue: false,
+                              valuePropName: 'checked',
+                            })}
+                            onClick={(checked) => { console.log(checked); }}
+                          />}
 
-                >出售連租賃</List.Item>
-
-
+                  >較喜歡預繳一年租金</List.Item>
 
                 <List.Item
                 extra={<Switch
@@ -273,7 +287,18 @@ class FormSalePropertyAntMobile extends React.Component {
                           onClick={(checked) => { console.log(checked); }}
                         />}
 
-                >可議價</List.Item>
+                >有價講</List.Item>
+                <List.Item
+                extra={<Switch
+                          {...getFieldProps('hasHomeHardware', {
+                            initialValue: false,
+                            valuePropName: 'checked',
+                          })}
+                          onClick={(checked) => { console.log(checked); }}
+                        />}
+
+                >提供家俬設備</List.Item>
+
                 <List.Item
                 extra={<Switch
                           {...getFieldProps('isViewAble', {
@@ -284,6 +309,9 @@ class FormSalePropertyAntMobile extends React.Component {
                         />}
 
                 >有樓睇</List.Item>
+
+                </List>
+
 
 
                 <InputItem
@@ -335,7 +363,7 @@ class FormSalePropertyAntMobile extends React.Component {
   }
 }
 
-export const FormSalePropertyAntMobileWrapper = createForm()(FormSalePropertyAntMobile);
+export const FormLeasePropertyAntMobileWrapper = createForm()(FormLeasePropertyAntMobile);
 
 // ReactDOM.render(<TestWrapper />, mountNode);
 // .picker-list .am-list-item .am-list-line .am-list-extra {
