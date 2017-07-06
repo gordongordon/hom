@@ -3,7 +3,8 @@ import { Card, Picker, List, WhiteSpace, InputItem,
          Button,
          SegmentedControl,
          Checkbox,
-         Switch
+         Switch,
+         Stepper
        } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import { MTR } from 'MTR';
@@ -257,31 +258,45 @@ class FormRentPropertyAntMobile extends React.Component {
         extra="元"
       >收入</InputItem>
 
+                <List.Item extra={
+                 <Stepper
+                   style={{ width: '100%', minWidth: '2rem' }}
+                   showNumber
+                   max={3000}
+                   min={100}
+                   defaultValue={100}
+                   step={200}
+                 />}
+               >
+               最少實用面積/呎
+               </List.Item>
+               <Picker  data={roomSelection}
+                 cols={2}
+                 title="選擇間隔"
+                 cascade={false}
+                 {...getFieldProps('room', {
+                     initialValue: ['1', '1'],
+                 })}
+                 extra="请选择(可选)"
+                 onOk={e => console.log('ok', e)}
+                 onDismiss={e => console.log('dismiss', e)}
+                >
+                <List.Item arrow="horizontal">間隔</List.Item>
+               </Picker>
 
+               <List.Item extra={
+                <Stepper
+                  style={{ width: '100%', minWidth: '2rem' }}
+                  showNumber
+                  max={100000}
+                  min={2000}
+                  defaultValue={2000}
+                  step={1000}
+                />}
+              >
+              付出租金上限/元
+              </List.Item>
 
-                <InputItem
-                  {...getFieldProps('netSize', {
-                    normalize: (v, prev) => {
-                      if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
-                        if (v === '.') {
-                          return '0.';
-                        }
-                        return prev;
-                      }
-                      return v;
-                    },
-                  })}
-                  type="number"
-                  placeholder="0"
-                  onFocus={() => {
-                    this.setState({
-                      netSizefocused: false,
-                    });
-                  }}
-                  focused={this.state.netSizefocused}
-                  clear
-                  extra="呎"
-                >面 積</InputItem>
 
                 <InputItem
                   {...getFieldProps('leasePrice', {
@@ -372,19 +387,6 @@ class FormRentPropertyAntMobile extends React.Component {
                   placeholder="YourEmail@gmail.com"
                 >聯絡電郵</InputItem>
 
-              <Picker  data={roomSelection}
-                cols={2}
-                title="選擇間隔"
-                cascade={false}
-                {...getFieldProps('room', {
-                    initialValue: ['1', '1'],
-                })}
-                extra="请选择(可选)"
-                onOk={e => console.log('ok', e)}
-                onDismiss={e => console.log('dismiss', e)}
-               >
-               <List.Item arrow="horizontal">間隔</List.Item>
-              </Picker>
 
         <List.Item
               extra={<Button type="ghost" size="large" inline onClick={this.submit}>獲得匹配</Button>}

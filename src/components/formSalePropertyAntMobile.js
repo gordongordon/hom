@@ -223,8 +223,20 @@ class FormSalePropertyAntMobile extends React.Component {
                   focused={this.state.netSizefocused}
                   clear
                   extra="呎"
-                >面 積</InputItem>
-
+                >實用 面 積</InputItem>
+                <Picker  data={roomSelection}
+                  cols={2}
+                  title="選擇間隔"
+                  cascade={false}
+                  {...getFieldProps('room', {
+                      initialValue: ['1', '1'],
+                  })}
+                  extra="请选择(可选)"
+                  onOk={e => console.log('ok', e)}
+                  onDismiss={e => console.log('dismiss', e)}
+                 >
+                 <List.Item arrow="horizontal">間隔</List.Item>
+                </Picker>
                 <InputItem
                   {...getFieldProps('salePrice', {
                     normalize: (v, prev) => {
@@ -305,19 +317,6 @@ class FormSalePropertyAntMobile extends React.Component {
                   placeholder="YourEmail@gmail.com"
                 >聯絡電郵</InputItem>
 
-              <Picker  data={roomSelection}
-                cols={2}
-                title="選擇間隔"
-                cascade={false}
-                {...getFieldProps('room', {
-                    initialValue: ['1', '1'],
-                })}
-                extra="请选择(可选)"
-                onOk={e => console.log('ok', e)}
-                onDismiss={e => console.log('dismiss', e)}
-               >
-               <List.Item arrow="horizontal">間隔</List.Item>
-              </Picker>
 
         <List.Item
               extra={<Button type="ghost" size="large" inline onClick={this.submit}>獲得匹配</Button>}

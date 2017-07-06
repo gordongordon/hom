@@ -197,17 +197,7 @@ class FormBuyPropertyAntMobile extends React.Component {
 
     return ( <div>
 
-      <WingBlank size="lg">
-      <p className="title">面 積, 呎</p>
-      <Range
-        min={1}
-        max={30}
-        defaultValue={[1, 30]}
-        onChange={log('change')}
-        onAfterChange={log('afterChange')}
-        disabled
-      />
-    </WingBlank>
+
 
       <List style={{ backgroundColor: 'white' }} className="picker-list">
       <Picker cols={2} extra="地鐵線"
@@ -285,8 +275,22 @@ class FormBuyPropertyAntMobile extends React.Component {
                 />}
               >
               最大呎
+
               </List.Item>
 
+              <Picker  data={roomSelection}
+                cols={2}
+                title="選擇間隔"
+                cascade={false}
+                {...getFieldProps('room', {
+                    initialValue: ['1', '1'],
+                })}
+                extra="请选择(可选)"
+                onOk={e => console.log('ok', e)}
+                onDismiss={e => console.log('dismiss', e)}
+               >
+               <List.Item arrow="horizontal">間隔</List.Item>
+              </Picker>
 
 
                 <List.Item
@@ -330,19 +334,7 @@ class FormBuyPropertyAntMobile extends React.Component {
                   placeholder="YourEmail@gmail.com"
                 >聯絡電郵</InputItem>
 
-              <Picker  data={roomSelection}
-                cols={2}
-                title="選擇間隔"
-                cascade={false}
-                {...getFieldProps('room', {
-                    initialValue: ['1', '1'],
-                })}
-                extra="请选择(可选)"
-                onOk={e => console.log('ok', e)}
-                onDismiss={e => console.log('dismiss', e)}
-               >
-               <List.Item arrow="horizontal">間隔</List.Item>
-              </Picker>
+
 
         <List.Item
               extra={<Button type="ghost" size="large" inline onClick={this.submit}>獲得匹配</Button>}
@@ -386,3 +378,14 @@ export const FormBuyPropertyAntMobileWrapper = createForm()(FormBuyPropertyAntMo
 //    </Card.Body>
 //    <Card.Footer content={<Button type="ghost" inline size="small">Hello</Button>} extra={<h3>$300萬元</h3>} />
 //  </Card>
+// <WingBlank size="lg">
+// <p className="title">面 積, 呎</p>
+// <Range
+//   min={1}
+//   max={30}
+//   defaultValue={[1, 30]}
+//   onChange={log('change')}
+//   onAfterChange={log('afterChange')}
+//   disabled
+// />
+// </WingBlank>
