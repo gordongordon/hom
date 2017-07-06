@@ -7,6 +7,7 @@ import { Card, Picker, List, WhiteSpace, InputItem,
        } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import { MTR } from 'MTR';
+import {PARTITION} from 'PARTITION';
 import {Fb} from 'firebase-store'
 import {Property} from 'property'
 
@@ -35,47 +36,6 @@ const roomKey = {
   '5' : '5房',
 }
 
-const roomSelection = [
-  [
-  {
-    label : '開放式',
-    value:  '0',
-  }, {
-    label : '1房',
-    value:  '1',
-  }, {
-    label : '2房',
-    value:  '2',
-  }, {
-    value:  '3',
-    label : '3房',
-  }, {
-    label : '4房',
-    value:  '4',
-  }, {
-    label : '5房',
-    value:  '5',
-  }
-],  [
-  {
-    label : '1浴室',
-    value:  '1',
-  }, {
-    label : '2浴室',
-    value:  '2',
-  }, {
-    label : '3浴室',
-    value:  '3',
-  }, {
-    value:  '4',
-    label : '4浴室',
-  }, {
-    label : '5浴室',
-    value:  '5',
-  }
-],
-
-]
 
 class FormSalePropertyAntMobile extends React.Component {
   state = {
@@ -188,7 +148,6 @@ class FormSalePropertyAntMobile extends React.Component {
 
 
     return ( <div>
-      <WhiteSpace size="lg" />
       <List style={{ backgroundColor: 'white' }} className="picker-list">
       <Picker cols={2} extra="地鐵線"
         data={MTR}
@@ -224,18 +183,19 @@ class FormSalePropertyAntMobile extends React.Component {
                   clear
                   extra="呎"
                 >實用 面 積</InputItem>
-                <Picker  data={roomSelection}
-                  cols={2}
+                <Picker  data={PARTITION}
+                  cols={3}
                   title="選擇間隔"
                   cascade={false}
                   {...getFieldProps('room', {
-                      initialValue: ['1', '1'],
+                      initialValue: ['0', '1','1'],
                   })}
-                  extra="请选择(可选)"
+                  extra="選擇間隔"
                   onOk={e => console.log('ok', e)}
                   onDismiss={e => console.log('dismiss', e)}
                  >
                  <List.Item arrow="horizontal">間隔</List.Item>
+
                 </Picker>
                 <InputItem
                   {...getFieldProps('salePrice', {

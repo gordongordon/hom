@@ -22,23 +22,23 @@ export class FrontPapePanelView extends React.Component {
      return (
        <div>
     <Tabs defaultActiveKey="2" onChange={this.callback} onTabClick={this.handleTabClick}>
-      <TabPane tab="房東" key="1">
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '30rem', backgroundColor: '#fff' }}>
+      <TabPane tab="想放 租" key="1">
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '40rem', backgroundColor: '#fff' }}>
            <FormLeasePropertyAntMobileWrapper />
         </div>
       </TabPane>
-      <TabPane tab="租人" key="2">
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '30rem', backgroundColor: '#fff' }}>
+      <TabPane tab="想租 屋" key="2">
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '40rem', backgroundColor: '#fff' }}>
           <FormRentPropertyAntMobileWrapper />
         </div>
       </TabPane>
-      <TabPane tab="賣家" key="3">
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '30rem', backgroundColor: '#fff' }}>
+      <TabPane tab="想賣 樓" key="3">
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '23rem', backgroundColor: '#fff' }}>
         <FormSalePropertyAntMobileWrapper />
         </div>
       </TabPane>
-      <TabPane tab="買家" key="4">
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '27rem', backgroundColor: '#fff' }}>
+      <TabPane tab="想買 樓" key="4">
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '23rem', backgroundColor: '#fff' }}>
           <FormBuyPropertyAntMobileWrapper />
         </div>
       </TabPane>

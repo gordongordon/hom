@@ -41,13 +41,13 @@ export class Property{
     @observable nearByMtrLine = "";
     @observable nearByMtrStop = "";
 
-    // leasing
+    @observable numOfDayClosingDeal = 0;
+    // leasingnumOfDayClosingDeal
     @observable leasePrice = 0;
     @observable leasePriceWithTax = true;
     @observable leasePriceWithLandTax = true;
     @observable leasePriceWithManagementFee = true;
-    @observable laseDepositPerMonth = 0;
-
+    @observable leaseDepositPerMonth = 0;
 
 
     @observable rentBudgetMin = 0;
@@ -66,7 +66,7 @@ export class Property{
     @observable netSizeMax = 0;
     @observable numOfRroom = 0;
     @observable numOfBathroom = 0;
-
+    @observable numOfLivingroom = 0;
     // Contact
     @observable contactName = "no name";
     @observable contactPhone = "missing phone";
@@ -86,7 +86,13 @@ export class Property{
     @observable hasHomeHardware = false
 
     @observable isPreferPayAnnually = false
-    @observable isSaleWIthLease = false
+    @observable isSaleWithLease = false
+    @observable jobNature = 0;
+
+    @observable isViewAbleNow = false
+    @observable isRentAbleNow = false
+    @observable isFreeForSevenDay = false
+    @observable dueDay = undefine
 
     // computed values are values derived and automatically updated when the observed
     // observable values changes. For example we use it to determine whenever the todo is valid
@@ -134,6 +140,7 @@ export class Property{
             netSizeMax : this.netSizeMax,
             numOfRoom : this.numOfRoom,
             numOfBathroom : this.numOfBathroom,
+            numOfLivingroom : this.numOfLivingroom,
 
             contactName : this.contactName,
             contactPhone : this.contactPhone,
@@ -150,7 +157,12 @@ export class Property{
             isViewAble    : this.isViewAble,
             isPreferPayAnnually : this.isPreferPayAnnually,
             hasHomeHardware : this.hasHomeHardware,
-            isSaleWIthLease : this.isSaleWIthLease,
+            jobNature : this.jobNature,
+
+            isViewAbleNow : this.isViewAbleNow,
+            isRentAbleNow : this.isRentAbleNow,
+            isFreeForSevenDay : this.isFreeForSevenDay,
+            dueDay : this.dueDay,
 
           }
     }

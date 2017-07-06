@@ -3,12 +3,19 @@ import { Card, Picker, List, WhiteSpace, InputItem,
          Button,
          SegmentedControl,
          Checkbox,
-         Switch
+         Switch,
+         DatePicker,
        } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import { MTR } from 'MTR';
+import {PARTITION} from 'PARTITION';
+import {DISTRICK}  from 'DISTRICK';
+
 import {Fb} from 'firebase-store'
 import {Property} from 'property'
+import moment from 'moment';
+import 'moment/locale/zh-cn';
+
 
 
 // 如果不是使用 List.Item 作为 children
@@ -26,7 +33,6 @@ const CustomChildren = props => (
 
 const CheckboxItem = Checkbox.CheckboxItem;
 
-
 const roomKey = {
   '0' : '開放式',
   '1' : '1房',
@@ -36,47 +42,13 @@ const roomKey = {
   '5' : '5房',
 }
 
-const roomSelection = [
-  [
-  {
-    label : '開放式',
-    value:  '0',
-  }, {
-    label : '1房',
-    value:  '1',
-  }, {
-    label : '2房',
-    value:  '2',
-  }, {
-    value:  '3',
-    label : '3房',
-  }, {
-    label : '4房',
-    value:  '4',
-  }, {
-    label : '5房',
-    value:  '5',
-  }
-],  [
-  {
-    label : '1浴室',
-    value:  '1',
-  }, {
-    label : '2浴室',
-    value:  '2',
-  }, {
-    label : '3浴室',
-    value:  '3',
-  }, {
-    value:  '4',
-    label : '4浴室',
-  }, {
-    label : '5浴室',
-    value:  '5',
-  }
-],
 
-]
+const NameOfBuilding = [
+  { value: 'MOSDBC', label: '迎海' },
+  { value: 'MOSCTO', label: '第一城' },
+  { value: 'MOSSSC', label: '新港城' },
+];
+
 
 class FormLeasePropertyAntMobile extends React.Component {
   state = {
@@ -90,17 +62,17 @@ class FormLeasePropertyAntMobile extends React.Component {
     netSizefocused: false,
   };
 
-  onClick = () => {
-    setTimeout(() => {
-      this.setState({
-        data: province,
-      });
-    }, 120);
-  };
-
-  onChange = (val) => {
-    console.log(val);
-  }
+  // onClick = () => {
+  //   setTimeout(() => {
+  //     this.setState({
+  //       data: province,
+  //     });
+  //   }, 120);
+  // };
+  //
+  // onChange = (val) => {
+  //   console.log(val);
+  // }
 
   onPickerChange = (val) => {
     console.log(val);
@@ -145,20 +117,31 @@ class FormLeasePropertyAntMobile extends React.Component {
   };
 
 
-  addPropertyForLease = ( nearByMtrLine, nearByMtrStop, netSize, leasePrice, numOfRoom, numofBathroom, contactName, contactPhone, contactEmail) =>
+  addPropertyForLease = ( v ) =>
   {
     var p = new Property();
 
 
-    p.nearByMtrLine = nearByMtrLine;
-    p.nearByMtrStop = nearByMtrStop;
-    p.netSize = parseInt(netSize);
-    p.leasePrice = parseInt(leasePrice);
-    p.numOfRoom = parseInt(numOfRoom);
-    p.numofBathroom = parseInt(numofBathroom);
-    p.contactName = contactName;
-    p.contactPhone = parseInt(contactPhone);
-    p.contactEmail = contactEmail;
+//    p.nearByMtrLine = v.nearByMtrLine;
+//    p.nearByMtrStop = v.nearByMtrStop;
+
+    p.nameOfBuilding = v.nameOfBuilding[0]
+//    p.dueDay = v.dueDay;
+    p.earlyTimeToView = v.earlyTimeToView
+    p.netSize = parseInt(v.netSize);
+    p.leasePrice = parseInt(v.leasePrice);
+    p.numOfRoom = parseInt( v.partition[0]);
+    p.numofBathroom = parseInt(v.partition[1]);
+    p.numofLivingroom = parseInt(v.partition[2]);
+    p.isPreferPayAnnually = v.isPreferPayAnnually;
+    p.isRentAbleNow = v.isRentAbleNow;
+    p.isFreeForSevenDay = v.isFreeForSevenDay;
+    p.hasHomeHardware = v.hasHomeHardware;
+    p.isViewAble = v.isViewAble;
+    p.contactName = v.contactName;
+    p.contactPhone = parseInt(v.contactPhone);
+    p.contactEmail = v.contactEmail;
+
 
     const id = Fb.propertys.push().key;
     Fb.propertys.update( {[id]:  p.serialize() });
@@ -168,18 +151,21 @@ class FormLeasePropertyAntMobile extends React.Component {
   submit = (e) => {
    const value = this.props.form.getFieldsValue();
 
-   e.preventDefault();
-   console.log( '地鐵線', value.MTR )
-   console.log( '呎', value.netSize)
-   console.log( '租金', value.leasePrice )
-   console.log( 'Name', value.contactName )
-   console.log( '聯絡電郵', value.contactEmail )
-   console.log( '聯絡手機', value.contactPhone )
-   console.log( '間隔', roomKey[value.room[0]] )
+   console.log( '...value', { ...value } )
 
-   this.addPropertyForLease( '1001', '2001', value.netSize, value.leasePrice, value.room[0], value.room[1],
-                        value.contactName, value.contactPhone, value.contactEmail)
-   console.log(this.props.form.getFieldsValue());
+    e.preventDefault();
+    this.addPropertyForLease( {...value} )
+  //  console.log( '地鐵線', value.MTR )
+  //  console.log( '呎', value.netSize)
+  //  console.log( '租金', value.leasePrice )
+  //  console.log( 'Name', value.contactName )
+  //  console.log( '聯絡電郵', value.contactEmail )
+  //  console.log( '聯絡手機', value.contactPhone )
+  //  console.log( '間隔', roomKey[value.room[0]] )
+   //
+  //  this.addPropertyForLease( '1001', '2001', value.netSize, value.leasePrice, value.room[0], value.room[1],
+  //                       value.contactName, value.contactPhone, value.contactEmail)
+  //  console.log(this.props.form.getFieldsValue());
   }
 
   sale = () => {
@@ -197,20 +183,47 @@ class FormLeasePropertyAntMobile extends React.Component {
 
 
 
+    // For DatePicker
+    const minDate = moment().locale('zh-cn').utcOffset(8);
+    const maxDate = moment(minDate).add(6, 'M');
+
+  //moment().format('L');
+
     return ( <div>
-      <WhiteSpace size="lg" />
+
       <List style={{ backgroundColor: 'white' }} className="picker-list">
-      <Picker cols={2} extra="地鐵線"
-        data={MTR}
-        title="地鐵線"
-         {...getFieldProps('MTR', {
-            initialValue: ['HKL', 'CWB'],
-          })}
-        onOk={e => console.log('ok', e)}
-        onDismiss={e => console.log('dismiss', e)}
+
+        <Picker data={NameOfBuilding} cols={1} {...getFieldProps('nameOfBuilding')} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
+          <List.Item arrow="horizontal">大廈/屋苑</List.Item>
+        </Picker>
+
+      <DatePicker
+        mode="date"
+        title="選擇日期"
+        extra="選擇日期,最長半年來"
+        {...getFieldProps('dueDay', {
+
+        })}
+        minDate={minDate}
+        maxDate={maxDate}
       >
-        <List.Item arrow="horizontal">地鐵線</List.Item>
-      </Picker>
+
+        <List.Item arrow="horizontal">最快交吉日期</List.Item>
+        </DatePicker>
+
+          <DatePicker
+            mode="date"
+            title="選擇日期"
+            extra="選擇日期,最長半年來"
+            {...getFieldProps('earlyTimeToView', {
+
+            })}
+            minDate={minDate}
+            maxDate={maxDate}
+          >
+          <List.Item arrow="horizontal">最快幾時有樓睇</List.Item>
+
+          </DatePicker>
                 <InputItem
                   {...getFieldProps('netSize', {
                     normalize: (v, prev) => {
@@ -231,18 +244,17 @@ class FormLeasePropertyAntMobile extends React.Component {
                     });
                   }}
                   focused={this.state.netSizefocused}
-                  clear
                   extra="呎"
                 >實用面 積</InputItem>
 
-                <Picker  data={roomSelection}
+                <Picker  data={PARTITION}
                   cols={2}
                   title="選擇間隔"
                   cascade={false}
-                  {...getFieldProps('room', {
-                      initialValue: ['1', '1'],
+                  {...getFieldProps('partition', {
+                      initialValue: ['0', '1', '1'],
                   })}
-                  extra="请选择(可选)"
+                  extra="選擇間隔"
                   onOk={e => console.log('ok', e)}
                   onDismiss={e => console.log('dismiss', e)}
                  >
@@ -269,17 +281,10 @@ class FormLeasePropertyAntMobile extends React.Component {
                     });
                   }}
                   focused={this.state.netSizefocused}
-                  clear
                   extra="元"
                 >租金</InputItem>
 
-                <List renderHeader={() => '租金包含'}>
-
-                  {leaseWith.map(i => (
-                    <CheckboxItem key={i.value} onChange={() => this.onChange(i.value)}>
-                      {i.label}
-                    </CheckboxItem>
-                  ))}
+                <List>
 
                   <List.Item
                   extra={<Switch
@@ -291,17 +296,37 @@ class FormLeasePropertyAntMobile extends React.Component {
                           />}
 
                   >較喜歡預繳一年租金</List.Item>
+                  <List.Item
+                  extra={<Switch
+                            {...getFieldProps('isViewAbleNow', {
+                              initialValue: false,
+                              valuePropName: 'checked',
+                            })}
+                            onClick={(checked) => { console.log(checked); }}
+                          />}
+
+                  >可即時睇樓</List.Item>
+                  <List.Item
+                  extra={<Switch
+                            {...getFieldProps('isRentAbleNow', {
+                              initialValue: false,
+                              valuePropName: 'checked',
+                            })}
+                            onClick={(checked) => { console.log(checked); }}
+                          />}
+
+                  >可即時租住</List.Item>
 
                 <List.Item
                 extra={<Switch
-                          {...getFieldProps('isNegotiable', {
-                            initialValue: true,
+                          {...getFieldProps('isFreeForSevenDay', {
+                            initialValue: false,
                             valuePropName: 'checked',
                           })}
                           onClick={(checked) => { console.log(checked); }}
                         />}
 
-                >有價講</List.Item>
+                >可提供七日免租期</List.Item>
                 <List.Item
                 extra={<Switch
                           {...getFieldProps('hasHomeHardware', {
@@ -390,3 +415,100 @@ export const FormLeasePropertyAntMobileWrapper = createForm()(FormLeasePropertyA
 //    </Card.Body>
 //    <Card.Footer content={<Button type="ghost" inline size="small">Hello</Button>} extra={<h3>$300萬元</h3>} />
 //  </Card>
+
+
+/// 區域"
+// <Picker cols={3} extra="區域"
+//   data={DISTRICK}
+//   title="區域"
+//    {...getFieldProps('MTR', {
+//       initialValue: ['HKNT', 'MOS', 'MOSDBC'],
+//     })}
+//   onOk={e => console.log('ok', e)}
+//   onDismiss={e => console.log('dismiss', e)}
+// >
+// <List.Item arrow="horizontal">區域</List.Item>
+// </Picker>
+
+// <List renderHeader={() => '租金包含'}>
+//
+//   {leaseWith.map(i => (
+//     <CheckboxItem key={i.value} onChange={() => this.onChange(i.value)}>
+//       {i.label}
+//     </CheckboxItem>
+//   ))}
+//
+//   <List.Item
+//   extra={<Switch
+//             {...getFieldProps('isPreferPayAnnually', {
+//               initialValue: false,
+//               valuePropName: 'checked',
+//             })}
+//             onClick={(checked) => { console.log(checked); }}
+//           />}
+//
+//   >較喜歡預繳一年租金</List.Item>
+//   <List.Item
+//   extra={<Switch
+//             {...getFieldProps('isNegotiable', {
+//               initialValue: false,
+//               valuePropName: 'checked',
+//             })}
+//             onClick={(checked) => { console.log(checked); }}
+//           />}
+//
+//   >有價講</List.Item>
+//   <List.Item
+//   extra={<Switch
+//             {...getFieldProps('isViewAbleNow', {
+//               initialValue: false,
+//               valuePropName: 'checked',
+//             })}
+//             onClick={(checked) => { console.log(checked); }}
+//           />}
+//
+//   >可即時睇樓</List.Item>
+//   <List.Item
+//   extra={<Switch
+//             {...getFieldProps('isRentAbleNow', {
+//               initialValue: false,
+//               valuePropName: 'checked',
+//             })}
+//             onClick={(checked) => { console.log(checked); }}
+//           />}
+//
+//   >可即時租住</List.Item>
+//
+// <List.Item
+// extra={<Switch
+//           {...getFieldProps('isFreeForSevenDay', {
+//             initialValue: false,
+//             valuePropName: 'checked',
+//           })}
+//           onClick={(checked) => { console.log(checked); }}
+//         />}
+//
+// >可提供七日免租期</List.Item>
+// <List.Item
+// extra={<Switch
+//           {...getFieldProps('hasHomeHardware', {
+//             initialValue: false,
+//             valuePropName: 'checked',
+//           })}
+//           onClick={(checked) => { console.log(checked); }}
+//         />}
+//
+// >提供家俬設備</List.Item>
+//
+// <List.Item
+// extra={<Switch
+//           {...getFieldProps('isViewAble', {
+//             initialValue: true,
+//             valuePropName: 'checked',
+//           })}
+//           onClick={(checked) => { console.log(checked); }}
+//         />}
+//
+// >有樓睇</List.Item>
+//
+// </List>

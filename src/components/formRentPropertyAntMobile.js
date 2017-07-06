@@ -8,6 +8,7 @@ import { Card, Picker, List, WhiteSpace, InputItem,
        } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import { MTR } from 'MTR';
+import {PARTITION} from 'PARTITION';
 import {Fb} from 'firebase-store'
 import {Property} from 'property'
 
@@ -55,47 +56,11 @@ const roomKey = {
   '5' : '5房',
 }
 
-const roomSelection = [
-  [
-  {
-    label : '開放式',
-    value:  '0',
-  }, {
-    label : '1房',
-    value:  '1',
-  }, {
-    label : '2房',
-    value:  '2',
-  }, {
-    value:  '3',
-    label : '3房',
-  }, {
-    label : '4房',
-    value:  '4',
-  }, {
-    label : '5房',
-    value:  '5',
-  }
-],  [
-  {
-    label : '1浴室',
-    value:  '1',
-  }, {
-    label : '2浴室',
-    value:  '2',
-  }, {
-    label : '3浴室',
-    value:  '3',
-  }, {
-    value:  '4',
-    label : '4浴室',
-  }, {
-    label : '5浴室',
-    value:  '5',
-  }
-],
-
-]
+const NameOfBuilding = [
+  { value: 'MOSDBC', label: '迎海' },
+  { value: 'MOSCTO', label: '第一城' },
+  { value: 'MOSSSC', label: '新港城' },
+];
 
 class FormRentPropertyAntMobile extends React.Component {
   state = {
@@ -217,23 +182,17 @@ class FormRentPropertyAntMobile extends React.Component {
 
 
     return ( <div>
-      <WhiteSpace size="lg" />
 
       <List style={{ backgroundColor: 'white' }} className="picker-list">
-      <Picker cols={2} extra="地鐵線"
-        data={MTR}
-        title="地鐵線"
-         {...getFieldProps('MTR', {
-            initialValue: ['HKL', 'CWB'],
-          })}
-        onOk={e => console.log('ok', e)}
-        onDismiss={e => console.log('dismiss', e)}
-      >
-        <List.Item arrow="horizontal">地鐵線</List.Item>
-      </Picker>
+        <Picker data={NameOfBuilding} cols={1} {...getFieldProps('numOfBuilding')} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
+          <List.Item arrow="horizontal">大廈/屋苑</List.Item>
+        </Picker>
+
       <Picker data={jobNature} cols={1} {...getFieldProps('jobNature')} className="forss" title="請選擇職業" extra="請選擇職業">
         <List.Item arrow="horizontal">職業</List.Item>
       </Picker>
+
+
       <InputItem
         {...getFieldProps('income', {
           normalize: (v, prev) => {
@@ -258,26 +217,43 @@ class FormRentPropertyAntMobile extends React.Component {
         extra="元"
       >收入</InputItem>
 
+      <List.Item extra={
+       <Stepper
+         style={{ width: '100%', minWidth: '2rem' }}
+         {...getFieldProps('numOfPeopleLiving', {
+           initialValue: 2
+         })}
+         showNumber
+         max={10}
+         min={1}
+         defaultValue={1}
+         step={1}
+       />}
+     >
+     同居的人數
+     </List.Item>
                 <List.Item extra={
                  <Stepper
                    style={{ width: '100%', minWidth: '2rem' }}
+                   {...getFieldProps('netSizMin', {
+                     initialValue: 500
+                   })}
                    showNumber
                    max={3000}
                    min={100}
-                   defaultValue={100}
                    step={200}
                  />}
                >
                最少實用面積/呎
                </List.Item>
-               <Picker  data={roomSelection}
+               <Picker  data={PARTITION}
                  cols={2}
                  title="選擇間隔"
                  cascade={false}
                  {...getFieldProps('room', {
-                     initialValue: ['1', '1'],
+                     initialValue: ['0','1', '1'],
                  })}
-                 extra="请选择(可选)"
+                 extra="選擇間隔"
                  onOk={e => console.log('ok', e)}
                  onDismiss={e => console.log('dismiss', e)}
                 >
@@ -286,11 +262,14 @@ class FormRentPropertyAntMobile extends React.Component {
 
                <List.Item extra={
                 <Stepper
+
+                  {...getFieldProps('rentBudgetMax', {
+                    initialValue: 10000
+                  })}
                   style={{ width: '100%', minWidth: '2rem' }}
                   showNumber
                   max={100000}
                   min={2000}
-                  defaultValue={2000}
                   step={1000}
                 />}
               >
@@ -298,51 +277,16 @@ class FormRentPropertyAntMobile extends React.Component {
               </List.Item>
 
 
-                <InputItem
-                  {...getFieldProps('leasePrice', {
-                    normalize: (v, prev) => {
-                      if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
-                        if (v === '.') {
-                          return '0.';
-                        }
-                        return prev;
-                      }
-                      return v;
-                    },
-                  })}
-                  type="number"
-                  placeholder=""
-                  onFocus={() => {
-                    this.setState({
-                      netSizefocused: false,
-                    });
-                  }}
-                  focused={this.state.netSizefocused}
-                  clear
-                  extra="元"
-                >租金</InputItem>
-
-                  <List.Item
-                  extra={<Switch
-                            {...getFieldProps('isPreferPayAnnually', {
-                              initialValue: false,
-                              valuePropName: 'checked',
-                            })}
-                            onClick={(checked) => { console.log(checked); }}
-                          />}
-
-                  >可以預繳一年租金</List.Item>
 
                 <List.Item
                 extra={<Switch
-                          {...getFieldProps('isNegotiable', {
-                            initialValue: true,
+                          {...getFieldProps('isRentItNow', {
+                            initialValue: false,
                             valuePropName: 'checked',
                           })}
                           onClick={(checked) => { console.log(checked); }}
                         />}
-
-                >有價講</List.Item>
+                >我想即刻租住</List.Item>
                 <List.Item
                 extra={<Switch
                           {...getFieldProps('hasHomeHardware', {
@@ -430,3 +374,26 @@ export const FormRentPropertyAntMobileWrapper = createForm()(FormRentPropertyAnt
 //    </Card.Body>
 //    <Card.Footer content={<Button type="ghost" inline size="small">Hello</Button>} extra={<h3>$300萬元</h3>} />
 //  </Card>
+
+
+// <List.Item
+// extra={<Switch
+//           {...getFieldProps('isPreferPayAnnually', {
+//             initialValue: false,
+//             valuePropName: 'checked',
+//           })}
+//           onClick={(checked) => { console.log(checked); }}
+//         />}
+//
+// >可以預繳一年租金</List.Item>
+//
+// <List.Item
+// extra={<Switch
+//         {...getFieldProps('isNegotiable', {
+//           initialValue: true,
+//           valuePropName: 'checked',
+//         })}
+//         onClick={(checked) => { console.log(checked); }}
+//       />}
+//
+// >有價講</List.Item>

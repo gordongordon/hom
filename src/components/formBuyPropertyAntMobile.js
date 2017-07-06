@@ -10,6 +10,8 @@ import { Card, Picker, List, WhiteSpace, InputItem,
        } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import { MTR } from 'MTR';
+import { PARTITION } from 'PARTITION';
+import {HOWTOCONTACT} from 'HOWTOCONTACT';
 import {Fb} from 'firebase-store'
 import {Property} from 'property'
 
@@ -37,48 +39,6 @@ const roomKey = {
   '4' : '4房',
   '5' : '5房',
 }
-
-const roomSelection = [
-  [
-  {
-    label : '開放式',
-    value:  '0',
-  }, {
-    label : '1房',
-    value:  '1',
-  }, {
-    label : '2房',
-    value:  '2',
-  }, {
-    value:  '3',
-    label : '3房',
-  }, {
-    label : '4房',
-    value:  '4',
-  }, {
-    label : '5房',
-    value:  '5',
-  }
-],  [
-  {
-    label : '1浴室',
-    value:  '1',
-  }, {
-    label : '2浴室',
-    value:  '2',
-  }, {
-    label : '3浴室',
-    value:  '3',
-  }, {
-    value:  '4',
-    label : '4浴室',
-  }, {
-    label : '5浴室',
-    value:  '5',
-  }
-],
-
-]  // End of room selection
 
 class FormBuyPropertyAntMobile extends React.Component {
 
@@ -200,6 +160,21 @@ class FormBuyPropertyAntMobile extends React.Component {
 
 
       <List style={{ backgroundColor: 'white' }} className="picker-list">
+        <Picker  data={HOWTOCONTACT}
+          cols={3}
+          title="如何聯絡"
+          cascade={false}
+          {...getFieldProps('kkk', {
+              initialValue: ['0', '0','1'],
+          })}
+          extra="如何聯絡"
+          onOk={e => console.log('ok', e)}
+          onDismiss={e => console.log('dismiss', e)}
+          style={{ flexbasis : '60%'}}
+         >
+         <List.Item arrow="horizontal">點樣搵你</List.Item>
+        </Picker>
+
       <Picker cols={2} extra="地鐵線"
         data={MTR}
         title="地鐵線"
@@ -210,8 +185,6 @@ class FormBuyPropertyAntMobile extends React.Component {
         onDismiss={e => console.log('dismiss', e)}
       >
         <List.Item arrow="horizontal">地鐵線</List.Item>
-
-
       </Picker>
 
                 <InputItem
@@ -254,38 +227,27 @@ class FormBuyPropertyAntMobile extends React.Component {
                 <List.Item extra={
                  <Stepper
                    style={{ width: '100%', minWidth: '2rem' }}
+                   {...getFieldProps('netSizeMin', {
+                     initialValue: 500
+                   })}
                    showNumber
                    max={3000}
                    min={100}
-                   defaultValue={100}
                    step={100}
                  />}
                >
-               最少呎
+               最少實用面積/呎
                </List.Item>
 
-               <List.Item extra={
-                <Stepper
-                  style={{ width: '100%', minWidth: '2rem' }}
-                  showNumber
-                  max={3000}
-                  min={100}
-                  defaultValue={100}
-                  step={100}
-                />}
-              >
-              最大呎
 
-              </List.Item>
-
-              <Picker  data={roomSelection}
+              <Picker  data={PARTITION}
                 cols={2}
                 title="選擇間隔"
                 cascade={false}
                 {...getFieldProps('room', {
-                    initialValue: ['1', '1'],
+                    initialValue: ['0', '1','1'],
                 })}
-                extra="请选择(可选)"
+                extra="選擇間隔"
                 onOk={e => console.log('ok', e)}
                 onDismiss={e => console.log('dismiss', e)}
                >
