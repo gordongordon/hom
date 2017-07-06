@@ -2,6 +2,7 @@ import React from 'react';
 import {FormSalePropertyAntMobileWrapper} from 'formSalePropertyAntMobile';
 import {FormLeasePropertyAntMobileWrapper} from 'formLeasePropertyAntMobile';
 import {FormBuyPropertyAntMobileWrapper} from 'formBuyPropertyAntMobile';
+import {FormRentPropertyAntMobileWrapper} from 'formRentPropertyAntMobile';
 
 import {Tabs, WhiteSpace } from 'antd-mobile'
 
@@ -22,17 +23,17 @@ export class FrontPapePanelView extends React.Component {
        <div>
     <Tabs defaultActiveKey="2" onChange={this.callback} onTabClick={this.handleTabClick}>
       <TabPane tab="房東" key="1">
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '25rem', backgroundColor: '#fff' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '30rem', backgroundColor: '#fff' }}>
            <FormLeasePropertyAntMobileWrapper />
         </div>
       </TabPane>
       <TabPane tab="租人" key="2">
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '25rem', backgroundColor: '#fff' }}>
-          render
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '30rem', backgroundColor: '#fff' }}>
+          <FormRentPropertyAntMobileWrapper />
         </div>
       </TabPane>
       <TabPane tab="賣家" key="3">
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '25rem', backgroundColor: '#fff' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '30rem', backgroundColor: '#fff' }}>
         <FormSalePropertyAntMobileWrapper />
         </div>
       </TabPane>
