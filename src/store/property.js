@@ -95,6 +95,8 @@ export class Property{
     @observable dueDay = null
     @observable earlyTimeToView = moment().format();
     @observable numOfPeopleLiving = 1
+    @observable income = 0
+    @observable isBuyWithLease = false
 
     // @computed get getnetSize () {
     //    return this.netSize;
@@ -178,6 +180,7 @@ export class Property{
             dueDay : this.dueDay,
             earlyTimeToView : this.earlyTimeToView,
             income : this.income,
+            isBuyWithLease : this.isBuyWithLease,
           }
     }
 

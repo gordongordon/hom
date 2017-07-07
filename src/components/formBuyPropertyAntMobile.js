@@ -7,6 +7,7 @@ import { Card, Picker, List, WhiteSpace, InputItem,
          WingBlank,
          Range,
          Stepper,
+         DatePicker,
        } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import { MTR } from 'MTR';
@@ -14,6 +15,8 @@ import { PARTITION } from 'PARTITION';
 import {HOWTOCONTACT} from 'HOWTOCONTACT';
 import {Fb} from 'firebase-store'
 import {Property} from 'property'
+import moment from 'moment';
+import 'moment/locale/zh-cn';
 
 
 // 如果不是使用 List.Item 作为 children
@@ -28,6 +31,12 @@ const CustomChildren = props => (
     </div>
   </div>
 );
+
+const NameOfBuilding = [
+  { value: 'MOSDBC', label: '迎海' },
+  { value: 'MOSCTO', label: '第一城' },
+  { value: 'MOSSSC', label: '新港城' },
+];
 
 const CheckboxItem = Checkbox.CheckboxItem;
 
@@ -105,20 +114,34 @@ class FormBuyPropertyAntMobile extends React.Component {
   };
 
 
-  addPropertyForSale = ( nearByMtrLine, nearByMtrStop, netSize, salePrice, numOfRoom, numofBathroom, contactName, contactPhone, contactEmail) =>
+  addPropertyForBuy = ( v ) =>
   {
     var p = new Property();
 
 
-    p.nearByMtrLine = nearByMtrLine;
-    p.nearByMtrStop = nearByMtrStop;
-    p.netSize = parseInt(netSize);
-    p.salePrice = parseInt(salePrice);
-    p.numOfRoom = parseInt(numOfRoom);
-    p.numofBathroom = parseInt(numofBathroom);
-    p.contactName = contactName;
-    p.contactPhone = parseInt(contactPhone);
-    p.contactEmail = contactEmail;
+    p.nameOfBuilding = v.nameOfBuilding[0]
+    // p.dueDay = v.dueDay.toJSON();
+    p.earlyTimeToView = v.earlyTimeToView.toJSON();
+    p.salePrice = parseInt( v.salePrice )
+
+    //p.leasePrice = parseInt(v.leasePrice);
+    p.numOfRoom = parseInt( v.partition[0]);
+    p.numofBathroom = parseInt(v.partition[1]);
+    p.numofLivingroom = parseInt(v.partition[2]);
+
+    p.isBuyWithLease = v.isBuyWithLease
+    p.netSizeMin = parseInt( v.netSizeMin )
+
+    //p.isPreferPayAnnually = v.isPreferPayAnnually;
+    //p.isRentAbleNow = v.isRentAbleNow;
+    //p.isFreeForSevenDay = v.isFreeForSevenDay;
+
+    //p.hasHomeHardware = v.hasHomeHardware;
+    p.isViewAble = v.isViewAble;
+//    p.howToContact = parseInt( howToContact[0] );
+    p.contactName = v.contactName;
+    p.contactPhone = parseInt(v.contactPhone);
+    p.contactEmail = v.contactEmail;
 
     const id = Fb.propertys.push().key;
     Fb.propertys.update( {[id]:  p.serialize() });
@@ -129,16 +152,15 @@ class FormBuyPropertyAntMobile extends React.Component {
    const value = this.props.form.getFieldsValue();
 
    e.preventDefault();
-   console.log( '地鐵線', value.MTR )
-   console.log( '呎', value.netSize)
-   console.log( '售價', value.salePrice )
-   console.log( 'Name', value.contactName )
-   console.log( 'email', value.contactEmail )
-   console.log( '手 機', value.contactPhone )
-   console.log( '間隔', roomKey[value.room[0]] )
+  //  console.log( '地鐵線', value.MTR )
+  //  console.log( '呎', value.netSize)
+  //  console.log( '售價', value.salePrice )
+  //  console.log( 'Name', value.contactName )
+  //  console.log( 'email', value.contactEmail )
+  //  console.log( '手 機', value.contactPhone )
+  //  console.log( '間隔', roomKey[value.room[0]] )
 
-   this.addPropertyForSale( '1001', '2001', value.netSize, value.salePrice, value.room[0], value.room[1],
-                        value.contactName, value.contactPhone, value.contactEmail)
+   this.addPropertyForBuy( value )
 //   console.log(this.props.form.getFieldsValue());
   }
 
@@ -155,16 +177,27 @@ class FormBuyPropertyAntMobile extends React.Component {
         console.log(`${name}: ${value}`);
       }; }
 
+      // For DatePicker
+      const minDate = moment().locale('zh-cn').utcOffset(8);
+      const maxDate = moment(minDate).add(6, 'M');
+
     return ( <div>
 
 
 
       <List style={{ backgroundColor: 'white' }} className="picker-list">
+
+        <Picker data={NameOfBuilding} cols={1} {...getFieldProps('nameOfBuilding', {
+            initialValue: ['MOSDBC'],
+          })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
+          <List.Item arrow="horizontal">大廈/屋苑</List.Item>
+        </Picker>
+
         <Picker  data={HOWTOCONTACT}
           cols={3}
           title="如何聯絡"
           cascade={false}
-          {...getFieldProps('kkk', {
+          {...getFieldProps('howToContact', {
               initialValue: ['0', '0','1'],
           })}
           extra="如何聯絡"
@@ -175,17 +208,20 @@ class FormBuyPropertyAntMobile extends React.Component {
          <List.Item arrow="horizontal">點樣搵你</List.Item>
         </Picker>
 
-      <Picker cols={2} extra="地鐵線"
-        data={MTR}
-        title="地鐵線"
-         {...getFieldProps('MTR', {
-            initialValue: ['HKL', 'CWB'],
+
+        <DatePicker
+          mode="date"
+          title="選擇日期"
+          extra="選擇日期,最長半年來"
+          {...getFieldProps('earlyTimeToView', {
+            initialValue : minDate,
           })}
-        onOk={e => console.log('ok', e)}
-        onDismiss={e => console.log('dismiss', e)}
-      >
-        <List.Item arrow="horizontal">地鐵線</List.Item>
-      </Picker>
+          minDate={minDate}
+          maxDate={maxDate}
+        >
+        <List.Item arrow="horizontal">最快幾時可以樓睇</List.Item>
+
+        </DatePicker>
 
                 <InputItem
                   {...getFieldProps('salePrice', {
@@ -216,7 +252,7 @@ class FormBuyPropertyAntMobile extends React.Component {
 
                 <List.Item
                 extra={<Switch
-                          {...getFieldProps('isSaleWIthLease', {
+                          {...getFieldProps('isBuyWithLease', {
                             initialValue: true,
                             valuePropName: 'checked',
                           })}
@@ -245,7 +281,7 @@ class FormBuyPropertyAntMobile extends React.Component {
                 cols={2}
                 title="選擇間隔"
                 cascade={false}
-                {...getFieldProps('room', {
+                {...getFieldProps('partition', {
                     initialValue: ['0', '1','1'],
                 })}
                 extra="選擇間隔"

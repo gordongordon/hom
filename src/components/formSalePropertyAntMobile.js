@@ -3,13 +3,16 @@ import { Card, Picker, List, WhiteSpace, InputItem,
          Button,
          SegmentedControl,
          Checkbox,
-         Switch
+         Switch,
+         DatePicker,
        } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import { MTR } from 'MTR';
 import {PARTITION} from 'PARTITION';
 import {Fb} from 'firebase-store'
 import {Property} from 'property'
+import moment from 'moment';
+import 'moment/locale/zh-cn';
 
 
 // 如果不是使用 List.Item 作为 children
@@ -24,6 +27,12 @@ const CustomChildren = props => (
     </div>
   </div>
 );
+
+const NameOfBuilding = [
+  { value: 'MOSDBC', label: '迎海' },
+  { value: 'MOSCTO', label: '第一城' },
+  { value: 'MOSSSC', label: '新港城' },
+];
 
 const CheckboxItem = Checkbox.CheckboxItem;
 
@@ -100,20 +109,36 @@ class FormSalePropertyAntMobile extends React.Component {
   };
 
 
-  addPropertyForSale = ( nearByMtrLine, nearByMtrStop, netSize, salePrice, numOfRoom, numofBathroom, contactName, contactPhone, contactEmail) =>
+  addPropertyForSale = ( v ) =>
   {
     var p = new Property();
 
+    // p.nearByMtrLine = nearByMtrLine;
+    // p.nearByMtrStop = nearByMtrStop;
 
-    p.nearByMtrLine = nearByMtrLine;
-    p.nearByMtrStop = nearByMtrStop;
-    p.netSize = parseInt(netSize);
-    p.salePrice = parseInt(salePrice);
-    p.numOfRoom = parseInt(numOfRoom);
-    p.numofBathroom = parseInt(numofBathroom);
-    p.contactName = contactName;
-    p.contactPhone = parseInt(contactPhone);
-    p.contactEmail = contactEmail;
+    p.nameOfBuilding = v.nameOfBuilding[0]
+    // p.dueDay = v.dueDay.toJSON();
+    p.earlyTimeToView = v.earlyTimeToView.toJSON();
+    //p.leasePrice = parseInt(v.leasePrice);
+    p.netSize = parseInt(v.netSize);
+    p.salePrice = parseInt(v.salePrice);
+    p.numOfRoom = parseInt( v.partition[0]);
+    p.numofBathroom = parseInt(v.partition[1]);
+    p.numofLivingroom = parseInt(v.partition[2]);
+    p.isSaleWIthLease = v.isSaleWIthLease;
+    p.isNegotiable = v.isNegotiable;
+    p.isViewAble = v.isViewAble;
+
+    //p.isPreferPayAnnually = v.isPreferPayAnnually;
+    //p.isRentAbleNow = v.isRentAbleNow;
+    //p.isFreeForSevenDay = v.isFreeForSevenDay;
+
+    // p.hasHomeHardware = v.hasHomeHardware;
+    p.contactName = v.contactName;
+    p.contactPhone = parseInt(v.contactPhone);
+    p.contactEmail = v.contactEmail;
+
+
 
     const id = Fb.propertys.push().key;
     Fb.propertys.update( {[id]:  p.serialize() });
@@ -124,16 +149,15 @@ class FormSalePropertyAntMobile extends React.Component {
    const value = this.props.form.getFieldsValue();
 
    e.preventDefault();
-   console.log( '地鐵線', value.MTR )
-   console.log( '呎', value.netSize)
-   console.log( '售價', value.salePrice )
-   console.log( 'Name', value.contactName )
-   console.log( 'email', value.contactEmail )
-   console.log( '手 機', value.contactPhone )
-   console.log( '間隔', roomKey[value.room[0]] )
+  //  console.log( '地鐵線', value.MTR )
+  //  console.log( '呎', value.netSize)
+  //  console.log( '售價', value.salePrice )
+  //  console.log( 'Name', value.contactName )
+  //  console.log( 'email', value.contactEmail )
+  //  console.log( '手 機', value.contactPhone )
+  //  console.log( '間隔', roomKey[value.room[0]] )
 
-   this.addPropertyForSale( '1001', '2001', value.netSize, value.salePrice, value.room[0], value.room[1],
-                        value.contactName, value.contactPhone, value.contactEmail)
+   this.addPropertyForSale( value )
 //   console.log(this.props.form.getFieldsValue());
   }
 
@@ -145,21 +169,17 @@ class FormSalePropertyAntMobile extends React.Component {
   render() {
     const { getFieldProps } = this.props.form;
 
-
+    // For DatePicker
+    const minDate = moment().locale('zh-cn').utcOffset(8);
+    const maxDate = moment(minDate).add(6, 'M');
 
     return ( <div>
       <List style={{ backgroundColor: 'white' }} className="picker-list">
-      <Picker cols={2} extra="地鐵線"
-        data={MTR}
-        title="地鐵線"
-         {...getFieldProps('MTR', {
-            initialValue: ['HKL', 'CWB'],
-          })}
-        onOk={e => console.log('ok', e)}
-        onDismiss={e => console.log('dismiss', e)}
-      >
-        <List.Item arrow="horizontal">地鐵線</List.Item>
-      </Picker>
+        <Picker data={NameOfBuilding} cols={1} {...getFieldProps('nameOfBuilding', {
+            initialValue: ['MOSDBC'],
+          })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
+          <List.Item arrow="horizontal">大廈/屋苑</List.Item>
+        </Picker>
                 <InputItem
                   {...getFieldProps('netSize', {
                     initialValue : 300,
@@ -184,11 +204,26 @@ class FormSalePropertyAntMobile extends React.Component {
                   clear
                   extra="呎"
                 >實用 面 積</InputItem>
+
+                <DatePicker
+                  mode="date"
+                  title="選擇日期"
+                  extra="選擇日期,最長半年來"
+                  {...getFieldProps('earlyTimeToView', {
+                    initialValue : minDate,
+                  })}
+                  minDate={minDate}
+                  maxDate={maxDate}
+                >
+                <List.Item arrow="horizontal">最快幾時有樓睇</List.Item>
+
+                </DatePicker>
+
                 <Picker  data={PARTITION}
                   cols={3}
                   title="選擇間隔"
                   cascade={false}
-                  {...getFieldProps('room', {
+                  {...getFieldProps('partition', {
                       initialValue: ['0', '1','1'],
                   })}
                   extra="選擇間隔"
@@ -200,7 +235,7 @@ class FormSalePropertyAntMobile extends React.Component {
                 </Picker>
                 <InputItem
                   {...getFieldProps('salePrice', {
-                    initialValue : 350,                    
+                    initialValue : 350,
                     normalize: (v, prev) => {
                       if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
                         if (v === '.') {
