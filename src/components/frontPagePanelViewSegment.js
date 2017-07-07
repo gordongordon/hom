@@ -11,7 +11,7 @@ const TabPane = Tabs.TabPane;
 export class FrontPapePanelViewSegment extends React.Component {
 
   state = {
-    selectedSegmentIndex : 0,
+    selectedSegmentIndex : 1,
   }
 
   onChange = (e) => {
@@ -45,7 +45,7 @@ export class FrontPapePanelViewSegment extends React.Component {
   render() {
      return (
        <div>
-       <SegmentedControl values={['想放租', '想租屋', '想賣樓', '想買樓']}  onChange={this.onChange} />
+       <SegmentedControl values={['想放租', '想租屋', '想賣樓', '想買樓']}  selectedIndex={this.state.selectedSegmentIndex} onChange={this.onChange} />
         {this.form()}
         </div>
      )

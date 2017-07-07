@@ -123,22 +123,13 @@ class FormLeasePropertyAntMobile extends React.Component {
   {
 
     var p = new Property();
-    //var t = new Testobject();
 
-    //var p = new Propertyhk();
-
-    //console.log( 't.text', t.text )
-
-
-    //console.log( 'netSize', p.netSize )
- //p.nearByMtrLine = v.nearByMtrLine;
- //p.nearByMtrStop = v.nearByMtrStop;
-    console.log( 'nameOfBuilding ',v.nameOfBuilding[0] )
+    //p.nearByMtrLine = v.nearByMtrLine;
+    //p.nearByMtrStop = v.nearByMtrStop;
 
     p.nameOfBuilding = v.nameOfBuilding[0]
-    p.nameOfBuilding = 'gordon'
-//    p.dueDay = v.dueDay;
-    p.earlyTimeToView = v.earlyTimeToView;
+    p.dueDay = v.dueDay.toJSON();
+    p.earlyTimeToView = v.earlyTimeToView.toJSON();
     p.leasePrice = parseInt(v.leasePrice);
     p.numOfRoom = parseInt( v.partition[0]);
     p.numofBathroom = parseInt(v.partition[1]);
@@ -152,7 +143,6 @@ class FormLeasePropertyAntMobile extends React.Component {
     p.contactName = v.contactName;
     p.contactPhone = parseInt(v.contactPhone);
     p.contactEmail = v.contactEmail;
-
 
     const id = Fb.propertys.push().key;
     Fb.propertys.update( {[id]:  p.serialize() });
@@ -215,7 +205,7 @@ class FormLeasePropertyAntMobile extends React.Component {
         title="選擇日期"
         extra="選擇日期,最長半年來"
         {...getFieldProps('dueDay', {
-
+          initialValue : minDate,
         })}
         minDate={minDate}
         maxDate={maxDate}
@@ -229,7 +219,7 @@ class FormLeasePropertyAntMobile extends React.Component {
             title="選擇日期"
             extra="選擇日期,最長半年來"
             {...getFieldProps('earlyTimeToView', {
-
+              initialValue : minDate,
             })}
             minDate={minDate}
             maxDate={maxDate}
@@ -239,6 +229,7 @@ class FormLeasePropertyAntMobile extends React.Component {
           </DatePicker>
                 <InputItem
                   {...getFieldProps('netSize', {
+                    initialValue : 300,
                     normalize: (v, prev) => {
                       if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
                         if (v === '.') {
@@ -276,6 +267,7 @@ class FormLeasePropertyAntMobile extends React.Component {
 
                 <InputItem
                   {...getFieldProps('leasePrice', {
+                    initialValue : 8000,
                     normalize: (v, prev) => {
                       if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
                         if (v === '.') {
@@ -367,20 +359,26 @@ class FormLeasePropertyAntMobile extends React.Component {
 
 
                 <InputItem
-                  {...getFieldProps('contactName') }
+                  {...getFieldProps('contactName', {
+                    initialValue : 'Gordon',
+                  }) }
                   type="text"
                   clear
                 >姓名</InputItem>
 
                 <InputItem
                   clear
-                  {...getFieldProps('contactPhone')}
+                  {...getFieldProps('contactPhone', {
+                    initialValue : '96181448'
+                  })}
                   type="phone"
                   placeholder="9618 1448"
                 >聯絡手機</InputItem>
 
                 <InputItem
-                  {...getFieldProps('contactEmail')}
+                  {...getFieldProps('contactEmail', {
+                    initialValue : 'h001@ymatchx.com',
+                  })}
                   clear
                   placeholder="YourEmail@gmail.com"
                 >聯絡電郵</InputItem>

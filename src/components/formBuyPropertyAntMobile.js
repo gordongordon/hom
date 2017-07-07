@@ -189,6 +189,7 @@ class FormBuyPropertyAntMobile extends React.Component {
 
                 <InputItem
                   {...getFieldProps('salePrice', {
+                    initialValue : 380,
                     normalize: (v, prev) => {
                       if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
                         if (v === '.') {
@@ -276,22 +277,27 @@ class FormBuyPropertyAntMobile extends React.Component {
 
                 >要求有樓睇</List.Item>
 
-
                 <InputItem
-                  {...getFieldProps('contactName') }
+                  {...getFieldProps('contactName', {
+                    initialValue : 'Gordon',
+                  }) }
                   type="text"
                   clear
                 >姓名</InputItem>
 
                 <InputItem
                   clear
-                  {...getFieldProps('contactPhone')}
+                  {...getFieldProps('contactPhone', {
+                    initialValue : '96181448'
+                  })}
                   type="phone"
                   placeholder="9618 1448"
                 >聯絡手機</InputItem>
 
                 <InputItem
-                  {...getFieldProps('contactEmail')}
+                  {...getFieldProps('contactEmail', {
+                    initialValue : 'h001@ymatchx.com',
+                  })}
                   clear
                   placeholder="YourEmail@gmail.com"
                 >聯絡電郵</InputItem>

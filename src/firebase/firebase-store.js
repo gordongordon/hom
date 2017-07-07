@@ -12,12 +12,14 @@ firebase.initializeApp(config);
 
 const root = firebase.database().ref();
 const propertys = firebase.database().ref('propertys');
+const propertysForRent = firebase.database().ref('propertysForRent');
 const property = firebase.database().ref('property');
 const matchedPropertys = firebase.database().ref('matchedPropertys');
 
 const Fb = {
   root,
   propertys,
+  propertysForRent,
   property,
   matchedPropertys
 };

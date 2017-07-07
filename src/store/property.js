@@ -93,6 +93,8 @@ export class Property{
     @observable isRentAbleNow = false
     @observable isFreeForSevenDay = false
     @observable dueDay = null
+    @observable earlyTimeToView = moment().format();
+    @observable numOfPeopleLiving = 1
 
     // @computed get getnetSize () {
     //    return this.netSize;
@@ -113,6 +115,7 @@ export class Property{
     // to keep the example clean I have done them, but you should consider using
     //https://github.com/mobxjs/serializr
     serialize(){
+
         return {
             id: this.id,
 //            text: this.text,
@@ -149,7 +152,7 @@ export class Property{
             numOfRoom : this.numOfRoom,
             numOfBathroom : this.numOfBathroom,
             numOfLivingroom : this.numOfLivingroom,
-
+            numOfPeopleLiving : this.numOfPeopleLiving,
             contactName : this.contactName,
             contactPhone : this.contactPhone,
             contactEmail : this.contactEmail,
@@ -170,8 +173,11 @@ export class Property{
             isViewAbleNow : this.isViewAbleNow,
             isRentAbleNow : this.isRentAbleNow,
             isFreeForSevenDay : this.isFreeForSevenDay,
+//            dueDay : this.dueDay.toJSON(),
+            //earlyTimeToView : this.earlyTimeToView.toJSON(),
             dueDay : this.dueDay,
-
+            earlyTimeToView : this.earlyTimeToView,
+            income : this.income,
           }
     }
 
