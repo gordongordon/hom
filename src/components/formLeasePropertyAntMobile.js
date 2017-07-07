@@ -13,12 +13,14 @@ import {DISTRICK}  from 'DISTRICK';
 
 import {Fb} from 'firebase-store'
 import {Property} from 'property'
+import {Propertyhk} from 'propertyhk'
 import moment from 'moment';
 import 'moment/locale/zh-cn';
-
-
+import { observer } from 'mobx-react';
+import {Testobject} from 'testobject';
 
 // 如果不是使用 List.Item 作为 children
+
 const CustomChildren = props => (
   <div
     onClick={props.onClick}
@@ -49,7 +51,7 @@ const NameOfBuilding = [
   { value: 'MOSSSC', label: '新港城' },
 ];
 
-
+@observer
 class FormLeasePropertyAntMobile extends React.Component {
   state = {
     data: [],
@@ -119,16 +121,24 @@ class FormLeasePropertyAntMobile extends React.Component {
 
   addPropertyForLease = ( v ) =>
   {
+
     var p = new Property();
+    //var t = new Testobject();
+
+    //var p = new Propertyhk();
+
+    //console.log( 't.text', t.text )
 
 
-//    p.nearByMtrLine = v.nearByMtrLine;
-//    p.nearByMtrStop = v.nearByMtrStop;
+    //console.log( 'netSize', p.netSize )
+ //p.nearByMtrLine = v.nearByMtrLine;
+ //p.nearByMtrStop = v.nearByMtrStop;
+    console.log( 'nameOfBuilding ',v.nameOfBuilding[0] )
 
     p.nameOfBuilding = v.nameOfBuilding[0]
+    p.nameOfBuilding = 'gordon'
 //    p.dueDay = v.dueDay;
-    p.earlyTimeToView = v.earlyTimeToView
-    p.netSize = parseInt(v.netSize);
+    p.earlyTimeToView = v.earlyTimeToView;
     p.leasePrice = parseInt(v.leasePrice);
     p.numOfRoom = parseInt( v.partition[0]);
     p.numofBathroom = parseInt(v.partition[1]);
@@ -136,6 +146,7 @@ class FormLeasePropertyAntMobile extends React.Component {
     p.isPreferPayAnnually = v.isPreferPayAnnually;
     p.isRentAbleNow = v.isRentAbleNow;
     p.isFreeForSevenDay = v.isFreeForSevenDay;
+
     p.hasHomeHardware = v.hasHomeHardware;
     p.isViewAble = v.isViewAble;
     p.contactName = v.contactName;
@@ -151,10 +162,10 @@ class FormLeasePropertyAntMobile extends React.Component {
   submit = (e) => {
    const value = this.props.form.getFieldsValue();
 
-   console.log( '...value', { ...value } )
+   console.log( 'value',  value )
 
     e.preventDefault();
-    this.addPropertyForLease( {...value} )
+    this.addPropertyForLease( value )
   //  console.log( '地鐵線', value.MTR )
   //  console.log( '呎', value.netSize)
   //  console.log( '租金', value.leasePrice )
@@ -193,7 +204,9 @@ class FormLeasePropertyAntMobile extends React.Component {
 
       <List style={{ backgroundColor: 'white' }} className="picker-list">
 
-        <Picker data={NameOfBuilding} cols={1} {...getFieldProps('nameOfBuilding')} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
+        <Picker data={NameOfBuilding} cols={1} {...getFieldProps('nameOfBuilding', {
+            initialValue: ['MOSDBC'],
+          })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
           <List.Item arrow="horizontal">大廈/屋苑</List.Item>
         </Picker>
 

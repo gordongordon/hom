@@ -74,13 +74,12 @@ export class PropertysView extends React.Component {
     //       }
     //     </ul>
     // )
-
     return (
         <div>
 
-           {
-             that.renderPropertys( propertys )
-           }
+          {
+            that.renderPropertys( propertys )
+          }
 
 
       </div>

@@ -58,7 +58,7 @@ export class Property{
     @observable salePriceMin = 0;
     @observable salePriceMax = 0;
     @observable buyBudgetMin = 0;
-    @observable buyBudgetMin = 0;
+    @observable buyBudgetMax = 0;
 
     // property sizing
     @observable netSize = 0;
@@ -84,15 +84,19 @@ export class Property{
     @observable isNegotiable = true
     @observable isViewAble = true
     @observable hasHomeHardware = false
-
+    //
     @observable isPreferPayAnnually = false
     @observable isSaleWithLease = false
     @observable jobNature = 0;
-
+    //
     @observable isViewAbleNow = false
     @observable isRentAbleNow = false
     @observable isFreeForSevenDay = false
-    @observable dueDay = undefine
+    @observable dueDay = null
+
+    // @computed get getnetSize () {
+    //    return this.netSize;
+    //  }
 
     // computed values are values derived and automatically updated when the observed
     // observable values changes. For example we use it to determine whenever the todo is valid
@@ -101,9 +105,13 @@ export class Property{
         return this.text !== ''
     }
 
-    // this two methods will serialize and deserialize the todo
+
+    // setNetSize( netSize ) {
+    //   this.netSize = netSize;
+    // }
+    // // this two methods will serialize and deserialize the todo
     // to keep the example clean I have done them, but you should consider using
-    // https://github.com/mobxjs/serializr
+    //https://github.com/mobxjs/serializr
     serialize(){
         return {
             id: this.id,
@@ -148,8 +156,8 @@ export class Property{
 
             // Sale Property
             numOfDayClosingDeal : this.numOfDayClosingDeal,
-            isNegotiable : this.isNegotiable,
-            isViewAble : this.isViewAble,
+//            isNegotiable : this.isNegotiable,
+//            isViewAble : this.isViewAble,
             isSaleWithLease : this.isSaleWithLease,
 
             // lease property
@@ -167,23 +175,23 @@ export class Property{
           }
     }
 
-    static deserialize(json: Object){
-        const property = new Property()
-        //property.id = json['id'] || nextId()
-        property.id = json['id'] || uuid()
-        property.text = json['text'] || ''
-        property.done = json['done'] || false
-        property.price = json['price'] || 0
-        property.location = json['location'] || ''
-        property.type = json['type'] || ''
-        property.isAgent = json['isAgent'] || false
-        property.createdAt = json['createdAt'] || 0
-        property.typeTo = json['typeTo'] || ''
-        property.typeBy = json['typeBy'] || ''
-        property.typeFor = json['typeFor'] || ''
-        property.name = json['name'] || ''
-
-        console.log( 'deserialize property.id ', property.id )
-        return property
-    }
+    // static deserialize(json: Object){
+    //     const property = new Property()
+    //     //property.id = json['id'] || nextId()
+    //     property.id = json['id'] || uuid()
+    //     property.text = json['text'] || ''
+    //     property.done = json['done'] || false
+    //     property.price = json['price'] || 0
+    //     property.location = json['location'] || ''
+    //     property.type = json['type'] || ''
+    //     property.isAgent = json['isAgent'] || false
+    //     property.createdAt = json['createdAt'] || 0
+    //     property.typeTo = json['typeTo'] || ''
+    //     property.typeBy = json['typeBy'] || ''
+    //     property.typeFor = json['typeFor'] || ''
+    //     property.name = json['name'] || ''
+    //
+    //     console.log( 'deserialize property.id ', property.id )
+    //     return property
+    // }
 }

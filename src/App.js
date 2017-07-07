@@ -15,7 +15,6 @@ class App extends Component {
     return (
       <div style={{ margin: 5 }}>
         <FrontPapePanelViewSegment />
-        <PropertysView />
         <DevTools />
       </div>
     );
@@ -23,3 +22,4 @@ class App extends Component {
 };
 
 export default App;
+// <FrontPapePanelViewSegment />
