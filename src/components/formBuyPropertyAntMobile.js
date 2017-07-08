@@ -122,7 +122,7 @@ class FormBuyPropertyAntMobile extends React.Component {
     p.nameOfBuilding = v.nameOfBuilding[0]
     // p.dueDay = v.dueDay.toJSON();
     p.earlyTimeToView = v.earlyTimeToView.toJSON();
-    p.salePrice = parseInt( v.salePrice )
+    p.salePriceMax = parseInt( v.salePriceMax )
 
     //p.leasePrice = parseInt(v.leasePrice);
     p.numOfRoom = parseInt( v.partition[0]);
@@ -182,9 +182,6 @@ class FormBuyPropertyAntMobile extends React.Component {
       const maxDate = moment(minDate).add(6, 'M');
 
     return ( <div>
-
-
-
       <List style={{ backgroundColor: 'white' }} className="picker-list">
 
         <Picker data={NameOfBuilding} cols={1} {...getFieldProps('nameOfBuilding', {
@@ -224,7 +221,7 @@ class FormBuyPropertyAntMobile extends React.Component {
         </DatePicker>
 
                 <InputItem
-                  {...getFieldProps('salePrice', {
+                  {...getFieldProps('salePriceMax', {
                     initialValue : 380,
                     normalize: (v, prev) => {
                       if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
@@ -237,16 +234,19 @@ class FormBuyPropertyAntMobile extends React.Component {
                     },
                   })}
                   type="number"
-                  placeholder="請求入場價格/每萬"
+                  placeholder="請輸入預算上限"
                   onFocus={() => {
                     this.setState({
                       netSizefocused: false,
                     });
                   }}
+
                   focused={this.state.netSizefocused}
+                  extra="萬"
                   clear
-                  extra="萬元"
-                >售價</InputItem>
+                  labelNumber="7"
+                  maxLength="4"
+                >付出預算上限</InputItem>
 
 
 

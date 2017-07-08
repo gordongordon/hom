@@ -253,7 +253,7 @@ class FormRentPropertyAntMobile extends React.Component {
         minDate={minDate}
         maxDate={maxDate}
       >
-      <List.Item arrow="horizontal">最快幾時有樓睇</List.Item>
+      <List.Item arrow="horizontal">最快幾時可樓睇</List.Item>
 
       </DatePicker>
 
