@@ -60,6 +60,7 @@
     "node-uuid": "^1.4.8",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
+    "react-router-dom": "^4.1.1",
     "validatorjs": "^3.13.3"
   }
 }

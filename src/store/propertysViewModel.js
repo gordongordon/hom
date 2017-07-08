@@ -50,19 +50,23 @@ class PropertysViewModel {
     // Handle Child_added
     Fb.propertys.on('child_added', (snapshot) => {
 
+            console.log( "fire", snapshot.val() )
             var p = new Propertyhk();
-            //var p = new Property();
 
-            p.done = snapshot.val().done
-            p.contactName = snapshot.val().contactName
-            p.nameOfBuilding = snapshot.val().nameOfBuilding;
-            p.location = snapshot.val().location
-            p.nearByMtrLine = snapshot.val().nearByMtrLine
-            p.nearByMtrStop = snapshot.val().nearByMtrStop
-            p.salePrice = snapshot.val().salePrice
-            p.typeTo = snapshot.val().typeTo
-            p.typeBy = snapshot.val().typeBy
-            p.typeFor = snapshot.val().typeFor
+           // Tobe Testing.
+            p = { ...p, ...snapshot.val() }
+            //console.log( 'p', p)
+//            console.log( 'snapddd', snapshot.val() )
+            // p.done = snapshot.val().done
+            // p.contactName = snapshot.val().contactName
+            // p.nameOfBuilding = snapshot.val().nameOfBuilding;
+            // p.location = snapshot.val().location
+            // p.nearByMtrLine = snapshot.val().nearByMtrLine
+            // p.nearByMtrStop = snapshot.val().nearByMtrStop
+            // p.salePrice = snapshot.val().salePrice
+            // p.typeTo = snapshot.val().typeTo
+            // p.typeBy = snapshot.val().typeBy
+            // p.typeFor = snapshot.val().typeFor
 
             p.buildMatchProperty( snapshot.key, p.typeFor, p.location);
             that.propertys.set( snapshot.key, p );

@@ -131,6 +131,7 @@ class FormLeasePropertyAntMobile extends React.Component {
     p.dueDay = v.dueDay.toJSON();
     p.earlyTimeToView = v.earlyTimeToView.toJSON();
     p.leasePrice = parseInt(v.leasePrice);
+    p.netSize = parseInt(v.netSize);
     p.numOfRoom = parseInt( v.partition[0]);
     p.numofBathroom = parseInt(v.partition[1]);
     p.numofLivingroom = parseInt(v.partition[2]);

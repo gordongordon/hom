@@ -2,17 +2,25 @@ import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import App from './App';
-
+import {Link, Route, Router} from 'react-router';
+import { BrowserRouter } from 'react-router-dom'
 
 // render(
 //     <App />,
 //   document.getElementById('root')
 // );
 
+// render(
+//   <BrowserRouter>
+//   <App />
+// </BrowserRouter>,
+//   document.getElementById('root')
+// );
 
 render(
   <AppContainer>
     <App />
+
   </AppContainer>,
   document.getElementById('root')
 );

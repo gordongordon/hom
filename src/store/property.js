@@ -184,23 +184,23 @@ export class Property{
           }
     }
 
-    // static deserialize(json: Object){
-    //     const property = new Property()
-    //     //property.id = json['id'] || nextId()
-    //     property.id = json['id'] || uuid()
-    //     property.text = json['text'] || ''
-    //     property.done = json['done'] || false
-    //     property.price = json['price'] || 0
-    //     property.location = json['location'] || ''
-    //     property.type = json['type'] || ''
-    //     property.isAgent = json['isAgent'] || false
-    //     property.createdAt = json['createdAt'] || 0
-    //     property.typeTo = json['typeTo'] || ''
-    //     property.typeBy = json['typeBy'] || ''
-    //     property.typeFor = json['typeFor'] || ''
-    //     property.name = json['name'] || ''
-    //
-    //     console.log( 'deserialize property.id ', property.id )
-    //     return property
-    // }
+    static deserialize(json: Object){
+        const property = new Property()
+        //property.id = json['id'] || nextId()
+        property.id = json['id'] || uuid()
+        property.text = json['text'] || ''
+        property.done = json['done'] || false
+        property.price = json['price'] || 0
+        property.location = json['location'] || ''
+        property.type = json['type'] || ''
+        property.isAgent = json['isAgent'] || false
+        property.createdAt = json['createdAt'] || 0
+        property.typeTo = json['typeTo'] || ''
+        property.typeBy = json['typeBy'] || ''
+        property.typeFor = json['typeFor'] || ''
+        property.name = json['name'] || ''
+
+        console.log( 'deserialize property.id ', property.id )
+        return property
+    }
 }
