@@ -18,7 +18,6 @@ class MatchPanelView extends React.Component {
 
   constructor() {
     super()
-    var p = new  PropertysViewModel;
   }
 
   state = {
@@ -30,10 +29,11 @@ class MatchPanelView extends React.Component {
         // For DatePicker
         const minDate = moment().locale('zh-cn').utcOffset(8);
         const maxDate = moment(minDate).add(6, 'M');
-    return (<div>
+    return (
       <div>
-
+      <div>
       <SegmentedControl values={['現在比較樓盤', '聯絡通訊', '系統登入', '個人資料']}  selectedIndex={this.state.selectedSegmentIndex} onChange={this.onChange} />
+<List>
       <Picker data={NameOfBuilding} cols={1} {...getFieldProps('nameOfBuilding', {
           initialValue: ['MOSDBC'],
         })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
@@ -68,9 +68,10 @@ class MatchPanelView extends React.Component {
       >
       <List.Item arrow="horizontal">最快幾時有樓睇</List.Item>
       </DatePicker>
+    </List>
       <SegmentedControl tintColor={'#ff0000'} values={['最貴', '最平', '最快', '最滿意']}  selectedIndex={this.state.selectedSegmentIndex} onChange={this.onChange} />
       </div>
-      <List>
+
   <SwipeAction
     style={{ backgroundColor: 'gray' }}
     autoClose
@@ -190,7 +191,7 @@ class MatchPanelView extends React.Component {
             </Flex>} />
   </Card>
   </SwipeAction>
-</List>
+
       <div>
 
   <WhiteSpace size="lg" />
