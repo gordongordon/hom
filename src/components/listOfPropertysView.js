@@ -28,7 +28,7 @@ export class ListOfPropertysView extends React.Component {
   }
 
 
-  renderPropertys = ( propertys ) => {
+  renderPropertys = ( propertys, h ) => {
 
     var list = propertys;
     const that = this;
@@ -36,7 +36,7 @@ export class ListOfPropertysView extends React.Component {
     console.log( 'list size ', list.size )
      var element= [];
      list.forEach( (property, keyID) => element.push(
-       <Item  arrow="horizontal" onClick={ () => { that.onClick( keyID ) }} multipleLine extra={<div>租金${property.leasePrice}</div>}租金>
+       <Item  arrow="horizontal" onClick={ () => { h( keyID) } } multipleLine extra={<div>租金${property.leasePrice}</div>}租金>
           { BUILDING_NAME[property.nameOfBuilding] }<Brief>實用面積{ property.netSize }</Brief>
        </Item>
      ) )
@@ -46,11 +46,11 @@ export class ListOfPropertysView extends React.Component {
   render() {
 
     const that = this;
-
+    var {handleNextProperty} = this.props;
 
     return (
       <List renderHeader={() => '你搜尋嘅樓盤'} className="my-list">
-         { that.renderPropertys( propertys.propertys ) }
+         { that.renderPropertys( propertys.propertys, handleNextProperty) }
       </List>
     )
   }

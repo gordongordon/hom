@@ -16,8 +16,12 @@ const NameOfBuilding = [
 
 class MatchPanelView extends React.Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+
+    // property = propertys.propertys.get(this.props.keyID);
+    // console.log('p', property)
+    // console.log('p.nameOfBuilding', property.nameOfBuilding)
   }
 
   state = {
@@ -25,6 +29,8 @@ class MatchPanelView extends React.Component {
     selectedSegmentIndex: 0,
   }
   render() {
+        var property = propertys.propertys.get(this.props.keyID);
+        const that = this;
         const { getFieldProps } = this.props.form;
         // For DatePicker
         const minDate = moment().locale('zh-cn').utcOffset(8);
@@ -35,7 +41,7 @@ class MatchPanelView extends React.Component {
       <SegmentedControl values={['現在比較樓盤', '聯絡通訊', '系統登入', '個人資料']}  selectedIndex={this.state.selectedSegmentIndex} onChange={this.onChange} />
 <List>
       <Picker data={NameOfBuilding} cols={1} {...getFieldProps('nameOfBuilding', {
-          initialValue: ['MOSDBC'],
+          initialValue: [property.nameOfBuilding],
         })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
         <List.Item arrow="horizontal">大廈/屋苑</List.Item>
       </Picker>
@@ -44,7 +50,7 @@ class MatchPanelView extends React.Component {
        <Stepper
          style={{ width: '100%', minWidth: '2rem' }}
          {...getFieldProps('numOfPeopleLiving', {
-           initialValue: 8000
+           initialValue: property.leasePrice
          })}
          showNumber
          max={100000}
