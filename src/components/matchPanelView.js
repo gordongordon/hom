@@ -37,8 +37,9 @@ class MatchPanelView extends React.Component {
   render() {
         var property = propertys.propertys.get(this.props.keyID);
 
-        console.log( 'matchPanelView property', property )
-        console.log( 'matchPanelView matched propertys', property.matchedPropertys )
+        //console.log( 'matchPanelView property', property )
+        //console.log( 'matchPanelView propertys.size', propertys.propertys.size )
+        //console.log( 'matchPanelView matched propertys', property.matchedPropertys.size)
         const that = this;
         const { getFieldProps } = this.props.form;
         // For DatePicker
@@ -50,7 +51,7 @@ class MatchPanelView extends React.Component {
       <div>
 
   <SingleLeasePropertyForMatchViewWrapper property={property} />
-  <ListOfMatchPropertys property={property.matchedPropertys} />
+  <ListOfMatchPropertys propertys={property.matchedPropertys} />
 
     </div>);
   }

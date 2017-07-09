@@ -54,8 +54,10 @@ class PropertysViewModel {
             var p = new Propertyhk();
 
            // Tobe Testing.
-            p = { ...p, ...snapshot.val() }
-            //console.log( 'p', p)
+            // p = { ...p, ...snapshot.val() }
+
+            p.restore( snapshot.val() )
+            console.log( 'p', p)
 //            console.log( 'snapddd', snapshot.val() )
             // p.done = snapshot.val().done
             // p.contactName = snapshot.val().contactName
@@ -69,6 +71,8 @@ class PropertysViewModel {
             // p.typeFor = snapshot.val().typeFor
 
             p.buildMatchProperty( snapshot.key, p.typeFor, p.location);
+
+            console.log( 'child_add - psvm.matchedPropertys.size', p.matchedPropertys.size );
             that.propertys.set( snapshot.key, p );
     });
 

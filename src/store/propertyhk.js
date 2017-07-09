@@ -7,8 +7,9 @@ import {Property} from 'property'
 // propertyViewModel
 export class Propertyhk extends Property {
 
-
   @observable matchedPropertys = observable.map({});
+  // @observable matchedPropertys = new Map();
+
   @observable like = observable.map({});
   @observable reject = observable.map({});
   @observable view = observable.map({});
@@ -18,9 +19,12 @@ export class Propertyhk extends Property {
   //@observable propertys = new Map();
 
   constructor() {
-//    var that = this;
     super();
   }
+
+  // constructor( v ) {
+  //   super( v );
+  // }
 
   @computed get json() {
     return toJS(this.matchedPropertys);
@@ -40,13 +44,13 @@ export class Propertyhk extends Property {
           // Fb.matchedPropertys.child( snap.key ).set( snap.val() )
 //          Fb.propertys.update( { snap.key : { } })
           that.matchedPropertys.set( snap.key, snap.val() );
-          console.log('matchProperty.size', that.matchedPropertys.size)
+          console.log('child_added - matchProperty.size', that.matchedPropertys.size)
      });
 
      Fb.propertys.orderByChild('typeTo').equalTo(typeFor).on("child_removed", function(snap) {
 
          that.matchedPropertys.delete( snap.key );
-         console.log('matchProperty.size', that.matchedPropertys.size)
+         console.log('child_removed - matchProperty.size', that.matchedPropertys.size)
      });
 
      return that.matchedPropertys;

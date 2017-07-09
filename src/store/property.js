@@ -8,6 +8,12 @@ function nextId(){ _nextId++; return _nextId }
 
 // this is our domain model class
 export class Property{
+
+    //
+    // constructor( v ){
+    //   restore( v )
+    // }
+    
     // the ID of the current Todo
     // a unique id is automatically assigned when the todo object is instanced.
     //id = nextId()
@@ -110,6 +116,8 @@ export class Property{
     }
 
 
+
+
     // setNetSize( netSize ) {
     //   this.netSize = netSize;
     // }
@@ -204,5 +212,72 @@ export class Property{
 
         console.log( 'deserialize property.id ', property.id )
         return property
+    }
+
+    restore( v ) {
+      this.id =  v.id,
+//            text: this.text,
+      this.done = v.done,
+//            location : this.location,
+      this.type = v.type,
+
+      this.isAgent= v.isAgent,
+      this.createdAt= v.createdAt,
+      this.typeTo = v.typeTo,
+      this.typeBy = v.typeBy,
+    this.typeFor = v.typeFor,
+
+    this.district = v.district,
+    this.nameOfBuilding= v.nameOfBuilding,
+      this.propertyType = v.propertyType,
+      this.flatType = v.flatType,
+      this.nearByMtrLine = v.nearByMtrLine,
+    this.nearByMtrStop = v.nearByMtrStop,
+
+
+    this.salePrice = v.salePrice,
+      this.salePriceMin = v.salePriceMin,
+      this.salePriceMax = v.salePriceMax,
+      this.leasePrice = v.leasePrice,
+    this.leasePriceWithTax = v.leasePriceWithTax,
+    this.leasePriceWithLandTax =v.leasePriceWithLandTax,
+    this.leasePriceWithManagementFee = v.leasePriceWithManagementFee,
+      this.leaseDepositPerMonth = v.leaseDepositPerMonth,
+      this.rentBudgetMax = v.rentBudgetMax,
+
+
+    this.netSize = v.netSize,
+      this.netSizeMin = v.netSizeMin,
+      this.netSizeMax = v.netSizeMax,
+      this.numOfRoom = v.numOfRoom,
+    this.numOfBathroom = v.numOfBathroom,
+      this.numOfLivingroom = v.numOfLivingroom,
+      this.numOfPeopleLiving = v.numOfPeopleLiving,
+    this.contactName = v.contactName,
+      this.contactPhone = v.contactPhone,
+      this.contactEmail = v.contactEmail,
+
+      // Sale Property
+      this.numOfDayClosingDeal = v.numOfDayClosingDeal,
+//            isNegotiable : v.isNegotiable,
+//            isViewAble : v.isViewAble,
+      this.isSaleWithLease = v.isSaleWithLease,
+
+      // lease property
+      this.isNegotiable  = v.isNegotiable,
+    this.isViewAble    = v.isViewAble,
+      this.isPreferPayAnnually = v.isPreferPayAnnually,
+      this.hasHomeHardware = v.hasHomeHardware,
+      this.jobNature = v.jobNature,
+
+      this.isViewAbleNow = v.isViewAbleNow,
+      this.isRentAbleNow = v.isRentAbleNow,
+      this.isFreeForSevenDay = v.isFreeForSevenDay,
+//            dueDay : this.dueDay.toJSON(),
+      //earlyTimeToView : this.earlyTimeToView.toJSON(),
+      this.dueDay = v.dueDay,
+      this.earlyTimeToView = v.earlyTimeToView,
+      this.income = v.income,
+      this.isBuyWithLease = v.isBuyWithLease
     }
 }

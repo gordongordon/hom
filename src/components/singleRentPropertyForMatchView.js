@@ -9,11 +9,44 @@ import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatc
 const Item = List.Item;
 const Brief = Item.Brief;
 
+const LABEL_JOBNATURE = {
+ '0' : '私人企業',
+ '1' : '政府工',
+ '2' : '自僱人士',
+ '3' : '學生',
+ '4' : '海外人士',
+}
+
+const jobNature = [
+  {
+    label : '私人企業',
+    value : '0'
+  },   {
+    label : '政府工',
+    value : '1'
+  },   {
+    label : '自僱人士',
+    value : '2'
+  },   {
+    label : '學生',
+    value : '3'
+  },  {
+    label : '海外人士',
+    value : '4'
+  },
+]
+
 const NameOfBuilding = [
   { value: 'MOSDBC', label: '迎海' },
   { value: 'MOSCTO', label: '第一城' },
   { value: 'MOSSSC', label: '新港城' },
 ];
+
+const BUILDING_NAME = {
+   'MOSDBC' : '迎海',
+   'MOSCTO' : '第一城',
+   'MOSSSC' : '新港城'
+}
 
 class SingleRentPropertyForMatchView extends React.Component {
 
@@ -39,6 +72,7 @@ class SingleRentPropertyForMatchView extends React.Component {
 
 
     return (
+      <div>
   <SwipeAction
     style={{ backgroundColor: 'gray' }}
     autoClose
@@ -72,13 +106,13 @@ class SingleRentPropertyForMatchView extends React.Component {
   <Card full>
    <Badge text={'平'} corner>
     <Card.Header
-      title="Mr Gordon / $38000"
+      title={ property.contactName +"/租金上限$"+property.rentBudgetMax}
       thumb="http://via.placeholder.com/140x100"
-      extra={<div>最快可樓睇:7月8號/尋找:迎海 </div>}
+      extra={<div>最快可樓睇/尋找:{BUILDING_NAME[property.nameOfBuilding]} </div>}
     />
     </Badge>
     <Card.Body>
-        <div>收入:$15,000/職業:政府工/2人住
+        <div>收入:${property.income}/職業:{LABEL_JOBNATURE[property.jobNature]}/{property.numOfPeopleLiving}人住
         </div>
     </Card.Body>
     <Card.Footer content={<div><Button type="primary" inline size="small">Chat Now!</Button><Button type="primary" inline size="small">Call Now!</Button></div>} extra={          <Flex style={{ marginBottom: '1rem' }}>
@@ -97,7 +131,10 @@ class SingleRentPropertyForMatchView extends React.Component {
               $3800
             </Flex>} />
   </Card>
-  </SwipeAction> );
+  </SwipeAction>
+  <WhiteSpace size="sm" />
+</div>
+);
 
 } };
 
