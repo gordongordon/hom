@@ -147,6 +147,8 @@ export class Property{
             leasePriceWithLandTax : this.leasePriceWithLandTax,
             leasePriceWithManagementFee : this.leasePriceWithManagementFee,
             leaseDepositPerMonth : this.leaseDepositPerMonth,
+            rentBudgetMax : this.rentBudgetMax,
+
 
             netSize : this.netSize,
             netSizeMin : this.netSizeMin,

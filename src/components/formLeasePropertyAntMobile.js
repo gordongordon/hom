@@ -146,6 +146,8 @@ class FormLeasePropertyAntMobile extends React.Component {
     p.contactEmail = v.contactEmail;
 
     const id = Fb.propertys.push().key;
+    p.typeFor = "rent"
+    p.typeTo = "lease"
     Fb.propertys.update( {[id]:  p.serialize() });
   }
 

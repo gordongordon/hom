@@ -40,7 +40,9 @@ export class ListOfPropertysView extends React.Component {
 
     console.log( 'list size ', list.size )
      var element= [];
-     list.forEach( (property, keyID) => element.push(
+     list.forEach( (property, keyID) => {
+           if ( property.typeTo === 'lease' ) {
+       element.push(
        <SwipeAction
          style={{ backgroundColor: 'gray' }}
          autoClose
@@ -71,11 +73,51 @@ export class ListOfPropertysView extends React.Component {
          onOpen={() => console.log('global open')}
          onClose={() => console.log('global close')}
        >
-       <Item  arrow="horizontal" onClick={ () => { h( keyID) } } multipleLine extra={<div>租金${property.leasePrice}</div>}租金>
-          { BUILDING_NAME[property.nameOfBuilding] }<Brief>實用面積{ property.netSize }</Brief>
+       <Item  arrow="horizontal" onClick={ () => { h( keyID) } } multipleLine extra={<div>租金${property.leasePrice}</div>}>
+          { BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>實用面積{ property.netSize }</Brief>
        </Item>
-     </SwipeAction>
-     ) )
+       </SwipeAction>
+     ) }  // end of lease
+     if ( property.typeTo === 'rent' ) {
+ element.push(
+ <SwipeAction
+   style={{ backgroundColor: 'gray' }}
+   autoClose
+   right={[
+     {
+       text: 'Cancel',
+       onPress: () => console.log('cancel'),
+       style: { backgroundColor: '#ddd', color: 'white' },
+     },
+     {
+       text: 'Delete',
+       onPress: () => model.del(keyID) ,
+       style: { backgroundColor: '#F4333C', color: 'white' },
+     },
+   ]}
+   left={[
+     {
+       text: 'Reply',
+       onPress: () => console.log('reply'),
+       style: { backgroundColor: '#108ee9', color: 'white' },
+     },
+     {
+       text: 'Cancel',
+       onPress: () => console.log('cancel'),
+       style: { backgroundColor: '#ddd', color: 'white' },
+     },
+   ]}
+   onOpen={() => console.log('global open')}
+   onClose={() => console.log('global close')}
+ >
+ <Item  arrow="horizontal" onClick={ () => { h( keyID) } } multipleLine extra={<div>租金上限${property.rentBudgetMax}</div>} >
+    { BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>實用面積{ property.netSize }</Brief>
+ </Item>
+ </SwipeAction>
+) }  // end of lease
+
+
+     })
      return <div>{element}</div>
   }
 

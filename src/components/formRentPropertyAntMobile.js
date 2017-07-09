@@ -138,7 +138,7 @@ class FormRentPropertyAntMobile extends React.Component {
     //p.nearByMtrLine = v.nearByMtrLine;
     //p.nearByMtrStop = v.nearByMtrStop;
 
-    // p.nameOfBuilding = v.nameOfBuilding[0]
+    p.nameOfBuilding = v.nameOfBuilding[0]
     p.jobNature = parseInt(v.jobNature[0]);
     p.income = parseInt(v.income);
 
@@ -164,7 +164,9 @@ class FormRentPropertyAntMobile extends React.Component {
     p.contactEmail = v.contactEmail;
 
     const id = Fb.propertys.push().key;
-    Fb.propertysForRent.update( {[id]:  p.serialize() });
+    p.typeFor = "lease"
+    p.typeTo = "rent"
+    Fb.propertys.update( {[id]:  p.serialize() });
   }
 
 
