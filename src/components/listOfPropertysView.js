@@ -1,5 +1,5 @@
 import React from 'react'
-import { List , Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl} from 'antd-mobile';
+import { List , Card, SwipeAction, Stepper, Picker, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
@@ -28,7 +28,12 @@ export class ListOfPropertysView extends React.Component {
   }
 
 
-  renderPropertys = ( propertys, h ) => {
+  /**
+   * model is propertysViewModel, use to handle all functions , e.g. del
+   * propertys is list of propertys for this user
+   * h is a callback to handle next route wiht keyID
+   */
+  renderPropertys = ( model, propertys, h ) => {
 
     var list = propertys;
     const that = this;
@@ -36,9 +41,40 @@ export class ListOfPropertysView extends React.Component {
     console.log( 'list size ', list.size )
      var element= [];
      list.forEach( (property, keyID) => element.push(
+       <SwipeAction
+         style={{ backgroundColor: 'gray' }}
+         autoClose
+         right={[
+           {
+             text: 'Cancel',
+             onPress: () => console.log('cancel'),
+             style: { backgroundColor: '#ddd', color: 'white' },
+           },
+           {
+             text: 'Delete',
+             onPress: () => model.del(keyID) ,
+             style: { backgroundColor: '#F4333C', color: 'white' },
+           },
+         ]}
+         left={[
+           {
+             text: 'Reply',
+             onPress: () => console.log('reply'),
+             style: { backgroundColor: '#108ee9', color: 'white' },
+           },
+           {
+             text: 'Cancel',
+             onPress: () => console.log('cancel'),
+             style: { backgroundColor: '#ddd', color: 'white' },
+           },
+         ]}
+         onOpen={() => console.log('global open')}
+         onClose={() => console.log('global close')}
+       >
        <Item  arrow="horizontal" onClick={ () => { h( keyID) } } multipleLine extra={<div>租金${property.leasePrice}</div>}租金>
           { BUILDING_NAME[property.nameOfBuilding] }<Brief>實用面積{ property.netSize }</Brief>
        </Item>
+     </SwipeAction>
      ) )
      return <div>{element}</div>
   }
@@ -50,7 +86,7 @@ export class ListOfPropertysView extends React.Component {
 
     return (
       <List renderHeader={() => '你搜尋嘅樓盤'} className="my-list">
-         { that.renderPropertys( propertys.propertys, handleNextProperty) }
+         { that.renderPropertys( propertys, propertys.propertys, handleNextProperty) }
       </List>
     )
   }
