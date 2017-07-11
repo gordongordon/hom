@@ -4,7 +4,9 @@ class AppStore {
   constructor() {
     extendObservable(this, {
       title: 'HoMatching',
-      user: undefined
+      user: undefined,
+      previousView : undefined,
+      params : undefined
     });
   }
 
