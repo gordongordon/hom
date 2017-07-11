@@ -17,31 +17,31 @@ import {Header} from 'header'
 
 
 // @observer
-class App extends Component {
-
-  constructor(props) {
-    super(props)
-    this.state = {
-       keyID : 0
-    }
-}
-
-  handleNextProperty = ( keyID ) => {
-     this.setState( {
-        keyID
-     })
-     console.log( 'App Keyid', keyID )
-  }
-  display = () => {
-    if ( this.state.keyID !== 0) {
-      return <MatchPanelViewWrapper keyID={this.state.keyID} />
-    }
-
-  }
+// class App extends Component {
+//
+//   constructor(props) {
+//     super(props)
+//     this.state = {
+//        keyID : 0
+//     }
+// }
+//
+//   handleNextProperty = ( keyID ) => {
+//      this.setState( {
+//         keyID
+//      })
+//      console.log( 'App Keyid', keyID )
+//   }
+//   display = () => {
+//     if ( this.state.keyID !== 0) {
+//       return <MatchPanelViewWrapper keyID={this.state.keyID} />
+//     }
+//
+//   }
 
   render() {
 
-    const keyID = this.state.keyID;
+    //const keyID = this.state.keyID;
 
     return (
       <div>

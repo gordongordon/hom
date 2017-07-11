@@ -8,7 +8,7 @@ import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatc
 import {SingleRentPropertyForMatchViewWrapper} from 'singleRentPropertyForMatchView'
 import {ListOfMatchPropertys} from 'listOfMatchPropertys'
 import { observer } from 'mobx-react';
-import store from 'store';
+import MobxStore from 'mobxStore';
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -25,9 +25,6 @@ class MatchPanelView extends React.Component {
   constructor(props) {
     super(props)
 
-    // property = propertys.propertys.get(this.props.keyID);
-    // console.log('p', property)
-    // console.log('p.nameOfBuilding', property.nameOfBuilding)
   }
 
   state = {
@@ -37,11 +34,11 @@ class MatchPanelView extends React.Component {
   render() {
 //        var property = propertys.propertys.get(this.props.keyID);
 //        var property = propertys.propertys.get("-Kof2Ki5bbvt5MS2QJMG");
-        var property = propertys.propertys.get(store.router.params.keyID );
+        var property = propertys.propertys.get(MobxStore.router.params.keyID );
 
         //console.log( 'keyID', this.props.keyID )
         // console.log( 'store.queryParams.keyID', store.router.queryParams.keyID )
-        console.log( 'store.params.keyID', store.router.params.keyID )
+        console.log( 'store.params.keyID', MobxStore.router.params.keyID )
 
 
         console.log( 'matchPanelView property', property )

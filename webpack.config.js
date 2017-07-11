@@ -29,7 +29,8 @@ module.exports = {
         './components',
         './data',
         './store',
-        './firebase'
+        './firebase',
+        './mobxs'
       ],
   extensions: ['', '.web.jsx', '.web.js', '.js', '.jsx', '.json']
   },

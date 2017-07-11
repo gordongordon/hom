@@ -7,7 +7,7 @@ import {Route} from 'mobx-router';
 import {MatchPanelViewWrapper} from 'matchPanelView'
 import {ListOfPropertysView} from 'ListOfPropertysView'
 import {FrontPapePanelViewSegment} from 'frontPagePanelViewSegment'
-import store from 'store';
+import MobxStore from 'mobxStore';
 
 const views = {
   first: new Route({
