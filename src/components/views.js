@@ -8,20 +8,22 @@ import {MatchPanelViewWrapper} from 'matchPanelView'
 import {ListOfPropertysView} from 'ListOfPropertysView'
 import {FrontPapePanelViewSegment} from 'frontPagePanelViewSegment'
 import MobxStore from 'mobxStore';
+import FrontPage from 'frontPage'
+import {MobxRouter} from 'mobx-router';
 
 const views = {
   first: new Route({
     path: '/',
-    component: <FrontPapePanelViewSegment/>
+    component: <FrontPage />
   }),
   second: new Route({
     path: '/second',
-    component: <ListOfPropertysView/>,
+    component: <ListOfPropertysView />,
     onEnter: () => {
-      console.log('entering user profile!');
+      console.log('entering ListOfPropertysView!');
     },
     beforeExit: (route, params) => {
-      console.log('exiting user profile!');
+      console.log('exiting ListOfPRoperysView!');
       console.log('params changed to', params);
     },
     onParamsChange: (route, params) => {

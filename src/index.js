@@ -15,10 +15,11 @@ startRouter(views, MobxStore);
 ReactDOM.render(
   <Provider store={MobxStore}>
     <div>
-      <h1>{MobxStore.app.title}</h1>
-        <NavigationBar />
-      <button onClick={() => MobxStore.router.goTo(views.second)}>Go First</button>
-      <MobxRouter/>
+         <NavigationBar title={MobxStore.app.title} />
+         <button onClick={() => MobxStore.router.goTo(views.second)}>Go First</button>
+         <MobxRouter/>
     </div>
   </Provider>, document.getElementById('root')
 )
+
+//MobxStore.app.title

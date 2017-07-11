@@ -6,6 +6,7 @@ import views from 'views'
 export default class NavigationBar extends React.Component {
 
 render() {
+   var title = this.props.title;
 
    return (
      <div>
@@ -16,7 +17,7 @@ render() {
            <Icon key="0" type="search" style={{ marginRight: '0.32rem' }} />,
            <Icon key="1" type="ellipsis" />,
          ]}
-       >HoMatching</NavBar>
+       >{title}</NavBar>
      </div>
    )
 

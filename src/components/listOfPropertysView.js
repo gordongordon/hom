@@ -87,44 +87,44 @@ export class ListOfPropertysView extends React.Component {
        </SwipeAction>
      </div>
      ) }  // end of lease
-//      if ( property.typeTo === 'rent' ) {
-//  element.push(
-//    <div key={keyID}>
-//  <SwipeAction
-//    style={{ backgroundColor: 'gray' }}
-//    autoClose
-//    right={[
-//      {
-//        text: 'Cancel',
-//        onPress: () => console.log('cancel'),
-//        style: { backgroundColor: '#ddd', color: 'white' },
-//      },
-//      {
-//        text: 'Delete',
-//        onPress: () => model.del(keyID) ,
-//        style: { backgroundColor: '#F4333C', color: 'white' },
-//      },
-//    ]}
-//    left={[
-//      {
-//        text: 'Reply',
-//        onPress: () => console.log('reply'),
-//        style: { backgroundColor: '#108ee9', color: 'white' },
-//      },
-//      {
-//        text: 'Cancel',
-//        onPress: () => console.log('cancel'),
-//        style: { backgroundColor: '#ddd', color: 'white' },
-//      },
-//    ]}
-//    onOpen={() => console.log('global open')}
-//    onClose={() => console.log('global close')}
-//  >
-//  <Item  arrow="horizontal" onClick={ () => { h( keyID) } } multipleLine extra={<div>租金上限${property.rentBudgetMax}</div>} >
-//     { BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>實用面積{ property.netSize }</Brief> {keyID
-//  </Item>
-//  </SwipeAction></div>
-// ) }  // end of lease
+     if ( property.typeTo === 'rent' ) {
+ element.push(
+   <div key={keyID}>
+ <SwipeAction
+   style={{ backgroundColor: 'gray' }}
+   autoClose
+   right={[
+     {
+       text: 'Cancel',
+       onPress: () => console.log('cancel'),
+       style: { backgroundColor: '#ddd', color: 'white' },
+     },
+     {
+       text: 'Delete',
+       onPress: () => model.del(keyID) ,
+       style: { backgroundColor: '#F4333C', color: 'white' },
+     },
+   ]}
+   left={[
+     {
+       text: 'Reply',
+       onPress: () => console.log('reply'),
+       style: { backgroundColor: '#108ee9', color: 'white' },
+     },
+     {
+       text: 'Cancel',
+       onPress: () => console.log('cancel'),
+       style: { backgroundColor: '#ddd', color: 'white' },
+     },
+   ]}
+   onOpen={() => console.log('global open')}
+   onClose={() => console.log('global close')}
+ >
+ <Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.third, {keyID} ) } multipleLine extra={<div>租金上限${property.rentBudgetMax}</div>} >
+    { BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>實用面積{ property.netSize }</Brief> {keyID}
+ </Item>
+ </SwipeAction></div>
+) }  // end of lease
 
 
      })
@@ -132,6 +132,9 @@ export class ListOfPropertysView extends React.Component {
   }
 
   render() {
+
+    //console.log( "title", this.props.title)
+
 
     const that = this;
     var {handleNextProperty} = this.props;
