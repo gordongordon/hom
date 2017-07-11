@@ -10,16 +10,11 @@ import {FrontPapePanelViewSegment} from 'frontPagePanelViewSegment'
 import {ListTestingWrapper } from 'listTesting'
 import {MatchPanelViewWrapper} from 'matchPanelView'
 import {ListOfPropertysView} from 'ListOfPropertysView'
-// import {Main} from 'main'
-// import {Header} from 'header'
-//import {  Redirect, BrowserRouter, Link, Route } from 'react-router-dom'
-// render(
-//     <App />,
-//   document.getElementById('root')
-// );
-//import history from 'browser/history'
+//import {MenuBar} from 'menuBar'
+import {FrontPageView} from 'FrontPageView'
+import {Main} from 'main'
+import {Header} from 'header'
 
-//let Router = BrowserRouter;
 
 // @observer
 class App extends Component {
@@ -49,15 +44,26 @@ class App extends Component {
     const keyID = this.state.keyID;
 
     return (
-      <div style={{ margin: 5 }}>
-        { this.display() }
-        <ListOfPropertysView handleNextProperty={ this.handleNextProperty.bind(this) } />
-        <FrontPapePanelViewSegment />
-        <DevTools />
+      <div>
+        <Header />
+        <Main />
       </div>
     );
   }
 };
+
+//
+// <MenuBar />
+//   { this.display() }
+//   <ListOfPropertysView handleNextProperty={ this.handleNextProperty.bind(this) } />
+//   <FrontPapePanelViewSegment />
+
+//<div style={{ margin: 5 }}>
+//<DevTools />
+
+// { this.display() }
+// <ListOfPropertysView handleNextProperty={ this.handleNextProperty.bind(this) } />
+// <FrontPapePanelViewSegment />
 
 // <Router history={history}>
 //     <div>

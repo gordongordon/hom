@@ -25,9 +25,9 @@ export class ListOfMatchPropertys extends React.Component {
   display = ( propertys ) => {
     const list = propertys;
 
-     var element= [];
+     var element = [];
      list.forEach( (property, keyID) => element.push(
-       <SingleRentPropertyForMatchViewWrapper property={property} />
+       <SingleRentPropertyForMatchViewWrapper property={property} key={keyID}/>
      ) )
      return <div>{element}</div>
   }

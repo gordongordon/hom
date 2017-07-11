@@ -8,7 +8,7 @@ import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatc
 import {SingleRentPropertyForMatchViewWrapper} from 'singleRentPropertyForMatchView'
 import {ListOfMatchPropertys} from 'listOfMatchPropertys'
 import { observer } from 'mobx-react';
-
+import store from 'store';
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -35,26 +35,34 @@ class MatchPanelView extends React.Component {
     selectedSegmentIndex: 0,
   }
   render() {
-        var property = propertys.propertys.get(this.props.keyID);
+//        var property = propertys.propertys.get(this.props.keyID);
+//        var property = propertys.propertys.get("-Kof2Ki5bbvt5MS2QJMG");
+        var property = propertys.propertys.get(store.router.params.keyID );
 
-        //console.log( 'matchPanelView property', property )
+        //console.log( 'keyID', this.props.keyID )
+        // console.log( 'store.queryParams.keyID', store.router.queryParams.keyID )
+        console.log( 'store.params.keyID', store.router.params.keyID )
+
+
+        console.log( 'matchPanelView property', property )
         //console.log( 'matchPanelView propertys.size', propertys.propertys.size )
         //console.log( 'matchPanelView matched propertys', property.matchedPropertys.size)
-        const that = this;
-        const { getFieldProps } = this.props.form;
-        // For DatePicker
-        const minDate = moment().locale('zh-cn').utcOffset(8);
-        const maxDate = moment(minDate).add(6, 'M');
+        // const that = this;
+        // const { getFieldProps } = this.props.form;
+        // // For DatePicker
+        // const minDate = moment().locale('zh-cn').utcOffset(8);
+        // const maxDate = moment(minDate).add(6, 'M');
 
 
     return (
       <div>
 
   <SingleLeasePropertyForMatchViewWrapper property={property} />
-  <ListOfMatchPropertys propertys={property.matchedPropertys} />
+    <ListOfMatchPropertys propertys={property.matchedPropertys} />
+
 
     </div>);
   }
 }
-
+  // <ListOfMatchPropertys propertys={property.matchedPropertys} />
 export const MatchPanelViewWrapper = createForm()(MatchPanelView);
