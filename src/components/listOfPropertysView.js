@@ -134,6 +134,9 @@ export class ListOfPropertysView extends React.Component {
   render() {
 
     //console.log( "title", this.props.title)
+    const {store} = this.props;
+
+    console.log( 'list of properys view .store', store)
 
 
     const that = this;

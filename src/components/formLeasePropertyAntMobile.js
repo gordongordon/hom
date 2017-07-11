@@ -18,7 +18,8 @@ import moment from 'moment';
 import 'moment/locale/zh-cn';
 import { observer } from 'mobx-react';
 import {Testobject} from 'testobject';
-
+import MobxStore from 'mobxStore'
+import views from 'views'
 // 如果不是使用 List.Item 作为 children
 
 const CustomChildren = props => (
@@ -170,6 +171,9 @@ class FormLeasePropertyAntMobile extends React.Component {
   //  this.addPropertyForLease( '1001', '2001', value.netSize, value.leasePrice, value.room[0], value.room[1],
   //                       value.contactName, value.contactPhone, value.contactEmail)
   //  console.log(this.props.form.getFieldsValue());
+
+  MobxStore.router.goTo( views.second )
+  
   }
 
   sale = () => {

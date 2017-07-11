@@ -6,6 +6,8 @@ class AppStore {
       title: 'HoMatching',
       user: undefined,
       previousView : undefined,
+      viewHistory  : new Map(),
+      nextView : undefined,
       params : undefined
     });
   }

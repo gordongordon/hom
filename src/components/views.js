@@ -11,10 +11,12 @@ import MobxStore from 'mobxStore';
 import FrontPage from 'frontPage'
 import {MobxRouter} from 'mobx-router';
 
+var save = false;
+
 const views = {
   first: new Route({
     path: '/',
-    component: <FrontPage />,
+    component: <FrontPapePanelViewSegment />,
     beforeExit: (route, params) => {
       console.log('exiting ListOfPRoperysView!');
       console.log('params changed to', params);
@@ -24,9 +26,18 @@ const views = {
   second: new Route({
     path: '/second',
     component: <ListOfPropertysView />,
-    onEnter: () => {
+  onEnter: ( route, params, store, queryParams ) => {
+    
       console.log('entering ListOfPropertysView!');
       MobxStore.app.title = "List"
+      if ( save )
+      {
+      MobxStore.app.previousView = MobxStore.app.viewHistory.get( 'second')
+      }
+      if ( !save )
+      { MobxStore.app.viewHistory.set( 'second', MobxStore.app.previousView  )
+        save = true
+      }
     },
     beforeExit: (route, params) => {
       console.log('exiting ListOfPRoperysView!');
@@ -45,11 +56,12 @@ const views = {
         console.log('third.current params are -> ', params);
         MobxStore.app.setTitle( 'Match');
         console.log('route', route)
+        MobxStore.app.viewHistory.set( 'third', MobxStore.app.previousView  )
       },
       beforeExit: (route, params) => {
         console.log('exiting user profile!');
         console.log('third. params', params);
-        MobxStore.app.previousView = route;
+        //MobxStore.app.previousView = route;
         MobxStore.app.params = params;
       },
       onParamsChange: (route, params) => {

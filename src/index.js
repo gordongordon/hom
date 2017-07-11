@@ -16,10 +16,10 @@ ReactDOM.render(
   <Provider store={MobxStore}>
     <div>
          <NavigationBar/>
-         <button onClick={() => MobxStore.router.goTo(views.second)}>Go First</button>
          <MobxRouter/>
     </div>
   </Provider>, document.getElementById('root')
 )
 
+//<button onClick={() => MobxStore.router.goTo(views.second)}>Go First</button>
 //MobxStore.app.title

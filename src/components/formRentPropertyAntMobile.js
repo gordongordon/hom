@@ -14,6 +14,8 @@ import {Fb} from 'firebase-store'
 import {Property} from 'property'
 import moment from 'moment';
 import 'moment/locale/zh-cn';
+import MobxStore from 'mobxStore'
+import views from 'views'
 
 // 如果不是使用 List.Item 作为 children
 const CustomChildren = props => (
@@ -184,6 +186,7 @@ class FormRentPropertyAntMobile extends React.Component {
 
    this.addPropertyForRent( value )
    //console.log(this.props.form.getFieldsValue());
+    MobxStore.router.goTo( views.second )
   }
 
   sale = () => {

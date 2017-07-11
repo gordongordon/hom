@@ -43,6 +43,11 @@ export class FrontPapePanelViewSegment extends React.Component {
   }
 
   render() {
+
+    // const {store} = this.props;
+    //
+    // console.log( 'store', this.props)
+
      return (
        <div>
        <SegmentedControl values={['想放租', '想租屋', '想賣樓', '想買樓']}  selectedIndex={this.state.selectedSegmentIndex} onChange={this.onChange} />
