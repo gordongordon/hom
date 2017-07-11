@@ -5,15 +5,18 @@ import {MobxRouter, startRouter} from 'mobx-router';
 //mobx
 import {Provider} from 'mobx-react';
 import MobxStore from 'mobxStore';
+import NavigationBar from 'navigationBar'
 
 //router
 import views from 'views';
+
 startRouter(views, MobxStore);
 
 ReactDOM.render(
   <Provider store={MobxStore}>
     <div>
       <h1>{MobxStore.app.title}</h1>
+        <NavigationBar />
       <button onClick={() => MobxStore.router.goTo(views.second)}>Go First</button>
       <MobxRouter/>
     </div>
