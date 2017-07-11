@@ -17,6 +17,10 @@ const views = {
   first: new Route({
     path: '/',
     component: <FrontPapePanelViewSegment />,
+    onEnter: (route, params, store, queryParams) => {
+      MobxStore.app.setTitle( '好 .. Matching');
+
+    },
     beforeExit: (route, params) => {
       console.log('exiting ListOfPRoperysView!');
       console.log('params changed to', params);
@@ -27,9 +31,9 @@ const views = {
     path: '/second',
     component: <ListOfPropertysView />,
   onEnter: ( route, params, store, queryParams ) => {
-    
+
       console.log('entering ListOfPropertysView!');
-      MobxStore.app.title = "List"
+      MobxStore.app.title = "你的儲存樓盤"
       if ( save )
       {
       MobxStore.app.previousView = MobxStore.app.viewHistory.get( 'second')
@@ -54,7 +58,7 @@ const views = {
       onEnter: (route, params, store, queryParams) => {
       	console.log('third.current query params are -> ', queryParams);
         console.log('third.current params are -> ', params);
-        MobxStore.app.setTitle( 'Match');
+        MobxStore.app.setTitle( '最新鮮配對');
         console.log('route', route)
         MobxStore.app.viewHistory.set( 'third', MobxStore.app.previousView  )
       },

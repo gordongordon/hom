@@ -1,5 +1,5 @@
 import React from 'react'
-import { List , Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl} from 'antd-mobile';
+import { List , Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, Button, WhiteSpace, SegmentedControl} from 'antd-mobile';
 import { createForm } from 'rc-form';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
@@ -46,6 +46,7 @@ class SingleLeasePropertyForMatchView extends React.Component {
     return (
 
       <div>
+
       <SegmentedControl values={['現在比較樓盤', '聯絡通訊', '系統登入', '個人資料']}  selectedIndex={this.state.selectedSegmentIndex} onChange={this.onChange} />
 <List>
       <Picker data={NameOfBuilding} cols={1} {...getFieldProps('nameOfBuilding', {
@@ -83,11 +84,12 @@ class SingleLeasePropertyForMatchView extends React.Component {
       <List.Item arrow="horizontal">最快幾時有樓睇</List.Item>
       </DatePicker>
     </List>
-      <SegmentedControl tintColor={'#ff0000'} values={['最貴', '最平', '最快', '最滿意']}  selectedIndex={this.state.selectedSegmentIndex} onChange={this.onChange} />
+      <WhiteSpace size="sm" />
       </div>
 
       );
   }
 }
+//       <SegmentedControl tintColor={'#ff0000'} values={['最貴', '最平', '最快', '最滿意']}  selectedIndex={this.state.selectedSegmentIndex} onChange={this.onChange} />
 
 export const SingleLeasePropertyForMatchViewWrapper = createForm()(SingleLeasePropertyForMatchView);

@@ -115,7 +115,7 @@ class SingleRentPropertyForMatchView extends React.Component {
         <div>收入:${property.income}/職業:{LABEL_JOBNATURE[property.jobNature]}/{property.numOfPeopleLiving}人住
         </div>
     </Card.Body>
-    <Card.Footer content={<div><Button type="primary" inline size="small">Chat Now!</Button><Button type="primary" inline size="small">Call Now!</Button></div>} extra={          <Flex style={{ marginBottom: '1rem' }}>
+    <Card.Footer content={<div><Button type="ghost" inline size="small">Chat</Button><Button type="ghost" inline size="small">直接電話聯絡</Button></div>} extra={          <Flex style={{ marginBottom: '1rem' }}>
               <Badge text="券" style={{ marginLeft: 12, padding: '0 0.06rem', backgroundColor: '#f19736', borderRadius: 2 }} />
               <Badge text="NEW" style={{ marginLeft: 12, padding: '0 0.06rem', backgroundColor: '#21b68a', borderRadius: 2 }} />
               <Badge text="自动缴费"
