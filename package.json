@@ -65,6 +65,6 @@
     "validatorjs": "^3.13.3",
     "webpack": "^1.15.0",
     "webpack-dev-server": "^1.16.5",
-    "postcss-pxtorem": "^4.0.1",
+    "postcss-pxtorem": "^4.0.1"
   }
 }
