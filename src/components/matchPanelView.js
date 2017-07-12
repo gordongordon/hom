@@ -46,7 +46,6 @@ class MatchPanelView extends React.Component {
         //console.log( 'matchPanelView matched propertys', property.matchedPropertys.size)
         // const that = this;
         // const { getFieldProps } = this.props.form;
-        // // For DatePicker
         // const minDate = moment().locale('zh-cn').utcOffset(8);
         // const maxDate = moment(minDate).add(6, 'M');
 
