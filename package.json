@@ -1,6 +1,6 @@
 {
   "name": "mobx-react-ant-boilerplate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MobX Boilerplate with Ant.Design",
   "scripts": {
     "start": "node server.js",
