@@ -43,6 +43,7 @@ module.exports = {
       test: /\.css$/,
       loaders: [ 'style-loader', 'css-loader', 'sass-loader' ]
     },
+    // { test: /\.css$/, loader: 'style!css' }, // 把css处理成内联style，动态插入到页面
     {
       test: /\.(svg)$/i,
       loader: 'svg-sprite-loader',
@@ -50,7 +51,7 @@ module.exports = {
         require.resolve('antd-mobile').replace(/warn\.js$/, ''),  // 1. svg files of antd-mobile
         // path.resolve(__dirname, 'src/my-project-svg-foler'),  // folder of svg files in your project
       ]
-    },
+    }
 
   ],
     rules: [
