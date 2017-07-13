@@ -82,11 +82,13 @@ export class ListOfPropertysView extends React.Component {
          onClose={() => console.log('global close')}
        >
        <Item  arrow="horizontal" onClick={ () => MobxStore.router.goTo( views.match, {keyID} ) } multipleLine extra={<div>租金${property.leasePrice}</div>}>
-          { BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>實用面積{ property.netSize }</Brief> {keyID}
+          { BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>實用面積{ property.netSize }呎</Brief> {keyID}
        </Item>
        </SwipeAction>
      </div>
      ) }  // end of lease
+
+
      if ( property.typeTo === 'rent' ) {
  element.push(
    <div key={keyID}>
@@ -121,10 +123,89 @@ export class ListOfPropertysView extends React.Component {
    onClose={() => console.log('global close')}
  >
  <Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.match, {keyID} ) } multipleLine extra={<div>租金上限${property.rentBudgetMax}</div>} >
-    { BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>實用面積{ property.netSize }</Brief> {keyID}
+    { BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>最少{ property.netSizeMin }呎實用面積</Brief> {keyID}
  </Item>
  </SwipeAction></div>
-) }  // end of lease
+) }  // end of rent
+if ( property.typeTo === 'buy' ) {
+element.push(
+<div key={keyID}>
+<SwipeAction
+style={{ backgroundColor: 'gray' }}
+autoClose
+right={[
+{
+  text: 'Cancel',
+  onPress: () => console.log('cancel'),
+  style: { backgroundColor: '#ddd', color: 'white' },
+},
+{
+  text: 'Delete',
+  onPress: () => model.del(keyID) ,
+  style: { backgroundColor: '#F4333C', color: 'white' },
+},
+]}
+left={[
+{
+  text: 'Reply',
+  onPress: () => console.log('reply'),
+  style: { backgroundColor: '#108ee9', color: 'white' },
+},
+{
+  text: 'Cancel',
+  onPress: () => console.log('cancel'),
+  style: { backgroundColor: '#ddd', color: 'white' },
+},
+]}
+onOpen={() => console.log('global open')}
+onClose={() => console.log('global close')}
+>
+<Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.match, {keyID} ) } multipleLine extra={<div>預算上限${property.buyBudgetMax}萬</div>} >
+  { BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>最少 {property.netSizeMin }呎實用面積</Brief> {keyID}
+</Item>
+</SwipeAction></div>
+) }  // end of buy
+
+if ( property.typeTo === 'sale' ) {
+element.push(
+<div key={keyID}>
+<SwipeAction
+style={{ backgroundColor: 'gray' }}
+autoClose
+right={[
+{
+  text: 'Cancel',
+  onPress: () => console.log('cancel'),
+  style: { backgroundColor: '#ddd', color: 'white' },
+},
+{
+  text: 'Delete',
+  onPress: () => model.del(keyID) ,
+  style: { backgroundColor: '#F4333C', color: 'white' },
+},
+]}
+left={[
+{
+  text: 'Reply',
+  onPress: () => console.log('reply'),
+  style: { backgroundColor: '#108ee9', color: 'white' },
+},
+{
+  text: 'Cancel',
+  onPress: () => console.log('cancel'),
+  style: { backgroundColor: '#ddd', color: 'white' },
+},
+]}
+onOpen={() => console.log('global open')}
+onClose={() => console.log('global close')}
+>
+<Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.match, {keyID} ) } multipleLine extra={<div>售價${property.salePrice}萬</div>} >
+{ BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>實用面積:{ property.netSize }呎</Brief> {keyID}
+</Item>
+</SwipeAction></div>
+) }  // end of sale
+
+
 
 
      })

@@ -123,7 +123,7 @@ class FormBuyPropertyAntMobile extends React.Component {
     p.nameOfBuilding = v.nameOfBuilding[0]
     // p.dueDay = v.dueDay.toJSON();
     p.earlyTimeToView = v.earlyTimeToView.toJSON();
-    p.salePriceMax = parseInt( v.salePriceMax )
+    // p.salePriceMax = parseInt( v.salePriceMax )
 
     //p.leasePrice = parseInt(v.leasePrice);
     p.numOfRoom = parseInt( v.partition[0]);
@@ -132,6 +132,7 @@ class FormBuyPropertyAntMobile extends React.Component {
 
     p.isBuyWithLease = v.isBuyWithLease
     p.netSizeMin = parseInt( v.netSizeMin )
+    p.buyBudgetMax = parseInt( v.buyBudgetMax )
 
     //p.isPreferPayAnnually = v.isPreferPayAnnually;
     //p.isRentAbleNow = v.isRentAbleNow;
@@ -145,8 +146,11 @@ class FormBuyPropertyAntMobile extends React.Component {
     p.contactEmail = v.contactEmail;
 
     const id = Fb.propertys.push().key;
+    p.typeFor = "sale"
+    p.typeTo = "buy"
     Fb.propertys.update( {[id]:  p.serialize() });
-    MobxStore.router.goTo( views.match, { keyID : id  } )
+
+    return id;
 
   }
 
@@ -163,7 +167,9 @@ class FormBuyPropertyAntMobile extends React.Component {
   //  console.log( '手 機', value.contactPhone )
   //  console.log( '間隔', roomKey[value.room[0]] )
 
-   this.addPropertyForBuy( value )
+  const keyID = this.addPropertyForBuy( value )
+  MobxStore.router.goTo( views.match, { keyID } )
+
 //   MobxStore.router.goTo( views.second )
 
 //   console.log(this.props.form.getFieldsValue());
@@ -226,7 +232,7 @@ class FormBuyPropertyAntMobile extends React.Component {
         </DatePicker>
 
                 <InputItem
-                  {...getFieldProps('salePriceMax', {
+                  {...getFieldProps('buyBudgetMax', {
                     initialValue : 380,
                     normalize: (v, prev) => {
                       if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {

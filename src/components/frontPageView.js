@@ -37,7 +37,7 @@ offline = () => {
 loadingToast = () => {
   Toast.loading('Loading...', 1, () => {
     console.log('Load complete !!!');
-    MobxStore.router.goTo( views.sale ,  MobxStore.app.params)
+    MobxStore.router.goTo( views.buy ,  MobxStore.app.params)
   });
 }
 
@@ -54,7 +54,7 @@ render ()  {
       <Button type="primary" onClick={ () => MobxStore.router.goTo( views.rent,  MobxStore.app.params )}>租 屋></Button>
       <WhiteSpace />
         <WhiteSpace />
-        <Button type="primary" onClick={ () => MobxStore.router.goTo( views.buy, MobxStore.app.params )}>賣 樓></Button>
+        <Button type="primary" onClick={ () => MobxStore.router.goTo( views.sale, MobxStore.app.params )}>賣 樓></Button>
         <WhiteSpace />
           <WhiteSpace />
           <Button type="primary" onClick={ () => this.loadingToast() }>買 樓></Button>

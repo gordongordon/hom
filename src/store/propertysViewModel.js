@@ -56,6 +56,7 @@ class PropertysViewModel {
            // Tobe Testing.
             // p = { ...p, ...snapshot.val() }
 
+            // restore can be imppletemt  deserialize
             p.restore( snapshot.val() )
             console.log( 'p', p)
 //            console.log( 'snapddd', snapshot.val() )

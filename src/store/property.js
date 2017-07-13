@@ -13,7 +13,7 @@ export class Property{
     // constructor( v ){
     //   restore( v )
     // }
-    
+
     // the ID of the current Todo
     // a unique id is automatically assigned when the todo object is instanced.
     //id = nextId()
@@ -156,6 +156,7 @@ export class Property{
             leasePriceWithManagementFee : this.leasePriceWithManagementFee,
             leaseDepositPerMonth : this.leaseDepositPerMonth,
             rentBudgetMax : this.rentBudgetMax,
+            buyBudgetMax : this.buyBudgetMax,
 
 
             netSize : this.netSize,
@@ -244,6 +245,7 @@ export class Property{
     this.leasePriceWithManagementFee = v.leasePriceWithManagementFee,
       this.leaseDepositPerMonth = v.leaseDepositPerMonth,
       this.rentBudgetMax = v.rentBudgetMax,
+      this.buyBudgetMax = v.buyBudgetMax,
 
 
     this.netSize = v.netSize,
