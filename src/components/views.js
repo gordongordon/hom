@@ -12,11 +12,17 @@ import MobxStore from 'mobxStore';
 import FrontPage from 'frontPage'
 import {MobxRouter} from 'mobx-router';
 
+// Form
 import {FormSalePropertyAntMobileWrapper} from 'formSalePropertyAntMobile';
 import {FormLeasePropertyAntMobileWrapper} from 'formLeasePropertyAntMobile';
 import {FormBuyPropertyAntMobileWrapper} from 'formBuyPropertyAntMobile';
 import {FormRentPropertyAntMobileWrapper} from 'formRentPropertyAntMobile';
 
+// Match Panel views
+import {MatchLeasePanelViewWrapper} from 'matchLeasePanelView'
+import {MatchRentPanelViewWrapper} from 'matchRentPanelView'
+import {MatchSalePanelViewWrapper} from 'matchSalePanelView'
+import {MatchBuyPanelViewWrapper} from 'matchBuyPanelView'
 
 var save = false;
 
@@ -46,7 +52,7 @@ const views = {
       MobxStore.app.previousView = MobxStore.app.viewHistory.get( 'second')
       }
       if ( !save )
-      { MobxStore.app.viewHistory.set( 'second', MobxStore.app.previousView  )
+      { MobxStore.app.viewHistory.set( 'list', MobxStore.app.previousView  )
         save = true
       }
     },
@@ -59,15 +65,75 @@ const views = {
     onParamsChange: (route, params) => {
       console.log('params changed to', params);
     }}),
-  match: new Route({
-      path: '/match/:keyID',
-      component: <MatchPanelViewWrapper/>,
+  matchLease: new Route({
+      path: '/matchLease/:keyID',
+      component: <MatchLeasePanelViewWrapper />,
       onEnter: (route, params, store, queryParams) => {
       	console.log('third.current query params are -> ', queryParams);
         console.log('third.current params are -> ', params);
-        MobxStore.app.setTitle( '最新鮮配對');
+        MobxStore.app.setTitle( '最新鮮配對 Lease');
         console.log('route', route)
-        MobxStore.app.viewHistory.set( 'third', MobxStore.app.previousView  )
+        MobxStore.app.viewHistory.set( 'matchLease', MobxStore.app.previousView  )
+      },
+      beforeExit: (route, params) => {
+        console.log('exiting user profile!');
+        console.log('third. params', params);
+        //MobxStore.app.previousView = route;
+        MobxStore.app.params = params;
+      },
+      onParamsChange: (route, params) => {
+        console.log('params changed to', params);
+      }
+  }),
+  matchRent: new Route({
+      path: '/matchRent/:keyID',
+      component: <MatchRentPanelViewWrapper />,
+      onEnter: (route, params, store, queryParams) => {
+      	console.log('third.current query params are -> ', queryParams);
+        console.log('third.current params are -> ', params);
+        MobxStore.app.setTitle( '最新鮮配對 Rent');
+        console.log('route', route)
+        MobxStore.app.viewHistory.set( 'matchRent', MobxStore.app.previousView  )
+      },
+      beforeExit: (route, params) => {
+        console.log('exiting user profile!');
+        console.log('third. params', params);
+        //MobxStore.app.previousView = route;
+        MobxStore.app.params = params;
+      },
+      onParamsChange: (route, params) => {
+        console.log('params changed to', params);
+      }
+  }),
+  matchSale: new Route({
+      path: '/matchSale/:keyID',
+      component: <MatchSalePanelViewWrapper />,
+      onEnter: (route, params, store, queryParams) => {
+      	console.log('third.current query params are -> ', queryParams);
+        console.log('third.current params are -> ', params);
+        MobxStore.app.setTitle( '最新鮮配對 Sale');
+        console.log('route', route)
+        MobxStore.app.viewHistory.set( 'matchSale', MobxStore.app.previousView  )
+      },
+      beforeExit: (route, params) => {
+        console.log('exiting user profile!');
+        console.log('third. params', params);
+        //MobxStore.app.previousView = route;
+        MobxStore.app.params = params;
+      },
+      onParamsChange: (route, params) => {
+        console.log('params changed to', params);
+      }
+  }),
+  matchBuy: new Route({
+      path: '/matchBuy/:keyID',
+      component: <MatchBuyPanelViewWrapper />,
+      onEnter: (route, params, store, queryParams) => {
+      	console.log('third.current query params are -> ', queryParams);
+        console.log('third.current params are -> ', params);
+        MobxStore.app.setTitle( '最新鮮配對 buy');
+        console.log('route', route)
+        MobxStore.app.viewHistory.set( 'matchBuy', MobxStore.app.previousView  )
       },
       beforeExit: (route, params) => {
         console.log('exiting user profile!');
