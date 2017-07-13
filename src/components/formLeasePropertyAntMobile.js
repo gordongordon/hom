@@ -173,7 +173,7 @@ class FormLeasePropertyAntMobile extends React.Component {
   //  console.log(this.props.form.getFieldsValue());
 
   MobxStore.router.goTo( views.second )
-  
+
   }
 
   sale = () => {

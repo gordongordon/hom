@@ -1,101 +1,64 @@
+import {
+     Toast,
+     WhiteSpace,
+      WingBlank,
+      Button } from 'antd-mobile';
 import React from 'react'
-import { Drawer, List, NavBar , Icon, WhiteSpace} from 'antd-mobile';
-import {FrontPapePanelViewSegment} from 'frontPagePanelViewSegment'
+import MobxStore from 'mobxStore'
+import views from 'views'
 
-const Item = List.Item;
-const Brief = Item.Brief;
 
 export class FrontPageView extends React.Component {
-  state = {
-    open: false,
+
+  constructor( props ) {
+    super( props )
   }
-  onOpenChange = (...args) => {
-    console.log(args);
-    this.setState({ open: !this.state.open });
-  }
-  render() {
-    const sidebar = (<List>
-      {[...Array(6).keys()].map((i, index) => {
-        if (index === 0) {
-          return (<List.Item key={index}
-            thumb="https://zos.alipayobjects.com/rmsportal/eOZidTabPoEbPeU.png"
-            multipleLine
-          >Category</List.Item>);
-        }
-        return (<List.Item key={index}
-          thumb="https://zos.alipayobjects.com/rmsportal/eOZidTabPoEbPeU.png"
-        >Category{index}</List.Item>);
-      })}
-    </List>);
 
-    return (<div>
+showToast = () => {
+  Toast.info('This is a toast tips !!!', 1);
+}
 
-      <NavBar  className="top-nav-bar" iconName="ellipsis" onLeftClick={this.onOpenChange}   rightContent={[
-        <Icon key="0" type="search" style={{ marginRight: '0.32rem' }} />,
-        <Icon key="1" type="ellipsis" />,
-      ]}>HoMatching.<small>com</small></NavBar>
-      <Drawer
-        className="my-drawer"
-        style={{ minHeight: document.documentElement.clientHeight - 200 }}
-        enableDragHandle
-        contentStyle={{ color: '#A6A6A6', textAlign: 'center', paddingTop: 0 }}
-        sidebar={sidebar}
-        open={this.state.open}
-        onOpenChange={this.onOpenChange}
-      >
-      <WhiteSpace size="lg" />
+showToastNoMask = () => {
+  Toast.info('Toast without mask !!!', 2, null, false);
+}
 
-      <List className="my-list">
-      <Item
-        arrow="horizontal"
-        thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
-        multipleLine
-        onClick={() => {}}
-      >
-        标题文字 <Brief>副标题</Brief>
-      </Item>
-      </List>
-      <WhiteSpace size="sm" />
-      <List className="my-list">
+successToast = () => {
+  Toast.success('Load success !!!', 1);
+}
 
-      <Item
-        arrow="horizontal"
-        thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
-        multipleLine
-        onClick={() => {}}
-      >
-        标题文字 <Brief>副标题</Brief>
-      </Item>
-      </List>
-      <WhiteSpace size="sm" />
-      <List className="my-list">
+failToast = () =>  {
+  Toast.fail('Load failed !!!', 1);
+}
 
-      <Item
-        arrow="horizontal"
-        thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
-        multipleLine
-        onClick={() => {}}
-      >
-        标题文字 <Brief>副标题</Brief>
-      </Item>
-      </List>
-      <WhiteSpace size="sm" />
-      <List className="my-list">
+offline = () => {
+  Toast.offline('Network connection failed !!!', 1);
+}
 
-      <Item
-        arrow="horizontal"
-        thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
-        multipleLine
-        onClick={() => {}}
-      >
-        标题文字 <Brief>副标题</Brief>
-      </Item>
-    </List>
+loadingToast = () => {
+  Toast.loading('Loading...', 1, () => {
+    console.log('Load complete !!!');
+  });
+}
 
+render ()  {
+/* eslint global-require: 0 */
+  return  (
+  <WingBlank>
+    <WhiteSpace />
+      <WhiteSpace />
+        <WhiteSpace />
+    <Button type="primary" onClick={ () => MobxStore.router.goTo( views.lease, MobxStore.app.params )}>放 租></Button>
+    <WhiteSpace />
+      <WhiteSpace />
+      <Button type="primary" onClick={ () => MobxStore.router.goTo( views.rent,  MobxStore.app.params )}>租 屋></Button>
+      <WhiteSpace />
+        <WhiteSpace />
+        <Button type="primary" onClick={ () => MobxStore.router.goTo( views.buy, MobxStore.app.params )}>賣 樓></Button>
+        <WhiteSpace />
+          <WhiteSpace />
+          <Button type="primary" onClick={ () => MobxStore.router.goTo( views.sale ,  MobxStore.app.params)}>買 樓></Button>
+        </WingBlank>
+  );
+} // End of Render
 
-
-      </Drawer>
-
-    </div>);
-  }
 }

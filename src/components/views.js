@@ -7,16 +7,23 @@ import {Route} from 'mobx-router';
 import {MatchPanelViewWrapper} from 'matchPanelView'
 import {ListOfPropertysView} from 'ListOfPropertysView'
 import {FrontPapePanelViewSegment} from 'frontPagePanelViewSegment'
+import {FrontPageView} from 'frontPageView'
 import MobxStore from 'mobxStore';
 import FrontPage from 'frontPage'
 import {MobxRouter} from 'mobx-router';
+
+import {FormSalePropertyAntMobileWrapper} from 'formSalePropertyAntMobile';
+import {FormLeasePropertyAntMobileWrapper} from 'formLeasePropertyAntMobile';
+import {FormBuyPropertyAntMobileWrapper} from 'formBuyPropertyAntMobile';
+import {FormRentPropertyAntMobileWrapper} from 'formRentPropertyAntMobile';
+
 
 var save = false;
 
 const views = {
   first: new Route({
     path: '/',
-    component: <FrontPapePanelViewSegment />,
+    component: <FrontPageView />,
     onEnter: (route, params, store, queryParams) => {
       MobxStore.app.setTitle( '好 .. Matching');
 
@@ -71,6 +78,58 @@ const views = {
       onParamsChange: (route, params) => {
         console.log('params changed to', params);
       }
+  }),
+  lease : new Route({
+    path: '/lease',
+    component: <FormLeasePropertyAntMobileWrapper />,
+    onEnter: (route, params, store, queryParams) => {
+      MobxStore.app.setTitle( '放 租');
+
+    },
+    beforeExit: (route, params) => {
+      console.log('exiting ListOfPRoperysView!');
+      console.log('params changed to', params);
+      MobxStore.app.previousView = route;
+    }
+  }),
+  rent : new Route({
+    path: '/rent',
+    component: <FormRentPropertyAntMobileWrapper />,
+    onEnter: (route, params, store, queryParams) => {
+      MobxStore.app.setTitle( '租 屋');
+
+    },
+    beforeExit: (route, params) => {
+      console.log('exiting ListOfPRoperysView!');
+      console.log('params changed to', params);
+      MobxStore.app.previousView = route;
+    }
+  }),
+  buy : new Route({
+    path: '/buy',
+    component: <FormBuyPropertyAntMobileWrapper />,
+    onEnter: (route, params, store, queryParams) => {
+      MobxStore.app.setTitle( '賣 樓');
+
+    },
+    beforeExit: (route, params) => {
+      console.log('exiting ListOfPRoperysView!');
+      console.log('params changed to', params);
+      MobxStore.app.previousView = route;
+    }
+  }),
+  sale : new Route({
+    path: '/sale',
+    component: <FormSalePropertyAntMobileWrapper />,
+    onEnter: (route, params, store, queryParams) => {
+      MobxStore.app.setTitle( '買 樓');
+
+    },
+    beforeExit: (route, params) => {
+      console.log('exiting ListOfPRoperysView!');
+      console.log('params changed to', params);
+      MobxStore.app.previousView = route;
+    }
   })
 };
 export default views;
