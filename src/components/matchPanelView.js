@@ -1,5 +1,5 @@
 import React from 'react'
-import { List , Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl} from 'antd-mobile';
+import {  NoticeBar,List , Card, Stepper, Icon, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl} from 'antd-mobile';
 import { createForm } from 'rc-form';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
@@ -53,10 +53,12 @@ class MatchPanelView extends React.Component {
     return (
       <div>
 
-  <SingleLeasePropertyForMatchViewWrapper property={property} />
+    <SingleLeasePropertyForMatchViewWrapper property={property} />
+    <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
+      以下是 HoMatching 為你配對嘅客!
+    </NoticeBar>
+    <WhiteSpace size="sm" />
     <ListOfMatchPropertys propertys={property.matchedPropertys} />
-
-
     </div>);
   }
 }

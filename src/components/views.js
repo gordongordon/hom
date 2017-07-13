@@ -21,7 +21,7 @@ import {FormRentPropertyAntMobileWrapper} from 'formRentPropertyAntMobile';
 var save = false;
 
 const views = {
-  first: new Route({
+  home: new Route({
     path: '/',
     component: <FrontPageView />,
     onEnter: (route, params, store, queryParams) => {
@@ -34,8 +34,8 @@ const views = {
       MobxStore.app.previousView = route;
     }
   }),
-  second: new Route({
-    path: '/second',
+  list: new Route({
+    path: '/list',
     component: <ListOfPropertysView />,
   onEnter: ( route, params, store, queryParams ) => {
 
@@ -59,8 +59,8 @@ const views = {
     onParamsChange: (route, params) => {
       console.log('params changed to', params);
     }}),
-  third: new Route({
-      path: '/third/:keyID',
+  match: new Route({
+      path: '/match/:keyID',
       component: <MatchPanelViewWrapper/>,
       onEnter: (route, params, store, queryParams) => {
       	console.log('third.current query params are -> ', queryParams);
@@ -110,7 +110,6 @@ const views = {
     component: <FormBuyPropertyAntMobileWrapper />,
     onEnter: (route, params, store, queryParams) => {
       MobxStore.app.setTitle( '賣 樓');
-
     },
     beforeExit: (route, params) => {
       console.log('exiting ListOfPRoperysView!');

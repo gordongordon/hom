@@ -37,6 +37,7 @@ offline = () => {
 loadingToast = () => {
   Toast.loading('Loading...', 1, () => {
     console.log('Load complete !!!');
+    MobxStore.router.goTo( views.sale ,  MobxStore.app.params)
   });
 }
 
@@ -56,7 +57,10 @@ render ()  {
         <Button type="primary" onClick={ () => MobxStore.router.goTo( views.buy, MobxStore.app.params )}>賣 樓></Button>
         <WhiteSpace />
           <WhiteSpace />
-          <Button type="primary" onClick={ () => MobxStore.router.goTo( views.sale ,  MobxStore.app.params)}>買 樓></Button>
+          <Button type="primary" onClick={ () => this.loadingToast() }>買 樓></Button>
+            <WhiteSpace />
+            <Button type="ghost" onClick={ () => MobxStore.router.goTo( views.list, MobxStore.app.params )}>過往配對如有></Button>
+            <WhiteSpace />
         </WingBlank>
   );
 } // End of Render

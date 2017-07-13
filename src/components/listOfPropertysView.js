@@ -1,5 +1,5 @@
 import React from 'react'
-import { List , Card, SwipeAction, Stepper, Picker, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl } from 'antd-mobile';
+import { List , NoticeBar , Icon, Card, SwipeAction, Stepper, Picker, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
@@ -81,7 +81,7 @@ export class ListOfPropertysView extends React.Component {
          onOpen={() => console.log('global open')}
          onClose={() => console.log('global close')}
        >
-       <Item  arrow="horizontal" onClick={ () => MobxStore.router.goTo( views.third, {keyID} ) } multipleLine extra={<div>租金${property.leasePrice}</div>}>
+       <Item  arrow="horizontal" onClick={ () => MobxStore.router.goTo( views.match, {keyID} ) } multipleLine extra={<div>租金${property.leasePrice}</div>}>
           { BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>實用面積{ property.netSize }</Brief> {keyID}
        </Item>
        </SwipeAction>
@@ -120,7 +120,7 @@ export class ListOfPropertysView extends React.Component {
    onOpen={() => console.log('global open')}
    onClose={() => console.log('global close')}
  >
- <Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.third, {keyID} ) } multipleLine extra={<div>租金上限${property.rentBudgetMax}</div>} >
+ <Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.match, {keyID} ) } multipleLine extra={<div>租金上限${property.rentBudgetMax}</div>} >
     { BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>實用面積{ property.netSize }</Brief> {keyID}
  </Item>
  </SwipeAction></div>
@@ -143,9 +143,14 @@ export class ListOfPropertysView extends React.Component {
     var {handleNextProperty} = this.props;
 
     return (
+      <div>
+        <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
+          以下是你的過往配對!
+        </NoticeBar>
       <List renderHeader={() => '你搜尋嘅樓盤'} className="my-list">
          { that.renderPropertys( propertys, propertys.propertys, handleNextProperty) }
       </List>
+    </div>
     )
   }
 }

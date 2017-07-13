@@ -169,6 +169,8 @@ class FormRentPropertyAntMobile extends React.Component {
     p.typeFor = "lease"
     p.typeTo = "rent"
     Fb.propertys.update( {[id]:  p.serialize() });
+    MobxStore.router.goTo( views.match, { keyID : id  } )
+
   }
 
 
@@ -186,7 +188,7 @@ class FormRentPropertyAntMobile extends React.Component {
 
    this.addPropertyForRent( value )
    //console.log(this.props.form.getFieldsValue());
-    MobxStore.router.goTo( views.second )
+//    MobxStore.router.goTo( views.second )
   }
 
   sale = () => {

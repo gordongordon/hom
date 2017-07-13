@@ -146,6 +146,8 @@ class FormBuyPropertyAntMobile extends React.Component {
 
     const id = Fb.propertys.push().key;
     Fb.propertys.update( {[id]:  p.serialize() });
+    MobxStore.router.goTo( views.match, { keyID : id  } )
+
   }
 
 
@@ -162,8 +164,8 @@ class FormBuyPropertyAntMobile extends React.Component {
   //  console.log( '間隔', roomKey[value.room[0]] )
 
    this.addPropertyForBuy( value )
-   MobxStore.router.goTo( views.second )
-   
+//   MobxStore.router.goTo( views.second )
+
 //   console.log(this.props.form.getFieldsValue());
   }
 
