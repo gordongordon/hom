@@ -8,22 +8,22 @@ const pxtorem = require('postcss-pxtorem');
 module.exports = {
   devtool: 'eval',
   entry: [
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
+    //'webpack-dev-server/client?http://localhost:3000',
+    //'webpack/hot/only-dev-server',
     './src/index'
   ],
   output: {
-      path: path.join(__dirname, 'dist'),
+      path: path.join(__dirname, '/public'),
     // filename: 'bundle.js',
-    publicPath: '/static/',
+    publicPath: '/public',
 
     filename: 'bundle.js',
     //path: __dirname + '/dist'
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    //new webpackConfig.babel.plugins.push(['import', { libraryName: 'antd-mobile', style: 'css' }])
-  ],
+  // plugins: [
+  //   new webpack.HotModuleReplacementPlugin(),
+  //   //new webpackConfig.babel.plugins.push(['import', { libraryName: 'antd-mobile', style: 'css' }])
+  // ],
   resolveLoader: {
       root: path.resolve(__dirname, 'node_modules')
     },
