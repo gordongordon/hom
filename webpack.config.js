@@ -26,17 +26,17 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     // new BundleAnalyzerPlugin(),
-    new webpack.DefinePlugin({ // <-- key to reducing React's size
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }),
-    new webpack.optimize.DedupePlugin(), //dedupe similar code
-    new webpack.optimize.AggressiveMergingPlugin(),//Merge chunks
-    new webpack.optimize.UglifyJsPlugin({
-  compress: {
-    warnings: false
-  }
+  //   new webpack.DefinePlugin({ // <-- key to reducing React's size
+  //     'process.env': {
+  //       'NODE_ENV': JSON.stringify('production')
+  //     }
+  //   }),
+  //   new webpack.optimize.DedupePlugin(), //dedupe similar code
+  //   new webpack.optimize.AggressiveMergingPlugin(),//Merge chunks
+  //   new webpack.optimize.UglifyJsPlugin({
+  // compress: {
+  //   warnings: false
+  // }
 })
     //new webpackConfig.babel.plugins.push(['import', { libraryName: 'antd-mobile', style: 'css' }])
   ],
