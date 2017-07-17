@@ -5,7 +5,7 @@ import {Route} from 'mobx-router';
 
 //components
 //import {MatchPanelViewWrapper} from 'matchPanelView'
-import {ListOfPropertysView} from 'ListOfPropertysView'
+import {ListOfPropertysView} from 'listOfPropertysView'
 import {FrontPapePanelViewSegment} from 'frontPagePanelViewSegment'
 import {FrontPageView} from 'frontPageView'
 import MobxStore from 'mobxStore';
