@@ -41,6 +41,7 @@ module.exports = {
       test: /\.(js|jsx)$/,
 //      loaders: ['babel'],
       //loaders: ['babel'],
+      //loaders: ['babel'],
           loader: 'babel',
       include: path.join(__dirname, 'src'),
     },
