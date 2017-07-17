@@ -43,6 +43,9 @@ loadingToast = () => {
 }
 
 render ()  {
+    const {store} = this.props;
+
+    console.log( 'store', store)
 /* eslint global-require: 0 */
   return  (
     <div>

@@ -25,7 +25,7 @@ import {MatchSalePanelViewWrapper} from 'matchPanel/matchSalePanelView'
 import {MatchBuyPanelViewWrapper} from 'matchPanel/matchBuyPanelView'
 
 // testing
-import TestListView from 'testListView'
+// import TestListView from 'testListView'
 
 var save = false;
 
