@@ -5,7 +5,6 @@ import moment from 'moment';
 import 'moment/locale/zh-cn';
 import {propertys} from 'propertysViewModel'
 import { observer } from 'mobx-react';
-import {withRouter} from "react-router-dom";
 import MobxStore from 'mobxStore';
 import views from 'views';
 
