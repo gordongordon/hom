@@ -35,12 +35,13 @@ module.exports = {
       ],
   extensions: ['', '.web.jsx', '.web.js', '.js', '.jsx', '.json']
   },
-  module: {
+ module: {
      loaders: [{
 //      test: /\.jsx?$/,
       test: /\.(js|jsx)$/,
 //      loaders: ['babel'],
-      loaders: ['babel'],
+      //loaders: ['babel'],
+          loader: 'babel',
       include: path.join(__dirname, 'src'),
     },
   {
