@@ -40,7 +40,7 @@ module.exports = {
 //      test: /\.jsx?$/,
       test: /\.(js|jsx)$/,
 //      loaders: ['babel'],
-      loaders: ['babel-loader'],
+      loaders: ['babel'],
       include: path.join(__dirname, 'src'),
     },
   {
