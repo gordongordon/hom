@@ -21,7 +21,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   resolve: {
-//      root: __dirname,
+      root: __dirname,
       modulesDirectories: [
         'node_modules',
 //        path.join(__dirname, '../node_modules'),
