@@ -42,7 +42,7 @@ module.exports = {
 //      loaders: ['babel'],
       //loaders: ['babel'],
       //loaders: ['babel'],
-          loader: 'babel',
+          loader: 'babel-loader',
       include: path.join(__dirname, 'src'),
     },
   {
