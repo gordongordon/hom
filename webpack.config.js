@@ -20,6 +20,9 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ],
+  resolveLoader: {
+      root: path.resolve(__dirname, 'node_modules')
+    },
   resolve: {
       root: __dirname,
       modulesDirectories: [
@@ -46,7 +49,7 @@ exclude: /node_modules/,
 //      loaders: ['babel'],
       //loaders: ['babel'],
       //loaders: ['babel'],
-          loader: 'babel',
+          loader: 'babel-loader',
       include: path.join(__dirname, 'src'),
     },
   {
