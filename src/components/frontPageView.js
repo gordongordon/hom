@@ -4,11 +4,13 @@ import {
       WingBlank,
       Button } from 'antd-mobile';
 import React from 'react'
-import MobxStore from 'mobxStore'
+// import MobxStore from 'mobxStore'
 import views from 'views'
 import FrontPageDisplay from 'frontPageDisplay'
 import {FrontPageTabBar} from 'frontPageTabBar'
+import {inject, observer} from 'mobx-react';
 
+@inject("store") @observer
 export class FrontPageView extends React.Component {
 
   constructor( props ) {
@@ -43,7 +45,9 @@ loadingToast = () => {
 }
 
 render ()  {
-    const {store} = this.props;
+  const {store} = this.props;
+  const {router: {goTo}} = store;
+
 
     console.log( 'store', store)
 /* eslint global-require: 0 */
@@ -53,18 +57,18 @@ render ()  {
     <WhiteSpace />
       <WhiteSpace />
         <WhiteSpace />
-    <Button type="primary" onClick={ () => MobxStore.router.goTo( views.lease, MobxStore.app.params )}>放 租></Button>
+    <Button type="primary" onClick={ () => goTo( views.lease, store.app.params, store )}>放 租></Button>
     <WhiteSpace />
       <WhiteSpace />
-      <Button type="primary" onClick={ () => MobxStore.router.goTo( views.rent,  MobxStore.app.params )}>租 屋></Button>
+      <Button type="primary" onClick={ () => goTo( views.rent,  store.app.params, store )}>租 屋></Button>
       <WhiteSpace />
         <WhiteSpace />
-        <Button type="primary" onClick={ () => MobxStore.router.goTo( views.sale, MobxStore.app.params )}>賣 樓></Button>
+        <Button type="primary" onClick={ () => goTo( views.sale, store.app.params, store )}>賣 樓></Button>
         <WhiteSpace />
           <WhiteSpace />
           <Button type="primary" onClick={ () => this.loadingToast() }>買 樓></Button>
             <WhiteSpace />
-            <Button type="ghost" onClick={ () => MobxStore.router.goTo( views.list, MobxStore.app.params )}>過往配對如有></Button>
+            <Button type="ghost" onClick={ () => goTo( views.list, store.app.params, store )}>過往配對如有></Button>
             <WhiteSpace />
         </WingBlank>
         <FrontPageTabBar/>
