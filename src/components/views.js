@@ -152,7 +152,7 @@ const views = {
     path: '/lease',
     component: <FormLeasePropertyAntMobileWrapper />,
     onEnter: (route, params, store, queryParams) => {
-      MobxStore.app.setTitle( '放a 租');
+      MobxStore.app.setTitle( '放 租');
 
     },
     beforeExit: (route, params) => {
@@ -165,7 +165,7 @@ const views = {
     path: '/rent',
     component: <FormRentPropertyAntMobileWrapper />,
     onEnter: (route, params, store, queryParams) => {
-      MobxStore.app.setTitle( '租b 屋');
+      MobxStore.app.setTitle( '租 屋');
 
     },
     beforeExit: (route, params) => {
@@ -178,7 +178,7 @@ const views = {
     path: '/buy',
     component: <FormBuyPropertyAntMobileWrapper />,
     onEnter: (route, params, store, queryParams) => {
-      MobxStore.app.setTitle( '賣 d樓');
+      MobxStore.app.setTitle( '賣 樓');
     },
     beforeExit: (route, params) => {
       console.log('exiting ListOfPRoperysView!');

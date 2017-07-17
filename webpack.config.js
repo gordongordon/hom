@@ -2,6 +2,9 @@ var path = require('path');
 var webpack = require('webpack');
 const pxtorem = require('postcss-pxtorem');
 
+
+//var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 //const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
       // loaders: [ 'style-loader', 'css-loader', 'sass-loader' ]
@@ -22,6 +25,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    // new BundleAnalyzerPlugin(),
     new webpack.optimize.UglifyJsPlugin({
   compress: {
     warnings: false
