@@ -37,10 +37,10 @@ offline = () => {
   Toast.offline('Network connection failed !!!', 1);
 }
 
-loadingToast = () => {
+loadingToast = (store, goTo) => {
   Toast.loading('Loading...', 1, () => {
     console.log('Load complete !!!');
-    MobxStore.router.goTo( views.buy ,  MobxStore.app.params)
+    goTo( views.buy ,  store.app.params)
   });
 }
 
@@ -66,7 +66,7 @@ render ()  {
         <Button type="primary" onClick={ () => goTo( views.sale, store.app.params, store )}>賣 樓></Button>
         <WhiteSpace />
           <WhiteSpace />
-          <Button type="primary" onClick={ () => this.loadingToast() }>買 樓></Button>
+          <Button type="primary" onClick={ () => this.loadingToast( store, goTo ) }>買 樓></Button>
             <WhiteSpace />
             <Button type="ghost" onClick={ () => goTo( views.list, store.app.params, store )}>過往配對如有></Button>
             <WhiteSpace />
