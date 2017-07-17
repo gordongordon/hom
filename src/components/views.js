@@ -24,12 +24,15 @@ import {MatchRentPanelViewWrapper} from 'matchRentPanelView'
 import {MatchSalePanelViewWrapper} from 'matchSalePanelView'
 import {MatchBuyPanelViewWrapper} from 'matchBuyPanelView'
 
+// testing
+import TestListView from 'testListView'
+
 var save = false;
 
 const views = {
   home: new Route({
     path: '/',
-    component: <FrontPageView />,
+    component: <FrontPageView/>,
     onEnter: (route, params, store, queryParams) => {
       MobxStore.app.setTitle( '好 .. Matching');
 

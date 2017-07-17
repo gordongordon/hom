@@ -168,7 +168,7 @@ class FormBuyPropertyAntMobile extends React.Component {
   //  console.log( '間隔', roomKey[value.room[0]] )
 
   const keyID = this.addPropertyForBuy( value )
-  MobxStore.router.goTo( views.match, { keyID } )
+  MobxStore.router.goTo( views.matchBuy, { keyID } )
 
 //   MobxStore.router.goTo( views.second )
 
@@ -333,20 +333,29 @@ class FormBuyPropertyAntMobile extends React.Component {
                 >姓名</InputItem>
 
                 <InputItem
+                  {...getFieldProps('contactName', {
+                    initialValue : 'John Lee',
+                  }) }
+                  type="text"
+                  placeholder="請輸入姓名"
+                  clear
+                >姓名</InputItem>
+
+                <InputItem
                   clear
                   {...getFieldProps('contactPhone', {
-                    initialValue : '96181448'
+                    initialValue : '66896696'
                   })}
                   type="phone"
-                  placeholder="9618 1448"
+                  placeholder="請輸入電話"
                 >聯絡手機</InputItem>
 
                 <InputItem
                   {...getFieldProps('contactEmail', {
-                    initialValue : 'h001@ymatchx.com',
+                    initialValue : 'h002@ymatchx.com',
                   })}
                   clear
-                  placeholder="YourEmail@gmail.com"
+                  placeholder="請輸入電郵地址"
                 >聯絡電郵</InputItem>
 
 

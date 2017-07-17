@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {MobxRouter, startRouter} from 'mobx-router';
+import {FrontPageTabBar} from 'frontPageTabBar';
 
 //mobx
 import {Provider} from 'mobx-react';
@@ -9,6 +10,10 @@ import NavigationBar from 'navigationBar'
 
 //router
 import views from 'views';
+
+import initReactFastclick from 'react-fastclick';
+// For Touch display
+initReactFastclick();
 
 startRouter(views, MobxStore);
 

@@ -4,7 +4,7 @@ import { createForm } from 'rc-form';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import {propertys} from 'propertysViewModel'
-import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
+//import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 import {SingleRentPropertyForMatchViewWrapper} from 'singleRentPropertyForMatchView'
 import {ListOfMatchPropertys} from 'listOfMatchPropertys'
 import { observer } from 'mobx-react';

@@ -4,9 +4,11 @@ import { createForm } from 'rc-form';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import {propertys} from 'propertysViewModel'
-import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
-import {SingleRentPropertyForMatchViewWrapper} from 'singleRentPropertyForMatchView'
+//import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
+//import {SingleRentPropertyForMatchViewWrapper} from 'singleRentPropertyForMatchView'
+import {ControlRentViewWrapper} from 'controlRentView'
 import {ListOfMatchPropertys} from 'listOfMatchPropertys'
+import {ListOfMatchLeasePropertys} from 'listOfMatchLeasePropertys'
 import { observer } from 'mobx-react';
 import MobxStore from 'mobxStore';
 
@@ -53,12 +55,12 @@ class MatchRentPanelView extends React.Component {
     return (
       <div>
 
-    <SingleLeasePropertyForMatchViewWrapper property={property} />
+    <ControlRentViewWrapper property={property} />
     <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
       以下是 HoMatching 為你配對嘅客!
     </NoticeBar>
     <WhiteSpace size="sm" />
-    <ListOfMatchPropertys propertys={property.matchedPropertys} />
+    <ListOfMatchLeasePropertys propertys={property.matchedPropertys} />
 
     </div>);
   }

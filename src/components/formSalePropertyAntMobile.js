@@ -145,7 +145,7 @@ class FormSalePropertyAntMobile extends React.Component {
     p.typeFor = "buy"
     p.typeTo = "sale"
     Fb.propertys.update( {[id]:  p.serialize() });
-    MobxStore.router.goTo( views.match, { keyID : id  } )
+    MobxStore.router.goTo( views.matchSale, { keyID : id  } )
 
   }
 
@@ -301,30 +301,30 @@ class FormSalePropertyAntMobile extends React.Component {
 
                 >有樓睇</List.Item>
 
-
                 <InputItem
                   {...getFieldProps('contactName', {
-                    initialValue : 'Gordon',
+                    initialValue : 'Jeff Chan',
                   }) }
                   type="text"
+                  placeholder="請輸入姓名"
                   clear
                 >姓名</InputItem>
 
                 <InputItem
                   clear
                   {...getFieldProps('contactPhone', {
-                    initialValue : '96181448'
+                    initialValue : '66958844'
                   })}
                   type="phone"
-                  placeholder="9618 1448"
+                  placeholder="請輸入電話"
                 >聯絡手機</InputItem>
 
                 <InputItem
                   {...getFieldProps('contactEmail', {
-                    initialValue : 'h001@ymatchx.com',
+                    initialValue : 'h004@ymatchx.com',
                   })}
                   clear
-                  placeholder="YourEmail@gmail.com"
+                  placeholder="請輸入電郵地址"
                 >聯絡電郵</InputItem>
 
 

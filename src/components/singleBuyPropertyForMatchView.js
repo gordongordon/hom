@@ -48,7 +48,7 @@ const BUILDING_NAME = {
    'MOSSSC' : '新港城'
 }
 
-class SingleRentPropertyForMatchView extends React.Component {
+class SingleBuyPropertyForMatchView extends React.Component {
 
   constructor(props) {
     super(props)
@@ -138,4 +138,4 @@ class SingleRentPropertyForMatchView extends React.Component {
 
 } };
 
-export const SingleRentPropertyForMatchViewWrapper = createForm()(SingleRentPropertyForMatchView);
+export const SingleBuyPropertyForMatchViewWrapper = createForm()(SingleBuyPropertyForMatchView);

@@ -169,7 +169,7 @@ class FormRentPropertyAntMobile extends React.Component {
     p.typeFor = "lease"
     p.typeTo = "rent"
     Fb.propertys.update( {[id]:  p.serialize() });
-    MobxStore.router.goTo( views.match, { keyID : id  } )
+    MobxStore.router.goTo( views.matchRent, { keyID : id  } )
 
   }
 
@@ -364,27 +364,28 @@ class FormRentPropertyAntMobile extends React.Component {
 
                 <InputItem
                   {...getFieldProps('contactName', {
-                    initialValue : 'Gordon',
+                    initialValue : 'Ken Wong',
                   }) }
                   type="text"
+                  placeholder="請輸入姓名"
                   clear
                 >姓名</InputItem>
 
                 <InputItem
                   clear
                   {...getFieldProps('contactPhone', {
-                    initialValue : '96181448'
+                    initialValue : '51085265'
                   })}
                   type="phone"
-                  placeholder="9618 1448"
+                  placeholder="請輸入電話"
                 >聯絡手機</InputItem>
 
                 <InputItem
                   {...getFieldProps('contactEmail', {
-                    initialValue : 'h001@ymatchx.com',
+                    initialValue : 'h003@ymatchx.com',
                   })}
                   clear
-                  placeholder="YourEmail@gmail.com"
+                  placeholder="請輸入電郵地址"
                 >聯絡電郵</InputItem>
 
 

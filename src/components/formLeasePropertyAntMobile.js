@@ -139,7 +139,6 @@ class FormLeasePropertyAntMobile extends React.Component {
     p.isPreferPayAnnually = v.isPreferPayAnnually;
     p.isRentAbleNow = v.isRentAbleNow;
     p.isFreeForSevenDay = v.isFreeForSevenDay;
-
     p.hasHomeHardware = v.hasHomeHardware;
     p.isViewAble = v.isViewAble;
     p.contactName = v.contactName;
@@ -150,7 +149,7 @@ class FormLeasePropertyAntMobile extends React.Component {
     p.typeFor = "rent"
     p.typeTo = "lease"
     Fb.propertys.update( {[id]:  p.serialize() });
-    MobxStore.router.goTo( views.match, { keyID : id  } )
+    MobxStore.router.goTo( views.matchLease, { keyID : id  } )
 
   }
 
@@ -250,7 +249,7 @@ class FormLeasePropertyAntMobile extends React.Component {
                     },
                   })}
                   type="number"
-                  placeholder="0"
+                  placeholder="請輸入實用面積"
                   onFocus={() => {
                     this.setState({
                       netSizefocused: false,
@@ -288,7 +287,7 @@ class FormLeasePropertyAntMobile extends React.Component {
                     },
                   })}
                   type="number"
-                  placeholder=""
+                  placeholder="請輸入租金月"
                   onFocus={() => {
                     this.setState({
                       netSizefocused: false,
@@ -372,6 +371,7 @@ class FormLeasePropertyAntMobile extends React.Component {
                     initialValue : 'Gordon',
                   }) }
                   type="text"
+                  placeholder="請輸入姓名"
                   clear
                 >姓名</InputItem>
 
@@ -381,7 +381,7 @@ class FormLeasePropertyAntMobile extends React.Component {
                     initialValue : '96181448'
                   })}
                   type="phone"
-                  placeholder="9618 1448"
+                  placeholder="請輸入電話"
                 >聯絡手機</InputItem>
 
                 <InputItem
@@ -389,7 +389,7 @@ class FormLeasePropertyAntMobile extends React.Component {
                     initialValue : 'h001@ymatchx.com',
                   })}
                   clear
-                  placeholder="YourEmail@gmail.com"
+                  placeholder="請輸入電郵地址"
                 >聯絡電郵</InputItem>
 
 

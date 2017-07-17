@@ -6,7 +6,8 @@ import {
 import React from 'react'
 import MobxStore from 'mobxStore'
 import views from 'views'
-
+import FrontPageDisplay from 'frontPageDisplay'
+import {FrontPageTabBar} from 'frontPageTabBar'
 
 export class FrontPageView extends React.Component {
 
@@ -44,6 +45,7 @@ loadingToast = () => {
 render ()  {
 /* eslint global-require: 0 */
   return  (
+    <div>
   <WingBlank>
     <WhiteSpace />
       <WhiteSpace />
@@ -62,6 +64,9 @@ render ()  {
             <Button type="ghost" onClick={ () => MobxStore.router.goTo( views.list, MobxStore.app.params )}>過往配對如有></Button>
             <WhiteSpace />
         </WingBlank>
+        <FrontPageTabBar/>
+        </div>
+
   );
 } // End of Render
 

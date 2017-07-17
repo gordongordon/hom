@@ -48,7 +48,7 @@ const BUILDING_NAME = {
    'MOSSSC' : '新港城'
 }
 
-class SingleRentPropertyForMatchView extends React.Component {
+class SingleSalePropertyForMatchView extends React.Component {
 
   constructor(props) {
     super(props)
@@ -106,7 +106,7 @@ class SingleRentPropertyForMatchView extends React.Component {
   <Card full>
    <Badge text={'平'} corner>
     <Card.Header
-      title={ property.contactName +"/租金上限$"+property.rentBudgetMax}
+      title={ BUILDING_NAME[property.nameOfBuilding] + "/$" + property.salePrice + "萬"}
       thumb="http://via.placeholder.com/140x100"
       extra={<div>最快可樓睇/尋找:{BUILDING_NAME[property.nameOfBuilding]} </div>}
     />
@@ -138,4 +138,4 @@ class SingleRentPropertyForMatchView extends React.Component {
 
 } };
 
-export const SingleRentPropertyForMatchViewWrapper = createForm()(SingleRentPropertyForMatchView);
+export const SingleSalePropertyForMatchViewWrapper = createForm()(SingleSalePropertyForMatchView);
