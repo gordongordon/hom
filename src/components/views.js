@@ -152,7 +152,7 @@ const views = {
     path: '/lease',
     component: <FormLeasePropertyAntMobileWrapper />,
     onEnter: (route, params, store, queryParams) => {
-      MobxStore.app.setTitle( '放 租');
+      MobxStore.app.setTitle( '放a 租');
 
     },
     beforeExit: (route, params) => {
