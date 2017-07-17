@@ -46,7 +46,7 @@ exclude: /node_modules/,
 //      loaders: ['babel'],
       //loaders: ['babel'],
       //loaders: ['babel'],
-          loader: 'babel-loader',
+          loader: 'babel',
       include: path.join(__dirname, 'src'),
     },
   {
