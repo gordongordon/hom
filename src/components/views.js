@@ -178,7 +178,7 @@ const views = {
     path: '/buy',
     component: <FormBuyPropertyAntMobileWrapper />,
     onEnter: (route, params, store, queryParams) => {
-      MobxStore.app.setTitle( '賣 樓');
+      MobxStore.app.setTitle( '賣 d樓');
     },
     beforeExit: (route, params) => {
       console.log('exiting ListOfPRoperysView!');
