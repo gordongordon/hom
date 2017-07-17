@@ -165,7 +165,7 @@ const views = {
     path: '/rent',
     component: <FormRentPropertyAntMobileWrapper />,
     onEnter: (route, params, store, queryParams) => {
-      MobxStore.app.setTitle( '租 屋');
+      MobxStore.app.setTitle( '租b 屋');
 
     },
     beforeExit: (route, params) => {
