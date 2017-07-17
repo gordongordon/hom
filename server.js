@@ -7,7 +7,7 @@ new WebpackDevServer(webpack(config), {
   hot: true,
   historyApiFallback: true,
   host : '0.0.0.0'
-}).listen(3000, '192.168.100.133', function (err, result) {
+}).listen(3000, 'localhost', function (err, result) {
   if (err) {
     console.log(err);
   }
