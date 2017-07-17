@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 const pxtorem = require('postcss-pxtorem');
+
 //const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
       // loaders: [ 'style-loader', 'css-loader', 'sass-loader' ]
@@ -41,6 +42,7 @@ module.exports = {
     },
    {
       test: /\.css$/,
+      include: /node_modules/,
       loaders: [ 'style-loader', 'css-loader', 'sass-loader' ]
     },
     // { test: /\.css$/, loader: 'style!css' }, // 把css处理成内联style，动态插入到页面
