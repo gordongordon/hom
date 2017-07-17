@@ -36,9 +36,13 @@ module.exports = {
   extensions: ['', '.web.jsx', '.web.js', '.js', '.jsx', '.json']
   },
  module: {
+
+    //{ test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
+
      loaders: [{
 //      test: /\.jsx?$/,
       test: /\.(js|jsx)$/,
+exclude: /node_modules/,
 //      loaders: ['babel'],
       //loaders: ['babel'],
       //loaders: ['babel'],
