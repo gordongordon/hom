@@ -4,25 +4,25 @@ import React from 'react';
 import {Route} from 'mobx-router';
 
 //components
-import {MatchPanelViewWrapper} from 'matchPanelView'
+//import {MatchPanelViewWrapper} from 'matchPanelView'
 import {ListOfPropertysView} from 'ListOfPropertysView'
 import {FrontPapePanelViewSegment} from 'frontPagePanelViewSegment'
 import {FrontPageView} from 'frontPageView'
 import MobxStore from 'mobxStore';
-import FrontPage from 'frontPage'
+//import FrontPage from 'frontPage'
 import {MobxRouter} from 'mobx-router';
 
 // Form
-import {FormSalePropertyAntMobileWrapper} from 'formSalePropertyAntMobile';
-import {FormLeasePropertyAntMobileWrapper} from 'formLeasePropertyAntMobile';
-import {FormBuyPropertyAntMobileWrapper} from 'formBuyPropertyAntMobile';
-import {FormRentPropertyAntMobileWrapper} from 'formRentPropertyAntMobile';
+import {FormSalePropertyAntMobileWrapper} from 'form/formSalePropertyAntMobile';
+import {FormLeasePropertyAntMobileWrapper} from 'form/formLeasePropertyAntMobile';
+import {FormBuyPropertyAntMobileWrapper} from 'form/formBuyPropertyAntMobile';
+import {FormRentPropertyAntMobileWrapper} from 'form/formRentPropertyAntMobile';
 
 // Match Panel views
-import {MatchLeasePanelViewWrapper} from 'matchLeasePanelView'
-import {MatchRentPanelViewWrapper} from 'matchRentPanelView'
-import {MatchSalePanelViewWrapper} from 'matchSalePanelView'
-import {MatchBuyPanelViewWrapper} from 'matchBuyPanelView'
+import {MatchLeasePanelViewWrapper} from 'matchPanel/matchLeasePanelView'
+import {MatchRentPanelViewWrapper} from 'matchPanel/matchRentPanelView'
+import {MatchSalePanelViewWrapper} from 'matchPanel/matchSalePanelView'
+import {MatchBuyPanelViewWrapper} from 'matchPanel/matchBuyPanelView'
 
 // testing
 import TestListView from 'testListView'

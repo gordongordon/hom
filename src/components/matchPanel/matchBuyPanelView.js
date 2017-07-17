@@ -5,8 +5,10 @@ import moment from 'moment';
 import 'moment/locale/zh-cn';
 import {propertys} from 'propertysViewModel'
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
-import {SingleRentPropertyForMatchViewWrapper} from 'singleRentPropertyForMatchView'
-import {ListOfMatchPropertys} from 'listOfMatchPropertys'
+//import {SingleRentPropertyForMatchViewWrapper} from 'singleRentPropertyForMatchView'
+import {ControlBuyViewWrapper} from '../control/controlBuyView'
+
+import {ListOfMatchSalePropertys} from '../listOfMatch/listOfMatchSalePropertys'
 import { observer } from 'mobx-react';
 import MobxStore from 'mobxStore';
 
@@ -20,7 +22,7 @@ const NameOfBuilding = [
 ];
 
 @observer
-class MatchPanelView extends React.Component {
+class MatchBuyPanelView extends React.Component {
 
   constructor(props) {
     super(props)
@@ -52,15 +54,16 @@ class MatchPanelView extends React.Component {
 
     return (
       <div>
+      <ControlBuyViewWrapper property={property} />
 
-    <SingleLeasePropertyForMatchViewWrapper property={property} />
     <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
       以下是 HoMatching 為你配對嘅客!
     </NoticeBar>
     <WhiteSpace size="sm" />
-    <ListOfMatchPropertys propertys={property.matchedPropertys} />
+    <ListOfMatchSalePropertys propertys={property.matchedPropertys} />
+
     </div>);
   }
 }
   // <ListOfMatchPropertys propertys={property.matchedPropertys} />
-export const MatchPanelViewWrapper = createForm()(MatchPanelView);
+export const MatchBuyPanelViewWrapper = createForm()(MatchBuyPanelView);

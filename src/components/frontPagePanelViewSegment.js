@@ -1,8 +1,8 @@
 import React from 'react';
-import {FormSalePropertyAntMobileWrapper} from 'formSalePropertyAntMobile';
-import {FormLeasePropertyAntMobileWrapper} from 'formLeasePropertyAntMobile';
-import {FormBuyPropertyAntMobileWrapper} from 'formBuyPropertyAntMobile';
-import {FormRentPropertyAntMobileWrapper} from 'formRentPropertyAntMobile';
+import {FormSalePropertyAntMobileWrapper} from 'form/formSalePropertyAntMobile';
+import {FormBuyPropertyAntMobileWrapper} from 'form/formBuyPropertyAntMobile';
+import {FormLeasePropertyAntMobileWrapper} from 'form/formLeasePropertyAntMobile';
+import {FormRentPropertyAntMobileWrapper} from 'form/formRentPropertyAntMobile';
 
 import {Tabs, WhiteSpace, SegmentedControl } from 'antd-mobile'
 

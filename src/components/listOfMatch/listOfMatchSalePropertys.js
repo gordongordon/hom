@@ -4,7 +4,7 @@ import React from 'react'
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 //import {propertys} from 'propertysViewModel'
-import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
+import {SingleSalePropertyForMatchViewWrapper} from '../singlePropertyView/singleSalePropertyForMatchView'
 import { observer } from 'mobx-react';
 //const Item = List.Item;
 //const Brief = Item.Brief;
@@ -16,7 +16,7 @@ const NameOfBuilding = [
 ];
 
 @observer
-export class ListOfMatchLeasePropertys extends React.Component {
+export class ListOfMatchSalePropertys extends React.Component {
 
   constructor(props) {
     super(props)
@@ -27,7 +27,7 @@ export class ListOfMatchLeasePropertys extends React.Component {
 
      var element = [];
      list.forEach( (property, keyID) => element.push(
-       <SingleLeasePropertyForMatchViewWrapper property={property} key={keyID}/>
+       <SingleSalePropertyForMatchViewWrapper property={property} key={keyID}/>
      ) )
      return <div>{element}</div>
   }

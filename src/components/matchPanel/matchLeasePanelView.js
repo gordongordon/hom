@@ -5,10 +5,10 @@ import moment from 'moment';
 import 'moment/locale/zh-cn';
 import {propertys} from 'propertysViewModel'
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
-import {ControlLeaseViewWrapper} from 'controlLeaseView'
+import {ControlLeaseViewWrapper} from '../control/controlLeaseView'
 //import {SingleRentPropertyForMatchViewWrapper} from 'singleRentPropertyForMatchView'
-import {ListOfMatchPropertys} from 'listOfMatchPropertys'
-import {ListOfMatchRentPropertys} from 'listOfMatchRentPropertys'
+//import {ListOfMatchPropertys} from 'listOfMatch/listOfMatchPropertys'
+import {ListOfMatchRentPropertys} from '../listOfMatch/listOfMatchRentPropertys'
 import { observer } from 'mobx-react';
 import MobxStore from 'mobxStore';
 
