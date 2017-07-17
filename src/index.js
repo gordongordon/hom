@@ -10,12 +10,21 @@ import NavigationBar from 'navigationBar'
 
 //router
 import views from 'views';
+//import firebase from 'firebase'
 
 import initReactFastclick from 'react-fastclick';
 // For Touch display
 initReactFastclick();
 
 startRouter(views, MobxStore);
+
+// firebase.auth().onAuthStateChanged( (user) => {
+//   if (user) {
+//     MobxStore.router.goTo( views.list )
+//   } else {
+//     MobxStore.router.goTo( views.home )
+//   }
+// })
 
 ReactDOM.render(
   <Provider store={MobxStore}>

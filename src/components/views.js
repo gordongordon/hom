@@ -59,6 +59,13 @@ const views = {
         save = true
       }
     },
+    beforeEnter: (route, params, store) => {
+      const userIsLoggedIn = store.app.user;
+      if (!userIsLoggedIn) {
+        alert('Only logged in users can enter this route!');
+        return false;
+      }
+    },
     beforeExit: (route, params) => {
       console.log('exiting ListOfPRoperysView!');
       console.log('params changed to', params);

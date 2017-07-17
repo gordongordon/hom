@@ -1,6 +1,6 @@
 import React from 'react'
 import {observer} from 'mobx-react'
-import { NavBar, Icon } from 'antd-mobile';
+import { NavBar, Icon, Button} from 'antd-mobile';
 import MobxStore from 'mobxStore'
 import views from 'views'
 
@@ -12,6 +12,13 @@ export default class NavigationBar extends React.Component {
      this.state = {
        isLeftIcon : false
      }
+   }
+
+
+   onLogin = ( e ) => {
+      e.preventDefault();
+      console.log( 'onLogin ... ')
+      MobxStore.app.startLogin();
    }
 
 
@@ -39,8 +46,8 @@ render() {
          mode="light"
          onLeftClick={ () => MobxStore.router.goTo( MobxStore.app.previousView, MobxStore.app.params ) }
          rightContent={[
-           <Icon key="0" type="search" style={{ marginRight: '0.32rem' }} />,
-           <Icon key="1" type="ellipsis" />,
+           <Icon key="0" type="search" style={{ marginRight: '0.32rem' }} onClick={  this.onLogin }/>
+
          ]}
        >{MobxStore.app.title}</NavBar>
      </div>

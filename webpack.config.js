@@ -37,7 +37,7 @@ module.exports = {
   // compress: {
   //   warnings: false
   // }
-})
+  //} )
     //new webpackConfig.babel.plugins.push(['import', { libraryName: 'antd-mobile', style: 'css' }])
   ],
   resolveLoader: {

@@ -44,12 +44,17 @@ loadingToast = (store, goTo) => {
   });
 }
 
+onLogin = ( store ) => {
+   console.log( 'onLogin ... ')
+   store.app.startLogin();
+}
+
 render ()  {
   const {store} = this.props;
   const {router: {goTo}} = store;
 
 
-    console.log( 'store', store)
+    //console.log( 'store', store)
 /* eslint global-require: 0 */
   return  (
     <div>
@@ -70,6 +75,8 @@ render ()  {
             <WhiteSpace />
             <Button type="ghost" onClick={ () => goTo( views.list, store.app.params, store )}>過往配對如有></Button>
             <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
         </WingBlank>
         <FrontPageTabBar/>
         </div>
@@ -78,3 +85,4 @@ render ()  {
 } // End of Render
 
 }
+//<Button type="ghost" onClick={ this.onLogin( store ) }>Log in </Button>

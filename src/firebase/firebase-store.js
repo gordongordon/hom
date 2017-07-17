@@ -1,6 +1,7 @@
 import firebase from 'firebase';
+import {MobxStore} from 'mobxStore'
 
-
+try {
 var config = {
   apiKey: 'AIzaSyD_SHmOwRUywGbWf9rRwP-MKSI3d0cYJu8',
   authDomain: 'todo-app-a2b7c.firebaseapp.com',
@@ -9,6 +10,15 @@ var config = {
 };
 
 firebase.initializeApp(config);
+} catch (e) {}
+
+// firebase.auth().onAuthStateChanged( (user) => {
+//   if (user) {
+//     MobxStore.router.goTo( views.list )
+//   } else {
+//     MobxStore.router.goTo( views.home )
+//   }
+// })
 
 const root = firebase.database().ref();
 const propertys = firebase.database().ref('propertys');
@@ -27,4 +37,6 @@ const Fb = {
   property,
   matchedPropertys
 };
-export { Fb };
+
+var githubProvider = new firebase.auth.GithubAuthProvider();
+export { Fb, githubProvider };
