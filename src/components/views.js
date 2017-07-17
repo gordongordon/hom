@@ -190,7 +190,7 @@ const views = {
     path: '/sale',
     component: <FormSalePropertyAntMobileWrapper />,
     onEnter: (route, params, store, queryParams) => {
-      MobxStore.app.setTitle( '買 樓');
+      MobxStore.app.setTitle( '買 d樓');
 
     },
     beforeExit: (route, params) => {
