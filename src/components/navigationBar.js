@@ -47,13 +47,11 @@ render() {
 
    return (
      <div>
-       <NavBar leftContent="上一頁"
-
+       <NavBar leftContent="登出"
          mode="light"
          onLeftClick={ this.onLogout }
          rightContent={[
-           <Icon key="0" type="search" style={{ marginRight: '0.32rem' }} onClick={  this.onLogin }/>
-
+           <Icon key="0" type="plus" style={{ marginRight: '0.32rem' }} onClick={  this.onLogin }/>
          ]}
        >{MobxStore.app.title}</NavBar>
      </div>

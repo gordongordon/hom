@@ -1,5 +1,5 @@
 import React from 'react'
-import { List , NoticeBar , Icon, Card, SwipeAction, Stepper, Picker, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl } from 'antd-mobile';
+import { List , Toast, NoticeBar , Icon, Card, SwipeAction, Stepper, Picker, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
@@ -33,6 +33,16 @@ export class ListOfPropertysView extends React.Component {
       this.props.history.push("/front?", keyID);
   }
 
+  loadingToast = () => {
+    Toast.loading('Loading...', 1, () => {
+      console.log('Load complete !!!');
+    });
+  }
+
+
+  successToast = () => {
+    Toast.success('成功刪除!!!', 1);
+  }
 
   /**
    * model is propertysViewModel, use to handle all functions , e.g. del
@@ -61,7 +71,7 @@ export class ListOfPropertysView extends React.Component {
            },
            {
              text: 'Delete',
-             onPress: () => model.del(keyID) ,
+             onPress: () => { this.successToast();  model.del(keyID); } ,
              style: { backgroundColor: '#F4333C', color: 'white' },
            },
          ]}
@@ -102,7 +112,7 @@ export class ListOfPropertysView extends React.Component {
      },
      {
        text: 'Delete',
-       onPress: () => model.del(keyID) ,
+       onPress: () => { this.successToast();  model.del(keyID); },
        style: { backgroundColor: '#F4333C', color: 'white' },
      },
    ]}
@@ -140,7 +150,7 @@ right={[
 },
 {
   text: 'Delete',
-  onPress: () => model.del(keyID) ,
+  onPress: () => { this.successToast();  model.del(keyID); },
   style: { backgroundColor: '#F4333C', color: 'white' },
 },
 ]}
@@ -179,7 +189,7 @@ right={[
 },
 {
   text: 'Delete',
-  onPress: () => model.del(keyID) ,
+  onPress: () =>{ this.successToast();  model.del(keyID); } ,
   style: { backgroundColor: '#F4333C', color: 'white' },
 },
 ]}
@@ -216,7 +226,7 @@ onClose={() => console.log('global close')}
     //console.log( "title", this.props.title)
     const {store} = this.props;
 
-    console.log( 'list of properys view .store', store)
+//    console.log( 'list of properys view .store', store)
 
 
     const that = this;

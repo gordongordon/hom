@@ -22,6 +22,7 @@ firebase.auth().onAuthStateChanged( (user) => {
 
    // update currentUser login or not
    MobxStore.app.user = firebase.auth().currentUser;
+   // MobxStore.app.user = true;
 
   if ( user)  {
      console.log( 'user signed')
