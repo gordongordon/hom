@@ -10,7 +10,7 @@ import NavigationBar from 'navigationBar'
 
 //router
 import views from 'views';
-//import firebase from 'firebase'
+import firebase from 'firebase'
 
 import initReactFastclick from 'react-fastclick';
 // For Touch display
@@ -18,13 +18,21 @@ initReactFastclick();
 
 startRouter(views, MobxStore);
 
-// firebase.auth().onAuthStateChanged( (user) => {
-//   if (user) {
-//     MobxStore.router.goTo( views.list )
-//   } else {
-//     MobxStore.router.goTo( views.home )
-//   }
-// })
+firebase.auth().onAuthStateChanged( (user) => {
+
+   // update currentUser login or not
+   MobxStore.app.user = firebase.auth().currentUser;
+
+  if ( user)  {
+     console.log( 'user signed')
+     // Redirect to member page!
+     MobxStore.router.goTo( views.list , {}, MobxStore )
+  } else {
+       console.log( 'user donot sign')
+       MobxStore.router.goTo( views.home , {}, MobxStore )
+  }
+})
+
 
 ReactDOM.render(
   <Provider store={MobxStore}>
@@ -34,6 +42,8 @@ ReactDOM.render(
     </div>
   </Provider>, document.getElementById('root')
 )
+
+
 
 //<button onClick={() => MobxStore.router.goTo(views.second)}>Go First</button>
 //MobxStore.app.title

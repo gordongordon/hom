@@ -35,7 +35,6 @@ const views = {
     component: <FrontPageView/>,
     onEnter: (route, params, store, queryParams) => {
       MobxStore.app.setTitle( '好 .. Matching');
-
     },
     beforeExit: (route, params) => {
       console.log('exiting ListOfPRoperysView!');
@@ -46,7 +45,7 @@ const views = {
   list: new Route({
     path: '/list',
     component: <ListOfPropertysView />,
-  onEnter: ( route, params, store, queryParams ) => {
+    onEnter: ( route, params, store, queryParams ) => {
 
       console.log('entering ListOfPropertysView!');
       MobxStore.app.title = "你的儲存樓盤"
@@ -60,7 +59,7 @@ const views = {
       }
     },
     beforeEnter: (route, params, store) => {
-      const userIsLoggedIn = store.app.user;
+      const userIsLoggedIn = MobxStore.app.user;
       if (!userIsLoggedIn) {
         alert('Only logged in users can enter this route!');
         return false;

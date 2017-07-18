@@ -6,7 +6,7 @@ class AppStore {
   constructor() {
     extendObservable(this, {
       title: 'HoMatching',
-      user: undefined,
+      user: false,
       previousView : undefined,
       viewHistory  : new Map(),
       nextView : undefined,
@@ -16,7 +16,7 @@ class AppStore {
 
   startLogin = () => {
     return firebase.auth().signInWithPopup( githubProvider ).then( (result) => {
-       this.user = true;
+       //this.user = true;
        console.log( 'Auth Worked', result )
     }, () => {
       console.log( 'unable to login' );

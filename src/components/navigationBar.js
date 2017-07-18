@@ -22,6 +22,12 @@ export default class NavigationBar extends React.Component {
    }
 
 
+   onLogout = ( e ) => {
+      e.preventDefault();
+      console.log( 'onLogin ... ')
+      MobxStore.app.startLogout();
+   }
+
 render() {
    var title = this.props.title;
    var leftContentLabel = "上一頁";
@@ -44,7 +50,7 @@ render() {
        <NavBar leftContent="上一頁"
 
          mode="light"
-         onLeftClick={ () => MobxStore.router.goTo( MobxStore.app.previousView, MobxStore.app.params ) }
+         onLeftClick={ this.onLogout }
          rightContent={[
            <Icon key="0" type="search" style={{ marginRight: '0.32rem' }} onClick={  this.onLogin }/>
 
@@ -55,5 +61,7 @@ render() {
 
   }
 }
+
+//onLeftClick={ () => MobxStore.router.goTo( MobxStore.app.previousView, MobxStore.app.params, MobxStore ) }
 
 // onLeftClick={ () => MobxStore.router.goTo( views.first ) }

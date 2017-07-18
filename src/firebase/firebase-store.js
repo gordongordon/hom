@@ -1,5 +1,6 @@
 import firebase from 'firebase';
 import {MobxStore} from 'mobxStore'
+//import views from 'views'
 
 try {
 var config = {
