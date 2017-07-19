@@ -1,0 +1,10 @@
+webpackHotUpdate(0,{
+
+/***/ 993:
+/***/ (function(module, exports, __webpack_require__) {
+
+	eval("'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.FormSaleChatbot = undefined;\n\nvar _reactSimpleChatbot = __webpack_require__(936);\n\nvar _reactSimpleChatbot2 = _interopRequireDefault(_reactSimpleChatbot);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar FormSaleChatbot = [{\n  id: '1',\n  message: 'Please type a number',\n  trigger: '2'\n}, {\n  id: '2',\n  user: true,\n  validator: function validator(value) {\n    if (isNaN(value)) {\n      return 'value should be a number';\n    }\n    return true;\n  },\n  trigger: '1'\n}];\n\nexports.FormSaleChatbot = FormSaleChatbot;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiOTkzLmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL3NyYy9jb21wb25lbnRzL2NoYXRib3QvZm9ybVNhbGVDaGF0Ym90LmpzPzk3N2YiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IENoYXRCb3QgZnJvbSAncmVhY3Qtc2ltcGxlLWNoYXRib3QnO1xyXG5cclxuY29uc3QgRm9ybVNhbGVDaGF0Ym90ID0gW1xyXG4gICAge1xyXG4gICAgICBpZDogJzEnLFxyXG4gICAgICBtZXNzYWdlOiAnUGxlYXNlIHR5cGUgYSBudW1iZXInLFxyXG4gICAgICB0cmlnZ2VyOiAnMicsXHJcbiAgICB9LFxyXG4gICAge1xyXG4gICAgICBpZDogJzInLFxyXG4gICAgICB1c2VyOiB0cnVlLFxyXG4gICAgICB2YWxpZGF0b3I6ICh2YWx1ZSkgPT4ge1xyXG4gICAgICAgIGlmIChpc05hTih2YWx1ZSkpIHtcclxuICAgICAgICAgIHJldHVybiAndmFsdWUgc2hvdWxkIGJlIGEgbnVtYmVyJztcclxuICAgICAgICB9XHJcbiAgICAgICAgcmV0dXJuIHRydWU7XHJcbiAgICAgIH0sXHJcbiAgICAgIHRyaWdnZXI6ICcxJyxcclxuICAgIH0sXHJcbiAgXTtcclxuXHJcbmV4cG9ydCB7Rm9ybVNhbGVDaGF0Ym90fVxyXG5cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gc3JjL2NvbXBvbmVudHMvY2hhdGJvdC9mb3JtU2FsZUNoYXRib3QuanMiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFBQTtBQUNBOzs7OztBQUNBO0FBRUE7QUFDQTtBQUNBO0FBSEE7QUFNQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFUQTtBQUNBO0FBWUEiLCJzb3VyY2VSb290IjoiIn0=");
+
+/***/ })
+
+})

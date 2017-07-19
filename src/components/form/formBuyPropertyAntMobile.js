@@ -19,6 +19,8 @@ import moment from 'moment';
 import 'moment/locale/zh-cn';
 import MobxStore from 'mobxStore'
 import views from 'views'
+import ChatBot from 'react-simple-chatbot';
+import {FormSaleChatbot} from '../chatbot/formSaleChatbot'
 
 // 如果不是使用 List.Item 作为 children
 const CustomChildren = props => (
@@ -193,6 +195,7 @@ class FormBuyPropertyAntMobile extends React.Component {
       const maxDate = moment(minDate).add(6, 'M');
 
     return ( <div>
+      <ChatBot steps={FormSaleChatbot} />
       <List style={{ backgroundColor: 'white' }} className="picker-list">
 
         <Picker data={NameOfBuilding} cols={1} {...getFieldProps('nameOfBuilding', {
