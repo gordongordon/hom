@@ -13,10 +13,63 @@ import views from 'views';
 import firebase from 'firebase'
 
 import initReactFastclick from 'react-fastclick';
+// import ChatBot from 'react-simple-chatbot';
+// import {FormSaleChatbot} from 'chatbot/formSaleChatbot'
+
+
 // For Touch display
 initReactFastclick();
 
 startRouter(views, MobxStore);
+
+// function preventDefault(e) {
+//   e = e || window.event;
+//   if (e.preventDefault)
+//       e.preventDefault();
+//   e.returnValue = false;
+// }
+//
+// function preventDefaultForScrollKeys(e) {
+//     if (keys[e.keyCode]) {
+//         preventDefault(e);
+//         return false;
+//     }
+// }
+//
+// function disableScroll() {
+//   if (window.addEventListener) // older FF
+//       window.addEventListener('DOMMouseScroll', preventDefault, false);
+//   window.onwheel = preventDefault; // modern standard
+//   window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+//   window.ontouchmove  = preventDefault; // mobile
+//   document.onkeydown  = preventDefaultForScrollKeys;
+// }
+//
+// function enableScroll() {
+//     if (window.removeEventListener)
+//         window.removeEventListener('DOMMouseScroll', preventDefault, false);
+//     window.onmousewheel = document.onmousewheel = null;
+//     window.onwheel = null;
+//     window.ontouchmove = null;
+//     document.onkeydown = null;
+// }
+//
+// function preventZoom(e) {
+//   var t2 = e.timeStamp;
+//   var t1 = e.currentTarget.dataset.lastTouch || t2;
+//   var dt = t2 - t1;
+//   var fingers = e.touches.length;
+//   e.currentTarget.dataset.lastTouch = t2;
+//
+//   if (!dt || dt > 500 || fingers > 1) return; // not double-tap
+//
+//   e.preventDefault();
+//   e.target.click();
+// }
+//
+// //preventZoom();
+// //disableScroll();
+
 
 firebase.auth().onAuthStateChanged( (user) => {
 
@@ -27,6 +80,7 @@ firebase.auth().onAuthStateChanged( (user) => {
   if ( user)  {
      console.log( 'user signed')
      // Redirect to member page!
+
      MobxStore.router.goTo( views.list , {}, MobxStore )
   } else {
        console.log( 'user donot sign')
@@ -34,12 +88,13 @@ firebase.auth().onAuthStateChanged( (user) => {
   }
 })
 
+//<MobxRouter/>
 
 ReactDOM.render(
   <Provider store={MobxStore}>
     <div>
-         <NavigationBar/>
-         <MobxRouter/>
+      <NavigationBar/>
+      <MobxRouter/>
     </div>
   </Provider>, document.getElementById('root')
 )
