@@ -60,26 +60,28 @@ render ()  {
     <div>
   <WingBlank>
     <WhiteSpace />
-      <WhiteSpace />
-        <WhiteSpace />
-    <Button type="primary" onClick={ () => goTo( views.lease, store.app.params, store )}>放 租></Button>
     <WhiteSpace />
-      <WhiteSpace />
+    <WhiteSpace />
+      <Button type="primary" onClick={ () => goTo( views.lease, store.app.params, store )}>放 租></Button>
+    <WhiteSpace />
+    <WhiteSpace />
       <Button type="primary" onClick={ () => goTo( views.rent,  store.app.params, store )}>租 屋></Button>
-      <WhiteSpace />
-        <WhiteSpace />
-        <Button type="primary" onClick={ () => goTo( views.sale, store.app.params, store )}>賣 樓></Button>
-        <WhiteSpace />
-          <WhiteSpace />
-          <Button type="primary" onClick={ () => this.loadingToast( store, goTo ) }>買 樓></Button>
-            <WhiteSpace />
-            <Button type="ghost" onClick={ () => goTo( views.list, store.app.params, store )}>過往配對如有></Button>
-            <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-        </WingBlank>
-        <FrontPageTabBar/>
-        </div>
+    <WhiteSpace />
+    <WhiteSpace />
+      <Button type="primary" onClick={ () => goTo( views.sale, store.app.params, store )}>賣 樓></Button>
+    <WhiteSpace />
+    <WhiteSpace />
+      <Button type="primary" onClick={ () => this.loadingToast( store, goTo ) }>買 樓></Button>
+    <WhiteSpace />
+      <Button type="ghost" onClick={ () => goTo( views.list, store.app.params, store )}>過往配對如有></Button>
+    <WhiteSpace />
+      <Button type="ghost" onClick={ () => goTo( views.matchAgent, store.app.params, store )}> Agent </Button>
+    <WhiteSpace />
+    <WhiteSpace />
+    <WhiteSpace />
+    </WingBlank>
+      <FrontPageTabBar/>
+    </div>
 
   );
 } // End of Render

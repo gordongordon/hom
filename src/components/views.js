@@ -23,6 +23,7 @@ import {MatchLeasePanelViewWrapper} from 'matchPanel/matchLeasePanelView'
 import {MatchRentPanelViewWrapper} from 'matchPanel/matchRentPanelView'
 import {MatchSalePanelViewWrapper} from 'matchPanel/matchSalePanelView'
 import {MatchBuyPanelViewWrapper} from 'matchPanel/matchBuyPanelView'
+import {MatchAgentPanelViewWrapper} from 'matchPanel/matchAgentPanelView'
 
 // testing
 // import TestListView from 'testListView'
@@ -154,6 +155,26 @@ const views = {
         console.log('params changed to', params);
       }
   }),
+  matchAgent: new Route({
+      path: '/matchAgent',
+      component: <MatchAgentPanelViewWrapper />,
+      onEnter: (route, params, store, queryParams) => {
+      	console.log('third.current query params are -> ', queryParams);
+        console.log('third.current params are -> ', params);
+        MobxStore.app.setTitle( 'Agent');
+        console.log('route', route)
+        MobxStore.app.viewHistory.set( 'matchBuy', MobxStore.app.previousView  )
+      },
+      beforeExit: (route, params) => {
+        console.log('exiting user profile!');
+        console.log('third. params', params);
+        //MobxStore.app.previousView = route;
+        MobxStore.app.params = params;
+      },
+      onParamsChange: (route, params) => {
+        console.log('params changed to', params);
+      }
+  }),
   lease : new Route({
     path: '/lease',
     component: <FormLeasePropertyAntMobileWrapper />,
@@ -184,7 +205,7 @@ const views = {
     path: '/buy',
     component: <FormBuyPropertyAntMobileWrapper />,
     onEnter: (route, params, store, queryParams) => {
-      MobxStore.app.setTitle( '賣 樓');
+      MobxStore.app.setTitle( '買 樓');
     },
     beforeExit: (route, params) => {
       console.log('exiting ListOfPRoperysView!');
@@ -196,7 +217,7 @@ const views = {
     path: '/sale',
     component: <FormSalePropertyAntMobileWrapper />,
     onEnter: (route, params, store, queryParams) => {
-      MobxStore.app.setTitle( '買 dd樓');
+      MobxStore.app.setTitle( '賣 樓');
 
     },
     beforeExit: (route, params) => {

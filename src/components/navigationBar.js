@@ -51,7 +51,9 @@ render() {
          mode="light"
          onLeftClick={ this.onLogout }
          rightContent={[
-           <Icon key="0" type="plus" style={{ marginRight: '0.32rem' }} onClick={  this.onLogin }/>
+           <Icon key="0" type="plus" style={{ marginRight: '0.32rem' }} onClick={  this.onLogin }/>,
+           <span key="1" onClick={  this.onLogin }>Login</span>
+
          ]}
        >{MobxStore.app.title}</NavBar>
      </div>
