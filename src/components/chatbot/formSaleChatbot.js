@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ChatBot from 'react-simple-chatbot';
+import ChatBot from '../react-simple-chatbot/dist/react-simple-chatbot';
 
 class Review extends Component {
   constructor(props) {
