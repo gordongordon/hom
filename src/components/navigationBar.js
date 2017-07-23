@@ -28,16 +28,23 @@ export default class NavigationBar extends React.Component {
       MobxStore.app.startLogout();
    }
 
+   loginItem  = () => {
+
+     const isLogin = MobxStore.app.user;
+
+     if ( isLogin ) {
+       return <span key="2" onClick={ this.onLogout }>logout</span>;
+    } else {
+       return <span key="2" onClick={ this.onLogin }>login</span>;
+     }
+   }
+
+
 render() {
-   var title = this.props.title;
+   const title = this.props.title;
    var leftContentLabel = "上一頁";
-//    var flag = false;
-//
-//    if ( MobxStore.app.previousView !== undefined )
-//    {
-// //      this.setState( { isLeftIcon : true })
-//        flag = true;
-//    }
+//   const that = this;
+
    if ( title === "好 .. Matching")
    {
        leftContentLabel = ""
@@ -47,13 +54,10 @@ render() {
 
    return (
      <div>
-       <NavBar leftContent="登出"
+       <NavBar leftContent=""
          mode="light"
-         onLeftClick={ this.onLogout }
          rightContent={[
-           <Icon key="0" type="plus" style={{ marginRight: '0.32rem' }} onClick={  this.onLogin }/>,
-           <span key="1" onClick={  this.onLogin }>Login</span>
-
+           <div key="1">{this.loginItem()}</div>
          ]}
        >{MobxStore.app.title}</NavBar>
      </div>
@@ -62,6 +66,7 @@ render() {
   }
 }
 
+//<Icon key="0" type="plus" style={{ marginRight: '0.32rem' }} onClick={  this.onLogin }/>,
 //onLeftClick={ () => MobxStore.router.goTo( MobxStore.app.previousView, MobxStore.app.params, MobxStore ) }
 
 // onLeftClick={ () => MobxStore.router.goTo( views.first ) }

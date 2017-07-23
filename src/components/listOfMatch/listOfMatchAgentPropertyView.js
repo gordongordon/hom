@@ -131,7 +131,7 @@ export class ListOfMatchAgentPropertyView extends React.Component {
    onOpen={() => console.log('global open')}
    onClose={() => console.log('global close')}
  >
- <Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.formSaleChatbot, {keyID} ) } multipleLine extra={<div>租金上限${property.rentBudgetMax}</div>} >
+ <Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.rent, {keyID} ) } multipleLine extra={<div>租金上限${property.rentBudgetMax}</div>} >
     { BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>最少{ property.netSizeMin }呎實用面積</Brief>
  </Item>
  </SwipeAction></div>
@@ -169,7 +169,7 @@ left={[
 onOpen={() => console.log('global open')}
 onClose={() => console.log('global close')}
 >
-<Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.bmi, {keyID} ) } multipleLine extra={<div>預算上限${property.buyBudgetMax}萬</div>} >
+<Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.buy, {keyID} ) } multipleLine extra={<div>預算上限${property.buyBudgetMax}萬</div>} >
   { BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>最少 {property.netSizeMin }呎實用面積</Brief>
 </Item>
 </SwipeAction></div>

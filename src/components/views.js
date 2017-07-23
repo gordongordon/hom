@@ -26,8 +26,8 @@ import {MatchBuyPanelViewWrapper} from 'matchPanel/matchBuyPanelView'
 import {MatchAgentPanelViewWrapper} from 'matchPanel/matchAgentPanelView'
 
 // From chatbot
-import FormSaleChatbot from 'chatbot/formSaleChatbot'
-import BMIChatbot from 'chatbot/bmiChatbot'
+//import FormSaleChatbot from 'chatbot/formSaleChatbot'
+//import BMIChatbot from 'chatbot/bmiChatbot'
 
 // testing
 // import TestListView from 'testListView'
@@ -230,31 +230,33 @@ const views = {
       MobxStore.app.previousView = route;
     }
   }),
-  formSaleChatbot : new Route({
-    path: '/FormSaleChatbox',
-    component: <FormSaleChatbot />,
-    onEnter: (route, params, store, queryParams) => {
-      MobxStore.app.setTitle( 'Chat Bot 賣 樓');
-    },
-    beforeExit: (route, params) => {
-      console.log('exiting ListOfPRoperysView!');
-      console.log('params changed to', params);
-      MobxStore.app.previousView = route;
-    }
-  }),
-  bmi : new Route({
-    path: '/bmi',
-    component: <BMIChatbot />,
-    onEnter: (route, params, store, queryParams) => {
-      MobxStore.app.setTitle( 'Chat Bot 賣 樓');
 
-    },
-    beforeExit: (route, params) => {
-      console.log('exiting ListOfPRoperysView!');
-      console.log('params changed to', params);
-      MobxStore.app.previousView = route;
-    }
-  })
+  // For Chat bot example
+  // formSaleChatbot : new Route({
+  //   path: '/FormSaleChatbox',
+  //   component: <FormSaleChatbot />,
+  //   onEnter: (route, params, store, queryParams) => {
+  //     MobxStore.app.setTitle( 'Chat Bot 賣 樓');
+  //   },
+  //   beforeExit: (route, params) => {
+  //     console.log('exiting ListOfPRoperysView!');
+  //     console.log('params changed to', params);
+  //     MobxStore.app.previousView = route;
+  //   }
+  // }),
+  // bmi : new Route({
+  //   path: '/bmi',
+  //   component: <BMIChatbot />,
+  //   onEnter: (route, params, store, queryParams) => {
+  //     MobxStore.app.setTitle( 'Chat Bot 賣 樓');
+  //
+  //   },
+  //   beforeExit: (route, params) => {
+  //     console.log('exiting ListOfPRoperysView!');
+  //     console.log('params changed to', params);
+  //     MobxStore.app.previousView = route;
+  //   }
+  // })
 
 
 };

@@ -80,11 +80,13 @@ firebase.auth().onAuthStateChanged( (user) => {
   if ( user)  {
      console.log( 'user signed')
      // Redirect to member page!
-
+     MobxStore.app.startLogin();
      MobxStore.router.goTo( views.list , {}, MobxStore )
   } else {
        console.log( 'user donot sign')
+       MobxStore.app.startLogout();
        MobxStore.router.goTo( views.home , {}, MobxStore )
+
   }
 })
 
