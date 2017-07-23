@@ -6,11 +6,11 @@ import {Route} from 'mobx-router';
 //components
 //import {MatchPanelViewWrapper} from 'matchPanelView'
 import {ListOfPropertysView} from 'listOfPropertysView'
-import {FrontPapePanelViewSegment} from 'frontPagePanelViewSegment'
+//import {FrontPapePanelViewSegment} from 'frontPagePanelViewSegment'
 import {FrontPageView} from 'frontPageView'
 import MobxStore from 'mobxStore';
 //import FrontPage from 'frontPage'
-import {MobxRouter} from 'mobx-router';
+//import {MobxRouter} from 'mobx-router';
 
 // Form
 import {FormSalePropertyAntMobileWrapper} from 'form/formSalePropertyAntMobile';

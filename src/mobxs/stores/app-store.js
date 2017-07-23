@@ -1,6 +1,6 @@
 import {extendObservable, action} from 'mobx';
-import firebase from 'firebase';
-import {githubProvider} from 'firebase-store'
+// import firebase from 'firebase';
+// import {githubProvider} from 'firebase-store'
 
 class AppStore {
   constructor() {
@@ -10,25 +10,29 @@ class AppStore {
       previousView : undefined,
       viewHistory  : new Map(),
       nextView : undefined,
-      params : undefined
+      params : undefined,
+      uid : undefined // User Id
     });
+
+
+    console.log( 'creating MobxStore.app')
   }
 
-  startLogin = () => {
-    return firebase.auth().signInWithPopup( githubProvider ).then( (result) => {
-       //this.user = true;
-       console.log( 'Auth Worked', result )
-    }, () => {
-      console.log( 'unable to login' );
-    }
-    );
-  }
-
-  startLogout = () => {
-    return firebase.auth().signOut().then( ()=> {
-      console.log( 'Logged out!')
-    }) ;
-  }
+  // startLogin = () => {
+  //   return firebase.auth().signInWithPopup( githubProvider ).then( (result) => {
+  //      //this.user = true;
+  //      console.log( 'Auth Worked', result )
+  //   }, () => {
+  //     console.log( 'unable to login' );
+  //   }
+  //   );
+  // }
+  //
+  // startLogout = () => {
+  //   return firebase.auth().signOut().then( ()=> {
+  //     console.log( 'Logged out!')
+  //   }) ;
+  // }
 
   setTitle = action(title => {
     this.title = title;

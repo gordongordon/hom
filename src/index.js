@@ -6,21 +6,23 @@ import {FrontPageTabBar} from 'frontPageTabBar';
 //mobx
 import {Provider} from 'mobx-react';
 import MobxStore from 'mobxStore';
+import firebase from 'firebase'
 import NavigationBar from 'navigationBar'
 
 //router
 import views from 'views';
-import firebase from 'firebase'
 
 import initReactFastclick from 'react-fastclick';
+import {Fb} from 'firebase-store'
 // import ChatBot from 'react-simple-chatbot';
 // import {FormSaleChatbot} from 'chatbot/formSaleChatbot'
 
+startRouter(views, MobxStore);
 
 // For Touch display
 initReactFastclick();
 
-startRouter(views, MobxStore);
+
 
 // function preventDefault(e) {
 //   e = e || window.event;
@@ -80,11 +82,17 @@ firebase.auth().onAuthStateChanged( (user) => {
   if ( user)  {
      console.log( 'user signed')
      // Redirect to member page!
-     MobxStore.app.startLogin();
+     //MobxStore.app.startLogin();
+     Fb.startLogin();
+     MobxStore.app.uid = user.uid;
+
+     Fb.app.updateUid();
      MobxStore.router.goTo( views.list , {}, MobxStore )
   } else {
        console.log( 'user donot sign')
-       MobxStore.app.startLogout();
+       //MobxStore.app.startLogout();
+       Fb.startLogout();
+       MobxStore.app.uid = undefined;
        MobxStore.router.goTo( views.home , {}, MobxStore )
 
   }

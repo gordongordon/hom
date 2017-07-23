@@ -3,6 +3,7 @@ import {observer} from 'mobx-react'
 import { NavBar, Icon, Button} from 'antd-mobile';
 import MobxStore from 'mobxStore'
 import views from 'views'
+import {Fb} from 'firebase-store'
 
 @observer
 export default class NavigationBar extends React.Component {
@@ -18,14 +19,14 @@ export default class NavigationBar extends React.Component {
    onLogin = ( e ) => {
       e.preventDefault();
       console.log( 'onLogin ... ')
-      MobxStore.app.startLogin();
+      Fb.startLogin();
    }
 
 
    onLogout = ( e ) => {
       e.preventDefault();
       console.log( 'onLogin ... ')
-      MobxStore.app.startLogout();
+      Fb.startLogout();
    }
 
    loginItem  = () => {

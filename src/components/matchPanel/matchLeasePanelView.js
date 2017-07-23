@@ -43,7 +43,7 @@ class MatchLeasePanelView extends React.Component {
         console.log( 'store.params.keyID', MobxStore.router.params.keyID )
 
 
-        console.log( 'matchPanelView property', property )
+        console.log( 'matchLeasePanelView property', property )
         //console.log( 'matchPanelView propertys.size', propertys.propertys.size )
         //console.log( 'matchPanelView matched propertys', property.matchedPropertys.size)
         // const that = this;

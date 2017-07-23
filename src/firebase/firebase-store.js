@@ -1,5 +1,6 @@
 import firebase from 'firebase';
-import {MobxStore} from 'mobxStore'
+import MobxStore from 'mobxStore'
+import AppStore from 'app-store.js'
 //import views from 'views'
 
 try {
@@ -20,22 +21,50 @@ firebase.initializeApp(config);
 //     MobxStore.router.goTo( views.home )
 //   }
 // })
+const startLogin = () => {
+  return firebase.auth().signInWithPopup( githubProvider ).then( (result) => {
+     //this.user = true;
+     console.log( 'Auth Worked', result )
+  }, () => {
+    console.log( 'unable to login' );
+  }
+  );
+}
 
+const startLogout = () => {
+  return firebase.auth().signOut().then( ()=> {
+    console.log( 'Logged out!')
+  }) ;
+}
+
+
+
+//console.log( 'MobxStore.app', MobxStore)
+var uid =  MobxStore.app.uid;
+console.log('uid', MobxStore.app.uid)
 const root = firebase.database().ref();
-const propertys = firebase.database().ref('propertys');
-const propertysForRent = firebase.database().ref('propertysForRent');
-const propertysForSale = firebase.database().ref('propertysForSale');
-const propertysForLease = firebase.database().ref('propertysForLease');
-const property = firebase.database().ref('property');
+const propertys = firebase.database().ref(`users`);
+//const propertysForRent = firebase.database().ref('propertysForRent');
+//const propertysForSale = firebase.database().ref('propertysForSale');
+//const propertysForLease = firebase.database().ref('propertysForLease');
+//const property = firebase.database().ref('property');
 const matchedPropertys = firebase.database().ref('matchedPropertys');
 
+// const mbsdk = () => {
+//   var uid = MobxStore.app.uid;
+// }
+
+
 const Fb = {
+  app : new AppStore(),
   root,
   propertys,
-  propertysForRent,
-  propertysForSale,
-  propertysForLease,
-  property,
+  startLogin,
+  startLogout,
+  //propertysForRent,
+  //propertysForSale,
+  //propertysForLease,
+  //property,
   matchedPropertys
 };
 

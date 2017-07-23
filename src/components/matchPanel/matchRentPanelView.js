@@ -36,7 +36,7 @@ class MatchRentPanelView extends React.Component {
   render() {
 //        var property = propertys.propertys.get(this.props.keyID);
 //        var property = propertys.propertys.get("-Kof2Ki5bbvt5MS2QJMG");
-        var property = propertys.propertys.get(MobxStore.router.params.keyID );
+        var property = propertys.propertys.get( MobxStore.router.params.keyID );
 
         //console.log( 'keyID', this.props.keyID )
         // console.log( 'store.queryParams.keyID', store.router.queryParams.keyID )
