@@ -1,7 +1,6 @@
 import firebase from 'firebase';
 import MobxStore from 'mobxStore'
 import AppStore from 'app-store'
-//import views from 'views'
 
 try {
 
@@ -15,17 +14,8 @@ var config = {
 firebase.initializeApp(config);
 } catch (e) {}
 
-// firebase.auth().onAuthStateChanged( (user) => {
-//   if (user) {
-//     MobxStore.router.goTo( views.list )
-//   } else {
-//     MobxStore.router.goTo( views.home )
-//   }
-// })
-
 const startLogin = () => {
   return firebase.auth().signInWithPopup( githubProvider ).then( (result) => {
-     //this.user = true;
      console.log( 'Auth Worked', result )
   }, () => {
     console.log( 'unable to login' );
@@ -54,9 +44,7 @@ const startLoginGoogle = () => {
   // ...
 });
 
-
 }
-
 
 const startLoginFacebook = () => {
   return firebase.auth().signInWithPopup( facebookProvider).then( (result) => {
@@ -87,13 +75,11 @@ const startLogout = () => {
   }) ;
 }
 
-
-
 //console.log( 'MobxStore.app', MobxStore)
-var uid =  MobxStore.app.uid;
-console.log('uid', MobxStore.app.uid)
+//var uid =  MobxStore.app.uid;
+//console.log('uid', MobxStore.app.uid)
 const root = firebase.database().ref();
-const propertys = firebase.database().ref(`users`);
+const propertys = firebase.database().ref('propertys');
 //const propertysForRent = firebase.database().ref('propertysForRent');
 //const propertysForSale = firebase.database().ref('propertysForSale');
 //const propertysForLease = firebase.database().ref('propertysForLease');
@@ -124,4 +110,4 @@ const Fb = {
 var githubProvider = new firebase.auth.GithubAuthProvider();
 var facebookProvider = new firebase.auth.FacebookAuthProvider();
 var googleProvider = new firebase.auth.GoogleAuthProvider();
-export { Fb, githubProvider };
+export { Fb };

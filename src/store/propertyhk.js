@@ -39,7 +39,7 @@ export class Propertyhk extends Property {
     var that = this;
 
     // Handle match propertys
-     Fb.app.propertysRef.orderByChild('typeTo').equalTo(typeFor).on("child_added", function(snap) {
+     Fb.propertys.orderByChild('typeTo').equalTo(typeFor).on("child_added", function(snap) {
 
           // Fb.matchedPropertys.child( snap.key ).set( snap.val() )
 //          Fb.propertys.update( { snap.key : { } })
@@ -47,7 +47,7 @@ export class Propertyhk extends Property {
           console.log('child_added - matchProperty.size', that.matchedPropertys.size)
      });
 
-     Fb.app.propertysRef.orderByChild('typeTo').equalTo(typeFor).on("child_removed", function(snap) {
+     Fb.propertys.orderByChild('typeTo').equalTo(typeFor).on("child_removed", function(snap) {
 
          that.matchedPropertys.delete( snap.key );
          console.log('child_removed - matchProperty.size', that.matchedPropertys.size)

@@ -147,10 +147,14 @@ class FormBuyPropertyAntMobile extends React.Component {
     p.contactPhone = parseInt(v.contactPhone);
     p.contactEmail = v.contactEmail;
 
-    const id = Fb.propertys.push().key;
+    const id = Fb.app.propertysRef.push().key;
     p.typeFor = "sale"
     p.typeTo = "buy"
     Fb.app.propertysRef.update( {[id]:  p.serialize() });
+
+    // const id2 = Fb.propertys.push().key;
+    // Fb.propertys.update( {[id2]:  p.serialize() });
+
 
     return id;
 

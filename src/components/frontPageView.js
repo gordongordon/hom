@@ -80,11 +80,13 @@ render ()  {
     <WhiteSpace />
     <WhiteSpace />
     </WingBlank>
-      <FrontPageTabBar/>
     </div>
 
   );
 } // End of Render
 
 }
+
+//<FrontPageTabBar/>
+
 //<Button type="ghost" onClick={ this.onLogin( store ) }>Log in </Button>
