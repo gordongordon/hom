@@ -95,7 +95,7 @@ export default class NavigationBar extends React.Component {
             alignItems: 'center',
           }}
           >
-            <Icon type="ellipsis" />
+            <span>login</span>
           </div>
         </Popover>;
      }
