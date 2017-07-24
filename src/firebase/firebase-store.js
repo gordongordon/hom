@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import MobxStore from 'mobxStore'
-import AppStore from 'app-store.js'
+import AppStore from 'app-store'
 //import views from 'views'
 
 try {
@@ -21,6 +21,7 @@ firebase.initializeApp(config);
 //     MobxStore.router.goTo( views.home )
 //   }
 // })
+
 const startLogin = () => {
   return firebase.auth().signInWithPopup( githubProvider ).then( (result) => {
      //this.user = true;
