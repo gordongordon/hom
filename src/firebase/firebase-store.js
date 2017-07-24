@@ -4,6 +4,7 @@ import AppStore from 'app-store'
 //import views from 'views'
 
 try {
+
 var config = {
   apiKey: 'AIzaSyD_SHmOwRUywGbWf9rRwP-MKSI3d0cYJu8',
   authDomain: 'todo-app-a2b7c.firebaseapp.com',
@@ -30,6 +31,29 @@ const startLogin = () => {
     console.log( 'unable to login' );
   }
   );
+}
+
+const startLoginFacebook = () => {
+  return firebase.auth().signInWithPopup( facebookProvider).then( (result) => {
+     //this.user = true;
+     console.log( 'Auth Worked', result )
+  }, () => {
+    console.log( 'unable to login' );
+  }
+  );
+}
+
+const startLoginAnonyhmously = () => {
+
+firebase.auth().signInAnonymously().catch(function(error) {
+  // Handle Errors here.
+  console.log( 'sing in anonymously error', errorMessage )
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  console.log( 'sing in anonymously error', errorMessage )
+  // ...
+});
+
 }
 
 const startLogout = () => {
@@ -62,6 +86,8 @@ const Fb = {
   propertys,
   startLogin,
   startLogout,
+  startLoginAnonyhmously,
+  startLoginFacebook,
   //propertysForRent,
   //propertysForSale,
   //propertysForLease,
@@ -70,4 +96,5 @@ const Fb = {
 };
 
 var githubProvider = new firebase.auth.GithubAuthProvider();
+var facebookProvider = new firebase.auth.FacebookAuthProvider();
 export { Fb, githubProvider };

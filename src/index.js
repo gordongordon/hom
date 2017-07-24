@@ -83,7 +83,7 @@ firebase.auth().onAuthStateChanged( (user) => {
      console.log( 'user signed')
      // Redirect to member page!
      //MobxStore.app.startLogin();
-     Fb.startLogin();
+     // Fb.startLogin();
      MobxStore.app.uid = user.uid;
 
      Fb.app.updateUid();
