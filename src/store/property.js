@@ -20,6 +20,7 @@ export class Property{
     id = uuid();
     uid = undefined;
     fbid = undefined;  // firebase id
+    relatedFbid = null; // this property related to this fbid;
     // the text of the todo; notice the "@observable" decorator.
     // The decorator, imported from mobx library in the first line,
     // will tell that this value is observable and computed values or observer
@@ -132,6 +133,7 @@ export class Property{
             id: this.id,
             uid: this.uid,
             fbid: this.fbid,
+            relatedFbid : this.relatedFbid,
 //            text: this.text,
             done: this.done,
 //            location : this.location,
@@ -224,6 +226,7 @@ export class Property{
       this.id =  v.id,
       this.uid = v.uid,
       this.fbid = v.fbid,
+      this.relatedFbid  = v.relatedFbid,
 //            text: this.text,
       this.done = v.done,
 //            location : this.location,

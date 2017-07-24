@@ -36,21 +36,19 @@ class MatchBuyPanelView extends React.Component {
   render() {
 //        var property = propertys.propertys.get(this.props.keyID);
 //        var property = propertys.propertys.get("-Kof2Ki5bbvt5MS2QJMG");
-        var property = propertys.propertys.get(MobxStore.router.params.keyID );
+    var property = propertys.propertys.get(MobxStore.router.params.keyID );
 
-        //console.log( 'keyID', this.props.keyID )
-        // console.log( 'store.queryParams.keyID', store.router.queryParams.keyID )
-        console.log( 'store.params.keyID', MobxStore.router.params.keyID )
+    //console.log( 'keyID', this.props.keyID )
+    // console.log( 'store.queryParams.keyID', store.router.queryParams.keyID )
+    console.log( 'store.params.keyID', MobxStore.router.params.keyID )
 
-
-        console.log( 'matchPanelView property', property )
-        //console.log( 'matchPanelView propertys.size', propertys.propertys.size )
-        //console.log( 'matchPanelView matched propertys', property.matchedPropertys.size)
-        // const that = this;
-        // const { getFieldProps } = this.props.form;
-        // const minDate = moment().locale('zh-cn').utcOffset(8);
-        // const maxDate = moment(minDate).add(6, 'M');
-
+    console.log( 'matchPanelView property', property )
+    // console.log( 'matchPanelView propertys.size', propertys.propertys.size )
+    // console.log( 'matchPanelView matched propertys', property.matchedPropertys.size)
+    // const that = this;
+    // const { getFieldProps } = this.props.form;
+    // const minDate = moment().locale('zh-cn').utcOffset(8);
+    // const maxDate = moment(minDate).add(6, 'M');
 
     return (
       <div>

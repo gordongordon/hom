@@ -17,7 +17,11 @@ import {FormSalePropertyAntMobileWrapper} from 'form/formSalePropertyAntMobile';
 import {FormLeasePropertyAntMobileWrapper} from 'form/formLeasePropertyAntMobile';
 import {FormBuyPropertyAntMobileWrapper} from 'form/formBuyPropertyAntMobile';
 import {FormRentPropertyAntMobileWrapper} from 'form/formRentPropertyAntMobile';
-
+// From for agents
+import {FormBuyAgentPropertyAntMobileWrapper} from 'form/formBuyAgentPropertyAntMobile';
+import {FormSaleAgentPropertyAntMobileWrapper} from 'form/formSaleAgentPropertyAntMobile';
+import {FormRentAgentPropertyAntMobileWrapper} from 'form/formRentAgentPropertyAntMobile';
+import {FormLeaseAgentPropertyAntMobileWrapper} from 'form/formLeaseAgentPropertyAntMobile';
 // Match Panel views
 import {MatchLeasePanelViewWrapper} from 'matchPanel/matchLeasePanelView'
 import {MatchRentPanelViewWrapper} from 'matchPanel/matchRentPanelView'
@@ -230,7 +234,58 @@ const views = {
       MobxStore.app.previousView = route;
     }
   }),
+buyAgentForm : new Route({
+  path: '/buyAgentForm',
+  component: <FormBuyAgentPropertyAntMobileWrapper />,
+  onEnter: (route, params, store, queryParams) => {
+    MobxStore.app.setTitle( '地產代理回復 賣家');
 
+  },
+  beforeExit: (route, params) => {
+    console.log('exiting ListOfPRoperysView!');
+    console.log('params changed to', params);
+    MobxStore.app.previousView = route;
+  }
+}),
+saleAgentForm : new Route({
+  path: '/SaleAgentForm',
+  component: <FormSaleAgentPropertyAntMobileWrapper />,
+  onEnter: (route, params, store, queryParams) => {
+    MobxStore.app.setTitle( '地產代理回復 買家');
+
+  },
+  beforeExit: (route, params) => {
+    console.log('exiting ListOfPRoperysView!');
+    console.log('params changed to', params);
+    MobxStore.app.previousView = route;
+  }
+}),
+rentAgentForm : new Route({
+  path: '/RentAgentForm',
+  component: <FormRentAgentPropertyAntMobileWrapper />,
+  onEnter: (route, params, store, queryParams) => {
+    MobxStore.app.setTitle( '地產代理回復 放 租');
+
+  },
+  beforeExit: (route, params) => {
+    console.log('exiting ListOfPRoperysView!');
+    console.log('params changed to', params);
+    MobxStore.app.previousView = route;
+  }
+}),
+leaseAgentForm : new Route({
+  path: '/LeaseAgentForm',
+  component: <FormLeaseAgentPropertyAntMobileWrapper />,
+  onEnter: (route, params, store, queryParams) => {
+    MobxStore.app.setTitle( '地產代理回復 租 屋');
+
+  },
+  beforeExit: (route, params) => {
+    console.log('exiting ListOfPRoperysView!');
+    console.log('params changed to', params);
+    MobxStore.app.previousView = route;
+  }
+}),
   // For Chat bot example
   // formSaleChatbot : new Route({
   //   path: '/FormSaleChatbox',

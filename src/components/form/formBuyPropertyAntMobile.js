@@ -148,12 +148,12 @@ class FormBuyPropertyAntMobile extends React.Component {
     p.contactPhone = parseInt(v.contactPhone);
     p.contactEmail = v.contactEmail;
 
-    const id = Fb.app.propertysRef.push().key;
+    const id = Fb.app.usersRef.push().key;
     p.typeFor = "sale"
     p.typeTo = "buy"
     p.fbid = id;
 
-    Fb.app.propertysRef.update( {[id]:  p.serialize() });
+    Fb.app.usersRef.update( {[id]:  p.serialize() });
 
     Fb.propertys.child( id ).set( p.serialize() );
 
@@ -337,14 +337,6 @@ class FormBuyPropertyAntMobile extends React.Component {
                         />}
 
                 >要求有樓睇</List.Item>
-
-                <InputItem
-                  {...getFieldProps('contactName', {
-                    initialValue : 'Gordon',
-                  }) }
-                  type="text"
-                  clear
-                >姓名</InputItem>
 
                 <InputItem
                   {...getFieldProps('contactName', {

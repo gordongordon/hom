@@ -3,7 +3,7 @@ import { List , Toast, NoticeBar , Icon, Card, SwipeAction, Stepper, Picker, Dat
 import { createForm } from 'rc-form';
 // import moment from 'moment';
 // import 'moment/locale/zh-cn';
-import {propertys} from 'propertysViewModel'
+import {propertysAgent} from 'propertysAgentViewModel'
 import { observer } from 'mobx-react';
 import MobxStore from 'mobxStore';
 import views from 'views';
@@ -90,8 +90,8 @@ export class ListOfMatchAgentPropertyView extends React.Component {
          onOpen={() => console.log('global open')}
          onClose={() => console.log('global close')}
        >
-       <Item  arrow="horizontal" onClick={ () => MobxStore.router.goTo( views.lease, {keyID} ) } multipleLine extra={<div>租金${property.leasePrice}</div>}>
-          { BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>實用面積{ property.netSize }呎</Brief>
+       <Item  arrow="horizontal" onClick={ () => MobxStore.router.goTo( views.rentAgentForm, {keyID} ) } multipleLine extra={<div>租金${property.leasePrice}</div>}>
+          { BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>實用面積{ property.netSize }呎</Brief>{keyID}
        </Item>
        </SwipeAction>
      </div>
@@ -131,8 +131,8 @@ export class ListOfMatchAgentPropertyView extends React.Component {
    onOpen={() => console.log('global open')}
    onClose={() => console.log('global close')}
  >
- <Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.rent, {keyID} ) } multipleLine extra={<div>租金上限${property.rentBudgetMax}</div>} >
-    { BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>最少{ property.netSizeMin }呎實用面積</Brief>
+ <Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.leaseAgentForm, {keyID} ) } multipleLine extra={<div>租金上限${property.rentBudgetMax}</div>} >
+    { BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>最少{ property.netSizeMin }呎實用面積</Brief>{keyID}
  </Item>
  </SwipeAction></div>
 ) }  // end of rent
@@ -169,8 +169,8 @@ left={[
 onOpen={() => console.log('global open')}
 onClose={() => console.log('global close')}
 >
-<Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.buy, {keyID} ) } multipleLine extra={<div>預算上限${property.buyBudgetMax}萬</div>} >
-  { BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>最少 {property.netSizeMin }呎實用面積</Brief>
+<Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.saleAgentForm, {keyID} ) } multipleLine extra={<div>預算上限${property.buyBudgetMax}萬</div>} >
+  { BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>最少 {property.netSizeMin }呎實用面積</Brief>{keyID}
 </Item>
 </SwipeAction></div>
 ) }  // end of buy
@@ -208,14 +208,11 @@ left={[
 onOpen={() => console.log('global open')}
 onClose={() => console.log('global close')}
 >
-<Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.sale, {keyID} ) } multipleLine extra={<div>售價${property.salePrice}萬</div>} >
-{ BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>實用面積:{ property.netSize }呎</Brief>
+<Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.buyAgentForm , {keyID} ) } multipleLine extra={<div>售價${property.salePrice}萬</div>} >
+{ BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>實用面積:{ property.netSize }呎</Brief> {keyID}
 </Item>
 </SwipeAction></div>
 ) }  // end of sale
-
-
-
 
      })
      return <div>{element}</div>
@@ -223,12 +220,13 @@ onClose={() => console.log('global close')}
 
   render() {
 
+   //const property  = this.props.property;
+   //const propertys =
+
     //console.log( "title", this.props.title)
     const {store} = this.props;
 
-//    console.log( 'list of properys view .store', store)
-
-
+//  console.log( 'list of properys view .store', store)
     const that = this;
     var {handleNextProperty} = this.props;
 
@@ -238,7 +236,7 @@ onClose={() => console.log('global close')}
           以下是你的過往配對!
         </NoticeBar>
       <List renderHeader={() => '你搜尋嘅樓盤'} className="my-list">
-         { that.renderPropertys( propertys, propertys.propertys, handleNextProperty) }
+         { that.renderPropertys( propertysAgent, propertysAgent.propertys, handleNextProperty) }
       </List>
     </div>
     )

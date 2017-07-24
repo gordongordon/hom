@@ -107,7 +107,7 @@ class PropertysViewModel {
     const that = this;
     // Handle Child_added
     //if ( Fb.app.propertysRef !== undefined ) {
-    Fb.app.propertysRef.on('child_added', (snapshot) => {
+    Fb.app.usersRef.on('child_added', (snapshot) => {
 
             console.log( "fire", snapshot.val() )
             var p = new Propertyhk();
@@ -115,17 +115,6 @@ class PropertysViewModel {
             // restore can be imppletemt  deserialize
             p.restore( snapshot.val() )
             console.log( 'p', p)
-//            console.log( 'snapddd', snapshot.val() )
-            // p.done = snapshot.val().done
-            // p.contactName = snapshot.val().contactName
-            // p.nameOfBuilding = snapshot.val().nameOfBuilding;
-            // p.location = snapshot.val().location
-            // p.nearByMtrLine = snapshot.val().nearByMtrLine
-            // p.nearByMtrStop = snapshot.val().nearByMtrStop
-            // p.salePrice = snapshot.val().salePrice
-            // p.typeTo = snapshot.val().typeTo
-            // p.typeBy = snapshot.val().typeBy
-            // p.typeFor = snapshot.val().typeFor
 
             p.buildMatchProperty( snapshot.key, p.typeFor, p.location);
 
@@ -134,7 +123,7 @@ class PropertysViewModel {
     });
 
    // Handle child_removed
-   Fb.app.propertysRef.on('child_removed', (snapshot) => {
+   Fb.app.usersRef.on('child_removed', (snapshot) => {
                 that.propertys.delete( snapshot.key );
                 // console.log('that.propertys.size', that.propertys.size)
    });
@@ -143,7 +132,7 @@ class PropertysViewModel {
   }
 
   add = (name) => {
-    const id = Fb.app.propertysRef.push().key;
+    const id = Fb.app.usersRef.push().key;
     this.update(id, name );
   };
   //
@@ -205,9 +194,6 @@ class PropertysViewModel {
   //   return Fb.app.propertysRef.update(updates);
   // }
 
-
-
-
   /**
    * @compareTo is name of variable e.g. name, price, location
    * @valueTo   is value equal to.  e.g. 'shatin'
@@ -220,7 +206,7 @@ class PropertysViewModel {
     //this.writeNewPost( 1233, 'gordon', 'picture', 'title', 'body')
 
     // Handle match propertys
-     Fb.app.propertysRef.orderByChild(compareTo).equalTo(valueTo).on("child_added", function(snap) {
+     Fb.app.usersRef.orderByChild(compareTo).equalTo(valueTo).on("child_added", function(snap) {
 
           Fb.app.matchedPropertysRef.child( snap.key ).set( snap.val() )
 //          Fb.app.propertysRef.update( { snap.key : { } })
@@ -228,7 +214,7 @@ class PropertysViewModel {
           console.log('matchProperty.size', that.matchedPropertys.size)
      });
 
-     Fb.app.propertysRef.orderByChild(compareTo).equalTo(valueTo).on("child_removed", function(snap) {
+     Fb.app.usersRef.orderByChild(compareTo).equalTo(valueTo).on("child_removed", function(snap) {
 
          that.matchedPropertys.delete( snap.key );
          console.log('matchProperty.size', that.matchedPropertys.size)
@@ -236,11 +222,6 @@ class PropertysViewModel {
 
 
   }
-
-
-  // likeProperty = (id)
-  // rejectProperty()
-  // viewProperty()
 
   update = (id, name) => {
      Fb.app.propertysRef.update({[id]: { name } }  )

@@ -13,6 +13,7 @@ export default class NavigationBar extends React.Component {
    constructor( props ){
      super( props )
      this.state = {
+       loginName : 'none',
        isLeftIcon : false,
        visible: false,
        selected: ''
@@ -24,15 +25,27 @@ export default class NavigationBar extends React.Component {
 
      if ( opt.props.value === 'google') {
        Fb.startLoginGoogle();
+       this.setState( {
+         loginName  : 'google'
+       })
      }
      if ( opt.props.value === 'github') {
        Fb.startLogin();
+       this.setState( {
+         loginName  : 'github'
+       })
      }
      if ( opt.props.value === 'facebook') {
        Fb.startLoginFacebook();
+       this.setState( {
+         loginName  : 'fb'
+       })
      }
      if ( opt.props.value === 'Anonymous') {
        Fb.startLoginAnonyhmously()
+       this.setState( {
+         loginName  : 'Guest'
+       })
      }
 
 
@@ -109,6 +122,7 @@ export default class NavigationBar extends React.Component {
 
 render() {
    const title = this.props.title;
+
    var leftContentLabel = "上一頁";
   //  let offsetX = -10; // just for pc demo
   //  if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
@@ -130,7 +144,7 @@ render() {
          rightContent={[
            <div key="1">{this.loginItem()}</div>
          ]}
-       >{MobxStore.app.title}</NavBar>
+       >{this.state.loginName}{MobxStore.app.title}</NavBar>
      </div>
    )
 

@@ -2,7 +2,10 @@ var path = require('path');
 var webpack = require('webpack');
 const pxtorem = require('postcss-pxtorem');
 
-
+const svgDirs = [
+  require.resolve('antd-mobile').replace(/warn\.js$/, ''),  // 1. 属于 antd-mobile 内置 svg 文件
+  // path.resolve(__dirname, 'src/my-project-svg-foler'),  // 2. 自己私人的 svg 存放目录
+];
 //var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 //const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
