@@ -22,6 +22,9 @@ export default class NavigationBar extends React.Component {
    onSelect = (opt) => {
      console.log(opt.props.value);
 
+     if ( opt.props.value === 'google') {
+       Fb.startLoginGoogle();
+     }
      if ( opt.props.value === 'github') {
        Fb.startLogin();
      }
@@ -69,11 +72,13 @@ export default class NavigationBar extends React.Component {
      if ( isLogin ) {
        return <span key="2" onClick={ this.onLogout }>logout</span>;
     } else {
+       // For different user login
        return  <Popover mask
           overlayClassName="fortest"
           overlayStyle={{ color: 'currentColor' }}
           visible={this.state.visible}
           overlay={[
+            (<Item key="3" value="google" data-seed="logId">google</Item>),
             (<Item key="4" value="github" data-seed="logId">Github</Item>),
             (<Item key="5" value="facebook" style={{ whiteSpace: 'nowrap' }}>Facebook</Item>),
             (<Item key="6" value="Anonymous">
