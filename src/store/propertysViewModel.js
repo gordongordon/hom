@@ -248,6 +248,7 @@ class PropertysViewModel {
 
   del = (id) => {
     Fb.app.propertysRef.child(id).remove();
+    Fb.propertys.child(id).remove();
     //this.propertys.delete( id );
   };
 }

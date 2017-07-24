@@ -146,13 +146,10 @@ class FormSalePropertyAntMobile extends React.Component {
     p.typeTo = "sale"
     Fb.app.propertysRef.update( {[id]:  p.serialize() });
 
-    const id2 = Fb.propertys.push().key;
-    Fb.propertys.update( {[id2]:  p.serialize() });
+//    const id2 = Fb.propertys.push().key;
+    Fb.propertys.child( id ).set( p.serialize() );
 
     MobxStore.router.goTo( views.matchSale, { keyID : id  } )
-
-
-
 
   }
 

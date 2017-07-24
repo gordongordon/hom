@@ -1,8 +1,8 @@
 import React from 'react'
 import { List , Toast, NoticeBar , Icon, Card, SwipeAction, Stepper, Picker, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl } from 'antd-mobile';
 import { createForm } from 'rc-form';
-import moment from 'moment';
-import 'moment/locale/zh-cn';
+// import moment from 'moment';
+// import 'moment/locale/zh-cn';
 import {propertys} from 'propertysViewModel'
 import { observer } from 'mobx-react';
 import MobxStore from 'mobxStore';
