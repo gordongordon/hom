@@ -121,6 +121,7 @@ class FormBuyPropertyAntMobile extends React.Component {
   {
     var p = new Property();
 
+    p.uid = MobxStore.app.uid;
 
     p.nameOfBuilding = v.nameOfBuilding[0]
     // p.dueDay = v.dueDay.toJSON();
@@ -150,6 +151,7 @@ class FormBuyPropertyAntMobile extends React.Component {
     const id = Fb.app.propertysRef.push().key;
     p.typeFor = "sale"
     p.typeTo = "buy"
+    p.fbid = id;
 
     Fb.app.propertysRef.update( {[id]:  p.serialize() });
 

@@ -127,6 +127,7 @@ class FormLeasePropertyAntMobile extends React.Component {
 
     //p.nearByMtrLine = v.nearByMtrLine;
     //p.nearByMtrStop = v.nearByMtrStop;
+    p.uid = MobxStore.app.uid;
 
     p.nameOfBuilding = v.nameOfBuilding[0]
     p.dueDay = v.dueDay.toJSON();
@@ -148,6 +149,8 @@ class FormLeasePropertyAntMobile extends React.Component {
     const id = Fb.app.propertysRef.push().key;
     p.typeFor = "rent"
     p.typeTo = "lease"
+    p.fbid = id;
+    
     Fb.app.propertysRef.update( {[id]:  p.serialize() });
 
     Fb.propertys.child( id ).set( p.serialize() );

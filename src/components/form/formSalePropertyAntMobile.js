@@ -116,6 +116,7 @@ class FormSalePropertyAntMobile extends React.Component {
 
     // p.nearByMtrLine = nearByMtrLine;
     // p.nearByMtrStop = nearByMtrStop;
+    p.uid = MobxStore.app.uid;
 
     p.nameOfBuilding = v.nameOfBuilding[0]
     // p.dueDay = v.dueDay.toJSON();

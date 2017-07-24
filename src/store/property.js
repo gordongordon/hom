@@ -18,6 +18,8 @@ export class Property{
     // a unique id is automatically assigned when the todo object is instanced.
     //id = nextId()
     id = uuid();
+    uid = undefined;
+    fbid = undefined;  // firebase id
     // the text of the todo; notice the "@observable" decorator.
     // The decorator, imported from mobx library in the first line,
     // will tell that this value is observable and computed values or observer
@@ -128,10 +130,13 @@ export class Property{
 
         return {
             id: this.id,
+            uid: this.uid,
+            fbid: this.fbid,
 //            text: this.text,
             done: this.done,
 //            location : this.location,
             type: this.type,
+
 
             isAgent: this.isAgent,
             createdAt: this.createdAt,
@@ -217,6 +222,8 @@ export class Property{
 
     restore( v ) {
       this.id =  v.id,
+      this.uid = v.uid,
+      this.fbid = v.fbid,
 //            text: this.text,
       this.done = v.done,
 //            location : this.location,
