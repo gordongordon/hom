@@ -209,7 +209,7 @@ onOpen={() => console.log('global open')}
 onClose={() => console.log('global close')}
 >
 <Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.matchSale, {keyID} ) } multipleLine extra={<div>售價${property.salePrice}萬</div>} >
-{ BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>實用面積:{ property.netSize }呎</Brief>{keyID} 
+{ BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>實用面積:{ property.netSize }呎</Brief>{keyID}
 </Item>
 </SwipeAction></div>
 ) }  // end of sale
@@ -218,7 +218,7 @@ onClose={() => console.log('global close')}
 
 
      })
-     return <div>{element}</div>
+     return <div>{element.reverse()}</div>
   }
 
   render() {

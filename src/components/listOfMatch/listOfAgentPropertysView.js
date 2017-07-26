@@ -215,7 +215,7 @@ onClose={() => console.log('global close')}
 ) }  // end of sale
 
      })
-     return <div>{element}</div>
+     return <div>{element.reverse()}</div>
   }
 
   render() {

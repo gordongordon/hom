@@ -29,7 +29,7 @@ export class ListOfMatchRentPropertys extends React.Component {
      list.forEach( (property, keyID) => element.push(
        <SingleRentPropertyForMatchViewWrapper property={property} key={keyID}/>
      ) )
-     return <div>{element}</div>
+     return <div>{element.reverse()}</div>
   }
 
 

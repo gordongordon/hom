@@ -29,7 +29,7 @@ export class ListOfMatchSalePropertys extends React.Component {
      list.forEach( (property, keyID) => element.push(
        <SingleSalePropertyForMatchViewWrapper property={property} key={keyID}/>
      ) )
-     return <div>{element}</div>
+     return <div>{element.reverse()}</div>
   }
 
 

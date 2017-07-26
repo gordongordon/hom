@@ -57,7 +57,6 @@ const startLoginFacebook = () => {
   return firebase.auth().signInWithPopup( facebookProvider).then( (result) => {
      //this.user = true;
      //Fb.app.updateUid();
-
      console.log( 'Auth Worked', result )
   }, () => {
     console.log( 'unable to login' );
