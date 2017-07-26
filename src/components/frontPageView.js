@@ -49,6 +49,16 @@ onLogin = ( store ) => {
    store.app.startLogin();
 }
 
+renderHistoryButton = ( store ) => {
+  if ( store.app.user ) {
+    return (<div>
+            <WhiteSpace />
+            <Button type="ghost" onClick={ () => goTo( views.list, store.app.params, store )}>過往配對如有></Button>
+            </div>
+  ) }
+}
+
+
 render ()  {
   const {store} = this.props;
   const {router: {goTo}} = store;
@@ -72,8 +82,7 @@ render ()  {
     <WhiteSpace />
     <WhiteSpace />
       <Button type="primary" onClick={ () => this.loadingToast( store, goTo ) }>買 樓></Button>
-    <WhiteSpace />
-      <Button type="ghost" onClick={ () => goTo( views.list, store.app.params, store )}>過往配對如有></Button>
+      { this.renderHistoryButton( store )  }
     <WhiteSpace />
       <Button type="ghost" onClick={ () => goTo( views.matchAgent, store.app.params, store )}> Agent </Button>
     <WhiteSpace />

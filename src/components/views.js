@@ -29,6 +29,8 @@ import {MatchSalePanelViewWrapper} from 'matchPanel/matchSalePanelView'
 import {MatchBuyPanelViewWrapper} from 'matchPanel/matchBuyPanelView'
 import {MatchAgentPanelViewWrapper} from 'matchPanel/matchAgentPanelView'
 
+import {AgentAppView} from 'agentAppView'
+
 // From chatbot
 //import FormSaleChatbot from 'chatbot/formSaleChatbot'
 //import BMIChatbot from 'chatbot/bmiChatbot'
@@ -44,6 +46,18 @@ const views = {
     component: <FrontPageView/>,
     onEnter: (route, params, store, queryParams) => {
       MobxStore.app.setTitle( '好 .. Matching');
+    },
+    beforeExit: (route, params) => {
+      console.log('exiting ListOfPRoperysView!');
+      console.log('params changed to', params);
+      MobxStore.app.previousView = route;
+    }
+  }),
+  agent: new Route({
+    path: '/agent',
+    component: <AgentAppView/>,
+    onEnter: (route, params, store, queryParams) => {
+      MobxStore.app.setTitle( 'Agent App View');
     },
     beforeExit: (route, params) => {
       console.log('exiting ListOfPRoperysView!');
