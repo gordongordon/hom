@@ -72,16 +72,16 @@ render ()  {
     <WhiteSpace />
     <WhiteSpace />
     <WhiteSpace />
-      <Button type="primary" onClick={ () => goTo( views.lease, store.app.params, store )}>放 租></Button>
+      <Button type="primary" onClick={ () => goTo( views.lease, store.app.params, store )}>放 租</Button>
     <WhiteSpace />
     <WhiteSpace />
-      <Button type="primary" onClick={ () => goTo( views.rent,  store.app.params, store )}>租 屋></Button>
+      <Button type="primary" onClick={ () => goTo( views.rent,  store.app.params, store )}>租 屋</Button>
     <WhiteSpace />
     <WhiteSpace />
-      <Button type="primary" onClick={ () => goTo( views.sale, store.app.params, store )}>賣 樓></Button>
+      <Button type="primary" onClick={ () => goTo( views.sale, store.app.params, store )}>賣 樓</Button>
     <WhiteSpace />
     <WhiteSpace />
-      <Button type="primary" onClick={ () => this.loadingToast( store, goTo ) }>買 樓></Button>
+      <Button type="primary" onClick={ () => this.loadingToast( store, goTo ) }>買 樓</Button>
       { this.renderHistoryButton( store )  }
     <WhiteSpace />
       <Button type="ghost" onClick={ () => goTo( views.matchAgent, store.app.params, store )}> Agent </Button>

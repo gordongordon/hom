@@ -10,8 +10,11 @@ import firebase from 'firebase';
 class PropertysAgentViewModel {
 
 //  @observable propertys = observable.map({});
-  @observable propertys = observable.map({});
-  @observable ownPropertys = observable.map({});
+@observable propertys = new Map();
+@observable ownPropertys = new Map();
+
+//  @observable propertys = observable.map({});
+//  @observable ownPropertys = observable.map({});
   //@observable matchedPropertys = observable.map({});
 
   //@observable propertys = map({});
@@ -33,7 +36,7 @@ class PropertysAgentViewModel {
   init = () => {
     const that = this;
 
-   
+
     Fb.propertys.on('child_added', (snapshot) => {
 
             console.log( "fire", snapshot.val() )
@@ -131,6 +134,12 @@ class PropertysAgentViewModel {
     Fb.app.agentsRef.child(id).remove();
     // Fb.propertys.child(id).remove();
     //this.propertys.delete( id );
+  };
+
+  @action
+  clear = () => {
+    this.propertys.clear();
+    this.ownPropertys.clear();
   };
 }
 

@@ -1,6 +1,9 @@
 import firebase from 'firebase';
 import MobxStore from 'mobxStore'
 import AppStore from 'app-store'
+//import {propertys} from 'propertysViewModel'
+import {propertysAgent} from 'propertysAgentViewModel'
+
 
 try {
 
@@ -72,6 +75,9 @@ firebase.auth().signInAnonymously().catch(function(error) {
 const startLogout = () => {
   return firebase.auth().signOut().then( ()=> {
     console.log( 'Logged out!')
+    //propertys.clear();
+    // propertysAgent.clear();
+    propertysAgent.clear();    
   }) ;
 }
 

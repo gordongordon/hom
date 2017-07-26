@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {MobxRouter, startRouter} from 'mobx-router';
-import {FrontPageTabBar} from 'frontPageTabBar';
+//import {FrontPageTabBar} from 'frontPageTabBar';
 
 //mobx
 import {Provider} from 'mobx-react';
@@ -85,13 +85,13 @@ firebase.auth().onAuthStateChanged( (user) => {
      //MobxStore.app.startLogin();
      // Fb.startLogin();
      MobxStore.app.uid = user.uid;
-
      Fb.app.updateUid();
      MobxStore.router.goTo( views.list , {}, MobxStore )
   } else {
        console.log( 'user donot sign')
        //MobxStore.app.startLogout();
        Fb.startLogout();
+
        MobxStore.app.uid = undefined;
        MobxStore.router.goTo( views.home , {}, MobxStore )
 
