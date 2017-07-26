@@ -53,6 +53,15 @@ class MatchLeasePanelView extends React.Component {
       return  <ListOfMatchOldRentPropertys propertys={property.matchedPropertys}/>
     }
   }
+
+  renderNoticeBarMessage = () => {
+    if ( this.state.selectedSegmentIndex === 0 ) {
+      return <div>  以下是 HoMatching 為你即時配對請等待樓盤!</div>
+    } else {
+      return <div>  以下是 HoMatching 為你配對嘅客!</div>
+    }
+  }
+
   render() {
         var property = propertys.propertys.get(MobxStore.router.params.keyID );
 
@@ -63,7 +72,7 @@ class MatchLeasePanelView extends React.Component {
       <div>
         <ControlLeaseViewWrapper property={property} selectedIndex={this.state.selectedSegmentIndex} onChange={this.onChange.bind(this)} />
     <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
-      以下是 HoMatching 為你配對嘅客!
+      { this.renderNoticeBarMessage() }
     </NoticeBar>
     <WhiteSpace size="sm" />
       {this.renderList( property )}

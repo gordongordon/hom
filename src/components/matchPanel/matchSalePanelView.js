@@ -55,6 +55,15 @@ class MatchSalePanelView extends React.Component {
     }
   }
 
+  renderNoticeBarMessage = () => {
+    if ( this.state.selectedSegmentIndex === 0 ) {
+      return <div>  以下是 HoMatching 為你即時配對請等待樓盤!</div>
+    } else {
+      return <div>  以下是 HoMatching 為你配對嘅客!</div>
+    }
+  }
+
+
   render() {
 //        var property = propertys.propertys.get(this.props.keyID);
 //        var property = propertys.propertys.get("-Kof2Ki5bbvt5MS2QJMG");
@@ -79,7 +88,7 @@ class MatchSalePanelView extends React.Component {
       <ControlSaleViewWrapper property={property} selectedIndex={this.state.selectedSegmentIndex} onChange={this.onChange.bind(this)}/>
 
     <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
-      以下是 HoMatching 為你配對嘅客!
+      { this.renderNoticeBarMessage() }
     </NoticeBar>
     <WhiteSpace size="sm" />
             {this.renderList( property )}
