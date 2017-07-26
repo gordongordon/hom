@@ -1,8 +1,8 @@
 import firebase from 'firebase';
 import MobxStore from 'mobxStore'
 import AppStore from 'app-store'
-//import {propertys} from 'propertysViewModel'
-import {propertysAgent} from 'propertysAgentViewModel'
+import {propertys as userPropertysModel} from 'propertysViewModel'
+import {agentModel} from 'agentModelView'
 
 
 try {
@@ -19,6 +19,8 @@ firebase.initializeApp(config);
 
 const startLogin = () => {
   return firebase.auth().signInWithPopup( githubProvider ).then( (result) => {
+    // Fb.app.updateUid();
+
      console.log( 'Auth Worked', result )
   }, () => {
     console.log( 'unable to login' );
@@ -34,6 +36,8 @@ const startLoginGoogle = () => {
   // The signed-in user info.
   var user = result.user;
   // ...
+  //Fb.app.updateUid();
+
   console.log( 'Auth Worked', result )
 }).catch(function(error) {
   // Handle Errors here.
@@ -52,6 +56,8 @@ const startLoginGoogle = () => {
 const startLoginFacebook = () => {
   return firebase.auth().signInWithPopup( facebookProvider).then( (result) => {
      //this.user = true;
+     //Fb.app.updateUid();
+
      console.log( 'Auth Worked', result )
   }, () => {
     console.log( 'unable to login' );
@@ -61,14 +67,27 @@ const startLoginFacebook = () => {
 
 const startLoginAnonyhmously = () => {
 
-firebase.auth().signInAnonymously().catch(function(error) {
-  // Handle Errors here.
-  console.log( 'sing in anonymously error', errorMessage )
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  console.log( 'sing in anonymously error', errorMessage )
-  // ...
+firebase.auth().signInAnonymously().then(function(snapshot) {
+  // The callback succeeded; do something with the final result.
+  console.log( 'signInAnonymously completed')
+
+  //Fb.app.updateUid();
+
+  return true;
+}, function(error) {
+  return false;
+  // The callback failed.
+  console.error(error);
 });
+
+// .catch(function(error) {
+//   // Handle Errors here.
+//   console.log( 'sing in anonymously error', errorMessage )
+//   var errorCode = error.code;
+//   var errorMessage = error.message;
+//   console.log( 'sing in anonymously error', errorMessage )
+//   // ...
+// });
 
 }
 
@@ -76,8 +95,12 @@ const startLogout = () => {
   return firebase.auth().signOut().then( ()=> {
     console.log( 'Logged out!')
     //propertys.clear();
-    // propertysAgent.clear();
-    propertysAgent.clear();    
+    // agentModel.clear();
+
+    MobxStore.app.user = false;
+    userPropertysModel.clear();
+    MobxStore.app.uid = null;
+    agentModel.clear();
   }) ;
 }
 

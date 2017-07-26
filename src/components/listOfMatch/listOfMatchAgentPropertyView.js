@@ -3,7 +3,7 @@ import { List , Toast, NoticeBar , Icon, Card, SwipeAction, Stepper, Picker, Dat
 import { createForm } from 'rc-form';
 // import moment from 'moment';
 // import 'moment/locale/zh-cn';
-import {propertysAgent} from 'propertysAgentViewModel'
+import {agentModel} from 'agentModelView'
 import { observer } from 'mobx-react';
 import MobxStore from 'mobxStore';
 import views from 'views';
@@ -236,7 +236,7 @@ onClose={() => console.log('global close')}
           以下是你的過往配對!
         </NoticeBar>
       <List renderHeader={() => '你搜尋嘅樓盤'} className="my-list">
-         { that.renderPropertys( propertysAgent, propertysAgent.propertys, handleNextProperty) }
+         { that.renderPropertys( agentModel, agentModel.propertys, handleNextProperty) }
       </List>
     </div>
     )

@@ -12,7 +12,9 @@ import firebase from 'firebase';
 class PropertysViewModel {
 
 //  @observable propertys = observable.map({});
-  @observable propertys = observable.map({});
+  //@observable propertys = observable.map({});
+  @observable propertys = new Map();
+
   //@observable matchedPropertys = observable.map({});
 
   //@observable propertys = map({});
@@ -109,12 +111,12 @@ class PropertysViewModel {
     //if ( Fb.app.propertysRef !== undefined ) {
     Fb.app.usersRef.on('child_added', (snapshot) => {
 
-            console.log( "fire", snapshot.val() )
+            //console.log( "fire", snapshot.val() )
             var p = new Propertyhk();
 
             // restore can be imppletemt  deserialize
             p.restore( snapshot.val() )
-            console.log( 'p', p)
+            //console.log( 'p', p)
 
             p.buildMatchProperty( snapshot.key, p.typeFor, p.location);
 
@@ -232,6 +234,12 @@ class PropertysViewModel {
     Fb.propertys.child(id).remove();
     //this.propertys.delete( id );
   };
+
+  @action
+  clear = () => {
+    this.propertys.clear();
+  };
+
 }
 
 const propertys = new PropertysViewModel();

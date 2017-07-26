@@ -3,7 +3,7 @@ import {  NoticeBar,List , Card, Stepper, Icon, Picker, SwipeAction, DatePicker,
 import { createForm } from 'rc-form';
 // import moment from 'moment';
 // import 'moment/locale/zh-cn';
-import {propertysAgent} from 'propertysAgentViewModel'
+import {agentModel} from 'agentModelView'
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 //import {SingleRentPropertyForMatchViewWrapper} from 'singleRentPropertyForMatchView'
 //import {ControlAgentViewWrapper} from '../control/controlAgentView'
@@ -57,7 +57,7 @@ class MatchAgentPanelView extends React.Component {
 
   render() {
     const { getFieldProps } = this.props.form;
-    //var property = propertysAgent.propertys.get(MobxStore.router.params.keyID );
+    //var property = agentModel.propertys.get(MobxStore.router.params.keyID );
 
     //console.log( 'keyID', this.props.keyID )
     // console.log( 'store.queryParams.keyID', store.router.queryParams.keyID )

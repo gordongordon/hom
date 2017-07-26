@@ -53,7 +53,7 @@ renderHistoryButton = ( store ) => {
   if ( store.app.user ) {
     return (<div>
             <WhiteSpace />
-            <Button type="ghost" onClick={ () => goTo( views.list, store.app.params, store )}>過往配對如有></Button>
+            <Button type="ghost" onClick={ () => store.router.goTo( views.list, store.app.params, store )}>過往配對如有></Button>
             </div>
   ) }
 }

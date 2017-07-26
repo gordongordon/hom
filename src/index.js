@@ -78,13 +78,19 @@ firebase.auth().onAuthStateChanged( (user) => {
    // update currentUser login or not
    MobxStore.app.user = firebase.auth().currentUser;
    // MobxStore.app.user = true;
+   // User is signed in.
 
   if ( user)  {
+    //var isAnonymous = user.isAnonymous;
+    //var uid = user.uid;
+
      console.log( 'user signed')
      // Redirect to member page!
      //MobxStore.app.startLogin();
-     // Fb.startLogin();
+     //Fb.startLogin();
      MobxStore.app.uid = user.uid;
+
+     // Think over before remove this like, may cause matchedPropertys = null
      Fb.app.updateUid();
      MobxStore.router.goTo( views.list , {}, MobxStore )
   } else {
@@ -92,7 +98,7 @@ firebase.auth().onAuthStateChanged( (user) => {
        //MobxStore.app.startLogout();
        Fb.startLogout();
 
-       MobxStore.app.uid = undefined;
+       MobxStore.app.uid = null;
        MobxStore.router.goTo( views.home , {}, MobxStore )
 
   }

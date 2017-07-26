@@ -113,10 +113,10 @@ class FormSalePropertyAntMobile extends React.Component {
   addPropertyForSale = ( v ) =>
   {
     var p = new Property();
-
+    var id;
     // p.nearByMtrLine = nearByMtrLine;
     // p.nearByMtrStop = nearByMtrStop;
-    p.uid = MobxStore.app.uid;
+    //p.uid = MobxStore.app.uid;
 
     p.nameOfBuilding = v.nameOfBuilding[0]
     // p.dueDay = v.dueDay.toJSON();
@@ -141,8 +141,15 @@ class FormSalePropertyAntMobile extends React.Component {
     p.contactEmail = v.contactEmail;
 
 
-
-    const id = Fb.app.usersRef.push().key;
+    // Catch none user syn method wait to be true
+    if ( MobxStore.app.uid === null) {
+      if ( Fb.startLoginAnonyhmously() ) {
+         id = Fb.app.usersRef.push().key;
+      }
+    } else {
+         id = Fb.app.usersRef.push().key;
+    }
+    p.uid = MobxStore.app.uid;
     p.typeFor = "buy"
     p.typeTo = "sale"
     p.fbid = id;

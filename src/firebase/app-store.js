@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 import MobxStore from 'mobxStore'
 import {propertys} from 'propertysViewModel'
-import {propertysAgent} from 'propertysAgentViewModel'
+import {agentModel} from 'agentModelView'
 
 
 export default class AppStore {
@@ -27,6 +27,6 @@ export default class AppStore {
        // when app start will call an empty constructor
        propertys.init();
        // Agent only
-       propertysAgent.init();
+       agentModel.init();
     }
 }

@@ -124,10 +124,10 @@ class FormLeasePropertyAntMobile extends React.Component {
   {
 
     var p = new Property();
-
+    var id ;
     //p.nearByMtrLine = v.nearByMtrLine;
     //p.nearByMtrStop = v.nearByMtrStop;
-    p.uid = MobxStore.app.uid;
+    //p.uid = MobxStore.app.uid;
 
     p.nameOfBuilding = v.nameOfBuilding[0]
     p.dueDay = v.dueDay.toJSON();
@@ -146,7 +146,16 @@ class FormLeasePropertyAntMobile extends React.Component {
     p.contactPhone = parseInt(v.contactPhone);
     p.contactEmail = v.contactEmail;
 
-    const id = Fb.app.usersRef.push().key;
+    //debugger
+    if ( MobxStore.app.uid === null) {
+      if ( Fb.startLoginAnonyhmously() ) {
+        id = Fb.app.usersRef.push().key;
+      }
+    } else {
+        id = Fb.app.usersRef.push().key;
+    }
+
+    p.uid = MobxStore.app.uid;
     p.typeFor = "rent"
     p.typeTo = "lease"
     p.fbid = id;
@@ -156,7 +165,6 @@ class FormLeasePropertyAntMobile extends React.Component {
     Fb.propertys.child( id ).set( p.serialize() );
 
     MobxStore.router.goTo( views.matchLease, { keyID : id  } )
-
   }
 
 

@@ -136,10 +136,10 @@ class FormRentPropertyAntMobile extends React.Component {
   addPropertyForRent = ( v ) =>
   {
     var p = new Property();
-
+    var id;
     //p.nearByMtrLine = v.nearByMtrLine;
     //p.nearByMtrStop = v.nearByMtrStop;
-    p.uid = MobxStore.app.uid;
+//    p.uid = MobxStore.app.uid;
 
     p.nameOfBuilding = v.nameOfBuilding[0]
     p.jobNature = parseInt(v.jobNature[0]);
@@ -166,7 +166,16 @@ class FormRentPropertyAntMobile extends React.Component {
     p.contactPhone = parseInt(v.contactPhone);
     p.contactEmail = v.contactEmail;
 
-    const id = Fb.app.usersRef.push().key;
+     // catch non user
+    if ( MobxStore.app.uid === null) {
+      if ( Fb.startLoginAnonyhmously() ) {
+        id = Fb.app.usersRef.push().key;
+      }
+    } else {
+        id = Fb.app.usersRef.push().key;
+    }
+    p.uid = MobxStore.app.uid;
+
     p.typeFor = "lease"
     p.typeTo = "rent"
     p.fbid = id;
