@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "MobX Boilerplate with Ant.Design",
   "scripts": {
-    "start": "npm run build && node server.js",
+    "start": "node server.js",
     "build": "webpack",
     "make": "npm run build && node server.js",
     "static": "node serverwebdev.js",
