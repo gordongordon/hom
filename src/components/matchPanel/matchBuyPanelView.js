@@ -9,6 +9,7 @@ import {propertys} from 'propertysViewModel'
 import {ControlBuyViewWrapper} from '../control/controlBuyView'
 
 import {ListOfMatchSalePropertys} from '../listOfMatch/listOfMatchSalePropertys'
+import {ListOfMatchOldSalePropertys} from '../listOfMatch/listOfMatchOldSalePropertys'
 import { observer } from 'mobx-react';
 import MobxStore from 'mobxStore';
 
@@ -26,13 +27,33 @@ class MatchBuyPanelView extends React.Component {
 
   constructor(props) {
     super(props)
+    this.state = {
+      disabled: false,
+      selectedSegmentIndex: 0,
+    }
+  }
+
+  onChange = (e) => {
+    console.log( 'onChange in matchSalePanelView')
+    console.log(`selectedIndex:${e.nativeEvent.selectedSegmentIndex}`);
+    this.setState( {
+      selectedSegmentIndex : e.nativeEvent.selectedSegmentIndex
+    })
 
   }
 
-  state = {
-    disabled: false,
-    selectedSegmentIndex: 0,
+  // onValueChange = (value) => {
+  //   console.log(value);
+  // }
+
+  renderList = ( property ) => {
+    if ( this.state.selectedSegmentIndex === 0 ) {
+      return <ListOfMatchSalePropertys propertys={property.matchedPropertys} timeEnter={this.props.timeEnter}/>
+    } else {
+      return  <ListOfMatchOldSalePropertys propertys={property.matchedPropertys}/>
+    }
   }
+
   render() {
 //        var property = propertys.propertys.get(this.props.keyID);
 //        var property = propertys.propertys.get("-Kof2Ki5bbvt5MS2QJMG");
@@ -52,14 +73,13 @@ class MatchBuyPanelView extends React.Component {
 
     return (
       <div>
-      <ControlBuyViewWrapper property={property} />
+        <ControlBuyViewWrapper property={property} selectedIndex={this.state.selectedSegmentIndex} onChange={this.onChange.bind(this)} />
 
     <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
       以下是 HoMatching 為你配對嘅客!
     </NoticeBar>
     <WhiteSpace size="sm" />
-    <ListOfMatchSalePropertys propertys={property.matchedPropertys} timeEnter={this.props.timeEnter} />
-
+            {this.renderList( property )}
     </div>);
   }
 }

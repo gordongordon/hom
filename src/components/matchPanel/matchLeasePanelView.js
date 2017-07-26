@@ -9,6 +9,7 @@ import {ControlLeaseViewWrapper} from '../control/controlLeaseView'
 //import {SingleRentPropertyForMatchViewWrapper} from 'singleRentPropertyForMatchView'
 //import {ListOfMatchPropertys} from 'listOfMatch/listOfMatchPropertys'
 import {ListOfMatchRentPropertys} from '../listOfMatch/listOfMatchRentPropertys'
+import {ListOfMatchOldRentPropertys} from '../listOfMatch/listOfMatchOldRentPropertys'
 import { observer } from 'mobx-react';
 import MobxStore from 'mobxStore';
 
@@ -26,14 +27,32 @@ class MatchLeasePanelView extends React.Component {
 
   constructor(props) {
     super(props)
+    this.state = {
+      disabled: false,
+      selectedSegmentIndex: 0,
+    }
+  }
+
+  onChange = (e) => {
+    console.log( 'onChange in matchRentPanelView')
+    console.log(`selectedIndex:${e.nativeEvent.selectedSegmentIndex}`);
+    this.setState( {
+      selectedSegmentIndex : e.nativeEvent.selectedSegmentIndex
+    })
 
   }
 
-  state = {
-    disabled: false,
-    selectedSegmentIndex: 0,
-  }
+  // onValueChange = (value) => {
+  //   console.log(value);
+  // }
 
+  renderList = ( property ) => {
+    if ( this.state.selectedSegmentIndex === 0 ) {
+      return <ListOfMatchRentPropertys propertys={property.matchedPropertys} timeEnter={this.props.timeEnter}/>
+    } else {
+      return  <ListOfMatchOldRentPropertys propertys={property.matchedPropertys}/>
+    }
+  }
   render() {
         var property = propertys.propertys.get(MobxStore.router.params.keyID );
 
@@ -42,12 +61,12 @@ class MatchLeasePanelView extends React.Component {
 
     return (
       <div>
-    <ControlLeaseViewWrapper property={property} />
+        <ControlLeaseViewWrapper property={property} selectedIndex={this.state.selectedSegmentIndex} onChange={this.onChange.bind(this)} />
     <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
       以下是 HoMatching 為你配對嘅客!
     </NoticeBar>
     <WhiteSpace size="sm" />
-    <ListOfMatchRentPropertys propertys={property.matchedPropertys} timeEnter={this.props.timeEnter} />
+      {this.renderList( property )}
 
     </div>);
   }

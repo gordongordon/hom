@@ -10,6 +10,7 @@ import {ControlSaleViewWrapper} from '../control/controlSaleView'
 
 //import {ListOfMatchPropertys} from 'listOfMatch/listOfMatchPropertys'
 import {ListOfMatchBuyPropertys} from '../listOfMatch/listOfMatchBuyPropertys'
+import {ListOfMatchOldBuyPropertys} from '../listOfMatch/listOfMatchOldBuyPropertys'
 import { observer } from 'mobx-react';
 import MobxStore from 'mobxStore';
 
@@ -27,13 +28,33 @@ class MatchSalePanelView extends React.Component {
 
   constructor(props) {
     super(props)
+    this.state = {
+      disabled: false,
+      selectedSegmentIndex: 0,
+    }
+  }
+
+  onChange = (e) => {
+    console.log( 'onChange in matchSalePanelView')
+    console.log(`selectedIndex:${e.nativeEvent.selectedSegmentIndex}`);
+    this.setState( {
+      selectedSegmentIndex : e.nativeEvent.selectedSegmentIndex
+    })
 
   }
 
-  state = {
-    disabled: false,
-    selectedSegmentIndex: 0,
+  // onValueChange = (value) => {
+  //   console.log(value);
+  // }
+
+  renderList = ( property ) => {
+    if ( this.state.selectedSegmentIndex === 0 ) {
+      return <ListOfMatchBuyPropertys propertys={property.matchedPropertys} timeEnter={this.props.timeEnter}/>
+    } else {
+      return  <ListOfMatchOldBuyPropertys propertys={property.matchedPropertys}/>
+    }
   }
+
   render() {
 //        var property = propertys.propertys.get(this.props.keyID);
 //        var property = propertys.propertys.get("-Kof2Ki5bbvt5MS2QJMG");
@@ -55,14 +76,13 @@ class MatchSalePanelView extends React.Component {
 
     return (
       <div>
-      <ControlSaleViewWrapper property={property} />
+      <ControlSaleViewWrapper property={property} selectedIndex={this.state.selectedSegmentIndex} onChange={this.onChange.bind(this)}/>
 
     <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
       以下是 HoMatching 為你配對嘅客!
     </NoticeBar>
     <WhiteSpace size="sm" />
-    <ListOfMatchBuyPropertys propertys={property.matchedPropertys} timeEnter={this.props.timeEnter}/>
-
+            {this.renderList( property )}
     </div>);
   }
 }

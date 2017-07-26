@@ -33,7 +33,6 @@ class ControlRentView extends React.Component {
 
   render() {
         const {property} = this.props;
-        const onChange = this.props.onChange;
         const that = this;
         const { getFieldProps } = this.props.form;
         // For DatePicker
@@ -44,11 +43,13 @@ class ControlRentView extends React.Component {
 
         console.log( 'SingleLeaseProperty property', property )
         var selectedIndex = this.props.selectedIndex;
+        const onChange = this.props.onChange;
+
     return (
 
       <div>
 
-      <SegmentedControl values={['最新鮮配對樓盤', '全部配對']}  selectedIndex={this.selectedIndex} onChange={onChange} />
+      <SegmentedControl values={['即時配對請等待樓盤', '全部配對']}  selectedIndex={this.selectedIndex} onChange={onChange} />
 <List>
       <Picker data={NameOfBuilding} cols={1} {...getFieldProps('nameOfBuilding', {
           initialValue: [property.nameOfBuilding],

@@ -19,11 +19,6 @@ class ControlSaleView extends React.Component {
   constructor(props) {
     super(props)
 
-    // property = propertys.propertys.get(this.props.keyID);
-    // console.log('p', property)
-    // console.log('p.nameOfBuilding', property.nameOfBuilding)
-
-
     this.state = {
       disabled: false,
       selectedSegmentIndex: 0,
@@ -43,11 +38,13 @@ class ControlSaleView extends React.Component {
         // console.log( 'SingleLeaseProperty property', this.props.property )
 
         console.log( 'SingleLeaseProperty property', property )
+        var selectedIndex = this.props.selectedIndex;
+        const onChange = this.props.onChange;
     return (
 
       <div>
 
-      <SegmentedControl values={['現在比較樓盤', '聯絡通訊', '系統登入', '個人資料']}  selectedIndex={this.state.selectedSegmentIndex} onChange={this.onChange} />
+      <SegmentedControl values={['即時配對請等待樓盤', '全部配對']}  selectedIndex={this.selectedIndex} onChange={onChange} />
 <List>
       <Picker data={NameOfBuilding} cols={1} {...getFieldProps('nameOfBuilding', {
           initialValue: [property.nameOfBuilding],
