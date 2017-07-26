@@ -11,6 +11,8 @@ import {FrontPageView} from 'frontPageView'
 import MobxStore from 'mobxStore';
 //import FrontPage from 'frontPage'
 //import {MobxRouter} from 'mobx-router';
+import moment from 'moment';
+
 
 // Form
 import {FormSalePropertyAntMobileWrapper} from 'form/formSalePropertyAntMobile';
@@ -99,7 +101,8 @@ const views = {
     }}),
   matchLease: new Route({
       path: '/matchLease/:keyID',
-      component: <MatchLeasePanelViewWrapper />,
+      // timeEnter for matching iktems only that time and after
+      component: <MatchLeasePanelViewWrapper timeEnter={ moment().format('YYYY-MM-DD HH:mm:ss')}/>,
       onEnter: (route, params, store, queryParams) => {
       	console.log('third.current query params are -> ', queryParams);
         console.log('third.current params are -> ', params);

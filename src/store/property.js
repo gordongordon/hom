@@ -25,7 +25,7 @@ export class Property{
     // The decorator, imported from mobx library in the first line,
     // will tell that this value is observable and computed values or observer
     // will be notified and updated when it changes.
-    @observable text = 'none'
+    text = 'none'
 
     userName = 'none'
     userKey  = null
@@ -87,7 +87,10 @@ export class Property{
     @observable typeFor = 'typeFor'
 
     @observable isAgent = false
-    @observable createdAt = moment().format();
+    //@observable createdAt = moment().format();
+//    @observable createdAt = moment().utc().format('YYYY-MM-DD HH:mm:ss').utcOffset(9);
+    // make sure it working in different time zone
+    @observable createdAt = moment().format('YYYY-MM-DD HH:mm:ss');
 
     // Lease property
     @observable isNegotiable = true
@@ -234,6 +237,7 @@ export class Property{
 
       this.isAgent= v.isAgent,
       this.createdAt= v.createdAt,
+      //this.createdAt = moment(v.createdAt).format('YYYY-MM-DD HH:mm:ss');
       this.typeTo = v.typeTo,
       this.typeBy = v.typeBy,
     this.typeFor = v.typeFor,

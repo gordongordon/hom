@@ -12,7 +12,7 @@ const svgDirs = [
 
       // loaders: [ 'style-loader', 'css-loader', 'sass-loader' ]
 module.exports = {
-  devtool: 'eval',
+  //devtool: 'eval',
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',

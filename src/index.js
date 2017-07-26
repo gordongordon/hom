@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {MobxRouter, startRouter} from 'mobx-router';
 //import {FrontPageTabBar} from 'frontPageTabBar';
-
+//import DevTools from 'mobx-react-devtools';
 //mobx
 import {Provider} from 'mobx-react';
 import MobxStore from 'mobxStore';
@@ -16,6 +16,12 @@ import initReactFastclick from 'react-fastclick';
 import {Fb} from 'firebase-store'
 // import ChatBot from 'react-simple-chatbot';
 // import {FormSaleChatbot} from 'chatbot/formSaleChatbot'
+
+import DevTools, { setLogEnabled, setUpdatesEnabled, setGraphEnabled } from 'mobx-react-devtools';
+
+setLogEnabled(false); // same as configureDevtool({ logEnabled: true });
+setUpdatesEnabled(false); // same as configureDevtool({ updatesEnabled: false });
+setGraphEnabled(true); // same as configureDevtool({ graphEnabled: false });
 
 startRouter(views, MobxStore);
 
@@ -111,6 +117,7 @@ ReactDOM.render(
     <div>
       <NavigationBar/>
       <MobxRouter/>
+
     </div>
   </Provider>, document.getElementById('root')
 )
