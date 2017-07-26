@@ -58,7 +58,7 @@ class MatchBuyPanelView extends React.Component {
       以下是 HoMatching 為你配對嘅客!
     </NoticeBar>
     <WhiteSpace size="sm" />
-    <ListOfMatchSalePropertys propertys={property.matchedPropertys} />
+    <ListOfMatchSalePropertys propertys={property.matchedPropertys} timeEnter={this.props.timeEnter} />
 
     </div>);
   }

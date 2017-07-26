@@ -9,6 +9,8 @@ import {propertys} from 'propertysViewModel'
 import {ControlRentViewWrapper} from '../control/controlRentView'
 //import {ListOfMatchPropertys} from 'listOfMatch/listOfMatchPropertys'
 import {ListOfMatchLeasePropertys} from '../listOfMatch/listOfMatchLeasePropertys'
+import {ListOfMatchOldLeasePropertys} from '../listOfMatch/listOfMatchOldLeasePropertys'
+
 import { observer } from 'mobx-react';
 import MobxStore from 'mobxStore';
 
@@ -26,42 +28,49 @@ class MatchRentPanelView extends React.Component {
 
   constructor(props) {
     super(props)
+    this.state = {
+      disabled: false,
+      selectedSegmentIndex: 0,
+    }
+  }
+
+  onChange = (e) => {
+    console.log( 'onChange in matchRentPanelView')
+    console.log(`selectedIndex:${e.nativeEvent.selectedSegmentIndex}`);
+    this.setState( {
+      selectedSegmentIndex : e.nativeEvent.selectedSegmentIndex
+    })
 
   }
 
-  state = {
-    disabled: false,
-    selectedSegmentIndex: 0,
+  // onValueChange = (value) => {
+  //   console.log(value);
+  // }
+
+  renderList = ( property ) => {
+    if ( this.state.selectedSegmentIndex === 0 ) {
+      return <ListOfMatchLeasePropertys propertys={property.matchedPropertys} timeEnter={this.props.timeEnter}/>
+    } else {
+      return  <ListOfMatchOldLeasePropertys propertys={property.matchedPropertys}/>
+    }
   }
+
+
   render() {
-//        var property = propertys.propertys.get(this.props.keyID);
-//        var property = propertys.propertys.get("-Kof2Ki5bbvt5MS2QJMG");
         var property = propertys.propertys.get( MobxStore.router.params.keyID );
 
-        //console.log( 'keyID', this.props.keyID )
-        // console.log( 'store.queryParams.keyID', store.router.queryParams.keyID )
         console.log( 'store.params.keyID', MobxStore.router.params.keyID )
-
-
         console.log( 'matchPanelView property', property )
-        //console.log( 'matchPanelView propertys.size', propertys.propertys.size )
-        //console.log( 'matchPanelView matched propertys', property.matchedPropertys.size)
-        // const that = this;
-        // const { getFieldProps } = this.props.form;
-        // const minDate = moment().locale('zh-cn').utcOffset(8);
-        // const maxDate = moment(minDate).add(6, 'M');
-
 
     return (
       <div>
 
-    <ControlRentViewWrapper property={property} />
+    <ControlRentViewWrapper property={property} selectedIndex={this.state.selectedSegmentIndex} onChange={this.onChange.bind(this)} />
     <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
       以下是 HoMatching 為你配對嘅客!
     </NoticeBar>
     <WhiteSpace size="sm" />
-    <ListOfMatchLeasePropertys propertys={property.matchedPropertys} />
-
+        {this.renderList( property )}
     </div>);
   }
 }

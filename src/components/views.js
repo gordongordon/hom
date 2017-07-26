@@ -122,7 +122,7 @@ const views = {
   }),
   matchRent: new Route({
       path: '/matchRent/:keyID',
-      component: <MatchRentPanelViewWrapper />,
+      component: <MatchRentPanelViewWrapper timeEnter={ moment().format('YYYY-MM-DD HH:mm:ss')}/>,
       onEnter: (route, params, store, queryParams) => {
       	console.log('third.current query params are -> ', queryParams);
         console.log('third.current params are -> ', params);
@@ -142,7 +142,7 @@ const views = {
   }),
   matchSale: new Route({
       path: '/matchSale/:keyID',
-      component: <MatchSalePanelViewWrapper />,
+      component: <MatchSalePanelViewWrapper timeEnter={ moment().format('YYYY-MM-DD HH:mm:ss')}/>,
       onEnter: (route, params, store, queryParams) => {
       	console.log('third.current query params are -> ', queryParams);
         console.log('third.current params are -> ', params);
@@ -162,7 +162,7 @@ const views = {
   }),
   matchBuy: new Route({
       path: '/matchBuy/:keyID',
-      component: <MatchBuyPanelViewWrapper />,
+      component: <MatchBuyPanelViewWrapper timeEnter={ moment().format('YYYY-MM-DD HH:mm:ss')}/>,
       onEnter: (route, params, store, queryParams) => {
       	console.log('third.current query params are -> ', queryParams);
         console.log('third.current params are -> ', params);
