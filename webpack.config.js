@@ -19,9 +19,13 @@ module.exports = {
     './src/index'
   ],
   output: {
-      path: path.join(__dirname, '/public'),
+    // path: path.join(__dirname, 'public'),
     // filename: 'bundle.js',
-    publicPath: '/public',
+    // publicPath: '/public/'
+
+    path: path.join(__dirname, 'public'),
+    // filename: 'bundle.js',
+    publicPath: '/public/',
 
     filename: 'bundle.js',
     //path: __dirname + '/dist'
