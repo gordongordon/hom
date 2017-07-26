@@ -226,11 +226,11 @@ class PropertysViewModel {
   }
 
   update = (id, name) => {
-     Fb.app.propertysRef.update({[id]: { name } }  )
+     Fb.app.usersRef.update({[id]: { name } }  )
   };
 
   del = (id) => {
-    Fb.app.propertysRef.child(id).remove();
+    Fb.app.usersRef.child(id).remove();
     Fb.propertys.child(id).remove();
     //this.propertys.delete( id );
   };
