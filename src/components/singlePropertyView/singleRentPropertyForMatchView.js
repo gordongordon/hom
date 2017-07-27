@@ -69,6 +69,7 @@ class SingleRentPropertyForMatchView extends React.Component {
         // For DatePicker
         const minDate = moment().locale('zh-cn').utcOffset(8);
         const maxDate = moment(minDate).add(6, 'M');
+        property.reatTime = moment().format('YYYY-MM-DD HH:mm:ss');
 
 
     return (
@@ -116,9 +117,9 @@ class SingleRentPropertyForMatchView extends React.Component {
         </div>
     </Card.Body>
     <Card.Footer content={<div><Button type="ghost" inline size="small">Chat</Button><Button type="ghost" inline size="small">直接電話聯絡</Button></div>} extra={          <Flex style={{ marginBottom: '1rem' }}>
-              <Badge text={property.roleName} style={{ marginLeft: 12, padding: '0 0.06rem', backgroundColor: '#f19736', borderRadius: 2 }} />
-              <Badge text="NEW" style={{ marginLeft: 12, padding: '0 0.06rem', backgroundColor: '#21b68a', borderRadius: 2 }} />
-              <Badge text="自动缴费"
+              <Badge text={property.roleName} style={{ marginLeft: 12, padding: '0 0.06rem', backgroundColor: property.colorByRoleName, borderRadius: 2 }} />
+              <Badge text={property.howFresh}  style={{ marginLeft: 12, padding: '0 0.06rem', backgroundColor: property.colorByFresh, borderRadius: 2 }} />
+              <Badge text={property.dayListed}
                 style={{
                   marginLeft: 12,
                   padding: '0 0.06rem',
@@ -128,7 +129,6 @@ class SingleRentPropertyForMatchView extends React.Component {
                   border: '1px solid #f19736',
                 }}
               />
-              $3800
             </Flex>} />
   </Card>
   </SwipeAction>

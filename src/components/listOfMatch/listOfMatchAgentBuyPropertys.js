@@ -58,7 +58,6 @@ export class ListOfMatchAgentBuyPropertys extends React.Component {
 
     return (
       <div>
-      <h3>Agent Sale Propertys </h3>
       {
          that.display( propertys )
       }

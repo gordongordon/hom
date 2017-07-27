@@ -5,6 +5,7 @@ import {Propertyhk} from 'propertyhk'
 import {Property} from 'property'
 import MobxStore from 'mobxStore';
 import firebase from 'firebase';
+import moment from 'moment'
 
 
 // List of user properties, to be .on
@@ -54,6 +55,7 @@ class PropertysViewModel {
             // Matching agent's response only
             p.buildResponseProperty( snapshot.key, p.typeFor, p.location );
 
+            p.reatTime = moment().format('YYYY-MM-DD HH:mm:ss');
             console.log( 'child_add - psvm.matchedPropertys.size', p.matchedPropertys.size );
             that.propertys.set( snapshot.key, p );
     });

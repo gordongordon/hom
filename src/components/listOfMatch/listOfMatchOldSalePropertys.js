@@ -24,13 +24,14 @@ export class ListOfMatchOldSalePropertys extends React.Component {
 
   display = ( propertys ) => {
      const list = propertys;
+     const timeEnter = this.props.timeEnter;
      // Try to show most uptoday item only
      var element = [];
 
     list.forEach( (property, keyID) => {
 
        element.push(
-           <SingleSalePropertyForMatchViewWrapper property={property} key={keyID}/>
+           <SingleSalePropertyForMatchViewWrapper property={property} key={keyID} timeEnter={timeEnter}/>
          )
        } );
 

@@ -92,7 +92,7 @@ class MatchAgentPanelView extends React.Component {
 
 
     <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
-      以下是 HoMatching 為你配對嘅客!
+      以下是 HoMatching ... 超新鮮回覆請等待嘅客!
     </NoticeBar>
     <WhiteSpace size="sm" />
     {this.renderList()}

@@ -59,6 +59,12 @@ class SingleSalePropertyForMatchView extends React.Component {
     }
   }
 
+  componentWillMount() {
+    //const p = this.props;
+    const t = moment().format('YYYY-MM-DD HH:mm:ss');
+    this.props.property.realTime = moment( t );
+//    console.log( 'realTime will mount', this.props.property.realTime)
+  }
 
   render() {
         const {property} = this.props
@@ -71,7 +77,10 @@ class SingleSalePropertyForMatchView extends React.Component {
         const maxDate = moment(minDate).add(6, 'M');
 
         console.log( 'property', property )
-        console.log( 'roleName', property.roleName );
+        // console.log( 'roleName', property.roleName );
+        // console.log( 'dayListed', property.dayListed )
+        // console.log( 'timeEnter', this.props.timeEnter )
+        //property.reatTime = moment( this.props.timeEnter );
 
     return (
       <div>
@@ -118,20 +127,19 @@ class SingleSalePropertyForMatchView extends React.Component {
         </div>
     </Card.Body>
     <Card.Footer content={<div><Button type="ghost" inline size="small">Chat</Button><Button type="ghost" inline size="small">直接電話聯絡</Button></div>} extra={          <Flex style={{ marginBottom: '1rem' }}>
-              <Badge text={property.roleName} style={{ marginLeft: 12, padding: '0 0.06rem', backgroundColor: '#f19736', borderRadius: 2 }} />
-              <Badge text="NEW" style={{ marginLeft: 12, padding: '0 0.06rem', backgroundColor: '#21b68a', borderRadius: 2 }} />
-              <Badge text={property.roleName}
+              <Badge text={property.roleName} style={{ marginLeft: 6, padding: '0 0.06rem', backgroundColor: property.colorByRoleName, borderRadius: 5 }} />
+              <Badge text={property.howFresh} style={{ marginLeft: 6, padding: '0 0.06rem', backgroundColor: property.colorByFresh, borderRadius: 5 }} />
+              <Badge text={property.dayListed}
                 style={{
-                  marginLeft: 12,
+                  marginLeft: 6,
                   padding: '0 0.06rem',
                   backgroundColor: '#fff',
-                  borderRadius: 2,
+                  borderRadius: 5,
                   color: '#f19736',
-                  border: '1px solid #f19736',
+                  border: '2px solid #f19736',
                 }}
               />
-              $3800
-            </Flex>} />
+                      </Flex>} />
   </Card>
   </SwipeAction>
   <WhiteSpace size="sm" />

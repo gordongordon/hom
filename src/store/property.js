@@ -10,7 +10,7 @@ function nextId(){ _nextId++; return _nextId }
 export class Property{
 
     // constructor( v ){
-    //   restore( v )
+    // restore( v )
     // }
 
     // the ID of the current Todo
@@ -30,9 +30,9 @@ export class Property{
     userKey  = null
     // roleName = 'none'
 
-//    name = 'NoName'
+    // name = 'NoName'
     // Should be gunref
-    //ownerGun = null;
+    // ownerGun = null;
 
     // @observable view = new  Map();
     // @observable reject = new  Map();
@@ -57,7 +57,6 @@ export class Property{
     @observable leasePriceWithLandTax = true;
     @observable leasePriceWithManagementFee = true;
     @observable leaseDepositPerMonth = 0;
-
 
     @observable rentBudgetMin = 0;
     @observable rentBudgetMax = 0;
@@ -91,6 +90,8 @@ export class Property{
 //    @observable createdAt = moment().utc().format('YYYY-MM-DD HH:mm:ss').utcOffset(9);
     // make sure it working in different time zone
     @observable createdAt = moment().format('YYYY-MM-DD HH:mm:ss');
+    @observable realTime  = moment().format('YYYY-MM-DD HH:mm:ss');
+
 
     // Lease property
     @observable isNegotiable = true
@@ -106,6 +107,7 @@ export class Property{
     @observable isFreeForSevenDay = false
     @observable dueDay = null
     @observable earlyTimeToView = moment().format();
+
     @observable numOfPeopleLiving = 1
     @observable income = 0
     @observable isBuyWithLease = false
@@ -119,6 +121,105 @@ export class Property{
     @computed get isValid(){
         // a text is required
         return this.text !== ''
+    }
+
+    @computed get howFresh() {
+      const start = moment( this.createdAt )
+      const end   = moment( this.realTime);
+      const sDiff =  end.diff( start, 'seconds');
+      const mDiff =  end.diff( start, 'minutes');
+      const hDiff =  end.diff( start, 'hours');
+      const DDiff =  end.diff( start, 'days');
+
+
+               if ( DDiff > 0)
+               {
+                 return '新鮮'
+               }
+               if ( hDiff > 0)
+               {
+                 return '好新鮮'
+               }
+               if ( mDiff > 0)
+               {
+                 return '勁新鮮'
+               }
+               if ( sDiff > 0)
+               {
+                 return '超新鮮'
+               }
+
+               return '新鮮';
+    }
+
+    @computed get colorByFresh() {
+
+     var color = '#0B610B';
+
+     switch( this.howFresh ) {
+       case '超新鮮' :  color = '#0B610B';
+       break;
+       case '勁好新鮮' : color = '#298A08';
+       break;
+       case '好新鮮' : color = '#04B404';
+       break;
+       case '新鮮' : color = '#01DF3A';
+       break;
+     }
+
+     return color;
+    }
+
+
+    @computed get dayListed() {
+
+         const start = moment( this.createdAt )
+         const end   = moment( this.realTime);
+         const sDiff =  end.diff( start, 'seconds');
+         const mDiff =  end.diff( start, 'minutes');
+         const hDiff =  end.diff( start, 'hours');
+         const DDiff =  end.diff( start, 'days');
+         var answer = '0'
+
+         if ( DDiff > 0)
+         {
+           return answer = DDiff + '日前'
+         }
+         if ( hDiff > 0)
+         {
+           return answer = hDiff + '小時前'
+         }
+         if ( mDiff > 0)
+         {
+           return answer = mDiff + '分鐘前'
+         }
+         if ( sDiff > 0)
+         {
+           return answer = sDiff + '秒前'
+         }
+
+         return answer;
+    }
+
+    @computed get colorByRoleName() {
+      var color = '#088A4B';
+
+     switch( this.typeTo ) {
+       case 'buy' :  color = '#FF8000';
+       break;
+       case 'lease' : color = '#FF0000';
+       break;
+       case 'sale' : color = '#4000FF';
+       break;
+       case 'rent' : color = '#0080FF';
+       break;
+     }
+
+     if ( this.relatedFbid != null ) {
+       color = '#888888'
+     }
+
+     return color;
     }
 
     @computed get roleName(){
@@ -164,6 +265,7 @@ export class Property{
 
             isAgent: this.isAgent,
             createdAt: this.createdAt,
+            reatlTime : this.realTime,
             typeTo : this.typeTo,
             typeBy : this.typeBy,
             typeFor : this.typeFor,
@@ -215,8 +317,8 @@ export class Property{
             isViewAbleNow : this.isViewAbleNow,
             isRentAbleNow : this.isRentAbleNow,
             isFreeForSevenDay : this.isFreeForSevenDay,
-//            dueDay : this.dueDay.toJSON(),
-            //earlyTimeToView : this.earlyTimeToView.toJSON(),
+            // dueDay : this.dueDay.toJSON(),
+            // earlyTimeToView : this.earlyTimeToView.toJSON(),
             dueDay : this.dueDay,
             earlyTimeToView : this.earlyTimeToView,
             income : this.income,
@@ -258,6 +360,7 @@ export class Property{
 
       p.isAgent= v.isAgent,
       p.createdAt= v.createdAt,
+      p.realTime = v.realTime,
       //p.createdAt = moment(v.createdAt).format('YYYY-MM-DD HH:mm:ss');
       p.typeTo = v.typeTo,
       p.typeBy = v.typeBy,

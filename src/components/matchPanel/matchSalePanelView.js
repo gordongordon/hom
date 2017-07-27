@@ -58,7 +58,7 @@ class MatchSalePanelView extends React.Component {
 
   renderNoticeBarMessage = () => {
     if ( this.state.selectedSegmentIndex === 0 ) {
-      return <div>  以下是 HoMatching 為你即時配對請等待樓盤!</div>
+      return <div>群發信息現正開始: 以下是 HoMatching ... 超新鮮回覆請等待!</div>
     } else {
       return <div>  以下是 HoMatching 為你配對嘅客!</div>
     }

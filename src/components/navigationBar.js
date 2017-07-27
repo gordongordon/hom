@@ -83,7 +83,7 @@ export default class NavigationBar extends React.Component {
      }
 
      if ( isLogin ) {
-       return <span key="2" onClick={ this.onLogout }>logout</span>;
+       return <span key="2" onClick={ this.onLogout }>登出</span>;
     } else {
        // For different user login
        return  <Popover mask
@@ -113,7 +113,7 @@ export default class NavigationBar extends React.Component {
             alignItems: 'center',
           }}
           >
-            <span>login</span>
+            <span>請登入</span>
           </div>
         </Popover>;
      }

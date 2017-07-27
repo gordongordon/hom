@@ -169,6 +169,7 @@ const views = {
         MobxStore.app.setTitle( '最新鮮配對 buy');
         console.log('route', route)
         MobxStore.app.viewHistory.set( 'matchBuy', MobxStore.app.previousView  )
+        console.log( 'timeEnter from view', moment().format('YYYY-MM-DD HH:mm:ss'))
       },
       beforeExit: (route, params) => {
         console.log('exiting user profile!');
