@@ -20,8 +20,8 @@ export class Propertyhk extends Property {
   //@observable propertys = map({});
   //@observable propertys = new Map();
 
-  constructor() {
-    super();
+  constructor( props ) {
+    super( props );
   }
 
   // constructor( v ) {
@@ -43,16 +43,16 @@ export class Propertyhk extends Property {
     // Handle match propertys
      Fb.propertys.orderByChild('typeTo').equalTo(typeFor).on("child_added", function(snap) {
 
-          // Fb.matchedPropertys.child( snap.key ).set( snap.val() )
-//          Fb.propertys.update( { snap.key : { } })
-          that.matchedPropertys.set( snap.key, snap.val() );
-          console.log('child_added - matchProperty.size', that.matchedPropertys.size)
+           const p = Propertyhk.deserialize( snap.val() )
+
+           that.matchedPropertys.set( snap.key, p );
+           console.log('child_added - matchProperty.size', that.matchedPropertys.size)
      });
 
      Fb.propertys.orderByChild('typeTo').equalTo(typeFor).on("child_removed", function(snap) {
 
-         that.matchedPropertys.delete( snap.key );
-         console.log('child_removed - matchProperty.size', that.matchedPropertys.size)
+          that.matchedPropertys.delete( snap.key );
+          console.log('child_removed - matchProperty.size', that.matchedPropertys.size)
      });
 
      return that.matchedPropertys;
@@ -72,7 +72,10 @@ export class Propertyhk extends Property {
 
           // Fb.matchedPropertys.child( snap.key ).set( snap.val() )
 //          Fb.propertys.update( { snap.key : { } })
-          that.responsedPropertys.set( snap.key, snap.val() );
+          const p = Propertyhk.deserialize( snap.val() )
+
+
+          that.responsedPropertys.set( snap.key, p );
           console.log('child_added - responsedPropertys.size', that.responsedPropertys.size)
      });
 
@@ -113,4 +116,13 @@ export class Propertyhk extends Property {
 
   }
 
-}
+  static deserialize( n ) {
+    var phk = new Propertyhk();
+
+
+    super.deserializeObj(n, phk );
+    return phk;
+  }
+
+
+} // End of class

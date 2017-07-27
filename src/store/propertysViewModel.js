@@ -42,11 +42,13 @@ class PropertysViewModel {
     Fb.app.usersRef.on('child_added', (snapshot) => {
 
             //console.log( "fire", snapshot.val() )
-            var p = new Propertyhk();
-
-            // restore can be imppletemt  deserialize
-            p.restore( snapshot.val() )
+            // var p = new Propertyhk();
+            //
+            // // restore can be imppletemt  deserialize
+            // p.restore( snapshot.val() )
             //console.log( 'p', p)
+            var p = Propertyhk.deserialize( snapshot.val() )
+            console.log( 'p', p)
 
             p.buildMatchProperty( snapshot.key, p.typeFor, p.location);
             // Matching agent's response only
@@ -140,6 +142,7 @@ class PropertysViewModel {
     // May not need
     //this.agentPropertys.clear();
   };
+
 
 }
 

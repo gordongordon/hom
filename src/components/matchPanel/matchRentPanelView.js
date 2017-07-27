@@ -9,6 +9,7 @@ import {propertys} from 'propertysViewModel'
 import {ControlRentViewWrapper} from '../control/controlRentView'
 //import {ListOfMatchPropertys} from 'listOfMatch/listOfMatchPropertys'
 import {ListOfMatchLeasePropertys} from '../listOfMatch/listOfMatchLeasePropertys'
+import {ListOfMatchAgentLeasePropertys} from '../listOfMatch/listOfMatchAgentLeasePropertys'
 import {ListOfMatchOldLeasePropertys} from '../listOfMatch/listOfMatchOldLeasePropertys'
 
 import { observer } from 'mobx-react';
@@ -49,7 +50,7 @@ class MatchRentPanelView extends React.Component {
 
   renderList = ( property ) => {
     if ( this.state.selectedSegmentIndex === 0 ) {
-      return <ListOfMatchLeasePropertys propertys={property.matchedPropertys} timeEnter={this.props.timeEnter}/>
+      return <ListOfMatchAgentLeasePropertys propertys={property.responsedPropertys} timeEnter={this.props.timeEnter}/>
     } else {
       return  <ListOfMatchOldLeasePropertys propertys={property.matchedPropertys}/>
     }

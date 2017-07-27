@@ -116,8 +116,8 @@ class SingleLeasePropertyForMatchView extends React.Component {
         </div>
     </Card.Body>
     <Card.Footer content={<div><Button type="ghost" inline size="small">Chat</Button><Button type="ghost" inline size="small">直接電話聯絡</Button></div>} extra={          <Flex style={{ marginBottom: '1rem' }}>
-              <Badge text="券" style={{ marginLeft: 12, padding: '0 0.06rem', backgroundColor: '#f19736', borderRadius: 2 }} />
-              <Badge text="NEW" style={{ marginLeft: 12, padding: '0 0.06rem', backgroundColor: '#21b68a', borderRadius: 2 }} />
+              <Badge text={property.roleName} style={{ marginLeft: 12, padding: '0 0.06rem', backgroundColor: '#f19736', borderRadius: 2 }} />
+              <Badge text="租客必選" style={{ marginLeft: 12, padding: '0 0.06rem', backgroundColor: '#21b68a', borderRadius: 2 }} />
               <Badge text="自动缴费"
                 style={{
                   marginLeft: 12,

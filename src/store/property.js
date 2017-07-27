@@ -9,7 +9,6 @@ function nextId(){ _nextId++; return _nextId }
 // this is our domain model class
 export class Property{
 
-    //
     // constructor( v ){
     //   restore( v )
     // }
@@ -29,6 +28,7 @@ export class Property{
 
     userName = 'none'
     userKey  = null
+    // roleName = 'none'
 
 //    name = 'NoName'
     // Should be gunref
@@ -121,7 +121,26 @@ export class Property{
         return this.text !== ''
     }
 
+    @computed get roleName(){
+        var name = 'none';
 
+       switch( this.typeTo ) {
+         case 'buy' :  name = '買 家';
+         break;
+         case 'lease' : name = "出租物業";
+         break;
+         case 'sale' : name = "出售物業";
+         break;
+         case 'rent' : name = "租 客";
+         break;
+       }
+
+       if ( this.relatedFbid != null ) {
+         name = '地產代理'
+       }
+
+       return name;
+    }
 
 
     // setNetSize( netSize ) {
@@ -225,7 +244,85 @@ export class Property{
         return property
     }
 
+    static deserializeObj( v, p ){
+//      const p = new Property();
+
+      p.id =  v.id,
+      p.uid = v.uid,
+      p.fbid = v.fbid,
+      p.relatedFbid  = v.relatedFbid,
+//            text: this.text,
+      p.done = v.done,
+//            location : this.location,
+      p.type = v.type,
+
+      p.isAgent= v.isAgent,
+      p.createdAt= v.createdAt,
+      //p.createdAt = moment(v.createdAt).format('YYYY-MM-DD HH:mm:ss');
+      p.typeTo = v.typeTo,
+      p.typeBy = v.typeBy,
+      p.typeFor = v.typeFor,
+
+      p.district = v.district,
+      p.nameOfBuilding= v.nameOfBuilding,
+      p.propertyType = v.propertyType,
+      p.flatType = v.flatType,
+      p.nearByMtrLine = v.nearByMtrLine,
+      p.nearByMtrStop = v.nearByMtrStop,
+
+
+      p.salePrice = v.salePrice,
+      p.salePriceMin = v.salePriceMin,
+      p.salePriceMax = v.salePriceMax,
+      p.leasePrice = v.leasePrice,
+      p.leasePriceWithTax = v.leasePriceWithTax,
+      p.leasePriceWithLandTax =v.leasePriceWithLandTax,
+      p.leasePriceWithManagementFee = v.leasePriceWithManagementFee,
+      p.leaseDepositPerMonth = v.leaseDepositPerMonth,
+      p.rentBudgetMax = v.rentBudgetMax,
+      p.buyBudgetMax = v.buyBudgetMax,
+
+
+      p.netSize = v.netSize,
+      p.netSizeMin = v.netSizeMin,
+      p.netSizeMax = v.netSizeMax,
+      p.numOfRoom = v.numOfRoom,
+      p.numOfBathroom = v.numOfBathroom,
+      p.numOfLivingroom = v.numOfLivingroom,
+      p.numOfPeopleLiving = v.numOfPeopleLiving,
+      p.contactName = v.contactName,
+      p.contactPhone = v.contactPhone,
+      p.contactEmail = v.contactEmail,
+
+      // Sale Property
+      p.numOfDayClosingDeal = v.numOfDayClosingDeal,
+//            isNegotiable : v.isNegotiable,
+//            isViewAble : v.isViewAble,
+      p.isSaleWithLease = v.isSaleWithLease,
+
+      // lease property
+      p.isNegotiable  = v.isNegotiable,
+    p.isViewAble    = v.isViewAble,
+      p.isPreferPayAnnually = v.isPreferPayAnnually,
+      p.hasHomeHardware = v.hasHomeHardware,
+      p.jobNature = v.jobNature,
+
+      p.isViewAbleNow = v.isViewAbleNow,
+      p.isRentAbleNow = v.isRentAbleNow,
+      p.isFreeForSevenDay = v.isFreeForSevenDay,
+//            dueDay : this.dueDay.toJSON(),
+      //earlyTimeToView : this.earlyTimeToView.toJSON(),
+      p.dueDay = v.dueDay,
+      p.earlyTimeToView = v.earlyTimeToView,
+      p.income = v.income,
+      p.isBuyWithLease = v.isBuyWithLease
+
+      return p;
+    }
+
+
     restore( v ) {
+
       this.id =  v.id,
       this.uid = v.uid,
       this.fbid = v.fbid,
@@ -240,36 +337,36 @@ export class Property{
       //this.createdAt = moment(v.createdAt).format('YYYY-MM-DD HH:mm:ss');
       this.typeTo = v.typeTo,
       this.typeBy = v.typeBy,
-    this.typeFor = v.typeFor,
+      this.typeFor = v.typeFor,
 
-    this.district = v.district,
-    this.nameOfBuilding= v.nameOfBuilding,
+      this.district = v.district,
+      this.nameOfBuilding= v.nameOfBuilding,
       this.propertyType = v.propertyType,
       this.flatType = v.flatType,
       this.nearByMtrLine = v.nearByMtrLine,
-    this.nearByMtrStop = v.nearByMtrStop,
+      this.nearByMtrStop = v.nearByMtrStop,
 
 
-    this.salePrice = v.salePrice,
+      this.salePrice = v.salePrice,
       this.salePriceMin = v.salePriceMin,
       this.salePriceMax = v.salePriceMax,
       this.leasePrice = v.leasePrice,
-    this.leasePriceWithTax = v.leasePriceWithTax,
-    this.leasePriceWithLandTax =v.leasePriceWithLandTax,
-    this.leasePriceWithManagementFee = v.leasePriceWithManagementFee,
+      this.leasePriceWithTax = v.leasePriceWithTax,
+      this.leasePriceWithLandTax =v.leasePriceWithLandTax,
+      this.leasePriceWithManagementFee = v.leasePriceWithManagementFee,
       this.leaseDepositPerMonth = v.leaseDepositPerMonth,
       this.rentBudgetMax = v.rentBudgetMax,
       this.buyBudgetMax = v.buyBudgetMax,
 
 
-    this.netSize = v.netSize,
+      this.netSize = v.netSize,
       this.netSizeMin = v.netSizeMin,
       this.netSizeMax = v.netSizeMax,
       this.numOfRoom = v.numOfRoom,
-    this.numOfBathroom = v.numOfBathroom,
+      this.numOfBathroom = v.numOfBathroom,
       this.numOfLivingroom = v.numOfLivingroom,
       this.numOfPeopleLiving = v.numOfPeopleLiving,
-    this.contactName = v.contactName,
+      this.contactName = v.contactName,
       this.contactPhone = v.contactPhone,
       this.contactEmail = v.contactEmail,
 
