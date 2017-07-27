@@ -10,8 +10,12 @@ import firebase from 'firebase';
 class AgentModelViewModel {
 
 //  @observable propertys = observable.map({});
+// User propertys Public
 @observable propertys = new Map();
+// Agent's propertys Private
 @observable ownPropertys = new Map();
+// Agent's propertys Public
+////@observable agentPropertys = new Map();
 
 //  @observable propertys = observable.map({});
 //  @observable ownPropertys = observable.map({});

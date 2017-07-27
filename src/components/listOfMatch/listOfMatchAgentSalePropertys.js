@@ -27,24 +27,24 @@ export class ListOfMatchAgentSalePropertys extends React.Component {
      // Try to show most uptoday item only
      var element = [];
 
-     const timeEnter = this.props.timeEnter;
-     const c = moment( timeEnter );
+    //  const timeEnter = this.props.timeEnter;
+    //  const c = moment( timeEnter );
 
     list.forEach( (property, keyID) => {
-       //var c = moment.utc().format('YYYY-MM-DD HH:mm:ss');
-       const a = moment( property.createdAt,'YYYY-MM-DD HH:mm:ss' );
-       const b = moment(a, 'YYYY-MM-DD HH:mm:ss');
-
-       console.log( 'a ', a)
-       console.log( 'b ', b)
-       console.log( 'c ', c)
-
-       if ( b >= c ) {
-         //console.log( b > c)
+      //  //var c = moment.utc().format('YYYY-MM-DD HH:mm:ss');
+      //  const a = moment( property.createdAt,'YYYY-MM-DD HH:mm:ss' );
+      //  const b = moment(a, 'YYYY-MM-DD HH:mm:ss');
+       //
+      //  console.log( 'a ', a)
+      //  console.log( 'b ', b)
+      //  console.log( 'c ', c)
+       //
+      //  if ( b >= c ) {
+      //    //console.log( b > c)
        element.push(
            <SingleSalePropertyForMatchViewWrapper property={property} key={keyID}/>
          )
-       }
+    //   }
 
     })
 

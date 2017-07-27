@@ -149,6 +149,7 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
     p.relatedFbid = MobxStore.router.params.keyID;
 
     Fb.app.agentsRef.update( {[id]:  p.serialize() });
+    Fb.agentPropertys.child( id ).set( p.serialize() );
 
 //    const id2 = Fb.propertys.push().key;
 //    Fb.agents.child( id ).set( p.serialize() );

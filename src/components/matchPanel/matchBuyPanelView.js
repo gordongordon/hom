@@ -4,12 +4,14 @@ import { createForm } from 'rc-form';
 // import moment from 'moment';
 // import 'moment/locale/zh-cn';
 import {propertys} from 'propertysViewModel'
+import {agentModel} from 'agentModelView'
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 //import {SingleRentPropertyForMatchViewWrapper} from 'singleRentPropertyForMatchView'
 import {ControlBuyViewWrapper} from '../control/controlBuyView'
 
 import {ListOfMatchSalePropertys} from '../listOfMatch/listOfMatchSalePropertys'
 import {ListOfMatchOldSalePropertys} from '../listOfMatch/listOfMatchOldSalePropertys'
+import {ListOfMatchAgentSalePropertys} from '../listOfMatch/listOfMatchAgentSalePropertys'
 import { observer } from 'mobx-react';
 import MobxStore from 'mobxStore';
 
@@ -45,12 +47,15 @@ class MatchBuyPanelView extends React.Component {
   // onValueChange = (value) => {
   //   console.log(value);
   // }
+//  <ListOfMatchSalePropertys propertys={property.matchedPropertys} timeEnter={this.props.timeEnter}/>
 
   renderList = ( property ) => {
     if ( this.state.selectedSegmentIndex === 0 ) {
-      return <ListOfMatchSalePropertys propertys={property.matchedPropertys} timeEnter={this.props.timeEnter}/>
+      return <div>
+               <ListOfMatchAgentSalePropertys propertys={property.responsedPropertys} timeEnter={this.props.timeEnter}/>
+            </div>
     } else {
-      return  <ListOfMatchOldSalePropertys propertys={property.matchedPropertys}/>
+      return   <ListOfMatchOldSalePropertys propertys={property.matchedPropertys}/>
     }
   }
 

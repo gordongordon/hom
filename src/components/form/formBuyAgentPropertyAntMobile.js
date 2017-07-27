@@ -157,10 +157,11 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
 
     Fb.app.agentsRef.update( {[id]:  p.serialize() });
 
-    // Fb.propertys.child( id ).set( p.serialize() );
+    // Should be Fb.agentPropertys. to be countinu..
+    Fb.agentPropertys.child( id ).set( p.serialize() );
 
     // const id2 = Fb.propertys.push().key;
-    // Fb.propertys.update( {[id2]:  p.serialize() });
+    // Fb.propertys.update( {[id2]:  p.serialize() })
     MobxStore.router.goTo( views.matchAgent, { keyID : id  } )
 
 

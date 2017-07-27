@@ -108,6 +108,7 @@ const startLogout = () => {
 //console.log('uid', MobxStore.app.uid)
 const root = firebase.database().ref();
 const propertys = firebase.database().ref('propertys');
+const agentPropertys = firebase.database().ref('agentPropertys');
 //const propertysForRent = firebase.database().ref('propertysForRent');
 //const propertysForSale = firebase.database().ref('propertysForSale');
 //const propertysForLease = firebase.database().ref('propertysForLease');
@@ -123,6 +124,7 @@ const Fb = {
   app : new AppStore(),
   root,
   propertys,
+  agentPropertys,
   startLogin,
   startLogout,
   startLoginAnonyhmously,

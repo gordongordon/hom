@@ -8,6 +8,8 @@ import {Property} from 'property'
 export class Propertyhk extends Property {
 
   @observable matchedPropertys = observable.map({});
+  // responsed propertys from agent only
+  @observable responsedPropertys = observable.map({});
   // @observable matchedPropertys = new Map();
 
   @observable like = observable.map({});
@@ -54,6 +56,33 @@ export class Propertyhk extends Property {
      });
 
      return that.matchedPropertys;
+
+  }
+
+  /**
+   * @compareTo is name of variable e.g. name, price, location
+   * @valueTo   is value equal to.  e.g. 'shatin'
+   * return
+   */
+  buildResponseProperty = (id, typeFor, location ) => {
+    var that = this;
+
+    // Handle match propertys
+     Fb.agentPropertys.orderByChild('relatedFbid').equalTo(id).on("child_added", function(snap) {
+
+          // Fb.matchedPropertys.child( snap.key ).set( snap.val() )
+//          Fb.propertys.update( { snap.key : { } })
+          that.responsedPropertys.set( snap.key, snap.val() );
+          console.log('child_added - responsedPropertys.size', that.responsedPropertys.size)
+     });
+
+     Fb.agentPropertys.orderByChild('relatedFbid').equalTo(id).on("child_removed", function(snap) {
+
+         that.responsedPropertys.delete( snap.key );
+         console.log('child_removed - responsedPropertys.size', that.responsedPropertys.size)
+     });
+
+     return that.responsedPropertys;
 
   }
 

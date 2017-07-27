@@ -14,6 +14,7 @@ class PropertysViewModel {
 //  @observable propertys = observable.map({});
   //@observable propertys = observable.map({});
   @observable propertys = new Map();
+  //@observable agentPropertys = new Map();
 
   //@observable matchedPropertys = observable.map({});
 
@@ -21,78 +22,7 @@ class PropertysViewModel {
   //@observable propertys = new Map();
 
   constructor() {
-    var that = this;
-    //var uid = MobxStore.app.uid;
-    // Mayn't need that
-    //that.propertys.clear();
-
-    //console.log('size b', this.propertys.size )
-    // Fb.app.propertysRef.on('value', (snapshot) => {
-    //   console.log( 'snapshot.val', snapshot.val());
-    //   this.propertys = snapshot.val();
-    //
-    //   console.log('size', this.propertys.size )
-    //   console.log( 'snapshot.size ', snapshot.numChildren() );
-    // });
-
-    // Fb.app.propertysRef.orderByChild("price").on('child_added', (snapshot) => {
-    //   console.log( 'snapshot.val', snapshot.val());
-    //   this.propertys = snapshot.val();
-    //
-    //   //console.log('size', this.propertys.size )
-    //   console.log( 'snapshot.size ', snapshot.numChildren() );
-    // });
-
-
-    // Fb.app.matchedPropertysRef.on('value',function(snap) {
-    //      snap.forEach(function(item) {
-    //         that.matchedPropertys.set( item.key, item.val() );
-    //         //console.log( item.key, item.val() )
-    //         console.log('that.propertys.size', that.matchPpropertys.size)
-    //     });
-    // });
-
-
-//     // Handle Child_added
-//     if ( Fb.app.propertysRef !== undefined ) {
-//     Fb.app.propertysRef.on('child_added', (snapshot) => {
-//
-//             console.log( "fire", snapshot.val() )
-//             var p = new Propertyhk();
-//
-//            // Tobe Testing.
-//             // p = { ...p, ...snapshot.val() }
-//
-//             // restore can be imppletemt  deserialize
-//             p.restore( snapshot.val() )
-//             console.log( 'p', p)
-// //            console.log( 'snapddd', snapshot.val() )
-//             // p.done = snapshot.val().done
-//             // p.contactName = snapshot.val().contactName
-//             // p.nameOfBuilding = snapshot.val().nameOfBuilding;
-//             // p.location = snapshot.val().location
-//             // p.nearByMtrLine = snapshot.val().nearByMtrLine
-//             // p.nearByMtrStop = snapshot.val().nearByMtrStop
-//             // p.salePrice = snapshot.val().salePrice
-//             // p.typeTo = snapshot.val().typeTo
-//             // p.typeBy = snapshot.val().typeBy
-//             // p.typeFor = snapshot.val().typeFor
-//
-//             p.buildMatchProperty( snapshot.key, p.typeFor, p.location);
-//
-//             console.log( 'child_add - psvm.matchedPropertys.size', p.matchedPropertys.size );
-//             that.propertys.set( snapshot.key, p );
-//     });
-//
-//    // Handle child_removed
-//    Fb.app.propertysRef.on('child_removed', (snapshot) => {
-//                 that.propertys.delete( snapshot.key );
-//                 // console.log('that.propertys.size', that.propertys.size)
-//    });
-//  }  // End of if null
-
-
-
+     var that = this;
   }
 
   @computed get json() {
@@ -119,6 +49,8 @@ class PropertysViewModel {
             //console.log( 'p', p)
 
             p.buildMatchProperty( snapshot.key, p.typeFor, p.location);
+            // Matching agent's response only
+            p.buildResponseProperty( snapshot.key, p.typeFor, p.location );
 
             console.log( 'child_add - psvm.matchedPropertys.size', p.matchedPropertys.size );
             that.propertys.set( snapshot.key, p );
@@ -129,72 +61,39 @@ class PropertysViewModel {
                 that.propertys.delete( snapshot.key );
                 // console.log('that.propertys.size', that.propertys.size)
    });
- //}  // End of if null
 
-  }
+   /**
+    * allocate agent's property public for display
+    */
+  //  Fb.agentPropertys.on('child_added', (snapshot) => {
+  //
+  //          //console.log( "fire", snapshot.val() )
+  //          var p = new Propertyhk();
+  //
+  //          // restore can be imppletemt  deserialize
+  //          p.restore( snapshot.val() )
+  //          //console.log( 'p', p)
+  //
+  //          p.buildResponseProperty( snapshot.key, p.typeFor, p.location);
+  //
+  //          console.log( 'child_add - psvm.matchedPropertys.size', p.responsedPropertys.size );
+  //          that.agentPropertys.set( snapshot.key, p );
+  //  });
+  //
+  // // Handle child_removed
+  // Fb.agentPropertys.on('child_removed', (snapshot) => {
+  //              that.agentPropertys.delete( snapshot.key );
+  //              // console.log('that.propertys.size', that.propertys.size)
+  // });
+
+ }  // End of if null
+
+  //}
 
   add = (name) => {
     const id = Fb.app.usersRef.push().key;
     this.update(id, name );
   };
-  //
-  // addPropertyForSale = ( nearByMtrLine, nearByMtrStop, netSize, salePrice, numOfRoom, numofBathroom, contactName, contactPhone, contactEmail) =>
-  // {
-  //   var p = new Property();
-  //
-  //
-  //   p.nearByMtrLine = nearByMtrLine;
-  //   p.nearByMtrStop = nearByMtrStop;
-  //   p.netSize = parseInt(netSize);
-  //   p.salePrice = parseInt(salePrice);
-  //   p.numOfRoom = parseInt(numOfRoom);
-  //   p.numofBathroom = parseInt(numofBathroom);
-  //   p.contactName = contactName;
-  //   p.contactPhone = parseInt(contactPhone);
-  //   p.contactEmail = contactEmail;
-  //
-  //   const id = Fb.app.propertysRef.push().key;
-  //   Fb.app.propertysRef.update( {[id]:  p.serialize() });
-  // }
-  //
-  //
-  // // For testing only must create first
-  // addProperty(userName, nameOfBuilding, location, typeTo, typeBy, typeFor, price ){
-  //     var p = this.property = new Propertyhk();
-  //     p.done = false
-  //     p.contactName = userName
-  //     p.nameOfBuilding = nameOfBuilding
-  //     p.location = location
-  //     p.salePrice = parseInt(price)
-  //     p.typeTo = typeTo
-  //     p.typeBy = typeBy
-  //     p.typeFor = typeFor
-  //
-  //     const id = Fb.app.propertysRef.push().key;
-  //     Fb.app.propertysRef.update( {[id]:  p.serialize() });
-  // }
-  //
-  // writeNewPost = (uid, username, picture, title, body) => {
-  //   // A post entry.
-  //   var postData = {
-  //     author: username,
-  //     uid: uid,
-  //     body: body,
-  //     title: title,
-  //     starCount: 0,
-  //     authorPic: picture
-  //   };
-
-    // Get a key for a new Post.
-    // var newPostKey = Fb.app.propertysRef.child('posts').push().key;
-
-    // Write the new post's data simultaneously in the posts list and the user's post list.
-  //   var updates = {};
-  //   updates['/posts/' + newPostKey] = postData;
-  //   updates['/user-posts/' + uid + '/' + newPostKey] = postData;
-  //
-  //   return Fb.app.propertysRef.update(updates);
-  // }
 
   /**
    * @compareTo is name of variable e.g. name, price, location
@@ -238,6 +137,8 @@ class PropertysViewModel {
   @action
   clear = () => {
     this.propertys.clear();
+    // May not need
+    //this.agentPropertys.clear();
   };
 
 }

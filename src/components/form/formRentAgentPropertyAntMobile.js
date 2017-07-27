@@ -173,6 +173,7 @@ class FormRentAgentPropertyAntMobile extends React.Component {
     p.relatedFbid = MobxStore.router.params.keyID;
 
     Fb.app.agentsRef.update( {[id]:  p.serialize() });
+    Fb.agentPropertys.child( id ).set( p.serialize() );
 
     MobxStore.router.goTo( views.matchAgent, { keyID : id  } )
 

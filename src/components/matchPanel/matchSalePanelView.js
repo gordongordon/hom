@@ -10,6 +10,7 @@ import {ControlSaleViewWrapper} from '../control/controlSaleView'
 
 //import {ListOfMatchPropertys} from 'listOfMatch/listOfMatchPropertys'
 import {ListOfMatchBuyPropertys} from '../listOfMatch/listOfMatchBuyPropertys'
+import {ListOfMatchAgentBuyPropertys} from '../listOfMatch/listOfMatchAgentBuyPropertys'
 import {ListOfMatchOldBuyPropertys} from '../listOfMatch/listOfMatchOldBuyPropertys'
 import { observer } from 'mobx-react';
 import MobxStore from 'mobxStore';
@@ -49,7 +50,7 @@ class MatchSalePanelView extends React.Component {
 
   renderList = ( property ) => {
     if ( this.state.selectedSegmentIndex === 0 ) {
-      return <ListOfMatchBuyPropertys propertys={property.matchedPropertys} timeEnter={this.props.timeEnter}/>
+      return <ListOfMatchAgentBuyPropertys propertys={property.responsedPropertys} timeEnter={this.props.timeEnter}/>
     } else {
       return  <ListOfMatchOldBuyPropertys propertys={property.matchedPropertys}/>
     }
