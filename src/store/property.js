@@ -226,13 +226,13 @@ export class Property{
         var name = 'none';
 
        switch( this.typeTo ) {
-         case 'buy' :  name = '買 家';
+         case 'buy' :  name = '買家';
          break;
-         case 'lease' : name = "出租物業";
+         case 'lease' : name = "業主 出租";
          break;
-         case 'sale' : name = "出售物業";
+         case 'sale' : name = "業主 出售";
          break;
-         case 'rent' : name = "租 客";
+         case 'rent' : name = "租客";
          break;
        }
 

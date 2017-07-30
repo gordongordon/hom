@@ -49,7 +49,7 @@ class ControlRentView extends React.Component {
 
       <div>
 
-      <SegmentedControl values={['即時配對請等待樓盤', '全部配對']}  selectedIndex={this.selectedIndex} onChange={onChange} />
+      <SegmentedControl values={['超新鮮 即時回覆', '全部配對']}  selectedIndex={this.selectedIndex} onChange={onChange} />
 <List>
       <Picker data={NameOfBuilding} cols={1} {...getFieldProps('nameOfBuilding', {
           initialValue: [property.nameOfBuilding],

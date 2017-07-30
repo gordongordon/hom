@@ -91,6 +91,9 @@ class MatchSalePanelView extends React.Component {
     <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
       { this.renderNoticeBarMessage() }
     </NoticeBar>
+    <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
+      所有查詢即時回覆! 保證最新鮮...
+    </NoticeBar>
     <WhiteSpace size="sm" />
             {this.renderList( property )}
     </div>);
