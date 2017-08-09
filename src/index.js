@@ -9,6 +9,8 @@ import MobxStore from 'mobxStore';
 import firebase from 'firebase'
 import NavigationBar from 'navigationBar'
 
+import { NoticeBar } from 'antd-mobile';
+
 //router
 import views from 'views';
 
@@ -87,14 +89,27 @@ firebase.auth().onAuthStateChanged( (user) => {
    // User is signed in.
 
   if ( user)  {
-    //var isAnonymous = user.isAnonymous;
+    var isAnonymous = user.isAnonymous;
     //var uid = user.uid;
 
-     console.log( 'user signed')
+     console.log( 'user signed', user)
      // Redirect to member page!
      //MobxStore.app.startLogin();
      //Fb.startLogin();
      MobxStore.app.uid = user.uid;
+     if ( isAnonymous ) {
+     MobxStore.app.displayName = 'anonymous';
+     MobxStore.app.email = 'anonymous';
+     MobxStore.app.providerId = 'anonymous'
+   } else {
+     MobxStore.app.displayName = user.displayName;
+     MobxStore.app.email = user.email;
+     MobxStore.app.providerId = user.providerData[0].providerId;
+
+   }
+     //MobxStore.app.setTitle( user.displayName )
+
+     console.log( 'displayName', user.displayName)
 
      // Think over before remove this like, may cause matchedPropertys = null
      Fb.app.updateUid();
@@ -105,6 +120,10 @@ firebase.auth().onAuthStateChanged( (user) => {
        Fb.startLogout();
 
        MobxStore.app.uid = null;
+       MobxStore.app.displayName = 'none'
+       MobxStore.app.email = 'none'
+       MobxStore.app.providerId = 'none'
+
        MobxStore.router.goTo( views.home , {}, MobxStore )
 
   }
@@ -117,7 +136,6 @@ ReactDOM.render(
     <div>
       <NavigationBar/>
       <MobxRouter/>
-
     </div>
   </Provider>, document.getElementById('root')
 )

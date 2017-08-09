@@ -149,7 +149,7 @@ export class Property{
                  return '超新鮮'
                }
 
-               return '新鮮';
+               return '超新鮮';
     }
 
     @computed get colorByFresh() {
@@ -179,7 +179,8 @@ export class Property{
          const mDiff =  end.diff( start, 'minutes');
          const hDiff =  end.diff( start, 'hours');
          const DDiff =  end.diff( start, 'days');
-         var answer = '0'
+         // Set default value, incase of new insert property, without and delate!
+         var answer = '0 秒前'
 
          if ( DDiff > 0)
          {

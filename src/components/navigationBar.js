@@ -1,6 +1,6 @@
 import React from 'react'
 import {observer} from 'mobx-react'
-import {  Popover, NavBar, Icon, Button} from 'antd-mobile';
+import { Popover, NavBar, Icon, Button} from 'antd-mobile';
 import MobxStore from 'mobxStore'
 import views from 'views'
 import {Fb} from 'firebase-store'
@@ -144,7 +144,7 @@ render() {
          rightContent={[
            <div key="1">{this.loginItem()}</div>
          ]}
-       >{this.state.loginName}{MobxStore.app.title}</NavBar>
+       >{MobxStore.app.providerId},{MobxStore.app.title}</NavBar>
      </div>
    )
 

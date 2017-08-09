@@ -11,9 +11,12 @@ class AppStore {
       viewHistory  : new Map(),
       nextView : undefined,
       params : undefined,
+      displayName : 'none',
+      providerId : 'none'
     });
-    uid : null // User Id
 
+    uid : null // User Id
+    userEmail : 'none'
 
     console.log( 'creating MobxStore.app')
   }
