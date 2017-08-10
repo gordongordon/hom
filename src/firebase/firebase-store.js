@@ -141,3 +141,31 @@ var githubProvider = new firebase.auth.GithubAuthProvider();
 var facebookProvider = new firebase.auth.FacebookAuthProvider();
 var googleProvider = new firebase.auth.GoogleAuthProvider();
 export { Fb };
+
+//  How to handle incremental
+// var errId = 0;
+// // creates a new, incremental record
+// function incId() {
+//     // increment the counter
+//     fb.child('counter').transaction(function(currentValue) {
+//         return (currentValue||0) + 1
+//     }, function(err, committed, ss) {
+//         if( err ) {
+//            setError(err);
+//         }
+//         else if( committed ) {
+//            // if counter update succeeds, then create record
+//            // probably want a recourse for failures too
+//            addRecord(ss.val());
+//         }
+//     });
+// }
+//
+// // creates new incremental record
+// function addRecord(id) {
+//     setTimeout(function() {
+//        fb.child('records').child('rec'+id).set('record #'+id, function(err) {
+//           err && setError(err);
+//        });
+//     });
+// }

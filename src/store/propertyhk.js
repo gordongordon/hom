@@ -71,9 +71,8 @@ export class Propertyhk extends Property {
      Fb.agentPropertys.orderByChild('relatedFbid').equalTo(id).on("child_added", function(snap) {
 
           // Fb.matchedPropertys.child( snap.key ).set( snap.val() )
-//          Fb.propertys.update( { snap.key : { } })
+          // Fb.propertys.update( { snap.key : { } })
           const p = Propertyhk.deserialize( snap.val() )
-
 
           that.responsedPropertys.set( snap.key, p );
           console.log('child_added - responsedPropertys.size', that.responsedPropertys.size)
