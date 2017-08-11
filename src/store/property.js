@@ -6,6 +6,14 @@ import uuid from 'node-uuid'
 var _nextId = 0
 function nextId(){ _nextId++; return _nextId }
 
+const LABEL_JOBNATURE = {
+ '0' : '私人企業',
+ '1' : '政府工',
+ '2' : '自僱人士',
+ '3' : '學生',
+ '4' : '海外人士',
+}
+
 // this is our domain model class
 export class Property{
 
@@ -72,8 +80,8 @@ export class Property{
     @observable netSize = 0;
     @observable netSizeMin = 0;
     @observable netSizeMax = 0;
-    @observable numOfRroom = 0;
-    @observable numOfBathroom = 0;
+    @observable numOfRoom = 0;
+    @observable numOfBathroom = 1;  // Default minimum 1 bath room
     @observable numOfLivingroom = 0;
     // Contact
     @observable contactName = "no name";
@@ -130,7 +138,6 @@ export class Property{
       const mDiff =  end.diff( start, 'minutes');
       const hDiff =  end.diff( start, 'hours');
       const DDiff =  end.diff( start, 'days');
-
 
                if ( DDiff > 0)
                {
@@ -202,6 +209,48 @@ export class Property{
          return answer;
     }
 
+    @computed get jobNatureLabel() {
+        return '職業' + LABEL_JOBNATURE[this.jobNature] + '/';
+    }
+
+    @computed get incomeLabel() {
+      var label = this.priceToLabel( this.income );
+
+      return '收入' + label + '/';
+    }
+
+    priceToLabel( price ) {
+      var label = '';
+      const tenThousandDigit = parseInt((price / 10000));
+      const thousandDigit = parseInt( (price % 10000) / 1000) ;
+      const hundredDigit = parseInt( (price % 1000) / 100 );
+
+      if ( tenThousandDigit >= 1 ) {
+        label += tenThousandDigit + '萬';
+      }
+      if ( thousandDigit >= 1 ) {
+        label += thousandDigit + '千';
+      }
+      if ( hundredDigit >= 1 ) {
+        label += hundredDigit + '百';
+      }
+
+      return label + '/';
+    }
+
+    @computed get rentBudgetMaxLabel() {
+
+      if ( this.rentBudgetMax > 0 )
+      {
+         return  this.priceToLabel( this.rentBudgetMax );
+      }
+      return '';
+    }
+
+    @computed get numOfPeopleLivingLabel() {
+      return this.numOfPeopleLiving + '人住/';
+    }
+
     @computed get colorByRoleName() {
       var color = '#088A4B';
 
@@ -244,6 +293,61 @@ export class Property{
        return name;
     }
 
+    @computed get numOfRoomLabel() {
+
+       switch( this.numOfRoom ) {
+         case 0 : return '開放式';
+         case 1 : return '1房';
+         case 2 : return '2房';
+         case 3 : return '3房';
+         case 4 : return '4房';
+         case 5 : return '5房';
+       }
+       return 'Undefined 房'
+    }
+
+    @computed get numOfLivingroomLabel() {
+
+       switch( this.numOfRoom ) {
+         case 1 : return '1廳';
+         case 2 : return '2廳';
+         case 3 : return '3廳';
+       }
+       return 'Undefined 客廳'
+    }
+
+    @computed get numOfBathroomLabel() {
+
+       switch( this.numOfRoom ) {
+         case 0 : return '0廁';
+         case 1 : return '1廁';
+         case 2 : return '2廁';
+         case 3 : return '3廁';
+         case 4 : return '4廁';
+         case 5 : return '5廁';
+         case 6 : return '6廁';
+       }
+       return 'Undefined 廁所'
+    }
+
+    @computed get hasHomeHardwareLabel() {
+      if ( this.hasHomeHardware ) {
+         return '/有傢俬'
+      }
+
+      return ''
+    }
+
+    @computed get leasePriceLabel() {
+      return this.priceToLabel( this.leasePrice );
+    }
+
+    @computed get isFreeForSevenDayLabel() {
+      if ( this.isFreeForSevenDay ) {
+        return '/有免租期'
+      }
+      return  ''
+    }
 
     // setNetSize( netSize ) {
     //   this.netSize = netSize;
@@ -252,7 +356,7 @@ export class Property{
     // to keep the example clean I have done them, but you should consider using
     //https://github.com/mobxjs/serializr
     serialize(){
-
+        debugger
         return {
             id: this.id,
             uid: this.uid,

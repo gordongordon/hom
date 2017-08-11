@@ -125,8 +125,8 @@ class FormSalePropertyAntMobile extends React.Component {
     p.netSize = parseInt(v.netSize);
     p.salePrice = parseInt(v.salePrice);
     p.numOfRoom = parseInt( v.partition[0]);
-    p.numofBathroom = parseInt(v.partition[1]);
-    p.numofLivingroom = parseInt(v.partition[2]);
+    p.numOfBathroom = parseInt(v.partition[1]);
+    p.numOfLivingroom = parseInt(v.partition[2]);
     p.isSaleWIthLease = v.isSaleWIthLease;
     p.isNegotiable = v.isNegotiable;
     p.isViewAble = v.isViewAble;

@@ -113,7 +113,7 @@ class SingleRentPropertyForMatchView extends React.Component {
     />
     </Badge>
     <Card.Body>
-        <div>職業:{LABEL_JOBNATURE[property.jobNature]}/收入:${property.income}/{property.numOfPeopleLiving}人住/預算上限${property.rentBudgetMax}
+        <div>{property.jobNatureLabel}{property.incomeLabel}{property.numOfPeopleLivingLabel}預算上限${property.rentBudgetMax}
         </div>
     </Card.Body>
 

@@ -154,8 +154,8 @@ class FormRentPropertyAntMobile extends React.Component {
 
 
     p.numOfRoom = parseInt( v.partition[0]);
-    p.numofBathroom = parseInt(v.partition[1]);
-    p.numofLivingroom = parseInt(v.partition[2]);
+    p.numOfBathroom = parseInt(v.partition[1]);
+    p.numOfLivingroom = parseInt(v.partition[2]);
     // p.isPreferPayAnnually = v.isPreferPayAnnually;
     p.isRentAbleNow = v.isRentAbleNow;
     //p.isFreeForSevenDay = v.isFreeForSevenDay;

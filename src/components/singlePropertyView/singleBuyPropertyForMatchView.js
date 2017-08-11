@@ -107,16 +107,17 @@ class SingleBuyPropertyForMatchView extends React.Component {
   <Card full>
    <Badge text={'平'} corner>
     <Card.Header
-      title={ property.contactName +"/租金上限$"+property.rentBudgetMax}
+      title={ property.contactName}
       thumb="http://via.placeholder.com/140x100"
-      extra={<div>最快可樓睇/尋找:{BUILDING_NAME[property.nameOfBuilding]} </div>}
+      extra={<div>尋找:{BUILDING_NAME[property.nameOfBuilding]} </div>}
     />
     </Badge>
     <Card.Body>
-        <div>收入:${property.income}/職業:{LABEL_JOBNATURE[property.jobNature]}/{property.numOfPeopleLiving}人住
+        <div>間隔 :{property.numOfRoomLabel}/{property.numOfLivingroomLabel}/{property.numOfBathroomLabel}
         </div>
     </Card.Body>
-    <Card.Footer content={<div><Button type="ghost" inline size="small">Chat</Button><Button type="ghost" inline size="small">直接電話聯絡</Button></div>} extra={          <Flex style={{ marginBottom: '1rem' }}>
+    <Card.Footer content={<div><Button type="ghost" inline size="small">請打俾我</Button>
+    <Button type="ghost" inline size="small">直接聯絡</Button></div>} extra={          <Flex style={{ marginBottom: '1rem' }}>
               <Badge text={property.roleName} style={{ marginLeft: 12, padding: '0 0.06rem', backgroundColor: property.colorByRoleName, borderRadius: 2 }} />
               <Badge text={property.howFresh}  style={{ marginLeft: 12, padding: '0 0.06rem', backgroundColor: property.colorByFresh, borderRadius: 2 }} />
               <Badge text={property.dayListed}

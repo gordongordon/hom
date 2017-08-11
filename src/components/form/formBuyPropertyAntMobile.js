@@ -129,9 +129,10 @@ class FormBuyPropertyAntMobile extends React.Component {
     // p.salePriceMax = parseInt( v.salePriceMax )
 
     //p.leasePrice = parseInt(v.leasePrice);
+    //debugger
     p.numOfRoom = parseInt( v.partition[0]);
-    p.numofBathroom = parseInt(v.partition[1]);
-    p.numofLivingroom = parseInt(v.partition[2]);
+    p.numOfBathroom = parseInt(v.partition[1]);
+    p.numOfLivingroom = parseInt(v.partition[2]);
 
     p.isBuyWithLease = v.isBuyWithLease
     p.netSizeMin = parseInt( v.netSizeMin )
@@ -158,7 +159,7 @@ class FormBuyPropertyAntMobile extends React.Component {
     p.uid = MobxStore.app.uid;
     p.typeFor = "sale"
     p.typeTo = "buy"
-    p.fbid = id;
+    p.fbid = id;  // Assign a reference
 
     Fb.app.usersRef.update( {[id]:  p.serialize() });
 

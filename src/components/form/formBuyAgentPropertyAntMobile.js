@@ -130,8 +130,8 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
 
     //p.leasePrice = parseInt(v.leasePrice);
     p.numOfRoom = parseInt( v.partition[0]);
-    p.numofBathroom = parseInt(v.partition[1]);
-    p.numofLivingroom = parseInt(v.partition[2]);
+    p.numOfBathroom = parseInt(v.partition[1]);
+    p.numOfLivingroom = parseInt(v.partition[2]);
 
     p.isBuyWithLease = v.isBuyWithLease
     p.netSizeMin = parseInt( v.netSizeMin )
