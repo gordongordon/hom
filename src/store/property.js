@@ -390,7 +390,7 @@ export class Property{
     // to keep the example clean I have done them, but you should consider using
     //https://github.com/mobxjs/serializr
     serialize(){
-        debugger
+        //debugger
         return {
             id: this.id,
             uid: this.uid,

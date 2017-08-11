@@ -3,6 +3,8 @@ import { List , Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, Inp
 import { createForm } from 'rc-form';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
+import {Fb} from 'firebase-store'
+
 //import {propertys} from 'propertysViewModel'
 
 const Item = List.Item;
@@ -29,7 +31,19 @@ class ControlRentView extends React.Component {
       selectedSegmentIndex: 0,
     }
 
-    }
+  } // End of constructor
+
+  onChangeEarlyTimeToView = ( id  ) =>
+  {
+
+    const v = this.props.form.getFieldsValue();
+
+    debugger
+    Fb.app.usersRef.child( id).update( {   earlyTimeToView : v.earlyTimeToView.toJSON() } );
+    Fb.propertys.child( id ).update( {
+                                    earlyTimeToView : v.earlyTimeToView.toJSON()
+                                  } );
+  }
 
   render() {
         const {property} = this.props;
@@ -50,7 +64,7 @@ class ControlRentView extends React.Component {
       <div>
 
       <SegmentedControl values={['超新鮮 即時回覆', '全部配對']}  selectedIndex={this.selectedIndex} onChange={onChange} />
-<List>
+      <List>
       <Picker data={NameOfBuilding} cols={1} {...getFieldProps('nameOfBuilding', {
           initialValue: [property.nameOfBuilding],
         })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
@@ -77,12 +91,13 @@ class ControlRentView extends React.Component {
         title="選擇日期"
         extra="選擇日期,最長半年來"
         {...getFieldProps('earlyTimeToView', {
-          initialValue : minDate,
+          initialValue : moment( property.earlyTimeToView ),
         })}
         minDate={minDate}
         maxDate={maxDate}
+        onOk={ that.onChangeEarlyTimeToView( property.fbid )}
       >
-      <List.Item arrow="horizontal">最快幾時有樓睇</List.Item>
+      <List.Item arrow="horizontal">最快幾時可以樓睇</List.Item>
       </DatePicker>
     </List>
       <WhiteSpace size="sm" />

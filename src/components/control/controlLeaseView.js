@@ -80,7 +80,7 @@ class ControlLeaseView extends React.Component {
         title="選擇日期"
         extra="選擇日期,最長半年來"
         {...getFieldProps('earlyTimeToView', {
-          initialValue : minDate,
+          initialValue : moment( property.earlyTimeToView ),
         })}
         minDate={minDate}
         maxDate={maxDate}
