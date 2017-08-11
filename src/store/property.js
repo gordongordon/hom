@@ -145,7 +145,7 @@ export class Property{
       }
       if ( DDiff > 0)
       {
-         return '新鮮'
+         return '好新鮮'
       }
       if ( hDiff > 0)
       {
@@ -319,6 +319,10 @@ export class Property{
        return name;
     }
 
+    @computed get contactNameLabel() {
+        return this.roleName + this.contactName;
+    }
+
     @computed get numOfRoomLabel() {
 
        switch( this.numOfRoom ) {
@@ -329,23 +333,27 @@ export class Property{
          case 4 : return '4房';
          case 5 : return '5房';
        }
-       return 'Undefined 房'
+       return 'x房'
     }
 
+    @computed get partitionLabel() {
+      return "間隔" + this.numOfRoomLabel + this.numOfLivingroomLabel + this.numOfBathroomLabel + '/';
+    }
     @computed get numOfLivingroomLabel() {
 
        switch( this.numOfRoom ) {
+         case 0 : return '';
          case 1 : return '1廳';
          case 2 : return '2廳';
          case 3 : return '3廳';
        }
-       return 'Undefined 客廳'
+       return 'x廳'
     }
 
     @computed get numOfBathroomLabel() {
 
        switch( this.numOfRoom ) {
-         case 0 : return '0廁';
+         case 0 : return '';
          case 1 : return '1廁';
          case 2 : return '2廁';
          case 3 : return '3廁';
@@ -353,7 +361,7 @@ export class Property{
          case 5 : return '5廁';
          case 6 : return '6廁';
        }
-       return 'Undefined 廁所'
+       return 'x廁'
     }
 
     @computed get hasHomeHardwareLabel() {
@@ -365,7 +373,7 @@ export class Property{
     }
 
     @computed get leasePriceLabel() {
-      return this.priceToLabel( this.leasePrice );
+      return "租金" + this.priceToLabel( this.leasePrice ) + '/';
     }
 
     @computed get isFreeForSevenDayLabel() {

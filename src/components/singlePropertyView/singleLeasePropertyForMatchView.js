@@ -9,32 +9,32 @@ import {propertys} from 'propertysViewModel'
 const Item = List.Item;
 const Brief = Item.Brief;
 
-const LABEL_JOBNATURE = {
- '0' : '私人企業',
- '1' : '政府工',
- '2' : '自僱人士',
- '3' : '學生',
- '4' : '海外人士',
-}
+// const LABEL_JOBNATURE = {
+//  '0' : '私人企業',
+//  '1' : '政府工',
+//  '2' : '自僱人士',
+//  '3' : '學生',
+//  '4' : '海外人士',
+// }
 
-const jobNature = [
-  {
-    label : '私人企業',
-    value : '0'
-  },   {
-    label : '政府工',
-    value : '1'
-  },   {
-    label : '自僱人士',
-    value : '2'
-  },   {
-    label : '學生',
-    value : '3'
-  },  {
-    label : '海外人士',
-    value : '4'
-  },
-]
+// const jobNature = [
+//   {
+//     label : '私人企業',
+//     value : '0'
+//   },   {
+//     label : '政府工',
+//     value : '1'
+//   },   {
+//     label : '自僱人士',
+//     value : '2'
+//   },   {
+//     label : '學生',
+//     value : '3'
+//   },  {
+//     label : '海外人士',
+//     value : '4'
+//   },
+// ]
 
 const NameOfBuilding = [
   { value: 'MOSDBC', label: '迎海' },
@@ -63,13 +63,13 @@ class SingleLeasePropertyForMatchView extends React.Component {
   render() {
         const {property} = this.props
 
-        console.log( 'SingleRentPropertyForMatch', property )
+        console.log( 'SingleLeasePropertyForMatch', property )
         const that = this;
         const { getFieldProps } = this.props.form;
         // For DatePicker
-        const minDate = moment().locale('zh-cn').utcOffset(8);
-        const maxDate = moment(minDate).add(6, 'M');
-        property.reatTime = moment().format('YYYY-MM-DD HH:mm:ss');
+        // const minDate = moment().locale('zh-cn').utcOffset(8);
+        // const maxDate = moment(minDate).add(6, 'M');
+        // property.reatTime = moment().format('YYYY-MM-DD HH:mm:ss');
 
 
     return (
@@ -107,13 +107,13 @@ class SingleLeasePropertyForMatchView extends React.Component {
   <Card full>
    <Badge text={'平'} corner>
     <Card.Header
-      title={ "業主" + property.contactName }
+      title={ property.contactNameLabel }
       thumb="http://via.placeholder.com/140x100"
       extra={<div>尋找:{BUILDING_NAME[property.nameOfBuilding]} </div>}
     />
     </Badge>
     <Card.Body>
-        <div>租金:{property.leasePriceLabel}{property.isFreeForSevenDayLabel}{property.dueDayLabel}{property.hasHomeHardwareLabel}
+        <div>{property.leasePriceLabel}{property.partitionLabel}{property.isFreeForSevenDayLabel}{property.dueDayLabel}{property.hasHomeHardwareLabel}
         </div>
     </Card.Body>
     <Card.Footer content={<div><Button type="ghost" inline size="small">請打俾我</Button>

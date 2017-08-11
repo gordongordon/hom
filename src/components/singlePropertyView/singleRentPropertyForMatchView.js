@@ -107,7 +107,7 @@ class SingleRentPropertyForMatchView extends React.Component {
   <Card full>
    <Badge text={'平'} corner>
     <Card.Header
-      title={ property.contactName }
+      title={ property.contactNameLabel }
       thumb="http://via.placeholder.com/140x100"
       extra={<div>尋找:{BUILDING_NAME[property.nameOfBuilding]} </div>}
     />

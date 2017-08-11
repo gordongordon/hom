@@ -117,13 +117,13 @@ class SingleSalePropertyForMatchView extends React.Component {
   <Card full>
    <Badge text={'平'} corner>
     <Card.Header
-      title={ BUILDING_NAME[property.nameOfBuilding] + "/$" + property.salePrice + "萬"}
+      title={ property.contactNameLabel }
       thumb="http://via.placeholder.com/140x100"
-      extra={<div>最快可樓睇/尋找:{BUILDING_NAME[property.nameOfBuilding]} </div>}
+      extra={<div>尋找:{BUILDING_NAME[property.nameOfBuilding]} </div>}
     />
     </Badge>
     <Card.Body>
-        <div>收入:${property.income}/職業:{LABEL_JOBNATURE[property.jobNature]}/{property.numOfPeopleLiving}人住
+        <div>{property.partitionLabel}
         </div>
     </Card.Body>
     <Card.Footer content={<div><Button type="ghost" inline size="small">Chat</Button><Button type="ghost" inline size="small">直接電話聯絡</Button></div>} extra={          <Flex style={{ marginBottom: '1rem' }}>

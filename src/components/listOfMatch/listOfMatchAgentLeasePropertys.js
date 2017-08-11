@@ -4,7 +4,7 @@ import React from 'react'
 import moment from 'moment';
 //import 'moment/locale/zh-cn';
 //import {propertys} from 'propertysViewModel'
-import {SingleLeasePropertyForMatchViewWrapper} from '../singlePropertyView/singleLeasePropertyForMatchView'
+import {SingleLeaseAgentPropertyForRespondViewWrapper} from '../singlePropertyView/SingleLeaseAgentPropertyForRespondView'
 import { observer } from 'mobx-react';
 //const Item = List.Item;
 //const Brief = Item.Brief;
@@ -42,7 +42,7 @@ export class ListOfMatchAgentLeasePropertys extends React.Component {
       //  if ( b >= c ) {
       //    //console.log( b > c)
        element.push(
-           <SingleLeasePropertyForMatchViewWrapper property={property} key={keyID}/>
+           <SingleLeaseAgentPropertyForRespondViewWrapper property={property} key={keyID}/>
          )
     //   }
 

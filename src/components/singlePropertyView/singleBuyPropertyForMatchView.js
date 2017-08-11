@@ -107,13 +107,13 @@ class SingleBuyPropertyForMatchView extends React.Component {
   <Card full>
    <Badge text={'平'} corner>
     <Card.Header
-      title={ property.contactName}
+      title={ property.contactNameLabel }
       thumb="http://via.placeholder.com/140x100"
       extra={<div>尋找:{BUILDING_NAME[property.nameOfBuilding]} </div>}
     />
     </Badge>
     <Card.Body>
-        <div>間隔 :{property.numOfRoomLabel}{property.numOfLivingroomLabel}{property.numOfBathroomLabel}
+        <div>{property.partitionLabel}
         </div>
     </Card.Body>
     <Card.Footer content={<div><Button type="ghost" inline size="small">請打俾我</Button>
