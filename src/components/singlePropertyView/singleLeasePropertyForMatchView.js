@@ -113,7 +113,7 @@ class SingleLeasePropertyForMatchView extends React.Component {
     />
     </Badge>
     <Card.Body>
-        <div>租金:{property.leasePriceLabel}{property.isFreeForSevenDayLabel}/9月1號交吉日期{property.hasHomeHardwareLabel}
+        <div>租金:{property.leasePriceLabel}{property.isFreeForSevenDayLabel}{property.dueDayLabel}{property.hasHomeHardwareLabel}
         </div>
     </Card.Body>
     <Card.Footer content={<div><Button type="ghost" inline size="small">請打俾我</Button>

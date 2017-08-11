@@ -113,7 +113,7 @@ class SingleBuyPropertyForMatchView extends React.Component {
     />
     </Badge>
     <Card.Body>
-        <div>間隔 :{property.numOfRoomLabel}/{property.numOfLivingroomLabel}/{property.numOfBathroomLabel}
+        <div>間隔 :{property.numOfRoomLabel}{property.numOfLivingroomLabel}{property.numOfBathroomLabel}
         </div>
     </Card.Body>
     <Card.Footer content={<div><Button type="ghost" inline size="small">請打俾我</Button>

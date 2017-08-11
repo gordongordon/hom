@@ -139,24 +139,28 @@ export class Property{
       const hDiff =  end.diff( start, 'hours');
       const DDiff =  end.diff( start, 'days');
 
-               if ( DDiff > 0)
-               {
-                 return '新鮮'
-               }
-               if ( hDiff > 0)
-               {
-                 return '好新鮮'
-               }
-               if ( mDiff > 0)
-               {
-                 return '勁新鮮'
-               }
-               if ( sDiff > 0)
-               {
-                 return '超新鮮'
-               }
+      if ( DDiff > 7)
+      {
+        return ''
+      }
+      if ( DDiff > 0)
+      {
+         return '新鮮'
+      }
+      if ( hDiff > 0)
+      {
+        return '勁新鮮'
+      }
+      if ( mDiff > 0)
+      {
+        return '超新鮮'
+      }
+      if ( sDiff > 0)
+      {
+        return '超新鮮'
+      }
 
-               return '超新鮮';
+      return '超新鮮';
     }
 
     @computed get colorByFresh() {
@@ -235,14 +239,36 @@ export class Property{
         label += hundredDigit + '百';
       }
 
-      return label + '/';
+      return label;
+    }
+
+    getTimeInNum( time ) {
+      const MM = moment( time )
+      const Y = MM.get('Y') ;
+      const M = MM.get('M') // 0 to 11
+      const D = MM.get('D');
+      const h = MM.get('h') ;
+      const m = MM.get('m');
+      const s = MM.get('s');
+
+      const Days = D;
+      const Hours = Days * 24;
+      const Seconds = Hours * 60;
+      const Months = M + 1;
+      const Years = Y;
+      return { Days, Hours, Seconds, Months, Years }
+    }
+
+    @computed get dueDayLabel() {
+      const time = this.getTimeInNum( this.dueDay )
+      return time.Months + '月' + time.Days + '日交吉/' ;
     }
 
     @computed get rentBudgetMaxLabel() {
 
       if ( this.rentBudgetMax > 0 )
       {
-         return  this.priceToLabel( this.rentBudgetMax );
+         return  '租金預算' + this.priceToLabel( this.rentBudgetMax ) + '/';
       }
       return '';
     }
@@ -332,7 +358,7 @@ export class Property{
 
     @computed get hasHomeHardwareLabel() {
       if ( this.hasHomeHardware ) {
-         return '/有傢俬'
+         return '有傢俬/'
       }
 
       return ''
@@ -344,7 +370,7 @@ export class Property{
 
     @computed get isFreeForSevenDayLabel() {
       if ( this.isFreeForSevenDay ) {
-        return '/有免租期'
+        return '有免租期/'
       }
       return  ''
     }

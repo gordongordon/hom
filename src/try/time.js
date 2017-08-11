@@ -43,8 +43,9 @@ function getTimeInNum( time ) {
   const Days = M * 30 + D;
   const Hours = Days * 24;
   const Seconds = Hours * 60;
-
-  return { Days, Hours, Seconds }
+  const Months = M;
+  const Years = Y;
+  return { Days, Hours, Seconds, Months, Years }
 }
 
 // Get all data
@@ -52,6 +53,10 @@ var time = getTimeInNum( moment() )
 console.log( 'time.Days', time.Days );
 console.log( 'time.Hours', time.Hours );
 console.log( 'time.Seconds', time.Seconds );
+console.log( 'time.Months', time.Months );
+console.log( 'time.Years', time.Years );
+
+
 
 console.log( 'getday', getTimeInNum( moment() ));
 //var MM = moment( moment().format('YYYY-MM-DD HH:mm:ss') );
@@ -111,3 +116,9 @@ console.log( 'b', b)
 console.log( a.diff(b, 'minutes')  )
 
 console.log( moment.duration().asMinutes() )
+
+//
+// const dueDay = moment( moment().format('YYYY-MM-DD') );
+// var mm = dueDay.get('M');
+// var dd = dueDay.get('D')
+// console.log( "due MM", )
