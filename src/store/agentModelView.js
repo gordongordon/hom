@@ -55,6 +55,16 @@ class AgentModelViewModel {
             that.propertys.set( snapshot.key, p );
     });
 
+    // Handle update
+    Fb.propertys.on('child_changed', (snapshot) => {
+                 const p = that.propertys.get( snapshot.key )
+                 that.propertys.set( snapshot.key, { ...p, ...snapshot.val() });
+
+//                 that.propertys.set( snapshot.key, snapshot.val() );
+                 // console.log('that.propertys.size', that.propertys.size)
+    });
+
+
    // Handle child_removed
    Fb.propertys.on('child_removed', (snapshot) => {
                 that.propertys.delete( snapshot.key );
@@ -84,6 +94,15 @@ class AgentModelViewModel {
             that.propertys.delete( p.relatedFbid );
 
     });
+
+    Fb.app.agentsRef.on('child_changed', (snapshot) => {
+                const p = that.ownPropertys.get( snapshot.key )
+                that.ownPropertys.set( snapshot.key, { ...p, ...snapshot.val() });
+
+                 //that.ownPropertys.set( snapshot.key, snapshot.val() );
+                 // console.log('that.propertys.size', that.propertys.size)
+    });
+
 
    // Handle child_removed
    Fb.app.agentsRef.on('child_removed', (snapshot) => {

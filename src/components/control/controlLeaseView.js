@@ -4,6 +4,8 @@ import { List , Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, Inp
 import { createForm } from 'rc-form';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
+import {Fb} from 'firebase-store'
+
 //import {propertys} from 'propertysViewModel'
 
 const Item = List.Item;
@@ -28,8 +30,28 @@ class ControlLeaseView extends React.Component {
     this.state = {
       disabled: false,
       selectedSegmentIndex: 0,
+      id : this.props.property.fbid
     }
 
+    }
+
+    onChangeLeasePrice = ( val ) => {
+
+      const id = this.state.id;
+
+      Fb.app.usersRef.child( id ).update( { leasePrice : parseInt( val )  } );
+      Fb.propertys.child( id ).update( { leasePrice : parseInt( val) } );
+
+    }
+
+    onChangeEarlyTimeToView = ( id  ) =>
+    {
+
+      const v = this.props.form.getFieldsValue();
+
+      //// debugger
+      Fb.app.usersRef.child( id ).update( { earlyTimeToView : v.earlyTimeToView.toJSON() } );
+      Fb.propertys.child( id ).update( { earlyTimeToView : v.earlyTimeToView.toJSON() } );
     }
 
   render() {
@@ -62,29 +84,29 @@ class ControlLeaseView extends React.Component {
       <List.Item extra={
        <Stepper
          style={{ width: '100%', minWidth: '2rem' }}
-         {...getFieldProps('numOfPeopleLiving', {
-           initialValue: property.leasePrice
-         })}
+         value={property.leasePrice}
          showNumber
          max={100000}
          min={1000}
          defaultValue={8000}
          step={500}
+         onChange={that.onChangeLeasePrice}
        />}
      >
      租金/元
      </List.Item>
 
-      <DatePicker
-        mode="date"
-        title="選擇日期"
-        extra="選擇日期,最長半年來"
-        {...getFieldProps('earlyTimeToView', {
-          initialValue : moment( property.earlyTimeToView ),
-        })}
-        minDate={minDate}
-        maxDate={maxDate}
-      >
+     <DatePicker
+       mode="date"
+       title="選擇日期"
+       extra="選擇日期,最長半年來"
+       {...getFieldProps('earlyTimeToView', {
+         initialValue : moment( property.earlyTimeToView ),
+       })}
+       minDate={minDate}
+       maxDate={maxDate}
+       onOk={ that.onChangeEarlyTimeToView( property.fbid )}
+     >
       <List.Item arrow="horizontal">最快幾時有樓睇</List.Item>
       </DatePicker>
     </List>

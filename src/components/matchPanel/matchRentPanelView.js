@@ -49,6 +49,7 @@ class MatchRentPanelView extends React.Component {
   // }
 
   renderList = ( property ) => {
+    //debugger
     if ( this.state.selectedSegmentIndex === 0 ) {
       return <ListOfMatchAgentLeasePropertys propertys={property.responsedPropertys} timeEnter={this.props.timeEnter}/>
     } else {
@@ -65,6 +66,7 @@ class MatchRentPanelView extends React.Component {
   }
 
   render() {
+       //debugger
         var property = propertys.propertys.get( MobxStore.router.params.keyID );
 
         console.log( 'store.params.keyID', MobxStore.router.params.keyID )

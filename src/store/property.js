@@ -264,6 +264,12 @@ export class Property{
       return time.Months + '月' + time.Days + '日交吉/' ;
     }
 
+    @computed get earlyTimeToViewLabel() {
+      const time = this.getTimeInNum( this.earlyTimeToView )
+      return time.Months + '月' + time.Days + '日後可睇樓/' ;
+    }
+
+
     @computed get rentBudgetMaxLabel() {
 
       if ( this.rentBudgetMax > 0 )

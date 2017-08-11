@@ -23,30 +23,17 @@ export class ListOfMatchAgentLeasePropertys extends React.Component {
   }
 
   display = ( propertys ) => {
+     // debugger
      const list = propertys;
      // Try to show most uptoday item only
      var element = [];
 
-    //  const timeEnter = this.props.timeEnter;
-    //  const c = moment( timeEnter );
-
-    list.forEach( (property, keyID) => {
-      //  //var c = moment.utc().format('YYYY-MM-DD HH:mm:ss');
-      //  const a = moment( property.createdAt,'YYYY-MM-DD HH:mm:ss' );
-      //  const b = moment(a, 'YYYY-MM-DD HH:mm:ss');
-       //
-      //  console.log( 'a ', a)
-      //  console.log( 'b ', b)
-      //  console.log( 'c ', c)
-       //
-      //  if ( b >= c ) {
-      //    //console.log( b > c)
-       element.push(
-           <SingleLeaseAgentPropertyForRespondViewWrapper property={property} key={keyID}/>
-         )
-    //   }
-
-    })
+     console.log( 'list.size', list.size )
+     list.forEach( (property, keyID) => {
+        element.push(
+            <SingleLeaseAgentPropertyForRespondViewWrapper property={property} key={keyID}/>
+          )
+     })
 
      return <div>{element.reverse()}</div>
   }
@@ -55,6 +42,10 @@ export class ListOfMatchAgentLeasePropertys extends React.Component {
   render() {
         const {propertys} = this.props;
         const that = this;
+
+        if ( propertys === undefined ) {
+          console.log( 'check error in propertysViewModel without reference after has been modified')
+        }
 
     return (
       <div>

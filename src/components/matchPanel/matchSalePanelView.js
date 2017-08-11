@@ -82,6 +82,9 @@ class MatchSalePanelView extends React.Component {
         // const { getFieldProps } = this.props.form;
         // const minDate = moment().locale('zh-cn').utcOffset(8);
         // const maxDate = moment(minDate).add(6, 'M');
+        if ( propertys === undefined ) {
+          console.log( 'check error in propertysViewModel without reference after has been modified')
+        }
 
 
     return (

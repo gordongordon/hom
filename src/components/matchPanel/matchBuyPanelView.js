@@ -84,6 +84,10 @@ class MatchBuyPanelView extends React.Component {
     // const { getFieldProps } = this.props.form;
     // const minDate = moment().locale('zh-cn').utcOffset(8);
     // const maxDate = moment(minDate).add(6, 'M');
+    if ( propertys === undefined ) {
+      console.log( 'check error in propertysViewModel without reference after has been modified')
+    }
+    
 
     return (
       <div>
@@ -95,7 +99,7 @@ class MatchBuyPanelView extends React.Component {
     <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
       所有查詢即時回覆! 保證最新鮮...
     </NoticeBar>
-    
+
     <WhiteSpace size="sm" />
             {this.renderList( property )}
     </div>);

@@ -60,6 +60,16 @@ class PropertysViewModel {
             that.propertys.set( snapshot.key, p );
     });
 
+
+    Fb.app.usersRef.on('child_changed', (snapshot) => {
+                 // Get an element with all functions, propertys
+                 // Recreate a new properts { ... }
+                 // otherwise propertys.responsedPropertys = undefined error
+                 const p = that.propertys.get( snapshot.key )
+                 that.propertys.set( snapshot.key, { ...p, ...snapshot.val() });
+                 //console.log('child_changed snapshot.val() ',  snapshot.val() )
+    });
+
    // Handle child_removed
    Fb.app.usersRef.on('child_removed', (snapshot) => {
                 that.propertys.delete( snapshot.key );

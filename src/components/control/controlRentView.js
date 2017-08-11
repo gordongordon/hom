@@ -29,20 +29,37 @@ class ControlRentView extends React.Component {
     this.state = {
       disabled: false,
       selectedSegmentIndex: 0,
+      id : this.props.property.fbid
     }
 
+     // This binding is necessary to make `this` work in the callback
+    this.onChangeRentBudgetMax = this.onChangeRentBudgetMax.bind(this);
+    this.onChangeEarlyTimeToView = this.onChangeEarlyTimeToView.bind(this);
+
   } // End of constructor
+
+  onChangeRentBudgetMax = ( val ) => {
+
+    const id = this.state.id;
+
+    //const v = this.props.form.getFieldsValue();
+
+    // debugger
+//    Fb.app.usersRef.child( id ).update( { rentBudgetMax : parseInt( v.rentBudgetMax )  } );
+    //Fb.propertys.child( id ).update( { rentBudgetMax : parseInt( v.rentBudgetMax) } );
+    Fb.app.usersRef.child( id ).update( { rentBudgetMax : parseInt( val )  } );
+    Fb.propertys.child( id ).update( { rentBudgetMax : parseInt( val) } );
+
+  }
 
   onChangeEarlyTimeToView = ( id  ) =>
   {
 
     const v = this.props.form.getFieldsValue();
 
-    debugger
-    Fb.app.usersRef.child( id).update( {   earlyTimeToView : v.earlyTimeToView.toJSON() } );
-    Fb.propertys.child( id ).update( {
-                                    earlyTimeToView : v.earlyTimeToView.toJSON()
-                                  } );
+    //// debugger
+    Fb.app.usersRef.child( id ).update( { earlyTimeToView : v.earlyTimeToView.toJSON() } );
+    Fb.propertys.child( id ).update( { earlyTimeToView : v.earlyTimeToView.toJSON() } );
   }
 
   render() {
@@ -59,6 +76,8 @@ class ControlRentView extends React.Component {
         var selectedIndex = this.props.selectedIndex;
         const onChange = this.props.onChange;
 
+        console.log( 'property.earlyTimeToView ',  property.earlyTimeToView )
+
     return (
 
       <div>
@@ -74,18 +93,17 @@ class ControlRentView extends React.Component {
       <List.Item extra={
        <Stepper
          style={{ width: '100%', minWidth: '2rem' }}
-         {...getFieldProps('rentBudgetMax', {
-           initialValue: property.rentBudgetMax
-         })}
+         value={property.rentBudgetMax}
          showNumber
          max={100000}
          min={1000}
          step={500}
+         onChange={that.onChangeRentBudgetMax}
+         useTouch={true}
        />}
      >
      租金上限/元
      </List.Item>
-
       <DatePicker
         mode="date"
         title="選擇日期"
