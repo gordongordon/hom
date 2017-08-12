@@ -52,6 +52,12 @@ export class ListOfMatchAgentPropertyView extends React.Component {
   renderPropertys = ( model, propertys, h ) => {
 
     var list = propertys;
+    // Catched empty list, don't do anything!
+    if ( list.size === 0 )
+    {
+       return null;
+    }
+    
     const that = this;
 
     console.log( 'list size ', list.size )

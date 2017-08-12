@@ -25,6 +25,12 @@ export class ListOfMatchAgentLeasePropertys extends React.Component {
   display = ( propertys ) => {
      // debugger
      const list = propertys;
+     // Catched empty list, don't do anything!
+     if ( list.size === 0 )
+     {
+        return null;
+     }
+     
      // Try to show most uptoday item only
      var element = [];
 

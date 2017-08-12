@@ -4,6 +4,8 @@ import { createForm } from 'rc-form';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 //import {propertys} from 'propertysViewModel'
+import {Fb} from 'firebase-store'
+
 
 const Item = List.Item;
 const Brief = Item.Brief;

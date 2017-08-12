@@ -38,18 +38,13 @@ class ControlRentView extends React.Component {
 
   } // End of constructor
 
+  //
   onChangeRentBudgetMax = ( val ) => {
 
     const id = this.state.id;
 
-    //const v = this.props.form.getFieldsValue();
-
-    // debugger
-//    Fb.app.usersRef.child( id ).update( { rentBudgetMax : parseInt( v.rentBudgetMax )  } );
-    //Fb.propertys.child( id ).update( { rentBudgetMax : parseInt( v.rentBudgetMax) } );
     Fb.app.usersRef.child( id ).update( { rentBudgetMax : parseInt( val )  } );
     Fb.propertys.child( id ).update( { rentBudgetMax : parseInt( val) } );
-
   }
 
   onChangeEarlyTimeToView = ( id  ) =>

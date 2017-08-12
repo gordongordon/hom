@@ -24,6 +24,12 @@ export class ListOfMatchOldSalePropertys extends React.Component {
 
   display = ( propertys ) => {
      const list = propertys;
+     // Catched empty list, don't do anything!
+     if ( list.size === 0 )
+     {
+        return null;
+     }
+     
      const timeEnter = this.props.timeEnter;
      // Try to show most uptoday item only
      var element = [];

@@ -2,6 +2,9 @@ import React from 'react'
 import { WhiteSpace, SegmentedControl} from 'antd-mobile';
 import { createForm } from 'rc-form';
 
+import {Fb} from 'firebase-store';
+
+
 // import moment from 'moment';
 // import 'moment/locale/zh-cn';
 //import {propertys} from 'propertysViewModel'
