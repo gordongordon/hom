@@ -1,6 +1,9 @@
 import {observable, computed} from 'mobx'
 import moment from 'moment'
 import uuid from 'node-uuid'
+import {DISTRICK} from 'DISTRICK'
+
+
 
 // ignore the two lines below, they just creates unique IDs for the todo
 var _nextId = 0
@@ -52,6 +55,8 @@ export class Property{
 
     // Propety information
     @observable district = "";
+    @observable addressRegion = "";
+    @observable addressLocation = "";
     @observable nameOfBuilding = "";
     @observable propertyType = "";
     @observable flatType =  "";
@@ -181,6 +186,18 @@ export class Property{
      return color;
     }
 
+
+    @computed get nameOfBuildingLabel() {
+
+      const region = DISTRICK.find((element) => element.value === this.addressRegion )
+      console.log( 'region', region)
+      const location = region.children.find( (element) => element.value === this.addressLocation  )
+      console.log( 'location', location )
+      const building = location.children.find( (element) => element.value === this.nameOfBuilding )
+      console.log( 'building', building.label )
+
+      return building.label;
+    }
 
     @computed get dayListed() {
 
@@ -416,6 +433,8 @@ export class Property{
             typeFor : this.typeFor,
 
             district : this.district,
+            addressRegion : this.addressRegion,
+            addressLocation : this.addressLocation,
             nameOfBuilding: this.nameOfBuilding,
             propertyType : this.propertyType,
             flatType : this.flatType,
@@ -512,6 +531,8 @@ export class Property{
       p.typeFor = v.typeFor,
 
       p.district = v.district,
+      p.addressRegion = v.addressRegion,
+      p.addressLocation = v.addressLocation,
       p.nameOfBuilding= v.nameOfBuilding,
       p.propertyType = v.propertyType,
       p.flatType = v.flatType,
@@ -588,6 +609,8 @@ export class Property{
       this.typeFor = v.typeFor,
 
       this.district = v.district,
+      this.addressRegion = v.addressRegion,
+      this.addressLocation = v.addressLocation,
       this.nameOfBuilding= v.nameOfBuilding,
       this.propertyType = v.propertyType,
       this.flatType = v.flatType,

@@ -9,11 +9,11 @@ import { observer } from 'mobx-react';
 //const Item = List.Item;
 //const Brief = Item.Brief;
 
-const NameOfBuilding = [
-  { value: 'MOSDBC', label: '迎海' },
-  { value: 'MOSCTO', label: '第一城' },
-  { value: 'MOSSSC', label: '新港城' },
-];
+// const NameOfBuilding = [
+//   { value: 'MOSDBC', label: '迎海' },
+//   { value: 'MOSCTO', label: '第一城' },
+//   { value: 'MOSSSC', label: '新港城' },
+// ];
 
 @observer
 export class ListOfMatchOldSalePropertys extends React.Component {
@@ -29,7 +29,7 @@ export class ListOfMatchOldSalePropertys extends React.Component {
      {
         return null;
      }
-     
+
      const timeEnter = this.props.timeEnter;
      // Try to show most uptoday item only
      var element = [];

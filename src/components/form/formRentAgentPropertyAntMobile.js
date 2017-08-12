@@ -10,12 +10,14 @@ import { Card, Picker, List, WhiteSpace, InputItem,
 import { createForm } from 'rc-form';
 import { MTR } from 'MTR';
 import {PARTITION} from 'PARTITION';
+import {DISTRICK} from 'DISTRICK';
 import {Fb} from 'firebase-store'
 import {Property} from 'property'
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import MobxStore from 'mobxStore'
 import views from 'views'
+
 
 // 如果不是使用 List.Item 作为 children
 const CustomChildren = props => (
@@ -60,11 +62,11 @@ const roomKey = {
   '5' : '5房',
 }
 
-const NameOfBuilding = [
-  { value: 'MOSDBC', label: '迎海' },
-  { value: 'MOSCTO', label: '第一城' },
-  { value: 'MOSSSC', label: '新港城' },
-];
+// const NameOfBuilding = [
+//   { value: 'MOSDBC', label: '迎海' },
+//   { value: 'MOSCTO', label: '第一城' },
+//   { value: 'MOSSSC', label: '新港城' },
+// ];
 
 class FormRentAgentPropertyAntMobile extends React.Component {
   state = {
@@ -141,7 +143,11 @@ class FormRentAgentPropertyAntMobile extends React.Component {
     //p.nearByMtrStop = v.nearByMtrStop;
     p.uid = MobxStore.app.uid;
 
-    p.nameOfBuilding = v.nameOfBuilding[0]
+    p.addressRegion = v.districk[0];
+    p.addressLocation = v.districk[1];
+    p.nameOfBuilding = v.districk[2]
+
+
     p.jobNature = parseInt(v.jobNature[0]);
     p.income = parseInt(v.income);
 
@@ -210,6 +216,11 @@ class FormRentAgentPropertyAntMobile extends React.Component {
       { value: 2, label: '包管理費' },
     ];
 
+    // <Picker data={NameOfBuilding} cols={1} {...getFieldProps('nameOfBuilding', {
+    //     initialValue: ['MOSDBC'],
+    //   })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
+    //   <List.Item arrow="horizontal">大廈/屋苑</List.Item>
+    // </Picker>
 
     // For DatePicker
     const minDate = moment().locale('zh-cn').utcOffset(8);
@@ -218,8 +229,8 @@ class FormRentAgentPropertyAntMobile extends React.Component {
     return ( <div>
       <List style={{ backgroundColor: 'white' }} className="picker-list">
 
-      <Picker data={NameOfBuilding} cols={1} {...getFieldProps('nameOfBuilding', {
-          initialValue: ['MOSDBC'],
+      <Picker data={DISTRICK} cols={3} {...getFieldProps('districk', {
+          initialValue: ['NTTV','MOS','MOS0001'],
         })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
         <List.Item arrow="horizontal">大廈/屋苑</List.Item>
       </Picker>

@@ -9,11 +9,11 @@ import { observer } from 'mobx-react';
 //const Item = List.Item;
 //const Brief = Item.Brief;
 
-const NameOfBuilding = [
-  { value: 'MOSDBC', label: '迎海' },
-  { value: 'MOSCTO', label: '第一城' },
-  { value: 'MOSSSC', label: '新港城' },
-];
+// const NameOfBuilding = [
+//   { value: 'MOSDBC', label: '迎海' },
+//   { value: 'MOSCTO', label: '第一城' },
+//   { value: 'MOSSSC', label: '新港城' },
+// ];
 
 @observer
 export class ListOfMatchOldLeasePropertys extends React.Component {

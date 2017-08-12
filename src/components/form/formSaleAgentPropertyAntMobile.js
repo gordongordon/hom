@@ -9,6 +9,8 @@ import { Card, Picker, List, WhiteSpace, InputItem,
 import { createForm } from 'rc-form';
 import { MTR } from 'MTR';
 import {PARTITION} from 'PARTITION';
+import {DISTRICK} from 'DISTRICK';
+
 import {Fb} from 'firebase-store'
 import {Property} from 'property'
 import moment from 'moment';
@@ -29,11 +31,11 @@ const CustomChildren = props => (
   </div>
 );
 
-const NameOfBuilding = [
-  { value: 'MOSDBC', label: '迎海' },
-  { value: 'MOSCTO', label: '第一城' },
-  { value: 'MOSSSC', label: '新港城' },
-];
+// const NameOfBuilding = [
+//   { value: 'MOSDBC', label: '迎海' },
+//   { value: 'MOSCTO', label: '第一城' },
+//   { value: 'MOSSSC', label: '新港城' },
+// ];
 
 const CheckboxItem = Checkbox.CheckboxItem;
 
@@ -118,7 +120,10 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
     // p.nearByMtrStop = nearByMtrStop;
     p.uid = MobxStore.app.uid;
 
-    p.nameOfBuilding = v.nameOfBuilding[0]
+    p.addressRegion = v.districk[0];
+    p.addressLocation = v.districk[1];
+    p.nameOfBuilding = v.districk[2]
+
     // p.dueDay = v.dueDay.toJSON();
     p.earlyTimeToView = v.earlyTimeToView.toJSON();
     //p.leasePrice = parseInt(v.leasePrice);
@@ -191,11 +196,13 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
 
     return ( <div>
       <List style={{ backgroundColor: 'white' }} className="picker-list">
-        <Picker data={NameOfBuilding} cols={1} {...getFieldProps('nameOfBuilding', {
-            initialValue: ['MOSDBC'],
+
+        <Picker data={DISTRICK} cols={3} {...getFieldProps('districk', {
+            initialValue: ['NTTV','MOS','MOS0001'],
           })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
           <List.Item arrow="horizontal">大廈/屋苑</List.Item>
         </Picker>
+
                 <InputItem
                   {...getFieldProps('netSize', {
                     initialValue : 300,

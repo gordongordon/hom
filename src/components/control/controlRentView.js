@@ -4,6 +4,8 @@ import { createForm } from 'rc-form';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import {Fb} from 'firebase-store'
+import {DISTRICK} from 'DISTRICK'
+
 
 //import {propertys} from 'propertysViewModel'
 
@@ -73,17 +75,21 @@ class ControlRentView extends React.Component {
 
         console.log( 'property.earlyTimeToView ',  property.earlyTimeToView )
 
+        // <Picker data={NameOfBuilding} cols={1} {...getFieldProps('nameOfBuilding', {
+        //     initialValue: [property.nameOfBuilding],
+        //   })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
+        //   <List.Item arrow="horizontal">租物業</List.Item>
+        // </Picker>
+
+
     return (
 
       <div>
 
       <SegmentedControl values={['超新鮮 即時回覆', '全部配對']}  selectedIndex={this.selectedIndex} onChange={onChange} />
       <List>
-      <Picker data={NameOfBuilding} cols={1} {...getFieldProps('nameOfBuilding', {
-          initialValue: [property.nameOfBuilding],
-        })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
-        <List.Item arrow="horizontal">租物業</List.Item>
-      </Picker>
+
+      <List.Item arrow="horizontal">租物業  {property.nameOfBuildingLabel}</List.Item>
 
       <List.Item extra={
        <Stepper
