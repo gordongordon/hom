@@ -10,11 +10,11 @@ import {Fb} from 'firebase-store'
 const Item = List.Item;
 const Brief = Item.Brief;
 
-const NameOfBuilding = [
-  { value: 'MOSDBC', label: '迎海' },
-  { value: 'MOSCTO', label: '第一城' },
-  { value: 'MOSSSC', label: '新港城' },
-];
+// const NameOfBuilding = [
+//   { value: 'MOSDBC', label: '迎海' },
+//   { value: 'MOSCTO', label: '第一城' },
+//   { value: 'MOSSSC', label: '新港城' },
+// ];
 
 class ControlBuyView extends React.Component {
 
@@ -48,17 +48,22 @@ class ControlBuyView extends React.Component {
         var selectedIndex = this.props.selectedIndex;
         const onChange = this.props.onChange;
 
+        // <Picker data={NameOfBuilding} cols={1} {...getFieldProps('nameOfBuilding', {
+        //     initialValue: [property.nameOfBuilding],
+        //   })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
+        //   <List.Item arrow="horizontal">購買物業</List.Item>
+        // </Picker>
+
     return (
 
       <div>
 
       <SegmentedControl values={['超新鮮 即時回覆', '全部配對']}  selectedIndex={this.selectedIndex} onChange={onChange}/>
 <List>
-      <Picker data={NameOfBuilding} cols={1} {...getFieldProps('nameOfBuilding', {
-          initialValue: [property.nameOfBuilding],
-        })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
-        <List.Item arrow="horizontal">購買物業</List.Item>
-      </Picker>
+
+
+      <List.Item arrow="empty" extra={property.nameOfBuildingLabel}>租物業</List.Item>
+
 
       <List.Item extra={
        <Stepper

@@ -12,11 +12,11 @@ import {DISTRICK} from 'DISTRICK'
 const Item = List.Item;
 const Brief = Item.Brief;
 
-const NameOfBuilding = [
-  { value: 'MOSDBC', label: '迎海' },
-  { value: 'MOSCTO', label: '第一城' },
-  { value: 'MOSSSC', label: '新港城' },
-];
+// const NameOfBuilding = [
+//   { value: 'MOSDBC', label: '迎海' },
+//   { value: 'MOSCTO', label: '第一城' },
+//   { value: 'MOSSSC', label: '新港城' },
+// ];
 
 class ControlRentView extends React.Component {
 
@@ -81,6 +81,7 @@ class ControlRentView extends React.Component {
         //   <List.Item arrow="horizontal">租物業</List.Item>
         // </Picker>
 
+//        <List.Item arrow="empty">租物業  {property.nameOfBuildingLabel}</List.Item>
 
     return (
 
@@ -89,7 +90,7 @@ class ControlRentView extends React.Component {
       <SegmentedControl values={['超新鮮 即時回覆', '全部配對']}  selectedIndex={this.selectedIndex} onChange={onChange} />
       <List>
 
-      <List.Item arrow="horizontal">租物業  {property.nameOfBuildingLabel}</List.Item>
+          <List.Item arrow="empty" extra={property.nameOfBuildingLabel}>租物業</List.Item>
 
       <List.Item extra={
        <Stepper

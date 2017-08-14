@@ -57,7 +57,7 @@ export class ListOfMatchAgentPropertyView extends React.Component {
     {
        return null;
     }
-    
+
     const that = this;
 
     console.log( 'list size ', list.size )
@@ -97,7 +97,7 @@ export class ListOfMatchAgentPropertyView extends React.Component {
          onClose={() => console.log('global close')}
        >
        <Item  arrow="horizontal" onClick={ () => MobxStore.router.goTo( views.rentAgentForm, {keyID} ) } multipleLine extra={<div>租金${property.leasePrice}</div>}>
-          { BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>實用面積{ property.netSize }呎</Brief>{keyID}
+          {property.nameOfBuildingLabel}/{property.typeTo}<Brief>實用面積{ property.netSize }呎</Brief>{keyID}
        </Item>
        </SwipeAction>
      </div>
@@ -138,7 +138,7 @@ export class ListOfMatchAgentPropertyView extends React.Component {
    onClose={() => console.log('global close')}
  >
  <Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.leaseAgentForm, {keyID} ) } multipleLine extra={<div>租金上限${property.rentBudgetMax}</div>} >
-    { BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>最少{ property.netSizeMin }呎實用面積</Brief>{keyID}
+    {property.nameOfBuildingLabel}/{property.typeTo}<Brief>最少{ property.netSizeMin }呎實用面積</Brief>{keyID}
  </Item>
  </SwipeAction></div>
 ) }  // end of rent
@@ -176,7 +176,7 @@ onOpen={() => console.log('global open')}
 onClose={() => console.log('global close')}
 >
 <Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.saleAgentForm, {keyID} ) } multipleLine extra={<div>預算上限${property.buyBudgetMax}萬</div>} >
-  { BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>最少 {property.netSizeMin }呎實用面積</Brief>{keyID}
+{property.nameOfBuildingLabel}/{property.typeTo}<Brief>最少 {property.netSizeMin }呎實用面積</Brief>{keyID}
 </Item>
 </SwipeAction></div>
 ) }  // end of buy
@@ -215,7 +215,7 @@ onOpen={() => console.log('global open')}
 onClose={() => console.log('global close')}
 >
 <Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.buyAgentForm , {keyID} ) } multipleLine extra={<div>售價${property.salePrice}萬</div>} >
-{ BUILDING_NAME[property.nameOfBuilding] }/{property.typeTo}<Brief>實用面積:{ property.netSize }呎</Brief> {keyID}
+{property.nameOfBuildingLabel}/{property.typeTo}<Brief>實用面積:{ property.netSize }呎</Brief> {keyID}
 </Item>
 </SwipeAction></div>
 ) }  // end of sale

@@ -36,17 +36,17 @@ const jobNature = [
   },
 ]
 
-const NameOfBuilding = [
-  { value: 'MOSDBC', label: '迎海' },
-  { value: 'MOSCTO', label: '第一城' },
-  { value: 'MOSSSC', label: '新港城' },
-];
-
-const BUILDING_NAME = {
-   'MOSDBC' : '迎海',
-   'MOSCTO' : '第一城',
-   'MOSSSC' : '新港城'
-}
+// const NameOfBuilding = [
+//   { value: 'MOSDBC', label: '迎海' },
+//   { value: 'MOSCTO', label: '第一城' },
+//   { value: 'MOSSSC', label: '新港城' },
+// ];
+//
+// const BUILDING_NAME = {
+//    'MOSDBC' : '迎海',
+//    'MOSCTO' : '第一城',
+//    'MOSSSC' : '新港城'
+// }
 
 class SingleSalePropertyForMatchView extends React.Component {
 
@@ -119,7 +119,7 @@ class SingleSalePropertyForMatchView extends React.Component {
     <Card.Header
       title={ property.contactNameLabel }
       thumb="http://via.placeholder.com/140x100"
-      extra={<div>尋找:{BUILDING_NAME[property.nameOfBuilding]} </div>}
+      extra={<div>尋找:{property.nameOfBuildingLabel} </div>}
     />
     </Badge>
     <Card.Body>

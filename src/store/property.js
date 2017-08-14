@@ -190,11 +190,11 @@ export class Property{
     @computed get nameOfBuildingLabel() {
 
       const region = DISTRICK.find((element) => element.value === this.addressRegion )
-      console.log( 'region', region)
+        console.log( 'region', region)
       const location = region.children.find( (element) => element.value === this.addressLocation  )
-      console.log( 'location', location )
+        console.log( 'location', location )
       const building = location.children.find( (element) => element.value === this.nameOfBuilding )
-      console.log( 'building', building.label )
+        console.log( 'building', building.label )
 
       return building.label;
     }

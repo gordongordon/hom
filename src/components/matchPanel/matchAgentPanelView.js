@@ -12,15 +12,29 @@ import {ListOfMatchAgentPropertyView} from '../listOfMatch/listOfMatchAgentPrope
 import {ListOfAgentPropertysView} from '../listOfMatch/listOfAgentPropertysView'
 import { observer } from 'mobx-react';
 import MobxStore from 'mobxStore';
+import {DISTRICK} from 'DISTRICK'
+//
+// const Item = List.Item;
+// const Brief = Item.Brief;
 
-const Item = List.Item;
-const Brief = Item.Brief;
+// const NameOfBuilding = [
+//   { value: 'MOSDBC', label: '迎海' },
+//   { value: 'MOSCTO', label: '第一城' },
+//   { value: 'MOSSSC', label: '新港城' },
+// ];
 
-const NameOfBuilding = [
-  { value: 'MOSDBC', label: '迎海' },
-  { value: 'MOSCTO', label: '第一城' },
-  { value: 'MOSSSC', label: '新港城' },
-];
+// 如果不是使用 List.Item 作为 children
+const CustomChildren = props => (
+  <div
+    onClick={props.onClick}
+    style={{ backgroundColor: '#fff', padding: '0 0.3rem' }}
+  >
+    <div style={{ display: 'flex', height: '0.9rem', lineHeight: '0.9rem' }}>
+      <div style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{props.children}</div>
+      <div style={{ textAlign: 'right', color: '#888' }}>{props.extra}</div>
+    </div>
+  </div>
+);
 
 @observer
 class MatchAgentPanelView extends React.Component {
@@ -65,15 +79,19 @@ class MatchAgentPanelView extends React.Component {
 
     //console.log( 'matchPanelView property', property )
 
+//    <List.Item arrow="horizontal">大廈/屋苑</List.Item>
+
+
     return (
       <div>
     <SegmentedControl values={['等待回覆樓盤','已跟進']}  selectedIndex={this.state.selectedSegmentIndex} onChange={this.onChange} />
       <List>
-            <Picker data={NameOfBuilding} cols={1} {...getFieldProps('nameOfBuilding', {
-                initialValue: ['MOSDBC'],
-              })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
-              <List.Item arrow="horizontal">購買物業</List.Item>
-            </Picker>
+        <Picker data={DISTRICK} cols={3} {...getFieldProps('districk', {
+            initialValue: ['NTTV','MOS','MOS0001'],
+          })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
+          <CustomChildren>大廈/屋苑</CustomChildren>
+        </Picker>
+
             <List.Item extra={
              <Stepper
                style={{ width: '100%', minWidth: '2rem' }}
