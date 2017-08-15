@@ -51,11 +51,13 @@ class PropertysViewModel {
             var p = Propertyhk.deserialize( snapshot.val() )
             console.log( 'p', p)
 
-            p.buildMatchProperty( snapshot.key, p.typeFor, p.location);
+            // p.buildMatchProperty( snapshot.key, p.typeFor, p.location);
+            p.buildMatchProperty( snapshot.key, p.typeFor, p.nameOfBuilding);
+
             // Matching agent's response only
             p.buildResponseProperty( snapshot.key, p.typeFor, p.location );
 
-            p.reatTime = moment().format('YYYY-MM-DD HH:mm:ss');
+            p.realTime = moment().format('YYYY-MM-DD HH:mm:ss');
             console.log( 'child_add - psvm.matchedPropertys.size', p.matchedPropertys.size );
             that.propertys.set( snapshot.key, p );
     });

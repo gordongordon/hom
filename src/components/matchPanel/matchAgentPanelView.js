@@ -88,7 +88,9 @@ class MatchAgentPanelView extends React.Component {
       <List>
         <Picker data={DISTRICK} cols={3} {...getFieldProps('districk', {
             initialValue: ['NTTV','MOS','MOS0001'],
-          })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
+          })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑"
+            onChange={ () => console.log('Picker on change') }
+          >
           <CustomChildren>大廈/屋苑</CustomChildren>
         </Picker>
 

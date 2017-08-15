@@ -43,10 +43,13 @@ export class Propertyhk extends Property {
     // Handle match propertys
      Fb.propertys.orderByChild('typeTo').equalTo(typeFor).on("child_added", function(snap) {
 
+           if ( location === snap.val().nameOfBuilding )
+           {
            const p = Propertyhk.deserialize( snap.val() )
-
            that.matchedPropertys.set( snap.key, p );
            console.log('child_added - matchProperty.size', that.matchedPropertys.size)
+           }
+
      });
 
      Fb.propertys.orderByChild('typeTo').equalTo(typeFor).on('child_changed', (snapshot) => {

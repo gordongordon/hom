@@ -105,6 +105,7 @@ firebase.auth().onAuthStateChanged( (user) => {
      MobxStore.app.displayName = user.displayName;
      MobxStore.app.email = user.email;
      MobxStore.app.providerId = user.providerData[0].providerId;
+     // user.emailVerified.
 
    }
      //MobxStore.app.setTitle( user.displayName )
