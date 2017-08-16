@@ -24,7 +24,7 @@ import MobxStore from 'mobxStore';
 //   { value: 'MOSSSC', label: '新港城' },
 // ];
 
-@observer
+// @observer
 class MatchRentPanelView extends React.Component {
 
   constructor(props) {

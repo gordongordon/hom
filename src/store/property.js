@@ -197,9 +197,9 @@ export class Property{
 
       // debugger
       var region = DISTRICK.find((element) => element.value === this.addressRegion )
-        console.log( 'region', region)
+        // console.log( 'region', region)
       var location = region.children.find( (element) => element.value === this.addressLocation  )
-        console.log( 'location', location )
+        // console.log( 'location', location )
       var building = location.children.find( (element) => element.value === this.nameOfBuilding )
         console.log( 'building', building.label )
       return building.label;

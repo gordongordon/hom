@@ -82,7 +82,7 @@ class ControlLeaseView extends React.Component {
 
       <div>
 
-      <SegmentedControl values={['超新鮮 即時回覆', '全部配對']}  selectedIndex={this.selectedIndex} onChange={onChange} />
+      <SegmentedControl values={['超新鮮 即時回覆', '全部配對']}  selectedIndex={this.props.selectedIndex}  onChange={onChange} />
 <List>
 
       <List.Item arrow="empty" extra={property.nameOfBuildingLabel}>租物業</List.Item>
