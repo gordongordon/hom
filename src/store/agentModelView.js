@@ -57,8 +57,14 @@ class AgentModelViewModel {
 
     // Handle update
     Fb.propertys.on('child_changed', (snapshot) => {
-                 const p = that.propertys.get( snapshot.key )
-                 that.propertys.set( snapshot.key, { ...p, ...snapshot.val() });
+
+      var p = that.propertys.get( snapshot.key )
+      p.restore( snapshot.val() );
+      that.propertys.set( snapshot.key, p )
+
+
+//                 const p = that.propertys.get( snapshot.key )
+                 //that.propertys.set( snapshot.key, { ...p, ...snapshot.val() });
 
 //                 that.propertys.set( snapshot.key, snapshot.val() );
                  // console.log('that.propertys.size', that.propertys.size)
@@ -96,8 +102,14 @@ class AgentModelViewModel {
     });
 
     Fb.app.agentsRef.on('child_changed', (snapshot) => {
-                const p = that.ownPropertys.get( snapshot.key )
-                that.ownPropertys.set( snapshot.key, { ...p, ...snapshot.val() });
+
+      var p = that.ownPropertys.get( snapshot.key )
+      p.restore( snapshot.val() );
+      that.ownPropertys.set( snapshot.key, p )
+
+
+                // const p = that.ownPropertys.get( snapshot.key )
+                // that.ownPropertys.set( snapshot.key, { ...p, ...snapshot.val() });
 
                  //that.ownPropertys.set( snapshot.key, snapshot.val() );
                  // console.log('that.propertys.size', that.propertys.size)

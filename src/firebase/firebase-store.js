@@ -108,6 +108,11 @@ const startLogout = () => {
 //console.log('uid', MobxStore.app.uid)
 const root = firebase.database().ref();
 const propertys = firebase.database().ref('propertys');
+// Testing for different type
+const sale = firebase.database().ref('propertys/sale');
+const lease = firebase.database().ref('propertys/lease');
+const buy = firebase.database().ref('propertys/buy');
+const rent = firebase.database().ref('propertys/rent');
 const agentPropertys = firebase.database().ref('agentPropertys');
 //const propertysForRent = firebase.database().ref('propertysForRent');
 //const propertysForSale = firebase.database().ref('propertysForSale');
@@ -124,6 +129,10 @@ const Fb = {
   app : new AppStore(),
   root,
   propertys,
+  sale,
+  lease,
+  buy,
+  rent,
   agentPropertys,
   startLogin,
   startLogout,

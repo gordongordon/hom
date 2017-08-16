@@ -5,7 +5,7 @@ import moment from 'moment';
 import 'moment/locale/zh-cn';
 import {Fb} from 'firebase-store'
 import {DISTRICK} from 'DISTRICK'
-
+import { observer } from 'mobx-react';
 
 //import {propertys} from 'propertysViewModel'
 
@@ -18,15 +18,11 @@ const Brief = Item.Brief;
 //   { value: 'MOSSSC', label: '新港城' },
 // ];
 
+@observer
 class ControlRentView extends React.Component {
 
   constructor(props) {
     super(props)
-
-    // property = propertys.propertys.get(this.props.keyID);
-    // console.log('p', property)
-    // console.log('p.nameOfBuilding', property.nameOfBuilding)
-
 
     this.state = {
       disabled: false,
@@ -34,7 +30,8 @@ class ControlRentView extends React.Component {
       id : this.props.property.fbid
     }
 
-     // This binding is necessary to make `this` work in the callback
+    // console.log( 'controlRentView id', this.state.id);
+    // This binding is necessary to make `this` work in the callback
     this.onChangeRentBudgetMax = this.onChangeRentBudgetMax.bind(this);
     this.onChangeEarlyTimeToView = this.onChangeEarlyTimeToView.bind(this);
 
@@ -45,18 +42,20 @@ class ControlRentView extends React.Component {
 
     const id = this.state.id;
 
+    console.log( 'controlRentView id onChangeRentBudgetMax', this.state.id);
+
     Fb.app.usersRef.child( id ).update( { rentBudgetMax : parseInt( val )  } );
     Fb.propertys.child( id ).update( { rentBudgetMax : parseInt( val) } );
   }
 
-  onChangeEarlyTimeToView = ( id  ) =>
-  {
 
+  onChangeEarlyTimeToView = () =>
+  {
+    const id = this.state.id;
     const v = this.props.form.getFieldsValue();
 
-    //// debugger
-    Fb.app.usersRef.child( id ).update( { earlyTimeToView : v.earlyTimeToView.toJSON() } );
-    Fb.propertys.child( id ).update( { earlyTimeToView : v.earlyTimeToView.toJSON() } );
+     Fb.app.usersRef.child( id ).update( { earlyTimeToView : v.earlyTimeToView.toJSON() } );
+     Fb.propertys.child( id ).update( { earlyTimeToView : v.earlyTimeToView.toJSON() } );
   }
 
   render() {
@@ -82,6 +81,10 @@ class ControlRentView extends React.Component {
         // </Picker>
 
 //        <List.Item arrow="empty">租物業  {property.nameOfBuildingLabel}</List.Item>
+        // debugger
+        if ( property.nameOfBuildingLabel === undefined ) {
+          console.log('*nameOfBuildingLabel undefined')
+        }
 
     return (
 
@@ -115,7 +118,7 @@ class ControlRentView extends React.Component {
         })}
         minDate={minDate}
         maxDate={maxDate}
-        onOk={ that.onChangeEarlyTimeToView( property.fbid )}
+        onOk={ that.onChangeEarlyTimeToView}
       >
       <List.Item arrow="horizontal">最快幾時可以樓睇</List.Item>
       </DatePicker>

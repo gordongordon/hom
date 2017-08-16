@@ -167,6 +167,7 @@ class FormLeasePropertyAntMobile extends React.Component {
     Fb.app.usersRef.update( {[id]:  p.serialize() });
 
     Fb.propertys.child( id ).set( p.serialize() );
+    Fb.lease.child( id ).set( p.serialize() );
 
     MobxStore.router.goTo( views.matchLease, { keyID : id  } )
   }

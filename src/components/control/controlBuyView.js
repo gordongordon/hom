@@ -5,6 +5,7 @@ import moment from 'moment';
 import 'moment/locale/zh-cn';
 //import {propertys} from 'propertysViewModel'
 import {Fb} from 'firebase-store'
+import { observer } from 'mobx-react';
 
 
 const Item = List.Item;
@@ -16,6 +17,7 @@ const Brief = Item.Brief;
 //   { value: 'MOSSSC', label: '新港城' },
 // ];
 
+@observer
 class ControlBuyView extends React.Component {
 
   constructor(props) {

@@ -192,6 +192,7 @@ class FormRentPropertyAntMobile extends React.Component {
 
     Fb.propertys.child( id ).set( p.serialize() );
 
+    Fb.rent.child( id ).set( p.serialize() );
 
     MobxStore.router.goTo( views.matchRent, { keyID : id  } )
 

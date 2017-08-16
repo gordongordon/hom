@@ -68,48 +68,48 @@ class FormSalePropertyAntMobile extends React.Component {
       });
     }, 120);
   };
-
-  onPickerChange = (val) => {
-    console.log(val);
-    let colNum = 1;
-    const d = [...this.state.data];
-    const asyncValue = [...val];
-    if (val[0] === 'zj') {
-      d.forEach((i) => {
-        if (i.value === 'zj') {
-          colNum = 2;
-          if (!i.children) {
-            i.children = [{
-              value: 'zj-nb',
-              label: '宁波',
-            }, {
-              value: 'zj-hz',
-              label: '杭州',
-            }];
-            asyncValue.push('zj-nb');
-          } else if (val[1] === 'zj-hz') {
-            i.children.forEach((j) => {
-              if (j.value === 'zj-hz') {
-                j.children = [{
-                  value: 'zj-hz-xh',
-                  label: '西湖区',
-                }];
-                asyncValue.push('zj-hz-xh');
-              }
-            });
-            colNum = 3;
-          }
-        }
-      });
-    } else {
-      colNum = 1;
-    }
-    this.setState({
-      data: d,
-      cols: colNum,
-      asyncValue,
-    });
-  };
+  //
+  // onPickerChange = (val) => {
+  //   console.log(val);
+  //   let colNum = 1;
+  //   const d = [...this.state.data];
+  //   const asyncValue = [...val];
+  //   if (val[0] === 'zj') {
+  //     d.forEach((i) => {
+  //       if (i.value === 'zj') {
+  //         colNum = 2;
+  //         if (!i.children) {
+  //           i.children = [{
+  //             value: 'zj-nb',
+  //             label: '宁波',
+  //           }, {
+  //             value: 'zj-hz',
+  //             label: '杭州',
+  //           }];
+  //           asyncValue.push('zj-nb');
+  //         } else if (val[1] === 'zj-hz') {
+  //           i.children.forEach((j) => {
+  //             if (j.value === 'zj-hz') {
+  //               j.children = [{
+  //                 value: 'zj-hz-xh',
+  //                 label: '西湖区',
+  //               }];
+  //               asyncValue.push('zj-hz-xh');
+  //             }
+  //           });
+  //           colNum = 3;
+  //         }
+  //       }
+  //     });
+  //   } else {
+  //     colNum = 1;
+  //   }
+  //   this.setState({
+  //     data: d,
+  //     cols: colNum,
+  //     asyncValue,
+  //   });
+  // };
 
 
   addPropertyForSale = ( v ) =>
@@ -162,6 +162,8 @@ class FormSalePropertyAntMobile extends React.Component {
 
 //    const id2 = Fb.propertys.push().key;
     Fb.propertys.child( id ).set( p.serialize() );
+
+    Fb.propertysForSale.child( id ).set( p.serialize() );
 
     MobxStore.router.goTo( views.matchSale, { keyID : id  } )
 

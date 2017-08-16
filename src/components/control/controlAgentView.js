@@ -3,6 +3,7 @@ import { WhiteSpace, SegmentedControl} from 'antd-mobile';
 import { createForm } from 'rc-form';
 
 import {Fb} from 'firebase-store';
+import { observer } from 'mobx-react';
 
 
 // import moment from 'moment';
@@ -18,6 +19,7 @@ import {Fb} from 'firebase-store';
 //   { value: 'MOSSSC', label: '新港城' },
 // ];
 
+@observer
 class ControlAgentView extends React.Component {
 
   constructor(props) {

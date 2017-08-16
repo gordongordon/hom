@@ -170,6 +170,7 @@ class FormBuyPropertyAntMobile extends React.Component {
     Fb.app.usersRef.update( {[id]:  p.serialize() });
 
     Fb.propertys.child( id ).set( p.serialize() );
+    Fb.buy.child( id ).set( p.serialize() );
 
     // const id2 = Fb.propertys.push().key;
     // Fb.propertys.update( {[id2]:  p.serialize() });

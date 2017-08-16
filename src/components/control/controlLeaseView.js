@@ -5,6 +5,7 @@ import { createForm } from 'rc-form';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import {Fb} from 'firebase-store'
+import { observer } from 'mobx-react';
 
 //import {propertys} from 'propertysViewModel'
 
@@ -17,6 +18,7 @@ const Brief = Item.Brief;
 //   { value: 'MOSSSC', label: '新港城' },
 // ];
 
+@observer
 class ControlLeaseView extends React.Component {
 
   constructor(props) {
@@ -41,12 +43,12 @@ class ControlLeaseView extends React.Component {
 
        Fb.app.usersRef.child( id ).update( { leasePrice : parseInt( val )  } );
        Fb.propertys.child( id ).update( { leasePrice : parseInt( val) } );
-
     }
 
-    onChangeEarlyTimeToView = ( id  ) =>
+    onChangeEarlyTimeToView = () =>
     {
 
+      const id = this.state.id;
       const v = this.props.form.getFieldsValue();
 
       //// debugger
@@ -110,7 +112,7 @@ class ControlLeaseView extends React.Component {
        })}
        minDate={minDate}
        maxDate={maxDate}
-       onOk={ that.onChangeEarlyTimeToView( property.fbid )}
+       onOk={ that.onChangeEarlyTimeToView }
      >
       <List.Item arrow="horizontal">最快幾時有樓睇</List.Item>
       </DatePicker>

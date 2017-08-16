@@ -13,8 +13,8 @@ import firebase from 'firebase';
 class PropertysViewModel {
 
 //  @observable propertys = observable.map({});
-  //@observable propertys = observable.map({});
-  @observable propertys = new Map();
+  @observable propertys = observable.map({});
+  // @observable propertys = new Map();
   //@observable agentPropertys = new Map();
 
   //@observable matchedPropertys = observable.map({});
@@ -63,19 +63,31 @@ class PropertysViewModel {
             that.propertys.set( snapshot.key, p );
     });
 
-
     Fb.app.usersRef.on('child_changed', (snapshot) => {
+
                  // Get an element with all functions, propertys
                  // Recreate a new properts { ... }
                  // otherwise propertys.responsedPropertys = undefined error
-                 const p = Propertyhk.deserialize( snapshot.val() )
+
+                 //var p = Propertyhk.deserialize( snapshot.val() )
+                 // p.buildMatchProperty( snapshot.key, p.typeFor, p.nameOfBuilding);
 
 //                 var p = that.propertys.get( snapshot.key )
                  // that.propertys.delete( snapshot.key );
 //                 that.propertys.set( snapshot.key, { ...p, ...snapshot.val() });
                  // debugger
-                 that.propertys.set( snapshot.key, p )
-                 //console.log('child_changed snapshot.val() ', p
+                 // that.propertys.delete( snapshot.key );
+                  // console.log( 'fb update id', snapshot.key )
+
+                  // Get the current copy of property
+                  var p = that.propertys.get( snapshot.key )
+                  // keep all the mobx computed function into p, copy the value only
+                  p.restore( snapshot.val() );
+                  that.propertys.set( snapshot.key, p )
+                  //that.propertys.get( snapshot.key ).nameOfBuilding = 'MOS0002'
+
+                  console.log( 'property.nameOfBuilding', that.propertys.get( snapshot.key ) );
+                  //console.log('child_changed snapshot.val() ',
     });
 
    // Handle child_removed
@@ -122,29 +134,29 @@ class PropertysViewModel {
    * @valueTo   is value equal to.  e.g. 'shatin'
    * return
    */
-  getMatchProperty = (id, compareTo, valueTo ) => {
-    var that = this;
-    console.log('match')
-
-    //this.writeNewPost( 1233, 'gordon', 'picture', 'title', 'body')
-
-    // Handle match propertys
-     Fb.app.usersRef.orderByChild(compareTo).equalTo(valueTo).on("child_added", function(snap) {
-
-          Fb.app.matchedPropertysRef.child( snap.key ).set( snap.val() )
-//          Fb.app.propertysRef.update( { snap.key : { } })
-          that.matchedPropertys.set( snap.key, snap.val() );
-          console.log('matchProperty.size', that.matchedPropertys.size)
-     });
-
-     Fb.app.usersRef.orderByChild(compareTo).equalTo(valueTo).on("child_removed", function(snap) {
-
-         that.matchedPropertys.delete( snap.key );
-         console.log('matchProperty.size', that.matchedPropertys.size)
-     });
-
-
-  }
+//   getMatchProperty = (id, compareTo, valueTo ) => {
+//     var that = this;
+//     console.log('match')
+//
+//     //this.writeNewPost( 1233, 'gordon', 'picture', 'title', 'body')
+//
+//     // Handle match propertys
+//      Fb.app.usersRef.orderByChild(compareTo).equalTo(valueTo).on("child_added", function(snap) {
+//
+//           Fb.app.matchedPropertysRef.child( snap.key ).set( snap.val() )
+// //          Fb.app.propertysRef.update( { snap.key : { } })
+//           that.matchedPropertys.set( snap.key, snap.val() );
+//           console.log('matchProperty.size', that.matchedPropertys.size)
+//      });
+//
+//      Fb.app.usersRef.orderByChild(compareTo).equalTo(valueTo).on("child_removed", function(snap) {
+//
+//          that.matchedPropertys.delete( snap.key );
+//          console.log('matchProperty.size', that.matchedPropertys.size)
+//      });
+//
+//
+//   }
 
   update = (id, name) => {
      Fb.app.usersRef.update({[id]: { name } }  )

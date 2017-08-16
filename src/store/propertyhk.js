@@ -10,8 +10,10 @@ import {Property} from 'property'
 export class Propertyhk extends Property {
 
   @observable matchedPropertys = observable.map({});
+  //@observable matchedPropertys = new Map();
   // responsed propertys from agent only
   @observable responsedPropertys = observable.map({});
+  //@observable responsedPropertys = new Map();
   // @observable matchedPropertys = new Map();
 
   @observable like = observable.map({});
@@ -40,19 +42,22 @@ export class Propertyhk extends Property {
    * return
    */
   buildMatchProperty = (id, typeFor, location ) => {
-    var that = this;
+    const that = this;
 
     // Handle match propertys
      Fb.propertys.orderByChild('typeTo').equalTo(typeFor).on("child_added", function(snap) {
 
-           //if ( location === snap.val().nameOfBuilding )
-           //{
+           //debugger
+//           if ( (location === snap.val().nameOfBuilding ) && (that.uid !== snap.val().uid) )
+           if ( location === snap.val().nameOfBuilding )
+           {
+
            const p = Propertyhk.deserialize( snap.val() )
-           // p.realTime = moment().format('YYYY-MM-DD HH:mm:ss');
+            //p.realTime = moment().format('YYYY-MM-DD HH:mm:ss');
 
            that.matchedPropertys.set( snap.key, p );
            console.log('child_added - matchProperty.size', that.matchedPropertys.size)
-           //}
+           }
 
      });
 
@@ -90,8 +95,8 @@ export class Propertyhk extends Property {
           // Fb.matchedPropertys.child( snap.key ).set( snap.val() )
           // Fb.propertys.update( { snap.key : { } })
           const p = Propertyhk.deserialize( snap.val() )
-
           that.responsedPropertys.set( snap.key, p );
+
           console.log('child_added - responsedPropertys.size', that.responsedPropertys.size)
      });
 
@@ -156,6 +161,7 @@ export class Propertyhk extends Property {
 
   }
 
+  // n is an object to be updated
   static deserialize( n ) {
     var phk = new Propertyhk();
 
