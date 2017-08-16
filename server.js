@@ -8,10 +8,22 @@ var compression = require('compression')
 var app = express();
 // For compression
 app.use(compression({
-  threshold: 0,
+  threshold: 10240,
   filter: function () { return true; },
   level: 9
 }));
+
+// app.use(compression({filter: shouldCompress}))
+//
+// function shouldCompress (req, res) {
+//    if (req.headers['x-no-compression']) {
+//        // don't compress responses with this request header
+//        return false
+//    }
+//
+//   // fallback to standard filter function
+//    return compression.filter(req, res)
+//  }
 app.use(express.static(__dirname+'/public'));
 
 const PORT = process.env.PORT || 3000;

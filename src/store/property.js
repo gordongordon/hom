@@ -427,7 +427,7 @@ export class Property{
 
             isAgent: this.isAgent,
             createdAt: this.createdAt,
-            reatlTime : this.realTime,
+            realTime : this.realTime,
             typeTo : this.typeTo,
             typeBy : this.typeBy,
             typeFor : this.typeFor,
@@ -603,6 +603,7 @@ export class Property{
 
       this.isAgent= v.isAgent,
       this.createdAt= v.createdAt,
+      this.realTime = v.realTime,
       //this.createdAt = moment(v.createdAt).format('YYYY-MM-DD HH:mm:ss');
       this.typeTo = v.typeTo,
       this.typeBy = v.typeBy,
@@ -649,7 +650,7 @@ export class Property{
 
       // lease property
       this.isNegotiable  = v.isNegotiable,
-    this.isViewAble    = v.isViewAble,
+      this.isViewAble    = v.isViewAble,
       this.isPreferPayAnnually = v.isPreferPayAnnually,
       this.hasHomeHardware = v.hasHomeHardware,
       this.jobNature = v.jobNature,

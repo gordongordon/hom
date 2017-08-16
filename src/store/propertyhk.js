@@ -2,6 +2,8 @@ import {observable, computed, action} from 'mobx';
 import {Fb} from 'firebase-store';
 import {toJS} from 'mobx';
 import {Property} from 'property'
+// import moment from 'moment'
+
 
 // List of user properties, to be .on
 // propertyViewModel
@@ -43,12 +45,14 @@ export class Propertyhk extends Property {
     // Handle match propertys
      Fb.propertys.orderByChild('typeTo').equalTo(typeFor).on("child_added", function(snap) {
 
-           if ( location === snap.val().nameOfBuilding )
-           {
+           //if ( location === snap.val().nameOfBuilding )
+           //{
            const p = Propertyhk.deserialize( snap.val() )
+           // p.realTime = moment().format('YYYY-MM-DD HH:mm:ss');
+
            that.matchedPropertys.set( snap.key, p );
            console.log('child_added - matchProperty.size', that.matchedPropertys.size)
-           }
+           //}
 
      });
 

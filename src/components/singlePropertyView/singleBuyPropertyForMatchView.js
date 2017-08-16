@@ -2,39 +2,39 @@ import React from 'react'
 import { List , Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl} from 'antd-mobile';
 import { createForm } from 'rc-form';
 import moment from 'moment';
-import 'moment/locale/zh-cn';
+//import 'moment/locale/zh-cn';
 import {propertys} from 'propertysViewModel'
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 
-const Item = List.Item;
-const Brief = Item.Brief;
+// const Item = List.Item;
+// const Brief = Item.Brief;
 
-const LABEL_JOBNATURE = {
- '0' : '私人企業',
- '1' : '政府工',
- '2' : '自僱人士',
- '3' : '學生',
- '4' : '海外人士',
-}
-
-const jobNature = [
-  {
-    label : '私人企業',
-    value : '0'
-  },   {
-    label : '政府工',
-    value : '1'
-  },   {
-    label : '自僱人士',
-    value : '2'
-  },   {
-    label : '學生',
-    value : '3'
-  },  {
-    label : '海外人士',
-    value : '4'
-  },
-]
+// const LABEL_JOBNATURE = {
+//  '0' : '私人企業',
+//  '1' : '政府工',
+//  '2' : '自僱人士',
+//  '3' : '學生',
+//  '4' : '海外人士',
+// }
+//
+// const jobNature = [
+//   {
+//     label : '私人企業',
+//     value : '0'
+//   },   {
+//     label : '政府工',
+//     value : '1'
+//   },   {
+//     label : '自僱人士',
+//     value : '2'
+//   },   {
+//     label : '學生',
+//     value : '3'
+//   },  {
+//     label : '海外人士',
+//     value : '4'
+//   },
+// ]
 
 // const NameOfBuilding = [
 //   { value: 'MOSDBC', label: '迎海' },
@@ -59,6 +59,12 @@ class SingleBuyPropertyForMatchView extends React.Component {
     }
   }
 
+  componentWillMount() {
+    //const p = this.props;
+    const t = moment().format('YYYY-MM-DD HH:mm:ss');
+    this.props.property.realTime = moment( t );
+//    console.log( 'realTime will mount', this.props.property.realTime)
+  }
 
   render() {
         const {property} = this.props
@@ -67,9 +73,9 @@ class SingleBuyPropertyForMatchView extends React.Component {
         const that = this;
         const { getFieldProps } = this.props.form;
         // For DatePicker
-        const minDate = moment().locale('zh-cn').utcOffset(8);
-        const maxDate = moment(minDate).add(6, 'M');
-        property.reatTime = moment().format('YYYY-MM-DD HH:mm:ss');
+        //const minDate = moment().locale('zh-cn').utcOffset(8);
+        //const maxDate = moment(minDate).add(6, 'M');
+  //      property.reatTime = moment().format('YYYY-MM-DD HH:mm:ss');
 
 
     return (

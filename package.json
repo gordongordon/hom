@@ -71,8 +71,8 @@
     "node-uuid": "^1.4.8",
     "path-to-regexp": "^1.7.0",
     "rc-form": "^1.4.6",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "react-fastclick": "^3.0.2",
     "validatorjs": "^3.13.3"
   }

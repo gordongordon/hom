@@ -5,7 +5,7 @@ import {Propertyhk} from 'propertyhk'
 import {Property} from 'property'
 import MobxStore from 'mobxStore';
 import firebase from 'firebase';
-import moment from 'moment'
+//import moment from 'moment'
 
 
 // List of user properties, to be .on
@@ -57,7 +57,8 @@ class PropertysViewModel {
             // Matching agent's response only
             p.buildResponseProperty( snapshot.key, p.typeFor, p.location );
 
-            p.realTime = moment().format('YYYY-MM-DD HH:mm:ss');
+            // p.realTime = moment().format('YYYY-MM-DD HH:mm:ss');
+
             console.log( 'child_add - psvm.matchedPropertys.size', p.matchedPropertys.size );
             that.propertys.set( snapshot.key, p );
     });
@@ -69,7 +70,7 @@ class PropertysViewModel {
                  // otherwise propertys.responsedPropertys = undefined error
                  const p = that.propertys.get( snapshot.key )
                  that.propertys.set( snapshot.key, { ...p, ...snapshot.val() });
-                 //console.log('child_changed snapshot.val() ',  snapshot.val() )
+                 console.log('child_changed snapshot.val() ', {...p, ...snapshot.val() })
     });
 
    // Handle child_removed

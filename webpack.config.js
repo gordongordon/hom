@@ -7,7 +7,7 @@ const svgDirs = [
   // path.resolve(__dirname, 'src/my-project-svg-foler'),  // 2. 自己私人的 svg 存放目录
 ];
 
-var CompressionPlugin = require("compression-webpack-plugin");
+//var CompressionPlugin = require("compression-webpack-plugin");
 // var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 //const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
@@ -34,36 +34,36 @@ module.exports = {
   },
   plugins: [
      new webpack.HotModuleReplacementPlugin(),
-     new CompressionPlugin({
- 			asset: "[path].gz[query]",
- 			algorithm: "gzip",
- 			test: /\.(js|html)$/,
- 			threshold: 10240,
- 			minRatio: 0.8
- 		}),
+    //  new CompressionPlugin({
+ 	// 		asset: "[path].gz[query]",
+ 	// 		algorithm: "gzip",
+ 	// 		test: /\.(js|html)$/,
+ 	// 		threshold: 10240,
+ 	// 		minRatio: 0.8
+ 	// 	}),
      //new BundleAnalyzerPlugin(),
-     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+     //new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
      new webpack.DefinePlugin({ // <-- key to reducing React's size
        'process.env': {
          'NODE_ENV': JSON.stringify('production')
        }
      }),
-     new webpack.optimize.DedupePlugin(), //dedupe similar code
-     new webpack.optimize.UglifyJsPlugin({
-       mangle: true,
-       compress: {
-         warnings: false, // Suppress uglification warnings
-         pure_getters: true,
-         unsafe: true,
-         unsafe_comps: true,
-         screw_ie8: true
-       },
-       output: {
-         comments: false,
-       },
-       exclude: [/\.min\.js$/gi] // skip pre-minified libs
-     }),
-     new webpack.optimize.AggressiveMergingPlugin(),//Merge chunks
+    //  new webpack.optimize.DedupePlugin(), //dedupe similar code
+    //  new webpack.optimize.UglifyJsPlugin({
+    //    mangle: true,
+    //    compress: {
+    //      warnings: false, // Suppress uglification warnings
+    //      pure_getters: true,
+    //      unsafe: true,
+    //      unsafe_comps: true,
+    //      screw_ie8: true
+    //    },
+    //    output: {
+    //      comments: false,
+    //    },
+    //    exclude: [/\.min\.js$/gi] // skip pre-minified libs
+    //  }),
+    //  new webpack.optimize.AggressiveMergingPlugin(),//Merge chunks
   //   new webpack.optimize.UglifyJsPlugin({
   // compress: {
   //   warnings: false

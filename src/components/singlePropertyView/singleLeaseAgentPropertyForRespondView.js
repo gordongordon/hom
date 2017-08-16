@@ -2,12 +2,12 @@ import React from 'react'
 import { List , Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl} from 'antd-mobile';
 import { createForm } from 'rc-form';
 import moment from 'moment';
-import 'moment/locale/zh-cn';
+//import 'moment/locale/zh-cn';
 import {propertys} from 'propertysViewModel'
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 
-const Item = List.Item;
-const Brief = Item.Brief;
+// const Item = List.Item;
+// const Brief = Item.Brief;
 
 // const NameOfBuilding = [
 //   { value: 'MOSDBC', label: '迎海' },
@@ -32,6 +32,12 @@ class SingleLeaseAgentPropertyForRespondView extends React.Component {
     }
   }
 
+  componentWillMount() {
+    //const p = this.props;
+    const t = moment().format('YYYY-MM-DD HH:mm:ss');
+    this.props.property.realTime = moment( t );
+//    console.log( 'realTime will mount', this.props.property.realTime)
+  }
 
   render() {
         const {property} = this.props

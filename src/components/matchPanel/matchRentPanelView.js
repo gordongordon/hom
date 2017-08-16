@@ -53,6 +53,12 @@ class MatchRentPanelView extends React.Component {
     if ( this.state.selectedSegmentIndex === 0 ) {
       return <ListOfMatchAgentLeasePropertys propertys={property.responsedPropertys} timeEnter={this.props.timeEnter}/>
     } else {
+
+     // Gordon
+    //   if ( property.matchedPropertys.size === 0 ) {
+    //   property.buildMatchProperty( property.fbid, property.typeFor, property.nameOfBuilding);
+    // }
+
       return  <ListOfMatchOldLeasePropertys propertys={property.matchedPropertys}/>
     }
   }
