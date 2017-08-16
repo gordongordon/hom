@@ -136,6 +136,12 @@ export class Property{
         return this.text !== ''
     }
 
+
+    setTimeStamp() {
+      const t = moment().format('YYYY-MM-DD HH:mm:ss');
+      this.realTime = moment( t );
+    }
+
     @computed get howFresh() {
       const start = moment( this.createdAt )
       const end   = moment( this.realTime);
@@ -189,13 +195,13 @@ export class Property{
 
     @computed get nameOfBuildingLabel() {
 
+
       const region = DISTRICK.find((element) => element.value === this.addressRegion )
         console.log( 'region', region)
       const location = region.children.find( (element) => element.value === this.addressLocation  )
         console.log( 'location', location )
       const building = location.children.find( (element) => element.value === this.nameOfBuilding )
         console.log( 'building', building.label )
-
       return building.label;
     }
 

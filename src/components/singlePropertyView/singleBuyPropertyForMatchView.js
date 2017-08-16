@@ -1,7 +1,7 @@
 import React from 'react'
 import { List , Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl} from 'antd-mobile';
 import { createForm } from 'rc-form';
-import moment from 'moment';
+//import moment from 'moment';
 //import 'moment/locale/zh-cn';
 import {propertys} from 'propertysViewModel'
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
@@ -61,8 +61,10 @@ class SingleBuyPropertyForMatchView extends React.Component {
 
   componentWillMount() {
     //const p = this.props;
-    const t = moment().format('YYYY-MM-DD HH:mm:ss');
-    this.props.property.realTime = moment( t );
+//    const t = moment().format('YYYY-MM-DD HH:mm:ss');
+//    this.props.property.realTime = moment( t );
+    this.props.property.setTimeStamp();
+
 //    console.log( 'realTime will mount', this.props.property.realTime)
   }
 
@@ -71,7 +73,7 @@ class SingleBuyPropertyForMatchView extends React.Component {
 
         console.log( 'SingleRentPropertyForMatch', property )
         const that = this;
-        const { getFieldProps } = this.props.form;
+        //const { getFieldProps } = this.props.form;
         // For DatePicker
         //const minDate = moment().locale('zh-cn').utcOffset(8);
         //const maxDate = moment(minDate).add(6, 'M');

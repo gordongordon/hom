@@ -61,12 +61,8 @@ export class Propertyhk extends Property {
                   // Get an element with all functions, propertys
                   // Recreate a new properts { ... }
                   // otherwise propertys.responsedPropertys = undefined error
-//                  const p = that.matchedPropertys.get( snapshot.key )
                   const p = Propertyhk.deserialize( snapshot.val() )
                   that.matchedPropertys.set( snapshot.key, p );
-
-//                  that.matchedPropertys.set( snapshot.key, { ...p, ...snapshot.val() });
-                  //console.log('child_changed snapshot.val() ',  snapshot.val() )
      });
 
 
@@ -104,11 +100,8 @@ export class Propertyhk extends Property {
                   // Get an element with all functions, propertys
                   // Recreate a new properts { ... }
                   // otherwise propertys.responsedPropertys = undefined error
-//                  const p = that.matchedPropertys.get( snapshot.key )
                   const p = Propertyhk.deserialize( snapshot.val() )
                   that.matchedPropertys.set( snapshot.key, p );
-
-//                  that.matchedPropertys.set( snapshot.key, { ...p, ...snapshot.val() });
                   //console.log('child_changed snapshot.val() ',  snapshot.val() )
      });
 

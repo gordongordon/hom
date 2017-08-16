@@ -39,8 +39,8 @@ class ControlLeaseView extends React.Component {
 
       const id = this.state.id;
 
-      Fb.app.usersRef.child( id ).update( { leasePrice : parseInt( val )  } );
-      Fb.propertys.child( id ).update( { leasePrice : parseInt( val) } );
+       Fb.app.usersRef.child( id ).update( { leasePrice : parseInt( val )  } );
+       Fb.propertys.child( id ).update( { leasePrice : parseInt( val) } );
 
     }
 

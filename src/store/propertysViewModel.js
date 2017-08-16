@@ -68,9 +68,14 @@ class PropertysViewModel {
                  // Get an element with all functions, propertys
                  // Recreate a new properts { ... }
                  // otherwise propertys.responsedPropertys = undefined error
-                 const p = that.propertys.get( snapshot.key )
-                 that.propertys.set( snapshot.key, { ...p, ...snapshot.val() });
-                 console.log('child_changed snapshot.val() ', {...p, ...snapshot.val() })
+                 const p = Propertyhk.deserialize( snapshot.val() )
+
+//                 var p = that.propertys.get( snapshot.key )
+                 // that.propertys.delete( snapshot.key );
+//                 that.propertys.set( snapshot.key, { ...p, ...snapshot.val() });
+                 // debugger
+                 that.propertys.set( snapshot.key, p )
+                 //console.log('child_changed snapshot.val() ', p
     });
 
    // Handle child_removed
