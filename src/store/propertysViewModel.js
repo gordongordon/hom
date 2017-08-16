@@ -52,7 +52,8 @@ class PropertysViewModel {
             console.log( 'p', p)
 
             // p.buildMatchProperty( snapshot.key, p.typeFor, p.location);
-            p.buildMatchProperty( snapshot.key, p.typeFor, p.nameOfBuilding);
+            //p.buildMatchProperty( snapshot.key, p.typeFor, p.nameOfBuilding);
+            p.buildMatchPropertyByRunTime( snapshot.key, p.typeFor, p.addressLocation);
 
             // Matching agent's response only
             p.buildResponseProperty( snapshot.key, p.typeFor, p.location );
@@ -69,24 +70,14 @@ class PropertysViewModel {
                  // Recreate a new properts { ... }
                  // otherwise propertys.responsedPropertys = undefined error
 
-                 //var p = Propertyhk.deserialize( snapshot.val() )
-                 // p.buildMatchProperty( snapshot.key, p.typeFor, p.nameOfBuilding);
-
-//                 var p = that.propertys.get( snapshot.key )
-                 // that.propertys.delete( snapshot.key );
-//                 that.propertys.set( snapshot.key, { ...p, ...snapshot.val() });
-                 // debugger
-                 // that.propertys.delete( snapshot.key );
-                  // console.log( 'fb update id', snapshot.key )
 
                   // Get the current copy of property
                   var p = that.propertys.get( snapshot.key )
                   // keep all the mobx computed function into p, copy the value only
                   p.restore( snapshot.val() );
                   that.propertys.set( snapshot.key, p )
-                  //that.propertys.get( snapshot.key ).nameOfBuilding = 'MOS0002'
 
-                  console.log( 'property.nameOfBuilding', that.propertys.get( snapshot.key ) );
+                  // console.log( 'property.nameOfBuilding', that.propertys.get( snapshot.key ) );
                   //console.log('child_changed snapshot.val() ',
     });
 

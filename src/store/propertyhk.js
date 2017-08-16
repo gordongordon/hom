@@ -36,6 +36,57 @@ export class Propertyhk extends Property {
     return toJS(this.matchedPropertys);
   }
 
+
+  /**
+   * @compareTo is name of variable e.g. name, price, location
+   * @valueTo   is value equal to.  e.g. 'shatin'
+   * return
+   */
+  buildMatchPropertyByRunTime = (id, typeFor, location ) => {
+    const that = this;
+    var fb; // firebase ref;
+
+    switch( typeFor ) {
+      case 'lease' : fb = Fb.lease; break;
+      case 'buy' : fb = Fb.buy; break;
+      case 'sale' : fb = Fb.sale; break;
+      case 'rent' : fb = Fb.rent; break;
+    }
+
+
+    // Handle match propertys
+     fb.orderByChild(this.orderByChild).equalTo(this.equalTo).on("child_added", function(snap) {
+
+
+           const p = Propertyhk.deserialize( snap.val() )
+            //p.realTime = moment().format('YYYY-MM-DD HH:mm:ss');
+
+           that.matchedPropertys.set( snap.key, p );
+           console.log('child_added - matchProperty.size', that.matchedPropertys.size)
+
+     });
+
+     fb.orderByChild(this.orderByChild).equalTo(this.equalTo).on('child_changed', (snapshot) => {
+
+                  // Get an element with all functions, propertys
+                  // Recreate a new properts { ... }
+                  // otherwise propertys.responsedPropertys = undefined error
+                  const p = Propertyhk.deserialize( snapshot.val() )
+                  that.matchedPropertys.set( snapshot.key, p );
+     });
+
+
+     fb.orderByChild(this.orderByChild).equalTo(this.equalTo).on("child_removed", function(snap) {
+
+          that.matchedPropertys.delete( snap.key );
+          console.log('child_removed - matchProperty.size', that.matchedPropertys.size)
+     });
+
+     return that.matchedPropertys;
+
+  }
+
+
   /**
    * @compareTo is name of variable e.g. name, price, location
    * @valueTo   is value equal to.  e.g. 'shatin'

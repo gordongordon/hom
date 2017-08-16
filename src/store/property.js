@@ -49,7 +49,17 @@ export class Property{
     // @observable reject = new  Map();
     // @observable like = new  Map();
 
+    orderByChild = 'nameOfBuilding';
+    // equalTo = this.nameOfBuilding;
 
+    @computed get equalTo() {
+      switch ( this.orderByChild ) {
+        case 'nameOfBuilding' : return this.nameOfBuilding;
+        case 'addressLocation' : return this.addressLocation;
+      }
+
+      return this.nameOfBuilding;
+    }
     // is the todo done?
     @observable done = false
 
