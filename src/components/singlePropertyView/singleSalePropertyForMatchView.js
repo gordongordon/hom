@@ -143,6 +143,7 @@ class SingleSalePropertyForMatchView extends React.Component {
                       </Flex>} />
   </Card>
   </SwipeAction>
+  {"sale"+property.fbid}
   <WhiteSpace size="sm" />
 </div>
 );

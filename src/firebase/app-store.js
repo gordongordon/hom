@@ -9,6 +9,7 @@ export default class AppStore {
       this.usersRef = undefined;
       this.matchedPropertysRef = undefined;
       this.agentsRef = undefined;
+      this.agentsFilterRef = undefined;
     }
 
     // Catch user login before assign any database reference
@@ -21,6 +22,8 @@ export default class AppStore {
        this.matchedPropertysRef = firebase.database().ref(`users/${uid}/matchedPropertys`);
        // agents database
        this.agentsRef = firebase.database().ref(`agents/${uid}/propertys`);
+       // Use in agent match panel for filtering!
+       this.agentsFilterRef = firebase.database().ref(`agents/${uid}/filters`);
 
        // init propertysViewModel, for mobx,
        // can't be used inside constructor

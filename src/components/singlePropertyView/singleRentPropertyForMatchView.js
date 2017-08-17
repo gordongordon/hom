@@ -142,6 +142,7 @@ class SingleRentPropertyForMatchView extends React.Component {
             </Flex>} />
   </Card>
   </SwipeAction>
+  {"Rent" + property.fbid}
   <WhiteSpace size="sm" />
 </div>
 );

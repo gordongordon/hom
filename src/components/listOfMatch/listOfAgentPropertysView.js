@@ -11,16 +11,6 @@ import views from 'views';
 const Item = List.Item;
 const Brief = Item.Brief;
 
-// const BUILDING_NAME = {
-//    'MOSDBC' : '迎海',
-//    'MOSCTO' : '第一城',
-//    'MOSSSC' : '新港城'
-// }
-// const NameOfBuilding = [
-//   { value: 'MOSDBC', label: '迎海' },
-//   { value: 'MOSCTO', label: '第一城' },
-//   { value: 'MOSSSC', label: '新港城' },
-// ];
 
 @observer
 export class ListOfAgentPropertysView extends React.Component {
@@ -96,8 +86,8 @@ export class ListOfAgentPropertysView extends React.Component {
          onOpen={() => console.log('global open')}
          onClose={() => console.log('global close')}
        >
-       <Item  arrow="horizontal" onClick={ () => MobxStore.router.goTo( views.lease, {keyID} ) } multipleLine extra={<div>租金${property.leasePrice}</div>}>
-        {property.nameOfBuildingLabel}/{property.typeTo}<Brief>實用面積{ property.netSize }呎</Brief>{property.relatedFbid}
+       <Item  arrow="horizontal" onClick={ () => MobxStore.router.goTo( views.matchAgent, {keyID} ) } multipleLine extra={<div>租金${property.leasePrice}</div>}>
+        {property.nameOfBuildingLabel}/{property.typeTo}<Brief>實用面積{ property.netSize }呎</Brief>{keyID}
        </Item>
        </SwipeAction>
      </div>
@@ -137,8 +127,8 @@ export class ListOfAgentPropertysView extends React.Component {
    onOpen={() => console.log('global open')}
    onClose={() => console.log('global close')}
  >
- <Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.rent, {keyID} ) } multipleLine extra={<div>租金上限${property.rentBudgetMax}</div>} >
-  {property.nameOfBuildingLabel}/{property.typeTo}<Brief>最少{ property.netSizeMin }呎實用面積</Brief>{property.relatedFbid}
+ <Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.matchAgent, {keyID} ) } multipleLine extra={<div>租金上限${property.rentBudgetMax}</div>} >
+  {property.nameOfBuildingLabel}/{property.typeTo}<Brief>最少{ property.netSizeMin }呎實用面積</Brief>{keyID}
  </Item>
  </SwipeAction></div>
 ) }  // end of rent
@@ -175,8 +165,8 @@ left={[
 onOpen={() => console.log('global open')}
 onClose={() => console.log('global close')}
 >
-<Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.SaleAgentForm, {keyID} ) } multipleLine extra={<div>預算上限${property.buyBudgetMax}萬</div>} >
-{property.nameOfBuildingLabel}/{property.typeTo}<Brief>最少 {property.netSizeMin }呎實用面積</Brief>{property.relatedFbid}
+<Item  extra={<Badge size="large" text={66} overflowCount={99} />} arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.matchAgent, {keyID} ) } multipleLine >
+{property.nameOfBuildingLabel}/{property.typeTo}<Brief>最少 {property.netSizeMin }呎實用面積</Brief>{keyID}
 </Item>
 </SwipeAction></div>
 ) }  // end of buy
@@ -214,8 +204,8 @@ left={[
 onOpen={() => console.log('global open')}
 onClose={() => console.log('global close')}
 >
-<Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.buyAgentForm , {keyID} ) } multipleLine extra={<div>售價${property.salePrice}萬</div>} >
-{property.nameOfBuildingLabel}/{property.typeTo}<Brief>實用面積:{ property.netSize }呎</Brief> {property.relatedFbid}
+<Item  arrow="horizontal" onClick={  () => MobxStore.router.goTo( views.matchAgent , {keyID} ) } multipleLine extra={<div>售價${property.salePrice}萬</div>} >
+{property.nameOfBuildingLabel}/{property.typeTo}<Brief>實用面積:{ property.netSize }呎</Brief>{keyID}
 </Item>
 </SwipeAction></div>
 ) }  // end of sale
@@ -239,7 +229,7 @@ onClose={() => console.log('global close')}
           以下是你的過往配對!
         </NoticeBar>
       <List renderHeader={() => '你搜尋嘅樓盤'} className="my-list">
-         { that.renderPropertys( agentModel, agentModel.ownPropertys, handleNextProperty) }
+         { that.renderPropertys( agentModel, agentModel.filters, handleNextProperty) }
       </List>
     </div>
     )

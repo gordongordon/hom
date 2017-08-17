@@ -142,6 +142,8 @@ class SingleBuyPropertyForMatchView extends React.Component {
   </Card>
   </SwipeAction>
   <WhiteSpace size="sm" />
+  {"Buy" + property.fbid}
+
 </div>
 );
 

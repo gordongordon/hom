@@ -6,6 +6,8 @@ import {Route} from 'mobx-router';
 //components
 //import {MatchPanelViewWrapper} from 'matchPanelView'
 import {ListOfPropertysView} from 'listOfPropertysView'
+import {ListOfAgentPropertysView} from 'listOfMatch/listOfAgentPropertysView'
+
 //import {FrontPapePanelViewSegment} from 'frontPagePanelViewSegment'
 import {FrontPageView} from 'frontPageView'
 import MobxStore from 'mobxStore';
@@ -24,6 +26,8 @@ import {FormBuyAgentPropertyAntMobileWrapper} from 'form/formBuyAgentPropertyAnt
 import {FormSaleAgentPropertyAntMobileWrapper} from 'form/formSaleAgentPropertyAntMobile';
 import {FormRentAgentPropertyAntMobileWrapper} from 'form/formRentAgentPropertyAntMobile';
 import {FormLeaseAgentPropertyAntMobileWrapper} from 'form/formLeaseAgentPropertyAntMobile';
+import {FormAgentFilterWrapper} from 'form/formAgentFilter';
+
 // Match Panel views
 import {MatchLeasePanelViewWrapper} from 'matchPanel/matchLeasePanelView'
 import {MatchRentPanelViewWrapper} from 'matchPanel/matchRentPanelView'
@@ -252,6 +256,51 @@ const views = {
       MobxStore.app.previousView = route;
     }
   }),
+  createAgentFilter : new Route({
+    path: '/sale',
+    component: <FormAgentFilterWrapper />,
+    onEnter: (route, params, store, queryParams) => {
+      MobxStore.app.setTitle( 'Filter');
+
+    },
+    beforeExit: (route, params) => {
+      console.log('exiting createAgentFilter!');
+      console.log('params changed to', params);
+      MobxStore.app.previousView = route;
+    }
+  }),
+  listAgent: new Route({
+    path: '/listAgent',
+    component: <ListOfAgentPropertysView />,
+    onEnter: ( route, params, store, queryParams ) => {
+
+      console.log('entering ListOfAgentPropertysView!');
+      MobxStore.app.title = "你的地產代理儲存樓盤"
+      if ( save )
+      {
+      MobxStore.app.previousView = MobxStore.app.viewHistory.get( 'second')
+      }
+      if ( !save )
+      { MobxStore.app.viewHistory.set( 'list', MobxStore.app.previousView  )
+        save = true
+      }
+    },
+    beforeEnter: (route, params, store) => {
+      const userIsLoggedIn = MobxStore.app.user;
+      if (!userIsLoggedIn) {
+        alert('Only logged in users can enter this route!');
+        return false;
+      }
+    },
+    beforeExit: (route, params) => {
+      console.log('exiting ListOfAgentProperysView!');
+      console.log('params changed to', params);
+      MobxStore.app.previousView = route;
+      MobxStore.app.params = params;
+    },
+    onParamsChange: (route, params) => {
+      console.log('params changed to', params);
+    }}),
 buyAgentForm : new Route({
   path: '/buyAgentForm',
   component: <FormBuyAgentPropertyAntMobileWrapper />,

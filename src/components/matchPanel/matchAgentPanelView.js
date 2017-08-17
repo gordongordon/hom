@@ -6,13 +6,18 @@ import { createForm } from 'rc-form';
 import {agentModel} from 'agentModelView'
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 //import {SingleRentPropertyForMatchViewWrapper} from 'singleRentPropertyForMatchView'
-//import {ControlAgentViewWrapper} from '../control/controlAgentView'
+import {ControlAgentViewWrapper} from '../control/controlAgentView'
 
-import {ListOfMatchAgentPropertyView} from '../listOfMatch/listOfMatchAgentPropertyView'
+import {ListOfMatchAgentBuyPropertys} from '../listOfMatch/listOfMatchAgentBuyPropertys'
+import {ListOfMatchAgentSalePropertys} from '../listOfMatch/listOfMatchAgentSalePropertys'
+import {ListOfMatchAgentRentPropertys} from '../listOfMatch/listOfMatchAgentRentPropertys'
+import {ListOfMatchAgentLeasePropertys} from '../listOfMatch/listOfMatchAgentLeasePropertys'
+
 import {ListOfAgentPropertysView} from '../listOfMatch/listOfAgentPropertysView'
 import { observer } from 'mobx-react';
 import MobxStore from 'mobxStore';
 import {DISTRICK} from 'DISTRICK'
+import {Fb} from 'firebase-store'
 //
 // const Item = List.Item;
 // const Brief = Item.Brief;
@@ -36,6 +41,14 @@ const CustomChildren = props => (
   </div>
 );
 
+
+const typeForString = {
+  '0' : 'sale',
+  '1' : 'buy',
+  '2' : 'lease',
+  '3' : 'rent',
+}
+
 @observer
 class MatchAgentPanelView extends React.Component {
 
@@ -44,16 +57,25 @@ class MatchAgentPanelView extends React.Component {
     this.state = {
       disabled: false,
       selectedSegmentIndex: 0,
+      id : MobxStore.router.params.keyID
     }
-  }
+    this.onChange = this.onChange.bind(this);
+    // this.onChangeEarlyTimeToView = this.onChangeEarlyTimeToView.bind(this);
+
+  } // End of constructor
 
 
 
   onChange = (e) => {
-    console.log(`selectedIndex:${e.nativeEvent.selectedSegmentIndex}`);
+    e.preventDefault();
+    console.log(`MatchAgentPanelView. selectedIndex:${e.nativeEvent.selectedSegmentIndex}`);
     this.setState( {
       selectedSegmentIndex : e.nativeEvent.selectedSegmentIndex
     })
+
+    console.log('MatchAgentPanelView typeForString', typeForString[e.nativeEvent.selectedSegmentIndex] );
+
+    Fb.app.agentsFilterRef.child( this.state.id ).update( { typeFor : typeForString[e.nativeEvent.selectedSegmentIndex] } );
 
   }
 
@@ -61,61 +83,39 @@ class MatchAgentPanelView extends React.Component {
     console.log(value);
   }
 
-  renderList = () => {
-    if ( this.state.selectedSegmentIndex === 1 ) {
-      return <ListOfAgentPropertysView />
+  renderList = ( property ) => {
+
+    var index = this.state.selectedSegmentIndex;
+
+    if ( index === 0 ) {
+      return <ListOfMatchAgentSalePropertys propertys={property.matchedPropertys}/>
+    } else if ( index === 1 ) {
+      return <ListOfMatchAgentBuyPropertys propertys={property.matchedPropertys}/>
+    } else if ( index === 2 ) {
+      return <ListOfMatchAgentLeasePropertys propertys={property.matchedPropertys}/>
+    } else if ( index === 3 ) {
+      return <ListOfMatchAgentRentPropertys propertys={property.matchedPropertys}/>
     } else {
-      return     <ListOfMatchAgentPropertyView />
+      return <ListOfMatchAgentPropertyView />
     }
   }
 
   render() {
-    const { getFieldProps } = this.props.form;
-    //var property = agentModel.propertys.get(MobxStore.router.params.keyID );
 
-    //console.log( 'keyID', this.props.keyID )
-    // console.log( 'store.queryParams.keyID', store.router.queryParams.keyID )
-    //console.log( 'store.params.keyID', MobxStore.router.params.keyID )
+    var property = agentModel.filters.get( MobxStore.router.params.keyID );
 
-    //console.log( 'matchPanelView property', property )
-
-//    <List.Item arrow="horizontal">大廈/屋苑</List.Item>
-
+    console.log( 'matchAgentPanelView->store.params.keyID', MobxStore.router.params.keyID )
+    console.log( 'matchAgentPanelView property', property )
 
     return (
       <div>
-    <SegmentedControl values={['等待回覆樓盤','已跟進']}  selectedIndex={this.state.selectedSegmentIndex} onChange={this.onChange} />
-      <List>
-        <Picker data={DISTRICK} cols={3} {...getFieldProps('districk', {
-            initialValue: ['NTTV','MOS','MOS0001'],
-          })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑"
-            onChange={ () => console.log('Picker on change') }
-          >
-          <CustomChildren>大廈/屋苑</CustomChildren>
-        </Picker>
+        <ControlAgentViewWrapper property={property} selectedIndex={this.state.selectedSegmentIndex} onChange={this.onChange} />
 
-            <List.Item extra={
-             <Stepper
-               style={{ width: '100%', minWidth: '2rem' }}
-               {...getFieldProps('buyBudgetMax', {
-                 initialValue: 300
-               })}
-               showNumber
-               max={100000}
-               min={100}
-               step={5}
-             />}
-           >
-           預算上限/萬
-           </List.Item>
-          </List>
-
-
-    <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
-      以下是 HoMatching ... 超新鮮回覆請等待嘅客!
-    </NoticeBar>
-    <WhiteSpace size="sm" />
-    {this.renderList()}
+       <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
+        以下是 HoMatching ... 超新鮮回覆請等待嘅客!
+       </NoticeBar>
+       <WhiteSpace size="sm" />
+       {this.renderList(property)}
     </div>);
   }
 }

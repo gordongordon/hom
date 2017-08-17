@@ -4,7 +4,7 @@ import {toJS} from 'mobx';
 import {Propertyhk} from 'propertyhk'
 import {Property} from 'property'
 import MobxStore from 'mobxStore';
-import firebase from 'firebase';
+//import firebase from 'firebase';
 
 // propertyViewModel
 class AgentModelViewModel {
@@ -14,6 +14,8 @@ class AgentModelViewModel {
 @observable propertys = new Map();
 // Agent's propertys Private
 @observable ownPropertys = new Map();
+
+@observable filters = new Map();
 // Agent's propertys Public
 ////@observable agentPropertys = new Map();
 
@@ -39,6 +41,42 @@ class AgentModelViewModel {
   @action
   init = () => {
     const that = this;
+
+    Fb.app.agentsFilterRef.on('child_added', (snapshot) => {
+
+            //console.log( "fire", snapshot.val() )
+            //var p = new Propertyhk();
+            var p = Propertyhk.deserialize( snapshot.val() )
+
+            // restore can be imppletemt  deserialize
+            //p.restore( snapshot.val() )
+            //console.log( 'p', p)
+            // p.matchedPropertys.clear();
+
+            // p.buildMatchProperty( snapshot.key, p.typeFor, p.location);
+            p.buildMatchPropertyByRunTime( snapshot.key, p.typeFor, p.addressLocation);
+
+            console.log( 'agentModelView.child_add - filters.matchedPropertys.size', p.matchedPropertys.size );
+            that.filters.set( snapshot.key, p );
+    });
+
+    // Handle update
+    Fb.app.agentsFilterRef.on('child_changed', (snapshot) => {
+
+      var p = that.filters.get( snapshot.key )
+      p.restore( snapshot.val() );
+      p.matchedPropertys.clear();
+      p.buildMatchPropertyByRunTime( snapshot.key, p.typeFor, p.addressLocation);
+      that.filters.set( snapshot.key, p )
+
+    });
+
+   // Handle child_removed
+   Fb.app.agentsFilterRef.on('child_removed', (snapshot) => {
+       that.filters.delete( snapshot.key );
+                // console.log('that.propertys.size', that.propertys.size)
+   });
+
 
     Fb.propertys.on('child_added', (snapshot) => {
 
@@ -76,8 +114,6 @@ class AgentModelViewModel {
                 that.propertys.delete( snapshot.key );
                 // console.log('that.propertys.size', that.propertys.size)
    });
-
-
 
 
     // Handle Child_added

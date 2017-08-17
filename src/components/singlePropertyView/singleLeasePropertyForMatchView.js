@@ -141,6 +141,7 @@ class SingleLeasePropertyForMatchView extends React.Component {
             </Flex>} />
   </Card>
   </SwipeAction>
+  {"Lease" + property.fbid}
   <WhiteSpace size="sm" />
 </div>
 );

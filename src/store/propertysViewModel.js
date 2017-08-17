@@ -4,7 +4,7 @@ import {toJS} from 'mobx';
 import {Propertyhk} from 'propertyhk'
 import {Property} from 'property'
 import MobxStore from 'mobxStore';
-import firebase from 'firebase';
+//import firebase from 'firebase';
 //import moment from 'moment'
 
 
