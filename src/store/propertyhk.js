@@ -16,9 +16,9 @@ export class Propertyhk extends Property {
   //@observable responsedPropertys = new Map();
   // @observable matchedPropertys = new Map();
 
-  @observable like = observable.map({});
-  @observable reject = observable.map({});
-  @observable view = observable.map({});
+  // @observable like = observable.map({});
+  // @observable reject = observable.map({});
+  // @observable view = observable.map({});
 
 
   //@observable propertys = map({});
@@ -52,9 +52,6 @@ export class Propertyhk extends Property {
       case 'sale' : fb = Fb.sale; break;
       case 'rent' : fb = Fb.rent; break;
     }
-
-    // var orderByChild = 'addressLocation'
-    // var equalTo = 'MOS'
 
     console.log(`property.hk orderByChild ${this.orderByChild} equalTo ${this.equalTo} id ${this.fbid}`)
     // Handle match propertys

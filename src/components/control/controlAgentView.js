@@ -20,6 +20,19 @@ import {DISTRICK} from 'DISTRICK'
 //   { value: 'MOSSSC', label: '新港城' },
 // ];
 
+// 如果不是使用 List.Item 作为 children
+const CustomChildren = props => (
+  <div
+    onClick={props.onClick}
+    style={{ backgroundColor: '#fff', padding: '0.2rem 0.2rem' }}
+  >
+    <div style={{ display: 'flex', height: '0.9rem', lineHeight: '0.9rem' }}>
+      <div style={{ padding: '0.1rem', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{props.children}</div>
+      <div style={{ textAlign: 'right', color: '#888' }}>{props.extra} ></div>
+    </div>
+  </div>
+);
+
 @observer
 class ControlAgentView extends React.Component {
 
@@ -68,12 +81,14 @@ class ControlAgentView extends React.Component {
   }
 
 
- onChange = (e) => {
-   console.log(`ControlAgentView.selectedIndex:${e.nativeEvent.selectedSegmentIndex}`);
- }
- onValueChange = (value) => {
-   console.log(value);
- }
+
+ // onChange = (e) => {
+ //   console.log(`ControlAgentView.selectedIndex:${e.nativeEvent.selectedSegmentIndex}`);
+ // }
+ //
+ // onValueChange = (value) => {
+ //   console.log(value);
+ // }
 
 render() {
 
@@ -109,7 +124,7 @@ render() {
                 className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑"
                 onChange={ this.onChangeAddress }
               >
-             <List.Item arrow="horizontal">大廈/屋苑</List.Item>
+              <CustomChildren>大廈/屋苑</CustomChildren>
             </Picker>
                 <List.Item extra={
                  <Stepper
