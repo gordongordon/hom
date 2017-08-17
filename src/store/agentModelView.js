@@ -63,6 +63,7 @@ class AgentModelViewModel {
     // Handle update
     Fb.app.agentsFilterRef.on('child_changed', (snapshot) => {
 
+      console.log('agentModelView.child_changed')
       var p = that.filters.get( snapshot.key )
       p.restore( snapshot.val() );
       p.matchedPropertys.clear();

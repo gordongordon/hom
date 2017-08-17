@@ -53,17 +53,19 @@ export class Propertyhk extends Property {
       case 'rent' : fb = Fb.rent; break;
     }
 
+    // var orderByChild = 'addressLocation'
+    // var equalTo = 'MOS'
 
+    console.log(`property.hk orderByChild ${this.orderByChild} equalTo ${this.equalTo} id ${this.fbid}`)
     // Handle match propertys
      fb.orderByChild(this.orderByChild).equalTo(this.equalTo).on("child_added", function(snap) {
-
 //          if ( that.uid !== snap.val().uid ) {
 
            const p = Propertyhk.deserialize( snap.val() )
             //p.realTime = moment().format('YYYY-MM-DD HH:mm:ss');
 
            that.matchedPropertys.set( snap.key, p );
-           console.log('child_added - matchProperty.size', that.matchedPropertys.size)
+           console.log('propertyhk.child_added - matchProperty.size', that.matchedPropertys.size)
 //         }
 
      });
@@ -75,7 +77,7 @@ export class Propertyhk extends Property {
                   // otherwise propertys.responsedPropertys = undefined error
                   const p = Propertyhk.deserialize( snapshot.val() )
                   that.matchedPropertys.set( snapshot.key, p );
-                  console.log('child_changed - matchProperty.size', that.matchedPropertys.size)
+                  console.log('propertyhk.child_changed - matchProperty.size', that.matchedPropertys.size)
      });
 
 

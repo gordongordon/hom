@@ -20,6 +20,10 @@ const LABEL_JOBNATURE = {
 // this is our domain model class
 export class Property{
 
+    // ** Every time add a new variable
+    // make sure also handle in serialize, restore, deserialize, otherwise error
+
+
     // constructor( v ){
     // restore( v )
     // }
@@ -442,6 +446,7 @@ export class Property{
 //            location : this.location,
             type: this.type,
 
+            orderByChild : this.orderByChild,
 
             isAgent: this.isAgent,
             createdAt: this.createdAt,
@@ -540,6 +545,9 @@ export class Property{
 //            location : this.location,
       p.type = v.type,
 
+      p.orderByChild = v.orderByChild,
+
+
       p.isAgent= v.isAgent,
       p.createdAt= v.createdAt,
       p.realTime = v.realTime,
@@ -618,6 +626,7 @@ export class Property{
       this.done = v.done,
 //            location : this.location,
       this.type = v.type,
+      this.orderByChild = v.orderByChild,
 
       this.isAgent= v.isAgent,
       this.createdAt= v.createdAt,

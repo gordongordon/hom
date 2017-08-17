@@ -40,7 +40,7 @@ const DISTRICK = [
 		"label": "馬鞍山",
 		"children" : [
                			{ "label" : "全部",
-				              "value" : "MOS0000" },
+				              "value" : "ALL" },
 			              { "label" : "迎海",
 									   	"value" : "MOS0001" },
 										{ "label" : "嵐岸",
@@ -110,7 +110,7 @@ const DISTRICK = [
  		"label": "沙田屋苑",
  		"children" : [
 	                	{ "label" : "全部",
-				              "value" : "SHT0000" },
+				              "value" : "ALL" },
  			              { "label" : "沙田第一城",
  									   	"value" : "SHT0001" },
  										{ "label" : "沙田中心 ",

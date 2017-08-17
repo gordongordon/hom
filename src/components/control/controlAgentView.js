@@ -50,8 +50,8 @@ class ControlAgentView extends React.Component {
     console.log( `location ${addressLocation}, building ${addressBuilding} with ${id} ${value}`)
 //     console.log( 'address ${}')
 
-    if ( addressBuilding === 'MOS0000') {
-      console.log( 'MOS0000')
+    if ( addressBuilding === 'ALL') {
+      // console.log( 'MOS0000')
       Fb.app.agentsFilterRef.child( id ).update( { orderByChild : 'addressLocation',
         addressRegion : addressRegion,
         addressLocation: addressLocation,

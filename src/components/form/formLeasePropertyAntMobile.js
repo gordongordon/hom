@@ -162,6 +162,7 @@ class FormLeasePropertyAntMobile extends React.Component {
     p.uid = MobxStore.app.uid;
     p.typeFor = "rent"
     p.typeTo = "lease"
+    p.orderByChild = "nameOfBuilding"
     p.fbid = id;
 
     Fb.app.usersRef.update( {[id]:  p.serialize() });
