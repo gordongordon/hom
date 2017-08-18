@@ -1,24 +1,40 @@
-import React from 'react'
-import { TabBar, NoticeBar, List, Card, Stepper, Icon, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl } from 'antd-mobile';
-import { createForm } from 'rc-form';
+import React from "react";
+import {
+  TabBar,
+  NoticeBar,
+  List,
+  Card,
+  Stepper,
+  Icon,
+  Picker,
+  SwipeAction,
+  DatePicker,
+  Badge,
+  Flex,
+  InputItem,
+  WhiteSpace,
+  Button,
+  SegmentedControl
+} from "antd-mobile";
+import { createForm } from "rc-form";
 // import moment from 'moment';
 // import 'moment/locale/zh-cn';
-import { agentModel } from 'agentModelView'
+import { agentModel } from "agentModelView";
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 //import {SingleRentPropertyForMatchViewWrapper} from 'singleRentPropertyForMatchView'
-import { ControlAgentViewWrapper } from '../control/controlAgentView'
+import { ControlAgentViewWrapper } from "../control/controlAgentView";
 
-import { ListOfMatchAgentBuyPropertys } from '../listOfMatch/listOfMatchAgentBuyPropertys'
-import { ListOfMatchAgentSalePropertys } from '../listOfMatch/listOfMatchAgentSalePropertys'
-import { ListOfMatchAgentRentPropertys } from '../listOfMatch/listOfMatchAgentRentPropertys'
-import { ListOfMatchAgentLeasePropertys } from '../listOfMatch/listOfMatchAgentLeasePropertys'
+import { ListOfMatchAgentBuyPropertys } from "../listOfMatch/listOfMatchAgentBuyPropertys";
+import { ListOfMatchAgentSalePropertys } from "../listOfMatch/listOfMatchAgentSalePropertys";
+import { ListOfMatchAgentRentPropertys } from "../listOfMatch/listOfMatchAgentRentPropertys";
+import { ListOfMatchAgentLeasePropertys } from "../listOfMatch/listOfMatchAgentLeasePropertys";
 
-import { ListOfAgentPropertysView } from '../listOfMatch/listOfAgentPropertysView'
-import { ListOfMatchAgentPropertysView } from '../listOfMatch/listOfMatchAgentPropertysView'
-import { observer } from 'mobx-react';
-import MobxStore from 'mobxStore';
-import { DISTRICK } from 'DISTRICK'
-import { Fb } from 'firebase-store'
+import { ListOfAgentPropertysView } from "../listOfMatch/listOfAgentPropertysView";
+import { ListOfMatchAgentPropertysView } from "../listOfMatch/listOfMatchAgentPropertysView";
+import { observer } from "mobx-react";
+import MobxStore from "mobxStore";
+import { DISTRICK } from "DISTRICK";
+import { Fb } from "firebase-store";
 //
 // const Item = List.Item;
 // const Brief = Item.Brief;
@@ -30,109 +46,127 @@ import { Fb } from 'firebase-store'
 // ];
 
 // 如果不是使用 List.Item 作为 children
-const CustomChildren = props => (
+const CustomChildren = props =>
   <div
     onClick={props.onClick}
-    style={{ backgroundColor: '#fff', padding: '0 0.3rem' }}
+    style={{ backgroundColor: "#fff", padding: "0 0.3rem" }}
   >
-    <div style={{ display: 'flex', height: '0.9rem', lineHeight: '0.9rem' }}>
-      <div style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{props.children}</div>
-      <div style={{ textAlign: 'right', color: '#888' }}>{props.extra}</div>
+    <div style={{ display: "flex", height: "0.9rem", lineHeight: "0.9rem" }}>
+      <div
+        style={{
+          flex: 1,
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap"
+        }}
+      >
+        {props.children}
+      </div>
+      <div style={{ textAlign: "right", color: "#888" }}>
+        {props.extra}
+      </div>
     </div>
-  </div>
-);
-
+  </div>;
 
 const typeForString = {
-  '0': 'sale',
-  '1': 'buy',
-  '2': 'lease',
-  '3': 'rent',
-}
+  "0": "sale",
+  "1": "buy",
+  "2": "lease",
+  "3": "rent"
+};
 
 @observer
 class MatchAgentPanelView extends React.Component {
-
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       disabled: false,
       selectedSegmentIndex: 0,
       selectedTabBar: 0,
       id: MobxStore.router.params.keyID,
-      selectedTab: 'buy',
+      selectedTab: "buy",
       hidden: false
     };
 
     this.onChange = this.onChange.bind(this);
     this.renderList = this.renderList.bind(this);
     // this.onChangeEarlyTimeToView = this.onChangeEarlyTimeToView.bind(this);
-
   } // End of constructor
 
-
-
-  onChange = (e) => {
+  onChange = e => {
     e.preventDefault();
     const index = e.nativeEvent.selectedSegmentIndex;
-    console.log(`MatchAgentPanelView. selectedIndex:${e.nativeEvent.selectedSegmentIndex}`);
+    console.log(
+      `MatchAgentPanelView. selectedIndex:${e.nativeEvent.selectedSegmentIndex}`
+    );
     this.setState({
       selectedSegmentIndex: index
-    })
+    });
 
     // console.log('MatchAgentPanelView typeForString', typeForString[index]);
     // if (index <= 3) {
     //   Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[index] });
     // }
+  };
 
-  }
-
-  onValueChange = (value) => {
+  onValueChange = value => {
     console.log(value);
-  }
+  };
 
-  renderList = (property) => {
-
+  renderList = property => {
     const index = this.state.selectedTabBar;
 
     // debugger
     // Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[index] });
 
     if (index === 0) {
-      return <ListOfMatchAgentSalePropertys propertys={property.matchedPropertys} />
+      return (
+        <ListOfMatchAgentSalePropertys propertys={property.matchedPropertys} />
+      );
     } else if (index === 1) {
-      return <ListOfMatchAgentBuyPropertys propertys={property.matchedPropertys} />
+      return (
+        <ListOfMatchAgentBuyPropertys propertys={property.matchedPropertys} />
+      );
     } else if (index === 2) {
-      return <ListOfMatchAgentLeasePropertys propertys={property.matchedPropertys} />
+      return (
+        <ListOfMatchAgentLeasePropertys propertys={property.matchedPropertys} />
+      );
     } else if (index === 3) {
-      return <ListOfMatchAgentRentPropertys propertys={property.matchedPropertys} />
+      return (
+        <ListOfMatchAgentRentPropertys propertys={property.matchedPropertys} />
+      );
     }
 
-    return <ListOfMatchAgentPropertysView />
-  }
-
-
-
+    return <ListOfMatchAgentPropertysView />;
+  };
 
   render() {
-
     var property = agentModel.filters.get(MobxStore.router.params.keyID);
 
-    console.log('matchAgentPanelView->store.params.keyID', MobxStore.router.params.keyID)
-    console.log('matchAgentPanelView property', property)
+    console.log(
+      "matchAgentPanelView->store.params.keyID",
+      MobxStore.router.params.keyID
+    );
+    console.log("matchAgentPanelView property", property);
     // this.setState({
     //   selectedTab : property.typeFor
     // })
 
-
     return (
       <div>
-        <ControlAgentViewWrapper property={property} selectedIndex={this.state.selectedSegmentIndex} onChange={this.onChange} />
+        <ControlAgentViewWrapper
+          property={property}
+          selectedIndex={this.state.selectedSegmentIndex}
+          onChange={this.onChange}
+        />
 
-        <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
+        <NoticeBar
+          mode="closable"
+          icon={<Icon type="check-circle-o" size="xxs" />}
+        >
           以下是 HoMatching ... 超新鮮回覆請等待嘅客!
-       </NoticeBar>
+        </NoticeBar>
         <WhiteSpace size="sm" />
 
         <TabBar
@@ -142,51 +176,92 @@ class MatchAgentPanelView extends React.Component {
           hidden={this.state.hidden}
         >
           <TabBar.Item
-            title="搵買盤"
-            key="生活"
-            icon={<div style={{
-              width: '0.44rem',
-              height: '0.44rem',
-              background: 'url(https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg) center center /  0.42rem 0.42rem no-repeat'
-            }}
-            />
+            title="Filter"
+            key="kkyr"
+            icon={
+              <div
+                style={{
+                  width: "0.44rem",
+                  height: "0.44rem",
+                  background:
+                    "url(https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg) center center /  0.42rem 0.42rem no-repeat"
+                }}
+              />
             }
-
-            selectedIcon={<div style={{
-              width: '0.44rem',
-              height: '0.44rem',
-              background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  0.42rem 0.42rem no-repeat'
-            }}
-            />
+            selectedIcon={
+              <div
+                style={{
+                  width: "0.44rem",
+                  height: "0.44rem",
+                  background:
+                    "url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  0.42rem 0.42rem no-repeat"
+                }}
+              />
             }
-            selected={this.state.selectedTab === 'buy'}
-            badge={1}
+            
+            selected={this.state.selectedTab === "filter"}
+            badge={agentModel.filters.size}
             onPress={() => {
               this.setState({
-                selectedTab: 'buy',
-                selectedTabBar: 0,
+                selectedTab: "filter"
               });
-              Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[0] });
+            }}
+            data-seed="logId0"
+          />
+
+          <TabBar.Item
+            title="搵買盤"
+            key="生活"
+            icon={
+              <div
+                style={{
+                  width: "0.44rem",
+                  height: "0.44rem",
+                  background:
+                    "url(https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg) center center /  0.42rem 0.42rem no-repeat"
+                }}
+              />
+            }
+            selectedIcon={
+              <div
+                style={{
+                  width: "0.44rem",
+                  height: "0.44rem",
+                  background:
+                    "url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  0.42rem 0.42rem no-repeat"
+                }}
+              />
+            }
+            selected={this.state.selectedTab === "buy"}
+            badge={property.matchedPropertys.size}
+            onPress={() => {
+              this.setState({
+                selectedTab: "buy",
+                selectedTabBar: 0
+              });
+              Fb.app.agentsFilterRef
+                .child(this.state.id)
+                .update({ typeFor: typeForString[0] });
             }}
             data-seed="logId"
           >
-          { this.renderList(property) }
+            {this.renderList(property)}
           </TabBar.Item>
           <TabBar.Item
             icon={<Icon type="koubei-o" size="lg" />}
             selectedIcon={<Icon type="koubei" size="lg" />}
             title="放賣盤"
             key="口碑"
-            badge={'new'}
-            selected={this.state.selectedTab === 'sale'}
+            badge={"new"}
+            selected={this.state.selectedTab === "sale"}
             onPress={() => {
               this.setState({
-                selectedTab: 'sale',
-                selectedTabBar: 1,
+                selectedTab: "sale",
+                selectedTabBar: 1
               });
-              Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[1] });
-              
-
+              Fb.app.agentsFilterRef
+                .child(this.state.id)
+                .update({ typeFor: typeForString[1] });
             }}
             data-seed="logId1"
           >
@@ -194,63 +269,70 @@ class MatchAgentPanelView extends React.Component {
           </TabBar.Item>
           <TabBar.Item
             icon={
-              <div style={{
-                width: '0.44rem',
-                height: '0.44rem',
-                background: 'url(https://zos.alipayobjects.com/rmsportal/psUFoAMjkCcjqtUCNPxB.svg) center center /  0.42rem 0.42rem no-repeat'
-              }}
+              <div
+                style={{
+                  width: "0.44rem",
+                  height: "0.44rem",
+                  background:
+                    "url(https://zos.alipayobjects.com/rmsportal/psUFoAMjkCcjqtUCNPxB.svg) center center /  0.42rem 0.42rem no-repeat"
+                }}
               />
             }
             selectedIcon={
-              <div style={{
-                width: '0.44rem',
-                height: '0.44rem',
-                background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  0.42rem 0.42rem no-repeat'
-              }}
+              <div
+                style={{
+                  width: "0.44rem",
+                  height: "0.44rem",
+                  background:
+                    "url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  0.42rem 0.42rem no-repeat"
+                }}
               />
             }
             title="搵租盤"
             key="朋友"
             dot
-            selected={this.state.selectedTab === 'lease'}
+            selected={this.state.selectedTab === "lease"}
             onPress={() => {
               this.setState({
-                selectedTab: 'lease',
-                selectedTabBar: 2,
+                selectedTab: "lease",
+                selectedTabBar: 2
               });
-              Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[2] });
-              
+              Fb.app.agentsFilterRef
+                .child(this.state.id)
+                .update({ typeFor: typeForString[2] });
             }}
           >
             {this.renderList(property)}
           </TabBar.Item>
           <TabBar.Item
-            icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg' }}
-            selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
+            icon={{
+              uri:
+                "https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg"
+            }}
+            selectedIcon={{
+              uri:
+                "https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg"
+            }}
             title="'放租盤"
             key="我的"
-            selected={this.state.selectedTab === 'rent'}
+            selected={this.state.selectedTab === "rent"}
             onPress={() => {
               this.setState({
-                selectedTab: 'rent',
-                selectedTabBar: 3,
+                selectedTab: "rent",
+                selectedTabBar: 3
               });
-              Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[3] });
-              
+              Fb.app.agentsFilterRef
+                .child(this.state.id)
+                .update({ typeFor: typeForString[3] });
             }}
           >
             {this.renderList(property)}
-
           </TabBar.Item>
         </TabBar>
-
-
-
-      </div>);
-
-
+      </div>
+    );
   }
 }
 // <ListOfMatchPropertys propertys={property.matchedPropertys} />
 export const MatchAgentPanelViewWrapper = createForm()(MatchAgentPanelView);
-    // <ListOfMatchSalePropertys propertys={property.matchedPropertys} />
+// <ListOfMatchSalePropertys propertys={property.matchedPropertys} />
