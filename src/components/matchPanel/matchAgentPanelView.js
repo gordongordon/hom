@@ -1,23 +1,24 @@
 import React from 'react'
-import {  NoticeBar,List , Card, Stepper, Icon, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl} from 'antd-mobile';
+import { NoticeBar, List, Card, Stepper, Icon, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl } from 'antd-mobile';
 import { createForm } from 'rc-form';
 // import moment from 'moment';
 // import 'moment/locale/zh-cn';
-import {agentModel} from 'agentModelView'
+import { agentModel } from 'agentModelView'
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 //import {SingleRentPropertyForMatchViewWrapper} from 'singleRentPropertyForMatchView'
-import {ControlAgentViewWrapper} from '../control/controlAgentView'
+import { ControlAgentViewWrapper } from '../control/controlAgentView'
 
-import {ListOfMatchAgentBuyPropertys} from '../listOfMatch/listOfMatchAgentBuyPropertys'
-import {ListOfMatchAgentSalePropertys} from '../listOfMatch/listOfMatchAgentSalePropertys'
-import {ListOfMatchAgentRentPropertys} from '../listOfMatch/listOfMatchAgentRentPropertys'
-import {ListOfMatchAgentLeasePropertys} from '../listOfMatch/listOfMatchAgentLeasePropertys'
+import { ListOfMatchAgentBuyPropertys } from '../listOfMatch/listOfMatchAgentBuyPropertys'
+import { ListOfMatchAgentSalePropertys } from '../listOfMatch/listOfMatchAgentSalePropertys'
+import { ListOfMatchAgentRentPropertys } from '../listOfMatch/listOfMatchAgentRentPropertys'
+import { ListOfMatchAgentLeasePropertys } from '../listOfMatch/listOfMatchAgentLeasePropertys'
 
-import {ListOfAgentPropertysView} from '../listOfMatch/listOfAgentPropertysView'
+import { ListOfAgentPropertysView } from '../listOfMatch/listOfAgentPropertysView'
+import { ListOfMatchAgentPropertysView } from '../listOfMatch/listOfMatchAgentPropertysView'
 import { observer } from 'mobx-react';
 import MobxStore from 'mobxStore';
-import {DISTRICK} from 'DISTRICK'
-import {Fb} from 'firebase-store'
+import { DISTRICK } from 'DISTRICK'
+import { Fb } from 'firebase-store'
 //
 // const Item = List.Item;
 // const Brief = Item.Brief;
@@ -43,10 +44,10 @@ const CustomChildren = props => (
 
 
 const typeForString = {
-  '0' : 'sale',
-  '1' : 'buy',
-  '2' : 'lease',
-  '3' : 'rent',
+  '0': 'sale',
+  '1': 'buy',
+  '2': 'lease',
+  '3': 'rent',
 }
 
 @observer
@@ -57,7 +58,7 @@ class MatchAgentPanelView extends React.Component {
     this.state = {
       disabled: false,
       selectedSegmentIndex: 0,
-      id : MobxStore.router.params.keyID
+      id: MobxStore.router.params.keyID
     }
     this.onChange = this.onChange.bind(this);
     // this.onChangeEarlyTimeToView = this.onChangeEarlyTimeToView.bind(this);
@@ -68,14 +69,16 @@ class MatchAgentPanelView extends React.Component {
 
   onChange = (e) => {
     e.preventDefault();
+    const index = e.nativeEvent.selectedSegmentIndex;
     console.log(`MatchAgentPanelView. selectedIndex:${e.nativeEvent.selectedSegmentIndex}`);
-    this.setState( {
-      selectedSegmentIndex : e.nativeEvent.selectedSegmentIndex
+    this.setState({
+      selectedSegmentIndex: index
     })
 
-    console.log('MatchAgentPanelView typeForString', typeForString[e.nativeEvent.selectedSegmentIndex] );
-
-    Fb.app.agentsFilterRef.child( this.state.id ).update( { typeFor : typeForString[e.nativeEvent.selectedSegmentIndex] } );
+    console.log('MatchAgentPanelView typeForString', typeForString[index]);
+    if ( index <= 3 ) {
+      Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[index] });
+    }
 
   }
 
@@ -83,42 +86,42 @@ class MatchAgentPanelView extends React.Component {
     console.log(value);
   }
 
-  renderList = ( property ) => {
+  renderList = (property) => {
 
     const index = this.state.selectedSegmentIndex;
 
-    if ( index === 0 ) {
-      return <ListOfMatchAgentSalePropertys propertys={property.matchedPropertys}/>
-    } else if ( index === 1 ) {
-      return <ListOfMatchAgentBuyPropertys propertys={property.matchedPropertys}/>
-    } else if ( index === 2 ) {
-      return <ListOfMatchAgentLeasePropertys propertys={property.matchedPropertys}/>
-    } else if ( index === 3 ) {
-      return <ListOfMatchAgentRentPropertys propertys={property.matchedPropertys}/>
+    if (index === 0) {
+      return <ListOfMatchAgentSalePropertys propertys={property.matchedPropertys} />
+    } else if (index === 1) {
+      return <ListOfMatchAgentBuyPropertys propertys={property.matchedPropertys} />
+    } else if (index === 2) {
+      return <ListOfMatchAgentLeasePropertys propertys={property.matchedPropertys} />
+    } else if (index === 3) {
+      return <ListOfMatchAgentRentPropertys propertys={property.matchedPropertys} />
     }
 
-    return <ListOfMatchAgentPropertyView />
+    return <ListOfMatchAgentPropertysView />
   }
 
   render() {
 
-    var property = agentModel.filters.get( MobxStore.router.params.keyID );
+    var property = agentModel.filters.get(MobxStore.router.params.keyID);
 
-    console.log( 'matchAgentPanelView->store.params.keyID', MobxStore.router.params.keyID )
-    console.log( 'matchAgentPanelView property', property )
+    console.log('matchAgentPanelView->store.params.keyID', MobxStore.router.params.keyID)
+    console.log('matchAgentPanelView property', property)
 
     return (
       <div>
         <ControlAgentViewWrapper property={property} selectedIndex={this.state.selectedSegmentIndex} onChange={this.onChange} />
-
-       <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
-        以下是 HoMatching ... 超新鮮回覆請等待嘅客!
+        
+        <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
+          以下是 HoMatching ... 超新鮮回覆請等待嘅客!
        </NoticeBar>
-       <WhiteSpace size="sm" />
-       {this.renderList(property)}
-    </div>);
+        <WhiteSpace size="sm" />
+        {this.renderList(property)}
+      </div>);
   }
 }
-  // <ListOfMatchPropertys propertys={property.matchedPropertys} />
+// <ListOfMatchPropertys propertys={property.matchedPropertys} />
 export const MatchAgentPanelViewWrapper = createForm()(MatchAgentPanelView);
     // <ListOfMatchSalePropertys propertys={property.matchedPropertys} />
