@@ -117,7 +117,8 @@ class FormAgentFilter extends React.Component {
 
     const id = Fb.app.agentsFilterRef.push().key;
     p.typeFor = "sale"
-    p.typeTo = "buy"
+    // Can be either open or engage (Engage responed )
+    p.typeTo = "open"
     p.fbid = id;
     // p.relatedFbid = MobxStore.router.params.keyID;
 

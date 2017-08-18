@@ -35,9 +35,7 @@ import { observer } from "mobx-react";
 import MobxStore from "mobxStore";
 import { DISTRICK } from "DISTRICK";
 import { Fb } from "firebase-store";
-import views from 'views';
-
-
+import views from "views";
 
 // const Item = List.Item;
 // const Brief = Item.Brief;
@@ -108,9 +106,11 @@ class MatchAgentPanelView extends React.Component {
     });
 
     // console.log('MatchAgentPanelView typeForString', typeForString[index]);
-    // if (index <= 3) {
-    //   Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[index] });
-    // }
+     if (index === 1) {
+       Fb.app.agentsFilterRef.child(this.state.id).update({ typeTo: 'engage'});
+     } else {
+       Fb.app.agentsFilterRef.child(this.state.id).update({ typeTo: 'open'});
+     }
   };
 
   onValueChange = value => {
@@ -182,21 +182,18 @@ class MatchAgentPanelView extends React.Component {
             title="Filter"
             key="kkyr"
             icon={{
-              uri:
-                "http://hair.losstreatment.com/icons/filter-up.svg"
+              uri: "http://hair.losstreatment.com/icons/filter-up.svg"
             }}
             selectedIcon={{
-              uri:
-                "http://hair.losstreatment.com/icons/filter-down.svg"
+              uri: "http://hair.losstreatment.com/icons/filter-down.svg"
             }}
-            
             selected={this.state.selectedTab === "filter"}
             badge={agentModel.filters.size}
             onPress={() => {
               this.setState({
                 selectedTab: "filter"
               });
-              MobxStore.router.goTo( views.listAgent )              
+              MobxStore.router.goTo(views.listAgent);
             }}
             data-seed="logId0"
           />
@@ -205,14 +202,11 @@ class MatchAgentPanelView extends React.Component {
             title="搵買盤"
             key="生活"
             icon={{
-              uri:
-                "http://hair.losstreatment.com/icons/building-up.svg"
+              uri: "http://hair.losstreatment.com/icons/building-up.svg"
             }}
             selectedIcon={{
-              uri:
-                "http://hair.losstreatment.com/icons/building-blue-down.svg"
+              uri: "http://hair.losstreatment.com/icons/building-blue-down.svg"
             }}
-
             selected={this.state.selectedTab === "buy"}
             badge={property.matchedPropertys.size}
             onPress={() => {
@@ -229,8 +223,8 @@ class MatchAgentPanelView extends React.Component {
             {this.renderList(property)}
           </TabBar.Item>
           <TabBar.Item
-          icon={<Icon type="koubei-o" />}
-          selectedIcon={<Icon type="koubei"  />}
+            icon={<Icon type="koubei-o" />}
+            selectedIcon={<Icon type="koubei" />}
             title="放賣盤"
             key="口碑"
             badge={"new"}
@@ -249,15 +243,13 @@ class MatchAgentPanelView extends React.Component {
             {this.renderList(property)}
           </TabBar.Item>
           <TabBar.Item
-          icon={{
-            uri:
-              "http://hair.losstreatment.com/icons/rent-down.svg"
-          }}
-          selectedIcon={{
-            uri:
-              "http://hair.losstreatment.com/icons/rent-up.svg"
-          }}
-          title="搵租盤"
+            icon={{
+              uri: "http://hair.losstreatment.com/icons/rent-down.svg"
+            }}
+            selectedIcon={{
+              uri: "http://hair.losstreatment.com/icons/rent-up.svg"
+            }}
+            title="搵租盤"
             key="朋友"
             dot
             selected={this.state.selectedTab === "lease"}
