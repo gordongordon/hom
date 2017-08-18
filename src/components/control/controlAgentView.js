@@ -1,11 +1,12 @@
 import React from 'react'
-import { List, Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, Button, WhiteSpace, SegmentedControl } from 'antd-mobile';
+import { List, TabBar, Tabs, Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, Button, WhiteSpace, SegmentedControl } from 'antd-mobile';
 import { createForm } from 'rc-form';
 
 import { Fb } from 'firebase-store';
 import { observer } from 'mobx-react';
 import { DISTRICK } from 'DISTRICK'
 
+const TabPane = Tabs.TabPane;
 
 // import moment from 'moment';
 // import 'moment/locale/zh-cn';
@@ -115,10 +116,13 @@ class ControlAgentView extends React.Component {
       console.log('*nameOfBuildingLabel undefined')
     }
 
+//     <SegmentedControl values={['B搵買盤', 'S放賣盤', 'R搵租盤', 'L放租盤', '已跟進/回覆']} selectedIndex={this.props.selectedIndex} onChange={onChange} />
+    
+
     return (
 
+
       <div>
-        <SegmentedControl values={['B搵買盤', 'S放賣盤', 'R搵租盤', 'L放租盤', '已跟進/回覆']} selectedIndex={this.props.selectedIndex} onChange={onChange} />
         <SegmentedControl tintColor="#888" values={['回覆', '已跟進']} selectedIndex={this.props.selectedIndex} onChange={onChange} />
         <List>
           <Picker data={DISTRICK} cols={3} {...getFieldProps('districk', {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { NoticeBar, List, Card, Stepper, Icon, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl } from 'antd-mobile';
+import { TabBar, NoticeBar, List, Card, Stepper, Icon, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl } from 'antd-mobile';
 import { createForm } from 'rc-form';
 // import moment from 'moment';
 // import 'moment/locale/zh-cn';
@@ -55,11 +55,15 @@ class MatchAgentPanelView extends React.Component {
 
   constructor(props) {
     super(props)
+
     this.state = {
       disabled: false,
       selectedSegmentIndex: 0,
-      id: MobxStore.router.params.keyID
-    }
+      id: MobxStore.router.params.keyID,
+      selectedTab: 'redTab',
+      hidden: false
+    };
+
     this.onChange = this.onChange.bind(this);
     // this.onChangeEarlyTimeToView = this.onChangeEarlyTimeToView.bind(this);
 
@@ -76,7 +80,7 @@ class MatchAgentPanelView extends React.Component {
     })
 
     console.log('MatchAgentPanelView typeForString', typeForString[index]);
-    if ( index <= 3 ) {
+    if (index <= 3) {
       Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[index] });
     }
 
@@ -103,6 +107,9 @@ class MatchAgentPanelView extends React.Component {
     return <ListOfMatchAgentPropertysView />
   }
 
+
+
+
   render() {
 
     var property = agentModel.filters.get(MobxStore.router.params.keyID);
@@ -113,13 +120,114 @@ class MatchAgentPanelView extends React.Component {
     return (
       <div>
         <ControlAgentViewWrapper property={property} selectedIndex={this.state.selectedSegmentIndex} onChange={this.onChange} />
-        
+
         <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
           以下是 HoMatching ... 超新鮮回覆請等待嘅客!
        </NoticeBar>
         <WhiteSpace size="sm" />
-        {this.renderList(property)}
+
+        <TabBar
+          unselectedTintColor="#949494"
+          tintColor="#33A3F4"
+          barTintColor="white"
+          hidden={this.state.hidden}
+        >
+          <TabBar.Item
+            title="Buy"
+            key="生活"
+            icon={<div style={{
+              width: '0.44rem',
+              height: '0.44rem',
+              background: 'url(https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg) center center /  0.42rem 0.42rem no-repeat'
+            }}
+            />
+            }
+
+            selectedIcon={<div style={{
+              width: '0.44rem',
+              height: '0.44rem',
+              background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  0.42rem 0.42rem no-repeat'
+            }}
+            />
+            }
+            selected={this.state.selectedTab === 'blueTab'}
+            badge={1}
+            onPress={() => {
+              this.setState({
+                selectedTab: 'blueTab',
+              });
+            }}
+            data-seed="logId"
+          >
+            {this.renderList(property)}
+          </TabBar.Item>
+          <TabBar.Item
+            icon={<Icon type="koubei-o" size="md" />}
+            selectedIcon={<Icon type="koubei" size="md" />}
+            title="Sale"
+            key="口碑"
+            badge={'new'}
+            selected={this.state.selectedTab === 'redTab'}
+            onPress={() => {
+              this.setState({
+                selectedTab: 'redTab',
+              });
+            }}
+            data-seed="logId1"
+          >
+            {this.renderList(property)}
+          </TabBar.Item>
+          <TabBar.Item
+            icon={
+              <div style={{
+                width: '0.44rem',
+                height: '0.44rem',
+                background: 'url(https://zos.alipayobjects.com/rmsportal/psUFoAMjkCcjqtUCNPxB.svg) center center /  0.42rem 0.42rem no-repeat'
+              }}
+              />
+            }
+            selectedIcon={
+              <div style={{
+                width: '0.44rem',
+                height: '0.44rem',
+                background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  0.42rem 0.42rem no-repeat'
+              }}
+              />
+            }
+            title="Lease"
+            key="朋友"
+            dot
+            selected={this.state.selectedTab === 'greenTab'}
+            onPress={() => {
+              this.setState({
+                selectedTab: 'greenTab',
+              });
+            }}
+          >
+            {this.renderList(property)}
+          </TabBar.Item>
+          <TabBar.Item
+            icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg' }}
+            selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
+            title="Rent"
+            key="我的"
+            selected={this.state.selectedTab === 'yellowTab'}
+            onPress={() => {
+              this.setState({
+                selectedTab: 'yellowTab',
+              });
+            }}
+          >
+            {this.renderList(property)}
+
+          </TabBar.Item>
+        </TabBar>
+
+
+
       </div>);
+
+
   }
 }
 // <ListOfMatchPropertys propertys={property.matchedPropertys} />
