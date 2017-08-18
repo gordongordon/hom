@@ -59,12 +59,14 @@ class MatchAgentPanelView extends React.Component {
     this.state = {
       disabled: false,
       selectedSegmentIndex: 0,
+      selectedTabBar: 0,
       id: MobxStore.router.params.keyID,
-      selectedTab: 'redTab',
+      selectedTab: 'buy',
       hidden: false
     };
 
     this.onChange = this.onChange.bind(this);
+    this.renderList = this.renderList.bind(this);
     // this.onChangeEarlyTimeToView = this.onChangeEarlyTimeToView.bind(this);
 
   } // End of constructor
@@ -79,10 +81,10 @@ class MatchAgentPanelView extends React.Component {
       selectedSegmentIndex: index
     })
 
-    console.log('MatchAgentPanelView typeForString', typeForString[index]);
-    if (index <= 3) {
-      Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[index] });
-    }
+    // console.log('MatchAgentPanelView typeForString', typeForString[index]);
+    // if (index <= 3) {
+    //   Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[index] });
+    // }
 
   }
 
@@ -92,7 +94,10 @@ class MatchAgentPanelView extends React.Component {
 
   renderList = (property) => {
 
-    const index = this.state.selectedSegmentIndex;
+    const index = this.state.selectedTabBar;
+
+    // debugger
+    // Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[index] });
 
     if (index === 0) {
       return <ListOfMatchAgentSalePropertys propertys={property.matchedPropertys} />
@@ -116,6 +121,10 @@ class MatchAgentPanelView extends React.Component {
 
     console.log('matchAgentPanelView->store.params.keyID', MobxStore.router.params.keyID)
     console.log('matchAgentPanelView property', property)
+    // this.setState({
+    //   selectedTab : property.typeFor
+    // })
+
 
     return (
       <div>
@@ -133,7 +142,7 @@ class MatchAgentPanelView extends React.Component {
           hidden={this.state.hidden}
         >
           <TabBar.Item
-            title="Buy"
+            title="搵買盤"
             key="生活"
             icon={<div style={{
               width: '0.44rem',
@@ -150,31 +159,34 @@ class MatchAgentPanelView extends React.Component {
             }}
             />
             }
-            selected={this.state.selectedTab === 'blueTab'}
+            selected={this.state.selectedTab === 'buy'}
             badge={1}
             onPress={() => {
               this.setState({
-                selectedTab: 'blueTab',
-                selectedSegmentIndex : 0,                
+                selectedTab: 'buy',
+                selectedTabBar: 0,
               });
+              Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[0] });
             }}
             data-seed="logId"
           >
-            {this.renderList(property)}
+          { this.renderList(property) }
           </TabBar.Item>
           <TabBar.Item
-            icon={<Icon type="koubei-o" size="md" />}
-            selectedIcon={<Icon type="koubei" size="md" />}
-            title="Sale"
+            icon={<Icon type="koubei-o" size="lg" />}
+            selectedIcon={<Icon type="koubei" size="lg" />}
+            title="放賣盤"
             key="口碑"
             badge={'new'}
-            selected={this.state.selectedTab === 'redTab'}
+            selected={this.state.selectedTab === 'sale'}
             onPress={() => {
               this.setState({
-                selectedTab: 'redTab',
-                selectedSegmentIndex : 1,                
-                
+                selectedTab: 'sale',
+                selectedTabBar: 1,
               });
+              Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[1] });
+              
+
             }}
             data-seed="logId1"
           >
@@ -197,16 +209,17 @@ class MatchAgentPanelView extends React.Component {
               }}
               />
             }
-            title="Lease"
+            title="搵租盤"
             key="朋友"
             dot
-            selected={this.state.selectedTab === 'greenTab'}
+            selected={this.state.selectedTab === 'lease'}
             onPress={() => {
               this.setState({
-                selectedTab: 'greenTab',
-                selectedSegmentIndex : 2,                
-                
+                selectedTab: 'lease',
+                selectedTabBar: 2,
               });
+              Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[2] });
+              
             }}
           >
             {this.renderList(property)}
@@ -214,15 +227,16 @@ class MatchAgentPanelView extends React.Component {
           <TabBar.Item
             icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg' }}
             selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
-            title="Rent"
+            title="'放租盤"
             key="我的"
-            selected={this.state.selectedTab === 'yellowTab'}
+            selected={this.state.selectedTab === 'rent'}
             onPress={() => {
               this.setState({
-                selectedTab: 'yellowTab',
-                selectedSegmentIndex : 3,                
-                
+                selectedTab: 'rent',
+                selectedTabBar: 3,
               });
+              Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[3] });
+              
             }}
           >
             {this.renderList(property)}
