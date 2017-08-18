@@ -127,7 +127,7 @@ export class ListOfAgentPropertysView extends React.Component {
               onOpen={() => console.log('global open')}
               onClose={() => console.log('global close')}
             >
-              <Item extra={<Badge size="large" text={property.matchedPropertys.size} overflowCount={99} />} arrow="horizontal" onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID })} multipleLine
+              <Item extra={<Badge size="lg" text={property.matchedPropertys.size} overflowCount={99} />} arrow="horizontal" onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID })} multipleLine
               >
                 {property.nameOfBuildingLabel}/Rent<Brief>最少{property.netSizeMin}呎實用面積</Brief>{keyID}
               </Item>
@@ -167,7 +167,7 @@ export class ListOfAgentPropertysView extends React.Component {
               onOpen={() => console.log('global open')}
               onClose={() => console.log('global close')}
             >
-              <Item extra={<Badge size="large" text={property.matchedPropertys.size} overflowCount={99} />} arrow="horizontal" onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID })} multipleLine >
+              <Item extra={<Badge size="lg" text={property.matchedPropertys.size} overflowCount={99} />} arrow="horizontal" onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID })} multipleLine >
                 {property.nameOfBuildingLabel}/Buy<Brief>最少 {property.netSizeMin}呎實用面積</Brief>{keyID}
               </Item>
             </SwipeAction></div>

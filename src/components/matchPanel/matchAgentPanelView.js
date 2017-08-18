@@ -155,6 +155,7 @@ class MatchAgentPanelView extends React.Component {
             onPress={() => {
               this.setState({
                 selectedTab: 'blueTab',
+                selectedSegmentIndex : 0,                
               });
             }}
             data-seed="logId"
@@ -171,6 +172,8 @@ class MatchAgentPanelView extends React.Component {
             onPress={() => {
               this.setState({
                 selectedTab: 'redTab',
+                selectedSegmentIndex : 1,                
+                
               });
             }}
             data-seed="logId1"
@@ -201,6 +204,8 @@ class MatchAgentPanelView extends React.Component {
             onPress={() => {
               this.setState({
                 selectedTab: 'greenTab',
+                selectedSegmentIndex : 2,                
+                
               });
             }}
           >
@@ -215,6 +220,8 @@ class MatchAgentPanelView extends React.Component {
             onPress={() => {
               this.setState({
                 selectedTab: 'yellowTab',
+                selectedSegmentIndex : 3,                
+                
               });
             }}
           >
