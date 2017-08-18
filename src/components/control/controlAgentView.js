@@ -118,12 +118,27 @@ class ControlAgentView extends React.Component {
 
 //     <SegmentedControl values={['B搵買盤', 'S放賣盤', 'R搵租盤', 'L放租盤', '已跟進/回覆']} selectedIndex={this.props.selectedIndex} onChange={onChange} />
     
+{/* <List.Item extra={
+  <Stepper
+    style={{ width: '100%', minWidth: '2rem' }}
+    {...getFieldProps('buyBudgetMax', {
+      initialValue: 300
+    }) }
+    showNumber
+    max={100000}
+    min={100}
+    step={5}
+  />}
+>
+  預算上限/萬
+     </List.Item> */}
+
 
     return (
 
 
       <div>
-        <SegmentedControl tintColor="#888" values={['回覆', '已跟進']} selectedIndex={this.props.selectedIndex} onChange={onChange} />
+        <SegmentedControl  style={{ height: '0.8rem', width: '5rem' }} values={['回覆', '已跟進']} selectedIndex={this.props.selectedIndex} onChange={onChange} />
         <List>
           <Picker data={DISTRICK} cols={3} {...getFieldProps('districk', {
             initialValue: address,
@@ -133,20 +148,6 @@ class ControlAgentView extends React.Component {
           >
             <CustomChildren>大廈/屋苑</CustomChildren>
           </Picker>
-          <List.Item extra={
-            <Stepper
-              style={{ width: '100%', minWidth: '2rem' }}
-              {...getFieldProps('buyBudgetMax', {
-                initialValue: 300
-              }) }
-              showNumber
-              max={100000}
-              min={100}
-              step={5}
-            />}
-          >
-            預算上限/萬
-               </List.Item>
         </List>
         <h5>{property.fbid}</h5>
         <WhiteSpace size="sm" />

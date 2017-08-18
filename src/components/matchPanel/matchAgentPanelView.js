@@ -39,9 +39,6 @@ import views from 'views';
 
 
 
-//
-
-
 // const Item = List.Item;
 // const Brief = Item.Brief;
 
@@ -255,8 +252,8 @@ class MatchAgentPanelView extends React.Component {
             {this.renderList(property)}
           </TabBar.Item>
           <TabBar.Item
-            icon={<Icon type="koubei-o" size="lg" />}
-            selectedIcon={<Icon type="koubei" size="lg" />}
+          icon={<Icon type="koubei-o" />}
+          selectedIcon={<Icon type="koubei"  />}
             title="放賣盤"
             key="口碑"
             badge={"new"}

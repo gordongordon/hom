@@ -1,6 +1,6 @@
 import React from 'react'
 import {observer} from 'mobx-react'
-import { Popover, NavBar, Icon, Button} from 'antd-mobile';
+import { Popover, NavBar, Icon, Button,SegmentedControl} from 'antd-mobile';
 import MobxStore from 'mobxStore'
 import views from 'views'
 import {Fb} from 'firebase-store'
@@ -137,6 +137,10 @@ render() {
      leftContentLabel = "上一頁"
    }
 
+//   {MobxStore.app.providerId},{MobxStore.app.title}
+   
+// <SegmentedControl  style={{ height: '0.8rem', width: '5rem' }} values={['等待回覆', '已跟進']} />
+
    return (
      <div>
        <NavBar iconName="false"
@@ -144,7 +148,12 @@ render() {
          rightContent={[
            <div key="1">{this.loginItem()}</div>
          ]}
-       >{MobxStore.app.providerId},{MobxStore.app.title}</NavBar>
+       >
+       
+      {MobxStore.app.providerId},{MobxStore.app.title}
+       
+       
+       </NavBar>
      </div>
    )
 
