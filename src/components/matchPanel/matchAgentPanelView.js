@@ -35,7 +35,13 @@ import { observer } from "mobx-react";
 import MobxStore from "mobxStore";
 import { DISTRICK } from "DISTRICK";
 import { Fb } from "firebase-store";
+import views from 'views';
+
+
+
 //
+
+
 // const Item = List.Item;
 // const Brief = Item.Brief;
 
@@ -205,6 +211,7 @@ class MatchAgentPanelView extends React.Component {
               this.setState({
                 selectedTab: "filter"
               });
+              MobxStore.router.goTo( views.listAgent )              
             }}
             data-seed="logId0"
           />
