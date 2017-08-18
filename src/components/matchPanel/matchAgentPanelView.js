@@ -181,26 +181,14 @@ class MatchAgentPanelView extends React.Component {
           <TabBar.Item
             title="Filter"
             key="kkyr"
-            icon={
-              <div
-                style={{
-                  width: "0.44rem",
-                  height: "0.44rem",
-                  background:
-                    "url(https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg) center center /  0.42rem 0.42rem no-repeat"
-                }}
-              />
-            }
-            selectedIcon={
-              <div
-                style={{
-                  width: "0.44rem",
-                  height: "0.44rem",
-                  background:
-                    "url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  0.42rem 0.42rem no-repeat"
-                }}
-              />
-            }
+            icon={{
+              uri:
+                "http://hair.losstreatment.com/icons/filter-up.svg"
+            }}
+            selectedIcon={{
+              uri:
+                "http://hair.losstreatment.com/icons/filter-down.svg"
+            }}
             
             selected={this.state.selectedTab === "filter"}
             badge={agentModel.filters.size}
@@ -216,26 +204,15 @@ class MatchAgentPanelView extends React.Component {
           <TabBar.Item
             title="搵買盤"
             key="生活"
-            icon={
-              <div
-                style={{
-                  width: "0.44rem",
-                  height: "0.44rem",
-                  background:
-                    "url(https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg) center center /  0.42rem 0.42rem no-repeat"
-                }}
-              />
-            }
-            selectedIcon={
-              <div
-                style={{
-                  width: "0.44rem",
-                  height: "0.44rem",
-                  background:
-                    "url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  0.42rem 0.42rem no-repeat"
-                }}
-              />
-            }
+            icon={{
+              uri:
+                "http://hair.losstreatment.com/icons/building-up.svg"
+            }}
+            selectedIcon={{
+              uri:
+                "http://hair.losstreatment.com/icons/building-blue-down.svg"
+            }}
+
             selected={this.state.selectedTab === "buy"}
             badge={property.matchedPropertys.size}
             onPress={() => {
@@ -272,27 +249,15 @@ class MatchAgentPanelView extends React.Component {
             {this.renderList(property)}
           </TabBar.Item>
           <TabBar.Item
-            icon={
-              <div
-                style={{
-                  width: "0.44rem",
-                  height: "0.44rem",
-                  background:
-                    "url(https://zos.alipayobjects.com/rmsportal/psUFoAMjkCcjqtUCNPxB.svg) center center /  0.42rem 0.42rem no-repeat"
-                }}
-              />
-            }
-            selectedIcon={
-              <div
-                style={{
-                  width: "0.44rem",
-                  height: "0.44rem",
-                  background:
-                    "url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  0.42rem 0.42rem no-repeat"
-                }}
-              />
-            }
-            title="搵租盤"
+          icon={{
+            uri:
+              "http://hair.losstreatment.com/icons/rent-down.svg"
+          }}
+          selectedIcon={{
+            uri:
+              "http://hair.losstreatment.com/icons/rent-up.svg"
+          }}
+          title="搵租盤"
             key="朋友"
             dot
             selected={this.state.selectedTab === "lease"}

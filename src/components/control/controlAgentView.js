@@ -138,7 +138,7 @@ class ControlAgentView extends React.Component {
 
 
       <div>
-        <SegmentedControl  style={{ height: '0.8rem', width: '5rem' }} values={['回覆', '已跟進']} selectedIndex={this.props.selectedIndex} onChange={onChange} />
+        <SegmentedControl  values={['回覆', '已跟進']} selectedIndex={this.props.selectedIndex} onChange={onChange} />
         <List>
           <Picker data={DISTRICK} cols={3} {...getFieldProps('districk', {
             initialValue: address,
