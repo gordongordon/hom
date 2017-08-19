@@ -39,11 +39,11 @@ export class Propertyhk extends Property {
    * @valueTo   is value equal to.  e.g. 'shatin'
    * return
    */
-  buildMatchPropertyByRunTime = (id, typeFor, typeTo) => {
+  buildMatchPropertyByRunTime = (id, typeFor, typeBy) => {
     const that = this;
     var fb; // firebase ref;
 
-    if (typeTo === "open" )  {
+    if (typeBy === "open" )  {
       switch (typeFor) {
         case "lease":
           fb = Fb.lease;
@@ -58,7 +58,7 @@ export class Propertyhk extends Property {
           fb = Fb.rent;
           break;
       }
-    } else if ( typeTo === "engage") {
+    } else if ( typeBy === "engage") {
       switch (typeFor) {
         case "lease":
           fb = Fb.app.agentLeaseRef;
@@ -73,22 +73,7 @@ export class Propertyhk extends Property {
           fb = Fb.app.agentRentRef;
           break;
       }
-    } else {
-      switch (typeFor) {
-        case "lease":
-          fb = Fb.lease;
-          break;
-        case "buy":
-          fb = Fb.buy;
-          break;
-        case "sale":
-          fb = Fb.sale;
-          break;
-        case "rent":
-          fb = Fb.rent;
-          break;
-      }
-    }
+    } 
 
     console.log(
       `property.hk orderByChild ${this.orderByChild} equalTo ${this.equalTo} id ${this.fbid}`
@@ -138,6 +123,82 @@ export class Propertyhk extends Property {
 
     return that.matchedPropertys;
   };
+
+
+  /**
+   * @id property id
+   * @typeFor is user to select firebase ref
+   * @location is no use
+   * return
+   */
+  buildMatchUserPropertyByRunTime = (id, typeFor, location) => {
+    const that = this;
+    var fb; // firebase ref;
+
+      switch (typeFor) {
+        case "lease":
+          fb = Fb.lease;
+          break;
+        case "buy":
+          fb = Fb.buy;
+          break;
+        case "sale":
+          fb = Fb.sale;
+          break;
+        case "rent":
+          fb = Fb.rent;
+          break;
+      }
+
+    console.log(
+      `property.hk orderByChild ${this.orderByChild} equalTo ${this.equalTo} id ${this.fbid}`
+    );
+    // Handle match propertys
+    fb.orderByChild(this.orderByChild)
+      .equalTo(this.equalTo)
+      .on("child_added", function(snap) {
+        //          if ( that.uid !== snap.val().uid ) {
+
+        const p = Propertyhk.deserialize(snap.val());
+        //p.realTime = moment().format('YYYY-MM-DD HH:mm:ss');
+
+        that.matchedPropertys.set(snap.key, p);
+        console.log(
+          "propertyhk.child_added - matchProperty.size",
+          that.matchedPropertys.size
+        );
+        //         }
+      });
+
+    fb
+      .orderByChild(this.orderByChild)
+      .equalTo(this.equalTo)
+      .on("child_changed", snapshot => {
+        // Get an element with all functions, propertys
+        // Recreate a new properts { ... }
+        // otherwise propertys.responsedPropertys = undefined error
+        const p = Propertyhk.deserialize(snapshot.val());
+        that.matchedPropertys.set(snapshot.key, p);
+        console.log(
+          "propertyhk.child_changed - matchProperty.size",
+          that.matchedPropertys.size
+        );
+      });
+
+    fb
+      .orderByChild(this.orderByChild)
+      .equalTo(this.equalTo)
+      .on("child_removed", function(snap) {
+        that.matchedPropertys.delete(snap.key);
+        console.log(
+          "child_removed - matchProperty.size",
+          that.matchedPropertys.size
+        );
+      });
+
+    return that.matchedPropertys;
+  };
+
 
   /**
    * @compareTo is name of variable e.g. name, price, location

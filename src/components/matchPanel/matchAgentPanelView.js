@@ -107,9 +107,9 @@ class MatchAgentPanelView extends React.Component {
 
     // console.log('MatchAgentPanelView typeForString', typeForString[index]);
      if (index === 1) {
-       Fb.app.agentsFilterRef.child(this.state.id).update({ typeTo: 'engage'});
+       Fb.app.agentsFilterRef.child(this.state.id).update({ typeBy: 'engage'});
      } else {
-       Fb.app.agentsFilterRef.child(this.state.id).update({ typeTo: 'open'});
+       Fb.app.agentsFilterRef.child(this.state.id).update({ typeBy: 'open'});
      }
   };
 

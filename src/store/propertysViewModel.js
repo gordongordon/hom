@@ -53,7 +53,7 @@ class PropertysViewModel {
 
             // p.buildMatchProperty( snapshot.key, p.typeFor, p.location);
             //p.buildMatchProperty( snapshot.key, p.typeFor, p.nameOfBuilding);
-            p.buildMatchPropertyByRunTime( snapshot.key, p.typeFor, p.addressLocation);
+            p.buildMatchUserPropertyByRunTime( snapshot.key, p.typeFor, p.addressLocation);
 
             // Matching agent's response only
             p.buildResponseProperty( snapshot.key, p.typeFor, p.location );

@@ -56,7 +56,7 @@ class AgentModelViewModel {
             // p.matchedPropertys.clear();
 
             // p.buildMatchProperty( snapshot.key, p.typeFor, p.location);
-            p.buildMatchPropertyByRunTime( snapshot.key, p.typeFor, p.typeTo);
+            p.buildMatchPropertyByRunTime( snapshot.key, p.typeFor, p.typeBy);
 
             console.log( 'agentModelView.child_add - filters.matchedPropertys.size', p.matchedPropertys.size );
             that.filters.set( snapshot.key, p );
@@ -69,7 +69,7 @@ class AgentModelViewModel {
       var p = that.filters.get( snapshot.key )
       p.restore( snapshot.val() );
       p.matchedPropertys.clear();
-      p.buildMatchPropertyByRunTime( snapshot.key, p.typeFor, p.typeTo);
+      p.buildMatchPropertyByRunTime( snapshot.key, p.typeFor, p.typeBy);
       that.filters.set( snapshot.key, p )
 
     });

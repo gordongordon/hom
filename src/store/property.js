@@ -108,7 +108,7 @@ export class Property{
     @observable contactEmail = "missing email";
     // Type : sale, buy, rent, lease,
     @observable type = null
-    @observable typeTo = 'typeTo'
+    @observable typeTo = 'typeTo' 
     @observable typeBy = 'typeBy'
     @observable typeFor = 'typeFor'
 
