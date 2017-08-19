@@ -368,6 +368,21 @@ export class Property{
         return this.roleName + this.contactName;
     }
 
+    @computed get typeToLabel() {
+      var label = 'no'
+
+      switch( this.typeTo ) {
+        case 'buy' :  label = '搵買盤';
+        break;
+        case 'lease' : label = "房東";
+        break;
+        case 'sale' : label = "放賣盤";
+        break;
+        case 'rent' : label = "租客";
+        break;
+      }
+      return label
+    }
     @computed get numOfRoomLabel() {
 
        switch( this.numOfRoom ) {

@@ -91,13 +91,13 @@ class MatchAgentPanelView extends React.Component {
     const index = this.state.selectedSegmentIndex;
 
     if (index === 0) {
-      return <ListOfMatchAgentSalePropertys propertys={property.matchedPropertys} />
-    } else if (index === 1) {
       return <ListOfMatchAgentBuyPropertys propertys={property.matchedPropertys} />
+    } else if (index === 1) {
+      return <ListOfMatchAgentSalePropertys propertys={property.matchedPropertys} />
     } else if (index === 2) {
-      return <ListOfMatchAgentLeasePropertys propertys={property.matchedPropertys} />
-    } else if (index === 3) {
       return <ListOfMatchAgentRentPropertys propertys={property.matchedPropertys} />
+    } else if (index === 3) {
+      return <ListOfMatchAgentLeasePropertys propertys={property.matchedPropertys} />
     }
 
     return <ListOfMatchAgentPropertysView />

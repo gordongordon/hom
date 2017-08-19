@@ -106,7 +106,7 @@ const views = {
   matchLease: new Route({
       path: '/matchLease/:keyID',
       // timeEnter for matching iktems only that time and after
-      component: <MatchLeasePanelViewWrapper timeEnter={ moment().format('YYYY-MM-DD HH:mm:ss')}/>,
+      component: <MatchLeasePanelViewWrapper/>,
       onEnter: (route, params, store, queryParams) => {
       	console.log('third.current query params are -> ', queryParams);
         console.log('third.current params are -> ', params);
@@ -126,7 +126,7 @@ const views = {
   }),
   matchRent: new Route({
       path: '/matchRent/:keyID',
-      component: <MatchRentPanelViewWrapper timeEnter={ moment().format('YYYY-MM-DD HH:mm:ss')}/>,
+      component: <MatchRentPanelViewWrapper/>,
       onEnter: (route, params, store, queryParams) => {
       	console.log('third.current query params are -> ', queryParams);
         console.log('third.current params are -> ', params);
@@ -146,7 +146,7 @@ const views = {
   }),
   matchSale: new Route({
       path: '/matchSale/:keyID',
-      component: <MatchSalePanelViewWrapper timeEnter={ moment().format('YYYY-MM-DD HH:mm:ss')}/>,
+      component: <MatchSalePanelViewWrapper/>,
       onEnter: (route, params, store, queryParams) => {
       	console.log('third.current query params are -> ', queryParams);
         console.log('third.current params are -> ', params);
@@ -186,7 +186,7 @@ const views = {
       }
   }),
   matchAgent: new Route({
-      path: '/matchAgent',
+      path: '/matchAgent/:keyID/:typeTo',
       component: <MatchAgentPanelViewWrapper />,
       onEnter: (route, params, store, queryParams) => {
       	console.log('third.current query params are -> ', queryParams);
@@ -257,7 +257,7 @@ const views = {
     }
   }),
   createAgentFilter : new Route({
-    path: '/sale',
+    path: '/createAgentFilter',
     component: <FormAgentFilterWrapper />,
     onEnter: (route, params, store, queryParams) => {
       MobxStore.app.setTitle( 'Filter');

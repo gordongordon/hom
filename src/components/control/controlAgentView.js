@@ -149,7 +149,6 @@ class ControlAgentView extends React.Component {
             <CustomChildren>大廈/屋苑</CustomChildren>
           </Picker>
         </List>
-        <h5>{property.fbid}</h5>
         <WhiteSpace size="sm" />
       </div>
     );

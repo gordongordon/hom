@@ -85,37 +85,7 @@ class SingleSalePropertyForMatchView extends React.Component {
 
     return (
       <div>
-  <SwipeAction
-    style={{ backgroundColor: 'gray' }}
-    autoClose
-    right={[
-      {
-        text: 'Cancel',
-        onPress: () => console.log('cancel'),
-        style: { backgroundColor: '#ddd', color: 'white' },
-      },
-      {
-        text: 'Delete',
-        onPress: () => console.log('delete'),
-        style: { backgroundColor: '#F4333C', color: 'white' },
-      },
-    ]}
-    left={[
-      {
-        text: 'Reply',
-        onPress: () => console.log('reply'),
-        style: { backgroundColor: '#108ee9', color: 'white' },
-      },
-      {
-        text: 'Cancel',
-        onPress: () => console.log('cancel'),
-        style: { backgroundColor: '#ddd', color: 'white' },
-      },
-    ]}
-    onOpen={() => console.log('global open')}
-    onClose={() => console.log('global close')}
-  >
-  <Card full>
+  <Card full="true">
    <Badge text={'平'} corner>
     <Card.Header
       title={ property.contactNameLabel }
@@ -127,7 +97,10 @@ class SingleSalePropertyForMatchView extends React.Component {
         <div>{property.partitionLabel}
         </div>
     </Card.Body>
-    <Card.Footer content={<div><Button type="ghost" inline size="small">Chat</Button><Button type="ghost" inline size="small">直接電話聯絡</Button></div>} extra={          <Flex style={{ marginBottom: '1rem' }}>
+    <Card.Footer content={<div>
+                               <Button type="ghost" inline size="small">Chat</Button>
+                               <Button type="ghost" inline size="small">直接電話聯絡</Button>
+                           </div>} extra={          <Flex style={{ marginBottom: '1rem' }}>
               <Badge text={property.roleName} style={{ marginLeft: 6, padding: '0 0.06rem', backgroundColor: property.colorByRoleName, borderRadius: 5 }} />
               <Badge text={property.howFresh} style={{ marginLeft: 6, padding: '0 0.06rem', backgroundColor: property.colorByFresh, borderRadius: 5 }} />
               <Badge text={property.dayListed}
@@ -142,7 +115,6 @@ class SingleSalePropertyForMatchView extends React.Component {
               />
                       </Flex>} />
   </Card>
-  </SwipeAction>
   {"sale"+property.fbid}
   <WhiteSpace size="sm" />
 </div>

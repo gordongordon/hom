@@ -39,12 +39,12 @@ export class Propertyhk extends Property {
    * @valueTo   is value equal to.  e.g. 'shatin'
    * return
    */
-  buildMatchPropertyByRunTime = (id, typeFor, typeBy) => {
+  buildMatchPropertyByRunTime = (id, typeTo, typeBy) => {
     const that = this;
     var fb; // firebase ref;
 
     if (typeBy === "open" )  {
-      switch (typeFor) {
+      switch (typeTo) {
         case "lease":
           fb = Fb.lease;
           break;
@@ -59,7 +59,7 @@ export class Propertyhk extends Property {
           break;
       }
     } else if ( typeBy === "engage") {
-      switch (typeFor) {
+      switch (typeTo) {
         case "lease":
           fb = Fb.app.agentLeaseRef;
           break;

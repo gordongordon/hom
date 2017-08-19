@@ -84,10 +84,10 @@ render ()  {
       <Button type="primary" onClick={ () => this.loadingToast( store, goTo ) }>買 樓</Button>
       { this.renderHistoryButton( store )  }
     <WhiteSpace />
-        <Button type="ghost" onClick={ () => goTo( views.createAgentFilter, store.app.params, store )}> Filter </Button>
+        <Button type="ghost" onClick={ () => goTo( views.createAgentFilter, store.app.params, store )}> 增加地產代理篩選 </Button>
     <WhiteSpace />
     <WhiteSpace />
-       <Button type="ghost" onClick={ () => goTo( views.listAgent, store.app.params, store )}> 地產代理 Save</Button>
+       <Button type="ghost" onClick={ () => goTo( views.listAgent, store.app.params, store )}> 地產代理篩選</Button>
     <WhiteSpace />
     <WhiteSpace />
     <WhiteSpace />

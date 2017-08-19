@@ -42,6 +42,7 @@ export class ListOfAgentPropertysView extends React.Component {
   renderPropertys = (model, propertys, h) => {
 
     var list = propertys;
+
     // Catched empty list, don't do anything!
     if (list.size === 0) {
       return null;
@@ -52,6 +53,20 @@ export class ListOfAgentPropertysView extends React.Component {
     console.log('list size ', list.size)
     var element = [];
     list.forEach((property, keyID) => {
+      var p;    // property from matched property, if any
+      var info; // Message
+
+      // Try to render more info before go into matching pages! 
+      if ( property.matchedPropertys.size > 0) {
+        p = property.matchedPropertys.entries().next().value[1];
+        info = p.contactNameLabel;
+      } else {
+        console.log( 'p.matchedPropertys.size === 0 ', keyID );
+        info = "沒有任何更新鮮配對,請更改篩選!"
+      }
+
+      //}
+  
       if (property.typeTo === 'lease') {
         element.push(
           <div key={keyID}>
@@ -85,8 +100,14 @@ export class ListOfAgentPropertysView extends React.Component {
               onOpen={() => console.log('global open')}
               onClose={() => console.log('global close')}
             >
-              <Item extra={<Badge size="large" text={property.matchedPropertys.size} overflowCount={99} />} arrow="horizontal" onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID })} multipleLine >
-                {property.nameOfBuildingLabel}/Lease<Brief>實用面積{property.netSize}呎</Brief>{keyID}
+              <Item 
+                 extra={<Badge size="large" text={property.matchedPropertys.size} overflowCount={99} />} 
+                 arrow="horizontal" 
+                 onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID , typeTo : property.typeTo})} 
+                 thumb="http://hair.losstreatment.com/icons/rent-up.svg"
+                
+                 multipleLine >
+                {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{ info }</Brief>{keyID}
               </Item>
             </SwipeAction>
           </div>
@@ -127,9 +148,13 @@ export class ListOfAgentPropertysView extends React.Component {
               onOpen={() => console.log('global open')}
               onClose={() => console.log('global close')}
             >
-              <Item extra={<Badge size="lg" text={property.matchedPropertys.size} overflowCount={99} />} arrow="horizontal" onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID })} multipleLine
+              <Item extra={<Badge size="lg" text={property.matchedPropertys.size} overflowCount={99} />} 
+              arrow="horizontal" 
+              onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID, typeTo : property.typeTo })} 
+              thumb="http://hair.losstreatment.com/icons/building-down.svg"
+              multipleLine
               >
-                {property.nameOfBuildingLabel}/Rent<Brief>最少{property.netSizeMin}呎實用面積</Brief>{keyID}
+                {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{info}</Brief>{keyID}
               </Item>
             </SwipeAction></div>
         )
@@ -167,8 +192,35 @@ export class ListOfAgentPropertysView extends React.Component {
               onOpen={() => console.log('global open')}
               onClose={() => console.log('global close')}
             >
-              <Item extra={<Badge size="lg" text={property.matchedPropertys.size} overflowCount={99} />} arrow="horizontal" onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID })} multipleLine >
-                {property.nameOfBuildingLabel}/Buy<Brief>最少 {property.netSizeMin}呎實用面積</Brief>{keyID}
+              <Item 
+              extra={<Badge size="large" text={property.matchedPropertys.size} 
+              overflowCount={99} />} 
+                arrow="horizontal" 
+                onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID, typeTo : property.typeTo } )} 
+                thumb="http://hair.losstreatment.com/icons/building-up.svg"
+                wrap="true"
+                multipleLine >
+                {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{info}<br />
+                {keyID}<br />
+
+                <Badge text="减" hot style={{ marginLeft: 12 }} />
+                <Badge text="惠" hot style={{ marginLeft: 12 }} />
+                <Badge text="免" hot style={{ marginLeft: 12 }} />
+                <Badge text="反" hot style={{ marginLeft: 12 }} />
+                <Badge text="HOT" hot style={{ marginLeft: 12 }} />
+                <Badge text="券" style={{ marginLeft: 12, padding: '0 0.06rem', backgroundColor: '#f19736', borderRadius: 2 }} />
+                <Badge text="NEW" style={{ marginLeft: 12, padding: '0 0.06rem', backgroundColor: '#21b68a', borderRadius: 2 }} />
+                <Badge text="自动缴费"
+                  style={{
+                    marginLeft: 12,
+                    padding: '0 0.06rem',
+                    backgroundColor: '#fff',
+                    borderRadius: 2,
+                    color: '#f19736',
+                    border: '1px solid #f19736',
+                  }}
+                />
+                </Brief>
               </Item>
             </SwipeAction></div>
         )
@@ -207,9 +259,12 @@ export class ListOfAgentPropertysView extends React.Component {
               onOpen={() => console.log('global open')}
               onClose={() => console.log('global close')}
             >
-              <Item extra={<Badge size="large" text={property.matchedPropertys.size} overflowCount={99} />} arrow="horizontal" onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID })}
+              <Item extra={<Badge size="large" text={property.matchedPropertys.size} overflowCount={99} />} 
+              thumb="http://hair.losstreatment.com/icons/rent.svg"
+              arrow="horizontal" 
+              onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID, typeTo : property.typeTo })}
                 multipleLine >
-                {property.nameOfBuildingLabel}/Sale<Brief>實用面積:{property.netSize}呎</Brief>{keyID}
+                {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{info}</Brief>{keyID}
               </Item>
             </SwipeAction></div>
         )
