@@ -46,7 +46,7 @@
     "css-loader": "^0.26.1",
     "eslint": "^2.13.1",
     "eslint-plugin-react": "^5.1.1",
-    "jest": "^20.0.4",
+    "jest": "^19.0.2",
     "less": "^2.7.2",
     "less-loader": "^4.0.4",
     "node-sass": "^4.3.0",
@@ -81,11 +81,24 @@
     "validatorjs": "^3.13.3"
   },
   "jest": {
-      "moduleNameMapper": {
-        "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-        "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
-        "transform" : {}
-      }
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json"      
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "<rootDir>src",
+      "components",
+      "data",
+      "store",
+      "firebase",
+      "mobxs",
+      "tests"
+     ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
   }
-    
 }

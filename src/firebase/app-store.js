@@ -15,7 +15,7 @@ export default class AppStore {
       this.agentLeaseRef = undefined;
       this.agentRentRef = undefined;
     }
-
+ 
     // Catch user login before assign any database reference
     updateUid = () => {
        const uid = MobxStore.app.uid;

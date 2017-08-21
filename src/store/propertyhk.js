@@ -96,7 +96,7 @@ export class Propertyhk extends Property {
         );
         //         }
       });
-
+  
     fb
       .orderByChild(this.orderByChild)
       .equalTo(this.equalTo)
