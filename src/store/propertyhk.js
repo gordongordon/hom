@@ -43,7 +43,7 @@ export class Propertyhk extends Property {
     const that = this;
     var fb; // firebase ref;
 
-    if (typeBy === "open" )  {
+    if (typeBy === "open") {
       switch (typeTo) {
         case "lease":
           fb = Fb.lease;
@@ -58,7 +58,7 @@ export class Propertyhk extends Property {
           fb = Fb.rent;
           break;
       }
-    } else if ( typeBy === "engage") {
+    } else if (typeBy === "engage") {
       switch (typeTo) {
         case "lease":
           fb = Fb.app.agentLeaseRef;
@@ -73,13 +73,15 @@ export class Propertyhk extends Property {
           fb = Fb.app.agentRentRef;
           break;
       }
-    } 
+    }
 
     console.log(
-      `property.hk orderByChild ${this.orderByChild} equalTo ${this.equalTo} id ${this.fbid}`
+      `property.hk orderByChild ${this.orderByChild} equalTo ${this
+        .equalTo} id ${this.fbid}`
     );
     // Handle match propertys
-    fb.orderByChild(this.orderByChild)
+    fb
+      .orderByChild(this.orderByChild)
       .equalTo(this.equalTo)
       .on("child_added", function(snap) {
         //          if ( that.uid !== snap.val().uid ) {
@@ -123,7 +125,6 @@ export class Propertyhk extends Property {
 
     return that.matchedPropertys;
   };
-
 
   /**
    * @id property id
@@ -135,26 +136,28 @@ export class Propertyhk extends Property {
     const that = this;
     var fb; // firebase ref;
 
-      switch (typeFor) {
-        case "lease":
-          fb = Fb.lease;
-          break;
-        case "buy":
-          fb = Fb.buy;
-          break;
-        case "sale":
-          fb = Fb.sale;
-          break;
-        case "rent":
-          fb = Fb.rent;
-          break;
-      }
+    switch (typeFor) {
+      case "lease":
+        fb = Fb.lease;
+        break;
+      case "buy":
+        fb = Fb.buy;
+        break;
+      case "sale":
+        fb = Fb.sale;
+        break;
+      case "rent":
+        fb = Fb.rent;
+        break;
+    }
 
     console.log(
-      `property.hk orderByChild ${this.orderByChild} equalTo ${this.equalTo} id ${this.fbid}`
+      `property.hk orderByChild ${this.orderByChild} equalTo ${this
+        .equalTo} id ${this.fbid}`
     );
     // Handle match propertys
-    fb.orderByChild(this.orderByChild)
+    fb
+      .orderByChild(this.orderByChild)
       .equalTo(this.equalTo)
       .on("child_added", function(snap) {
         //          if ( that.uid !== snap.val().uid ) {
@@ -198,7 +201,6 @@ export class Propertyhk extends Property {
 
     return that.matchedPropertys;
   };
-
 
   /**
    * @compareTo is name of variable e.g. name, price, location
