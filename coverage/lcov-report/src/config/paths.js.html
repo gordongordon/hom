@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/config/paths.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">src/config</a> paths.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/17</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+const path <span class="cstat-no" title="statement not covered" >= require('path'</span>);
+const fs <span class="cstat-no" title="statement not covered" >= require('fs'</span>);
+const url <span class="cstat-no" title="statement not covered" >= require('url'</span>);
+&nbsp;
+// Make sure any symlinks in the project folder are resolved:
+// https://github.com/facebookincubator/create-react-app/issues/637
+const appDirectory <span class="cstat-no" title="statement not covered" >= fs.realpathSync(process.cwd()</span>);
+const resolveApp <span class="cstat-no" title="statement not covered" >= relativ<span class="fstat-no" title="function not covered" >ePath =&gt; pa</span>th.resolve(appD<span class="cstat-no" title="statement not covered" >irectory, relativePath);</span></span>
+&nbsp;
+const envPublicUrl <span class="cstat-no" title="statement not covered" >= process.env.PUBLIC_UR</span>L;
+&nbsp;
+function <span class="fstat-no" title="function not covered" >ensureSlash(</span>path, needsSlash) {
+  const hasSlash <span class="cstat-no" title="statement not covered" >= path.endsWith('/'</span>);
+<span class="cstat-no" title="statement not covered" >  if (hasSlash &amp;&amp; !needsSlash) {</span>
+<span class="cstat-no" title="statement not covered" >    return path.substr(path, path.length - 1);</span>
+  } else <span class="cstat-no" title="statement not covered" >if (!hasSlash &amp;&amp; needsSlash) {</span>
+<span class="cstat-no" title="statement not covered" >    return `${path}/`;</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    return path;</span>
+  }
+}
+&nbsp;
+const getPublicUrl <span class="cstat-no" title="statement not covered" >= appPack<span class="fstat-no" title="function not covered" >ageJson =&gt;<span class="cstat-no" title="statement not covered" ></span></span></span>
+  envPublicUrl || require(appPackageJson).homepage;
+&nbsp;
+// We use `PUBLIC_URL` environment variable or "homepage" field to infer
+// "public path" at which the app is served.
+// Webpack needs to know it to put the right &lt;script&gt; hrefs into HTML even in
+// single-page apps that may serve index.html for nested URLs like /todos/42.
+// We can't use a relative path in HTML because we don't want to load something
+// like /todos/42/static/js/bundle.7289d.js. We have to know the root.
+function <span class="fstat-no" title="function not covered" >getServedPath(</span>appPackageJson) {
+  const publicUrl <span class="cstat-no" title="statement not covered" >= getPublicUrl(appPackageJson</span>);
+  const servedUrl <span class="cstat-no" title="statement not covered" >= envPublicUrl ||</span>
+    (publicUrl ? url.parse(publicUrl).pathname : '/');
+<span class="cstat-no" title="statement not covered" >  return ensureSlash(servedUrl, true);</span>
+}
+&nbsp;
+// config after eject: we're in ./config/
+<span class="cstat-no" title="statement not covered" >module.exports = {</span>
+  dotenv: resolveApp('.env'),
+  appBuild: resolveApp('build'),
+  appPublic: resolveApp('public'),
+  appHtml: resolveApp('public/index.html'),
+  appIndexJs: resolveApp('src/index.js'),
+  appPackageJson: resolveApp('package.json'),
+  appSrc: resolveApp('src'),
+  yarnLockFile: resolveApp('yarn.lock'),
+  testsSetup: resolveApp('src/setupTests.js'),
+  appNodeModules: resolveApp('node_modules'),
+  publicUrl: getPublicUrl(resolveApp('package.json')),
+  servedPath: getServedPath(resolveApp('package.json')),
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Aug 22 2017 22:46:27 GMT+0800 (China Standard Time)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>

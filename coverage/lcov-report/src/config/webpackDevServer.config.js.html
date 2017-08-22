@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/config/webpackDevServer.config.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">src/config</a> webpackDevServer.config.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/10</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+const errorOverlayMiddleware <span class="cstat-no" title="statement not covered" >= require('react-error-overlay/middleware'</span>);
+const noopServiceWorkerMiddleware <span class="cstat-no" title="statement not covered" >= require('react-dev-utils/noopServiceWorkerMiddleware'</span>);
+const config <span class="cstat-no" title="statement not covered" >= require('./webpack.config.dev'</span>);
+const paths <span class="cstat-no" title="statement not covered" >= require('./paths'</span>);
+&nbsp;
+const protocol <span class="cstat-no" title="statement not covered" >= process.env.HTTPS === 'true' ? 'https' : 'http</span>';
+const host <span class="cstat-no" title="statement not covered" >= process.env.HOST || '0.0.0.0</span>';
+&nbsp;
+<span class="cstat-no" title="statement not covered" >module.exports = <span class="fstat-no" title="function not covered" >fu</span>nction(proxy, allowedHost) {</span>
+<span class="cstat-no" title="statement not covered" >  return {</span>
+    // WebpackDevServer 2.4.3 introduced a security fix that prevents remote
+    // websites from potentially accessing local content through DNS rebinding:
+    // https://github.com/webpack/webpack-dev-server/issues/887
+    // https://medium.com/webpack/webpack-dev-server-middleware-security-issues-1489d950874a
+    // However, it made several existing use cases such as development in cloud
+    // environment or subdomains in development significantly more complicated:
+    // https://github.com/facebookincubator/create-react-app/issues/2271
+    // https://github.com/facebookincubator/create-react-app/issues/2233
+    // While we're investigating better solutions, for now we will take a
+    // compromise. Since our WDS configuration only serves files in the `public`
+    // folder we won't consider accessing them a vulnerability. However, if you
+    // use the `proxy` feature, it gets more dangerous because it can expose
+    // remote code execution vulnerabilities in backends like Django and Rails.
+    // So we will disable the host check normally, but enable it if you have
+    // specified the `proxy` setting. Finally, we let you override it if you
+    // really know what you're doing with a special environment variable.
+    disableHostCheck: !proxy ||
+      process.env.DANGEROUSLY_DISABLE_HOST_CHECK === 'true',
+    // Enable gzip compression of generated files.
+    compress: true,
+    // Silence WebpackDevServer's own logs since they're generally not useful.
+    // It will still show compile warnings and errors with this setting.
+    clientLogLevel: 'none',
+    // By default WebpackDevServer serves physical files from current directory
+    // in addition to all the virtual build products that it serves from memory.
+    // This is confusing because those files won’t automatically be available in
+    // production build folder unless we copy them. However, copying the whole
+    // project directory is dangerous because we may expose sensitive files.
+    // Instead, we establish a convention that only files in `public` directory
+    // get served. Our build script will copy `public` into the `build` folder.
+    // In `index.html`, you can get URL of `public` folder with %PUBLIC_URL%:
+    // &lt;link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico"&gt;
+    // In JavaScript code, you can access it with `process.env.PUBLIC_URL`.
+    // Note that we only recommend to use `public` folder as an escape hatch
+    // for files like `favicon.ico`, `manifest.json`, and libraries that are
+    // for some reason broken when imported through Webpack. If you just want to
+    // use an image, put it in `src` and `import` it from JavaScript instead.
+    contentBase: paths.appPublic,
+    // By default files from `contentBase` will not trigger a page reload.
+    watchContentBase: true,
+    // Enable hot reloading server. It will provide /sockjs-node/ endpoint
+    // for the WebpackDevServer client so it can learn when the files were
+    // updated. The WebpackDevServer client is included as an entry point
+    // in the Webpack development configuration. Note that only changes
+    // to CSS are currently hot reloaded. JS changes will refresh the browser.
+    hot: true,
+    // It is important to tell WebpackDevServer to use the same "root" path
+    // as we specified in the config. In development, we always serve from /.
+    publicPath: config.output.publicPath,
+    // WebpackDevServer is noisy by default so we emit custom message instead
+    // by listening to the compiler events with `compiler.plugin` calls above.
+    quiet: true,
+    // Reportedly, this avoids CPU overload on some systems.
+    // https://github.com/facebookincubator/create-react-app/issues/293
+    watchOptions: {
+      ignored: /node_modules/,
+    },
+    // Enable HTTPS if the HTTPS environment variable is set to 'true'
+    https: protocol === 'https',
+    host: host,
+    overlay: false,
+    historyApiFallback: {
+      // Paths with dots should still use the history fallback.
+      // See https://github.com/facebookincubator/create-react-app/issues/387.
+      disableDotRule: true,
+    },
+    public: allowedHost,
+    proxy,
+    setup(app) {<span class="fstat-no" title="function not covered" ></span>
+      // This lets us open files from the runtime error overlay.
+<span class="cstat-no" title="statement not covered" >      app.use(errorOverlayMiddleware());</span>
+      // This service worker file is effectively a 'no-op' that will reset any
+      // previous service worker registered for the same host:port combination.
+      // We do this in development to avoid hitting the production cache if
+      // it used the same host and port.
+      // https://github.com/facebookincubator/create-react-app/issues/2272#issuecomment-302832432
+<span class="cstat-no" title="statement not covered" >      app.use(noopServiceWorkerMiddleware());</span>
+    },
+  };
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Aug 22 2017 22:46:27 GMT+0800 (China Standard Time)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>

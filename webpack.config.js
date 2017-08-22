@@ -119,11 +119,14 @@ module.exports = {
       // { test: /\.css$/, loader: 'style!css' }, // 把css处理成内联style，动态插入到页面
       {
         test: /\.(svg)$/i,
-        loader: "svg-sprite-loader",
-        include: [
-          require.resolve("antd-mobile").replace(/warn\.js$/, "") // 1. svg files of antd-mobile
-          // path.resolve(__dirname, 'src/my-project-svg-foler'),  // folder of svg files in your project
-        ]
+        //test: /\.(svg)$/,
+        loader: 'svg-sprite',
+        include: svgDirs,  // 把 svgDirs 路径下的所有 svg 文件交给 svg-sprite-loader 插件处理        
+        // loader: "svg-sprite-loader",
+        // include: [
+        //   require.resolve("antd-mobile").replace(/warn\.js$/, "") // 1. svg files of antd-mobile
+        //   // path.resolve(__dirname, 'src/my-project-svg-foler'),  // folder of svg files in your project
+        // ]
       }
     ],
     rules: [

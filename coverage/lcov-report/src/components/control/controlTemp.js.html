@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/components/control/controlTemp.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\..\index.html">All files</a> / <a href="index.html">src/components/control</a> controlTemp.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/94</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/43</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/37</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React <span class="cstat-no" title="statement not covered" >from 'react'<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>
+import { List,TabBar,  Tabs, Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, Button, WhiteSpace, SegmentedControl } from 'antd-mobile';
+import { creat<span class="cstat-no" title="statement not covered" >eForm } from 'rc-fo</span>rm';
+&nbsp;
+import { Fb } from 'f<span class="cstat-no" title="statement not covered" >irebase-store';</span>
+import { observer<span class="cstat-no" title="statement not covered" > } from 'mobx-react';</span>
+import { DISTRIC<span class="cstat-no" title="statement not covered" >K } from 'DISTRICK'<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>
+&nbsp;
+const TabPane <span class="cstat-no" title="statement not covered" >= Tabs.TabPane;</span>
+&nbsp;
+// import moment from 'moment';
+// import 'moment/locale/zh-cn';
+//import {propertys} from 'propertysViewModel'
+&nbsp;
+// const Item = List.Item;
+// const Brief = Item.Brief;
+//
+// const NameOfBuilding = [
+//   { value: 'MOSDBC', label: '迎海' },
+//   { value: 'MOSCTO', label: '第一城' },
+//   { value: 'MOSSSC', label: '新港城' },
+// ];
+&nbsp;
+// 如果不是使用 List.Item 作为 children
+const CustomChildren <span class="cstat-no" title="statement not covered" >= props =<span class="fstat-no" title="function not covered" >&gt; (<span class="cstat-no" title="statement not covered" ></span></span></span>
+  &lt;div
+    onClick={props.onClick}
+    style={{ backgroundColor: '#fff', padding: '0.2rem 0.2rem' }}
+  &gt;
+    &lt;div style={{ display: 'flex', height: '0.9rem', lineHeight: '0.9rem' }}&gt;
+      &lt;div style={{ padding: '0.1rem', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}&gt;{props.children}&lt;/div&gt;
+      &lt;div style={{ textAlign: 'right', color: '#888' }}&gt;{props.extra} &gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+);
+&nbsp;
+@observer
+class ControlAgentV<span class="cstat-no" title="statement not covered" >iew extends React.Component {<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ></span></span></span>
+&nbsp;
+  construct<span class="fstat-no" title="function not covered" >or(props) {<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ></span></span></span>
+    super(pr<span class="cstat-no" title="statement not covered" >ops)</span>
+&nbsp;
+    this.state = {
+      disabled: false,
+      selectedSegmentIndex: 0,
+      id: this.props.property.fbid
+    }
+&nbsp;
+    this.onChangeAddress = this.onChangeAddress.bind(this);
+    // this.onChangeEarlyTimeToView = this.onChangeEarlyTimeToView.bind(this);
+&nbsp;
+  } // End of constructor
+&nbsp;
+  //
+  onChangeAddress = (v<span class="fstat-no" title="function not covered" >al</span>ue) =&gt; {
+&nbsp;
+    const id = <span class="cstat-no" title="statement not covered" >this.state.id;</span>
+    // var value = this.props.form.getFieldsValue();
+&nbsp;
+    const addressRegion = <span class="cstat-no" title="statement not covered" >value[0]</span>
+    const addressLocation = <span class="cstat-no" title="statement not covered" >value[1]</span>
+    const addressBuilding = <span class="cstat-no" title="statement not covered" >value[2]</span>
+&nbsp;
+    co<span class="cstat-no" title="statement not covered" >nsole.log(`location ${addressLocation}, building ${addressBuilding} with ${id} ${value}`)</span>
+    //     console.log( 'address ${}')
+&nbsp;
+    if<span class="cstat-no" title="statement not covered" > (addressBuilding === 'ALL') {</span>
+      // console.log( 'MOS0000')
+      Fb<span class="cstat-no" title="statement not covered" >.app.agentsFilterRef.child(id).update({</span>
+        orderByChild: 'addressLocation',
+        addressRegion: addressRegion,
+        addressLocation: addressLocation,
+        nameOfBuilding: addressBuilding
+      });
+    } else {
+      Fb<span class="cstat-no" title="statement not covered" >.app.agentsFilterRef.child(id).update({</span>
+        orderByChild: 'nameOfBuilding',
+        addressRegion: addressRegion,
+        addressLocation: addressLocation,
+        nameOfBuilding: addressBuilding
+      });
+    }
+&nbsp;
+  }<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ></span></span>
+<span class="cstat-no" title="statement not covered" ></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" ></span>
+  // onChange = (e) =&gt; {
+  //   console.log(`ControlAgentView.selectedIndex:${e.nativeEvent.selectedSegmentIndex}`);
+  // }
+  //
+  // onValueChange = (value) =&gt; {
+  //   console.log(value);
+  // }
+<span class="fstat-no" title="function not covered" ></span>
+  render() {
+&nbsp;
+    const { prope<span class="cstat-no" title="statement not covered" >rty } = this.props;</span>
+    const that = <span class="cstat-no" title="statement not covered" >this;</span>
+    const { getFieldPr<span class="cstat-no" title="statement not covered" >ops } = this.props.form;</span>
+    // For DatePicker
+    //const minDate = moment().locale('zh-cn').utcOffset(8);
+    // const maxDate = moment(minDate).add(6, 'M');
+&nbsp;
+    const region = <span class="cstat-no" title="statement not covered" >property.addressRegion;</span>
+    const location = <span class="cstat-no" title="statement not covered" >property.addressLocation;</span>
+    const building = <span class="cstat-no" title="statement not covered" >property.nameOfBuilding;</span>
+    const address = <span class="cstat-no" title="statement not covered" >[region, location, building]</span>
+&nbsp;
+    co<span class="cstat-no" title="statement not covered" >nsole.log(`address ${address}`)</span>
+    co<span class="cstat-no" title="statement not covered" >nsole.log('Single Agent Property property', property)</span>
+    var selectedIndex = th<span class="cstat-no" title="statement not covered" >is.props.selectedIndex;</span>
+    const onChange = <span class="cstat-no" title="statement not covered" >this.props.onChange;</span>
+&nbsp;
+    if<span class="cstat-no" title="statement not covered" > (property.nameOfBuildingLabel === undefined) {</span>
+      co<span class="cstat-no" title="statement not covered" >nsole.log('*nameOfBuildingLabel undefined')</span>
+    }
+&nbsp;
+    re<span class="cstat-no" title="statement not covered" >turn (</span>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+      
+      &lt;div&gt;
+   
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+        &lt;SegmentedControl values={['B搵買盤', 'S放賣盤', 'R搵租盤', 'L放租盤', '已跟進/回覆']} selectedIndex={this.props.selectedIndex} onChange={onChange} /&gt;
+        &lt;SegmentedControl tintColor="#888" values={['回覆', '已跟進']} selectedIndex={this.props.selectedIndex} onChange={onChange} /&gt;
+        &lt;List&gt;
+          &lt;Picker data={DISTRICK} cols={3} {...getFieldProps('districk', {
+            initialValue: address,
+          }) }
+            className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑"
+            onChange={this.onChangeAddress}
+          &gt;
+            &lt;CustomChildren&gt;大廈/屋苑&lt;/CustomChildren&gt;
+          &lt;/Picker&gt;
+          &lt;List.Item extra={
+            &lt;Stepper
+              style={{ width: '100%', minWidth: '2rem' }}
+              {...getFieldProps('buyBudgetMax', {
+                initialValue: 300
+              }) }
+              showNumber
+              max={100000}
+              min={100}
+              step={5}
+            /&gt;}
+          &gt;
+            預算上限/萬
+               &lt;/List.Item&gt;
+        &lt;/List&gt;
+        &lt;h5&gt;{property.fbid}&lt;/h5&gt;
+        &lt;WhiteSpace size="sm" /&gt;
+      &lt;/div&gt;
+    );
+  }<span class="cstat-no" title="statement not covered" ></span>
+}
+//       &lt;SegmentedControl tintColor={'#ff0000'} values={['最貴', '最平', '最快', '最滿意']}  selectedIndex={this.state.selectedSegmentIndex} onChange={this.onChange} /&gt;
+&nbsp;
+export const ControlAgentViewW<span class="cstat-no" title="statement not covered" >rapper = createForm()(ControlAgentView);</span>
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Aug 22 2017 22:46:27 GMT+0800 (China Standard Time)
+</div>
+</div>
+<script src="..\..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\..\sorter.js"></script>
+</body>
+</html>

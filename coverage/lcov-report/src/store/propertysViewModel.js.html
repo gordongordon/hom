@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/store/propertysViewModel.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">src/store</a> propertysViewModel.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">8.33% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>2/24</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">10% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">8.33% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>2/24</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {observable, computed, action} from 'mobx';
+import {Fb} from 'firebase-store';
+import {toJS} from 'mobx';
+import {Propertyhk} from 'propertyhk'
+import {Property} from 'property'
+import MobxStore from 'mobxStore';
+//import firebase from 'firebase';
+//import moment from 'moment'
+&nbsp;
+&nbsp;
+// List of user properties, to be .on
+// propertyViewModel
+class PropertysViewModel {
+&nbsp;
+//  @observable propertys = observable.map({});
+  @observable propertys = observable.map({});
+  // @observable propertys = new Map();
+  //@observable agentPropertys = new Map();
+&nbsp;
+  //@observable matchedPropertys = observable.map({});
+&nbsp;
+  //@observable propertys = map({});
+  //@observable propertys = new Map();
+&nbsp;
+  constructor() {
+     var that = this;
+  }
+&nbsp;
+  @computed <span class="fstat-no" title="function not covered" >ge</span>t json() {
+<span class="cstat-no" title="statement not covered" >    console.log('json', this.propertys)</span>
+<span class="cstat-no" title="statement not covered" >    return toJS(this.propertys);</span>
+  }
+&nbsp;
+&nbsp;
+  // init propertysViewModel, for mobx,
+  // can't be used inside constructor, otherwise error
+  // when app start will call an empty constructor
+  @action
+  init = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+    const that = <span class="cstat-no" title="statement not covered" >this;</span>
+    // Handle Child_added
+    //if ( Fb.app.propertysRef !== undefined ) {
+<span class="cstat-no" title="statement not covered" >    Fb.app.usersRef.on('child_added', <span class="fstat-no" title="function not covered" >(s</span>napshot) =&gt; {</span>
+&nbsp;
+            //console.log( "fire", snapshot.val() )
+            // var p = new Propertyhk();
+            //
+            // // restore can be imppletemt  deserialize
+            // p.restore( snapshot.val() )
+            //console.log( 'p', p)
+            var p = <span class="cstat-no" title="statement not covered" >Propertyhk.deserialize( snapshot.val() )</span>
+<span class="cstat-no" title="statement not covered" >            console.log( 'p', p)</span>
+&nbsp;
+            // p.buildMatchProperty( snapshot.key, p.typeFor, p.location);
+            //p.buildMatchProperty( snapshot.key, p.typeFor, p.nameOfBuilding);
+<span class="cstat-no" title="statement not covered" >            p.buildMatchUserPropertyByRunTime( snapshot.key, p.typeFor, p.addressLocation);</span>
+&nbsp;
+            // Matching agent's response only
+<span class="cstat-no" title="statement not covered" >            p.buildResponseProperty( snapshot.key, p.typeFor, p.location );</span>
+&nbsp;
+            // p.realTime = moment().format('YYYY-MM-DD HH:mm:ss');
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            console.log( 'child_add - psvm.matchedPropertys.size', p.matchedPropertys.size );</span>
+<span class="cstat-no" title="statement not covered" >            that.propertys.set( snapshot.key, p );</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    Fb.app.usersRef.on('child_changed', <span class="fstat-no" title="function not covered" >(s</span>napshot) =&gt; {</span>
+&nbsp;
+                 // Get an element with all functions, propertys
+                 // Recreate a new properts { ... }
+                 // otherwise propertys.responsedPropertys = undefined error
+&nbsp;
+&nbsp;
+                  // Get the current copy of property
+                  var p = <span class="cstat-no" title="statement not covered" >that.propertys.get( snapshot.key )</span>
+                  // keep all the mobx computed function into p, copy the value only
+<span class="cstat-no" title="statement not covered" >                  p.restore( snapshot.val() );</span>
+<span class="cstat-no" title="statement not covered" >                  that.propertys.set( snapshot.key, p )</span>
+&nbsp;
+                  // console.log( 'property.nameOfBuilding', that.propertys.get( snapshot.key ) );
+                  //console.log('child_changed snapshot.val() ',
+    });
+&nbsp;
+   // Handle child_removed
+<span class="cstat-no" title="statement not covered" >   Fb.app.usersRef.on('child_removed', <span class="fstat-no" title="function not covered" >(s</span>napshot) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                that.propertys.delete( snapshot.key );</span>
+                // console.log('that.propertys.size', that.propertys.size)
+   });
+&nbsp;
+   /**
+    * allocate agent's property public for display
+    */
+  //  Fb.agentPropertys.on('child_added', (snapshot) =&gt; {
+  //
+  //          //console.log( "fire", snapshot.val() )
+  //          var p = new Propertyhk();
+  //
+  //          // restore can be imppletemt  deserialize
+  //          p.restore( snapshot.val() )
+  //          //console.log( 'p', p)
+  //
+  //          p.buildResponseProperty( snapshot.key, p.typeFor, p.location);
+  //
+  //          console.log( 'child_add - psvm.matchedPropertys.size', p.responsedPropertys.size );
+  //          that.agentPropertys.set( snapshot.key, p );
+  //  });
+  //
+  // // Handle child_removed
+  // Fb.agentPropertys.on('child_removed', (snapshot) =&gt; {
+  //              that.agentPropertys.delete( snapshot.key );
+  //              // console.log('that.propertys.size', that.propertys.size)
+  // });
+&nbsp;
+ }  // End of if null
+&nbsp;
+  //}
+&nbsp;
+  add = <span class="fstat-no" title="function not covered" >(n</span>ame) =&gt; {
+    const id = <span class="cstat-no" title="statement not covered" >Fb.app.usersRef.push().key;</span>
+<span class="cstat-no" title="statement not covered" >    this.update(id, name );</span>
+  };
+&nbsp;
+  /**
+   * @compareTo is name of variable e.g. name, price, location
+   * @valueTo   is value equal to.  e.g. 'shatin'
+   * return
+   */
+//   getMatchProperty = (id, compareTo, valueTo ) =&gt; {
+//     var that = this;
+//     console.log('match')
+//
+//     //this.writeNewPost( 1233, 'gordon', 'picture', 'title', 'body')
+//
+//     // Handle match propertys
+//      Fb.app.usersRef.orderByChild(compareTo).equalTo(valueTo).on("child_added", function(snap) {
+//
+//           Fb.app.matchedPropertysRef.child( snap.key ).set( snap.val() )
+// //          Fb.app.propertysRef.update( { snap.key : { } })
+//           that.matchedPropertys.set( snap.key, snap.val() );
+//           console.log('matchProperty.size', that.matchedPropertys.size)
+//      });
+//
+//      Fb.app.usersRef.orderByChild(compareTo).equalTo(valueTo).on("child_removed", function(snap) {
+//
+//          that.matchedPropertys.delete( snap.key );
+//          console.log('matchProperty.size', that.matchedPropertys.size)
+//      });
+//
+//
+//   }
+&nbsp;
+  update = <span class="fstat-no" title="function not covered" >(i</span>d, name) =&gt; {
+<span class="cstat-no" title="statement not covered" >     Fb.app.usersRef.update({[id]: { name } }  )</span>
+  };
+&nbsp;
+  del = <span class="fstat-no" title="function not covered" >(i</span>d) =&gt; {
+<span class="cstat-no" title="statement not covered" >    Fb.app.usersRef.child(id).remove();</span>
+<span class="cstat-no" title="statement not covered" >    Fb.propertys.child(id).remove();</span>
+    //this.propertys.delete( id );
+  };
+&nbsp;
+  @action
+  clear = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >    this.propertys.clear();</span>
+    // May not need
+    //this.agentPropertys.clear();
+  };
+&nbsp;
+&nbsp;
+}
+&nbsp;
+const propertys = new PropertysViewModel();
+export {propertys};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Aug 22 2017 22:46:27 GMT+0800 (China Standard Time)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>

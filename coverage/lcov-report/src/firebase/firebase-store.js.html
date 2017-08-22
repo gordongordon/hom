@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/firebase/firebase-store.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">src/firebase</a> firebase-store.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">43.48% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>20/46</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">43.48% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>20/46</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import firebase from 'firebase';
+import MobxStore from 'mobxStore'
+import AppStore from 'app-store'
+import {propertys as userPropertysModel} from 'propertysViewModel'
+import {agentModel} from 'agentModelView'
+&nbsp;
+&nbsp;
+try {
+&nbsp;
+var config = {
+  apiKey: 'AIzaSyD_SHmOwRUywGbWf9rRwP-MKSI3d0cYJu8',
+  authDomain: 'todo-app-a2b7c.firebaseapp.com',
+  databaseURL: 'https://todo-app-a2b7c.firebaseio.com',
+  storageBucket: 'todo-app-a2b7c.appspot.com',
+};
+&nbsp;
+firebase.initializeApp(config);
+} catch (e) {}
+&nbsp;
+const startLogin = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >  return firebase.auth().signInWithPopup( githubProvider ).then( <span class="fstat-no" title="function not covered" >(r</span>esult) =&gt; {</span>
+    // Fb.app.updateUid();
+&nbsp;
+<span class="cstat-no" title="statement not covered" >     console.log( 'Auth Worked', result )</span>
+  }, <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >    console.log( 'unable to login' );</span>
+  }
+  );
+}
+&nbsp;
+const startLoginGoogle = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return firebase.auth().signInWithPopup(googleProvider).then(<span class="fstat-no" title="function not covered" >fu</span>nction(result) {</span>
+  // This gives you a Google Access Token. You can use it to access the Google API.
+  var token = <span class="cstat-no" title="statement not covered" >result.credential.accessToken;</span>
+  // The signed-in user info.
+  var user = <span class="cstat-no" title="statement not covered" >result.user;</span>
+  // ...
+  //Fb.app.updateUid();
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  console.log( 'Auth Worked', result )</span>
+}).catch(<span class="fstat-no" title="function not covered" >fu</span>nction(error) {
+  // Handle Errors here.
+  var errorCode = <span class="cstat-no" title="statement not covered" >error.code;</span>
+  var errorMessage = <span class="cstat-no" title="statement not covered" >error.message;</span>
+  // The email of the user's account used.
+  var email = <span class="cstat-no" title="statement not covered" >error.email;</span>
+  // The firebase.auth.AuthCredential type that was used.
+  var credential = <span class="cstat-no" title="statement not covered" >error.credential;</span>
+<span class="cstat-no" title="statement not covered" >  console.log( 'unable to login' );</span>
+  // ...
+});
+&nbsp;
+}
+&nbsp;
+const startLoginFacebook = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >  return firebase.auth().signInWithPopup( facebookProvider).then( <span class="fstat-no" title="function not covered" >(r</span>esult) =&gt; {</span>
+     //this.user = true;
+     //Fb.app.updateUid();
+<span class="cstat-no" title="statement not covered" >     console.log( 'Auth Worked', result )</span>
+  }, <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >    console.log( 'unable to login' );</span>
+  }
+  );
+}
+&nbsp;
+const startLoginAnonyhmously = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >firebase.auth().signInAnonymously().then(<span class="fstat-no" title="function not covered" >fu</span>nction(snapshot) {</span>
+  // The callback succeeded; do something with the final result.
+<span class="cstat-no" title="statement not covered" >  console.log( 'signInAnonymously completed')</span>
+&nbsp;
+  //Fb.app.updateUid();
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return true;</span>
+}, <span class="fstat-no" title="function not covered" >fu</span>nction(error) {
+<span class="cstat-no" title="statement not covered" >  return false;</span>
+  // The callback failed.
+<span class="cstat-no" title="statement not covered" >  console.error(error);</span>
+});
+&nbsp;
+// .catch(function(error) {
+//   // Handle Errors here.
+//   console.log( 'sing in anonymously error', errorMessage )
+//   var errorCode = error.code;
+//   var errorMessage = error.message;
+//   console.log( 'sing in anonymously error', errorMessage )
+//   // ...
+// });
+&nbsp;
+}
+&nbsp;
+const startLogout = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >  return firebase.auth().signOut().then( <span class="fstat-no" title="function not covered" >()</span>=&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    console.log( 'Logged out!')</span>
+    //propertys.clear();
+    // agentModel.clear();
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    MobxStore.app.user = false;</span>
+<span class="cstat-no" title="statement not covered" >    userPropertysModel.clear();</span>
+<span class="cstat-no" title="statement not covered" >    MobxStore.app.uid = null;</span>
+<span class="cstat-no" title="statement not covered" >    agentModel.clear();</span>
+  }) ;
+}
+&nbsp;
+//console.log( 'MobxStore.app', MobxStore)
+//var uid =  MobxStore.app.uid;
+//console.log('uid', MobxStore.app.uid)
+const root = firebase.database().ref();
+const propertys = firebase.database().ref('propertys');
+// Testing for different type
+const sale = firebase.database().ref('propertys/sale');
+const lease = firebase.database().ref('propertys/lease');
+const buy = firebase.database().ref('propertys/buy');
+const rent = firebase.database().ref('propertys/rent');
+const agentPropertys = firebase.database().ref('agentPropertys');
+//const propertysForRent = firebase.database().ref('propertysForRent');
+//const propertysForSale = firebase.database().ref('propertysForSale');
+//const propertysForLease = firebase.database().ref('propertysForLease');
+//const property = firebase.database().ref('property');
+const matchedPropertys = firebase.database().ref('matchedPropertys');
+&nbsp;
+// const mbsdk = () =&gt; {
+//   var uid = MobxStore.app.uid;
+// }
+&nbsp;
+&nbsp;
+const Fb = {
+  app : new AppStore(),
+  root,
+  propertys,
+  sale,
+  lease,
+  buy,
+  rent,
+  agentPropertys,
+  startLogin,
+  startLogout,
+  startLoginAnonyhmously,
+  startLoginFacebook,
+  startLoginGoogle,
+  //propertysForRent,
+  //propertysForSale,
+  //propertysForLease,
+  //property,
+  matchedPropertys
+};
+&nbsp;
+var githubProvider = new firebase.auth.GithubAuthProvider();
+var facebookProvider = new firebase.auth.FacebookAuthProvider();
+var googleProvider = new firebase.auth.GoogleAuthProvider();
+export { Fb };
+&nbsp;
+//  How to handle incremental
+// var errId = 0;
+// // creates a new, incremental record
+// function incId() {
+//     // increment the counter
+//     fb.child('counter').transaction(function(currentValue) {
+//         return (currentValue||0) + 1
+//     }, function(err, committed, ss) {
+//         if( err ) {
+//            setError(err);
+//         }
+//         else if( committed ) {
+//            // if counter update succeeds, then create record
+//            // probably want a recourse for failures too
+//            addRecord(ss.val());
+//         }
+//     });
+// }
+//
+// // creates new incremental record
+// function addRecord(id) {
+//     setTimeout(function() {
+//        fb.child('records').child('rec'+id).set('record #'+id, function(err) {
+//           err &amp;&amp; setError(err);
+//        });
+//     });
+// }
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Aug 22 2017 22:46:27 GMT+0800 (China Standard Time)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>

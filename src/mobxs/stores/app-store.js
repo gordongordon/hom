@@ -18,7 +18,7 @@ class AppStore {
     uid : null // User Id
     userEmail : 'none'
 
-    console.log( 'creating MobxStore.app')
+//    console.log( 'creating MobxStore.app')
   }
 
   // startLogin = () => {

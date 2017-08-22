@@ -1,0 +1,1220 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/components/views.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">src/components</a> views.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.61% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>2/124</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/45</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.61% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>2/124</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+&nbsp;
+//models
+import {Route} from 'mobx-router';
+&nbsp;
+//components
+//import {MatchPanelViewWrapper} from 'matchPanelView'
+import {ListOfPropertysView} from 'listOfPropertysView'
+import {ListOfAgentPropertysView} from 'listOfMatch/listOfAgentPropertysView'
+&nbsp;
+//import {FrontPapePanelViewSegment} from 'frontPagePanelViewSegment'
+import {FrontPageView} from 'frontPageView'
+import MobxStore from 'mobxStore';
+//import FrontPage from 'frontPage'
+//import {MobxRouter} from 'mobx-router';
+import moment from 'moment';
+&nbsp;
+&nbsp;
+// Form
+import {FormSalePropertyAntMobileWrapper} from 'form/formSalePropertyAntMobile';
+import {FormLeasePropertyAntMobileWrapper} from 'form/formLeasePropertyAntMobile';
+import {FormBuyPropertyAntMobileWrapper} from 'form/formBuyPropertyAntMobile';
+import {FormRentPropertyAntMobileWrapper} from 'form/formRentPropertyAntMobile';
+// From for agents
+import {FormBuyAgentPropertyAntMobileWrapper} from 'form/formBuyAgentPropertyAntMobile';
+import {FormSaleAgentPropertyAntMobileWrapper} from 'form/formSaleAgentPropertyAntMobile';
+import {FormRentAgentPropertyAntMobileWrapper} from 'form/formRentAgentPropertyAntMobile';
+import {FormLeaseAgentPropertyAntMobileWrapper} from 'form/formLeaseAgentPropertyAntMobile';
+import {FormAgentFilterWrapper} from 'form/formAgentFilter';
+&nbsp;
+// Match Panel views
+import {MatchLeasePanelViewWrapper} from 'matchPanel/matchLeasePanelView'
+import {MatchRentPanelViewWrapper} from 'matchPanel/matchRentPanelView'
+import {MatchSalePanelViewWrapper} from 'matchPanel/matchSalePanelView'
+import {MatchBuyPanelViewWrapper} from 'matchPanel/matchBuyPanelView'
+import {MatchAgentPanelViewWrapper} from 'matchPanel/matchAgentPanelView'
+&nbsp;
+import {AgentAppView} from 'agentAppView'
+&nbsp;
+// From chatbot
+//import FormSaleChatbot from 'chatbot/formSaleChatbot'
+//import BMIChatbot from 'chatbot/bmiChatbot'
+&nbsp;
+// testing
+// import TestListView from 'testListView'
+&nbsp;
+var save = false;
+&nbsp;
+const views = {
+  home: new Route({
+    path: '/',
+    component: &lt;FrontPageView/&gt;,
+    onEnter: <span class="fstat-no" title="function not covered" >(r</span>oute, params, store, queryParams) =&gt; {
+<span class="cstat-no" title="statement not covered" >      MobxStore.app.setTitle( '好 .. Matching');</span>
+    },
+    beforeExit: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >      console.log('exiting ListOfPRoperysView!');</span>
+<span class="cstat-no" title="statement not covered" >      console.log('params changed to', params);</span>
+<span class="cstat-no" title="statement not covered" >      MobxStore.app.previousView = route;</span>
+    }
+  }),
+  agent: new Route({
+    path: '/agent',
+    component: &lt;AgentAppView/&gt;,
+    onEnter: <span class="fstat-no" title="function not covered" >(r</span>oute, params, store, queryParams) =&gt; {
+<span class="cstat-no" title="statement not covered" >      MobxStore.app.setTitle( 'Agent App View');</span>
+    },
+    beforeExit: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >      console.log('exiting ListOfPRoperysView!');</span>
+<span class="cstat-no" title="statement not covered" >      console.log('params changed to', params);</span>
+<span class="cstat-no" title="statement not covered" >      MobxStore.app.previousView = route;</span>
+    }
+  }),
+  list: new Route({
+    path: '/list',
+    component: &lt;ListOfPropertysView /&gt;,
+    onEnter: <span class="fstat-no" title="function not covered" >( </span>route, params, store, queryParams ) =&gt; {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      console.log('entering ListOfPropertysView!');</span>
+<span class="cstat-no" title="statement not covered" >      MobxStore.app.title = "你的儲存樓盤"</span>
+<span class="cstat-no" title="statement not covered" >      if ( save )</span>
+      {
+<span class="cstat-no" title="statement not covered" >      MobxStore.app.previousView = MobxStore.app.viewHistory.get( 'second')</span>
+      }
+<span class="cstat-no" title="statement not covered" >      if ( !save )</span>
+      { <span class="cstat-no" title="statement not covered" >MobxStore.app.viewHistory.set( 'list', MobxStore.app.previousView  )</span>
+<span class="cstat-no" title="statement not covered" >        save = true</span>
+      }
+    },
+    beforeEnter: <span class="fstat-no" title="function not covered" >(r</span>oute, params, store) =&gt; {
+      const userIsLoggedIn = <span class="cstat-no" title="statement not covered" >MobxStore.app.user;</span>
+<span class="cstat-no" title="statement not covered" >      if (!userIsLoggedIn) {</span>
+<span class="cstat-no" title="statement not covered" >        alert('Only logged in users can enter this route!');</span>
+<span class="cstat-no" title="statement not covered" >        return false;</span>
+      }
+    },
+    beforeExit: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >      console.log('exiting ListOfPRoperysView!');</span>
+<span class="cstat-no" title="statement not covered" >      console.log('params changed to', params);</span>
+<span class="cstat-no" title="statement not covered" >      MobxStore.app.previousView = route;</span>
+<span class="cstat-no" title="statement not covered" >      MobxStore.app.params = params;</span>
+    },
+    onParamsChange: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >      console.log('params changed to', params);</span>
+    }}),
+  matchLease: new Route({
+      path: '/matchLease/:keyID',
+      // timeEnter for matching iktems only that time and after
+      component: &lt;MatchLeasePanelViewWrapper/&gt;,
+      onEnter: <span class="fstat-no" title="function not covered" >(r</span>oute, params, store, queryParams) =&gt; {
+<span class="cstat-no" title="statement not covered" >      	console.log('third.current query params are -&gt; ', queryParams);</span>
+<span class="cstat-no" title="statement not covered" >        console.log('third.current params are -&gt; ', params);</span>
+<span class="cstat-no" title="statement not covered" >        MobxStore.app.setTitle( '最新鮮配對 Lease');</span>
+<span class="cstat-no" title="statement not covered" >        console.log('route', route)</span>
+<span class="cstat-no" title="statement not covered" >        MobxStore.app.viewHistory.set( 'matchLease', MobxStore.app.previousView  )</span>
+      },
+      beforeExit: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >        console.log('exiting user profile!');</span>
+<span class="cstat-no" title="statement not covered" >        console.log('third. params', params);</span>
+        //MobxStore.app.previousView = route;
+<span class="cstat-no" title="statement not covered" >        MobxStore.app.params = params;</span>
+      },
+      onParamsChange: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >        console.log('params changed to', params);</span>
+      }
+  }),
+  matchRent: new Route({
+      path: '/matchRent/:keyID',
+      component: &lt;MatchRentPanelViewWrapper/&gt;,
+      onEnter: <span class="fstat-no" title="function not covered" >(r</span>oute, params, store, queryParams) =&gt; {
+<span class="cstat-no" title="statement not covered" >      	console.log('third.current query params are -&gt; ', queryParams);</span>
+<span class="cstat-no" title="statement not covered" >        console.log('third.current params are -&gt; ', params);</span>
+<span class="cstat-no" title="statement not covered" >        MobxStore.app.setTitle( '最新鮮配對 Rent');</span>
+<span class="cstat-no" title="statement not covered" >        console.log('route', route)</span>
+<span class="cstat-no" title="statement not covered" >        MobxStore.app.viewHistory.set( 'matchRent', MobxStore.app.previousView  )</span>
+      },
+      beforeExit: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >        console.log('exiting user profile!');</span>
+<span class="cstat-no" title="statement not covered" >        console.log('third. params', params);</span>
+        //MobxStore.app.previousView = route;
+<span class="cstat-no" title="statement not covered" >        MobxStore.app.params = params;</span>
+      },
+      onParamsChange: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >        console.log('params changed to', params);</span>
+      }
+  }),
+  matchSale: new Route({
+      path: '/matchSale/:keyID',
+      component: &lt;MatchSalePanelViewWrapper/&gt;,
+      onEnter: <span class="fstat-no" title="function not covered" >(r</span>oute, params, store, queryParams) =&gt; {
+<span class="cstat-no" title="statement not covered" >      	console.log('third.current query params are -&gt; ', queryParams);</span>
+<span class="cstat-no" title="statement not covered" >        console.log('third.current params are -&gt; ', params);</span>
+<span class="cstat-no" title="statement not covered" >        MobxStore.app.setTitle( '最新鮮配對 Sale');</span>
+<span class="cstat-no" title="statement not covered" >        console.log('route', route)</span>
+<span class="cstat-no" title="statement not covered" >        MobxStore.app.viewHistory.set( 'matchSale', MobxStore.app.previousView  )</span>
+      },
+      beforeExit: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >        console.log('exiting user profile!');</span>
+<span class="cstat-no" title="statement not covered" >        console.log('third. params', params);</span>
+        //MobxStore.app.previousView = route;
+<span class="cstat-no" title="statement not covered" >        MobxStore.app.params = params;</span>
+      },
+      onParamsChange: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >        console.log('params changed to', params);</span>
+      }
+  }),
+  matchBuy: new Route({
+      path: '/matchBuy/:keyID',
+      component: &lt;MatchBuyPanelViewWrapper timeEnter={ moment().format('YYYY-MM-DD HH:mm:ss')}/&gt;,
+      onEnter: <span class="fstat-no" title="function not covered" >(r</span>oute, params, store, queryParams) =&gt; {
+<span class="cstat-no" title="statement not covered" >      	console.log('third.current query params are -&gt; ', queryParams);</span>
+<span class="cstat-no" title="statement not covered" >        console.log('third.current params are -&gt; ', params);</span>
+<span class="cstat-no" title="statement not covered" >        MobxStore.app.setTitle( '最新鮮配對 buy');</span>
+<span class="cstat-no" title="statement not covered" >        console.log('route', route)</span>
+<span class="cstat-no" title="statement not covered" >        MobxStore.app.viewHistory.set( 'matchBuy', MobxStore.app.previousView  )</span>
+<span class="cstat-no" title="statement not covered" >        console.log( 'timeEnter from view', moment().format('YYYY-MM-DD HH:mm:ss'))</span>
+      },
+      beforeExit: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >        console.log('exiting user profile!');</span>
+<span class="cstat-no" title="statement not covered" >        console.log('third. params', params);</span>
+        //MobxStore.app.previousView = route;
+<span class="cstat-no" title="statement not covered" >        MobxStore.app.params = params;</span>
+      },
+      onParamsChange: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >        console.log('params changed to', params);</span>
+      }
+  }),
+  matchAgent: new Route({
+      path: '/matchAgent/:keyID/:typeTo',
+      component: &lt;MatchAgentPanelViewWrapper /&gt;,
+      onEnter: <span class="fstat-no" title="function not covered" >(r</span>oute, params, store, queryParams) =&gt; {
+<span class="cstat-no" title="statement not covered" >      	console.log('third.current query params are -&gt; ', queryParams);</span>
+<span class="cstat-no" title="statement not covered" >        console.log('third.current params are -&gt; ', params);</span>
+<span class="cstat-no" title="statement not covered" >        MobxStore.app.setTitle( 'Agent');</span>
+<span class="cstat-no" title="statement not covered" >        console.log('route', route)</span>
+<span class="cstat-no" title="statement not covered" >        MobxStore.app.viewHistory.set( 'matchBuy', MobxStore.app.previousView  )</span>
+      },
+      beforeExit: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >        console.log('exiting user profile!');</span>
+<span class="cstat-no" title="statement not covered" >        console.log('third. params', params);</span>
+        //MobxStore.app.previousView = route;
+<span class="cstat-no" title="statement not covered" >        MobxStore.app.params = params;</span>
+      },
+      onParamsChange: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >        console.log('params changed to', params);</span>
+      }
+  }),
+  lease : new Route({
+    path: '/lease',
+    component: &lt;FormLeasePropertyAntMobileWrapper /&gt;,
+    onEnter: <span class="fstat-no" title="function not covered" >(r</span>oute, params, store, queryParams) =&gt; {
+<span class="cstat-no" title="statement not covered" >      MobxStore.app.setTitle( '放 租');</span>
+&nbsp;
+    },
+    beforeExit: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >      console.log('exiting ListOfPRoperysView!');</span>
+<span class="cstat-no" title="statement not covered" >      console.log('params changed to', params);</span>
+<span class="cstat-no" title="statement not covered" >      MobxStore.app.previousView = route;</span>
+    }
+  }),
+  rent : new Route({
+    path: '/rent',
+    component: &lt;FormRentPropertyAntMobileWrapper /&gt;,
+    onEnter: <span class="fstat-no" title="function not covered" >(r</span>oute, params, store, queryParams) =&gt; {
+<span class="cstat-no" title="statement not covered" >      MobxStore.app.setTitle( '租 屋');</span>
+&nbsp;
+    },
+    beforeExit: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >      console.log('exiting ListOfPRoperysView!');</span>
+<span class="cstat-no" title="statement not covered" >      console.log('params changed to', params);</span>
+<span class="cstat-no" title="statement not covered" >      MobxStore.app.previousView = route;</span>
+    }
+  }),
+  buy : new Route({
+    path: '/buy',
+    component: &lt;FormBuyPropertyAntMobileWrapper /&gt;,
+    onEnter: <span class="fstat-no" title="function not covered" >(r</span>oute, params, store, queryParams) =&gt; {
+<span class="cstat-no" title="statement not covered" >      MobxStore.app.setTitle( '買 樓');</span>
+    },
+    beforeExit: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >      console.log('exiting ListOfPRoperysView!');</span>
+<span class="cstat-no" title="statement not covered" >      console.log('params changed to', params);</span>
+<span class="cstat-no" title="statement not covered" >      MobxStore.app.previousView = route;</span>
+    }
+  }),
+  sale : new Route({
+    path: '/sale',
+    component: &lt;FormSalePropertyAntMobileWrapper /&gt;,
+    onEnter: <span class="fstat-no" title="function not covered" >(r</span>oute, params, store, queryParams) =&gt; {
+<span class="cstat-no" title="statement not covered" >      MobxStore.app.setTitle( '賣 樓');</span>
+&nbsp;
+    },
+    beforeExit: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >      console.log('exiting ListOfPRoperysView!');</span>
+<span class="cstat-no" title="statement not covered" >      console.log('params changed to', params);</span>
+<span class="cstat-no" title="statement not covered" >      MobxStore.app.previousView = route;</span>
+    }
+  }),
+  createAgentFilter : new Route({
+    path: '/createAgentFilter',
+    component: &lt;FormAgentFilterWrapper /&gt;,
+    onEnter: <span class="fstat-no" title="function not covered" >(r</span>oute, params, store, queryParams) =&gt; {
+<span class="cstat-no" title="statement not covered" >      MobxStore.app.setTitle( 'Filter');</span>
+&nbsp;
+    },
+    beforeExit: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >      console.log('exiting createAgentFilter!');</span>
+<span class="cstat-no" title="statement not covered" >      console.log('params changed to', params);</span>
+<span class="cstat-no" title="statement not covered" >      MobxStore.app.previousView = route;</span>
+    }
+  }),
+  listAgent: new Route({
+    path: '/listAgent',
+    component: &lt;ListOfAgentPropertysView /&gt;,
+    onEnter: <span class="fstat-no" title="function not covered" >( </span>route, params, store, queryParams ) =&gt; {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      console.log('entering ListOfAgentPropertysView!');</span>
+<span class="cstat-no" title="statement not covered" >      MobxStore.app.title = "你的地產代理儲存樓盤"</span>
+<span class="cstat-no" title="statement not covered" >      if ( save )</span>
+      {
+<span class="cstat-no" title="statement not covered" >      MobxStore.app.previousView = MobxStore.app.viewHistory.get( 'second')</span>
+      }
+<span class="cstat-no" title="statement not covered" >      if ( !save )</span>
+      { <span class="cstat-no" title="statement not covered" >MobxStore.app.viewHistory.set( 'list', MobxStore.app.previousView  )</span>
+<span class="cstat-no" title="statement not covered" >        save = true</span>
+      }
+    },
+    beforeEnter: <span class="fstat-no" title="function not covered" >(r</span>oute, params, store) =&gt; {
+      const userIsLoggedIn = <span class="cstat-no" title="statement not covered" >MobxStore.app.user;</span>
+<span class="cstat-no" title="statement not covered" >      if (!userIsLoggedIn) {</span>
+<span class="cstat-no" title="statement not covered" >        alert('Only logged in users can enter this route!');</span>
+<span class="cstat-no" title="statement not covered" >        return false;</span>
+      }
+    },
+    beforeExit: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >      console.log('exiting ListOfAgentProperysView!');</span>
+<span class="cstat-no" title="statement not covered" >      console.log('params changed to', params);</span>
+<span class="cstat-no" title="statement not covered" >      MobxStore.app.previousView = route;</span>
+<span class="cstat-no" title="statement not covered" >      MobxStore.app.params = params;</span>
+    },
+    onParamsChange: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >      console.log('params changed to', params);</span>
+    }}),
+buyAgentForm : new Route({
+  path: '/buyAgentForm',
+  component: &lt;FormBuyAgentPropertyAntMobileWrapper /&gt;,
+  onEnter: <span class="fstat-no" title="function not covered" >(r</span>oute, params, store, queryParams) =&gt; {
+<span class="cstat-no" title="statement not covered" >    MobxStore.app.setTitle( '地產代理回復 賣家');</span>
+&nbsp;
+  },
+  beforeExit: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >    console.log('exiting ListOfPRoperysView!');</span>
+<span class="cstat-no" title="statement not covered" >    console.log('params changed to', params);</span>
+<span class="cstat-no" title="statement not covered" >    MobxStore.app.previousView = route;</span>
+  }
+}),
+saleAgentForm : new Route({
+  path: '/SaleAgentForm',
+  component: &lt;FormSaleAgentPropertyAntMobileWrapper /&gt;,
+  onEnter: <span class="fstat-no" title="function not covered" >(r</span>oute, params, store, queryParams) =&gt; {
+<span class="cstat-no" title="statement not covered" >    MobxStore.app.setTitle( '地產代理回復 買家');</span>
+&nbsp;
+  },
+  beforeExit: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >    console.log('exiting ListOfPRoperysView!');</span>
+<span class="cstat-no" title="statement not covered" >    console.log('params changed to', params);</span>
+<span class="cstat-no" title="statement not covered" >    MobxStore.app.previousView = route;</span>
+  }
+}),
+rentAgentForm : new Route({
+  path: '/RentAgentForm',
+  component: &lt;FormRentAgentPropertyAntMobileWrapper /&gt;,
+  onEnter: <span class="fstat-no" title="function not covered" >(r</span>oute, params, store, queryParams) =&gt; {
+<span class="cstat-no" title="statement not covered" >    MobxStore.app.setTitle( '地產代理回復 放 租');</span>
+&nbsp;
+  },
+  beforeExit: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >    console.log('exiting ListOfPRoperysView!');</span>
+<span class="cstat-no" title="statement not covered" >    console.log('params changed to', params);</span>
+<span class="cstat-no" title="statement not covered" >    MobxStore.app.previousView = route;</span>
+  }
+}),
+leaseAgentForm : new Route({
+  path: '/LeaseAgentForm',
+  component: &lt;FormLeaseAgentPropertyAntMobileWrapper /&gt;,
+  onEnter: <span class="fstat-no" title="function not covered" >(r</span>oute, params, store, queryParams) =&gt; {
+<span class="cstat-no" title="statement not covered" >    MobxStore.app.setTitle( '地產代理回復 租 屋');</span>
+&nbsp;
+  },
+  beforeExit: <span class="fstat-no" title="function not covered" >(r</span>oute, params) =&gt; {
+<span class="cstat-no" title="statement not covered" >    console.log('exiting ListOfPRoperysView!');</span>
+<span class="cstat-no" title="statement not covered" >    console.log('params changed to', params);</span>
+<span class="cstat-no" title="statement not covered" >    MobxStore.app.previousView = route;</span>
+  }
+}),
+  // For Chat bot example
+  // formSaleChatbot : new Route({
+  //   path: '/FormSaleChatbox',
+  //   component: &lt;FormSaleChatbot /&gt;,
+  //   onEnter: (route, params, store, queryParams) =&gt; {
+  //     MobxStore.app.setTitle( 'Chat Bot 賣 樓');
+  //   },
+  //   beforeExit: (route, params) =&gt; {
+  //     console.log('exiting ListOfPRoperysView!');
+  //     console.log('params changed to', params);
+  //     MobxStore.app.previousView = route;
+  //   }
+  // }),
+  // bmi : new Route({
+  //   path: '/bmi',
+  //   component: &lt;BMIChatbot /&gt;,
+  //   onEnter: (route, params, store, queryParams) =&gt; {
+  //     MobxStore.app.setTitle( 'Chat Bot 賣 樓');
+  //
+  //   },
+  //   beforeExit: (route, params) =&gt; {
+  //     console.log('exiting ListOfPRoperysView!');
+  //     console.log('params changed to', params);
+  //     MobxStore.app.previousView = route;
+  //   }
+  // })
+&nbsp;
+&nbsp;
+};
+export default views;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Aug 22 2017 22:46:27 GMT+0800 (China Standard Time)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>

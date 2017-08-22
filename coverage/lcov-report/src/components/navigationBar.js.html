@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/components/navigationBar.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">src/components</a> navigationBar.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">35.14% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>13/37</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">21.43% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>3/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">42.86% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>3/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">35.14% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>13/37</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react'
+import {observer} from 'mobx-react'
+import { Popover, NavBar, Icon, Button,SegmentedControl} from 'antd-mobile';
+import MobxStore from 'mobxStore'
+import views from 'views'
+import {Fb} from 'firebase-store'
+&nbsp;
+const Item = Popover.Item;
+&nbsp;
+@observer
+export default class NavigationBar extends React.Component {
+&nbsp;
+   constructor( props ){
+     super( props )
+     this.state = {
+       loginName : 'none',
+       isLeftIcon : false,
+       visible: false,
+       selected: ''
+     }
+   }
+&nbsp;
+   onSelect = <span class="fstat-no" title="function not covered" >(o</span>pt) =&gt; {
+<span class="cstat-no" title="statement not covered" >     console.log(opt.props.value);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >     if ( opt.props.value === 'google') {</span>
+<span class="cstat-no" title="statement not covered" >       Fb.startLoginGoogle();</span>
+<span class="cstat-no" title="statement not covered" >       this.setState( {</span>
+         loginName  : 'google'
+       })
+     }
+<span class="cstat-no" title="statement not covered" >     if ( opt.props.value === 'github') {</span>
+<span class="cstat-no" title="statement not covered" >       Fb.startLogin();</span>
+<span class="cstat-no" title="statement not covered" >       this.setState( {</span>
+         loginName  : 'github'
+       })
+     }
+<span class="cstat-no" title="statement not covered" >     if ( opt.props.value === 'facebook') {</span>
+<span class="cstat-no" title="statement not covered" >       Fb.startLoginFacebook();</span>
+<span class="cstat-no" title="statement not covered" >       this.setState( {</span>
+         loginName  : 'fb'
+       })
+     }
+<span class="cstat-no" title="statement not covered" >     if ( opt.props.value === 'Anonymous') {</span>
+<span class="cstat-no" title="statement not covered" >       Fb.startLoginAnonyhmously()</span>
+<span class="cstat-no" title="statement not covered" >       this.setState( {</span>
+         loginName  : 'Guest'
+       })
+     }
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >     this.setState({</span>
+       visible: false,
+       selected: opt.props.value,
+     });
+   };
+   handleVisibleChange = <span class="fstat-no" title="function not covered" >(v</span>isible) =&gt; {
+<span class="cstat-no" title="statement not covered" >     this.setState({</span>
+       visible,
+     });
+   };
+&nbsp;
+&nbsp;
+   onLogin = <span class="fstat-no" title="function not covered" >( </span>e ) =&gt; {
+<span class="cstat-no" title="statement not covered" >      e.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >      console.log( 'onLogin ... ')</span>
+<span class="cstat-no" title="statement not covered" >      Fb.startLogin();</span>
+   }
+&nbsp;
+&nbsp;
+   onLogout = <span class="fstat-no" title="function not covered" >( </span>e ) =&gt; {
+<span class="cstat-no" title="statement not covered" >      e.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >      console.log( 'onLogin ... ')</span>
+<span class="cstat-no" title="statement not covered" >      Fb.startLogout();</span>
+   }
+&nbsp;
+   loginItem  = () =&gt; {
+&nbsp;
+     const isLogin = MobxStore.app.user;
+     let offsetX = -10; // just for pc demo
+     <span class="missing-if-branch" title="if path not taken" >I</span>if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+<span class="cstat-no" title="statement not covered" >       offsetX = -26;</span>
+     }
+&nbsp;
+     <span class="missing-if-branch" title="if path not taken" >I</span>if ( isLogin ) {
+<span class="cstat-no" title="statement not covered" >       return &lt;span key="2" onClick={ this.onLogout }&gt;登出&lt;/span&gt;;</span>
+    } else {
+       // For different user login
+       return  &lt;Popover mask
+          overlayClassName="fortest"
+          overlayStyle={{ color: 'currentColor' }}
+          visible={this.state.visible}
+          overlay={[
+            (&lt;Item key="3" value="google" data-seed="logId"&gt;google&lt;/Item&gt;),
+            (&lt;Item key="4" value="github" data-seed="logId"&gt;Github&lt;/Item&gt;),
+            (&lt;Item key="5" value="facebook" style={{ whiteSpace: 'nowrap' }}&gt;Facebook&lt;/Item&gt;),
+            (&lt;Item key="6" value="Anonymous"&gt;
+              &lt;span style={{ marginRight: 5 }}&gt;Anonymous&lt;/span&gt;
+            &lt;/Item&gt;),
+          ]}
+          align={{
+            overflow: { adjustY: 0, adjustX: 0 },
+            offset: [offsetX, 15],
+          }}
+          onVisibleChange={this.handleVisibleChange}
+          onSelect={this.onSelect}
+        &gt;
+          &lt;div style={{
+            height: '100%',
+            padding: '0 0.3rem',
+            marginRight: '-0.3rem',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+          &gt;
+            &lt;span&gt;請登入&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/Popover&gt;;
+     }
+   }
+&nbsp;
+&nbsp;
+render() {
+   const title = this.props.title;
+&nbsp;
+   var leftContentLabel = "上一頁";
+  //  let offsetX = -10; // just for pc demo
+  //  if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+  //    offsetX = -26;
+  //  }
+//   const that = this;
+&nbsp;
+   <span class="missing-if-branch" title="if path not taken" >I</span>if ( title === "好 .. Matching")
+   {
+<span class="cstat-no" title="statement not covered" >       leftContentLabel = ""</span>
+   } else {
+     leftContentLabel = "上一頁"
+   }
+&nbsp;
+//   {MobxStore.app.providerId},{MobxStore.app.title}
+   
+// &lt;SegmentedControl  style={{ height: '0.8rem', width: '5rem' }} values={['等待回覆', '已跟進']} /&gt;
+&nbsp;
+   return (
+     &lt;div&gt;
+       &lt;NavBar iconName="false"
+         mode="light"
+         rightContent={[
+           &lt;div key="1"&gt;{this.loginItem()}&lt;/div&gt;
+         ]}
+       &gt;
+       
+      {MobxStore.app.providerId},{MobxStore.app.title}
+       
+       
+       &lt;/NavBar&gt;
+     &lt;/div&gt;
+   )
+&nbsp;
+  }
+}
+&nbsp;
+//&lt;Icon key="0" type="plus" style={{ marginRight: '0.32rem' }} onClick={  this.onLogin }/&gt;,
+//onLeftClick={ () =&gt; MobxStore.router.goTo( MobxStore.app.previousView, MobxStore.app.params, MobxStore ) }
+&nbsp;
+// onLeftClick={ () =&gt; MobxStore.router.goTo( views.first ) }
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Aug 22 2017 22:46:27 GMT+0800 (China Standard Time)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>

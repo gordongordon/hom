@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/try/time.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">src/try</a> time.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/67</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/1</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/67</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">//import moment from 'moment';
+var moment = <span class="cstat-no" title="statement not covered" >require( '../../node_modules/moment')</span>
+&nbsp;
+var a = <span class="cstat-no" title="statement not covered" >moment([2008, 0, 28]);</span>
+var b = <span class="cstat-no" title="statement not covered" >moment([2007, 0, 29]);</span>
+<span class="cstat-no" title="statement not covered" >console.log( a.toNow('M') )</span>;
+&nbsp;
+var day = <span class="cstat-no" title="statement not covered" >moment(1318781876406);</span>
+<span class="cstat-no" title="statement not covered" >console.log( day )</span>
+<span class="cstat-no" title="statement not covered" >console.log( moment() )</span>
+<span class="cstat-no" title="statement not covered" >console.log( 'minute', moment().minute() )</span>
+<span class="cstat-no" title="statement not covered" >console.log( 'hour', moment().hour() )</span>
+<span class="cstat-no" title="statement not covered" >console.log( 'date', moment().date() )</span>
+<span class="cstat-no" title="statement not covered" >console.log( 'month', moment().month() )</span>
+<span class="cstat-no" title="statement not covered" >console.log( 'year', moment().year() )</span>
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >console.log( moment().get('year') )</span>;
+// moment().get('month');  // 0 to 11
+// moment().get('date');
+<span class="cstat-no" title="statement not covered" >console.log( 'moment().get(hour)', moment().get('hour') )</span>;
+// moment().get('minute');
+// moment().get('second');
+// moment().get('millisecond');
+&nbsp;
+var a = <span class="cstat-no" title="statement not covered" >moment().subtract(1, 'day');</span>
+var b = <span class="cstat-no" title="statement not covered" >moment().add(1, 'day');</span>
+<span class="cstat-no" title="statement not covered" >console.log( 'moment.max', moment.max(a, b) )</span>;  // b
+&nbsp;
+<span class="cstat-no" title="statement not covered" >console.log( moment().format('k') )</span>;
+&nbsp;
+&nbsp;
+&nbsp;
+function <span class="fstat-no" title="function not covered" >getTimeInNum(</span> time ) {
+  const MM <span class="cstat-no" title="statement not covered" >= moment( tim</span>e )
+  const Y <span class="cstat-no" title="statement not covered" >= MM.get('Y'</span>) ;
+  const M <span class="cstat-no" title="statement not covered" >= MM.get('M'</span>) // 0 to 11
+  const D <span class="cstat-no" title="statement not covered" >= MM.get('D'</span>);
+  const h <span class="cstat-no" title="statement not covered" >= MM.get('h'</span>) ;
+  const m <span class="cstat-no" title="statement not covered" >= MM.get('m'</span>);
+  const s <span class="cstat-no" title="statement not covered" >= MM.get('s'</span>);
+&nbsp;
+  const Days <span class="cstat-no" title="statement not covered" >= M * 30 + </span>D;
+  const Hours <span class="cstat-no" title="statement not covered" >= Days * 2</span>4;
+  const Seconds <span class="cstat-no" title="statement not covered" >= Hours * 6</span>0;
+  const Months <span class="cstat-no" title="statement not covered" >= </span>M;
+  const Years <span class="cstat-no" title="statement not covered" >= </span>Y;
+<span class="cstat-no" title="statement not covered" >  return { Days, Hours, Seconds, Months, Years }</span>
+}
+&nbsp;
+// Get all data
+var time = <span class="cstat-no" title="statement not covered" >getTimeInNum( moment() </span>)
+<span class="cstat-no" title="statement not covered" >console.log( 'time.Days', time.Days )</span>;
+<span class="cstat-no" title="statement not covered" >console.log( 'time.Hours', time.Hours )</span>;
+<span class="cstat-no" title="statement not covered" >console.log( 'time.Seconds', time.Seconds )</span>;
+<span class="cstat-no" title="statement not covered" >console.log( 'time.Months', time.Months )</span>;
+<span class="cstat-no" title="statement not covered" >console.log( 'time.Years', time.Years )</span>;
+&nbsp;
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >console.log( 'getday', getTimeInNum( moment() )</span>);
+//var MM = moment( moment().format('YYYY-MM-DD HH:mm:ss') );
+const MM <span class="cstat-no" title="statement not covered" >= moment(</span>)
+const Y <span class="cstat-no" title="statement not covered" >= MM.get('Y'</span>) ;
+const M <span class="cstat-no" title="statement not covered" >= MM.get('M'</span>) // 0 to 11
+const D <span class="cstat-no" title="statement not covered" >= MM.get('D'</span>);
+const h <span class="cstat-no" title="statement not covered" >= MM.get('h'</span>) ;
+const m <span class="cstat-no" title="statement not covered" >= MM.get('m'</span>);
+const s <span class="cstat-no" title="statement not covered" >= MM.get('s'</span>);
+const end <span class="cstat-no" title="statement not covered" >= moment( [Y, M, D, h, m</span>] );
+<span class="cstat-no" title="statement not covered" >console.log( 'end ', end )</span>;
+const start <span class="cstat-no" title="statement not covered" >  = moment( moment().format('YYYY-MM-DD HH:m</span>m') );
+const sDiff <span class="cstat-no" title="statement not covered" >=  end.diff( start, 'second</span>s');
+const mDiff <span class="cstat-no" title="statement not covered" >=  end.diff( start, 'minute</span>s');
+const hDiff <span class="cstat-no" title="statement not covered" >=  end.diff( start, 'hour</span>s');
+const DDiff <span class="cstat-no" title="statement not covered" >=  end.diff( start, 'day</span>s');
+const MDiff <span class="cstat-no" title="statement not covered" >=  end.diff( start, 'month</span>s');
+&nbsp;
+// console.log( 10 % 13)
+<span class="cstat-no" title="statement not covered" >console.log( 'sDiff', sDiff)</span>
+<span class="cstat-no" title="statement not covered" >console.log( 'mDiff', mDiff)</span>
+<span class="cstat-no" title="statement not covered" >console.log( 'hDiff', hDiff)</span>
+<span class="cstat-no" title="statement not covered" >console.log( 'DDiff', DDiff)</span>
+<span class="cstat-no" title="statement not covered" >console.log( 'MDiff', MDiff)</span>
+<span class="cstat-no" title="statement not covered" >console.log( 70 % 60 | 0 )</span>
+&nbsp;
+&nbsp;
+&nbsp;
+//console.log( 'moment( new Date )', moment( new Date() ));
+&nbsp;
+//console.log( 'mDiff', mDiff)
+<span class="cstat-no" title="statement not covered" >console.log( 'compute', end.diff( start, 'minutes'))</span>
+// var Y = moment().get('Y') ;
+// var M = moment().get('M') // 0 to 11
+// var D = moment().get('D');
+// var h = moment().get('h') ;
+// var m = moment().get('m');
+// var s = moment().get('s');
+&nbsp;
+<span class="cstat-no" title="statement not covered" >console.log( `Y: ${Y}, M: ${M}, D: ${D}, h: ${h}, s: ${s}`);</span>
+&nbsp;
+// var mm = moment();
+// mm.subtract(Y, 'years');
+// mm.subtract(M, 'months');
+// mm.subtract(D, 'days');
+// mm.subtract(h, 'hours');
+// console.log( 'mm', mm)
+// moment().subtract(1, 'minutes');
+&nbsp;
+// console.log( moment().daysInMonth() )
+&nbsp;
+var a = <span class="cstat-no" title="statement not covered" >moment( moment().format('YYYY-MM-DD HH:mm') </span>);
+<span class="cstat-no" title="statement not covered" >console.log( 'a', a )</span>
+var b = <span class="cstat-no" title="statement not covered" >moment([Y, M, D, h, m]).add( 1, 'days')</span>;
+<span class="cstat-no" title="statement not covered" >console.log( 'b', b)</span>
+<span class="cstat-no" title="statement not covered" >console.log( a.diff(b, 'minutes')  </span>)
+&nbsp;
+<span class="cstat-no" title="statement not covered" >console.log( moment.duration().asMinutes() )</span>
+&nbsp;
+//
+// const dueDay = moment( moment().format('YYYY-MM-DD') );
+// var mm = dueDay.get('M');
+// var dd = dueDay.get('D')
+// console.log( "due MM", )
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Aug 22 2017 22:46:27 GMT+0800 (China Standard Time)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>

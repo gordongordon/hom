@@ -39,18 +39,18 @@ import {Header} from 'header'
 //
 //   }
 
-  render() {
+//   render() {
 
-    //const keyID = this.state.keyID;
+//     //const keyID = this.state.keyID;
 
-    return (
-      <div>
-        <Header />
-        <Main />
-      </div>
-    );
-  }
-};
+//     return (
+//       <div>
+//         <Header />
+//         <Main />
+//       </div>
+//     );
+//   }
+// // };
 
 //
 // <MenuBar />
@@ -103,7 +103,7 @@ import {Header} from 'header'
 //   <DevTools />
 // </div>
 
-export default App;
+// export default App;
 // <FrontPapePanelViewSegment />
 //<MatchPanelViewWrapper  />
 // <FrontPapePanelViewSegment />
