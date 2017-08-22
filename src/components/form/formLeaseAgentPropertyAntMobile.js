@@ -1,6 +1,5 @@
 import React from 'react'
-import { Card, Picker, List, WhiteSpace, InputItem,
-         Button,
+import { Card, Picker, List, WhiteSpace, InputItem, Button,
          SegmentedControl,
          Checkbox,
          Switch,

@@ -90,7 +90,7 @@ module.exports = {
       "./tests"
     ],
 
-    extensions: ["","test.js", ".web.jsx", ".web.js", ".js", ".jsx", ".json"]
+    extensions: ["",".web.jsx", ".web.js", ".js", ".jsx", ".json"]
   },
   // "alias": {
   //   "react": "preact-compat",
