@@ -290,6 +290,11 @@ export class Property {
 
     return label;
   }
+  @computed
+  get salePriceLabel() {
+    var label = this.priceToLabel(this.salePrice);
+    return "開價" + label;
+  }
 
   getTimeInNum(time) {
     const MM = moment(time);
@@ -387,7 +392,7 @@ export class Property {
 
   @computed
   get contactNameLabel() {
-    return this.roleName + this.contactName;
+    return this.typeToLabel + this.contactName;
   }
 
   @computed

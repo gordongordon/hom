@@ -10,7 +10,6 @@ import { createForm } from 'rc-form';
 import { MTR } from 'MTR';
 import {PARTITION} from 'PARTITION';
 import {DISTRICK}  from 'DISTRICK';
-
 import {Fb} from 'firebase-store'
 import {Property} from 'property'
 import {Propertyhk} from 'propertyhk'
@@ -208,7 +207,6 @@ class FormLeasePropertyAntMobile extends React.Component {
       { value: 1, label: '包地租/稅' },
       { value: 2, label: '包管理費' },
     ];
-
 
 
     // For DatePicker

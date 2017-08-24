@@ -1,218 +1,385 @@
 const DISTRICK = [
-{
-	"value": "HKIS",
-	"label": "港島區",
-	"children": [
-		{
-		"value": "CWB",
-		"label": "銅鑼灣",
-		"children" : [
-			              { "label" : "新安大廈",
-									   	"value" : "CWB0001" },
-										{ "label" : "美漢大廈",
-											"value" : "CWB0002" },
-  								] // End of 銅鑼灣
-	   },
-	 ] // End of Children of 港島
-}, // End of 港島
-{
-	"value": "KWLO",
-	"label": "九龍區",
-	"children": [
-		{
-		"value": "KWT",
-		"label": "九龍塘",
-		"children" : [
-			              { "label" : "畢架山花園",
-									   	"value" : "KWT0001" },
-										{ "label" : "龍苑",
-											"value" : "KWT0002" },
-  								] // End of 九龍塘
-	   },
-	 ] // End of Children of 九龍區
-}, // End of 九龍
-{
-	"value": "NTTV",
-	"label": "新界區",
-	"children": [
-		{
-		"value": "MOS",
-		"label": "馬鞍山",
-		"children" : [
-               			{ "label" : "全部",
-				              "value" : "ALL" },
-			              { "label" : "迎海",
-									   	"value" : "MOS0001" },
-										{ "label" : "嵐岸",
-											"value" : "MOS0002" },
-										{ "label" : "錦泰苑",
-											"value" : "MOS0003" },
-										{ "label" : "海典居",
-											"value" : "MOS0004" },
-										{ "label" : "錦禧苑",
-											"value" : "MOS0005" },
-										{ "label" : "薈晴",
-									   	"value" : "MOS0006" },
-  									{ "label" : "新港城",
-											"value" : "MOS0007" },
-										{ "label" : "錦英苑",
-											"value" : "MOS0008" },
-										{ "label" : "海柏花園",
-											"value" : "MOS0009" },
-										{ "label" : "雅濤居",
-											"value" : "MOS0010" },
-										{ "label" : "錦鞍苑 ",
-									   	"value" : "MOS0011" },
-										{ "label" : "銀湖天峰",
-											"value" : "MOS0012" },
-										{ "label" : "錦泰苑",
-											"value" : "MOS0013" },
-										{ "label" : "曉峯灣畔",
-											"value" : "MOS0014" },
-										{ "label" : "錦龍苑",
-											"value" : "MOS0015" },
-										{ "label" : "恆安村 ",
-									   	"value" : "MOS0016" },
-  									{ "label" : "錦豐苑",
-											"value" : "MOS0017" },
-										{ "label" : "富安花園 ",
-											"value" : "MOS0018" },
-										{ "label" : "富寶花園 ",
-											"value" : "MOS0019" },
-										{ "label" : "迎濤灣",
-											"value" : "MOS0020" },
-										{ "label" : "福安花園",
-									   	"value" : "MOS0021" },
-										{ "label" : "天宇海",
-											"value" : "MOS0022" },
-										{ "label" : "馬鞍山中心",
-											"value" : "MOS0023" },
-										{ "label" : "嘉華星濤灣",
-											"value" : "MOS0024" },
-										{ "label" : "觀瀾雅軒 ",
-											"value" : "MOS0025" },
-										{ "label" : "富輝花園  ",
-									   	"value" : "MOS0026" },
-  									{ "label" : "翠擁華庭 ",
-											"value" : "MOS0027" },
-										{ "label" : "海典灣",
-											"value" : "MOS0028" },
-										{ "label" : "雅典居",
-									   	"value" : "MOS0029" },
-  									{ "label" : "雅景臺",
-											"value" : "MOS0030" },
-										{ "label" : "耀安村",
-											"value" : "MOS0031" },
-  								] // End of 馬鞍山
-	   },
-		 {
- 		"value": "SHT",
- 		"label": "沙田屋苑",
- 		"children" : [
-	                	{ "label" : "全部",
-				              "value" : "ALL" },
- 			              { "label" : "沙田第一城",
- 									   	"value" : "SHT0001" },
- 										{ "label" : "沙田中心 ",
- 											"value" : "SHT0002" },
- 										{ "label" : "豐盛苑",
- 											"value" : "SHT0003" },
- 										{ "label" : "希爾頓中心",
- 											"value" : "SHT0004" },
- 										{ "label" : "雲疊花園",
- 											"value" : "SHT0005" },
- 										{ "label" : "顯徑村",
- 									   	"value" : "SHT0006" },
-   									{ "label" : "富嘉花園",
- 											"value" : "SHT0007" },
- 										{ "label" : "春暉花園 ",
- 											"value" : "SHT0008" },
- 										{ "label" : "晴碧花園",
- 											"value" : "SHT0009" },
- 										{ "label" : "益富閣",
- 											"value" : "SHT0010" },
- 										{ "label" : "安定樓",
- 									   	"value" : "SHT0011" },
- 										{ "label" : "德安樓 ",
- 											"value" : "SHT0012" },
- 										{ "label" : "嘉全樓 ",
- 											"value" : "SHT0013" },
- 										{ "label" : "祥豐大樓",
- 											"value" : "SHT0014" },
- 										{ "label" : "松柏樓",
- 											"value" : "SHT0015" },
- 										{ "label" : "麗明樓",
- 									   	"value" : "SHT0016" },
-   									{ "label" : "名城",
- 											"value" : "SHT0017" },
- 										{ "label" : "好運中心",
- 											"value" : "SHT0018" },
- 										{ "label" : "帝堡城",
- 											"value" : "SHT0019" },
- 										{ "label" : "欣廷軒 ",
- 											"value" : "SHT0020" },
- 										{ "label" : "新城市廣場 ",
- 									   	"value" : "SHT0021" },
- 										{ "label" : "博康村 ",
- 											"value" : "SHT0022" },
- 										{ "label" : "沙田廣埸 ",
- 											"value" : "SHT0023" },
- 										{ "label" : "皇御居",
- 											"value" : "SHT0024" },
- 										{ "label" : "金輝樓",
- 											"value" : "SHT0025" },
- 										{ "label" : "立和樓",
- 									   	"value" : "SHT0026" },
-   									{ "label" : "積信樓",
- 											"value" : "SHT0027" },
- 										{ "label" : "葵偉樓",
- 											"value" : "SHT0028" },
- 										{ "label" : "美綸樓",
- 									   	"value" : "SHT0029" },
-   									{ "label" : "耀寶大廈",
- 											"value" : "SHT0030" },
- 										{ "label" : "金獅花園",
- 											"value" : "SHT0031" },
-										{ "label" : "花園城",
- 											"value" : "SHT0032" },
- 										{ "label" : "偉華中心 ",
- 											"value" : "SHT0033" },
- 										{ "label" : "金禧花園",
- 											"value" : "SHT0034" },
- 										{ "label" : "嘉田苑",
- 											"value" : "SHT0035" },
- 										{ "label" : "美松苑",
- 									   	"value" : "SHT0036" },
-   									{ "label" : "豐景花園 ",
- 											"value" : "SHT0037" },
- 										{ "label" : "文禮閣",
- 											"value" : "SHT0038" },
- 										{ "label" : "勵城花園",
- 											"value" : "SHT0039" },
- 										{ "label" : "安康樓",
- 									   	"value" : "SHT0040" },
- 										{ "label" : "樹德樓",
- 											"value" : "SHT0041" },
- 										{ "label" : "怡翠花園",
- 											"value" : "SHT0042" },
- 										{ "label" : "積富樓",
- 											"value" : "SHT0043" },
- 										{ "label" : "沙田豪苑",
- 											"value" : "SHT0044" },
- 										{ "label" : "穗禾苑",
- 									   	"value" : "SHT0045" },
-   									{ "label" : "愉翠苑",
- 											"value" : "SHT0046" },
- 										{ "label" : "翠華花園",
- 											"value" : "SHT0047" },
-   								] // End of 沙田屋苑
- 	   },
-	 ] // End of Children of 新界區
-}  // End of 新界
-] // End of Districk
+  {
+    value: "HKIS",
+    label: "港島區",
+    children: [
+      {
+        value: "CWB",
+        label: "銅鑼灣",
+        children: [
+          {
+            label: "新安大廈",
+            value: "CWB0001"
+          },
+          {
+            label: "美漢大廈",
+            value: "CWB0002"
+          }
+        ] // End of 銅鑼灣
+      }
+    ] // End of Children of 港島
+  }, // End of 港島
+  {
+    value: "KWLO",
+    label: "九龍區",
+    children: [
+      {
+        value: "KWT",
+        label: "九龍塘",
+        children: [
+          {
+            label: "畢架山花園",
+            value: "KWT0001"
+          },
+          {
+            label: "龍苑",
+            value: "KWT0002"
+          }
+        ] // End of 九龍塘
+      }
+    ] // End of Children of 九龍區
+  }, // End of 九龍
+  {
+    value: "NTTV",
+    label: "新界區",
+    children: [
+      {
+        value: "MOS",
+        label: "馬鞍山",
+        children: [
+          {
+            label: "全部",
+            value: "ALL"
+          },
+          {
+            label: "迎海",
+            value: "MOS0001"
+          },
+          {
+            label: "嵐岸",
+            value: "MOS0002"
+          },
+          {
+            label: "錦泰苑",
+            value: "MOS0003"
+          },
+          {
+            label: "海典居",
+            value: "MOS0004"
+          },
+          {
+            label: "錦禧苑",
+            value: "MOS0005"
+          },
+          {
+            label: "薈晴",
+            value: "MOS0006"
+          },
+          {
+            label: "新港城",
+            value: "MOS0007"
+          },
+          {
+            label: "錦英苑",
+            value: "MOS0008"
+          },
+          {
+            label: "海柏花園",
+            value: "MOS0009"
+          },
+          {
+            label: "雅濤居",
+            value: "MOS0010"
+          },
+          {
+            label: "錦鞍苑 ",
+            value: "MOS0011"
+          },
+          {
+            label: "銀湖天峰",
+            value: "MOS0012"
+          },
+          {
+            label: "錦泰苑",
+            value: "MOS0013"
+          },
+          {
+            label: "曉峯灣畔",
+            value: "MOS0014"
+          },
+          {
+            label: "錦龍苑",
+            value: "MOS0015"
+          },
+          {
+            label: "恆安村 ",
+            value: "MOS0016"
+          },
+          {
+            label: "錦豐苑",
+            value: "MOS0017"
+          },
+          {
+            label: "富安花園 ",
+            value: "MOS0018"
+          },
+          {
+            label: "富寶花園 ",
+            value: "MOS0019"
+          },
+          {
+            label: "迎濤灣",
+            value: "MOS0020"
+          },
+          {
+            label: "福安花園",
+            value: "MOS0021"
+          },
+          {
+            label: "天宇海",
+            value: "MOS0022"
+          },
+          {
+            label: "馬鞍山中心",
+            value: "MOS0023"
+          },
+          {
+            label: "嘉華星濤灣",
+            value: "MOS0024"
+          },
+          {
+            label: "觀瀾雅軒 ",
+            value: "MOS0025"
+          },
+          {
+            label: "富輝花園  ",
+            value: "MOS0026"
+          },
+          {
+            label: "翠擁華庭 ",
+            value: "MOS0027"
+          },
+          {
+            label: "海典灣",
+            value: "MOS0028"
+          },
+          {
+            label: "雅典居",
+            value: "MOS0029"
+          },
+          {
+            label: "雅景臺",
+            value: "MOS0030"
+          },
+          {
+            label: "耀安村",
+            value: "MOS0031"
+          }
+        ] // End of 馬鞍山
+      },
+      {
+        value: "SHT",
+        label: "沙田屋苑",
+        children: [
+          {
+            label: "全部",
+            value: "ALL"
+          },
+          {
+            label: "沙田第一城",
+            value: "SHT0001"
+          },
+          {
+            label: "沙田中心 ",
+            value: "SHT0002"
+          },
+          {
+            label: "豐盛苑",
+            value: "SHT0003"
+          },
+          {
+            label: "希爾頓中心",
+            value: "SHT0004"
+          },
+          {
+            label: "雲疊花園",
+            value: "SHT0005"
+          },
+          {
+            label: "顯徑村",
+            value: "SHT0006"
+          },
+          {
+            label: "富嘉花園",
+            value: "SHT0007"
+          },
+          {
+            label: "春暉花園 ",
+            value: "SHT0008"
+          },
+          {
+            label: "晴碧花園",
+            value: "SHT0009"
+          },
+          {
+            label: "益富閣",
+            value: "SHT0010"
+          },
+          {
+            label: "安定樓",
+            value: "SHT0011"
+          },
+          {
+            label: "德安樓 ",
+            value: "SHT0012"
+          },
+          {
+            label: "嘉全樓 ",
+            value: "SHT0013"
+          },
+          {
+            label: "祥豐大樓",
+            value: "SHT0014"
+          },
+          {
+            label: "松柏樓",
+            value: "SHT0015"
+          },
+          {
+            label: "麗明樓",
+            value: "SHT0016"
+          },
+          {
+            label: "名城",
+            value: "SHT0017"
+          },
+          {
+            label: "好運中心",
+            value: "SHT0018"
+          },
+          {
+            label: "帝堡城",
+            value: "SHT0019"
+          },
+          {
+            label: "欣廷軒 ",
+            value: "SHT0020"
+          },
+          {
+            label: "新城市廣場 ",
+            value: "SHT0021"
+          },
+          {
+            label: "博康村 ",
+            value: "SHT0022"
+          },
+          {
+            label: "沙田廣埸 ",
+            value: "SHT0023"
+          },
+          {
+            label: "皇御居",
+            value: "SHT0024"
+          },
+          {
+            label: "金輝樓",
+            value: "SHT0025"
+          },
+          {
+            label: "立和樓",
+            value: "SHT0026"
+          },
+          {
+            label: "積信樓",
+            value: "SHT0027"
+          },
+          {
+            label: "葵偉樓",
+            value: "SHT0028"
+          },
+          {
+            label: "美綸樓",
+            value: "SHT0029"
+          },
+          {
+            label: "耀寶大廈",
+            value: "SHT0030"
+          },
+          {
+            label: "金獅花園",
+            value: "SHT0031"
+          },
+          {
+            label: "花園城",
+            value: "SHT0032"
+          },
+          {
+            label: "偉華中心 ",
+            value: "SHT0033"
+          },
+          {
+            label: "金禧花園",
+            value: "SHT0034"
+          },
+          {
+            label: "嘉田苑",
+            value: "SHT0035"
+          },
+          {
+            label: "美松苑",
+            value: "SHT0036"
+          },
+          {
+            label: "豐景花園 ",
+            value: "SHT0037"
+          },
+          {
+            label: "文禮閣",
+            value: "SHT0038"
+          },
+          {
+            label: "勵城花園",
+            value: "SHT0039"
+          },
+          {
+            label: "安康樓",
+            value: "SHT0040"
+          },
+          {
+            label: "樹德樓",
+            value: "SHT0041"
+          },
+          {
+            label: "怡翠花園",
+            value: "SHT0042"
+          },
+          {
+            label: "積富樓",
+            value: "SHT0043"
+          },
+          {
+            label: "沙田豪苑",
+            value: "SHT0044"
+          },
+          {
+            label: "穗禾苑",
+            value: "SHT0045"
+          },
+          {
+            label: "愉翠苑",
+            value: "SHT0046"
+          },
+          {
+            label: "翠華花園",
+            value: "SHT0047"
+          }
+        ] // End of 沙田屋苑
+      }
+    ] // End of Children of 新界區
+  } // End of 新界
+]; // End of Districk
 
-
-export {DISTRICK};
+export { DISTRICK };
 
 /*
 const DISTRICK = [{

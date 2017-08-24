@@ -4,16 +4,16 @@ import React from 'react'
 import moment from 'moment';
 //import 'moment/locale/zh-cn';
 //import {propertys} from 'propertysViewModel'
-import {SingleBuyPropertyForMatchViewWrapper} from '../singlePropertyView/singleBuyPropertyForMatchView'
+import {SingleBuyAgentPropertyForRespondViewWrapper} from '../singlePropertyView/SingleBuyAgentPropertyForRespondView'
 import { observer } from 'mobx-react';
 //const Item = List.Item;
 //const Brief = Item.Brief;
 
-const NameOfBuilding = [
-  { value: 'MOSDBC', label: '迎海' },
-  { value: 'MOSCTO', label: '第一城' },
-  { value: 'MOSSSC', label: '新港城' },
-];
+// const NameOfBuilding = [
+//   { value: 'MOSDBC', label: '迎海' },
+//   { value: 'MOSCTO', label: '第一城' },
+//   { value: 'MOSSSC', label: '新港城' },
+// ];
 
 @observer
 export class ListOfMatchAgentBuyPropertys extends React.Component {
@@ -48,7 +48,7 @@ export class ListOfMatchAgentBuyPropertys extends React.Component {
       //  if ( b >= c ) {
       //    //console.log( b > c)
        element.push(
-           <SingleBuyPropertyForMatchViewWrapper property={property} key={keyID}/>
+           <SingleBuyAgentPropertyForRespondViewWrapper property={property} key={keyID}/>
          )
     //   }
 

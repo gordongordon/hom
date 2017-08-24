@@ -4,7 +4,7 @@ import React from 'react'
 //import moment from 'moment';
 //import 'moment/locale/zh-cn';
 //import {propertys} from 'propertysViewModel'
-import {SingleSalePropertyForMatchViewWrapper} from '../singlePropertyView/singleSalePropertyForMatchView'
+import {SingleSaleAgentPropertyForRespondViewWrapper} from '../singlePropertyView/SingleSaleAgentPropertyForRespondView'
 import { observer } from 'mobx-react';
 //const Item = List.Item;
 //const Brief = Item.Brief;
@@ -48,7 +48,7 @@ export class ListOfMatchAgentSalePropertys extends React.Component {
       //  if ( b >= c ) {
       //    //console.log( b > c)
        element.push(
-           <SingleSalePropertyForMatchViewWrapper property={property} key={keyID}/>
+           <SingleSaleAgentPropertyForRespondViewWrapper property={property} key={keyID}/>
          )
     //   }
 
