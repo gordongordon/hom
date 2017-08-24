@@ -120,7 +120,7 @@ module.exports = {
       {
         test: /\.(svg)$/i,
         //test: /\.(svg)$/,
-        loader: 'svg-sprite',
+        loader: 'svg-sprite-loader',
         include: svgDirs,  // 把 svgDirs 路径下的所有 svg 文件交给 svg-sprite-loader 插件处理        
         // loader: "svg-sprite-loader",
         // include: [

@@ -48,12 +48,12 @@ export default class NavigationBar extends React.Component {
        })
      }
 
-
      this.setState({
        visible: false,
        selected: opt.props.value,
      });
    };
+
    handleVisibleChange = (visible) => {
      this.setState({
        visible,

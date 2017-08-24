@@ -16,7 +16,6 @@ import {Propertyhk} from 'propertyhk'
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import { observer } from 'mobx-react';
-import {Testobject} from 'testobject';
 import MobxStore from 'mobxStore'
 import views from 'views'
 // 如果不是使用 List.Item 作为 children

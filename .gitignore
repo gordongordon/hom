@@ -2,5 +2,7 @@ node_modules
 dist
 other
 public/*.json
+public/*.hot*
+coverage
 npm-debug.log
 .DS_Store

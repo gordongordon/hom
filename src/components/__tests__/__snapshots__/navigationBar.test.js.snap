@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`From display 1`] = `
+<div>
+  <div
+    className="am-navbar am-navbar-light"
+  >
+    <div
+      className="am-navbar-left"
+      onClick={[Function]}
+      role="button"
+    >
+      <span
+        aria-hidden="true"
+        className="am-navbar-left-icon"
+      >
+        <svg
+          className="am-icon am-icon-false am-icon-md"
+          style={undefined}
+        >
+          <use
+            xlinkHref="#false"
+          />
+        </svg>
+      </span>
+      <span
+        className="am-navbar-left-content"
+      />
+    </div>
+    <div
+      className="am-navbar-title"
+    >
+      none
+      ,
+      HoMatching
+    </div>
+    <div
+      className="am-navbar-right"
+    >
+      <div>
+        <div
+          onBlur={undefined}
+          onClick={[Function]}
+          onFocus={undefined}
+          onMouseDown={[Function]}
+          onMouseEnter={undefined}
+          onMouseLeave={undefined}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "height": "100%",
+              "marginRight": "-0.3rem",
+              "padding": "0 0.3rem",
+            }
+          }
+        >
+          <span>
+            請登入
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
