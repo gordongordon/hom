@@ -640,18 +640,30 @@ export class Property {
     p.numOfRoom = v.numOfRoom;
     p.numOfBathroom = v.numOfBathroom;
     p.numOfLivingroom = v.numOfLivingroom;
-    p.numOfPeopleLiving = v.numOfPeopleLiving), (p.contactName = v.contactName), (p.contactPhone =
-      v.contactPhone), (p.contactEmail =
-      v.contactEmail), (p.numOfDayClosingDeal = // Sale Property
-      v.numOfDayClosingDeal), (p.isSaleWithLease = //            isViewAble : v.isViewAble, //            isNegotiable : v.isNegotiable,
-      v.isSaleWithLease), (p.isNegotiable = // lease property
-      v.isNegotiable), (p.isViewAble = v.isViewAble), (p.isPreferPayAnnually =
-      v.isPreferPayAnnually), (p.hasHomeHardware =
-      v.hasHomeHardware), (p.jobNature = v.jobNature), (p.isViewAbleNow =
-      v.isViewAbleNow), (p.isRentAbleNow =
-      v.isRentAbleNow), (p.isFreeForSevenDay = v.isFreeForSevenDay), (p.dueDay = //earlyTimeToView : this.earlyTimeToView.toJSON(), //            dueDay : this.dueDay.toJSON(),
-      v.dueDay), (p.earlyTimeToView = v.earlyTimeToView), (p.income =
-      v.income), (p.isBuyWithLease = v.isBuyWithLease);
+    p.numOfPeopleLiving = v.numOfPeopleLiving;
+    p.contactName = v.contactName;
+    p.contactPhone = v.contactPhone;
+    p.contactEmail = v.contactEmail;
+    p.numOfDayClosingDeal = v.numOfDayClosingDeal;
+    
+    // Sale Property
+    p.isSaleWithLease = v.isSaleWithLease;
+    //            isViewAble : v.isViewAble,
+    //            isNegotiable : v.isNegotiable,
+    p.isNegotiable = v.isNegotiable;
+    // lease property
+    p.isViewAble = v.isViewAble;
+    p.isPreferPayAnnually = v.isPreferPayAnnually;
+    p.hasHomeHardware = v.hasHomeHardware;
+    p.jobNature = v.jobNature;
+    p.isViewAbleNow = v.isViewAbleNow;
+    p.isRentAbleNow = v.isRentAbleNow;
+    p.isFreeForSevenDay = v.isFreeForSevenDay;
+    p.dueDay = v.dueDay;
+    //earlyTimeToView : this.earlyTimeToView.toJSON(), //            dueDay : this.dueDay.toJSON(),
+    p.earlyTimeToView = v.earlyTimeToView;
+    p.income = v.income;
+    p.isBuyWithLease = v.isBuyWithLease;
 
     return p;
   }

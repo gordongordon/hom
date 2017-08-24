@@ -76,9 +76,9 @@ export class Propertyhk extends Property {
     }
 
     console.log(
-      `property.hk orderByChild ${this.orderByChild} equalTo ${this
-        .equalTo} id ${this.fbid}`
+      `property.hk orderByChild ${this.orderByChild} equalTo ${this.equalTo} id ${this.fbid}`
     );
+    
     // Handle match propertys
     fb
       .orderByChild(this.orderByChild)

@@ -111,7 +111,9 @@
       "build",
       "public",
       "other",
-      "dist"
+      "dist",
+      "src/nonuse",
+      "src/chatbot"
     ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.js?(x)",
@@ -131,8 +133,7 @@
       "^.+\\.js$": "babel-jest"
     },
     "transformIgnorePatterns": [
-      "node_modules/",
-      "node_modules/antd-mobile/lib/icon/index.web.js"
+      "node_modules/"
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
