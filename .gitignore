@@ -1,6 +1,7 @@
 node_modules
 dist
 other
+src/styles
 public/*.json
 public/*.hot*
 coverage

@@ -1,6 +1,6 @@
 import {Property} from 'property'
 import moment from 'moment'
-
+//import firebase from 'firebase';
 
 describe('mobx property component', () => {
 

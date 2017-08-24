@@ -2,6 +2,7 @@ import { observable, computed, action } from "mobx";
 import { Fb } from "firebase-store";
 import { toJS } from "mobx";
 import { Property } from "property";
+
 // import moment from 'moment'
 
 // List of user properties, to be .on
@@ -78,7 +79,7 @@ export class Propertyhk extends Property {
     console.log(
       `property.hk orderByChild ${this.orderByChild} equalTo ${this.equalTo} id ${this.fbid}`
     );
-    
+
     // Handle match propertys
     fb
       .orderByChild(this.orderByChild)
