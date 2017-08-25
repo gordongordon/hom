@@ -130,8 +130,13 @@ class FormAgentFilter extends React.Component {
 
     // const id2 = Fb.propertys.push().key;
     // Fb.propertys.update( {[id2]:  p.serialize() })
-    MobxStore.router.goTo(views.matchAgent, { keyID: id })
+    //MobxStore.router.goTo(views.matchAgent, { keyID: id })
 
+    MobxStore.router.goTo(views.matchAgent, {
+      keyID: id,
+      typeTo: "buy",
+      selectedSegmentIndex: 0  // Default typeBy Open
+    });
 
     return id;
 

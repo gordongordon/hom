@@ -66,7 +66,7 @@ class SingleLeaseAgentPropertyForRespondView extends React.Component {
         extra={<Badge text={property.typeByFollowUpLabel} />}
         arrow="horizontal"
           onClick={() =>
-            MobxStore.router.goTo(views.leaseAgentForm, {
+            MobxStore.router.goTo(views.rentAgentForm, {
               keyID: property.fbid,
               typeTo: property.typeTo,
               filterID: this.props.filterID

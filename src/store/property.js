@@ -509,6 +509,7 @@ export class Property {
   }
   @computed 
   get typeByFollowUpLabel() {
+
     if ( this.typeBy === "open") {
       return "即時回覆"
     } else if ( this.typeBy === "engage") {

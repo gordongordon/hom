@@ -115,7 +115,6 @@ export class ListOfAgentPropertysView extends React.Component {
                 wrap="true"
                 multipleLine >
                 {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{info}<br />
-                {keyID}<br />
 
                 <Badge text="减" hot style={{ marginLeft: 12 }} />
                 <Badge text="惠" hot style={{ marginLeft: 12 }} />

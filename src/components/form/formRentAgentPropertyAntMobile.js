@@ -13,6 +13,8 @@ import {PARTITION} from 'PARTITION';
 import {DISTRICK} from 'DISTRICK';
 import {Fb} from 'firebase-store'
 import {Property} from 'property'
+import { propertys } from "propertysViewModel";
+
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import MobxStore from 'mobxStore'
@@ -228,6 +230,7 @@ class FormRentAgentPropertyAntMobile extends React.Component {
     //   <List.Item arrow="horizontal">大廈/屋苑</List.Item>
     // </Picker>
 
+    console.log( MobxStore.router.params.keyID )
     const property = propertys.propertys.get(MobxStore.router.params.keyID);
     const addressArray = property.addressToArray;
     const partitionArray = property.partitionToArray;

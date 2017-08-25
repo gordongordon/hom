@@ -13,6 +13,8 @@ import {DISTRICK}  from 'DISTRICK';
 import {Fb} from 'firebase-store'
 import {Property} from 'property'
 import {Propertyhk} from 'propertyhk'
+import { propertys } from "propertysViewModel";
+
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import { observer } from 'mobx-react';

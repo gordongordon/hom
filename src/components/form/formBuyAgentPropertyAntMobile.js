@@ -17,6 +17,8 @@ import {DISTRICK} from 'DISTRICK';
 
 import {Fb} from 'firebase-store'
 import {Property} from 'property'
+import { propertys } from "propertysViewModel";
+
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import MobxStore from 'mobxStore'
@@ -162,7 +164,7 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
     p.typeFor = "sale"
     p.typeTo = "buy"
     p.fbid = id;
-    p.typeBy = "engage"
+    p.typeBy = "engage";
     p.relatedFbid = MobxStore.router.params.keyID;
 
     Fb.app.agentBuyRef.update( {[id]:  p.serialize() });
