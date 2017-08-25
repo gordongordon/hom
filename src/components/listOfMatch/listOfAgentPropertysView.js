@@ -134,12 +134,12 @@ export class ListOfAgentPropertysView extends React.Component {
                     border: '1px solid #f19736',
                   }}
                 />
-                </Brief>
+                </Brief>{keyID}
               </Item>
-              <Item>
-              {keyID}
-              </Item>
-            </SwipeAction></div>
+            </SwipeAction>
+            <WhiteSpace size="sm" />
+            
+            </div>
         )
       }  // end of buy
 
@@ -185,12 +185,12 @@ export class ListOfAgentPropertysView extends React.Component {
               })} 
               multipleLine >
                 {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{info}</Brief>
+                {keyID}
               </Item>
-              <Item>
-              {keyID}
-              </Item>
-
-            </SwipeAction></div>
+            </SwipeAction>
+            <WhiteSpace size="sm" />
+            
+            </div>
         )
       }  // end of sale
 
@@ -240,11 +240,11 @@ export class ListOfAgentPropertysView extends React.Component {
               multipleLine
               >
                 {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{info}</Brief>
+                {keyID}
               </Item>
-              <Item>
-              {keyID}
-              </Item>
-            </SwipeAction></div>
+            </SwipeAction>
+            <WhiteSpace size="sm" />
+            </div>
         )
       }  // end of rent
 
@@ -292,11 +292,11 @@ export class ListOfAgentPropertysView extends React.Component {
                 
                  multipleLine >
                 {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{ info }</Brief>
-              </Item>
-              <Item>
-              {keyID}
+                {keyID}
               </Item>
             </SwipeAction>
+            <WhiteSpace size="sm" />
+            
           </div>
         )
       }  // end of lease
