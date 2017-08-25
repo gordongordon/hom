@@ -136,6 +136,9 @@ export class ListOfAgentPropertysView extends React.Component {
                 />
                 </Brief>
               </Item>
+              </Item>
+              {keyID}
+              <Item>
             </SwipeAction></div>
         )
       }  // end of buy
@@ -181,8 +184,12 @@ export class ListOfAgentPropertysView extends React.Component {
                 
               })} 
               multipleLine >
-                {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{info}</Brief>{keyID}
+                {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{info}</Brief>
               </Item>
+              </Item>
+              {keyID}
+              <Item>
+
             </SwipeAction></div>
         )
       }  // end of sale
@@ -232,8 +239,11 @@ export class ListOfAgentPropertysView extends React.Component {
             thumb="http://hair.losstreatment.com/icons/building-down.svg"
               multipleLine
               >
-                {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{info}</Brief>{keyID}
+                {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{info}</Brief>
               </Item>
+              </Item>
+              {keyID}
+              <Item>
             </SwipeAction></div>
         )
       }  // end of rent
@@ -281,7 +291,10 @@ export class ListOfAgentPropertysView extends React.Component {
                  thumb="http://hair.losstreatment.com/icons/rent-up.svg"
                 
                  multipleLine >
-                {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{ info }</Brief>{keyID}
+                {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{ info }</Brief>
+              </Item>
+              {keyID}
+              <Item>
               </Item>
             </SwipeAction>
           </div>
