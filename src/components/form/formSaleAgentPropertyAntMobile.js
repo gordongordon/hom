@@ -203,12 +203,7 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
   render() {
     const { getFieldProps } = this.props.form;
     // var {fbid, salePrice, nameOfbuilding, addressRegion, addressLocation} = MobxStore.router.params;
-    var property = propertys.propertys.get(MobxStore.router.params.keyID);
-
-    //    debugger
-    //var property = MobxStore.router.params.fbid;
-    //var property = MobxStore.router.params.property;
-    // console.log( "fbid", fbid )
+    const property = propertys.propertys.get(MobxStore.router.params.keyID);
     const addressArray = property.addressToArray;
     const partitionArray = property.partitionToArray;
 

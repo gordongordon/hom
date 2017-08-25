@@ -203,6 +203,10 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
       { value: 2, label: '包管理費' },
     ];
 
+    const property = propertys.propertys.get(MobxStore.router.params.keyID);
+    const addressArray = property.addressToArray;
+    const partitionArray = property.partitionToArray;
+
 
 
     // For DatePicker
@@ -216,7 +220,7 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
       <List style={{ backgroundColor: 'white' }} className="picker-list">
 
         <Picker data={DISTRICK} cols={3} {...getFieldProps('districk', {
-            initialValue: ['NTTV','MOS','MOS0001'],
+            initialValue: addressArray,
           })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
           <List.Item arrow="horizontal">大廈/屋苑</List.Item>
         </Picker>
@@ -277,7 +281,7 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
                   title="選擇間隔"
                   cascade={false}
                   {...getFieldProps('partition', {
-                      initialValue: ['0', '1', '1'],
+                      initialValue: partitionArray,
                   })}
                   extra="選擇間隔"
                   onOk={e => console.log('ok', e)}

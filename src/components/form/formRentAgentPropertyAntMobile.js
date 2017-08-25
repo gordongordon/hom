@@ -226,6 +226,11 @@ class FormRentAgentPropertyAntMobile extends React.Component {
     //   <List.Item arrow="horizontal">大廈/屋苑</List.Item>
     // </Picker>
 
+    const property = propertys.propertys.get(MobxStore.router.params.keyID);
+    const addressArray = property.addressToArray;
+    const partitionArray = property.partitionToArray;
+
+
     // For DatePicker
     const minDate = moment().locale('zh-cn').utcOffset(8);
     const maxDate = moment(minDate).add(6, 'M');
@@ -234,7 +239,7 @@ class FormRentAgentPropertyAntMobile extends React.Component {
       <List style={{ backgroundColor: 'white' }} className="picker-list">
 
       <Picker data={DISTRICK} cols={3} {...getFieldProps('districk', {
-          initialValue: ['NTTV','MOS','MOS0001'],
+          initialValue: addressArray,
         })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
         <List.Item arrow="horizontal">大廈/屋苑</List.Item>
       </Picker>
