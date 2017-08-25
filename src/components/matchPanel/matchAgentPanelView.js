@@ -81,15 +81,18 @@ class MatchAgentPanelView extends React.Component {
   constructor(props) {
     super(props);
 
+
     this.state = {
       disabled: false,
+
       selectedSegmentIndex: MobxStore.router.params.selectedSegmentIndex,
-      selectedTabBar: 0,
+//      selectedTabBar: 0,
       id: MobxStore.router.params.keyID,
       selectedTab: MobxStore.router.params.typeTo,
       hidden: false
     };
 
+    //debugger
     this.onChange = this.onChange.bind(this);
     this.renderList = this.renderList.bind(this);
     // this.onChangeEarlyTimeToView = this.onChangeEarlyTimeToView.bind(this);
@@ -217,7 +220,7 @@ class MatchAgentPanelView extends React.Component {
             onPress={() => {
               this.setState({
                 selectedTab: "buy",
-                selectedTabBar: 0
+ //               selectedTabBar: 0
               });
               Fb.app.agentsFilterRef
                 .child(this.state.id)
@@ -239,7 +242,7 @@ class MatchAgentPanelView extends React.Component {
             onPress={() => {
               this.setState({
                 selectedTab: "sale",
-                selectedTabBar: 1
+                //selectedTabBar: 1
               });
               Fb.app.agentsFilterRef
                 .child(this.state.id)
@@ -259,12 +262,12 @@ class MatchAgentPanelView extends React.Component {
             }}
             title="租客"
             key="朋友"
-            dot
+            badge={ this.state.selectedTab === "rent" ? property.matchedPropertys.size : 0 }
             selected={this.state.selectedTab === "rent"}
             onPress={() => {
               this.setState({
                 selectedTab: "rent",
-                selectedTabBar: 2
+              //  selectedTabBar: 2
               });
               Fb.app.agentsFilterRef
                 .child(this.state.id)
@@ -287,10 +290,11 @@ class MatchAgentPanelView extends React.Component {
             title="房東"
             key="我的"
             selected={this.state.selectedTab === "lease"}
+            badge={ this.state.selectedTab === "lease" ? property.matchedPropertys.size : 0 }
             onPress={() => {
               this.setState({
                 selectedTab: "lease",
-                selectedTabBar: 3
+            //    selectedTabBar: 3
               });
               Fb.app.agentsFilterRef
                 .child(this.state.id)

@@ -186,7 +186,7 @@ const views = {
       }
   }),
   matchAgent: new Route({
-      path: '/matchAgent/:keyID/:typeTo',
+      path: '/matchAgent/:selectedSegmentIndex/:keyID/:typeTo',
       component: <MatchAgentPanelViewWrapper />,
       onEnter: (route, params, store, queryParams) => {
       	console.log('third.current query params are -> ', queryParams);

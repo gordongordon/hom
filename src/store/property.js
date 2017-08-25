@@ -498,6 +498,13 @@ export class Property {
     return "x廁";
   }
 
+  @computed 
+  get typeByLabel() {
+    if ( this.typeBy === "open") {
+      return "等待回覆 "
+    }
+    return "已跟進 "
+  }
   @computed
   get hasHomeHardwareLabel() {
     if (this.hasHomeHardware) {
@@ -506,6 +513,13 @@ export class Property {
 
     return "";
   }
+
+  // @computed
+  // get agentSelectedSegmentIndex() {
+  //   if ( this.typeBy === 'open' ) {
+
+  //   }
+  // }
 
   @computed
   get leasePriceLabel() {

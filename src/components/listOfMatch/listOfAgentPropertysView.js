@@ -52,6 +52,7 @@ export class ListOfAgentPropertysView extends React.Component {
 
     console.log('list size ', list.size)
     var element = [];
+
     list.forEach((property, keyID) => {
       var p;    // property from matched property, if any
       var info; // Message
@@ -67,7 +68,7 @@ export class ListOfAgentPropertysView extends React.Component {
 
       //}
   
-      if (property.typeTo === 'lease') {
+     if (property.typeTo === 'buy') {
         element.push(
           <div key={keyID}>
             <SwipeAction
@@ -101,110 +102,14 @@ export class ListOfAgentPropertysView extends React.Component {
               onClose={() => console.log('global close')}
             >
               <Item 
-                 extra={<Badge size="large" text={property.matchedPropertys.size} overflowCount={99} />} 
-                 arrow="horizontal" 
-                 onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID , 
-                  typeTo : property.typeTo,
-                  selectedSegmentIndex : 0
-                })} 
-                 thumb="http://hair.losstreatment.com/icons/rent-up.svg"
-                
-                 multipleLine >
-                {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{ info }</Brief>{keyID}
-              </Item>
-            </SwipeAction>
-          </div>
-        )
-      }  // end of lease
-
-
-      if (property.typeTo === 'rent') {
-        element.push(
-          <div key={keyID}>
-            <SwipeAction
-              style={{ backgroundColor: 'gray' }}
-              autoClose
-              right={[
-                {
-                  text: 'Cancel',
-                  onPress: () => console.log('cancel'),
-                  style: { backgroundColor: '#ddd', color: 'white' },
-                },
-                {
-                  text: 'Delete',
-                  onPress: () => { this.successToast(); model.del(keyID); },
-                  style: { backgroundColor: '#F4333C', color: 'white' },
-                },
-              ]}
-              left={[
-                {
-                  text: 'Reply',
-                  onPress: () => console.log('reply'),
-                  style: { backgroundColor: '#108ee9', color: 'white' },
-                },
-                {
-                  text: 'Cancel',
-                  onPress: () => console.log('cancel'),
-                  style: { backgroundColor: '#ddd', color: 'white' },
-                },
-              ]}
-              onOpen={() => console.log('global open')}
-              onClose={() => console.log('global close')}
-            >
-              <Item extra={<Badge size="lg" text={property.matchedPropertys.size} overflowCount={99} />} 
-              arrow="horizontal" 
-              onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID, 
-                typeTo : property.typeTo,
-                selectedSegmentIndex : 0
-              })} 
-            thumb="http://hair.losstreatment.com/icons/building-down.svg"
-              multipleLine
-              >
-                {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{info}</Brief>{keyID}
-              </Item>
-            </SwipeAction></div>
-        )
-      }  // end of rent
-      if (property.typeTo === 'buy') {
-        element.push(
-          <div key={keyID}>
-            <SwipeAction
-              style={{ backgroundColor: 'gray' }}
-              autoClose
-              right={[
-                {
-                  text: 'Cancel',
-                  onPress: () => console.log('cancel'),
-                  style: { backgroundColor: '#ddd', color: 'white' },
-                },
-                {
-                  text: 'Delete',
-                  onPress: () => { this.successToast(); model.del(keyID); },
-                  style: { backgroundColor: '#F4333C', color: 'white' },
-                },
-              ]}
-              left={[
-                {
-                  text: 'Reply',
-                  onPress: () => console.log('reply'),
-                  style: { backgroundColor: '#108ee9', color: 'white' },
-                },
-                {
-                  text: 'Cancel',
-                  onPress: () => console.log('cancel'),
-                  style: { backgroundColor: '#ddd', color: 'white' },
-                },
-              ]}
-              onOpen={() => console.log('global open')}
-              onClose={() => console.log('global close')}
-            >
-              <Item 
-              extra={<Badge size="large" text={property.matchedPropertys.size} 
+              extra={<Badge size="large" text={ property.typeByLabel + property.matchedPropertys.size} 
               overflowCount={99} />} 
                 arrow="horizontal" 
                 onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID, 
                   typeTo : property.typeTo,
-                  selectedSegmentIndex : 0
+                  // Routing either Open or engage
+                  selectedSegmentIndex : property.typeBy === "open"? 0 : 1
+                  
                 })} 
                 thumb="http://hair.losstreatment.com/icons/building-up.svg"
                 wrap="true"
@@ -268,11 +173,12 @@ export class ListOfAgentPropertysView extends React.Component {
               onOpen={() => console.log('global open')}
               onClose={() => console.log('global close')}
             >
-              <Item extra={<Badge size="large" text={property.matchedPropertys.size} overflowCount={99} />} 
+              <Item extra={<Badge size="large" text={property.typeByLabel + property.matchedPropertys.size} overflowCount={99} />} 
               thumb="http://hair.losstreatment.com/icons/rent.svg"
               arrow="horizontal" 
               onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID, typeTo : property.typeTo,
-                selectedSegmentIndex : 0
+                selectedSegmentIndex : property.typeBy === "open"? 0 : 1
+                
               })} 
               multipleLine >
                 {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{info}</Brief>{keyID}
@@ -280,6 +186,109 @@ export class ListOfAgentPropertysView extends React.Component {
             </SwipeAction></div>
         )
       }  // end of sale
+
+      
+
+      if (property.typeTo === 'rent') {
+        element.push(
+          <div key={keyID}>
+            <SwipeAction
+              style={{ backgroundColor: 'gray' }}
+              autoClose
+              right={[
+                {
+                  text: 'Cancel',
+                  onPress: () => console.log('cancel'),
+                  style: { backgroundColor: '#ddd', color: 'white' },
+                },
+                {
+                  text: 'Delete',
+                  onPress: () => { this.successToast(); model.del(keyID); },
+                  style: { backgroundColor: '#F4333C', color: 'white' },
+                },
+              ]}
+              left={[
+                {
+                  text: 'Reply',
+                  onPress: () => console.log('reply'),
+                  style: { backgroundColor: '#108ee9', color: 'white' },
+                },
+                {
+                  text: 'Cancel',
+                  onPress: () => console.log('cancel'),
+                  style: { backgroundColor: '#ddd', color: 'white' },
+                },
+              ]}
+              onOpen={() => console.log('global open')}
+              onClose={() => console.log('global close')}
+            >
+              <Item extra={<Badge size="lg" text={property.typeByLabel + property.matchedPropertys.size} overflowCount={99} />} 
+              arrow="horizontal" 
+              onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID, 
+                typeTo : property.typeTo,
+                selectedSegmentIndex : property.typeBy === "open"? 0 : 1
+                
+              })} 
+            thumb="http://hair.losstreatment.com/icons/building-down.svg"
+              multipleLine
+              >
+                {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{info}</Brief>{keyID}
+              </Item>
+            </SwipeAction></div>
+        )
+      }  // end of rent
+
+      if (property.typeTo === 'lease') {
+        element.push(
+          <div key={keyID}>
+            <SwipeAction
+              style={{ backgroundColor: 'gray' }}
+              autoClose
+              right={[
+                {
+                  text: 'Cancel',
+                  onPress: () => console.log('cancel'),
+                  style: { backgroundColor: '#ddd', color: 'white' },
+                },
+                {
+                  text: 'Delete',
+                  onPress: () => { this.successToast(); model.del(keyID); },
+                  style: { backgroundColor: '#F4333C', color: 'white' },
+                },
+              ]}
+              left={[
+                {
+                  text: 'Reply',
+                  onPress: () => console.log('reply'),
+                  style: { backgroundColor: '#108ee9', color: 'white' },
+                },
+                {
+                  text: 'Cancel',
+                  onPress: () => console.log('cancel'),
+                  style: { backgroundColor: '#ddd', color: 'white' },
+                },
+              ]}
+              onOpen={() => console.log('global open')}
+              onClose={() => console.log('global close')}
+            >
+              <Item 
+                 extra={<Badge size="large" text={property.typeByLabel + property.matchedPropertys.size} overflowCount={99} />} 
+                 arrow="horizontal" 
+                 onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID , 
+                  typeTo : property.typeTo,
+                  selectedSegmentIndex : property.typeBy === "open"? 0 : 1
+                })} 
+                 thumb="http://hair.losstreatment.com/icons/rent-up.svg"
+                
+                 multipleLine >
+                {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{ info }</Brief>{keyID}
+              </Item>
+            </SwipeAction>
+          </div>
+        )
+      }  // end of lease
+
+
 
     })
     return <div>{element.reverse()}</div>
