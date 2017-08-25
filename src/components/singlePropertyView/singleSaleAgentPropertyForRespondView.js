@@ -65,8 +65,8 @@ class SingleSaleAgentPropertyForRespondView extends React.Component {
     return (
       <div>
         <Item
-          extra={<Badge text={"即時回覆"} />}
-          arrow="horizontal"
+        extra={<Badge text={property.typeByFollowUpLabel} />}
+        arrow="horizontal"
           onClick={() =>
             MobxStore.router.goTo(views.leaseAgentForm, {
                 keyID: property.fbid,

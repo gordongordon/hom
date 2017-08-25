@@ -505,6 +505,15 @@ export class Property {
     }
     return "已跟進 "
   }
+  @computed 
+  get typeByFollowUpLabel() {
+    if ( this.typeBy === "open") {
+      return "即時回覆 "
+    }
+    return "更新內容 "
+  }
+
+  更新內容
   @computed
   get hasHomeHardwareLabel() {
     if (this.hasHomeHardware) {

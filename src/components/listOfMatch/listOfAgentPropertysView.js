@@ -137,7 +137,6 @@ export class ListOfAgentPropertysView extends React.Component {
                 </Brief>{keyID}
               </Item>
             </SwipeAction>
-            <WhiteSpace size="sm" />
             
             </div>
         )
@@ -188,7 +187,6 @@ export class ListOfAgentPropertysView extends React.Component {
                 {keyID}
               </Item>
             </SwipeAction>
-            <WhiteSpace size="sm" />
             
             </div>
         )
@@ -243,7 +241,6 @@ export class ListOfAgentPropertysView extends React.Component {
                 {keyID}
               </Item>
             </SwipeAction>
-            <WhiteSpace size="sm" />
             </div>
         )
       }  // end of rent
@@ -295,8 +292,6 @@ export class ListOfAgentPropertysView extends React.Component {
                 {keyID}
               </Item>
             </SwipeAction>
-            <WhiteSpace size="sm" />
-            
           </div>
         )
       }  // end of lease
