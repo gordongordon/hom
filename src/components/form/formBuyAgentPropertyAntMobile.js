@@ -17,7 +17,7 @@ import {DISTRICK} from 'DISTRICK';
 
 import {Fb} from 'firebase-store'
 import {Property} from 'property'
-import { propertys } from "propertysViewModel";
+import { propertys } from "userModelView";
 
 import moment from 'moment';
 import 'moment/locale/zh-cn';
@@ -47,14 +47,14 @@ const CustomChildren = props => (
 
 const CheckboxItem = Checkbox.CheckboxItem;
 
-const roomKey = {
-  '0' : '開放式',
-  '1' : '1房',
-  '2' : '2房',
-  '3' : '3房',
-  '4' : '4房',
-  '5' : '5房',
-}
+// const roomKey = {
+//   '0' : '開放式',
+//   '1' : '1房',
+//   '2' : '2房',
+//   '3' : '3房',
+//   '4' : '4房',
+//   '5' : '5房',
+// }
 
 class FormBuyAgentPropertyAntMobile extends React.Component {
 
@@ -219,14 +219,16 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
         console.log(`${name}: ${value}`);
       }; }
 
-      const property = propertys.propertys.get(MobxStore.router.params.keyID);
-      const addressArray = property.addressToArray;
-      const partitionArray = property.partitionToArray;
-  
+      //const property = propertys.propertys.get(MobxStore.router.params.keyID);
 
-      // For DatePicker
-      const minDate = moment().locale('zh-cn').utcOffset(8);
-      const maxDate = moment(minDate).add(6, 'M');
+    // Get the last property to generate default form values
+    const property = MobxStore.app.lastProperty;
+    const addressArray = property.addressToArray;
+    const partitionArray = property.partitionToArray;
+  
+    // For DatePicker
+    const minDate = moment().locale('zh-cn').utcOffset(8);
+    const maxDate = moment(minDate).add(6, 'M');
 
       //return <ChatBot steps={FormSaleChatbot} />;
 

@@ -10,7 +10,7 @@ const TabPane = Tabs.TabPane;
 
 // import moment from 'moment';
 // import 'moment/locale/zh-cn';
-//import {propertys} from 'propertysViewModel'
+//import {propertys} from 'userModelView'
 
 // const Item = List.Item;
 // const Brief = Item.Brief;

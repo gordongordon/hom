@@ -3,7 +3,7 @@ import { List , Toast, NoticeBar , Icon, Card, SwipeAction, Stepper, Picker, Dat
 import { createForm } from 'rc-form';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
-import {propertys} from 'propertysViewModel'
+import {propertys} from 'userModelView'
 import { observer } from 'mobx-react';
 import MobxStore from 'mobxStore';
 import views from 'views';
@@ -45,7 +45,7 @@ export class ListOfPropertysView extends React.Component {
   }
 
   /**
-   * model is propertysViewModel, use to handle all functions , e.g. del
+   * model is userModelView, use to handle all functions , e.g. del
    * propertys is list of propertys for this user
    * h is a callback to handle next route wiht keyID
    */

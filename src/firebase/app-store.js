@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import MobxStore from 'mobxStore'
-import {propertys} from 'propertysViewModel'
+import {propertys} from 'userModelView'
 import {agentModel} from 'agentModelView'
 
 
@@ -34,7 +34,7 @@ export default class AppStore {
        this.agentRentRef = firebase.database().ref(`agents/${uid}/rent`);
        this.agentLeaseRef = firebase.database().ref(`agents/${uid}/lease`);
        
-       // init propertysViewModel, for mobx,
+       // init userModelView, for mobx,
        // can't be used inside constructor
        // when app start will call an empty constructor
        propertys.init();

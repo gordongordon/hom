@@ -3,7 +3,7 @@ import {  NoticeBar,List , Card, Stepper, Icon, Picker, SwipeAction, DatePicker,
 import { createForm } from 'rc-form';
 // import moment from 'moment';
 // import 'moment/locale/zh-cn';
-import {propertys} from 'propertysViewModel'
+import {propertys} from 'userModelView'
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 //import {SingleRentPropertyForMatchViewWrapper} from 'singleRentPropertyForMatchView'
 import {ControlSaleViewWrapper} from '../control/controlSaleView'
@@ -83,7 +83,7 @@ class MatchSalePanelView extends React.Component {
         // const minDate = moment().locale('zh-cn').utcOffset(8);
         // const maxDate = moment(minDate).add(6, 'M');
         if ( propertys === undefined ) {
-          console.log( 'check error in propertysViewModel without reference after has been modified')
+          console.log( 'check error in userModelView without reference after has been modified')
         }
 
 

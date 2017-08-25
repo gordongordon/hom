@@ -3,7 +3,7 @@ import React from 'react'
 //import { createForm } from 'rc-form';
 //import moment from 'moment';
 //import 'moment/locale/zh-cn';
-//import {propertys} from 'propertysViewModel'
+//import {propertys} from 'userModelView'
 import {SingleLeaseAgentPropertyForRespondViewWrapper} from '../singlePropertyView/SingleLeaseAgentPropertyForRespondView'
 import { observer } from 'mobx-react';
 //const Item = List.Item;
@@ -50,7 +50,7 @@ export class ListOfMatchAgentLeasePropertys extends React.Component {
         const that = this;
 
         if ( propertys === undefined ) {
-          console.log( 'check error in propertysViewModel without reference after has been modified')
+          console.log( 'check error in userModelView without reference after has been modified')
         }
 
     return (

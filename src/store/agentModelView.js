@@ -37,7 +37,7 @@ class AgentModelViewModel {
     return toJS(this.propertys);
   }
 
-  // init propertysViewModel, for mobx,
+  // init userModelView, for mobx,
   // can't be used inside constructor, otherwise error
   // when app start will call an empty constructor
   @action

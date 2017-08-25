@@ -45,7 +45,7 @@ export class ListOfMatchAgentPropertysView extends React.Component {
   }
 
   /**
-   * model is propertysViewModel, use to handle all functions , e.g. del
+   * model is userModelView, use to handle all functions , e.g. del
    * propertys is list of propertys for this user
    * h is a callback to handle next route wiht keyID
    */

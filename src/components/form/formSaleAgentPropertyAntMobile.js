@@ -15,11 +15,9 @@ import { createForm } from "rc-form";
 import { MTR } from "MTR";
 import { PARTITION } from "PARTITION";
 import { DISTRICK } from "DISTRICK";
-
 import { Fb } from "firebase-store";
 import { Property } from "property";
-
-import { propertys } from "propertysViewModel";
+import { propertys } from "userModelView";
 import moment from "moment";
 import "moment/locale/zh-cn";
 import MobxStore from "mobxStore";
@@ -56,14 +54,14 @@ const CustomChildren = props =>
 
 const CheckboxItem = Checkbox.CheckboxItem;
 
-const roomKey = {
-  "0": "開放式",
-  "1": "1房",
-  "2": "2房",
-  "3": "3房",
-  "4": "4房",
-  "5": "5房"
-};
+// const roomKey = {
+//   "0": "開放式",
+//   "1": "1房",
+//   "2": "2房",
+//   "3": "3房",
+//   "4": "4房",
+//   "5": "5房"
+// };
 
 class FormSaleAgentPropertyAntMobile extends React.Component {
   state = {
@@ -205,7 +203,12 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
   render() {
     const { getFieldProps } = this.props.form;
     // var {fbid, salePrice, nameOfbuilding, addressRegion, addressLocation} = MobxStore.router.params;
-    const property = propertys.propertys.get(MobxStore.router.params.keyID);
+//    const property = propertys.propertys.get(MobxStore.router.params.keyID);
+
+    // Get the last property to generate default form values
+    const property = MobxStore.app.lastProperty;
+    console.log( 'p.size', propertys.propertys.size)
+
     const addressArray = property.addressToArray;
     const partitionArray = property.partitionToArray;
 

@@ -1,4 +1,4 @@
-import {propertys} from 'propertysViewModel';
+import {propertys} from 'userModelView';
 
 const store = {
   propertys

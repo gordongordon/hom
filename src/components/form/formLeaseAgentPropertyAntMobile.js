@@ -13,7 +13,7 @@ import {DISTRICK}  from 'DISTRICK';
 import {Fb} from 'firebase-store'
 import {Property} from 'property'
 import {Propertyhk} from 'propertyhk'
-import { propertys } from "propertysViewModel";
+import { propertys } from "userModelView";
 
 import moment from 'moment';
 import 'moment/locale/zh-cn';
@@ -36,14 +36,14 @@ const CustomChildren = props => (
 
 const CheckboxItem = Checkbox.CheckboxItem;
 
-const roomKey = {
-  '0' : '開放式',
-  '1' : '1房',
-  '2' : '2房',
-  '3' : '3房',
-  '4' : '4房',
-  '5' : '5房',
-}
+// const roomKey = {
+//   '0' : '開放式',
+//   '1' : '1房',
+//   '2' : '2房',
+//   '3' : '3房',
+//   '4' : '4房',
+//   '5' : '5房',
+// }
 
 
 // const NameOfBuilding = [
@@ -207,7 +207,8 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
       { value: 2, label: '包管理費' },
     ];
 
-    const property = propertys.propertys.get(MobxStore.router.params.keyID);
+    // Get the last property to generate default form values
+    const property = MobxStore.app.lastProperty;
     const addressArray = property.addressToArray;
     const partitionArray = property.partitionToArray;
 

@@ -10,7 +10,7 @@ const TabPane = Tabs.TabPane;
 
 // import moment from 'moment';
 // import 'moment/locale/zh-cn';
-//import {propertys} from 'propertysViewModel'
+//import {propertys} from 'userModelView'
 
 // const Item = List.Item;
 // const Brief = Item.Brief;
@@ -106,9 +106,10 @@ class ControlAgentView extends React.Component {
     // const location = property.addressLocation;
     // const building = property.nameOfBuilding;
     // const address = [region, location, building]
-    const address = property.addressToArray;
+    //const address = property.addressToArray;
 
-    console.log(`address ${address}`)
+    //console.log(`address ${address}`)
+    const address = property.addressToArray;
     console.log('Single Agent Property property', property)
     var selectedIndex = this.props.selectedIndex;
     const onChange = this.props.onChange;

@@ -13,7 +13,7 @@ import {PARTITION} from 'PARTITION';
 import {DISTRICK} from 'DISTRICK';
 import {Fb} from 'firebase-store'
 import {Property} from 'property'
-import { propertys } from "propertysViewModel";
+import { propertys } from "userModelView";
 
 import moment from 'moment';
 import 'moment/locale/zh-cn';
@@ -55,14 +55,14 @@ const jobNature = [
   },
 ]
 
-const roomKey = {
-  '0' : '開放式',
-  '1' : '1房',
-  '2' : '2房',
-  '3' : '3房',
-  '4' : '4房',
-  '5' : '5房',
-}
+// const roomKey = {
+//   '0' : '開放式',
+//   '1' : '1房',
+//   '2' : '2房',
+//   '3' : '3房',
+//   '4' : '4房',
+//   '5' : '5房',
+// }
 
 // const NameOfBuilding = [
 //   { value: 'MOSDBC', label: '迎海' },
@@ -230,8 +230,10 @@ class FormRentAgentPropertyAntMobile extends React.Component {
     //   <List.Item arrow="horizontal">大廈/屋苑</List.Item>
     // </Picker>
 
-    console.log( MobxStore.router.params.keyID )
-    const property = propertys.propertys.get(MobxStore.router.params.keyID);
+    //console.log( MobxStore.router.params.keyID )
+
+    // Get the last property to generate default form values
+    const property = MobxStore.app.lastProperty;
     const addressArray = property.addressToArray;
     const partitionArray = property.partitionToArray;
 
@@ -258,7 +260,7 @@ class FormRentAgentPropertyAntMobile extends React.Component {
 
       <InputItem
         {...getFieldProps('income', {
-                    initialValue : 13000,
+                    initialValue : 0,
           normalize: (v, prev) => {
             if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
               if (v === '.') {

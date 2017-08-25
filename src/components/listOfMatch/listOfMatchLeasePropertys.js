@@ -3,7 +3,7 @@ import React from 'react'
 //import { createForm } from 'rc-form';
  import moment from 'moment';
 // import 'moment/locale/zh-cn';
-//import {propertys} from 'propertysViewModel'
+//import {propertys} from 'userModelView'
 import {SingleLeasePropertyForMatchViewWrapper} from '../singlePropertyView/singleLeasePropertyForMatchView'
 import { observer } from 'mobx-react';
 //const Item = List.Item;

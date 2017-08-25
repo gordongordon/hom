@@ -1,7 +1,7 @@
 import React from 'react';
 // import {map} from 'lodash';
 import { observer } from 'mobx-react';
-import {propertys} from 'propertysViewModel';
+import {propertys} from 'userModelView';
 //import {SinglePropertyView} from 'singlePropertyView';
 import {SinglePropertyView} from 'singlePropertyViewAntMobile';
 import {SingleCreatePropertyView} from 'singleCreatePropertyViewAntMobile'

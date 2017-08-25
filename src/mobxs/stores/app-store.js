@@ -18,7 +18,8 @@ class AppStore {
 
     uid : null // User Id
     userEmail : 'none'
-    masterKeyID : null // Current Property Id which is working on. 
+    lastProperty: null; // User to pass property object while using goTo
+    //masterKeyID : null // Current Property Id which is working on. 
 
 //    console.log( 'creating MobxStore.app')
   }

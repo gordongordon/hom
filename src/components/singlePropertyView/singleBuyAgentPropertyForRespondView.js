@@ -16,7 +16,7 @@ import {
 import { createForm } from "rc-form";
 //import moment from 'moment';
 //import 'moment/locale/zh-cn';
-import { propertys } from "propertysViewModel";
+import { propertys } from "userModelView";
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 import MobxStore from "mobxStore";
 import views from "views";
@@ -69,6 +69,10 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
     //     }
     // )}
 
+    // repair goTo by passing property
+    MobxStore.app.lastProperty = property
+    
+    
     return (
       <div>
         <Item
@@ -118,7 +122,7 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
                 border: "1px solid #f19736"
               }}
             />
-          </Brief>
+          </Brief>{property.fbid}
         </Item>
         <WhiteSpace size="sm" />
       </div>

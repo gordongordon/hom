@@ -10,9 +10,13 @@ import MobxStore from 'mobxStore';
 
 // List of user properties, to be .on
 // propertyViewModel
-class PropertysViewModel {
+
+// May change a name of UserPropertysViewModel
+class UserModelView {
 
 //  @observable propertys = observable.map({});
+
+  // Use while handling user's property 
   @observable propertys = observable.map({});
   // @observable propertys = new Map();
   //@observable agentPropertys = new Map();
@@ -32,7 +36,7 @@ class PropertysViewModel {
   }
 
 
-  // init propertysViewModel, for mobx,
+  // init userModelView, for mobx,
   // can't be used inside constructor, otherwise error
   // when app start will call an empty constructor
   @action
@@ -166,8 +170,7 @@ class PropertysViewModel {
     //this.agentPropertys.clear();
   };
 
-
 }
 
-const propertys = new PropertysViewModel();
+const propertys = new UserModelView();
 export {propertys};

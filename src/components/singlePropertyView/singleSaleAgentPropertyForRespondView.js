@@ -16,7 +16,7 @@ import {
 import { createForm } from "rc-form";
 //import moment from 'moment';
 //import 'moment/locale/zh-cn';
-import { propertys } from "propertysViewModel";
+import { propertys } from "userModelView";
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 import MobxStore from "mobxStore";
 import views from "views";
@@ -62,17 +62,20 @@ class SingleSaleAgentPropertyForRespondView extends React.Component {
 
     //onClick={() => MobxStore.router.goTo(views.leaseAgentForm, { keyID : property.fbid, typeTo : property.typeTo})}
 
+    // repair goTo by passing property
+    MobxStore.app.lastProperty = property
+    
     return (
       <div>
         <Item
         extra={<Badge text={property.typeByFollowUpLabel} />}
         arrow="horizontal"
-          onClick={() =>
+          onClick={() => 
             MobxStore.router.goTo(views.buyAgentForm, {
                 keyID: property.fbid,
                 typeTo: property.typeTo,
                 filterID: this.props.filterID
-              })}
+              })} 
           thumb="http://hair.losstreatment.com/icons/rent-up.svg"
           multipleLine
         >
@@ -110,7 +113,7 @@ class SingleSaleAgentPropertyForRespondView extends React.Component {
                 border: "2px solid #f19736"
               }}
             />
-          </Brief>
+          </Brief>{property.fbid}
         </Item>
         <Item>
           <Button type="primary" size="small" onClick={this.onSubmit} inline>

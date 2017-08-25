@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 import MobxStore from 'mobxStore'
 import AppStore from 'app-store'
-import {propertys as userPropertysModel} from 'propertysViewModel'
+import {propertys as userModelView} from 'userModelView'
 import {agentModel} from 'agentModelView'
 
 
@@ -97,7 +97,7 @@ const startLogout = () => {
     // agentModel.clear();
 
     MobxStore.app.user = false;
-    userPropertysModel.clear();
+    userModelView.clear();
     MobxStore.app.uid = null;
     agentModel.clear();
   }) ;

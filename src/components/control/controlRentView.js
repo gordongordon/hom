@@ -7,7 +7,7 @@ import {Fb} from 'firebase-store'
 import {DISTRICK} from 'DISTRICK'
 import { observer } from 'mobx-react';
 
-//import {propertys} from 'propertysViewModel'
+//import {propertys} from 'userModelView'
 
 const Item = List.Item;
 const Brief = Item.Brief;

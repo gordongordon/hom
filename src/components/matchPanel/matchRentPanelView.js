@@ -3,7 +3,7 @@ import {  NoticeBar,List , Card, Stepper, Icon, Picker, SwipeAction, DatePicker,
 import { createForm } from 'rc-form';
 // import moment from 'moment';
 // import 'moment/locale/zh-cn';
-import {propertys} from 'propertysViewModel'
+import {propertys} from 'userModelView'
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 //import {SingleRentPropertyForMatchViewWrapper} from 'singleRentPropertyForMatchView'
 import {ControlRentViewWrapper} from '../control/controlRentView'
