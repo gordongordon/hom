@@ -162,6 +162,7 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
     p.typeFor = "sale"
     p.typeTo = "buy"
     p.fbid = id;
+    p.typeBy = "engage"
     p.relatedFbid = MobxStore.router.params.keyID;
 
     Fb.app.agentBuyRef.update( {[id]:  p.serialize() });

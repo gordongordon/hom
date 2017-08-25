@@ -113,7 +113,9 @@ export class Property {
   // Type : sale, buy, rent, lease,
   @observable type = null;
   @observable typeTo = "typeTo";
-  @observable typeBy = "typeBy";
+  // either : open or engage in this moment
+  // default is open
+  @observable typeBy = "open"; 
   @observable typeFor = "typeFor";
 
   @observable isAgent = false;
@@ -508,9 +510,11 @@ export class Property {
   @computed 
   get typeByFollowUpLabel() {
     if ( this.typeBy === "open") {
-      return "即時回覆 "
+      return "即時回覆"
+    } else if ( this.typeBy === "engage") {
+      return "更新內容"
     }
-    return "更新內容 "
+    return "即時回覆"
   }
 
   更新內容

@@ -176,6 +176,8 @@ class FormRentAgentPropertyAntMobile extends React.Component {
     p.typeFor = "lease"
     p.typeTo = "rent"
     p.fbid = id;
+    p.typeBy = "engage";
+    
     p.relatedFbid = MobxStore.router.params.keyID;
 
     Fb.app.agentRentRef.update( {[id]:  p.serialize() });
