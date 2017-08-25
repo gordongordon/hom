@@ -50,6 +50,7 @@ class SingleSaleAgentPropertyForRespondView extends React.Component {
         const that = this;
 //        const { getFieldProps } = this.props.form;
 
+//onClick={() => MobxStore.router.goTo(views.leaseAgentForm, { keyID : property.fbid, typeTo : property.typeTo})} 
 
 
     return (
@@ -57,8 +58,8 @@ class SingleSaleAgentPropertyForRespondView extends React.Component {
       <Item 
       extra={<Badge text={'即時回覆'} />}
   arrow="horizontal" 
-  onClick={() => MobxStore.router.goTo(views.leaseAgentForm, { keyID : property.fbid, typeTo : property.typeTo})} 
-  thumb="http://hair.losstreatment.com/icons/rent-up.svg"
+onClick={() => MobxStore.router.goTo(views.leaseAgentForm, { keyID : property.fbid, typeTo : property.typeTo})} 
+thumb="http://hair.losstreatment.com/icons/rent-up.svg"
   multipleLine >
  {property.nameOfBuildingLabel}/{property.contactNameLabel}
  <Brief> 
@@ -78,6 +79,10 @@ class SingleSaleAgentPropertyForRespondView extends React.Component {
  />
    </Brief>
 </Item>
+     <Item>
+     <Button type="primary" size="small" onClick={this.onSubmit} inline>Submit</Button>
+     <Button onClick={this.onReset} size="small" inline style={{ marginLeft: 5 }}>Reset</Button>
+   </Item>
   <WhiteSpace size="sm" />
 </div>
 );

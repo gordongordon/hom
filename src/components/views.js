@@ -302,7 +302,7 @@ const views = {
       console.log('params changed to', params);
     }}),
 buyAgentForm : new Route({
-  path: '/buyAgentForm',
+  path: '/buyAgentForm/:keyID/:typeTo',
   component: <FormBuyAgentPropertyAntMobileWrapper />,
   onEnter: (route, params, store, queryParams) => {
     MobxStore.app.setTitle( '地產代理回復 賣家');
@@ -315,7 +315,7 @@ buyAgentForm : new Route({
   }
 }),
 saleAgentForm : new Route({
-  path: '/SaleAgentForm',
+  path: '/SaleAgentForm/:keyID/:typeTo',
   component: <FormSaleAgentPropertyAntMobileWrapper />,
   onEnter: (route, params, store, queryParams) => {
     MobxStore.app.setTitle( '地產代理回復 買家');
@@ -328,7 +328,7 @@ saleAgentForm : new Route({
   }
 }),
 rentAgentForm : new Route({
-  path: '/RentAgentForm',
+  path: '/RentAgentForm/:keyID/:typeTo',
   component: <FormRentAgentPropertyAntMobileWrapper />,
   onEnter: (route, params, store, queryParams) => {
     MobxStore.app.setTitle( '地產代理回復 放 租');
@@ -341,7 +341,7 @@ rentAgentForm : new Route({
   }
 }),
 leaseAgentForm : new Route({
-  path: '/LeaseAgentForm',
+  path: '/LeaseAgentForm/:keyID/:typeTo',
   component: <FormLeaseAgentPropertyAntMobileWrapper />,
   onEnter: (route, params, store, queryParams) => {
     MobxStore.app.setTitle( '地產代理回復 租 屋');

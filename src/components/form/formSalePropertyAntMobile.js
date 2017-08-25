@@ -133,7 +133,7 @@ class FormSalePropertyAntMobile extends React.Component {
     p.numOfBathroom = parseInt(v.partition[1]);
     p.numOfLivingroom = parseInt(v.partition[2]);
     p.isSaleWIthLease = v.isSaleWIthLease;
-    p.isNegotiable = v.isNegotiable;
+    // p.isNegotiable = v.isNegotiable;
     p.isViewAble = v.isViewAble;
 
     //p.isPreferPayAnnually = v.isPreferPayAnnually;
@@ -291,26 +291,13 @@ class FormSalePropertyAntMobile extends React.Component {
                 <List.Item
                 extra={<Switch
                           {...getFieldProps('isSaleWIthLease', {
-                            initialValue: true,
+                            initialValue: false,
                             valuePropName: 'checked',
                           })}
                           onClick={(checked) => { console.log(checked); }}
                         />}
 
                 >出售連租賃</List.Item>
-
-
-
-                <List.Item
-                extra={<Switch
-                          {...getFieldProps('isNegotiable', {
-                            initialValue: true,
-                            valuePropName: 'checked',
-                          })}
-                          onClick={(checked) => { console.log(checked); }}
-                        />}
-
-                >可議價</List.Item>
                 <List.Item
                 extra={<Switch
                           {...getFieldProps('isViewAble', {

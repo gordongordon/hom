@@ -102,10 +102,11 @@ class ControlAgentView extends React.Component {
     //const minDate = moment().locale('zh-cn').utcOffset(8);
     // const maxDate = moment(minDate).add(6, 'M');
 
-    const region = property.addressRegion;
-    const location = property.addressLocation;
-    const building = property.nameOfBuilding;
-    const address = [region, location, building]
+    // const region = property.addressRegion;
+    // const location = property.addressLocation;
+    // const building = property.nameOfBuilding;
+    // const address = [region, location, building]
+    const address = property.addressToArray;
 
     console.log(`address ${address}`)
     console.log('Single Agent Property property', property)

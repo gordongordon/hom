@@ -13,6 +13,8 @@ import {DISTRICK} from 'DISTRICK';
 
 import {Fb} from 'firebase-store'
 import {Property} from 'property'
+
+import {propertys} from 'propertysViewModel'
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import MobxStore from 'mobxStore'
@@ -69,47 +71,47 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
     }, 120);
   };
 
-  onPickerChange = (val) => {
-    console.log(val);
-    let colNum = 1;
-    const d = [...this.state.data];
-    const asyncValue = [...val];
-    if (val[0] === 'zj') {
-      d.forEach((i) => {
-        if (i.value === 'zj') {
-          colNum = 2;
-          if (!i.children) {
-            i.children = [{
-              value: 'zj-nb',
-              label: '宁波',
-            }, {
-              value: 'zj-hz',
-              label: '杭州',
-            }];
-            asyncValue.push('zj-nb');
-          } else if (val[1] === 'zj-hz') {
-            i.children.forEach((j) => {
-              if (j.value === 'zj-hz') {
-                j.children = [{
-                  value: 'zj-hz-xh',
-                  label: '西湖区',
-                }];
-                asyncValue.push('zj-hz-xh');
-              }
-            });
-            colNum = 3;
-          }
-        }
-      });
-    } else {
-      colNum = 1;
-    }
-    this.setState({
-      data: d,
-      cols: colNum,
-      asyncValue,
-    });
-  };
+  // onPickerChange = (val) => {
+  //   console.log(val);
+  //   let colNum = 1;
+  //   const d = [...this.state.data];
+  //   const asyncValue = [...val];
+  //   if (val[0] === 'zj') {
+  //     d.forEach((i) => {
+  //       if (i.value === 'zj') {
+  //         colNum = 2;
+  //         if (!i.children) {
+  //           i.children = [{
+  //             value: 'zj-nb',
+  //             label: '宁波',
+  //           }, {
+  //             value: 'zj-hz',
+  //             label: '杭州',
+  //           }];
+  //           asyncValue.push('zj-nb');
+  //         } else if (val[1] === 'zj-hz') {
+  //           i.children.forEach((j) => {
+  //             if (j.value === 'zj-hz') {
+  //               j.children = [{
+  //                 value: 'zj-hz-xh',
+  //                 label: '西湖区',
+  //               }];
+  //               asyncValue.push('zj-hz-xh');
+  //             }
+  //           });
+  //           colNum = 3;
+  //         }
+  //       }
+  //     });
+  //   } else {
+  //     colNum = 1;
+  //   }
+  //   this.setState({
+  //     data: d,
+  //     cols: colNum,
+  //     asyncValue,
+  //   });
+  // };
 
 
   addPropertyForSale = ( v ) =>
@@ -133,7 +135,7 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
     p.numOfBathroom = parseInt(v.partition[1]);
     p.numOfLivingroom = parseInt(v.partition[2]);
     p.isSaleWIthLease = v.isSaleWIthLease;
-    p.isNegotiable = v.isNegotiable;
+    // p.isNegotiable = v.isNegotiable;
     p.isViewAble = v.isViewAble;
 
     //p.isPreferPayAnnually = v.isPreferPayAnnually;
@@ -147,13 +149,13 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
 
 
 
-    const id = Fb.app.agentsRef.push().key;
+    const id = Fb.app.agentSaleRef.push().key;
     p.typeFor = "buy"
     p.typeTo = "sale"
     p.fbid = id;
     p.relatedFbid = MobxStore.router.params.keyID;
 
-    Fb.app.agentsRef.update( {[id]:  p.serialize() });
+    Fb.app.agentSaleRef.update( {[id]:  p.serialize() });
     Fb.agentPropertys.child( id ).set( p.serialize() );
 
 //    const id2 = Fb.propertys.push().key;
@@ -188,7 +190,19 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
 
 // '房東', '租人','賣家','買家'
   render() {
+
     const { getFieldProps } = this.props.form;
+    // var {fbid, salePrice, nameOfbuilding, addressRegion, addressLocation} = MobxStore.router.params;
+    var property = propertys.propertys.get(  MobxStore.router.params.keyID );
+
+//    debugger
+    //var property = MobxStore.router.params.fbid;
+    //var property = MobxStore.router.params.property;
+    // console.log( "fbid", fbid )
+    const addressArray = property.addressToArray;
+    const partitionArray = property.partitionToArray;
+
+    //debugger
 
     // For DatePicker
     const minDate = moment().locale('zh-cn').utcOffset(8);
@@ -198,14 +212,14 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
       <List style={{ backgroundColor: 'white' }} className="picker-list">
 
         <Picker data={DISTRICK} cols={3} {...getFieldProps('districk', {
-            initialValue: ['NTTV','MOS','MOS0001'],
+            initialValue:  addressArray,
           })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
           <List.Item arrow="horizontal">大廈/屋苑</List.Item>
         </Picker>
 
                 <InputItem
                   {...getFieldProps('netSize', {
-                    initialValue : 300,
+                    initialValue : property.netSize,
                     normalize: (v, prev) => {
                       if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
                         if (v === '.') {
@@ -247,7 +261,7 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
                   title="選擇間隔"
                   cascade={false}
                   {...getFieldProps('partition', {
-                      initialValue: ['0', '1','1'],
+                      initialValue: partitionArray,
                   })}
                   extra="選擇間隔"
                   onOk={e => console.log('ok', e)}
@@ -258,7 +272,7 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
                 </Picker>
                 <InputItem
                   {...getFieldProps('salePrice', {
-                    initialValue : 350,
+                    initialValue : property.salePrice,
                     normalize: (v, prev) => {
                       if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
                         if (v === '.') {
@@ -286,26 +300,13 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
                 <List.Item
                 extra={<Switch
                           {...getFieldProps('isSaleWIthLease', {
-                            initialValue: true,
+                            initialValue: property.isSaleWIthLease,
                             valuePropName: 'checked',
                           })}
                           onClick={(checked) => { console.log(checked); }}
                         />}
 
                 >出售連租賃</List.Item>
-
-
-
-                <List.Item
-                extra={<Switch
-                          {...getFieldProps('isNegotiable', {
-                            initialValue: true,
-                            valuePropName: 'checked',
-                          })}
-                          onClick={(checked) => { console.log(checked); }}
-                        />}
-
-                >可議價</List.Item>
                 <List.Item
                 extra={<Switch
                           {...getFieldProps('isViewAble', {
@@ -319,7 +320,7 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
 
                 <InputItem
                   {...getFieldProps('contactName', {
-                    initialValue : 'Jeff Chan',
+                    initialValue : 'agent name',
                   }) }
                   type="text"
                   placeholder="請輸入姓名"
@@ -329,7 +330,7 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
                 <InputItem
                   clear
                   {...getFieldProps('contactPhone', {
-                    initialValue : '66958844'
+                    initialValue : '96181448',
                   })}
                   type="phone"
                   placeholder="請輸入電話"
@@ -337,7 +338,7 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
 
                 <InputItem
                   {...getFieldProps('contactEmail', {
-                    initialValue : 'h004@ymatchx.com',
+                    initialValue : '001@agent.com',
                   })}
                   clear
                   placeholder="請輸入電郵地址"
@@ -345,7 +346,7 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
 
 
         <List.Item
-              extra={<Button type="ghost" size="large" inline onClick={this.submit}>獲得匹配</Button>}
+              extra={<Button type="ghost" size="large" inline onClick={this.submit}>回覆</Button>}
               multipleLine
             >
               HoMatching

@@ -124,7 +124,7 @@ export class Property {
   @observable realTime = moment().format("YYYY-MM-DD HH:mm:ss");
 
   // Lease property
-  @observable isNegotiable = true;
+  @observable isNegotiable = false;
   @observable isViewAble = true;
   @observable hasHomeHardware = false;
   //
@@ -211,6 +211,13 @@ export class Property {
 
     return color;
   }
+
+ @computed get addressToArray() {
+  const region = this.addressRegion;
+  const location = this.addressLocation;
+  const building = this.nameOfBuilding;
+  return [region, location, building];
+ }
 
   @computed
   get nameOfBuildingLabel() {
@@ -444,6 +451,17 @@ export class Property {
       "/"
     );
   }
+
+  // Use for form element
+  // Make sure out as ['string','string','string']
+  @computed 
+  get partitionToArray() {
+    const numOfRoom = String(this.numOfRoom);
+    const numOfLivingroom = String(this.numOfLivingroom);
+    const numOfBathroom = String(this.numOfBathroom);
+    return [numOfRoom,numOfLivingroom, numOfBathroom];
+  }
+
   @computed
   get numOfLivingroomLabel() {
     switch (this.numOfRoom) {
