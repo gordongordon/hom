@@ -158,20 +158,24 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
     p.contactEmail = v.contactEmail;
 
 
-    const id = Fb.app.agentsRef.push().key;
+    const id = Fb.app.agentBuyRef.push().key;
     p.typeFor = "sale"
     p.typeTo = "buy"
     p.fbid = id;
     p.relatedFbid = MobxStore.router.params.keyID;
 
-    Fb.app.agentsRef.update( {[id]:  p.serialize() });
+    Fb.app.agentBuyRef.update( {[id]:  p.serialize() });
 
     // Should be Fb.agentPropertys. to be countinu..
     Fb.agentPropertys.child( id ).set( p.serialize() );
 
     // const id2 = Fb.propertys.push().key;
     // Fb.propertys.update( {[id2]:  p.serialize() })
-    MobxStore.router.goTo( views.matchAgent, { keyID : id  } )
+    MobxStore.router.goTo(views.matchAgent, {
+      keyID: MobxStore.router.params.filterID,
+      typeTo: "buy",
+      selectedSegmentIndex: 1
+    });
 
 
     return id;

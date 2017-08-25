@@ -49,7 +49,7 @@ export class ListOfMatchAgentRentPropertys extends React.Component {
       //  if ( b >= c ) {
       //    //console.log( b > c)
        element.push(
-           <SingleRentAgentPropertyForRespondViewWrapper property={property} key={keyID}/>
+           <SingleRentAgentPropertyForRespondViewWrapper property={property} key={keyID} filterID={this.props.filterID}/>
          )
     //   }
 

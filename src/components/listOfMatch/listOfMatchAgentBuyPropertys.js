@@ -48,7 +48,7 @@ export class ListOfMatchAgentBuyPropertys extends React.Component {
       //  if ( b >= c ) {
       //    //console.log( b > c)
        element.push(
-           <SingleBuyAgentPropertyForRespondViewWrapper property={property} key={keyID}/>
+           <SingleBuyAgentPropertyForRespondViewWrapper property={property} key={keyID} filterID={this.props.filterID}/>
          )
     //   }
 

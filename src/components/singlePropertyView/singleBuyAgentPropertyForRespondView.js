@@ -69,18 +69,17 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
     //     }
     // )}
 
-
     return (
       <div>
         <Item
           extra={<Badge text={"即時回覆"} />}
           arrow="horizontal"
           onClick={() =>
-            MobxStore.router.goTo(views.saleAgentForm,
-               { keyID : property.fbid,
-                 typeTo: property.typeTo 
-                }
-        )}
+            MobxStore.router.goTo(views.saleAgentForm, {
+              keyID: property.fbid,
+              typeTo: property.typeTo,
+              filterID: this.props.filterID
+            })}
           thumb="http://hair.losstreatment.com/icons/building-up.svg"
           multipleLine
         >

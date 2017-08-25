@@ -37,7 +37,7 @@ export class ListOfMatchAgentLeasePropertys extends React.Component {
      console.log( 'list.size', list.size )
      list.forEach( (property, keyID) => {
         element.push(
-            <SingleLeaseAgentPropertyForRespondViewWrapper property={property} key={keyID}/>
+            <SingleLeaseAgentPropertyForRespondViewWrapper property={property} key={keyID} filterID={this.props.filterID}/>
           )
      })
 

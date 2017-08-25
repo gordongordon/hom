@@ -83,7 +83,7 @@ class MatchAgentPanelView extends React.Component {
 
     this.state = {
       disabled: false,
-      selectedSegmentIndex: 0,
+      selectedSegmentIndex: MobxStore.router.params.selectedSegmentIndex,
       selectedTabBar: 0,
       id: MobxStore.router.params.keyID,
       selectedTab: MobxStore.router.params.typeTo,
@@ -129,19 +129,19 @@ class MatchAgentPanelView extends React.Component {
 
     if (selectedTab === 'buy') {
       return (
-        <ListOfMatchAgentBuyPropertys propertys={property.matchedPropertys} />
+        <ListOfMatchAgentBuyPropertys propertys={property.matchedPropertys} filterID={MobxStore.router.params.keyID}/>
       );
     } else if (selectedTab === 'sale') {
       return (
-        <ListOfMatchAgentSalePropertys propertys={property.matchedPropertys} />
+        <ListOfMatchAgentSalePropertys propertys={property.matchedPropertys} filterID={MobxStore.router.params.keyID}/>
       );
     } else if (selectedTab === 'rent') {
       return (
-        <ListOfMatchAgentRentPropertys propertys={property.matchedPropertys} />
+        <ListOfMatchAgentRentPropertys propertys={property.matchedPropertys} filterID={MobxStore.router.params.keyID}/>
       );
     } else if (selectedTab === 'lease') {
       return (
-        <ListOfMatchAgentLeasePropertys propertys={property.matchedPropertys} />
+        <ListOfMatchAgentLeasePropertys propertys={property.matchedPropertys} filterID={MobxStore.router.params.keyID}/>
       );
     }
 

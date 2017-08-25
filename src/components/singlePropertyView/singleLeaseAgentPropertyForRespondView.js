@@ -1,14 +1,25 @@
-import React from 'react'
-import { List , Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl} from 'antd-mobile';
-import { createForm } from 'rc-form';
+import React from "react";
+import {
+  List,
+  Card,
+  Stepper,
+  Picker,
+  SwipeAction,
+  DatePicker,
+  Badge,
+  Flex,
+  InputItem,
+  WhiteSpace,
+  Button,
+  SegmentedControl
+} from "antd-mobile";
+import { createForm } from "rc-form";
 //import moment from 'moment';
 //import 'moment/locale/zh-cn';
-import {propertys} from 'propertysViewModel'
+import { propertys } from "propertysViewModel";
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
-import MobxStore from 'mobxStore'
-import views from 'views'
-
-
+import MobxStore from "mobxStore";
+import views from "views";
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -26,64 +37,92 @@ const Brief = Item.Brief;
 // }
 
 class SingleLeaseAgentPropertyForRespondView extends React.Component {
-
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       disabled: false,
-      selectedSegmentIndex: 0,
-    }
+      selectedSegmentIndex: 0
+    };
   }
 
   componentWillMount() {
     //const p = this.props;
-//    const t = moment().format('YYYY-MM-DD HH:mm:ss');
-  //  this.props.property.realTime = moment( t );
+    //    const t = moment().format('YYYY-MM-DD HH:mm:ss');
+    //  this.props.property.realTime = moment( t );
     this.props.property.setTimeStamp();
 
-//    console.log( 'realTime will mount', this.props.property.realTime)
+    //    console.log( 'realTime will mount', this.props.property.realTime)
   }
 
   render() {
-        const {property} = this.props
-        const that = this;
-//        const { getFieldProps } = this.props.form;
-
-
+    const { property } = this.props;
+    const that = this;
+    //        const { getFieldProps } = this.props.form;
 
     return (
       <div>
-      <Item 
-      extra={<Badge text={'即時回覆'} />}
-  arrow="horizontal" 
-  onClick={() => MobxStore.router.goTo(views.leaseAgentForm, { keyID : property.fbid, typeTo : property.typeTo})} 
-  thumb="http://hair.losstreatment.com/icons/rent-up.svg"
-  multipleLine >
- {property.nameOfBuildingLabel}/{property.contactNameLabel}
- <Brief> 
- {property.leasePriceLabel}{property.partitionLabel}<br />{property.isFreeForSevenDayLabel}{property.earlyTimeToViewLabel}{property.hasHomeHardwareLabel}
- <br />
- <Badge text={property.roleName} style={{ marginLeft: 12, padding: '0 0.06rem', backgroundColor: property.colorByRoleName, borderRadius: 2 }} />
- <Badge text={property.howFresh}  style={{ marginLeft: 12, padding: '0 0.06rem', backgroundColor: property.colorByFresh, borderRadius: 2 }} />
- <Badge text={property.dayListed}
-   style={{
-     marginLeft: 12,
-     padding: '0 0.06rem',
-     backgroundColor: '#fff',
-     borderRadius: 2,
-     color: '#f19736',
-     border: '1px solid #f19736',
-   }} />
-   </Brief>
-</Item>
-  <WhiteSpace size="sm" />
-</div>
+        <Item
+          extra={<Badge text={"即時回覆"} />}
+          arrow="horizontal"
+          onClick={() =>
+            MobxStore.router.goTo(views.leaseAgentForm, {
+              keyID: property.fbid,
+              typeTo: property.typeTo,
+              filterID: this.props.filterID
+            })}
+          thumb="http://hair.losstreatment.com/icons/rent-up.svg"
+          multipleLine
+        >
+          {property.nameOfBuildingLabel}/{property.contactNameLabel}
+          <Brief>
+            {property.leasePriceLabel}
+            {property.partitionLabel}
+            <br />
+            {property.isFreeForSevenDayLabel}
+            {property.earlyTimeToViewLabel}
+            {property.hasHomeHardwareLabel}
+            <br />
+            <Badge
+              text={property.roleName}
+              style={{
+                marginLeft: 12,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByRoleName,
+                borderRadius: 2
+              }}
+            />
+            <Badge
+              text={property.howFresh}
+              style={{
+                marginLeft: 12,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 2
+              }}
+            />
+            <Badge
+              text={property.dayListed}
+              style={{
+                marginLeft: 12,
+                padding: "0 0.06rem",
+                backgroundColor: "#fff",
+                borderRadius: 2,
+                color: "#f19736",
+                border: "1px solid #f19736"
+              }}
+            />
+          </Brief>
+        </Item>
+        <WhiteSpace size="sm" />
+      </div>
+    );
+  }
+}
+
+export const SingleLeaseAgentPropertyForRespondViewWrapper = createForm()(
+  SingleLeaseAgentPropertyForRespondView
 );
-
-} };
-
-export const SingleLeaseAgentPropertyForRespondViewWrapper = createForm()(SingleLeaseAgentPropertyForRespondView);
 
 // {/* <div>
 // <SwipeAction

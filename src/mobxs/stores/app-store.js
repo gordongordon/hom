@@ -7,7 +7,8 @@ class AppStore {
     extendObservable(this, {
       title: 'HoMatching',
       user: false,
-      previousView : undefined,
+      previousView : undefined, 
+      // User to remember previous page, but no use while in browser! 
       viewHistory  : new Map(),
       nextView : undefined,
       params : undefined,
@@ -17,6 +18,7 @@ class AppStore {
 
     uid : null // User Id
     userEmail : 'none'
+    masterKeyID : null // Current Property Id which is working on. 
 
 //    console.log( 'creating MobxStore.app')
   }

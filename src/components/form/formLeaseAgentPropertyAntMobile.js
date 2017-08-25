@@ -148,17 +148,21 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
     p.contactPhone = parseInt(v.contactPhone);
     p.contactEmail = v.contactEmail;
 
-    const id = Fb.app.usersRef.push().key;
+    const id = Fb.app.agentLeaseRef.push().key;
     p.typeFor = "rent"
     p.typeTo = "lease"
     p.fbid = id;
     p.relatedFbid = MobxStore.router.params.keyID;
 
-    Fb.app.agentsRef.update( {[id]:  p.serialize() });
+    Fb.app.agentLeaseRef.update( {[id]:  p.serialize() });
 
     Fb.agentPropertys.child( id ).set( p.serialize() );
 
-    MobxStore.router.goTo( views.matchAgent, { keyID : id  } )
+    MobxStore.router.goTo(views.matchAgent, {
+      keyID: MobxStore.router.params.filterID,
+      typeTo: "lease",
+      selectedSegmentIndex: 1
+    });
 
   }
 

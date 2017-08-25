@@ -103,7 +103,10 @@ export class ListOfAgentPropertysView extends React.Component {
               <Item 
                  extra={<Badge size="large" text={property.matchedPropertys.size} overflowCount={99} />} 
                  arrow="horizontal" 
-                 onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID , typeTo : property.typeTo})} 
+                 onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID , 
+                  typeTo : property.typeTo,
+                  selectedSegmentIndex : 0
+                })} 
                  thumb="http://hair.losstreatment.com/icons/rent-up.svg"
                 
                  multipleLine >
@@ -150,8 +153,11 @@ export class ListOfAgentPropertysView extends React.Component {
             >
               <Item extra={<Badge size="lg" text={property.matchedPropertys.size} overflowCount={99} />} 
               arrow="horizontal" 
-              onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID, typeTo : property.typeTo })} 
-              thumb="http://hair.losstreatment.com/icons/building-down.svg"
+              onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID, 
+                typeTo : property.typeTo,
+                selectedSegmentIndex : 0
+              })} 
+            thumb="http://hair.losstreatment.com/icons/building-down.svg"
               multipleLine
               >
                 {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{info}</Brief>{keyID}
@@ -196,7 +202,10 @@ export class ListOfAgentPropertysView extends React.Component {
               extra={<Badge size="large" text={property.matchedPropertys.size} 
               overflowCount={99} />} 
                 arrow="horizontal" 
-                onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID, typeTo : property.typeTo } )} 
+                onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID, 
+                  typeTo : property.typeTo,
+                  selectedSegmentIndex : 0
+                })} 
                 thumb="http://hair.losstreatment.com/icons/building-up.svg"
                 wrap="true"
                 multipleLine >
@@ -262,8 +271,10 @@ export class ListOfAgentPropertysView extends React.Component {
               <Item extra={<Badge size="large" text={property.matchedPropertys.size} overflowCount={99} />} 
               thumb="http://hair.losstreatment.com/icons/rent.svg"
               arrow="horizontal" 
-              onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID, typeTo : property.typeTo })}
-                multipleLine >
+              onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID, typeTo : property.typeTo,
+                selectedSegmentIndex : 0
+              })} 
+              multipleLine >
                 {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{info}</Brief>{keyID}
               </Item>
             </SwipeAction></div>

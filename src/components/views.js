@@ -194,6 +194,7 @@ const views = {
         MobxStore.app.setTitle( 'Agent');
         console.log('route', route)
         MobxStore.app.viewHistory.set( 'matchBuy', MobxStore.app.previousView  )
+
       },
       beforeExit: (route, params) => {
         console.log('exiting user profile!');
@@ -292,17 +293,19 @@ const views = {
         return false;
       }
     },
-    beforeExit: (route, params) => {
+    beforeExit: (route, params, store, queryParams) => {
       console.log('exiting ListOfAgentProperysView!');
       console.log('params changed to', params);
       MobxStore.app.previousView = route;
       MobxStore.app.params = params;
+      // debugger
+      // MobxStore.app.masterKeyID = queryParams.keyID;
     },
     onParamsChange: (route, params) => {
       console.log('params changed to', params);
     }}),
 buyAgentForm : new Route({
-  path: '/buyAgentForm/:keyID/:typeTo',
+  path: '/buyAgentForm/keyID/:keyID/:typeTo/filterID/:filterID',
   component: <FormBuyAgentPropertyAntMobileWrapper />,
   onEnter: (route, params, store, queryParams) => {
     MobxStore.app.setTitle( '地產代理回復 賣家');
@@ -315,7 +318,7 @@ buyAgentForm : new Route({
   }
 }),
 saleAgentForm : new Route({
-  path: '/SaleAgentForm/:keyID/:typeTo',
+  path: '/SaleAgentForm/keyID/:keyID/:typeTo/filterID/:filterID',
   component: <FormSaleAgentPropertyAntMobileWrapper />,
   onEnter: (route, params, store, queryParams) => {
     MobxStore.app.setTitle( '地產代理回復 買家');
@@ -328,7 +331,7 @@ saleAgentForm : new Route({
   }
 }),
 rentAgentForm : new Route({
-  path: '/RentAgentForm/:keyID/:typeTo',
+  path: '/RentAgentForm/keyID/:keyID/:typeTo/filterID/:filterID',
   component: <FormRentAgentPropertyAntMobileWrapper />,
   onEnter: (route, params, store, queryParams) => {
     MobxStore.app.setTitle( '地產代理回復 放 租');
@@ -341,7 +344,7 @@ rentAgentForm : new Route({
   }
 }),
 leaseAgentForm : new Route({
-  path: '/LeaseAgentForm/:keyID/:typeTo',
+  path: '/LeaseAgentForm/keyID/:keyID/:typeTo/filterID/:filterID',
   component: <FormLeaseAgentPropertyAntMobileWrapper />,
   onEnter: (route, params, store, queryParams) => {
     MobxStore.app.setTitle( '地產代理回復 租 屋');
