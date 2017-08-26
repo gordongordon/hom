@@ -84,13 +84,33 @@ class MatchAgentPanelView extends React.Component {
 
     this.state = {
       disabled: false,
-
       selectedSegmentIndex: MobxStore.router.params.selectedSegmentIndex,
 //      selectedTabBar: 0,
       id: MobxStore.router.params.keyID,
       selectedTab: MobxStore.router.params.typeTo,
       hidden: false
     };
+
+    // Handle when goTo with selectedSegmentIndex been changed, other wise out of syn
+    // console.log('MatchAgentPanelView typeForString', typeForString[index]);
+    if ( this.state.selectedSegmentIndex === 1 ) {
+      Fb.app.agentsFilterRef.child(this.state.id).update({ typeBy: 'engage'});
+    } else {
+      Fb.app.agentsFilterRef.child(this.state.id).update({ typeBy: 'open'});
+    }
+
+    // Handle goTo From any form 
+    switch ( this.state.selectedTab ) {
+      case 'buy'  :  Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[0], typeTo : "buy" });
+      break;
+      case 'sale' :  Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[1], typeTo : "sale" });
+      break;
+      case 'rent' :  Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[2], typeTo : "rent" });
+      break;
+      case 'lease' :  Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[3], typeTo : "lease" });
+      break;
+    }    
+    
 
     //debugger
     this.onChange = this.onChange.bind(this);
@@ -129,7 +149,7 @@ class MatchAgentPanelView extends React.Component {
 
     // debugger
     // Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[index] });
-
+ 
     if (selectedTab === 'buy') {
       return (
         <ListOfMatchAgentBuyPropertys propertys={property.matchedPropertys} filterID={MobxStore.router.params.keyID}/>

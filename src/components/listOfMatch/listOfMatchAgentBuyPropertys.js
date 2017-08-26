@@ -6,6 +6,8 @@ import moment from 'moment';
 //import {propertys} from 'userModelView'
 import {SingleBuyAgentPropertyForRespondViewWrapper} from '../singlePropertyView/SingleBuyAgentPropertyForRespondView'
 import { observer } from 'mobx-react';
+import {Accordion, List
+} from "antd-mobile";
 //const Item = List.Item;
 //const Brief = Item.Brief;
 
@@ -67,6 +69,6 @@ export class ListOfMatchAgentBuyPropertys extends React.Component {
       {
          that.display( propertys )
       }
-     </div>);
+\     </div>);
   }
 }

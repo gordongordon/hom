@@ -221,6 +221,25 @@ export class Property {
   return [region, location, building];
  }
 
+ @computed
+ get addressLocationLabel() {
+   // debugger
+   var region = DISTRICK.find(element => element.value === this.addressRegion);
+   // console.log( 'region', region)
+   if (region === undefined) {
+     return "region doesn't exist!";
+   }
+   var location = region.children.find(
+     element => element.value === this.addressLocation
+   );
+   if (location === undefined) {
+     return "location doesn't exist!";
+   }
+   return location.label;
+ }
+
+
+
   @computed
   get nameOfBuildingLabel() {
     // debugger
@@ -407,19 +426,22 @@ export class Property {
   @computed
   get typeToLabel() {
     var label = "no";
-
     switch (this.typeTo) {
       case "buy":
-        label = "搵買盤";
+//        label = "搵買盤";
+        label = "買家搜尋";
         break;
       case "lease":
-        label = "房東";
+//        label = "房東";
+        label = "房東搜尋";
         break;
       case "sale":
-        label = "放賣盤";
+//        label = "放賣盤";
+        label = "業主搜尋";
         break;
       case "rent":
-        label = "租客";
+//        label = "租客";
+        label = "租客搜尋";
         break;
     }
     return label;

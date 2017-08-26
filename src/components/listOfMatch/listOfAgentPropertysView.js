@@ -60,7 +60,7 @@ export class ListOfAgentPropertysView extends React.Component {
       // Try to render more info before go into matching pages! 
       if ( property.matchedPropertys.size > 0) {
         p = property.matchedPropertys.entries().next().value[1];
-        info = p.contactNameLabel;
+        info = "";
       } else {
         console.log( 'p.matchedPropertys.size === 0 ', keyID );
         info = "沒有任何更新鮮配對,請更改篩選!"
@@ -114,26 +114,9 @@ export class ListOfAgentPropertysView extends React.Component {
                 thumb="http://hair.losstreatment.com/icons/building-up.svg"
                 wrap="true"
                 multipleLine >
-                {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{info}<br />
-
-                <Badge text="减" hot style={{ marginLeft: 12 }} />
-                <Badge text="惠" hot style={{ marginLeft: 12 }} />
-                <Badge text="免" hot style={{ marginLeft: 12 }} />
-                <Badge text="反" hot style={{ marginLeft: 12 }} />
-                <Badge text="HOT" hot style={{ marginLeft: 12 }} />
-                <Badge text="券" style={{ marginLeft: 12, padding: '0 0.06rem', backgroundColor: '#f19736', borderRadius: 2 }} />
-                <Badge text="NEW" style={{ marginLeft: 12, padding: '0 0.06rem', backgroundColor: '#21b68a', borderRadius: 2 }} />
-                <Badge text="自动缴费"
-                  style={{
-                    marginLeft: 12,
-                    padding: '0 0.06rem',
-                    backgroundColor: '#fff',
-                    borderRadius: 2,
-                    color: '#f19736',
-                    border: '1px solid #f19736',
-                  }}
-                />
-                </Brief>{keyID}
+                {property.typeToLabel}:{property.addressLocationLabel}/{property.nameOfBuildingLabel}<Brief>
+                {info}
+                </Brief>
               </Item>
             </SwipeAction>
             
@@ -182,8 +165,10 @@ export class ListOfAgentPropertysView extends React.Component {
                 
               })} 
               multipleLine >
-                {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{info}</Brief>
-                {keyID}
+              {property.typeToLabel}:{property.addressLocationLabel}/{property.nameOfBuildingLabel}<Brief>
+              {info}
+              </Brief>
+           
               </Item>
             </SwipeAction>
             
@@ -236,9 +221,10 @@ export class ListOfAgentPropertysView extends React.Component {
             thumb="http://hair.losstreatment.com/icons/building-down.svg"
               multipleLine
               >
-                {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{info}</Brief>
-                {keyID}
-              </Item>
+              {property.typeToLabel}:{property.addressLocationLabel}/{property.nameOfBuildingLabel}<Brief>
+              {info}
+              </Brief>
+            </Item>
             </SwipeAction>
             </div>
         )
@@ -287,9 +273,10 @@ export class ListOfAgentPropertysView extends React.Component {
                  thumb="http://hair.losstreatment.com/icons/rent-up.svg"
                 
                  multipleLine >
-                {property.nameOfBuildingLabel}/{property.typeToLabel}<Brief>{ info }</Brief>
-                {keyID}
-              </Item>
+                 {property.typeToLabel}:{property.addressLocationLabel}/{property.nameOfBuildingLabel}<Brief>
+                 {info}
+                 </Brief>
+               </Item>
             </SwipeAction>
           </div>
         )

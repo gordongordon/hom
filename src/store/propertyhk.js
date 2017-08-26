@@ -156,6 +156,7 @@ export class Propertyhk extends Property {
       `property.hk orderByChild ${this.orderByChild} equalTo ${this
         .equalTo} id ${this.fbid}`
     );
+    
     // Handle match propertys
     fb
       .orderByChild(this.orderByChild)

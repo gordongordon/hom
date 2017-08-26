@@ -11,7 +11,8 @@ import {
   InputItem,
   WhiteSpace,
   Button,
-  SegmentedControl
+  SegmentedControl,
+  Accordion
 } from "antd-mobile";
 import { createForm } from "rc-form";
 //import moment from 'moment';
@@ -122,10 +123,11 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
                 border: "1px solid #f19736"
               }}
             />
-          </Brief>{property.fbid}
-        </Item>
-        <WhiteSpace size="sm" />
-      </div>
+            </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
+            </Item>
+            <WhiteSpace size="sm" />
+            </div>
+                  
     );
   }
 }

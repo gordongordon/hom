@@ -115,8 +115,8 @@ class SingleRentAgentPropertyForRespondView extends React.Component {
                 border: "1px solid #f19736"
               }}
             />
-          </Brief>{property.fbid}
-        </Item>
+            </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
+            </Item>
         <WhiteSpace size="sm" />
       </div>
     );

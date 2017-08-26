@@ -172,6 +172,10 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
     // Should be Fb.agentPropertys. to be countinu..
     Fb.agentPropertys.child( id ).set( p.serialize() );
 
+
+    // Make an update first, since, selectedSegmentIndex has been changed from 0 to 1
+    //Fb.app.agentsFilterRef.child(MobxStore.router.params.filterID).update({ typeBy: 'engage'});
+    
     // const id2 = Fb.propertys.push().key;
     // Fb.propertys.update( {[id2]:  p.serialize() })
     MobxStore.router.goTo(views.matchAgent, {
@@ -179,6 +183,8 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
       typeTo: "buy",
       selectedSegmentIndex: 1
     });
+
+    
 
 
     return id;

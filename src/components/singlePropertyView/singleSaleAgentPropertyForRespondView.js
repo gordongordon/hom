@@ -113,8 +113,8 @@ class SingleSaleAgentPropertyForRespondView extends React.Component {
                 border: "2px solid #f19736"
               }}
             />
-          </Brief>{property.fbid}
-        </Item>
+            </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
+            </Item>
         <Item>
           <Button type="primary" size="small" onClick={this.onSubmit} inline>
             Submit

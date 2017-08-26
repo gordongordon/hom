@@ -109,8 +109,9 @@ class ControlAgentView extends React.Component {
     //const address = property.addressToArray;
 
     //console.log(`address ${address}`)
+
     const address = property.addressToArray;
-    console.log('Single Agent Property property', property)
+//    console.log('Single Agent Property property', property)
     var selectedIndex = this.props.selectedIndex;
     const onChange = this.props.onChange;
 
@@ -120,7 +121,7 @@ class ControlAgentView extends React.Component {
 
 //     <SegmentedControl values={['B搵買盤', 'S放賣盤', 'R搵租盤', 'L放租盤', '已跟進/回覆']} selectedIndex={this.props.selectedIndex} onChange={onChange} />
     
-{/* <List.Item extra={
+/* <List.Item extra={
   <Stepper
     style={{ width: '100%', minWidth: '2rem' }}
     {...getFieldProps('buyBudgetMax', {
@@ -133,7 +134,7 @@ class ControlAgentView extends React.Component {
   />}
 >
   預算上限/萬
-     </List.Item> */}
+     </List.Item> */
 
 
     return (
