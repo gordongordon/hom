@@ -54,17 +54,17 @@ export class ListOfAgentPropertysView extends React.Component {
     var element = [];
 
     list.forEach((property, keyID) => {
-      var p;    // property from matched property, if any
-      var info; // Message
+      // var p;    // property from matched property, if any
+      // var info; // Message
 
       // Try to render more info before go into matching pages! 
-      if ( property.matchedPropertys.size > 0) {
-        p = property.matchedPropertys.entries().next().value[1];
-        info = "";
-      } else {
-        console.log( 'p.matchedPropertys.size === 0 ', keyID );
-        info = "沒有任何更新鮮配對,請更改篩選!"
-      }
+      // if ( property.matchedPropertys.size > 0) {
+      //   p = property.matchedPropertys.entries().next().value[1];
+      //   info = "";
+      // } else {
+      //   console.log( 'p.matchedPropertys.size === 0 ', keyID );
+      //   info = "沒有任何更新鮮配對,請更改篩選!"
+      // }
 
       //}
   
@@ -102,7 +102,7 @@ export class ListOfAgentPropertysView extends React.Component {
               onClose={() => console.log('global close')}
             >
               <Item 
-              extra={<Badge size="large" text={ property.typeByLabel + property.buyRequest.size} 
+              extra={<Badge size="large" text={ property.typeByLabel + property.sizeLabel} 
               overflowCount={99} />} 
                 arrow="horizontal" 
                 onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID, 
@@ -115,7 +115,6 @@ export class ListOfAgentPropertysView extends React.Component {
                 wrap="true"
                 multipleLine >
                 {property.typeToLabel}:{property.addressLocationLabel}/{property.nameOfBuildingLabel}<Brief>
-                {info}
                 </Brief>
               </Item>
             </SwipeAction>
@@ -157,7 +156,7 @@ export class ListOfAgentPropertysView extends React.Component {
               onOpen={() => console.log('global open')}
               onClose={() => console.log('global close')}
             >
-              <Item extra={<Badge size="large" text={property.typeByLabel + property.saleRequest.size} overflowCount={99} />} 
+              <Item extra={<Badge size="large" text={property.typeByLabel + property.sizeLabel} overflowCount={99} />} 
               thumb="http://hair.losstreatment.com/icons/rent.svg"
               arrow="horizontal" 
               onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID, typeTo : property.typeTo,
@@ -166,7 +165,6 @@ export class ListOfAgentPropertysView extends React.Component {
               })} 
               multipleLine >
               {property.typeToLabel}:{property.addressLocationLabel}/{property.nameOfBuildingLabel}<Brief>
-              {info}
               </Brief>
            
               </Item>
@@ -211,7 +209,7 @@ export class ListOfAgentPropertysView extends React.Component {
               onOpen={() => console.log('global open')}
               onClose={() => console.log('global close')}
             >
-              <Item extra={<Badge size="lg" text={property.typeByLabel + property.rentRequest.size} overflowCount={99} />} 
+              <Item extra={<Badge size="lg" text={property.typeByLabel + property.sizeLabel} overflowCount={99} />} 
               arrow="horizontal" 
               onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID, 
                 typeTo : property.typeTo,
@@ -222,7 +220,6 @@ export class ListOfAgentPropertysView extends React.Component {
               multipleLine
               >
               {property.typeToLabel}:{property.addressLocationLabel}/{property.nameOfBuildingLabel}<Brief>
-              {info}
               </Brief>
             </Item>
             </SwipeAction>
@@ -264,7 +261,7 @@ export class ListOfAgentPropertysView extends React.Component {
               onClose={() => console.log('global close')}
             >
               <Item 
-                 extra={<Badge size="large" text={property.typeByLabel + property.leaseRequest.size} overflowCount={99} />} 
+                 extra={<Badge size="large" text={property.typeByLabel + property.sizeLabel} overflowCount={99} />} 
                  arrow="horizontal" 
                  onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID , 
                   typeTo : property.typeTo,
@@ -274,7 +271,6 @@ export class ListOfAgentPropertysView extends React.Component {
                 
                  multipleLine >
                  {property.typeToLabel}:{property.addressLocationLabel}/{property.nameOfBuildingLabel}<Brief>
-                 {info}
                  </Brief>
                </Item>
             </SwipeAction>

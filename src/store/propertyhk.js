@@ -50,6 +50,29 @@ export class Propertyhk extends Property {
     return toJS(this.matchedPropertys);
   }
 
+  @computed
+  get sizeLabel(){
+     
+     if ( this.typeBy === "engage" ) {
+       // Engage we use opposite size buy vs sale, ..
+       switch( this.typeTo ) {
+         case 'buy' : return this.saleFollow.size;
+         case 'sale' : return this.buyFollow.size;
+         case 'lease' : return this.rentFollow.size;
+         case 'rent' : return this.leaseFollow.size;
+        }
+     } else {
+      switch( this.typeTo ) {
+        case 'buy' : return this.buyRequest.size;
+        case 'sale' : return this.saleRequest.size;
+        case 'lease' : return this.leaseRequest.size;
+        case 'rent' : return this.rentRequest.size;
+       }
+     }
+
+     return 0;
+  }
+
   /**
    * @fb firebase ref
    * @request this.saleReqeust, or rent, lease, buy

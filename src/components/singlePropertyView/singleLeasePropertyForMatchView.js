@@ -1,6 +1,6 @@
 import React from 'react'
 import { List , Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl} from 'antd-mobile';
-import { createForm } from 'rc-form';
+//import { createForm } from 'rc-form';
 //import moment from 'moment';
 //import 'moment/locale/zh-cn';
 import {propertys} from 'userModelView'
@@ -48,7 +48,7 @@ import {propertys} from 'userModelView'
 //    'MOSSSC' : '新港城'
 // }
 
-class SingleLeasePropertyForMatchView extends React.Component {
+export default class SingleLeasePropertyForMatchView extends React.Component {
 
   constructor(props) {
     super(props)
@@ -148,4 +148,4 @@ class SingleLeasePropertyForMatchView extends React.Component {
 
 } };
 
-export const SingleLeasePropertyForMatchViewWrapper = createForm()(SingleLeasePropertyForMatchView);
+//export const SingleLeasePropertyForMatchViewWrapper = createForm()(SingleLeasePropertyForMatchView);
