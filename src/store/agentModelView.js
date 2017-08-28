@@ -69,6 +69,11 @@ class AgentModelViewModel {
       var p = that.filters.get( snapshot.key )
       p.restore( snapshot.val() );
       p.matchedPropertys.clear();
+      p.buyRequest.clear();
+      p.saleRequest.clear();
+      p.rentRequest.clear();
+      p.leaseRequest.clear();
+      
       p.buildMatchPropertyByRunTime( snapshot.key, p.typeTo, p.typeBy);
       that.filters.set( snapshot.key, p )
 

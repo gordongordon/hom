@@ -98,7 +98,7 @@ class MatchAgentPanelView extends React.Component {
     } else {
       Fb.app.agentsFilterRef.child(this.state.id).update({ typeBy: 'open'});
     }
-
+ 
     // Handle goTo From any form 
     switch ( this.state.selectedTab ) {
       case 'buy'  :  Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[0], typeTo : "buy" });
@@ -152,19 +152,19 @@ class MatchAgentPanelView extends React.Component {
  
     if (selectedTab === 'buy') {
       return (
-        <ListOfMatchAgentBuyPropertys propertys={property.matchedPropertys} filterID={MobxStore.router.params.keyID}/>
+        <ListOfMatchAgentBuyPropertys propertys={property.buyRequest} filterID={MobxStore.router.params.keyID}/>
       );
     } else if (selectedTab === 'sale') {
       return (
-        <ListOfMatchAgentSalePropertys propertys={property.matchedPropertys} filterID={MobxStore.router.params.keyID}/>
+        <ListOfMatchAgentSalePropertys propertys={property.saleRequest} filterID={MobxStore.router.params.keyID}/>
       );
     } else if (selectedTab === 'rent') {
       return (
-        <ListOfMatchAgentRentPropertys propertys={property.matchedPropertys} filterID={MobxStore.router.params.keyID}/>
+        <ListOfMatchAgentRentPropertys propertys={property.rentRequest} filterID={MobxStore.router.params.keyID}/>
       );
     } else if (selectedTab === 'lease') {
       return (
-        <ListOfMatchAgentLeasePropertys propertys={property.matchedPropertys} filterID={MobxStore.router.params.keyID}/>
+        <ListOfMatchAgentLeasePropertys propertys={property.leaseRequest} filterID={MobxStore.router.params.keyID}/>
       );
     }
 
@@ -236,7 +236,7 @@ class MatchAgentPanelView extends React.Component {
               uri: "http://hair.losstreatment.com/icons/building-blue-down.svg"
             }}
             selected={this.state.selectedTab === "buy"}
-            badge={ this.state.selectedTab === "buy" ? property.matchedPropertys.size : 0 }
+            badge={  property.buyRequest.size }
             onPress={() => {
               this.setState({
                 selectedTab: "buy",
@@ -257,7 +257,7 @@ class MatchAgentPanelView extends React.Component {
             selectedIcon={<Icon type="koubei" />}
             title="放賣盤"
             key="口碑"
-            badge={ this.state.selectedTab === "sale" ? property.matchedPropertys.size : 0 }
+            badge={ property.saleRequest.size  }
             selected={this.state.selectedTab === "sale"}
             onPress={() => {
               this.setState({
@@ -282,7 +282,7 @@ class MatchAgentPanelView extends React.Component {
             }}
             title="租客"
             key="朋友"
-            badge={ this.state.selectedTab === "rent" ? property.matchedPropertys.size : 0 }
+            badge={ property.rentRequest.size  }
             selected={this.state.selectedTab === "rent"}
             onPress={() => {
               this.setState({
@@ -310,7 +310,7 @@ class MatchAgentPanelView extends React.Component {
             title="房東"
             key="我的"
             selected={this.state.selectedTab === "lease"}
-            badge={ this.state.selectedTab === "lease" ? property.matchedPropertys.size : 0 }
+            badge={ property.leaseRequest.size }
             onPress={() => {
               this.setState({
                 selectedTab: "lease",

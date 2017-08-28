@@ -8,9 +8,15 @@ import { Property } from "property";
 // List of user properties, to be .on
 // propertyViewModel
 export class Propertyhk extends Property {
+
   @observable matchedPropertys = observable.map({});
   //@observable matchedPropertys = new Map();
   // responsed propertys from agent only
+  @observable saleRequest = observable.map({});
+  @observable buyRequest = observable.map({});
+  @observable leaseRequest = observable.map({});
+  @observable rentRequest = observable.map({});
+  
   @observable responsedPropertys = observable.map({});
   //@observable responsedPropertys = new Map();
   // @observable matchedPropertys = new Map();
@@ -34,6 +40,62 @@ export class Propertyhk extends Property {
   get json() {
     return toJS(this.matchedPropertys);
   }
+
+  /**
+   * @fb firebase ref
+   * @request this.saleReqeust, or rent, lease, buy
+   * @typeTo
+   * @typeBy 
+   * return request // can be removed!since, input request
+   */
+  buildRequest = ( fb, request, orderByChild, equalTo, id, typeTo, typeBy) => {
+    const that = this;
+    
+    // Handle match propertys
+    fb
+      .orderByChild(orderByChild)
+      .equalTo(equalTo)
+      .on("child_added", function(snap) {
+
+        const p = Propertyhk.deserialize(snap.val());
+
+        request.set(snap.key, p);
+        console.log(
+          "propertyhk.child_added - matchProperty.size",
+          request.size
+        );
+      });
+  
+    fb
+      .orderByChild(orderByChild)
+      .equalTo(equalTo)
+      .on("child_changed", snapshot => {
+        // Get an element with all functions, propertys
+        // Recreate a new properts { ... }
+        // otherwise propertys.responsedPropertys = undefined error
+        const p = Propertyhk.deserialize(snapshot.val());
+        request.set(snapshot.key, p);
+        console.log(
+          "propertyhk.child_changed - matchProperty.size",
+          request.size
+        );
+      });
+
+    fb
+      .orderByChild(orderByChild)
+      .equalTo(equalTo)
+      .on("child_removed", function(snap) {
+        request.delete(snap.key);
+        console.log(
+          "child_removed - matchProperty.size",
+          request.size
+        );
+      });
+
+    return request;
+  };
+
+
 
   /**
    * @compareTo is name of variable e.g. name, price, location
@@ -80,49 +142,59 @@ export class Propertyhk extends Property {
       `property.hk orderByChild ${this.orderByChild} equalTo ${this.equalTo} id ${this.fbid}`
     );
 
-    // Handle match propertys
-    fb
-      .orderByChild(this.orderByChild)
-      .equalTo(this.equalTo)
-      .on("child_added", function(snap) {
-        //          if ( that.uid !== snap.val().uid ) {
+    this.buildRequest( fb, that.matchedPropertys, this.orderByChild, this.equalTo, id, typeTo, typeBy );
+    // Make sale request
+    this.buildRequest( fb, that.saleRequest, this.orderByChild, this.equalTo, id, typeTo, typeBy );
+    // Make buyt request
+    this.buildRequest( fb, that.buyRequest, this.orderByChild, this.equalTo, id, typeTo, typeBy );
+    // Make rent request
+    this.buildRequest( fb, that.rentRequest, this.orderByChild, this.equalTo, id, typeTo, typeBy );
+    // Make lease request
+    this.buildRequest( fb, that.leaseRequest, this.orderByChild, this.equalTo, id, typeTo, typeBy );
+    
+    // // Handle match propertys
+    // fb
+    //   .orderByChild(this.orderByChild)
+    //   .equalTo(this.equalTo)
+    //   .on("child_added", function(snap) {
+    //     //          if ( that.uid !== snap.val().uid ) {
 
-        const p = Propertyhk.deserialize(snap.val());
-        //p.realTime = moment().format('YYYY-MM-DD HH:mm:ss');
+    //     const p = Propertyhk.deserialize(snap.val());
+    //     //p.realTime = moment().format('YYYY-MM-DD HH:mm:ss');
 
-        that.matchedPropertys.set(snap.key, p);
-        console.log(
-          "propertyhk.child_added - matchProperty.size",
-          that.matchedPropertys.size
-        );
-        //         }
-      });
+    //     that.matchedPropertys.set(snap.key, p);
+    //     console.log(
+    //       "propertyhk.child_added - matchProperty.size",
+    //       that.matchedPropertys.size
+    //     );
+    //     //         }
+    //   });
   
-    fb
-      .orderByChild(this.orderByChild)
-      .equalTo(this.equalTo)
-      .on("child_changed", snapshot => {
-        // Get an element with all functions, propertys
-        // Recreate a new properts { ... }
-        // otherwise propertys.responsedPropertys = undefined error
-        const p = Propertyhk.deserialize(snapshot.val());
-        that.matchedPropertys.set(snapshot.key, p);
-        console.log(
-          "propertyhk.child_changed - matchProperty.size",
-          that.matchedPropertys.size
-        );
-      });
+    // fb
+    //   .orderByChild(this.orderByChild)
+    //   .equalTo(this.equalTo)
+    //   .on("child_changed", snapshot => {
+    //     // Get an element with all functions, propertys
+    //     // Recreate a new properts { ... }
+    //     // otherwise propertys.responsedPropertys = undefined error
+    //     const p = Propertyhk.deserialize(snapshot.val());
+    //     that.matchedPropertys.set(snapshot.key, p);
+    //     console.log(
+    //       "propertyhk.child_changed - matchProperty.size",
+    //       that.matchedPropertys.size
+    //     );
+    //   });
 
-    fb
-      .orderByChild(this.orderByChild)
-      .equalTo(this.equalTo)
-      .on("child_removed", function(snap) {
-        that.matchedPropertys.delete(snap.key);
-        console.log(
-          "child_removed - matchProperty.size",
-          that.matchedPropertys.size
-        );
-      });
+    // fb
+    //   .orderByChild(this.orderByChild)
+    //   .equalTo(this.equalTo)
+    //   .on("child_removed", function(snap) {
+    //     that.matchedPropertys.delete(snap.key);
+    //     console.log(
+    //       "child_removed - matchProperty.size",
+    //       that.matchedPropertys.size
+    //     );
+    //   });
 
     return that.matchedPropertys;
   };
