@@ -68,13 +68,14 @@ class AgentModelViewModel {
       console.log('agentModelView.child_changed')
       var p = that.filters.get( snapshot.key )
       p.restore( snapshot.val() );
-      p.matchedPropertys.clear();
+      //p.matchedPropertys.clear();
       p.buyRequest.clear();
       p.saleRequest.clear();
       p.rentRequest.clear();
       p.leaseRequest.clear();
       
       p.buildMatchPropertyByRunTime( snapshot.key, p.typeTo, p.typeBy);
+    console.log( `b ${p.buyRequest.size}, s ${p.buyRequest.size}, r ${p.rentRequest.size}, l ${p.leaseRequest.size}`);
       that.filters.set( snapshot.key, p )
 
     });

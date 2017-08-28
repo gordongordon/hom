@@ -16,6 +16,10 @@ export class Propertyhk extends Property {
   @observable buyRequest = observable.map({});
   @observable leaseRequest = observable.map({});
   @observable rentRequest = observable.map({});
+  @observable saleFollow = observable.map({});
+  @observable buyFollow = observable.map({});
+  @observable leaseFollow = observable.map({});
+  @observable rentFollow = observable.map({});
   
   @observable responsedPropertys = observable.map({});
   //@observable responsedPropertys = new Map();
@@ -142,15 +146,24 @@ export class Propertyhk extends Property {
       `property.hk orderByChild ${this.orderByChild} equalTo ${this.equalTo} id ${this.fbid}`
     );
 
-    this.buildRequest( fb, that.matchedPropertys, this.orderByChild, this.equalTo, id, typeTo, typeBy );
+    // this.buildRequest( fb, that.matchedPropertys, this.orderByChild, this.equalTo, id, typeTo, typeBy );
     // Make sale request
-    this.buildRequest( fb, that.saleRequest, this.orderByChild, this.equalTo, id, typeTo, typeBy );
+    this.buildRequest( Fb.sale, that.saleRequest, this.orderByChild, this.equalTo, id, typeTo, typeBy );
     // Make buyt request
-    this.buildRequest( fb, that.buyRequest, this.orderByChild, this.equalTo, id, typeTo, typeBy );
+    this.buildRequest( Fb.buy, that.buyRequest, this.orderByChild, this.equalTo, id, typeTo, typeBy );
     // Make rent request
-    this.buildRequest( fb, that.rentRequest, this.orderByChild, this.equalTo, id, typeTo, typeBy );
+    this.buildRequest( Fb.rent, that.rentRequest, this.orderByChild, this.equalTo, id, typeTo, typeBy );
     // Make lease request
-    this.buildRequest( fb, that.leaseRequest, this.orderByChild, this.equalTo, id, typeTo, typeBy );
+    this.buildRequest( Fb.lease, that.leaseRequest, this.orderByChild, this.equalTo, id, typeTo, typeBy );
+
+    // Make sale request
+    this.buildRequest(  Fb.app.agentSaleRef, that.saleFollow, this.orderByChild, this.equalTo, id, typeTo, typeBy );
+    // Make buyt request
+    this.buildRequest(  Fb.app.agentBuyRef, that.buyFollow, this.orderByChild, this.equalTo, id, typeTo, typeBy );
+    // Make rent request
+    this.buildRequest(  Fb.app.agentRentRef, that.rentFollow, this.orderByChild, this.equalTo, id, typeTo, typeBy );
+    // Make lease request
+    this.buildRequest(  Fb.app.agentLeaseRef, that.leaseFollow, this.orderByChild, this.equalTo, id, typeTo, typeBy );
     
     // // Handle match propertys
     // fb
