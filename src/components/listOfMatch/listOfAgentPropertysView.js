@@ -102,7 +102,7 @@ export class ListOfAgentPropertysView extends React.Component {
               onClose={() => console.log('global close')}
             >
               <Item 
-              extra={<Badge size="large" text={ property.typeByLabel + property.matchedPropertys.size} 
+              extra={<Badge size="large" text={ property.typeByLabel + property.buyRequest.size} 
               overflowCount={99} />} 
                 arrow="horizontal" 
                 onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID, 
@@ -157,7 +157,7 @@ export class ListOfAgentPropertysView extends React.Component {
               onOpen={() => console.log('global open')}
               onClose={() => console.log('global close')}
             >
-              <Item extra={<Badge size="large" text={property.typeByLabel + property.matchedPropertys.size} overflowCount={99} />} 
+              <Item extra={<Badge size="large" text={property.typeByLabel + property.saleRequest.size} overflowCount={99} />} 
               thumb="http://hair.losstreatment.com/icons/rent.svg"
               arrow="horizontal" 
               onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID, typeTo : property.typeTo,
@@ -211,7 +211,7 @@ export class ListOfAgentPropertysView extends React.Component {
               onOpen={() => console.log('global open')}
               onClose={() => console.log('global close')}
             >
-              <Item extra={<Badge size="lg" text={property.typeByLabel + property.matchedPropertys.size} overflowCount={99} />} 
+              <Item extra={<Badge size="lg" text={property.typeByLabel + property.rentRequest.size} overflowCount={99} />} 
               arrow="horizontal" 
               onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID, 
                 typeTo : property.typeTo,
@@ -264,7 +264,7 @@ export class ListOfAgentPropertysView extends React.Component {
               onClose={() => console.log('global close')}
             >
               <Item 
-                 extra={<Badge size="large" text={property.typeByLabel + property.matchedPropertys.size} overflowCount={99} />} 
+                 extra={<Badge size="large" text={property.typeByLabel + property.leaseRequest.size} overflowCount={99} />} 
                  arrow="horizontal" 
                  onClick={() => MobxStore.router.goTo(views.matchAgent, { keyID , 
                   typeTo : property.typeTo,

@@ -148,40 +148,40 @@ class MatchAgentPanelView extends React.Component {
   /**
    * Render Match list of agent propertys
    */
-  renderList = property => {
+  renderList = filter => {
     const selectedTab = this.state.selectedTab;
 
     // debugger
     // Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[index] });
     if (this.state.selectedSegmentIndex === 0 ) {
     switch ( selectedTab ) {
-      case 'buy' : return <ListOfMatchAgentBuyPropertys propertys={property.buyRequest} filterID={MobxStore.router.params.keyID}/>;
+      case 'buy' : return <ListOfMatchAgentBuyPropertys propertys={filter.buyRequest} filterID={MobxStore.router.params.keyID}/>;
       break;
-      case 'sale': return <ListOfMatchAgentSalePropertys propertys={property.saleRequest} filterID={MobxStore.router.params.keyID}/>;
+      case 'sale': return <ListOfMatchAgentSalePropertys propertys={filter.saleRequest} filterID={MobxStore.router.params.keyID}/>;
       break;
-      case 'rent': return <ListOfMatchAgentRentPropertys propertys={property.rentRequest} filterID={MobxStore.router.params.keyID}/>;
+      case 'rent': return <ListOfMatchAgentRentPropertys propertys={filter.rentRequest} filterID={MobxStore.router.params.keyID}/>;
       break;
-      case 'lease': return <ListOfMatchAgentLeasePropertys propertys={property.leaseRequest} filterID={MobxStore.router.params.keyID}/>;
+      case 'lease': return <ListOfMatchAgentLeasePropertys propertys={filter.leaseRequest} filterID={MobxStore.router.params.keyID}/>;
       break;
     } } else {
       switch ( selectedTab ) {
-        case 'buy' : return <ListOfMatchAgentBuyPropertys propertys={property.buyCase} filterID={MobxStore.router.params.keyID}/>;
+        case 'buy' : return <ListOfMatchAgentBuyPropertys propertys={filter.buyCase} followCase={filter.saleFollow} filterID={MobxStore.router.params.keyID}/>;
         break;
-        case 'sale': return <ListOfMatchAgentSalePropertys propertys={property.saleCase} filterID={MobxStore.router.params.keyID}/>;
+        case 'sale': return <ListOfMatchAgentSalePropertys propertys={filter.saleCase} followCase={filter.buyFollow} filterID={MobxStore.router.params.keyID}/>;
         break;
-        case 'rent': return <ListOfMatchAgentRentPropertys propertys={property.rentCase} filterID={MobxStore.router.params.keyID}/>;
+        case 'rent': return <ListOfMatchAgentRentPropertys propertys={filter.rentCase} followCase={filter.leaseFollow} filterID={MobxStore.router.params.keyID}/>;
         break;
-        case 'lease': return <ListOfMatchAgentLeasePropertys propertys={property.leaseCase} filterID={MobxStore.router.params.keyID}/>;
+        case 'lease': return <ListOfMatchAgentLeasePropertys propertys={filter.leaseCase} followCase={filter.rentFollow} filterID={MobxStore.router.params.keyID}/>;
         break;
       }  
       // switch ( selectedTab ) {
-      //   case 'buy' : return <ListOfMatchAgentBuyPropertys propertys={property.buyFollow} filterID={MobxStore.router.params.keyID}/>;
+      //   case 'buy' : return <ListOfMatchAgentBuyPropertys propertys={filter.buyFollow} filterID={MobxStore.router.params.keyID}/>;
       //   break;
-      //   case 'sale': return <ListOfMatchAgentSalePropertys propertys={property.saleFollow} filterID={MobxStore.router.params.keyID}/>;
+      //   case 'sale': return <ListOfMatchAgentSalePropertys propertys={filter.saleFollow} filterID={MobxStore.router.params.keyID}/>;
       //   break;
-      //   case 'rent': return <ListOfMatchAgentRentPropertys propertys={property.rentFollow} filterID={MobxStore.router.params.keyID}/>;
+      //   case 'rent': return <ListOfMatchAgentRentPropertys propertys={filter.rentFollow} filterID={MobxStore.router.params.keyID}/>;
       //   break;
-      //   case 'lease': return <ListOfMatchAgentLeasePropertys propertys={property.leaseFollow} filterID={MobxStore.router.params.keyID}/>;
+      //   case 'lease': return <ListOfMatchAgentLeasePropertys propertys={filter.leaseFollow} filterID={MobxStore.router.params.keyID}/>;
       //   break;
       // }  
     }
@@ -191,13 +191,13 @@ class MatchAgentPanelView extends React.Component {
   };
 
   render() {
-    var property = agentModel.filters.get(MobxStore.router.params.keyID);
+    var filter = agentModel.filters.get(MobxStore.router.params.keyID);
     
     console.log(
       "matchAgentPanelView->store.params.keyID",
       MobxStore.router.params.keyID
     );
-    console.log("matchAgentPanelView property", property);
+//    console.log("matchAgentPanelView property", filter);
     // this.setState({
     //   selectedTab : property.typeFor
     // })
@@ -205,7 +205,7 @@ class MatchAgentPanelView extends React.Component {
     return (
       <div>
         <ControlAgentViewWrapper
-          property={property}
+          property={filter}
           selectedIndex={this.state.selectedSegmentIndex}
           onChange={this.onChange}
         />
@@ -255,7 +255,7 @@ class MatchAgentPanelView extends React.Component {
               uri: "http://hair.losstreatment.com/icons/building-blue-down.svg"
             }}
             selected={this.state.selectedTab === "buy"}
-            badge={ this.state.selectedSegmentIndex === 0? property.buyRequest.size : property.saleFollow.size }
+            badge={ this.state.selectedSegmentIndex === 0? filter.buyRequest.size : filter.saleFollow.size }
             onPress={() => {
               this.setState({
                 selectedTab: "buy",
@@ -269,14 +269,14 @@ class MatchAgentPanelView extends React.Component {
             }}
             data-seed="logId"
           >
-            {this.renderList(property)}
+            {this.renderList(filter)}
           </TabBar.Item>
           <TabBar.Item
             icon={<Icon type="koubei-o" />}
             selectedIcon={<Icon type="koubei" />}
             title="放賣盤"
             key="口碑"
-            badge={ this.state.selectedSegmentIndex === 0? property.saleRequest.size : property.buyFollow.size }
+            badge={ this.state.selectedSegmentIndex === 0? filter.saleRequest.size : filter.buyFollow.size }
             selected={this.state.selectedTab === "sale"}
             onPress={() => {
               this.setState({
@@ -290,7 +290,7 @@ class MatchAgentPanelView extends React.Component {
             }}
             data-seed="logId1"
           >
-            {this.renderList(property)}
+            {this.renderList(filter)}
           </TabBar.Item>
           <TabBar.Item
             icon={{
@@ -301,7 +301,7 @@ class MatchAgentPanelView extends React.Component {
             }}
             title="租客"
             key="朋友"
-            badge={ this.state.selectedSegmentIndex === 0? property.rentRequest.size : property.leaseFollow.size }
+            badge={ this.state.selectedSegmentIndex === 0? filter.rentRequest.size : filter.leaseFollow.size }
             selected={this.state.selectedTab === "rent"}
             onPress={() => {
               this.setState({
@@ -329,7 +329,7 @@ class MatchAgentPanelView extends React.Component {
             title="房東"
             key="我的"
             selected={this.state.selectedTab === "lease"}
-            badge={ this.state.selectedSegmentIndex === 0? property.leaseRequest.size : property.rentFollow.size }
+            badge={ this.state.selectedSegmentIndex === 0? filter.leaseRequest.size : filter.rentFollow.size }
             onPress={() => {
               this.setState({
                 selectedTab: "lease",
@@ -341,7 +341,7 @@ class MatchAgentPanelView extends React.Component {
                   typeTo : "lease"  });
             }}
           >
-            {this.renderList(property)}
+            {this.renderList(filter)}
           </TabBar.Item>
         </TabBar>
       </div>

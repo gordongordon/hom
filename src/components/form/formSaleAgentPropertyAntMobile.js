@@ -208,6 +208,7 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
     // Get the last property to generate default form values
     const property = MobxStore.app.lastProperty;
     console.log( 'p.size', propertys.propertys.size)
+    console.log( 'p', property )
 
     const addressArray = property.addressToArray;
     const partitionArray = property.partitionToArray;

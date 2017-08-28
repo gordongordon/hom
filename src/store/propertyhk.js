@@ -70,7 +70,7 @@ export class Propertyhk extends Property {
 
         request.set(snap.key, p);
         console.log(
-          "propertyhk.child_added - matchProperty.size",
+          "propertyhk.child_added - request.size",
           request.size
         );
       });
@@ -85,7 +85,7 @@ export class Propertyhk extends Property {
         const p = Propertyhk.deserialize(snapshot.val());
         request.set(snapshot.key, p);
         console.log(
-          "propertyhk.child_changed - matchProperty.size",
+          "propertyhk.child_changed - request.size",
           request.size
         );
       });
@@ -96,7 +96,7 @@ export class Propertyhk extends Property {
       .on("child_removed", function(snap) {
         request.delete(snap.key);
         console.log(
-          "child_removed - matchProperty.size",
+          "child_removed - request.size",
           request.size
         );
       });

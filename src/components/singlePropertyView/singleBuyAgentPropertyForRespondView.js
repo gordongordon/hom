@@ -84,6 +84,7 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
               keyID: property.fbid,
               typeTo: property.typeTo,
               filterID: this.props.filterID
+
             })}
           thumb="http://hair.losstreatment.com/icons/building-up.svg"
           multipleLine

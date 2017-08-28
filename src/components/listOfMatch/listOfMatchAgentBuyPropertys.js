@@ -21,7 +21,7 @@ import {Accordion, List
 export class ListOfMatchAgentBuyPropertys extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   display = ( propertys ) => {
