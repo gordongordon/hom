@@ -16,6 +16,7 @@ export class Propertyhk extends Property {
   @observable buyRequest = observable.map({});
   @observable leaseRequest = observable.map({});
   @observable rentRequest = observable.map({});
+
   @observable saleFollow = observable.map({});
   @observable buyFollow = observable.map({});
   @observable leaseFollow = observable.map({});
@@ -105,8 +106,16 @@ export class Propertyhk extends Property {
         // Get an element with all functions, propertys
         // Recreate a new properts { ... }
         // otherwise propertys.responsedPropertys = undefined error
+
+        // THis one doesn't work for this update
+        // Get and 
+        // var p = request.get(snapshot.key);
+        // p.restore(snapshot.val());
+        // request.set(snapshot.key, p);
+
         const p = Propertyhk.deserialize(snapshot.val());
         request.set(snapshot.key, p);
+
         console.log(
           "propertyhk.child_changed - request.size",
           request.size
@@ -180,13 +189,21 @@ export class Propertyhk extends Property {
   }
 
   /**
-   * @compareTo is name of variable e.g. name, price, location
-   * @valueTo   is value equal to.  e.g. 'shatin'
+   * Let Follow is list of follow up property , e.g. saleFollow
+   * Let Request is list of request property  , e.g. saleRequest
+   * Let Case is list of request which was followed e.g. saleCase
+   * Follow contains object which was followed from request objects
+   * in order to find out all cases, I have to look over follow objects
+   * and find a related fbid key in each element, then get and sign into Case Objects
+   * 
+   *     so, Follow.forEach( (element, key) => {
+   *         Case.set( key, BuyRequest.get( element.relatedFBid)  );
+   *     } ) 
    * return
    */
   buildMatchPropertyByRunTime = (id, typeTo, typeBy) => {
     const that = this;
-    var fb; // firebase ref;
+    //var fb; // firebase ref;
 
     // if (typeBy === "open") {
     //   switch (typeTo) {
@@ -243,7 +260,9 @@ export class Propertyhk extends Property {
     // Make lease request
     this.buildRequest(  Fb.app.agentLeaseRef, that.leaseFollow, this.orderByChild, this.equalTo, id, typeTo, typeBy );
     
+    // Building case, once, we have request and follow
     this.buildCase();
+
     // // Handle match propertys
     // fb
     //   .orderByChild(this.orderByChild)

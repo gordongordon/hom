@@ -115,19 +115,6 @@ export default class SingleSaleAgentPropertyForRespondView extends React.Compone
             />
             </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
             </Item>
-        <Item>
-          <Button type="primary" size="small" onClick={this.onSubmit} inline>
-            Submit
-          </Button>
-          <Button
-            onClick={this.onReset}
-            size="small"
-            inline
-            style={{ marginLeft: 5 }}
-          >
-            Reset
-          </Button>
-        </Item>
         <WhiteSpace size="sm" />
       </div>
     );

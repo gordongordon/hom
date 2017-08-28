@@ -46,6 +46,7 @@ class ControlRentView extends React.Component {
 
     Fb.app.usersRef.child( id ).update( { rentBudgetMax : parseInt( val )  } );
     Fb.propertys.child( id ).update( { rentBudgetMax : parseInt( val) } );
+    Fb.rent.child( id ).update( { rentBudgetMax : parseInt( val) } );
   }
 
 
@@ -56,7 +57,8 @@ class ControlRentView extends React.Component {
 
      Fb.app.usersRef.child( id ).update( { earlyTimeToView : v.earlyTimeToView.toJSON() } );
      Fb.propertys.child( id ).update( { earlyTimeToView : v.earlyTimeToView.toJSON() } );
-  }
+     Fb.rent.child( id ).update( { earlyTimeToView : v.earlyTimeToView.toJSON() } );
+    }
 
   render() {
         const {property} = this.props;

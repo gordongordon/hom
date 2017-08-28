@@ -43,7 +43,9 @@ class ControlLeaseView extends React.Component {
 
        Fb.app.usersRef.child( id ).update( { leasePrice : parseInt( val )  } );
        Fb.propertys.child( id ).update( { leasePrice : parseInt( val) } );
-    }
+       Fb.lease.child( id ).update( { leasePrice : parseInt( val) } );
+       
+      }
 
     onChangeEarlyTimeToView = () =>
     {
@@ -54,6 +56,7 @@ class ControlLeaseView extends React.Component {
       //// debugger
       Fb.app.usersRef.child( id ).update( { earlyTimeToView : v.earlyTimeToView.toJSON() } );
       Fb.propertys.child( id ).update( { earlyTimeToView : v.earlyTimeToView.toJSON() } );
+      Fb.lease.child( id ).update( { earlyTimeToView : v.earlyTimeToView.toJSON() } );
     }
 
   render() {

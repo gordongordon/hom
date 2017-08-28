@@ -31,7 +31,6 @@ startRouter(views, MobxStore);
 initReactFastclick();
 
 
-
 // function preventDefault(e) {
 //   e = e || window.event;
 //   if (e.preventDefault)
@@ -114,7 +113,7 @@ firebase.auth().onAuthStateChanged( (user) => {
 
      // Think over before remove this like, may cause matchedPropertys = null
      Fb.app.updateUid();
-     MobxStore.router.goTo( views.list , {}, MobxStore )
+     MobxStore.router.goTo( views.home , {}, MobxStore )
   } else {
        console.log( 'user donot sign')
        //MobxStore.app.startLogout();
