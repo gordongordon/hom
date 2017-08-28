@@ -4,7 +4,7 @@ import React from 'react'
  //import moment from 'moment';
 // import 'moment/locale/zh-cn';
 //import {propertys} from 'userModelView'
-import {SingleLeasePropertyForMatchViewWrapper} from '../singlePropertyView/singleLeasePropertyForMatchView'
+import SingleLeasePropertyForMatchView from '../singlePropertyView/singleLeasePropertyForMatchView'
 import { observer } from 'mobx-react';
 //const Item = List.Item;
 //const Brief = Item.Brief;
@@ -36,7 +36,7 @@ export class ListOfMatchOldLeasePropertys extends React.Component {
 
     list.forEach( (property, keyID) =>
        element.push(
-           <SingleLeasePropertyForMatchViewWrapper property={property} key={keyID}/>
+           <SingleLeasePropertyForMatchView property={property} key={keyID}/>
          ) );
 
      return <div>{element.reverse()}</div>

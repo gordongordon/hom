@@ -401,10 +401,10 @@ export class Property {
         name = "買家";
         break;
       case "lease":
-        name = "業主 出租";
+        name = "房東";
         break;
       case "sale":
-        name = "業主 出售";
+        name = "業主";
         break;
       case "rent":
         name = "租客";
@@ -420,7 +420,7 @@ export class Property {
 
   @computed
   get contactNameLabel() {
-    return this.typeToLabel + this.contactName;
+    return this.roleName + this.contactName;
   }
 
   @computed

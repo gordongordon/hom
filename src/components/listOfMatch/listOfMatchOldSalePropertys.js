@@ -4,7 +4,7 @@ import React from 'react'
 import moment from 'moment';
 //import 'moment/locale/zh-cn';
 //import {propertys} from 'userModelView'
-import {SingleSalePropertyForMatchViewWrapper} from '../singlePropertyView/singleSalePropertyForMatchView'
+import SingleSalePropertyForMatchView from '../singlePropertyView/singleSalePropertyForMatchView'
 import { observer } from 'mobx-react';
 //const Item = List.Item;
 //const Brief = Item.Brief;
@@ -37,7 +37,7 @@ export class ListOfMatchOldSalePropertys extends React.Component {
     list.forEach( (property, keyID) => {
 
        element.push(
-           <SingleSalePropertyForMatchViewWrapper property={property} key={keyID} timeEnter={timeEnter}/>
+           <SingleSalePropertyForMatchView property={property} key={keyID} timeEnter={timeEnter}/>
          )
        } );
 

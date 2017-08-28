@@ -4,7 +4,7 @@ import React from 'react'
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 //import {propertys} from 'userModelView'
-import {SingleRentPropertyForMatchViewWrapper} from '../singlePropertyView/singleRentPropertyForMatchView'
+import SingleRentPropertyForMatchView from '../singlePropertyView/singleRentPropertyForMatchView'
 import { observer } from 'mobx-react';
 //const Item = List.Item;
 //const Brief = Item.Brief;
@@ -53,7 +53,7 @@ export class ListOfMatchRentPropertys extends React.Component {
        if ( b >= c ) {
          //console.log( b > c)
        element.push(
-           <SingleRentPropertyForMatchViewWrapper property={property} key={keyID}/>
+           <SingleRentPropertyForMatchView property={property} key={keyID}/>
          )
        }
 

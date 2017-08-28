@@ -13,7 +13,7 @@ import {
   Button,
   SegmentedControl
 } from "antd-mobile";
-import { createForm } from "rc-form";
+//import { createForm } from "rc-form";
 //import moment from 'moment';
 //import 'moment/locale/zh-cn';
 import { propertys } from "userModelView";
@@ -36,7 +36,7 @@ const Brief = Item.Brief;
 //    'MOSSSC' : '新港城'
 // }
 
-class SingleSaleAgentPropertyForRespondView extends React.Component {
+export default class SingleSaleAgentPropertyForRespondView extends React.Component {
   constructor(props) {
     super(props);
 
@@ -79,7 +79,7 @@ class SingleSaleAgentPropertyForRespondView extends React.Component {
           thumb="http://hair.losstreatment.com/icons/rent-up.svg"
           multipleLine
         >
-          {property.nameOfBuildingLabel}/{property.contactNameLabel}
+       {property.addressLocationLabel}/{property.nameOfBuildingLabel}/{property.contactNameLabel}
           <Brief>
             {property.partitionLabel}
             {property.salePriceLabel}
@@ -133,10 +133,6 @@ class SingleSaleAgentPropertyForRespondView extends React.Component {
     );
   }
 }
-
-export const SingleSaleAgentPropertyForRespondViewWrapper = createForm()(
-  SingleSaleAgentPropertyForRespondView
-);
 
 // {/* <div>
 // <SwipeAction

@@ -4,7 +4,8 @@ import React from 'react'
 //import moment from 'moment';
 //import 'moment/locale/zh-cn';
 //import {propertys} from 'userModelView'
-import {SingleLeaseAgentPropertyForRespondViewWrapper} from '../singlePropertyView/SingleLeaseAgentPropertyForRespondView'
+import SingleLeaseAgentPropertyForRespondView from '../singlePropertyView/singleLeaseAgentPropertyForRespondView'
+import SingleLeaseCaseView from '../singlePropertyView/singleLeaseCaseView'
 import { observer } from 'mobx-react';
 //const Item = List.Item;
 //const Brief = Item.Brief;
@@ -35,10 +36,17 @@ export class ListOfMatchAgentLeasePropertys extends React.Component {
      var element = [];
 
      console.log( 'list.size', list.size )
-     list.forEach( (property, keyID) => {
+     list.forEach( (p, keyID) => {
+      if ( p.relatedFbid ) {
         element.push(
-            <SingleLeaseAgentPropertyForRespondViewWrapper property={property} key={keyID} filterID={this.props.filterID}/>
+             <SingleLeaseCaseView property={p} key={keyID} filterID={this.props.filterID}/>
+           )
+        } else {
+          element.push(
+            <SingleLeaseAgentPropertyForRespondView property={p} key={keyID} filterID={this.props.filterID}/>
           )
+        }
+  
      })
 
      return <div>{element.reverse()}</div>

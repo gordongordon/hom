@@ -11,7 +11,8 @@ import views from 'views';
 const Item = List.Item;
 const Brief = Item.Brief;
 
-// const BUILDING_NAME = {
+// const BUILDING_NAME
+//    'MOSDBC' : '迎海',
 //    'MOSDBC' : '迎海',
 //    'MOSCTO' : '第一城',
 //    'MOSSSC' : '新港城'

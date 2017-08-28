@@ -315,7 +315,7 @@ class MatchAgentPanelView extends React.Component {
                  });
             }}
           >
-            {this.renderList(property)}
+            {this.renderList(filter)}
           </TabBar.Item>
           <TabBar.Item
             icon={{

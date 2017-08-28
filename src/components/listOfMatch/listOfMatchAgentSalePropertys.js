@@ -4,7 +4,7 @@ import React from 'react'
 //import moment from 'moment';
 //import 'moment/locale/zh-cn';
 //import {propertys} from 'userModelView'
-import {SingleSaleAgentPropertyForRespondViewWrapper} from '../singlePropertyView/SingleSaleAgentPropertyForRespondView'
+import SingleSaleAgentPropertyForRespondView from '../singlePropertyView/singleSaleAgentPropertyForRespondView'
 import { observer } from 'mobx-react';
 //const Item = List.Item;
 //const Brief = Item.Brief;
@@ -36,21 +36,17 @@ export class ListOfMatchAgentSalePropertys extends React.Component {
     //  const timeEnter = this.props.timeEnter;
     //  const c = moment( timeEnter );
 
-    list.forEach( (property, keyID) => {
-      //  //var c = moment.utc().format('YYYY-MM-DD HH:mm:ss');
-      //  const a = moment( property.createdAt,'YYYY-MM-DD HH:mm:ss' );
-      //  const b = moment(a, 'YYYY-MM-DD HH:mm:ss');
-       //
-      //  console.log( 'a ', a)
-      //  console.log( 'b ', b)
-      //  console.log( 'c ', c)
-       //
-      //  if ( b >= c ) {
-      //    //console.log( b > c)
-       element.push(
-           <SingleSaleAgentPropertyForRespondViewWrapper property={property} key={keyID} filterID={this.props.filterID}/>
-         )
-    //   }
+    list.forEach( (p, keyID) => {
+      if ( p.relatedFbid ) {
+        element.push(
+             <SingleSaleCaseView property={p} key={keyID} filterID={this.props.filterID}/>
+           )
+        } else {
+          element.push(
+            <SingleSaleAgentPropertyForRespondView property={p} key={keyID} filterID={this.props.filterID}/>
+          )
+        }
+  
 
     })
 
