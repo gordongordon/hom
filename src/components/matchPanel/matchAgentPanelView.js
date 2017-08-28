@@ -69,12 +69,14 @@ const CustomChildren = props =>
     </div>
   </div>;
 
-const typeForString = {
-  "0": "sale",
-  "1": "buy",
-  "2": "lease",
-  "3": "rent"
-};
+// const typeForString = {
+//   "0": "sale",
+//   "1": "buy",
+//   "2": "lease",
+//   "3": "rent"
+// };
+
+const typeForString = ["sale","buy","lease", "rent" ];
 
 @observer
 class MatchAgentPanelView extends React.Component {
@@ -103,6 +105,13 @@ class MatchAgentPanelView extends React.Component {
       Fb.app.agentsFilterRef.child(this.state.id).update({ typeBy: 'open'});
     }
  
+    // Fb.app.agentsFilterRef
+    // .child(this.state.id)
+    // .update({ typeFor: typeForString[0],
+    //           typeTo : "buy" 
+    //         });
+
+
     // Handle goTo From any form 
     switch ( this.state.selectedTab ) {
       case 'buy'  :  Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[0], typeTo : "buy" });
@@ -125,9 +134,9 @@ class MatchAgentPanelView extends React.Component {
   onChange = e => {
     e.preventDefault();
     const index = e.nativeEvent.selectedSegmentIndex;
-    console.log(
-      `MatchAgentPanelView. selectedIndex:${e.nativeEvent.selectedSegmentIndex}`
-    );
+    // console.log(
+    //   `MatchAgentPanelView. selectedIndex:${e.nativeEvent.selectedSegmentIndex}`
+    // );
     this.setState({
       selectedSegmentIndex: index
     });
@@ -164,14 +173,15 @@ class MatchAgentPanelView extends React.Component {
       case 'lease': return <ListOfMatchAgentLeasePropertys propertys={filter.leaseRequest} filterID={MobxStore.router.params.keyID}/>;
       break;
     } } else {
+      debugger
       switch ( selectedTab ) {
-        case 'buy' : return <ListOfMatchAgentBuyPropertys propertys={filter.buyCase} followCase={filter.saleFollow} filterID={MobxStore.router.params.keyID}/>;
+        case 'buy' : return <ListOfMatchAgentBuyPropertys propertys={filter.buyCase} filterID={MobxStore.router.params.keyID}/>;
         break;
-        case 'sale': return <ListOfMatchAgentSalePropertys propertys={filter.saleCase} followCase={filter.buyFollow} filterID={MobxStore.router.params.keyID}/>;
+        case 'sale': return <ListOfMatchAgentSalePropertys propertys={filter.saleCase} filterID={MobxStore.router.params.keyID}/>;
         break;
-        case 'rent': return <ListOfMatchAgentRentPropertys propertys={filter.rentCase} followCase={filter.leaseFollow} filterID={MobxStore.router.params.keyID}/>;
+        case 'rent': return <ListOfMatchAgentRentPropertys propertys={filter.rentCase} filterID={MobxStore.router.params.keyID}/>;
         break;
-        case 'lease': return <ListOfMatchAgentLeasePropertys propertys={filter.leaseCase} followCase={filter.rentFollow} filterID={MobxStore.router.params.keyID}/>;
+        case 'lease': return <ListOfMatchAgentLeasePropertys propertys={filter.leaseCase} filterID={MobxStore.router.params.keyID}/>;
         break;
       }  
       // switch ( selectedTab ) {
@@ -191,12 +201,19 @@ class MatchAgentPanelView extends React.Component {
   };
 
   render() {
-    var filter = agentModel.filters.get(MobxStore.router.params.keyID);
-    
-    console.log(
-      "matchAgentPanelView->store.params.keyID",
-      MobxStore.router.params.keyID
-    );
+    const filter = agentModel.filters.get(MobxStore.router.params.keyID);
+
+    /**
+     * Try to catch the delay whle Follow beginning update. 
+     * without this, engage propertys, wan't be display
+     * 
+     */
+    filter.buildCase();
+
+    // console.log(
+    //   "matchAgentPanelView->store.params.keyID",
+    //   MobxStore.router.params.keyID
+    // );
 //    console.log("matchAgentPanelView property", filter);
     // this.setState({
     //   selectedTab : property.typeFor

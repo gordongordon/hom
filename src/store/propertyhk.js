@@ -139,25 +139,25 @@ export class Propertyhk extends Property {
   buildCase(){
     
     this.saleFollow.forEach( (element, key) => {
+      
       const relatedFbid = element.relatedFbid;
       const p = this.buyRequest.get( relatedFbid)
 
-    
-      if ( p === undefined ) {
-        console.log('saleCase undefined with key ', relatedFbid);
-      } else {
-      // Setup ref
-      const np = Propertyhk.deserialize(p);
-      np.relatedFbid = key;   
-      // p.contactName = 'kky'
-      this.buyCase.set( key, np );
-      // console.log( 'saleCase.size ', this.saleCase.size )
-      // console.log( 'saleCase object',this.buyRequest.get( relatedFbid ) )
-      // console.log( 'saleCase key', key )
-      }
+      // if ( p === undefined ) {
+      //   console.log('saleCase undefined with key ', relatedFbid);
+      // } else {
+        // Setup ref
+        const np = Propertyhk.deserialize(p);
+        np.relatedFbid = key;   
+        // p.contactName = 'kky'
+        this.buyCase.set( key, np );
+        // console.log( 'saleCase.size ', this.saleCase.size )
+        // console.log( 'saleCase object',this.buyRequest.get( relatedFbid ) )
+        // console.log( 'saleCase key', key )
+      //}
       // Remove followed request
       this.buyRequest.delete( relatedFbid );
-      
+      // debugger
     });
 
     this.buyFollow.forEach( (element, key) => {
@@ -168,10 +168,11 @@ export class Propertyhk extends Property {
       np.relatedFbid = key;   
       
       this.saleCase.set( key, np );
-      console.log( 'buyCase key', key )
+      console.log( 'saleCase key', key )
       // Remove followed request
       this.saleRequest.delete( relatedFbid );
     });
+
     this.rentFollow.forEach( (element, key) => {
       const relatedFbid = element.relatedFbid;
       const p = this.leaseRequest.get( relatedFbid)
@@ -179,10 +180,11 @@ export class Propertyhk extends Property {
       np.relatedFbid = key;   
       
       this.leaseCase.set( key, np );
-      console.log( 'rentCase key', key )
+      console.log( 'leaseCase key', key )
       // Remove followed request
       this.leaseRequest.delete( relatedFbid );
     });
+
     this.leaseFollow.forEach( (element, key) => {
       const relatedFbid = element.relatedFbid;
       const p = this.rentRequest.get( relatedFbid)
@@ -190,7 +192,7 @@ export class Propertyhk extends Property {
       np.relatedFbid = key;   
       
       this.rentCase.set( key, np );
-      console.log( 'leaseCase key', key )
+      console.log( 'rentCase key', key )
       // Remove followed request
       this.rentRequest.delete( relatedFbid );
       

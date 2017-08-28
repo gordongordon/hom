@@ -46,7 +46,7 @@ export default class SingleBuyCaseView extends React.Component {
   }
 
   render() {
-    const { property, followCase } = this.props;
+    const { property } = this.props;
     const that = this;
     //        const { getFieldProps } = this.props.form;
 

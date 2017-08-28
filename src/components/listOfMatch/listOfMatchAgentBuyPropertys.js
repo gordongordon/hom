@@ -31,6 +31,7 @@ export class ListOfMatchAgentBuyPropertys extends React.Component {
      // Catched empty list, don't do anything!
      if ( list.size === 0 )
      {
+        // debugger
         return null;
      }
      
@@ -43,7 +44,7 @@ export class ListOfMatchAgentBuyPropertys extends React.Component {
     list.forEach( (p, keyID) => {
       if ( p.relatedFbid ) {
       element.push(
-           <SingleBuyCaseView property={p} key={keyID} followCase={this.props.followCase.get(p.relatedFid)} filterID={this.props.filterID}/>
+           <SingleBuyCaseView property={p} key={keyID} filterID={this.props.filterID}/>
          )
       } else {
         element.push(
