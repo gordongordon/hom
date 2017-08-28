@@ -108,37 +108,49 @@ export class Propertyhk extends Property {
     
     this.saleFollow.forEach( (element, key) => {
       const relatedFbid = element.relatedFbid;
-      var p = this.buyRequest.get( relatedFbid)
+      const p = this.buyRequest.get( relatedFbid)
+
+    
       if ( p === undefined ) {
         console.log('saleCase undefined with key ', relatedFbid);
       } else {
       // Setup ref
-      // p.relatedFbid = key;   
+      const np = Propertyhk.deserialize(p);
+      np.relatedFbid = key;   
       // p.contactName = 'kky'
-      this.buyCase.set( key, p );
-      console.log( 'saleCase.size ', this.saleCase.size )
-      console.log( 'saleCase object',this.buyRequest.get( relatedFbid ) )
-      console.log( 'saleCase key', key )
+      this.buyCase.set( key, np );
+      // console.log( 'saleCase.size ', this.saleCase.size )
+      // console.log( 'saleCase object',this.buyRequest.get( relatedFbid ) )
+      // console.log( 'saleCase key', key )
       }
     });
 
     this.buyFollow.forEach( (element, key) => {
       const relatedFbid = element.relatedFbid;
-      var p = this.saleRequest.get( relatedFbid)
+      const p = this.saleRequest.get( relatedFbid)
       //p.relatedFbid = key;   
-      this.saleCase.set( key, p );
+      const np = Propertyhk.deserialize(p);
+      np.relatedFbid = key;   
+      
+      this.saleCase.set( key, np );
       console.log( 'buyCase key', key )
     });
     this.rentFollow.forEach( (element, key) => {
       const relatedFbid = element.relatedFbid;
-      var p = this.leaseRequest.get( relatedFbid)
-      this.leaseCase.set( key, p );
+      const p = this.leaseRequest.get( relatedFbid)
+      const np = Propertyhk.deserialize(p);
+      np.relatedFbid = key;   
+      
+      this.leaseCase.set( key, np );
       console.log( 'rentCase key', key )
     });
     this.leaseFollow.forEach( (element, key) => {
       const relatedFbid = element.relatedFbid;
-      var p = this.rentRequest.get( relatedFbid)
-      this.rentCase.set( key, p );
+      const p = this.rentRequest.get( relatedFbid)
+      const np = Propertyhk.deserialize(p);
+      np.relatedFbid = key;   
+      
+      this.rentCase.set( key, np );
       console.log( 'leaseCase key', key )
     });
 
