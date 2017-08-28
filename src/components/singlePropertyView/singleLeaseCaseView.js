@@ -52,7 +52,7 @@ export default class SingleLeaseCaseView extends React.Component {
     return (
       <div>
         <Item
-        extra={<Badge text={property.typeByFollowUpLabel} />}
+        extra={<Badge text="edit" />}
         arrow="horizontal"
           onClick={() =>
             MobxStore.router.goTo(views.rentAgentForm, {

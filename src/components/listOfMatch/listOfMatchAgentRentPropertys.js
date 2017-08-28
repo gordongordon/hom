@@ -5,6 +5,7 @@ import React from 'react'
 //import 'moment/locale/zh-cn';
 //import {propertys} from 'userModelView'
 import SingleRentAgentPropertyForRespondView from '../singlePropertyView/SingleRentAgentPropertyForRespondView'
+import SingleRentCaseView from '../singlePropertyView/SingleRentCaseView'
 import { observer } from 'mobx-react';
 //const Item = List.Item;
 //const Brief = Item.Brief;
