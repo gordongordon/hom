@@ -180,7 +180,7 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
     // Fb.propertys.update( {[id2]:  p.serialize() })
     MobxStore.router.goTo(views.matchAgent, {
       keyID: MobxStore.router.params.filterID,
-      typeTo: "buy",
+      typeTo: "sale",
       selectedSegmentIndex: 1
     });
 

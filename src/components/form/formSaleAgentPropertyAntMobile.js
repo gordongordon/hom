@@ -174,7 +174,7 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
     ///    MobxStore.router.goTo( views.matchAgent, { keyID : MobxStore.router.params.keyID , typeTo : "Buy" } )
     MobxStore.router.goTo(views.matchAgent, {
       keyID: MobxStore.router.params.filterID,
-      typeTo: "sale",
+      typeTo: "buy",
       selectedSegmentIndex: 1
     });
   };

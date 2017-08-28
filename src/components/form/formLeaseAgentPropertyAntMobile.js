@@ -164,7 +164,7 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
 
     MobxStore.router.goTo(views.matchAgent, {
       keyID: MobxStore.router.params.filterID,
-      typeTo: "lease",
+      typeTo: "rent",
       selectedSegmentIndex: 1
     });
 
