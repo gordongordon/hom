@@ -155,6 +155,9 @@ export class Propertyhk extends Property {
       // console.log( 'saleCase object',this.buyRequest.get( relatedFbid ) )
       // console.log( 'saleCase key', key )
       }
+      // Remove followed request
+      this.buyRequest.delete( relatedFbid );
+      
     });
 
     this.buyFollow.forEach( (element, key) => {
@@ -166,6 +169,8 @@ export class Propertyhk extends Property {
       
       this.saleCase.set( key, np );
       console.log( 'buyCase key', key )
+      // Remove followed request
+      this.saleRequest.delete( relatedFbid );
     });
     this.rentFollow.forEach( (element, key) => {
       const relatedFbid = element.relatedFbid;
@@ -175,6 +180,8 @@ export class Propertyhk extends Property {
       
       this.leaseCase.set( key, np );
       console.log( 'rentCase key', key )
+      // Remove followed request
+      this.leaseRequest.delete( relatedFbid );
     });
     this.leaseFollow.forEach( (element, key) => {
       const relatedFbid = element.relatedFbid;
@@ -184,6 +191,9 @@ export class Propertyhk extends Property {
       
       this.rentCase.set( key, np );
       console.log( 'leaseCase key', key )
+      // Remove followed request
+      this.rentRequest.delete( relatedFbid );
+      
     });
 
   }

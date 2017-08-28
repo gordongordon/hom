@@ -91,7 +91,7 @@ export default class SingleBuyAgentPropertyForRespondView extends React.Componen
         >
         {property.addressLocationLabel}/{property.nameOfBuildingLabel}/{property.contactNameLabel}
           <Brief>
-            {property.partitionLabel}
+            {property.partitionLabel}{property.buyBudgetMaxLabel}
             <br />
             {property.earlyTimeToViewLabel}
             <br />

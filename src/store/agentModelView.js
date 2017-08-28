@@ -71,8 +71,14 @@ class AgentModelViewModel {
     // Handle update
     Fb.app.agentsFilterRef.on("child_changed", snapshot => {
       console.log("agentModelView.child_changed");
-      var p = that.filters.get(snapshot.key);
-      p.restore(snapshot.val());
+
+//      var p = that.filters.get(snapshot.key);
+      //p.restore(snapshot.val());
+
+      const p = Propertyhk.deserialize(snapshot.val());
+      that.filters.set(snapshot.key, p);
+
+
       //p.matchedPropertys.clear();
       p.buyRequest.clear();
       p.saleRequest.clear();
@@ -85,7 +91,7 @@ class AgentModelViewModel {
         `b ${p.buyRequest.size}, s ${p.buyRequest.size}, r ${p.rentRequest
           .size}, l ${p.leaseRequest.size}`
       );
-      that.filters.set(snapshot.key, p);
+      // that.filters.set(snapshot.key, p);
     });
 
     // Handle child_removed

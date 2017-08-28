@@ -79,7 +79,7 @@ export default class SingleBuyCaseView extends React.Component {
         >
         {property.addressLocationLabel}/{property.nameOfBuildingLabel}/{property.contactNameLabel}
           <Brief>
-            {property.partitionLabel}
+            {property.partitionLabel}{property.buyBudgetMaxLabel}
             <br />
             {property.earlyTimeToViewLabel}
             <br />

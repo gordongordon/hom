@@ -318,10 +318,37 @@ export class Property {
 
     return label;
   }
+
+  priceInTenThousandLabel(price) {
+
+    var price = price * 10000;
+    var label = "";
+    const tenThousandDigit = parseInt(price / 10000);
+    const thousandDigit = parseInt(price % 10000 / 1000);
+    const hundredDigit = parseInt(price % 1000 / 100);
+
+    if (tenThousandDigit >= 1) {
+      label += tenThousandDigit + "萬";
+    }
+    if (thousandDigit >= 1) {
+      label += thousandDigit + "千";
+    }
+    if (hundredDigit >= 1) {
+      label += hundredDigit + "百";
+    }
+
+    return label;
+  }
   @computed
   get salePriceLabel() {
-    var label = this.priceToLabel(this.salePrice);
+    var label = this.priceInTenThousandLabel(this.salePrice);
     return "開價" + label;
+  }
+
+  @computed
+  get buyBudgetMaxLabel() {
+    var label = this.priceInTenThousandLabel(this.buyBudgetMax);
+    return "預算" + label;
   }
 
   getTimeInNum(time) {
