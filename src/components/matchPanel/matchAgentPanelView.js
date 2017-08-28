@@ -165,15 +165,25 @@ class MatchAgentPanelView extends React.Component {
       break;
     } } else {
       switch ( selectedTab ) {
-        case 'buy' : return <ListOfMatchAgentBuyPropertys propertys={property.buyFollow} filterID={MobxStore.router.params.keyID}/>;
+        case 'buy' : return <ListOfMatchAgentBuyPropertys propertys={property.buyCase} filterID={MobxStore.router.params.keyID}/>;
         break;
-        case 'sale': return <ListOfMatchAgentSalePropertys propertys={property.saleFollow} filterID={MobxStore.router.params.keyID}/>;
+        case 'sale': return <ListOfMatchAgentSalePropertys propertys={property.saleCase} filterID={MobxStore.router.params.keyID}/>;
         break;
-        case 'rent': return <ListOfMatchAgentRentPropertys propertys={property.rentFollow} filterID={MobxStore.router.params.keyID}/>;
+        case 'rent': return <ListOfMatchAgentRentPropertys propertys={property.rentCase} filterID={MobxStore.router.params.keyID}/>;
         break;
-        case 'lease': return <ListOfMatchAgentLeasePropertys propertys={property.leaseFollow} filterID={MobxStore.router.params.keyID}/>;
+        case 'lease': return <ListOfMatchAgentLeasePropertys propertys={property.leaseCase} filterID={MobxStore.router.params.keyID}/>;
         break;
       }  
+      // switch ( selectedTab ) {
+      //   case 'buy' : return <ListOfMatchAgentBuyPropertys propertys={property.buyFollow} filterID={MobxStore.router.params.keyID}/>;
+      //   break;
+      //   case 'sale': return <ListOfMatchAgentSalePropertys propertys={property.saleFollow} filterID={MobxStore.router.params.keyID}/>;
+      //   break;
+      //   case 'rent': return <ListOfMatchAgentRentPropertys propertys={property.rentFollow} filterID={MobxStore.router.params.keyID}/>;
+      //   break;
+      //   case 'lease': return <ListOfMatchAgentLeasePropertys propertys={property.leaseFollow} filterID={MobxStore.router.params.keyID}/>;
+      //   break;
+      // }  
     }
 
     // while out this , which means switch dont' matched! 

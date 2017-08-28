@@ -20,6 +20,11 @@ export class Propertyhk extends Property {
   @observable buyFollow = observable.map({});
   @observable leaseFollow = observable.map({});
   @observable rentFollow = observable.map({});
+  // Use for display into the followup panel
+  @observable saleCase = observable.map({});
+  @observable buyCase = observable.map({});
+  @observable leaseCase = observable.map({});
+  @observable rentCase = observable.map({});
   
   @observable responsedPropertys = observable.map({});
   //@observable responsedPropertys = new Map();
@@ -99,7 +104,33 @@ export class Propertyhk extends Property {
     return request;
   };
 
+  buildCase(){
+    
+    this.saleFollow.forEach( (element, key) => {
+      const p = this.saleRequest.get( element.relatedFbid)
+      if ( p === undefined ) {
+        console.log('saleCase undefined with key ', element.relatedFbid);
+      } else {
+      this.saleCase.set( key, p );
+      console.log( 'saleCase.size ', this.saleCase.size )
+      console.log( 'saleCase object',this.saleRequest.get( element.relatedFbid ) )
+      console.log( 'saleCase key', key )
+      }
+    });
+    this.buyFollow.forEach( (element, key) => {
+      this.buyCase.set( key, this.buyRequest.get( key ) );
+      console.log( 'buyCase key', key )
+    });
+    this.rentFollow.forEach( (element, key) => {
+      this.rentCase.set( key, this.rentRequest.get( key ) );
+      console.log( 'rentCase key', key )
+    });
+    this.leaseFollow.forEach( (element, key) => {
+      this.leaseCase.set( key, this.leaseRequest.get( key ) );
+      console.log( 'leaseCase key', key )
+    });
 
+  }
 
   /**
    * @compareTo is name of variable e.g. name, price, location
@@ -165,6 +196,7 @@ export class Propertyhk extends Property {
     // Make lease request
     this.buildRequest(  Fb.app.agentLeaseRef, that.leaseFollow, this.orderByChild, this.equalTo, id, typeTo, typeBy );
     
+    this.buildCase();
     // // Handle match propertys
     // fb
     //   .orderByChild(this.orderByChild)
