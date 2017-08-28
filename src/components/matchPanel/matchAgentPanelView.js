@@ -173,7 +173,6 @@ class MatchAgentPanelView extends React.Component {
       case 'lease': return <ListOfMatchAgentLeasePropertys propertys={filter.leaseRequest} filterID={MobxStore.router.params.keyID}/>;
       break;
     } } else {
-      debugger
       switch ( selectedTab ) {
         case 'buy' : return <ListOfMatchAgentBuyPropertys propertys={filter.buyCase} filterID={MobxStore.router.params.keyID}/>;
         break;

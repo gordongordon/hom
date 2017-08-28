@@ -143,9 +143,10 @@ export class Propertyhk extends Property {
       const relatedFbid = element.relatedFbid;
       const p = this.buyRequest.get( relatedFbid)
 
-      // if ( p === undefined ) {
-      //   console.log('saleCase undefined with key ', relatedFbid);
-      // } else {
+      // Catch undefined since, you may call buildCase everywhere
+      if ( p === undefined ) {
+         console.log('buyRequest undefined with key ', relatedFbid);
+      } else {
         // Setup ref
         const np = Propertyhk.deserialize(p);
         np.relatedFbid = key;   
@@ -154,7 +155,7 @@ export class Propertyhk extends Property {
         // console.log( 'saleCase.size ', this.saleCase.size )
         // console.log( 'saleCase object',this.buyRequest.get( relatedFbid ) )
         // console.log( 'saleCase key', key )
-      //}
+      }
       // Remove followed request
       this.buyRequest.delete( relatedFbid );
       // debugger
@@ -176,11 +177,17 @@ export class Propertyhk extends Property {
     this.rentFollow.forEach( (element, key) => {
       const relatedFbid = element.relatedFbid;
       const p = this.leaseRequest.get( relatedFbid)
+
+      if ( p === undefined ) {
+        console.log('leaseRequest undefined with key ', relatedFbid);
+     } else {
+     
       const np = Propertyhk.deserialize(p);
       np.relatedFbid = key;   
       
       this.leaseCase.set( key, np );
       console.log( 'leaseCase key', key )
+     }
       // Remove followed request
       this.leaseRequest.delete( relatedFbid );
     });
@@ -188,11 +195,16 @@ export class Propertyhk extends Property {
     this.leaseFollow.forEach( (element, key) => {
       const relatedFbid = element.relatedFbid;
       const p = this.rentRequest.get( relatedFbid)
+      if ( p === undefined ) {
+        console.log('rentRequest undefined with key ', relatedFbid);
+     } else {
+
       const np = Propertyhk.deserialize(p);
       np.relatedFbid = key;   
       
       this.rentCase.set( key, np );
       console.log( 'rentCase key', key )
+     }
       // Remove followed request
       this.rentRequest.delete( relatedFbid );
       
