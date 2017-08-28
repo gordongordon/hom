@@ -71,7 +71,7 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
     // )}
 
     // repair goTo by passing property
-    MobxStore.app.lastProperty = property
+    MobxStore.app.lastProperty = property;
     
     
     return (

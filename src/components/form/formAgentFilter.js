@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   Card, Picker, List, WhiteSpace, InputItem,
   Button,
@@ -16,12 +16,12 @@ import { PARTITION } from 'PARTITION';
 import { HOWTOCONTACT } from 'HOWTOCONTACT';
 import { DISTRICK } from 'DISTRICK';
 
-import { Fb } from 'firebase-store'
-import { Property } from 'property'
+import { Fb } from 'firebase-store';
+import { Property } from 'property';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
-import MobxStore from 'mobxStore'
-import views from 'views'
+import MobxStore from 'mobxStore';
+import views from 'views';
 //import ChatBot from 'react-simple-chatbot';
 //import {FormSaleChatbot} from '../chatbot/formSaleChatbot'
 
@@ -86,7 +86,7 @@ class FormAgentFilter extends React.Component {
 
     p.addressRegion = v.districk[0];
     p.addressLocation = v.districk[1];
-    p.nameOfBuilding = v.districk[2]
+    p.nameOfBuilding = v.districk[2];
 
 
     // p.dueDay = v.dueDay.toJSON();
@@ -99,9 +99,9 @@ class FormAgentFilter extends React.Component {
     p.numOfBathroom = parseInt(v.partition[1]);
     p.numOfLivingroom = parseInt(v.partition[2]);
 
-    p.isBuyWithLease = v.isBuyWithLease
-    p.netSizeMin = parseInt(v.netSizeMin)
-    p.buyBudgetMax = parseInt(v.buyBudgetMax)
+    p.isBuyWithLease = v.isBuyWithLease;
+    p.netSizeMin = parseInt(v.netSizeMin);
+    p.buyBudgetMax = parseInt(v.buyBudgetMax);
 
     //p.isPreferPayAnnually = v.isPreferPayAnnually;
     //p.isRentAbleNow = v.isRentAbleNow;
@@ -116,10 +116,10 @@ class FormAgentFilter extends React.Component {
 
 
     const id = Fb.app.agentsFilterRef.push().key;
-    p.typeFor = "sale"
+    p.typeFor = "sale";
     // Can be either open or engage (Engage responed )
-    p.typeTo = "buy"
-    p.typeBy = "open"
+    p.typeTo = "buy";
+    p.typeBy = "open";
     p.fbid = id;
     // p.relatedFbid = MobxStore.router.params.keyID;
 
@@ -155,7 +155,7 @@ class FormAgentFilter extends React.Component {
     //  console.log( '手 機', value.contactPhone )
     //  console.log( '間隔', roomKey[value.room[0]] )
 
-    this.addFilter(value)
+    this.addFilter(value);
     //MobxStore.router.goTo( views.matchBuy, { keyID } )
 
     //   MobxStore.router.goTo( views.second )

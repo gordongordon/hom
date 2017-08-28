@@ -4,7 +4,7 @@ import { createForm } from 'rc-form';
 
 import { Fb } from 'firebase-store';
 import { observer } from 'mobx-react';
-import { DISTRICK } from 'DISTRICK'
+import { DISTRICK } from 'DISTRICK';
 
 const TabPane = Tabs.TabPane;
 
@@ -38,13 +38,13 @@ const CustomChildren = props => (
 class ControlAgentView extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       disabled: false,
       selectedSegmentIndex: 0,
       id: this.props.property.fbid
-    }
+    };
 
     this.onChangeAddress = this.onChangeAddress.bind(this);
     // this.onChangeEarlyTimeToView = this.onChangeEarlyTimeToView.bind(this);
@@ -57,9 +57,9 @@ class ControlAgentView extends React.Component {
     const id = this.state.id;
     // var value = this.props.form.getFieldsValue();
 
-    const addressRegion = value[0]
-    const addressLocation = value[1]
-    const addressBuilding = value[2]
+    const addressRegion = value[0];
+    const addressLocation = value[1];
+    const addressBuilding = value[2];
 
     console.log(`location ${addressLocation}, building ${addressBuilding} with ${id} ${value}`)
     //     console.log( 'address ${}')
@@ -105,30 +105,20 @@ class ControlAgentView extends React.Component {
     const region = property.addressRegion;
     const location = property.addressLocation;
     const building = property.nameOfBuilding;
-    const address = [region, location, building]
+    const address = [region, location, building];
 
-    console.log(`address ${address}`)
-    console.log('Single Agent Property property', property)
+    console.log(`address ${address}`);
+    console.log('Single Agent Property property', property);
     var selectedIndex = this.props.selectedIndex;
     const onChange = this.props.onChange;
 
     if (property.nameOfBuildingLabel === undefined) {
-      console.log('*nameOfBuildingLabel undefined')
+      console.log('*nameOfBuildingLabel undefined');
     }
 
     return (
-
-
-
-
-
-      
+     
       <div>
-   
-
-
-
-
         <SegmentedControl values={['B搵買盤', 'S放賣盤', 'R搵租盤', 'L放租盤', '已跟進/回覆']} selectedIndex={this.props.selectedIndex} onChange={onChange} />
         <SegmentedControl tintColor="#888" values={['回覆', '已跟進']} selectedIndex={this.props.selectedIndex} onChange={onChange} />
         <List>

@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 import { List , Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl} from 'antd-mobile';
 import { createForm } from 'rc-form';
 import moment from 'moment';
 ////import 'moment/locale/zh-cn';
-import {propertys} from 'userModelView'
+import {propertys} from 'userModelView';
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 
 // const Item = List.Item;
@@ -51,12 +51,12 @@ import {propertys} from 'userModelView'
 class SingleSalePropertyForMatchView extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       disabled: false,
       selectedSegmentIndex: 0,
-    }
+    };
   }
 
   componentWillMount() {
@@ -68,9 +68,9 @@ class SingleSalePropertyForMatchView extends React.Component {
   }
 
   render() {
-        const {property} = this.props
+        const {property} = this.props;
 
-        console.log( 'SingleRentPropertyForMatch', property )
+        console.log( 'SingleRentPropertyForMatch', property );
         const that = this;
         // const { getFieldProps } = this.props.form;
         // For DatePicker

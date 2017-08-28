@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { List , Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, Button, WhiteSpace, SegmentedControl} from 'antd-mobile';
 import { createForm } from 'rc-form';
 import moment from 'moment';
@@ -21,12 +21,12 @@ const Brief = Item.Brief;
 class ControlSaleView extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       disabled: false,
       selectedSegmentIndex: 0,
-    }
+    };
 
     }
 

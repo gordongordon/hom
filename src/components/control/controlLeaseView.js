@@ -1,10 +1,10 @@
 
-import React from 'react'
+import React from 'react';
 import { List , Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, Button, WhiteSpace, SegmentedControl} from 'antd-mobile';
 import { createForm } from 'rc-form';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
-import {Fb} from 'firebase-store'
+import {Fb} from 'firebase-store';
 import { observer } from 'mobx-react';
 
 //import {propertys} from 'userModelView'
@@ -22,7 +22,7 @@ const Brief = Item.Brief;
 class ControlLeaseView extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
 
     // property = propertys.propertys.get(this.props.keyID);
     // console.log('p', property)
@@ -33,7 +33,7 @@ class ControlLeaseView extends React.Component {
       disabled: false,
       selectedSegmentIndex: 0,
       id : this.props.property.fbid
-    }
+    };
 
     }
 

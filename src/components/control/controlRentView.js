@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import { List , Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, Button, WhiteSpace, SegmentedControl} from 'antd-mobile';
 import { createForm } from 'rc-form';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
-import {Fb} from 'firebase-store'
-import {DISTRICK} from 'DISTRICK'
+import {Fb} from 'firebase-store';
+import {DISTRICK} from 'DISTRICK';
 import { observer } from 'mobx-react';
 
 //import {propertys} from 'userModelView'
@@ -22,13 +22,13 @@ const Brief = Item.Brief;
 class ControlRentView extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       disabled: false,
       selectedSegmentIndex: this.props.selectedIndex,
       id : this.props.property.fbid
-    }
+    };
 
     // console.log( 'controlRentView id', this.state.id);
     // This binding is necessary to make `this` work in the callback

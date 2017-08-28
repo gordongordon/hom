@@ -4,7 +4,7 @@ const pxtorem = require("postcss-pxtorem");
 
 const svgDirs = [
   require.resolve("antd-mobile").replace(/warn\.js$/, "") // 1. 属于 antd-mobile 内置 svg 文件
-  // path.resolve(__dirname, 'src/my-project-svg-foler'),  // 2. 自己私人的 svg 存放目录
+  //path.resolve(__dirname, 'src/my-project-svg-foler'),  // 2. 自己私人的 svg 存放目录
 ];
 
 //var CompressionPlugin = require("compression-webpack-plugin");
@@ -98,7 +98,14 @@ module.exports = {
   // },
   module: {
     //{ test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
-
+    // preLoaders: [
+    //   {
+    //     test: /\.(js|jsx)$/,
+    //     loader: 'eslint-loader',
+    //     exclude: /node_modules/,
+    //     query: require(path.resolve(__dirname, 'eslink.config.js'))
+    //   }
+    // ],
     loaders: [
       {
         //      test: /\.jsx?$/,
@@ -113,13 +120,14 @@ module.exports = {
       },
       {
         test: /\.css$/,
+//        exclude: /node_modules/,
         include: /node_modules/,
         loaders: ["style-loader", "css-loader", "sass-loader"]
       },
       // { test: /\.css$/, loader: 'style!css' }, // 把css处理成内联style，动态插入到页面
       {
-        test: /\.(svg)$/i,
-        //test: /\.(svg)$/,
+        test: /\.(svg)$/,
+        //test: /\.(svg)$/i,
         loader: 'svg-sprite-loader',
         include: svgDirs,  // 把 svgDirs 路径下的所有 svg 文件交给 svg-sprite-loader 插件处理        
         // loader: "svg-sprite-loader",

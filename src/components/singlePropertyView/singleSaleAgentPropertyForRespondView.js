@@ -63,7 +63,7 @@ class SingleSaleAgentPropertyForRespondView extends React.Component {
     //onClick={() => MobxStore.router.goTo(views.leaseAgentForm, { keyID : property.fbid, typeTo : property.typeTo})}
 
     // repair goTo by passing property
-    MobxStore.app.lastProperty = property
+    MobxStore.app.lastProperty = property;
     
     return (
       <div>
