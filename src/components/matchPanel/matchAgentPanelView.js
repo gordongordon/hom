@@ -207,7 +207,7 @@ class MatchAgentPanelView extends React.Component {
      * without this, engage propertys, wan't be display
      * 
      */
-    filter.buildCase();
+    // filter.buildCase();
 
     // console.log(
     //   "matchAgentPanelView->store.params.keyID",
