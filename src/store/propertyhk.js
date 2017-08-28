@@ -113,17 +113,19 @@ export class Propertyhk extends Property {
         console.log('saleCase undefined with key ', relatedFbid);
       } else {
       // Setup ref
-      p.relatedFbid = key;   
+      // p.relatedFbid = key;   
+      // p.contactName = 'kky'
       this.buyCase.set( key, p );
       console.log( 'saleCase.size ', this.saleCase.size )
       console.log( 'saleCase object',this.buyRequest.get( relatedFbid ) )
       console.log( 'saleCase key', key )
       }
     });
+
     this.buyFollow.forEach( (element, key) => {
       const relatedFbid = element.relatedFbid;
       var p = this.saleRequest.get( relatedFbid)
-      p.relatedFbid = key;   
+      //p.relatedFbid = key;   
       this.saleCase.set( key, p );
       console.log( 'buyCase key', key )
     });
