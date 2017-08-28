@@ -255,7 +255,7 @@ class MatchAgentPanelView extends React.Component {
               uri: "http://hair.losstreatment.com/icons/building-blue-down.svg"
             }}
             selected={this.state.selectedTab === "buy"}
-            badge={ this.state.selectedSegmentIndex === 0? property.buyRequest.size : property.buyFollow.size }
+            badge={ this.state.selectedSegmentIndex === 0? property.buyRequest.size : property.saleFollow.size }
             onPress={() => {
               this.setState({
                 selectedTab: "buy",
@@ -276,7 +276,7 @@ class MatchAgentPanelView extends React.Component {
             selectedIcon={<Icon type="koubei" />}
             title="放賣盤"
             key="口碑"
-            badge={ this.state.selectedSegmentIndex === 0? property.saleRequest.size : property.saleFollow.size }
+            badge={ this.state.selectedSegmentIndex === 0? property.saleRequest.size : property.buyFollow.size }
             selected={this.state.selectedTab === "sale"}
             onPress={() => {
               this.setState({
@@ -301,7 +301,7 @@ class MatchAgentPanelView extends React.Component {
             }}
             title="租客"
             key="朋友"
-            badge={ this.state.selectedSegmentIndex === 0? property.rentRequest.size : property.rentFollow.size }
+            badge={ this.state.selectedSegmentIndex === 0? property.rentRequest.size : property.leaseFollow.size }
             selected={this.state.selectedTab === "rent"}
             onPress={() => {
               this.setState({
@@ -329,7 +329,7 @@ class MatchAgentPanelView extends React.Component {
             title="房東"
             key="我的"
             selected={this.state.selectedTab === "lease"}
-            badge={ this.state.selectedSegmentIndex === 0? property.leaseRequest.size : property.leaseFollow.size }
+            badge={ this.state.selectedSegmentIndex === 0? property.leaseRequest.size : property.rentFollow.size }
             onPress={() => {
               this.setState({
                 selectedTab: "lease",

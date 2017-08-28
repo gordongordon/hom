@@ -107,26 +107,36 @@ export class Propertyhk extends Property {
   buildCase(){
     
     this.saleFollow.forEach( (element, key) => {
-      const p = this.saleRequest.get( element.relatedFbid)
+      const relatedFbid = element.relatedFbid;
+      var p = this.buyRequest.get( relatedFbid)
       if ( p === undefined ) {
-        console.log('saleCase undefined with key ', element.relatedFbid);
+        console.log('saleCase undefined with key ', relatedFbid);
       } else {
-      this.saleCase.set( key, p );
+      // Setup ref
+      p.relatedFbid = key;   
+      this.buyCase.set( key, p );
       console.log( 'saleCase.size ', this.saleCase.size )
-      console.log( 'saleCase object',this.saleRequest.get( element.relatedFbid ) )
+      console.log( 'saleCase object',this.buyRequest.get( relatedFbid ) )
       console.log( 'saleCase key', key )
       }
     });
     this.buyFollow.forEach( (element, key) => {
-      this.buyCase.set( key, this.buyRequest.get( key ) );
+      const relatedFbid = element.relatedFbid;
+      var p = this.saleRequest.get( relatedFbid)
+      p.relatedFbid = key;   
+      this.saleCase.set( key, p );
       console.log( 'buyCase key', key )
     });
     this.rentFollow.forEach( (element, key) => {
-      this.rentCase.set( key, this.rentRequest.get( key ) );
+      const relatedFbid = element.relatedFbid;
+      var p = this.leaseRequest.get( relatedFbid)
+      this.leaseCase.set( key, p );
       console.log( 'rentCase key', key )
     });
     this.leaseFollow.forEach( (element, key) => {
-      this.leaseCase.set( key, this.leaseRequest.get( key ) );
+      const relatedFbid = element.relatedFbid;
+      var p = this.rentRequest.get( relatedFbid)
+      this.rentCase.set( key, p );
       console.log( 'leaseCase key', key )
     });
 
@@ -141,37 +151,37 @@ export class Propertyhk extends Property {
     const that = this;
     var fb; // firebase ref;
 
-    if (typeBy === "open") {
-      switch (typeTo) {
-        case "lease":
-          fb = Fb.lease;
-          break;
-        case "buy":
-          fb = Fb.buy;
-          break;
-        case "sale":
-          fb = Fb.sale;
-          break;
-        case "rent":
-          fb = Fb.rent;
-          break;
-      }
-    } else if (typeBy === "engage") {
-      switch (typeTo) {
-        case "lease":
-          fb = Fb.app.agentLeaseRef;
-          break;
-        case "buy":
-          fb = Fb.app.agentBuyRef;
-          break;
-        case "sale":
-          fb = Fb.app.agentSaleRef;
-          break;
-        case "rent":
-          fb = Fb.app.agentRentRef;
-          break;
-      }
-    }
+    // if (typeBy === "open") {
+    //   switch (typeTo) {
+    //     case "lease":
+    //       fb = Fb.lease;
+    //       break;
+    //     case "buy":
+    //       fb = Fb.buy;
+    //       break;
+    //     case "sale":
+    //       fb = Fb.sale;
+    //       break;
+    //     case "rent":
+    //       fb = Fb.rent;
+    //       break;
+    //   }
+    // } else if (typeBy === "engage") {
+    //   switch (typeTo) {
+    //     case "lease":
+    //       fb = Fb.app.agentLeaseRef;
+    //       break;
+    //     case "buy":
+    //       fb = Fb.app.agentBuyRef;
+    //       break;
+    //     case "sale":
+    //       fb = Fb.app.agentSaleRef;
+    //       break;
+    //     case "rent":
+    //       fb = Fb.app.agentRentRef;
+    //       break;
+    //   }
+    // }
 
     console.log(
       `property.hk orderByChild ${this.orderByChild} equalTo ${this.equalTo} id ${this.fbid}`
