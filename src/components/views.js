@@ -110,7 +110,7 @@ const views = {
       onEnter: (route, params, store, queryParams) => {
       	console.log('third.current query params are -> ', queryParams);
         console.log('third.current params are -> ', params);
-        MobxStore.app.setTitle( '最新鮮配對 Lease');
+        MobxStore.app.setTitle( '最新鮮配對 房東');
         console.log('route', route)
         MobxStore.app.viewHistory.set( 'matchLease', MobxStore.app.previousView  )
       },
@@ -130,7 +130,7 @@ const views = {
       onEnter: (route, params, store, queryParams) => {
       	console.log('third.current query params are -> ', queryParams);
         console.log('third.current params are -> ', params);
-        MobxStore.app.setTitle( '最新鮮配對 Rent');
+        MobxStore.app.setTitle( '最新鮮配對 租客');
         console.log('route', route)
         MobxStore.app.viewHistory.set( 'matchRent', MobxStore.app.previousView  )
       },
@@ -150,7 +150,7 @@ const views = {
       onEnter: (route, params, store, queryParams) => {
       	console.log('third.current query params are -> ', queryParams);
         console.log('third.current params are -> ', params);
-        MobxStore.app.setTitle( '最新鮮配對 Sale');
+        MobxStore.app.setTitle( '最新鮮配對 業主');
         console.log('route', route)
         MobxStore.app.viewHistory.set( 'matchSale', MobxStore.app.previousView  )
       },
@@ -170,7 +170,7 @@ const views = {
       onEnter: (route, params, store, queryParams) => {
       	console.log('third.current query params are -> ', queryParams);
         console.log('third.current params are -> ', params);
-        MobxStore.app.setTitle( '最新鮮配對 buy');
+        MobxStore.app.setTitle( '最新鮮配對 買家');
         console.log('route', route)
         MobxStore.app.viewHistory.set( 'matchBuy', MobxStore.app.previousView  )
         console.log( 'timeEnter from view', moment().format('YYYY-MM-DD HH:mm:ss'))
@@ -210,7 +210,7 @@ const views = {
     path: '/lease',
     component: <FormLeasePropertyAntMobileWrapper />,
     onEnter: (route, params, store, queryParams) => {
-      MobxStore.app.setTitle( '放 租');
+      MobxStore.app.setTitle( '房東');
 
     },
     beforeExit: (route, params) => {
@@ -223,7 +223,7 @@ const views = {
     path: '/rent',
     component: <FormRentPropertyAntMobileWrapper />,
     onEnter: (route, params, store, queryParams) => {
-      MobxStore.app.setTitle( '租 屋');
+      MobxStore.app.setTitle( '租客');
 
     },
     beforeExit: (route, params) => {
@@ -236,7 +236,7 @@ const views = {
     path: '/buy',
     component: <FormBuyPropertyAntMobileWrapper />,
     onEnter: (route, params, store, queryParams) => {
-      MobxStore.app.setTitle( '買 樓');
+      MobxStore.app.setTitle( '買家');
     },
     beforeExit: (route, params) => {
       console.log('exiting ListOfPRoperysView!');
@@ -248,7 +248,7 @@ const views = {
     path: '/sale',
     component: <FormSalePropertyAntMobileWrapper />,
     onEnter: (route, params, store, queryParams) => {
-      MobxStore.app.setTitle( '賣 樓');
+      MobxStore.app.setTitle( '業主');
 
     },
     beforeExit: (route, params) => {
@@ -334,7 +334,7 @@ rentAgentForm : new Route({
   path: '/RentAgentForm/keyID/:keyID/:typeTo/filterID/:filterID',
   component: <FormRentAgentPropertyAntMobileWrapper />,
   onEnter: (route, params, store, queryParams) => {
-    MobxStore.app.setTitle( '地產代理回復 放 租');
+    MobxStore.app.setTitle( '地產代理回復 租客');
 
   },
   beforeExit: (route, params) => {
@@ -347,7 +347,7 @@ leaseAgentForm : new Route({
   path: '/LeaseAgentForm/keyID/:keyID/:typeTo/filterID/:filterID',
   component: <FormLeaseAgentPropertyAntMobileWrapper />,
   onEnter: (route, params, store, queryParams) => {
-    MobxStore.app.setTitle( '地產代理回復 租 屋');
+    MobxStore.app.setTitle( '地產代理回復 房東');
 
   },
   beforeExit: (route, params) => {
