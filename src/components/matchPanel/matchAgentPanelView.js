@@ -242,7 +242,7 @@ class MatchAgentPanelView extends React.Component {
           hidden={this.state.hidden}
         >
           <TabBar.Item
-            title="篩選"
+            title="篩 選"
             key="kkyr"
             icon={{
               uri: "http://hair.losstreatment.com/icons/filter-up.svg"
@@ -262,7 +262,7 @@ class MatchAgentPanelView extends React.Component {
           />
 
           <TabBar.Item
-            title="搵買盤"
+            title="買 家"
             key="生活"
             icon={{
               uri: "http://hair.losstreatment.com/icons/building-up.svg"
@@ -290,7 +290,7 @@ class MatchAgentPanelView extends React.Component {
           <TabBar.Item
             icon={<Icon type="koubei-o" />}
             selectedIcon={<Icon type="koubei" />}
-            title="放賣盤"
+            title="業 主"
             key="口碑"
             badge={ this.state.selectedSegmentIndex === 0? filter.saleRequest.size : filter.buyFollow.size }
             selected={this.state.selectedTab === "sale"}
@@ -315,7 +315,7 @@ class MatchAgentPanelView extends React.Component {
             selectedIcon={{
               uri: "http://hair.losstreatment.com/icons/rent-up.svg"
             }}
-            title="租客"
+            title="租 客"
             key="朋友"
             badge={ this.state.selectedSegmentIndex === 0? filter.rentRequest.size : filter.leaseFollow.size }
             selected={this.state.selectedTab === "rent"}
@@ -342,7 +342,7 @@ class MatchAgentPanelView extends React.Component {
               uri:
                 "https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg"
             }}
-            title="房東"
+            title="房 東"
             key="我的"
             selected={this.state.selectedTab === "lease"}
             badge={ this.state.selectedSegmentIndex === 0? filter.leaseRequest.size : filter.rentFollow.size }

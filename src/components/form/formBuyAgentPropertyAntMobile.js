@@ -158,7 +158,7 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
     p.contactName = v.contactName;
     p.contactPhone = parseInt(v.contactPhone);
     p.contactEmail = v.contactEmail;
-
+    p.isPetAllowed = v.isPetAllowed;
 
     const id = Fb.app.agentBuyRef.push().key;
     p.typeFor = "sale"
@@ -247,22 +247,6 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
           <List.Item arrow="horizontal">大廈/屋苑</List.Item>
         </Picker>
 
-        <Picker  data={HOWTOCONTACT}
-          cols={3}
-          title="如何聯絡"
-          cascade={false}
-          {...getFieldProps('howToContact', {
-              initialValue: ['0', '0','1'],
-          })}
-          extra="如何聯絡"
-          onOk={e => console.log('ok', e)}
-          onDismiss={e => console.log('dismiss', e)}
-          style={{ flexbasis : '60%'}}
-         >
-         <List.Item arrow="horizontal">點樣搵你</List.Item>
-        </Picker>
-
-
         <DatePicker
           mode="date"
           title="選擇日期"
@@ -348,17 +332,22 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
                <List.Item arrow="horizontal">間隔</List.Item>
               </Picker>
 
-
                 <List.Item
-                extra={<Switch
-                          {...getFieldProps('isNegotiable', {
-                            initialValue: true,
-                            valuePropName: 'checked',
-                          })}
-                          onClick={(checked) => { console.log(checked); }}
-                        />}
+                extra={
+                  <Switch
+                    {...getFieldProps("isPetAllowed", {
+                      initialValue: false,
+                      valuePropName: "checked"
+                    })}
+                    onClick={checked => {
+                      console.log(checked);
+                    }}
+                  />
+                }
+              >
+                可養寵物
+              </List.Item>
 
-                >可議價</List.Item>
                 <List.Item
                 extra={<Switch
                           {...getFieldProps('isViewAble', {

@@ -147,7 +147,8 @@ class FormSalePropertyAntMobile extends React.Component {
     p.contactEmail = v.contactEmail;
 
     p.level = v.level[0];
-
+    p.isPetAllowed = v.isPetAllowed;
+    
     // Catch none user syn method wait to be true
     if ( MobxStore.app.uid === null) {
       if ( Fb.startLoginAnonyhmously() ) {

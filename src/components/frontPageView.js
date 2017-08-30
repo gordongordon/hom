@@ -73,17 +73,18 @@ render ()  {
     <WhiteSpace />
     <WhiteSpace />
     <WhiteSpace />
+    <Button type="primary" onClick={ () => this.loadingToast( store, goTo ) }>買 家</Button>
+    <WhiteSpace />
+    <Button type="primary" onClick={ () => goTo( views.sale, store.app.params, store )}>業 主</Button>
+  <WhiteSpace />
+  <WhiteSpace />
+  <Button type="primary" onClick={ () => goTo( views.rent,  store.app.params, store )}>租 客</Button>
+<WhiteSpace />
+
+    <WhiteSpace />
       <Button type="primary" onClick={ () => goTo( views.lease, store.app.params, store )}>房 東</Button>
     <WhiteSpace />
-    <WhiteSpace />
-      <Button type="primary" onClick={ () => goTo( views.rent,  store.app.params, store )}>租 客</Button>
-    <WhiteSpace />
-    <WhiteSpace />
-      <Button type="primary" onClick={ () => goTo( views.sale, store.app.params, store )}>業 主</Button>
-    <WhiteSpace />
-    <WhiteSpace />
-      <Button type="primary" onClick={ () => this.loadingToast( store, goTo ) }>買 家</Button>
-      { this.renderHistoryButton( store )  }
+    { this.renderHistoryButton( store )  }
     <WhiteSpace />
         <Button type="ghost" onClick={ () => goTo( views.createAgentFilter, store.app.params, store )}> 增加 地產代理篩選 </Button>
     <WhiteSpace />

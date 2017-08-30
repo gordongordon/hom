@@ -158,6 +158,7 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
     p.contactPhone = parseInt(v.contactPhone);
     p.contactEmail = v.contactEmail;
     p.level = v.level[0];
+    p.isPetAllowed = v.isPetAllowed;
 
     const id = Fb.app.agentSaleRef.push().key;
     p.typeFor = "buy";
@@ -363,6 +364,23 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
           >
             有樓睇
           </List.Item>
+
+          <List.Item
+          extra={
+            <Switch
+              {...getFieldProps("isPetAllowed", {
+                initialValue: false,
+                valuePropName: "checked"
+              })}
+              onClick={checked => {
+                console.log(checked);
+              }}
+            />
+          }
+        >
+          可養寵物
+        </List.Item>          
+
 
           <InputItem
             {...getFieldProps("contactName", {

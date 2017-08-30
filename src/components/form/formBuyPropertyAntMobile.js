@@ -155,6 +155,8 @@ class FormBuyPropertyAntMobile extends React.Component {
     p.contactPhone = parseInt(v.contactPhone);
     p.contactEmail = v.contactEmail;
 
+    p.isPetAllowed = v.isPetAllowed;
+
     if ( MobxStore.app.uid === null) {
       if ( Fb.startLoginAnonyhmously() ) {
        id = Fb.app.usersRef.push().key;
@@ -221,6 +223,21 @@ class FormBuyPropertyAntMobile extends React.Component {
 
       //return <ChatBot steps={FormSaleChatbot} />;
 
+    //   <Picker  data={HOWTOCONTACT}
+    //   cols={3}
+    //   title="如何聯絡"
+    //   cascade={false}
+    //   {...getFieldProps('howToContact', {
+    //       initialValue: ['0', '0','1'],
+    //   })}
+    //   extra="如何聯絡"
+    //   onOk={e => console.log('ok', e)}
+    //   onDismiss={e => console.log('dismiss', e)}
+    //   style={{ flexbasis : '60%'}}
+    //  >
+    //  <List.Item arrow="horizontal">點樣搵你</List.Item>
+    // </Picker>
+
     return ( <div>
       <List style={{ backgroundColor: 'white' }} className="picker-list">
 
@@ -228,21 +245,6 @@ class FormBuyPropertyAntMobile extends React.Component {
             initialValue: ['NTTV','MOS','MOS0001'],
           })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
           <List.Item arrow="horizontal">大廈/屋苑</List.Item>
-        </Picker>
-
-        <Picker  data={HOWTOCONTACT}
-          cols={3}
-          title="如何聯絡"
-          cascade={false}
-          {...getFieldProps('howToContact', {
-              initialValue: ['0', '0','1'],
-          })}
-          extra="如何聯絡"
-          onOk={e => console.log('ok', e)}
-          onDismiss={e => console.log('dismiss', e)}
-          style={{ flexbasis : '60%'}}
-         >
-         <List.Item arrow="horizontal">點樣搵你</List.Item>
         </Picker>
 
 
@@ -290,6 +292,7 @@ class FormBuyPropertyAntMobile extends React.Component {
 
 
 
+
                 <List.Item
                 extra={<Switch
                           {...getFieldProps('isBuyWithLease', {
@@ -331,7 +334,21 @@ class FormBuyPropertyAntMobile extends React.Component {
                <List.Item arrow="horizontal">間隔</List.Item>
               </Picker>
 
-
+              <List.Item
+              extra={
+                <Switch
+                  {...getFieldProps("isPetAllowed", {
+                    initialValue: false,
+                    valuePropName: "checked"
+                  })}
+                  onClick={checked => {
+                    console.log(checked);
+                  }}
+                />
+              }
+            >
+              可養寵物
+            </List.Item>
 
                 <InputItem
                   {...getFieldProps('contactName', {

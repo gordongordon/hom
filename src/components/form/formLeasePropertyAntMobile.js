@@ -157,6 +157,9 @@ class FormLeasePropertyAntMobile extends React.Component {
     p.contactPhone = parseInt(v.contactPhone);
     p.contactEmail = v.contactEmail;
 
+    p.isPetAllowed = v.isPetAllowed;
+    //p.leasingPeriod = v.leasingPeriod;
+
     //debugger
     if (MobxStore.app.uid === null) {
       if (Fb.startLoginAnonyhmously()) {
