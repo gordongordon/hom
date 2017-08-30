@@ -3,6 +3,7 @@ import { Card, Picker, List, WhiteSpace, InputItem, Button,
          SegmentedControl,
          Checkbox,
          Switch,
+         Stepper,
          DatePicker,
        } from 'antd-mobile';
 import { createForm } from 'rc-form';
@@ -320,39 +321,31 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
                 >租金</InputItem>
 
                 <List>
-
-                  <List.Item
-                  extra={<Switch
-                            {...getFieldProps('isPreferPayAnnually', {
-                              initialValue: false,
-                              valuePropName: 'checked',
-                            })}
-                            onClick={(checked) => { console.log(checked); }}
-                          />}
-
-                  >較喜歡預繳一年租金</List.Item>
-                  <List.Item
-                  extra={<Switch
-                            {...getFieldProps('isViewAbleNow', {
-                              initialValue: false,
-                              valuePropName: 'checked',
-                            })}
-                            onClick={(checked) => { console.log(checked); }}
-                          />}
-
-                  >可即時睇樓</List.Item>
-                  <List.Item
-                  extra={<Switch
-                            {...getFieldProps('isRentAbleNow', {
-                              initialValue: false,
-                              valuePropName: 'checked',
-                            })}
-                            onClick={(checked) => { console.log(checked); }}
-                          />}
-
-                  >可即時租住</List.Item>
-
+                <List.Item extra={
+                  <Stepper
+                    style={{ width: '100%', minWidth: '2rem' }}
+                    {...getFieldProps('leasingPeriod', {
+                      initialValue: 12
+                    })}
+                    showNumber
+                    max={60}
+                    min={1}
+                    step={1}
+                  />}
+                >
+                租賃期/月
+                </List.Item>
                 <List.Item
+                extra={<Switch
+                          {...getFieldProps('isPetAllowed', {
+                            initialValue: false,
+                            valuePropName: 'checked',
+                          })}
+                          onClick={(checked) => { console.log(checked); }}
+                        />}
+
+                >可養寵物</List.Item>                
+               <List.Item
                 extra={<Switch
                           {...getFieldProps('isFreeForSevenDay', {
                             initialValue: false,

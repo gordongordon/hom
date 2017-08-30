@@ -143,6 +143,10 @@ export class Property {
   @observable numOfPeopleLiving = 1;
   @observable income = 0;
   @observable isBuyWithLease = false;
+  
+  @observable level = 0; // 0 lower, 1 middle, 2 high
+  @observable isPetAllowed = false; // boolean 
+  @observable leasingPeriod = 12;
 
   // @computed get getnetSize () {
   //    return this.netSize;
@@ -676,7 +680,12 @@ export class Property {
       dueDay: this.dueDay,
       earlyTimeToView: this.earlyTimeToView,
       income: this.income,
-      isBuyWithLease: this.isBuyWithLease
+      isBuyWithLease: this.isBuyWithLease,
+
+      // Additional 
+      level : this.level,
+      isPetAllowed : this.isPetAllowed,
+      leasingPeriod : this.leasingPeriod
     };
   }
 
@@ -765,6 +774,10 @@ export class Property {
     p.income = v.income;
     p.isBuyWithLease = v.isBuyWithLease;
 
+
+    p.level = v.level;
+    p.isPetAllowed = v.level;
+    p.leasingPeriod = v.leasingPeriod;
     return p;
   }
 
@@ -804,7 +817,13 @@ export class Property {
       v.isViewAbleNow), (this.isRentAbleNow =
       v.isRentAbleNow), (this.isFreeForSevenDay =
       v.isFreeForSevenDay), (this.dueDay = v.dueDay), (this.earlyTimeToView = //earlyTimeToView : this.earlyTimeToView.toJSON(), //            dueDay : this.dueDay.toJSON(),
-      v.earlyTimeToView), (this.income = v.income), (this.isBuyWithLease =
-      v.isBuyWithLease);
+      v.earlyTimeToView), (this.income = v.income), 
+      this.isBuyWithLease = v.isBuyWithLease,
+
+
+      this.level = v.level,
+      this.isPetAllowed = v.isPetAllowed,
+      this.leasingPeriod = v.leasingPeriod
+  
   }
 }

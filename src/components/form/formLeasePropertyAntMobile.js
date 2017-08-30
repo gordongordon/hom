@@ -1,33 +1,47 @@
-import React from 'react'
-import { Card, Picker, List, WhiteSpace, InputItem,
-         Button,
-         SegmentedControl,
-         Checkbox,
-         Switch,
-         DatePicker,
-       } from 'antd-mobile';
-import { createForm } from 'rc-form';
-import { MTR } from 'MTR';
-import {PARTITION} from 'PARTITION';
-import {DISTRICK}  from 'DISTRICK';
-import {Fb} from 'firebase-store'
-import {Property} from 'property'
-import {Propertyhk} from 'propertyhk'
-import moment from 'moment';
-import 'moment/locale/zh-cn';
-import { observer } from 'mobx-react';
-import MobxStore from 'mobxStore'
-import views from 'views'
+import React from "react";
+import {
+  Card,
+  Picker,
+  List,
+  WhiteSpace,
+  InputItem,
+  Button,
+  SegmentedControl,
+  Checkbox,
+  Switch,
+  DatePicker
+} from "antd-mobile";
+import { createForm } from "rc-form";
+import { MTR } from "MTR";
+import { PARTITION } from "PARTITION";
+import { DISTRICK } from "DISTRICK";
+import { Fb } from "firebase-store";
+import { Property } from "property";
+import { Propertyhk } from "propertyhk";
+import moment from "moment";
+import "moment/locale/zh-cn";
+import { observer } from "mobx-react";
+import MobxStore from "mobxStore";
+import views from "views";
 // 如果不是使用 List.Item 作为 children
 
 const CustomChildren = props => (
   <div
     onClick={props.onClick}
-    style={{ backgroundColor: '#fff', padding: '0 0.3rem' }}
+    style={{ backgroundColor: "#fff", padding: "0 0.3rem" }}
   >
-    <div style={{ display: 'flex', height: '0.9rem', lineHeight: '0.9rem' }}>
-      <div style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{props.children}</div>
-      <div style={{ textAlign: 'right', color: '#888' }}>{props.extra}</div>
+    <div style={{ display: "flex", height: "0.9rem", lineHeight: "0.9rem" }}>
+      <div
+        style={{
+          flex: 1,
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap"
+        }}
+      >
+        {props.children}
+      </div>
+      <div style={{ textAlign: "right", color: "#888" }}>{props.extra}</div>
     </div>
   </div>
 );
@@ -35,14 +49,13 @@ const CustomChildren = props => (
 const CheckboxItem = Checkbox.CheckboxItem;
 
 const roomKey = {
-  '0' : '開放式',
-  '1' : '1房',
-  '2' : '2房',
-  '3' : '3房',
-  '4' : '4房',
-  '5' : '5房',
-}
-
+  "0": "開放式",
+  "1": "1房",
+  "2": "2房",
+  "3": "3房",
+  "4": "4房",
+  "5": "5房"
+};
 
 // const NameOfBuilding = [
 //   { value: 'MOSDBC', label: '迎海' },
@@ -57,10 +70,10 @@ class FormLeasePropertyAntMobile extends React.Component {
     cols: 1,
     //pickerValue: [],
     asyncValue: [],
-    sValue: ['2001', '3001'],
+    sValue: ["2001", "3001"],
 
     // input net size
-    netSizefocused: false,
+    netSizefocused: false
   };
 
   // onClick = () => {
@@ -117,26 +130,22 @@ class FormLeasePropertyAntMobile extends React.Component {
   //   });
   // };
 
-
-  addPropertyForLease = ( v ) =>
-  {
-
+  addPropertyForLease = v => {
     var p = new Property();
-    var id ;
+    var id;
     //p.nearByMtrLine = v.nearByMtrLine;
     //p.nearByMtrStop = v.nearByMtrStop;
     //p.uid = MobxStore.app.uid;
 
     p.addressRegion = v.districk[0];
     p.addressLocation = v.districk[1];
-    p.nameOfBuilding = v.districk[2]
-
+    p.nameOfBuilding = v.districk[2];
 
     p.dueDay = v.dueDay.toJSON();
     p.earlyTimeToView = v.earlyTimeToView.toJSON();
     p.leasePrice = parseInt(v.leasePrice);
     p.netSize = parseInt(v.netSize);
-    p.numOfRoom = parseInt( v.partition[0]);
+    p.numOfRoom = parseInt(v.partition[0]);
     p.numOfBathroom = parseInt(v.partition[1]);
     p.numOfLivingroom = parseInt(v.partition[2]);
     p.isPreferPayAnnually = v.isPreferPayAnnually;
@@ -149,292 +158,283 @@ class FormLeasePropertyAntMobile extends React.Component {
     p.contactEmail = v.contactEmail;
 
     //debugger
-    if ( MobxStore.app.uid === null) {
-      if ( Fb.startLoginAnonyhmously() ) {
+    if (MobxStore.app.uid === null) {
+      if (Fb.startLoginAnonyhmously()) {
         id = Fb.app.usersRef.push().key;
       }
     } else {
-        id = Fb.app.usersRef.push().key;
+      id = Fb.app.usersRef.push().key;
     }
 
     p.uid = MobxStore.app.uid;
-    p.typeFor = "rent"
-    p.typeTo = "lease"
-    p.orderByChild = "nameOfBuilding"
+    p.typeFor = "rent";
+    p.typeTo = "lease";
+    p.orderByChild = "nameOfBuilding";
     p.fbid = id;
 
-    Fb.app.usersRef.update( {[id]:  p.serialize() });
+    Fb.app.usersRef.update({ [id]: p.serialize() });
 
-    Fb.propertys.child( id ).set( p.serialize() );
-    Fb.lease.child( id ).set( p.serialize() );
+    Fb.propertys.child(id).set(p.serialize());
+    Fb.lease.child(id).set(p.serialize());
 
-    MobxStore.router.goTo( views.matchLease, { keyID : id  } )
-  }
+    MobxStore.router.goTo(views.matchLease, { keyID: id });
+  };
 
+  submit = e => {
+    const value = this.props.form.getFieldsValue();
 
-  submit = (e) => {
-   const value = this.props.form.getFieldsValue();
-
-   console.log( 'value',  value )
+    console.log("value", value);
 
     e.preventDefault();
-    this.addPropertyForLease( value )
-  //  console.log( '地鐵線', value.MTR )
-  //  console.log( '呎', value.netSize)
-  //  console.log( '租金', value.leasePrice )
-  //  console.log( 'Name', value.contactName )
-  //  console.log( '聯絡電郵', value.contactEmail )
-  //  console.log( '聯絡手機', value.contactPhone )
-  //  console.log( '間隔', roomKey[value.room[0]] )
-   //
-  //  this.addPropertyForLease( '1001', '2001', value.netSize, value.leasePrice, value.room[0], value.room[1],
-  //                       value.contactName, value.contactPhone, value.contactEmail)
-  //  console.log(this.props.form.getFieldsValue());
+    this.addPropertyForLease(value);
+    //  console.log( '地鐵線', value.MTR )
+    //  console.log( '呎', value.netSize)
+    //  console.log( '租金', value.leasePrice )
+    //  console.log( 'Name', value.contactName )
+    //  console.log( '聯絡電郵', value.contactEmail )
+    //  console.log( '聯絡手機', value.contactPhone )
+    //  console.log( '間隔', roomKey[value.room[0]] )
+    //
+    //  this.addPropertyForLease( '1001', '2001', value.netSize, value.leasePrice, value.room[0], value.room[1],
+    //                       value.contactName, value.contactPhone, value.contactEmail)
+    //  console.log(this.props.form.getFieldsValue());
 
-  //MobxStore.router.goTo( views.second )
+    //MobxStore.router.goTo( views.second )
+  };
 
-  }
+  sale = () => {};
 
-  sale = () => {
-
-  }
-
-// '房東', '租人','賣家','買家'
+  // '房東', '租人','賣家','買家'
   render() {
     const { getFieldProps } = this.props.form;
     const leaseWith = [
-      { value: 0, label: '包差餉' },
-      { value: 1, label: '包地租/稅' },
-      { value: 2, label: '包管理費' },
+      { value: 0, label: "包差餉" },
+      { value: 1, label: "包地租/稅" },
+      { value: 2, label: "包管理費" }
     ];
 
-
     // For DatePicker
-    const minDate = moment().locale('zh-cn').utcOffset(8);
-    const maxDate = moment(minDate).add(6, 'M');
+    const minDate = moment()
+      .locale("zh-cn")
+      .utcOffset(8);
+    const maxDate = moment(minDate).add(6, "M");
 
-  //moment().format('L');
+    //moment().format('L');
 
-    return ( <div>
-
-      <List style={{ backgroundColor: 'white' }} className="picker-list">
-
-        <Picker data={DISTRICK} cols={3} {...getFieldProps('districk', {
-            initialValue: ['NTTV','MOS','MOS0001'],
-          })} className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
-          <List.Item arrow="horizontal">大廈/屋苑</List.Item>
-        </Picker>
-
-      <DatePicker
-        mode="date"
-        title="選擇日期"
-        extra="選擇日期,最長半年來"
-        {...getFieldProps('dueDay', {
-          initialValue : minDate,
-        })}
-        minDate={minDate}
-        maxDate={maxDate}
-      >
-
-        <List.Item arrow="horizontal">最快交吉日期</List.Item>
-        </DatePicker>
+    return (
+      <div>
+        <List style={{ backgroundColor: "white" }} className="picker-list">
+          <Picker
+            data={DISTRICK}
+            cols={3}
+            {...getFieldProps("districk", {
+              initialValue: ["NTTV", "MOS", "MOS0001"]
+            })}
+            className="forss"
+            title="請選擇大廈/屋苑"
+            extra="請選擇大廈/屋苑"
+          >
+            <List.Item arrow="horizontal">大廈/屋苑</List.Item>
+          </Picker>
 
           <DatePicker
             mode="date"
             title="選擇日期"
             extra="選擇日期,最長半年來"
-            {...getFieldProps('earlyTimeToView', {
-              initialValue : minDate,
+            {...getFieldProps("dueDay", {
+              initialValue: minDate
             })}
             minDate={minDate}
             maxDate={maxDate}
           >
-          <List.Item arrow="horizontal">最快幾時有樓睇</List.Item>
-
+            <List.Item arrow="horizontal">最快交吉日期</List.Item>
           </DatePicker>
-                <InputItem
-                  {...getFieldProps('netSize', {
-                    initialValue : 300,
-                    normalize: (v, prev) => {
-                      if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
-                        if (v === '.') {
-                          return '0.';
-                        }
-                        return prev;
-                      }
-                      return v;
-                    },
+
+          <DatePicker
+            mode="date"
+            title="選擇日期"
+            extra="選擇日期,最長半年來"
+            {...getFieldProps("earlyTimeToView", {
+              initialValue: minDate
+            })}
+            minDate={minDate}
+            maxDate={maxDate}
+          >
+            <List.Item arrow="horizontal">最快幾時有樓睇</List.Item>
+          </DatePicker>
+
+          <Picker
+            data={PARTITION}
+            cols={2}
+            title="選擇間隔"
+            cascade={false}
+            {...getFieldProps("partition", {
+              initialValue: ["0", "1", "1"]
+            })}
+            extra="選擇間隔"
+            onOk={e => console.log("ok", e)}
+            onDismiss={e => console.log("dismiss", e)}
+          >
+            <List.Item arrow="horizontal">間隔</List.Item>
+          </Picker>
+
+          <InputItem
+            {...getFieldProps("netSize", {
+              initialValue: 300,
+              normalize: (v, prev) => {
+                if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
+                  if (v === ".") {
+                    return "0.";
+                  }
+                  return prev;
+                }
+                return v;
+              }
+            })}
+            type="number"
+            placeholder="請輸入實用面積"
+            onFocus={() => {
+              this.setState({
+                netSizefocused: false
+              });
+            }}
+            focused={this.state.netSizefocused}
+            extra="呎"
+          >
+            實用面 積
+          </InputItem>
+
+          <InputItem
+            {...getFieldProps("leasePrice", {
+              initialValue: 8000,
+              normalize: (v, prev) => {
+                if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
+                  if (v === ".") {
+                    return "0.";
+                  }
+                  return prev;
+                }
+                return v;
+              }
+            })}
+            type="number"
+            placeholder="請輸入租金月"
+            onFocus={() => {
+              this.setState({
+                netSizefocused: false
+              });
+            }}
+            focused={this.state.netSizefocused}
+            extra="元"
+          >
+            租金
+          </InputItem>
+
+          <List>
+            <List.Item
+              extra={
+                <Switch
+                  {...getFieldProps("isFreeForSevenDay", {
+                    initialValue: false,
+                    valuePropName: "checked"
                   })}
-                  type="number"
-                  placeholder="請輸入實用面積"
-                  onFocus={() => {
-                    this.setState({
-                      netSizefocused: false,
-                    });
+                  onClick={checked => {
+                    console.log(checked);
                   }}
-                  focused={this.state.netSizefocused}
-                  extra="呎"
-                >實用面 積</InputItem>
-
-                <Picker  data={PARTITION}
-                  cols={2}
-                  title="選擇間隔"
-                  cascade={false}
-                  {...getFieldProps('partition', {
-                      initialValue: ['0', '1', '1'],
-                  })}
-                  extra="選擇間隔"
-                  onOk={e => console.log('ok', e)}
-                  onDismiss={e => console.log('dismiss', e)}
-                 >
-                 <List.Item arrow="horizontal">間隔</List.Item>
-                </Picker>
-
-                <InputItem
-                  {...getFieldProps('leasePrice', {
-                    initialValue : 8000,
-                    normalize: (v, prev) => {
-                      if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
-                        if (v === '.') {
-                          return '0.';
-                        }
-                        return prev;
-                      }
-                      return v;
-                    },
-                  })}
-                  type="number"
-                  placeholder="請輸入租金月"
-                  onFocus={() => {
-                    this.setState({
-                      netSizefocused: false,
-                    });
-                  }}
-                  focused={this.state.netSizefocused}
-                  extra="元"
-                >租金</InputItem>
-
-                <List>
-
-                  <List.Item
-                  extra={<Switch
-                            {...getFieldProps('isPreferPayAnnually', {
-                              initialValue: false,
-                              valuePropName: 'checked',
-                            })}
-                            onClick={(checked) => { console.log(checked); }}
-                          />}
-                  >較喜歡預繳一年租金
-                  </List.Item>
-
-
-                  <List.Item
-                  extra={<Switch
-                            {...getFieldProps('isViewAbleNow', {
-                              initialValue: false,
-                              valuePropName: 'checked',
-                            })}
-                            onClick={(checked) => { console.log(checked); }}
-                          />}
-
-                  >可即時睇樓</List.Item>
-                  <List.Item
-                  extra={<Switch
-                            {...getFieldProps('isRentAbleNow', {
-                              initialValue: false,
-                              valuePropName: 'checked',
-                            })}
-                            onClick={(checked) => { console.log(checked); }}
-                          />}
-
-                  >可即時租住</List.Item>
-
-                <List.Item
-                extra={<Switch
-                          {...getFieldProps('isFreeForSevenDay', {
-                            initialValue: false,
-                            valuePropName: 'checked',
-                          })}
-                          onClick={(checked) => { console.log(checked); }}
-                        />}
-
-                >可提供七日免租期</List.Item>
-                <List.Item
-                extra={<Switch
-                          {...getFieldProps('hasHomeHardware', {
-                            initialValue: false,
-                            valuePropName: 'checked',
-                          })}
-                          onClick={(checked) => { console.log(checked); }}
-                        />}
-
-                >提供家俬設備</List.Item>
-
-                <List.Item
-                extra={<Switch
-                          {...getFieldProps('isViewAble', {
-                            initialValue: true,
-                            valuePropName: 'checked',
-                          })}
-                          onClick={(checked) => { console.log(checked); }}
-                        />}
-
-                >有樓睇</List.Item>
-
-                </List>
-
-
-
-                <InputItem
-                  {...getFieldProps('contactName', {
-                    initialValue : 'Gordon',
-                  }) }
-                  type="text"
-                  placeholder="請輸入姓名"
-                  clear
-                >姓名</InputItem>
-
-                <InputItem
-                  clear
-                  {...getFieldProps('contactPhone', {
-                    initialValue : '96181448'
-                  })}
-                  type="phone"
-                  placeholder="請輸入電話"
-                >聯絡手機</InputItem>
-
-                <InputItem
-                  {...getFieldProps('contactEmail', {
-                    initialValue : 'h001@ymatchx.com',
-                  })}
-                  clear
-                  placeholder="請輸入電郵地址"
-                >聯絡電郵</InputItem>
-
-
-        <List.Item
-              extra={<Button type="ghost" size="large" inline onClick={this.submit}>獲得匹配</Button>}
-              multipleLine
+                />
+              }
             >
-              HoMatching
-              <List.Item.Brief>
-              尊重您的私隱和信息，不會被共享。
-              </List.Item.Brief>
+              可提供七日免租期
             </List.Item>
-        </List>
+            <List.Item
+              extra={
+                <Switch
+                  {...getFieldProps("hasHomeHardware", {
+                    initialValue: false,
+                    valuePropName: "checked"
+                  })}
+                  onClick={checked => {
+                    console.log(checked);
+                  }}
+                />
+              }
+            >
+              提供家俬設備
+            </List.Item>
+          </List>
+          <List.Item
+            extra={
+              <Switch
+                {...getFieldProps("isPetAllowed", {
+                  initialValue: false,
+                  valuePropName: "checked"
+                })}
+                onClick={checked => {
+                  console.log(checked);
+                }}
+              />
+            }
+          >
+            可養寵物
+          </List.Item>
 
-    </div>
-    )
+          <InputItem
+            {...getFieldProps("contactName", {
+              initialValue: "Gordon"
+            })}
+            type="text"
+            placeholder="請輸入姓名"
+            clear
+          >
+            姓名
+          </InputItem>
+
+          <InputItem
+            clear
+            {...getFieldProps("contactPhone", {
+              initialValue: "96181448"
+            })}
+            type="phone"
+            placeholder="請輸入電話"
+          >
+            聯絡手機
+          </InputItem>
+
+          <InputItem
+            {...getFieldProps("contactEmail", {
+              initialValue: "h001@ymatchx.com"
+            })}
+            clear
+            placeholder="請輸入電郵地址"
+          >
+            聯絡電郵
+          </InputItem>
+
+          <List.Item
+            extra={
+              <Button type="ghost" size="large" inline onClick={this.submit}>
+                獲得匹配
+              </Button>
+            }
+            multipleLine
+          >
+            HoMatching
+            <List.Item.Brief>尊重您的私隱和信息，不會被共享。</List.Item.Brief>
+          </List.Item>
+        </List>
+      </div>
+    );
   }
 }
 
-export const FormLeasePropertyAntMobileWrapper = createForm()(FormLeasePropertyAntMobile);
+export const FormLeasePropertyAntMobileWrapper = createForm()(
+  FormLeasePropertyAntMobile
+);
 
 // ReactDOM.render(<TestWrapper />, mountNode);
 // .picker-list .am-list-item .am-list-line .am-list-extra {
 //   flex-basis: initial;
 // }
-
 
 // <Card>
 //    <Button type="primary"></Button>
@@ -454,7 +454,6 @@ export const FormLeasePropertyAntMobileWrapper = createForm()(FormLeasePropertyA
 //    </Card.Body>
 //    <Card.Footer content={<Button type="ghost" inline size="small">Hello</Button>} extra={<h3>$300萬元</h3>} />
 //  </Card>
-
 
 /// 區域"
 // <Picker cols={3} extra="區域"

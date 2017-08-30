@@ -22,6 +22,7 @@ import moment from "moment";
 import "moment/locale/zh-cn";
 import MobxStore from "mobxStore";
 import views from "views";
+import {LEVEL} from 'LEVEL'
 
 // 如果不是使用 List.Item 作为 children
 const CustomChildren = props =>
@@ -156,6 +157,7 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
     p.contactName = v.contactName;
     p.contactPhone = parseInt(v.contactPhone);
     p.contactEmail = v.contactEmail;
+    p.level = v.level[0];
 
     const id = Fb.app.agentSaleRef.push().key;
     p.typeFor = "buy";
@@ -261,6 +263,21 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
           >
             實用 面 積
           </InputItem>
+
+          <Picker  data={LEVEL}
+          cols={1}
+          title="選擇層數"
+          cascade={false}
+          {...getFieldProps('level', {
+              initialValue: ['1'],
+          })}
+          extra="選擇層數"
+          onOk={e => console.log('ok', e)}
+          onDismiss={e => console.log('dismiss', e)}
+         >
+         <List.Item arrow="horizontal">層數</List.Item>
+        </Picker>
+
 
           <DatePicker
             mode="date"

@@ -17,6 +17,7 @@ import moment from 'moment';
 import 'moment/locale/zh-cn';
 import MobxStore from 'mobxStore'
 import views from 'views'
+import {LEVEL} from 'LEVEL'
 
 // 如果不是使用 List.Item 作为 children
 const CustomChildren = props => (
@@ -145,6 +146,7 @@ class FormSalePropertyAntMobile extends React.Component {
     p.contactPhone = parseInt(v.contactPhone);
     p.contactEmail = v.contactEmail;
 
+    p.level = v.level[0];
 
     // Catch none user syn method wait to be true
     if ( MobxStore.app.uid === null) {
@@ -259,8 +261,38 @@ class FormSalePropertyAntMobile extends React.Component {
                   onDismiss={e => console.log('dismiss', e)}
                  >
                  <List.Item arrow="horizontal">間隔</List.Item>
-
                 </Picker>
+
+                <Picker  data={LEVEL}
+                cols={1}
+                title="選擇層數"
+                cascade={false}
+                {...getFieldProps('level', {
+                    initialValue: ['1'],
+                })}
+                extra="選擇層數"
+                onOk={e => console.log('ok', e)}
+                onDismiss={e => console.log('dismiss', e)}
+               >
+               <List.Item arrow="horizontal">層數</List.Item>
+              </Picker>
+
+              <List.Item
+              extra={
+                <Switch
+                  {...getFieldProps("isPetAllowed", {
+                    initialValue: false,
+                    valuePropName: "checked"
+                  })}
+                  onClick={checked => {
+                    console.log(checked);
+                  }}
+                />
+              }
+            >
+              可養寵物
+            </List.Item>                
+
                 <InputItem
                   {...getFieldProps('salePrice', {
                     initialValue : 350,

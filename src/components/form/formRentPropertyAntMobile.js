@@ -52,14 +52,14 @@ const jobNature = [
   },
 ]
 
-const roomKey = {
-  '0' : '開放式',
-  '1' : '1房',
-  '2' : '2房',
-  '3' : '3房',
-  '4' : '4房',
-  '5' : '5房',
-}
+// const roomKey = {
+//   '0' : '開放式',
+//   '1' : '1房',
+//   '2' : '2房',
+//   '3' : '3房',
+//   '4' : '4房',
+//   '5' : '5房',
+// }
 
 // const NameOfBuilding = [
 //   { value: 'MOSDBC', label: '迎海' },
@@ -274,7 +274,7 @@ class FormRentPropertyAntMobile extends React.Component {
         focused={this.state.netSizefocused}
         clear
         extra="元"
-      >收入</InputItem>
+      >收入(生活費)</InputItem>
 
       <DatePicker
         mode="date"
@@ -303,7 +303,7 @@ class FormRentPropertyAntMobile extends React.Component {
          step={1}
        />}
      >
-     同居的人數
+     同居人數
      </List.Item>
 
 
@@ -336,33 +336,37 @@ class FormRentPropertyAntMobile extends React.Component {
                 <List.Item arrow="horizontal">間隔</List.Item>
                </Picker>
 
+
                <List.Item extra={
-                <Stepper
-
-                  {...getFieldProps('rentBudgetMax', {
-                    initialValue: 10000
-                  })}
-                  style={{ width: '100%', minWidth: '2rem' }}
-                  showNumber
-                  max={100000}
-                  min={2000}
-                  step={1000}
-                />}
-              >
-              付出租金上限/元
-              </List.Item>
-
-
-
-                <List.Item
-                extra={<Switch
-                          {...getFieldProps('isRentAbleNow', {
-                            initialValue: false,
-                            valuePropName: 'checked',
-                          })}
-                          onClick={(checked) => { console.log(checked); }}
-                        />}
-                >我想即刻租住</List.Item>
+                  <Stepper
+                
+                    {...getFieldProps('rentBudgetMax', {
+                      initialValue: 10000
+                    })}
+                    style={{ width: '100%', minWidth: '2rem' }}
+                    showNumber
+                    max={100000}
+                    min={2000}
+                    step={1000}
+                  />}
+                >
+                付出租金上限/元
+                </List.Item>
+                <List.Item extra={
+                  <Stepper
+                    style={{ width: '100%', minWidth: '2rem' }}
+                    {...getFieldProps('leasingPeriod', {
+                      initialValue: 12
+                    })}
+                    showNumber
+                    max={60}
+                    min={1}
+                    step={1}
+                  />}
+                >
+                租賃期/月
+                </List.Item>
+               
                 <List.Item
                 extra={<Switch
                           {...getFieldProps('hasHomeHardware', {
@@ -384,6 +388,17 @@ class FormRentPropertyAntMobile extends React.Component {
                         />}
 
                 >有樓睇</List.Item>
+
+                <List.Item
+                extra={<Switch
+                          {...getFieldProps('isPetAllowed', {
+                            initialValue: false,
+                            valuePropName: 'checked',
+                          })}
+                          onClick={(checked) => { console.log(checked); }}
+                        />}
+
+                >要求可養寵物</List.Item>
 
 
 
@@ -433,10 +448,18 @@ class FormRentPropertyAntMobile extends React.Component {
 
 export const FormRentPropertyAntMobileWrapper = createForm()(FormRentPropertyAntMobile);
 
-// ReactDOM.render(<TestWrapper />, mountNode);
-// .picker-list .am-list-item .am-list-line .am-list-extra {
-//   flex-basis: initial;
-// }
+                // <List.Item
+                // extra={<Switch
+                //           {...getFieldProps('isRentAbleNow', {
+                //             initialValue: false,
+                //             valuePropName: 'checked',
+                //           })}
+                //           onClick={(checked) => { console.log(checked); }}
+                //         />}
+                // >我想即刻租住</List.Item>
+
+
+
 
 
 // <Card>

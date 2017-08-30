@@ -76,47 +76,47 @@ class FormBuyPropertyAntMobile extends React.Component {
   };
 
 
-  onPickerChange = (val) => {
-    console.log(val);
-    let colNum = 1;
-    const d = [...this.state.data];
-    const asyncValue = [...val];
-    if (val[0] === 'zj') {
-      d.forEach((i) => {
-        if (i.value === 'zj') {
-          colNum = 2;
-          if (!i.children) {
-            i.children = [{
-              value: 'zj-nb',
-              label: '宁波',
-            }, {
-              value: 'zj-hz',
-              label: '杭州',
-            }];
-            asyncValue.push('zj-nb');
-          } else if (val[1] === 'zj-hz') {
-            i.children.forEach((j) => {
-              if (j.value === 'zj-hz') {
-                j.children = [{
-                  value: 'zj-hz-xh',
-                  label: '西湖区',
-                }];
-                asyncValue.push('zj-hz-xh');
-              }
-            });
-            colNum = 3;
-          }
-        }
-      });
-    } else {
-      colNum = 1;
-    }
-    this.setState({
-      data: d,
-      cols: colNum,
-      asyncValue,
-    });
-  };
+  // onPickerChange = (val) => {
+  //   console.log(val);
+  //   let colNum = 1;
+  //   const d = [...this.state.data];
+  //   const asyncValue = [...val];
+  //   if (val[0] === 'zj') {
+  //     d.forEach((i) => {
+  //       if (i.value === 'zj') {
+  //         colNum = 2;
+  //         if (!i.children) {
+  //           i.children = [{
+  //             value: 'zj-nb',
+  //             label: '宁波',
+  //           }, {
+  //             value: 'zj-hz',
+  //             label: '杭州',
+  //           }];
+  //           asyncValue.push('zj-nb');
+  //         } else if (val[1] === 'zj-hz') {
+  //           i.children.forEach((j) => {
+  //             if (j.value === 'zj-hz') {
+  //               j.children = [{
+  //                 value: 'zj-hz-xh',
+  //                 label: '西湖区',
+  //               }];
+  //               asyncValue.push('zj-hz-xh');
+  //             }
+  //           });
+  //           colNum = 3;
+  //         }
+  //       }
+  //     });
+  //   } else {
+  //     colNum = 1;
+  //   }
+  //   this.setState({
+  //     data: d,
+  //     cols: colNum,
+  //     asyncValue,
+  //   });
+  // };
 
 
   addPropertyForBuy = ( v ) =>
@@ -332,26 +332,6 @@ class FormBuyPropertyAntMobile extends React.Component {
               </Picker>
 
 
-                <List.Item
-                extra={<Switch
-                          {...getFieldProps('isNegotiable', {
-                            initialValue: true,
-                            valuePropName: 'checked',
-                          })}
-                          onClick={(checked) => { console.log(checked); }}
-                        />}
-
-                >可議價</List.Item>
-                <List.Item
-                extra={<Switch
-                          {...getFieldProps('isViewAble', {
-                            initialValue: true,
-                            valuePropName: 'checked',
-                          })}
-                          onClick={(checked) => { console.log(checked); }}
-                        />}
-
-                >要求有樓睇</List.Item>
 
                 <InputItem
                   {...getFieldProps('contactName', {
@@ -400,6 +380,28 @@ class FormBuyPropertyAntMobile extends React.Component {
 
 export const FormBuyPropertyAntMobileWrapper = createForm()(FormBuyPropertyAntMobile);
 
+
+
+// {/* <List.Item
+// extra={<Switch
+//           {...getFieldProps('isNegotiable', {
+//             initialValue: true,
+//             valuePropName: 'checked',
+//           })}
+//           onClick={(checked) => { console.log(checked); }}
+//         />}
+
+// >可議價</List.Item>
+// <List.Item
+// extra={<Switch
+//           {...getFieldProps('isViewAble', {
+//             initialValue: true,
+//             valuePropName: 'checked',
+//           })}
+//           onClick={(checked) => { console.log(checked); }}
+//         />}
+
+// >要求有樓睇</List.Item> */}
 // ReactDOM.render(<TestWrapper />, mountNode);
 // .picker-list .am-list-item .am-list-line .am-list-extra {
 //   flex-basis: initial;
