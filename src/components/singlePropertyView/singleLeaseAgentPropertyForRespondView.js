@@ -86,6 +86,25 @@ export default class SingleLeaseAgentPropertyForRespondView extends React.Compon
             {property.hasHomeHardwareLabel}
             <br />
             <Badge
+            text={property.leasingPeriodLabel}
+            style={{
+              marginLeft: 12,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByFresh,
+              borderRadius: 2
+            }}      
+            />                
+            <Badge
+            text={property.isPetAllowedLabel}
+            style={{
+              marginLeft: 12,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByFresh,
+              borderRadius: 2
+            }}      
+            />    
+            
+            <Badge
               text={property.roleName}
               style={{
                 marginLeft: 12,

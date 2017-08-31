@@ -3,6 +3,7 @@ import {
   Card,
   Picker,
   List,
+  Stepper,
   WhiteSpace,
   InputItem,
   Button,
@@ -148,15 +149,16 @@ class FormLeasePropertyAntMobile extends React.Component {
     p.numOfRoom = parseInt(v.partition[0]);
     p.numOfBathroom = parseInt(v.partition[1]);
     p.numOfLivingroom = parseInt(v.partition[2]);
-    p.isPreferPayAnnually = v.isPreferPayAnnually;
-    p.isRentAbleNow = v.isRentAbleNow;
+    //p.isPreferPayAnnually = v.isPreferPayAnnually;
+    // p.isRentAbleNow = v.isRentAbleNow;
     p.isFreeForSevenDay = v.isFreeForSevenDay;
     p.hasHomeHardware = v.hasHomeHardware;
-    p.isViewAble = v.isViewAble;
+    //p.isViewAble = v.isViewAble;
     p.contactName = v.contactName;
     p.contactPhone = parseInt(v.contactPhone);
     p.contactEmail = v.contactEmail;
 
+    //p.level = v.level[0];
     p.isPetAllowed = v.isPetAllowed;
     //p.leasingPeriod = v.leasingPeriod;
 
@@ -280,6 +282,23 @@ class FormLeasePropertyAntMobile extends React.Component {
           >
             <List.Item arrow="horizontal">間隔</List.Item>
           </Picker>
+
+          <List.Item
+            extra={
+              <Stepper
+                style={{ width: "100%", minWidth: "2rem" }}
+                {...getFieldProps("leasingPeriod", {
+                  initialValue: 12
+                })}
+                showNumber
+                max={60}
+                min={1}
+                step={1}
+              />
+            }
+          >
+          最少租/月
+          </List.Item>
 
           <InputItem
             {...getFieldProps("netSize", {

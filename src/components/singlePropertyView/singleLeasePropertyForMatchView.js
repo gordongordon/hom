@@ -128,6 +128,15 @@ export default class SingleLeasePropertyForMatchView extends React.Component {
     <Button type="ghost" inline size="small">直接聯絡</Button></div>} extra={          <Flex style={{ marginBottom: '1rem' }}>
               <Badge text={property.roleName} style={{ marginLeft: 12, padding: '0 0.06rem', backgroundColor: property.colorByRoleName, borderRadius: 2 }} />
               <Badge text={property.howFresh}  style={{ marginLeft: 12, padding: '0 0.06rem', backgroundColor: property.colorByFresh, borderRadius: 2 }} />
+              <Badge
+              text={property.isPetAllowedLabel}
+              style={{
+                marginLeft: 12,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 2
+              }}      
+              />                  
               <Badge text={property.dayListed}
                 style={{
                   marginLeft: 12,

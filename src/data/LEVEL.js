@@ -10,7 +10,8 @@ const LEVEL = [
       label : '高層',
       value:  '2',
     }
-  ],
+    ] ,
+    [] 
   
   ]  // End of room selection
   

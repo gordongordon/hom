@@ -149,13 +149,14 @@ class FormBuyPropertyAntMobile extends React.Component {
     //p.isFreeForSevenDay = v.isFreeForSevenDay;
 
     //p.hasHomeHardware = v.hasHomeHardware;
-    p.isViewAble = v.isViewAble;
+    //p.isViewAble = v.isViewAble;
 //    p.howToContact = parseInt( howToContact[0] );
     p.contactName = v.contactName;
     p.contactPhone = parseInt(v.contactPhone);
     p.contactEmail = v.contactEmail;
 
     p.isPetAllowed = v.isPetAllowed;
+    // debugger
 
     if ( MobxStore.app.uid === null) {
       if ( Fb.startLoginAnonyhmously() ) {

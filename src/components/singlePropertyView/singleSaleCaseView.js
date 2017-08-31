@@ -85,6 +85,34 @@ export default class SingleSaleCaseView extends React.Component {
             {property.salePriceLabel}
             <br />
             <Badge
+            text={property.isPetAllowLabel}
+            style={{
+              marginLeft: 12,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByFresh,
+              borderRadius: 2
+            }}      
+            />            
+            <Badge
+            text={property.isViewAbleLabel}
+            style={{
+              marginLeft: 6,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByFresh,
+              borderRadius: 5
+            }}
+          />
+            <Badge
+            text={property.levelLabel}
+            style={{
+              marginLeft: 6,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByFresh,
+              borderRadius: 5
+            }}
+          />
+
+            <Badge
               text={property.roleName}
               style={{
                 marginLeft: 6,

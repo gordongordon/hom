@@ -2,6 +2,7 @@ import { observable, computed } from "mobx";
 import moment from "moment";
 import uuidv1 from "uuid/v1";
 import { DISTRICK } from "DISTRICK";
+import { LEVEL } from "LEVEL";
 
 // ignore the two lines below, they just creates unique IDs for the todo
 // var _nextId = 0
@@ -442,6 +443,7 @@ export class Property {
         break;
     }
 
+
     if (this.relatedFbid != null) {
       name = "地產代理";
     }
@@ -449,6 +451,28 @@ export class Property {
     return name;
   }
 
+  @computed 
+  get levelLabel() {
+
+    const level = LEVEL[0].find(element => element.value === this.level);
+    return level === undefined ? "層" : level.label;
+  }
+
+
+  @computed 
+  get leasingPeriodLabel(){
+    return this.leasingPeriod === undefined? "個月" :  "最少租" +this.leasingPeriod + "個月";
+  }
+  
+  @computed
+  get isPetAllowedLabel(){
+    return this.isPetAllowed ? "可養寵物" : "";
+  }
+
+  @computed 
+  get isViewAbleLabel() {
+    return this.isViewAble ?  "可睇" : "";
+  }
   @computed
   get contactNameLabel() {
     return this.roleName + this.contactName;
@@ -776,21 +800,28 @@ export class Property {
 
 
     p.level = v.level;
-    p.isPetAllowed = v.level;
+    p.isPetAllowed = v.isPetAllowed;
     p.leasingPeriod = v.leasingPeriod;
     return p;
   }
 
   restore(v) {
-    (this.id = v.id), (this.uid = v.uid), (this.fbid =
-      v.fbid), (this.relatedFbid = v.relatedFbid), (this.done = //            text: this.text,
-      v.done), (this.type = v.type), (this.orderByChild = //            location : this.location,
-      v.orderByChild), (this.isAgent = v.isAgent), (this.createdAt =
-      v.createdAt), (this.realTime = v.realTime), (this.typeTo = //this.createdAt = moment(v.createdAt).format('YYYY-MM-DD HH:mm:ss');
-      v.typeTo), (this.typeBy = v.typeBy), (this.typeFor =
-      v.typeFor), (this.district = v.district), (this.addressRegion =
-      v.addressRegion), (this.addressLocation =
-      v.addressLocation), (this.nameOfBuilding =
+      this.id  = v.id, 
+      this.uid  = v.uid, 
+      this.fbid = v.fbid, 
+      this.relatedFbid = v.relatedFbid, 
+      this.done = v.done, 
+      this.type = v.type,
+      this.orderByChild = v.orderByChild, 
+      this.isAgent = v.isAgent, 
+      this.createdAt = v.createdAt, 
+      this.realTime = v.realTime, 
+      this.typeTo = v.typeTo, 
+      this.typeBy = v.typeBy, 
+      this.typeFor = v.typeFor, 
+      this.district = v.district, 
+      this.addressRegion = v.addressRegion, 
+      this.addressLocation = v.addressLocation, (this.nameOfBuilding =
       v.nameOfBuilding), (this.propertyType = v.propertyType), (this.flatType =
       v.flatType), (this.nearByMtrLine = v.nearByMtrLine), (this.nearByMtrStop =
       v.nearByMtrStop), (this.salePrice = v.salePrice), (this.salePriceMin =
@@ -817,7 +848,8 @@ export class Property {
       v.isViewAbleNow), (this.isRentAbleNow =
       v.isRentAbleNow), (this.isFreeForSevenDay =
       v.isFreeForSevenDay), (this.dueDay = v.dueDay), (this.earlyTimeToView = //earlyTimeToView : this.earlyTimeToView.toJSON(), //            dueDay : this.dueDay.toJSON(),
-      v.earlyTimeToView), (this.income = v.income), 
+      v.earlyTimeToView), 
+      this.income = v.income, 
       this.isBuyWithLease = v.isBuyWithLease,
 
 

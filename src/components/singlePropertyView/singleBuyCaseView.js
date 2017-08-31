@@ -84,6 +84,16 @@ export default class SingleBuyCaseView extends React.Component {
             {property.earlyTimeToViewLabel}
             <br />
             <Badge
+            text={property.isPetAllowedLabel}
+            style={{
+              marginLeft: 12,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByFresh,
+              borderRadius: 2
+            }}      
+            />     
+
+            <Badge
               text={property.roleName}
               style={{
                 marginLeft: 12,

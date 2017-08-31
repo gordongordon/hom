@@ -84,6 +84,7 @@ export class Propertyhk extends Property {
   buildRequest = ( fb, request, orderByChild, equalTo, id, typeTo, typeBy) => {
     const that = this;
     
+    //debugger
     // Handle match propertys
     fb
       .orderByChild(orderByChild)
@@ -267,7 +268,7 @@ export class Propertyhk extends Property {
 
     // this.buildRequest( fb, that.matchedPropertys, this.orderByChild, this.equalTo, id, typeTo, typeBy );
     // Make sale request
-    this.buildRequest( Fb.sale, that.saleRequest, this.orderByChild, this.equalTo, id, typeTo, typeBy );
+     this.buildRequest( Fb.sale, that.saleRequest, this.orderByChild, this.equalTo, id, typeTo, typeBy );
     // Make buyt request
     this.buildRequest( Fb.buy, that.buyRequest, this.orderByChild, this.equalTo, id, typeTo, typeBy );
     // Make rent request
