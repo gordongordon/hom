@@ -145,8 +145,8 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
     p.numOfLivingroom = parseInt(v.partition[2]);
 
     p.isBuyWithLease = v.isBuyWithLease
-    p.netSizeMin = parseInt( v.netSizeMin )
-    p.buyBudgetMax = parseInt( v.buyBudgetMax )
+    //p.netSizeMin = parseInt( v.netSizeMin )
+    //p.buyBudgetMax = parseInt( v.buyBudgetMax )
 
     //p.isPreferPayAnnually = v.isPreferPayAnnually;
     //p.isRentAbleNow = v.isRentAbleNow;
@@ -259,42 +259,29 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
         >
         <List.Item arrow="horizontal">最快幾時可以樓睇</List.Item>
 
-        </DatePicker>
 
-                <InputItem
-                  {...getFieldProps('buyBudgetMax', {
-                    initialValue : 380,
-                    normalize: (v, prev) => {
-                      if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
-                        if (v === '.') {
-                          return '0.';
-                        }
-                        return prev;
-                      }
-                      return v;
-                    },
-                  })}
-                  type="number"
-                  placeholder="請輸入預算上限"
-                  onFocus={() => {
-                    this.setState({
-                      netSizefocused: false,
-                    });
-                  }}
+       </DatePicker>
 
-                  focused={this.state.netSizefocused}
-                  extra="萬"
-                  clear
-                  labelNumber="7"
-                  maxLength="4"
-                >付出預算上限</InputItem>
+       <Picker  data={PARTITION}
+       cols={2}
+       title="選擇間隔"
+       cascade={false}
+       {...getFieldProps('partition', {
+           initialValue: ['0', '1','1'],
+       })}
+       extra="選擇間隔"
+       onOk={e => console.log('ok', e)}
+       onDismiss={e => console.log('dismiss', e)}
+      >
+      <List.Item arrow="horizontal">間隔</List.Item>
+     </Picker>
 
 
 
                 <List.Item
                 extra={<Switch
                           {...getFieldProps('isBuyWithLease', {
-                            initialValue: true,
+                            initialValue: false,
                             valuePropName: 'checked',
                           })}
                           onClick={(checked) => { console.log(checked); }}
@@ -302,35 +289,6 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
 
                 >我可以賣買連租賃</List.Item>
 
-                <List.Item extra={
-                 <Stepper
-                   style={{ width: '100%', minWidth: '2rem' }}
-                   {...getFieldProps('netSizeMin', {
-                     initialValue: 500
-                   })}
-                   showNumber
-                   max={3000}
-                   min={100}
-                   step={100}
-                 />}
-               >
-               最少實用面積/呎
-               </List.Item>
-
-
-              <Picker  data={PARTITION}
-                cols={2}
-                title="選擇間隔"
-                cascade={false}
-                {...getFieldProps('partition', {
-                    initialValue: ['0', '1','1'],
-                })}
-                extra="選擇間隔"
-                onOk={e => console.log('ok', e)}
-                onDismiss={e => console.log('dismiss', e)}
-               >
-               <List.Item arrow="horizontal">間隔</List.Item>
-              </Picker>
 
                 <List.Item
                 extra={

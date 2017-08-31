@@ -305,10 +305,10 @@ const views = {
       console.log('params changed to', params);
     }}),
 buyAgentForm : new Route({
-  path: '/buyAgentForm/keyID/:keyID/:typeTo/filterID/:filterID',
+  path: '/BuyAgentForm/keyID/:keyID/:typeTo/filterID/:filterID',
   component: <FormBuyAgentPropertyAntMobileWrapper />,
   onEnter: (route, params, store, queryParams) => {
-    MobxStore.app.setTitle( '地產代理回復 賣家');
+    MobxStore.app.setTitle( '地產代理回復 業主');
 
   },
   beforeExit: (route, params) => {
