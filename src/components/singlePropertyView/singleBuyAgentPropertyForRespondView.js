@@ -94,7 +94,7 @@ export default class SingleBuyAgentPropertyForRespondView extends React.Componen
             {property.partitionLabel}{property.buyBudgetMaxLabel}
             <br />
             <Badge
-            text={property.isPetAllowLabel}
+            text={property.isPetAllowedLabel}
             style={{
               marginLeft: 12,
               padding: "0 0.06rem",

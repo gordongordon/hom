@@ -80,13 +80,21 @@ export default class SingleRentAgentPropertyForRespondView extends React.Compone
         >
         {property.addressLocationLabel}/{property.nameOfBuildingLabel}/{property.contactNameLabel}
           <Brief>
-            {property.jobNatureLabel}
             {property.incomeLabel}
-            <br />
             {property.rentBudgetMaxLabel}
+            <br />
             <br />
             <Badge
             text={property.numOfPeopleLivingLabel}
+            style={{
+              marginLeft: 12,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByFresh,
+              borderRadius: 2
+            }}      
+            />    
+            <Badge
+            text={property.isPetAllowedLabel}
             style={{
               marginLeft: 12,
               padding: "0 0.06rem",
@@ -135,20 +143,20 @@ export default class SingleRentAgentPropertyForRespondView extends React.Compone
             />               
             <br />
             <Badge
+            text={property.jobNatureLabel}
+            style={{
+              marginLeft: 12,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByFresh,
+              borderRadius: 2
+            }}
+          />
+          <Badge
               text={property.roleName}
               style={{
                 marginLeft: 12,
                 padding: "0 0.06rem",
                 backgroundColor: property.colorByRoleName,
-                borderRadius: 2
-              }}
-            />
-            <Badge
-              text={property.howFresh}
-              style={{
-                marginLeft: 12,
-                padding: "0 0.06rem",
-                backgroundColor: property.colorByFresh,
                 borderRadius: 2
               }}
             />
@@ -163,7 +171,16 @@ export default class SingleRentAgentPropertyForRespondView extends React.Compone
                 border: "1px solid #f19736"
               }}
             />
-            </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
+            <Badge
+            text={property.howFresh}
+            style={{
+              marginLeft: 12,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByFresh,
+              borderRadius: 2
+            }}
+          />
+          </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
             </Item>
         <WhiteSpace size="sm" />
       </div>

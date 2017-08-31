@@ -85,7 +85,7 @@ export default class SingleSaleCaseView extends React.Component {
           {property.salePriceLabel}
           <br />
           <Badge
-          text={property.isPetAllowLabel}
+          text={property.isPetAllowedLabel}
           style={{
             marginLeft: 12,
             padding: "0 0.06rem",

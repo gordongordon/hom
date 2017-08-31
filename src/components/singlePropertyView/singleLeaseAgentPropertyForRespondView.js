@@ -81,8 +81,6 @@ export default class SingleLeaseAgentPropertyForRespondView extends React.Compon
             {property.leasePriceLabel}
             {property.partitionLabel}
             <br />
-            {property.earlyTimeToViewLabel}
-            <br />
             <Badge
             text={property.leasingPeriodLabel}
             style={{
@@ -141,6 +139,16 @@ export default class SingleLeaseAgentPropertyForRespondView extends React.Compon
               borderRadius: 5
             }}
           />
+          <Badge
+          text={property.earlyTimeToViewLabel}
+          style={{
+            marginLeft: 6,
+            padding: "0 0.06rem",
+            backgroundColor: property.colorByFresh,
+            borderRadius: 5
+          }}
+        />
+          
           <Badge
           text={property.isFreeForSevenDayLabel}
           style={{

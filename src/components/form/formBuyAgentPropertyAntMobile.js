@@ -225,9 +225,10 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
         console.log(`${name}: ${value}`);
       }; }
 
-      //const property = propertys.propertys.get(MobxStore.router.params.keyID);
 
+    
     // Get the last property to generate default form values
+//    const property = propertys.propertys.get(MobxStore.router.params.keyID);
     const property = MobxStore.app.lastProperty;
     const addressArray = property.addressToArray;
     const partitionArray = property.partitionToArray;
@@ -237,7 +238,7 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
     const maxDate = moment(minDate).add(6, 'M');
 
       //return <ChatBot steps={FormSaleChatbot} />;
-
+    // debugger
     return ( <div>
       <List style={{ backgroundColor: 'white' }} className="picker-list">
 
@@ -267,7 +268,7 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
        title="選擇間隔"
        cascade={false}
        {...getFieldProps('partition', {
-           initialValue: ['0', '1','1'],
+           initialValue: partitionArray,
        })}
        extra="選擇間隔"
        onOk={e => console.log('ok', e)}
@@ -281,7 +282,7 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
                 <List.Item
                 extra={<Switch
                           {...getFieldProps('isBuyWithLease', {
-                            initialValue: false,
+                            initialValue: property.isSaleWithLease,
                             valuePropName: 'checked',
                           })}
                           onClick={(checked) => { console.log(checked); }}
@@ -294,7 +295,7 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
                 extra={
                   <Switch
                     {...getFieldProps("isPetAllowed", {
-                      initialValue: false,
+                      initialValue: property.isPetAllowed,
                       valuePropName: "checked"
                     })}
                     onClick={checked => {
@@ -309,7 +310,7 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
                 <List.Item
                 extra={<Switch
                           {...getFieldProps('isViewAble', {
-                            initialValue: true,
+                            initialValue: property.isViewAble,
                             valuePropName: 'checked',
                           })}
                           onClick={(checked) => { console.log(checked); }}
@@ -319,7 +320,7 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
 
                 <InputItem
                   {...getFieldProps('contactName', {
-                    initialValue : 'John Lee',
+                    initialValue : property.contactName,
                   }) }
                   type="text"
                   placeholder="請輸入姓名"
@@ -329,7 +330,7 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
                 <InputItem
                   clear
                   {...getFieldProps('contactPhone', {
-                    initialValue : '66896696'
+                    initialValue : property.contactPhone
                   })}
                   type="phone"
                   placeholder="請輸入電話"
@@ -337,7 +338,7 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
 
                 <InputItem
                   {...getFieldProps('contactEmail', {
-                    initialValue : 'h002@ymatchx.com',
+                    initialValue : property.contactEmail,
                   })}
                   clear
                   placeholder="請輸入電郵地址"
