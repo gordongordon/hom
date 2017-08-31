@@ -312,6 +312,8 @@ class FormSalePropertyAntMobile extends React.Component {
          >
          <List.Item arrow="horizontal">層數</List.Item>
         </Picker>
+
+        
           <InputItem
             {...getFieldProps("salePrice", {
               initialValue: 350,

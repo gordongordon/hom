@@ -79,22 +79,50 @@ export default class SingleSaleCaseView extends React.Component {
           thumb="http://hair.losstreatment.com/icons/rent-up.svg"
           multipleLine
         >
-       {property.addressLocationLabel}/{property.nameOfBuildingLabel}/{property.contactNameLabel}
-          <Brief>
-            {property.partitionLabel}
-            {property.salePriceLabel}
-            <br />
-            <Badge
-            text={property.isPetAllowLabel}
+        {property.addressLocationLabel}/{property.nameOfBuildingLabel}/{property.contactNameLabel}
+        <Brief>
+          {property.partitionLabel}
+          {property.salePriceLabel}
+          <br />
+          <Badge
+          text={property.isPetAllowLabel}
+          style={{
+            marginLeft: 12,
+            padding: "0 0.06rem",
+            backgroundColor: property.colorByFresh,
+            borderRadius: 2
+          }}      
+          />            
+          <Badge
+          text={property.isViewAbleLabel}
+          style={{
+            marginLeft: 6,
+            padding: "0 0.06rem",
+            backgroundColor: property.colorByFresh,
+            borderRadius: 5
+          }}
+        />
+          
+          <Badge
+          text={property.levelLabel}
+          style={{
+            marginLeft: 6,
+            padding: "0 0.06rem",
+            backgroundColor: property.colorByRoleName,
+            borderRadius: 5
+          }}
+        />            
+          <Badge
+            text={property.roleName}
             style={{
-              marginLeft: 12,
+              marginLeft: 6,
               padding: "0 0.06rem",
-              backgroundColor: property.colorByFresh,
-              borderRadius: 2
-            }}      
-            />            
-            <Badge
-            text={property.isViewAbleLabel}
+              backgroundColor: property.colorByRoleName,
+              borderRadius: 5
+            }}
+          />
+          <Badge
+            text={property.howFresh}
             style={{
               marginLeft: 6,
               padding: "0 0.06rem",
@@ -102,45 +130,45 @@ export default class SingleSaleCaseView extends React.Component {
               borderRadius: 5
             }}
           />
-            <Badge
-            text={property.levelLabel}
-            style={{
-              marginLeft: 6,
-              padding: "0 0.06rem",
-              backgroundColor: property.colorByFresh,
-              borderRadius: 5
-            }}
-          />
+          <br />
+          <Badge
+          text={property.netSizeLabel}
+          style={{
+            marginLeft: 6,
+            padding: "0 0.06rem",
+            backgroundColor: property.colorByFresh,
+            borderRadius: 5
+          }}
+        />
+        <Badge
+        text={property.isSaleWithLeaseLabel}
+        style={{
+          marginLeft: 6,
+          padding: "0 0.06rem",
+          backgroundColor: property.colorByFresh,
+          borderRadius: 5
+        }}
+      />
+      <br />
+      <Badge
+      text={property.dueDayLabel}
+      style={{
+        marginLeft: 6,
+        padding: "0 0.06rem",
+        backgroundColor: property.colorByFresh,
+        borderRadius: 5
+      }}
+    />
+    <Badge
+    text={property.earlyTimeToViewLabel}
+    style={{
+      marginLeft: 6,
+      padding: "0 0.06rem",
+      backgroundColor: property.colorByFresh,
+      borderRadius: 5
+    }}
+  />
 
-            <Badge
-              text={property.roleName}
-              style={{
-                marginLeft: 6,
-                padding: "0 0.06rem",
-                backgroundColor: property.colorByRoleName,
-                borderRadius: 5
-              }}
-            />
-            <Badge
-              text={property.howFresh}
-              style={{
-                marginLeft: 6,
-                padding: "0 0.06rem",
-                backgroundColor: property.colorByFresh,
-                borderRadius: 5
-              }}
-            />
-            <Badge
-              text={property.dayListed}
-              style={{
-                marginLeft: 6,
-                padding: "0 0.06rem",
-                backgroundColor: "#fff",
-                borderRadius: 5,
-                color: "#f19736",
-                border: "2px solid #f19736"
-              }}
-            />
             </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
             </Item>
         <Item>

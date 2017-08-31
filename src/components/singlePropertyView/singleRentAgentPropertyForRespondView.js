@@ -83,9 +83,47 @@ export default class SingleRentAgentPropertyForRespondView extends React.Compone
             {property.jobNatureLabel}
             {property.incomeLabel}
             <br />
-            {property.numOfPeopleLivingLabel}
             {property.rentBudgetMaxLabel}
             <br />
+            <Badge
+            text={property.numOfPeopleLivingLabel}
+            style={{
+              marginLeft: 12,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByFresh,
+              borderRadius: 2
+            }}      
+            />    
+
+            <Badge
+            text={property.levelLabel}
+            style={{
+              marginLeft: 12,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByFresh,
+              borderRadius: 2
+            }}      
+            />               
+
+            <Badge
+            text={property.isViewAbleLabel}
+            style={{
+              marginLeft: 12,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByFresh,
+              borderRadius: 2
+            }}      
+            />               
+            <Badge
+            text={property.hasHomeHardwareLabel}
+            style={{
+              marginLeft: 12,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByFresh,
+              borderRadius: 2
+            }}      
+            />               
+
             <Badge
             text={property.leasingPeriodLabel}
             style={{
@@ -95,6 +133,7 @@ export default class SingleRentAgentPropertyForRespondView extends React.Compone
               borderRadius: 2
             }}      
             />               
+            <br />
             <Badge
               text={property.roleName}
               style={{

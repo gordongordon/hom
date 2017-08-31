@@ -93,46 +93,104 @@ export default class SingleBuyAgentPropertyForRespondView extends React.Componen
           <Brief>
             {property.partitionLabel}{property.buyBudgetMaxLabel}
             <br />
-            {property.earlyTimeToViewLabel}
-            <br />
             <Badge
-            text={property.isPetAllowedLabel}
+            text={property.isPetAllowLabel}
             style={{
               marginLeft: 12,
               padding: "0 0.06rem",
               backgroundColor: property.colorByFresh,
               borderRadius: 2
             }}      
-            />    
+            />            
+            <Badge
+            text={property.isViewAbleLabel}
+            style={{
+              marginLeft: 6,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByFresh,
+              borderRadius: 5
+            }}
+          />
+            
+            <Badge
+            text={property.levelLabel}
+            style={{
+              marginLeft: 6,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByRoleName,
+              borderRadius: 5
+            }}
+          />            
             <Badge
               text={property.roleName}
               style={{
-                marginLeft: 12,
+                marginLeft: 6,
                 padding: "0 0.06rem",
                 backgroundColor: property.colorByRoleName,
-                borderRadius: 2
+                borderRadius: 5
               }}
             />
             <Badge
               text={property.howFresh}
               style={{
-                marginLeft: 12,
+                marginLeft: 6,
                 padding: "0 0.06rem",
                 backgroundColor: property.colorByFresh,
-                borderRadius: 2
+                borderRadius: 5
               }}
             />
             <Badge
               text={property.dayListed}
               style={{
-                marginLeft: 12,
+                marginLeft: 6,
                 padding: "0 0.06rem",
                 backgroundColor: "#fff",
-                borderRadius: 2,
+                borderRadius: 5,
                 color: "#f19736",
-                border: "1px solid #f19736"
+                border: "2px solid #f19736"
               }}
             />
+            <br />
+            <Badge
+            text={property.netSizeLabel}
+            style={{
+              marginLeft: 6,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByFresh,
+              borderRadius: 5
+            }}
+          />
+          <Badge
+          text={property.isSaleWithLeaseLabel}
+          style={{
+            marginLeft: 6,
+            padding: "0 0.06rem",
+            backgroundColor: property.colorByFresh,
+            borderRadius: 5
+          }}
+        />
+        <br />
+        <Badge
+        text={property.earlyTimeToViewLabel}
+        style={{
+          marginLeft: 6,
+          padding: "0 0.06rem",
+          backgroundColor: property.colorByFresh,
+          borderRadius: 5
+        }}
+        />
+      
+        <Badge
+        text={property.dueDayLabel}
+        style={{
+          marginLeft: 6,
+          padding: "0 0.06rem",
+          backgroundColor: property.colorByFresh,
+          borderRadius: 5
+        }}
+      />
+
+
             </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
             </Item>
             <WhiteSpace size="sm" />

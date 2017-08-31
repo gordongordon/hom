@@ -130,17 +130,45 @@ export default class SingleSaleAgentPropertyForRespondView extends React.Compone
                 borderRadius: 5
               }}
             />
+            <br />
             <Badge
-              text={property.dayListed}
-              style={{
-                marginLeft: 6,
-                padding: "0 0.06rem",
-                backgroundColor: "#fff",
-                borderRadius: 5,
-                color: "#f19736",
-                border: "2px solid #f19736"
-              }}
-            />
+            text={property.netSizeLabel}
+            style={{
+              marginLeft: 6,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByFresh,
+              borderRadius: 5
+            }}
+          />
+          <Badge
+          text={property.isSaleWithLeaseLabel}
+          style={{
+            marginLeft: 6,
+            padding: "0 0.06rem",
+            backgroundColor: property.colorByFresh,
+            borderRadius: 5
+          }}
+        />
+        <br />
+        <Badge
+        text={property.dueDayLabel}
+        style={{
+          marginLeft: 6,
+          padding: "0 0.06rem",
+          backgroundColor: property.colorByFresh,
+          borderRadius: 5
+        }}
+      />
+      <Badge
+      text={property.earlyTimeToViewLabel}
+      style={{
+        marginLeft: 6,
+        padding: "0 0.06rem",
+        backgroundColor: property.colorByFresh,
+        borderRadius: 5
+      }}
+    />
+
             </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
             </Item>
         <WhiteSpace size="sm" />

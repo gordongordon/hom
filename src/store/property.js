@@ -305,6 +305,36 @@ export class Property {
     return "收入" + label + "/";
   }
 
+  @computed
+  get netSizeMinLabel(){
+     return this.netSizeMin + "尺";
+  }
+
+  @computed
+  get netSizeLabel(){
+     return this.netSizeMin + "尺";
+  }
+
+  @computed
+  get isSaleWithLeaseLabel(){
+    return this.isSaleWithLease ? "連租賃" : "sl";
+  }
+
+  @computed
+  get isFreeForSevenDayLabel(){
+    return this.isFreeForSevenDay ? "七日免租期" : "f7";
+  }
+
+  @computed
+  get isBuyWithLeaseLabel(){
+    return this.isBuyWithLease? "連租賃" : "bl";
+  }
+
+  @computed
+  get hasHomeHardwareLabel(){
+    return this.hasHomeHardware? "設備" : "hw";
+  }
+
   priceToLabel(price) {
     var label = "";
     const tenThousandDigit = parseInt(price / 10000);
@@ -466,12 +496,12 @@ export class Property {
   
   @computed
   get isPetAllowedLabel(){
-    return this.isPetAllowed ? "可養寵物" : "";
+    return this.isPetAllowed ? "可養寵物" : "P";
   }
 
   @computed 
   get isViewAbleLabel() {
-    return this.isViewAble ?  "可睇" : "";
+    return this.isViewAble ?  "可睇" : "V";
   }
   @computed
   get contactNameLabel() {
@@ -595,15 +625,14 @@ export class Property {
     return "即時回覆"
   }
 
-  更新內容
-  @computed
-  get hasHomeHardwareLabel() {
-    if (this.hasHomeHardware) {
-      return "有傢俬/";
-    }
+  // @computed
+  // get hasHomeHardwareLabel() {
+  //   if (this.hasHomeHardware) {
+  //     return "有傢俬/";
+  //   }
 
-    return "";
-  }
+  //   return "";
+  // }
 
   // @computed
   // get agentSelectedSegmentIndex() {
@@ -617,13 +646,13 @@ export class Property {
     return "租金" + this.priceToLabel(this.leasePrice) + "/";
   }
 
-  @computed
-  get isFreeForSevenDayLabel() {
-    if (this.isFreeForSevenDay) {
-      return "有免租期/";
-    }
-    return "";
-  }
+  // @computed
+  // get isFreeForSevenDayLabel() {
+  //   if (this.isFreeForSevenDay) {
+  //     return "有免租期/";
+  //   }
+  //   return "";
+  // }
 
   // setNetSize( netSize ) {
   //   this.netSize = netSize;

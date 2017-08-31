@@ -81,9 +81,7 @@ export default class SingleLeaseAgentPropertyForRespondView extends React.Compon
             {property.leasePriceLabel}
             {property.partitionLabel}
             <br />
-            {property.isFreeForSevenDayLabel}
             {property.earlyTimeToViewLabel}
-            {property.hasHomeHardwareLabel}
             <br />
             <Badge
             text={property.leasingPeriodLabel}
@@ -133,6 +131,25 @@ export default class SingleLeaseAgentPropertyForRespondView extends React.Compon
                 border: "1px solid #f19736"
               }}
             />
+            <br />
+            <Badge
+            text={property.hasHomeHardwareLabel}
+            style={{
+              marginLeft: 6,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByFresh,
+              borderRadius: 5
+            }}
+          />
+          <Badge
+          text={property.isFreeForSevenDayLabel}
+          style={{
+            marginLeft: 6,
+            padding: "0 0.06rem",
+            backgroundColor: property.colorByFresh,
+            borderRadius: 5
+          }}
+        />
             </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
             </Item>
         <WhiteSpace size="sm" />
