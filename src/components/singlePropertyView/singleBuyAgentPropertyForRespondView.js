@@ -71,7 +71,7 @@ export default class SingleBuyAgentPropertyForRespondView extends React.Componen
     // )}
 
     // repair goTo by passing property
-    MobxStore.app.lastProperty = property;
+    //MobxStore.app.lastProperty = property;
     
     
     return (
@@ -79,13 +79,15 @@ export default class SingleBuyAgentPropertyForRespondView extends React.Componen
         <Item
           extra={<Badge text={property.typeByFollowUpLabel} />}
           arrow="horizontal"
-          onClick={() =>
+          onClick={() => {
+            MobxStore.app.passByRef = property
+            
             MobxStore.router.goTo(views.saleAgentForm, {
               keyID: property.fbid,
               typeTo: property.typeTo,
               filterID: this.props.filterID
 
-            })}
+            })}}
           thumb="http://hair.losstreatment.com/icons/building-up.svg"
           multipleLine
         >

@@ -63,19 +63,21 @@ export default class SingleSaleAgentPropertyForRespondView extends React.Compone
     //onClick={() => MobxStore.router.goTo(views.leaseAgentForm, { keyID : property.fbid, typeTo : property.typeTo})}
 
     // repair goTo by passing property
-    MobxStore.app.lastProperty = property;
+    //MobxStore.app.lastProperty = property;
     
     return (
       <div>
         <Item
         extra={<Badge text={property.typeByFollowUpLabel} />}
         arrow="horizontal"
-          onClick={() => 
+          onClick={() => {
+            MobxStore.app.passByRef = property
             MobxStore.router.goTo(views.buyAgentForm, {
                 keyID: property.fbid,
                 typeTo: property.typeTo,
-                filterID: this.props.filterID
-              })} 
+                filterID: this.props.filterID,
+                isPassingLastProperty : false,  // Open,
+              })} }
           thumb="http://hair.losstreatment.com/icons/rent-up.svg"
           multipleLine
         >

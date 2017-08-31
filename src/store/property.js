@@ -145,7 +145,7 @@ export class Property {
   @observable income = 0;
   @observable isBuyWithLease = false;
   
-  @observable level = 0; // 0 lower, 1 middle, 2 high
+  @observable level = '0'; // 0 lower, 1 middle, 2 high
   @observable isPetAllowed = false; // boolean 
   @observable leasingPeriod = 12;
 
@@ -218,6 +218,10 @@ export class Property {
 
     return color;
   }
+
+ @computed get levelToArray(){
+   return [String(this.level)]
+ }
 
  @computed get addressToArray() {
   const region = this.addressRegion;

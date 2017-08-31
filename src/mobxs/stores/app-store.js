@@ -18,7 +18,11 @@ class AppStore {
 
     uid : null // User Id
     userEmail : 'none'
-    lastProperty: null; // User to pass property object while using goTo
+    /**
+     * pass by refernce, most likely will be use and all single {sale, buy, .. } property. 
+     * must be passed before goto, since, goto can't pass any object by reference
+     */
+    passByRef: null; 
     //masterKeyID : null // Current Property Id which is working on. 
 
 //    console.log( 'creating MobxStore.app')

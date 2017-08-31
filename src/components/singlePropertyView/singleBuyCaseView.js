@@ -60,20 +60,21 @@ export default class SingleBuyCaseView extends React.Component {
     // )}
 
     // repair goTo by passing property
-    MobxStore.app.lastProperty = property;
+    //MobxStore.app.lastProperty = property;
         
     return (
       <div>
         <Item
           extra={<Badge text="edit" />}
           arrow="horizontal"
-          onClick={() =>
+          onClick={() => {
+            MobxStore.app.passByRef = property
             MobxStore.router.goTo(views.saleAgentForm, {
               keyID: property.fbid,
               typeTo: property.typeTo,
               filterID: this.props.filterID
 
-            })}
+            })}}
           thumb="http://hair.losstreatment.com/icons/building-up.svg"
           multipleLine
         >

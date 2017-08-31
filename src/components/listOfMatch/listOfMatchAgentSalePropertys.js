@@ -38,7 +38,7 @@ export class ListOfMatchAgentSalePropertys extends React.Component {
     //  const c = moment( timeEnter );
 
     list.forEach( (p, keyID) => {
-      if ( p.relatedFbid ) {
+      if ( p.relatedFbid ) {  // Is it a sale case
         element.push(
              <SingleSaleCaseView property={p} key={keyID} filterID={this.props.filterID}/>
            )

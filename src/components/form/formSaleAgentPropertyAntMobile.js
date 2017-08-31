@@ -209,12 +209,13 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
 //    const property = propertys.propertys.get(MobxStore.router.params.keyID);
 
     // Get the last property to generate default form values
-    const property = MobxStore.app.lastProperty;
+    const property = MobxStore.app.passByRef;
     console.log( 'p.size', propertys.propertys.size)
     console.log( 'p', property )
 
     const addressArray = property.addressToArray;
     const partitionArray = property.partitionToArray;
+    const level = property.levelToArray;
 
     //debugger
 
@@ -270,7 +271,7 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
           title="選擇層數"
           cascade={false}
           {...getFieldProps('level', {
-              initialValue: ['1'],
+              initialValue: level,
           })}
           extra="選擇層數"
           onOk={e => console.log('ok', e)}
@@ -285,7 +286,7 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
             title="選擇日期"
             extra="選擇日期,最長半年來"
             {...getFieldProps("earlyTimeToView", {
-              initialValue: minDate
+              initialValue : moment( property.earlyTimeToView ),
             })}
             minDate={minDate}
             maxDate={maxDate}
@@ -353,7 +354,7 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
             extra={
               <Switch
                 {...getFieldProps("isViewAble", {
-                  initialValue: true,
+                  initialValue: property.isViewAble,
                   valuePropName: "checked"
                 })}
                 onClick={checked => {
@@ -369,7 +370,7 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
           extra={
             <Switch
               {...getFieldProps("isPetAllowed", {
-                initialValue: false,
+                initialValue: property.isPetAllowed,
                 valuePropName: "checked"
               })}
               onClick={checked => {
@@ -384,7 +385,7 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
 
           <InputItem
             {...getFieldProps("contactName", {
-              initialValue: "agent name"
+              initialValue: property.contactName
             })}
             type="text"
             placeholder="請輸入姓名"
@@ -396,7 +397,7 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
           <InputItem
             clear
             {...getFieldProps("contactPhone", {
-              initialValue: "96181448"
+              initialValue: property.contactPhone
             })}
             type="phone"
             placeholder="請輸入電話"
@@ -406,7 +407,7 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
 
           <InputItem
             {...getFieldProps("contactEmail", {
-              initialValue: "001@agent.com"
+              initialValue: property.contactEmail
             })}
             clear
             placeholder="請輸入電郵地址"

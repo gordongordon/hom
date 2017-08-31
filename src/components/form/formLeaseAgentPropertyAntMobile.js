@@ -217,7 +217,7 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
     ];
 
     // Get the last property to generate default form values
-    const property = MobxStore.app.lastProperty;
+    const property = MobxStore.app.passByRef;
     const addressArray = property.addressToArray;
     const partitionArray = property.partitionToArray;
 
@@ -250,7 +250,7 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
             title="選擇日期"
             extra="選擇日期,最長半年來"
             {...getFieldProps("dueDay", {
-              initialValue: minDate
+              initialValue : moment( property.dueDay ),
             })}
             minDate={minDate}
             maxDate={maxDate}
@@ -263,7 +263,7 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
             title="選擇日期"
             extra="選擇日期,最長半年來"
             {...getFieldProps("earlyTimeToView", {
-              initialValue: minDate
+              initialValue : moment( property.earlyTimeToView ),
             })}
             minDate={minDate}
             maxDate={maxDate}
@@ -272,7 +272,7 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
           </DatePicker>
           <InputItem
             {...getFieldProps("netSize", {
-              initialValue: 300,
+              initialValue: property.netSize,
               normalize: (v, prev) => {
                 if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
                   if (v === ".") {
@@ -313,7 +313,7 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
 
           <InputItem
             {...getFieldProps("leasePrice", {
-              initialValue: 8000,
+              initialValue: property.leasePrice,
               normalize: (v, prev) => {
                 if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
                   if (v === ".") {
@@ -342,7 +342,7 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
               extra={
                 <Switch
                   {...getFieldProps("isPetAllowed", {
-                    initialValue: false,
+                    initialValue: property.isPetAllowed,
                     valuePropName: "checked"
                   })}
                   onClick={checked => {
@@ -358,7 +358,7 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
               extra={
                 <Switch
                   {...getFieldProps("isFreeForSevenDay", {
-                    initialValue: false,
+                    initialValue: property.isFreeForSevenDay,
                     valuePropName: "checked"
                   })}
                   onClick={checked => {
@@ -373,7 +373,7 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
               extra={
                 <Switch
                   {...getFieldProps("hasHomeHardware", {
-                    initialValue: false,
+                    initialValue: property.hasHomeHardware,
                     valuePropName: "checked"
                   })}
                   onClick={checked => {
@@ -389,7 +389,7 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
               extra={
                 <Switch
                   {...getFieldProps("isViewAble", {
-                    initialValue: true,
+                    initialValue: property.isViewAble,
                     valuePropName: "checked"
                   })}
                   onClick={checked => {
@@ -404,7 +404,7 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
 
           <InputItem
             {...getFieldProps("contactName", {
-              initialValue: "Gordon"
+              initialValue: property.contactName
             })}
             type="text"
             placeholder="請輸入姓名"
@@ -416,7 +416,7 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
           <InputItem
             clear
             {...getFieldProps("contactPhone", {
-              initialValue: "96181448"
+              initialValue: property.contactPhone
             })}
             type="phone"
             placeholder="請輸入電話"
@@ -426,7 +426,7 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
 
           <InputItem
             {...getFieldProps("contactEmail", {
-              initialValue: "h001@ymatchx.com"
+              initialValue: property.contactEmail
             })}
             clear
             placeholder="請輸入電郵地址"

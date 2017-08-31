@@ -60,21 +60,19 @@ export default class SingleRentView extends React.Component {
     const that = this;
     //        const { getFieldProps } = this.props.form;
 
-    // repair goTo by passing property
-    MobxStore.app.lastProperty = property
-    
 
     return (
       <div>
         <Item
         extra={<Badge text="edit" />}
         arrow="horizontal"
-          onClick={() =>
+          onClick={() => {
+            MobxStore.app.passByRef = property
             MobxStore.router.goTo(views.leaseAgentForm, {
               keyID: property.fbid,
               typeTo: property.typeTo,
               filterID: this.props.filterID
-            })}
+            })} }
           thumb="http://hair.losstreatment.com/icons/rent-up.svg"
           multipleLine
         >

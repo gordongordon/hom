@@ -56,6 +56,7 @@ export default class SingleSaleCaseView extends React.Component {
   }
 
   render() {
+    // property is a sale case 
     const { property } = this.props;
     const that = this;
     //        const { getFieldProps } = this.props.form;
@@ -63,19 +64,23 @@ export default class SingleSaleCaseView extends React.Component {
     //onClick={() => MobxStore.router.goTo(views.leaseAgentForm, { keyID : property.fbid, typeTo : property.typeTo})}
 
     // repair goTo by passing property
-    MobxStore.app.lastProperty = property;
+    //MobxStore.app.lastProperty = property;
     
     return (
       <div>
         <Item
         extra={<Badge text="edit"/>}
         arrow="horizontal"
-          onClick={() => 
+          onClick={() => {
+
+            MobxStore.app.passByRef = property
             MobxStore.router.goTo(views.buyAgentForm, {
                 keyID: property.fbid,
                 typeTo: property.typeTo,
-                filterID: this.props.filterID
-              })} 
+                filterID: this.props.filterID,
+                isPassingLastProperty : true  // Open,
+              })}
+            } 
           thumb="http://hair.losstreatment.com/icons/rent-up.svg"
           multipleLine
         >

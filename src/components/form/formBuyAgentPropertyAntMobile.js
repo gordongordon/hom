@@ -219,17 +219,19 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
 // '房東', '租人','賣家','買家'
   render() {
     const { getFieldProps } = this.props.form;
-
+ 
     const log = (name) => {
       return (value) => {
         console.log(`${name}: ${value}`);
       }; }
 
-
-    
     // Get the last property to generate default form values
-//    const property = propertys.propertys.get(MobxStore.router.params.keyID);
-    const property = MobxStore.app.lastProperty;
+      // it is a case
+    const property = MobxStore.app.passByRef;
+      
+      // Don't use this, because, all proeprtys located in differet fb ref, sale, buy. 
+      // this may be out of syn 
+      // const property = propertys.propertys.get(MobxStore.router.params.keyID);
     const addressArray = property.addressToArray;
     const partitionArray = property.partitionToArray;
   
@@ -253,7 +255,7 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
           title="選擇日期"
           extra="選擇日期,最長半年來"
           {...getFieldProps('earlyTimeToView', {
-            initialValue : minDate,
+            initialValue : moment( property.earlyTimeToView ),
           })}
           minDate={minDate}
           maxDate={maxDate}
