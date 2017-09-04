@@ -14,7 +14,7 @@ app.use(compression({
 }));
 
 // app.use(compression({filter: shouldCompress}))
-//
+// Gordon
 // function shouldCompress (req, res) {
 //    if (req.headers['x-no-compression']) {
 //        // don't compress responses with this request header
