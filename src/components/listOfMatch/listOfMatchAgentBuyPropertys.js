@@ -5,6 +5,7 @@ import moment from 'moment';
 //import 'moment/locale/zh-cn';
 //import {propertys} from 'userModelView'
 import SingleBuyAgentPropertyForRespondView from '../singlePropertyView/singleBuyAgentPropertyForRespondView'
+import SingleBuyAgentFilterView from '../singlePropertyView/SingleBuyAgentFilterView'
 import SingleBuyCaseView from '../singlePropertyView/singleBuyCaseView'
 
 import { observer } from 'mobx-react';
@@ -42,14 +43,21 @@ export class ListOfMatchAgentBuyPropertys extends React.Component {
     //  const c = moment( timeEnter );
 
     list.forEach( (p, keyID) => {
-      if ( p.relatedFbid ) {
-      element.push(
+      const segment = this.props.segment;
+
+      if ( segment === "case" ) {
+           element.push(
            <SingleBuyCaseView property={p} key={keyID} filterID={this.props.filterID}/>
-         )
+           )
+      } else if ( segment === "filter") {
+        element.push(
+          <SingleBuyAgentFilterView property={p} key={keyID} filterID={this.props.filterID}/>
+        )
       } else {
         element.push(
           <SingleBuyAgentPropertyForRespondView property={p} key={keyID} filterID={this.props.filterID}/>
         )
+
       }
 
     })

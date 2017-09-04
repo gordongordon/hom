@@ -168,10 +168,10 @@ class FormRentAgentPropertyAntMobile extends React.Component {
     p.income = parseInt(v.income);
 
     p.earlyTimeToView = v.earlyTimeToView.toJSON();
-    p.rentBudgetMax = parseInt(v.rentBudgetMax);
+    //p.rentBudgetMax = parseInt(v.rentBudgetMax);
     p.numOfPeopleLiving = parseInt(v.numOfPeopleLiving);
 
-    p.netSizeMin = parseInt(v.netSizeMin);
+    //p.netSizeMin = parseInt(v.netSizeMin);
 
     p.numOfRoom = parseInt(v.partition[0]);
     p.numOfBathroom = parseInt(v.partition[1]);
@@ -181,7 +181,7 @@ class FormRentAgentPropertyAntMobile extends React.Component {
     //p.isFreeForSevenDay = v.isFreeForSevenDay;
 
     p.hasHomeHardware = v.hasHomeHardware;
-    p.isViewAble = v.isViewAble;
+    //p.isViewAble = v.isViewAble;
     p.contactName = v.contactName;
     p.contactPhone = parseInt(v.contactPhone);
     p.contactEmail = v.contactEmail;

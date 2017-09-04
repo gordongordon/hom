@@ -527,7 +527,7 @@ export class Propertyhk extends Property {
 
         // by using [fbid], catch all different propertys
         // Fb.root.ref('propertys/buy/' + relatedFbid + '/inDirectCall').update({ [fbid]: { fbid, relatedFbid, inDirectCall : true } });
-        Fb.root.ref('inDirectCall/buy/'+ 'fbid_'+relatedFbid).update({ [fbid]: { fbid, relatedFbid, inDirectCall : true } });
+        Fb.root.ref('inDirectCall/buy/').update({ [relatedFbid + '_call_'+fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
         
   }
     

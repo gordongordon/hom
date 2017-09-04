@@ -72,27 +72,24 @@ export default class SingleSaleCaseView extends React.Component {
    * Implement ActionSheet which to handle multi actions
    */
   showActionSheet = () => {
-    const BUTTONS = ['容許對方打俾你', '直接打俾對方', 'Go BuyAgentForm', '取消'];
+    const p = this.props.property;
+    const BUTTONS = ['直接打俾對方', 'edit', '取消'];
     ActionSheet.showActionSheetWithOptions({
       options: BUTTONS,
       cancelButtonIndex: BUTTONS.length - 1,
       destructiveButtonIndex: BUTTONS.length - 2,
       // title: '标题',
-      message: '請選擇其中一項',
+      message: 'singleSaleCaseView',
       maskClosable: true,
       'data-seed': 'logId',
       wrapProps,
     },
     (buttonIndex) => {
-      const p = this.props.property;
       this.setState({ clicked: BUTTONS[buttonIndex] });
       if ( buttonIndex === 0 ) {
-        p.setBuyInDirectCall( p.fbid, p.relatedFbid );         
+        window.location.href="tel://"+ p.contactPhone;
       }
       if ( buttonIndex === 1 ) {
-        window.location.href="tel://"+ 66896696;
-      }
-      if ( buttonIndex === 2 ) {
          this.props.store.app.passByRef = p;
          this.props.store.router.goTo(views.buyAgentForm, {
            keyID: p.fbid,

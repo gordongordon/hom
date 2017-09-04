@@ -13,7 +13,6 @@ import {
   Button,
   SegmentedControl,
   Accordion,
-  Modal,
   ActionSheet
 } from "antd-mobile";
 import { createForm } from "rc-form";
@@ -27,7 +26,6 @@ import {inject, observer} from "mobx-react";
 
 const Item = List.Item;
 const Brief = Item.Brief;
-const alert = Modal.alert;
 
 
 // fix touch to scroll background page on iOS
@@ -79,34 +77,34 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
    * Implement ActionSheet which to handle multi actions
    */
   showActionSheet = () => {
-    const BUTTONS = ['容許對方打俾你', '直接打俾對方', 'Go saleAgentForm', '取消'];
+    const p = this.props.property;
+    const BUTTONS = ['容許對方打俾你', 'Call' + p.contactPhone, '取消'];
     ActionSheet.showActionSheetWithOptions({
       options: BUTTONS,
       cancelButtonIndex: BUTTONS.length - 1,
       destructiveButtonIndex: BUTTONS.length - 2,
       // title: '标题',
-      message: '請選擇其中一項',
+      message: 'SingleBuyAgentPropertyForRespondView',
       maskClosable: true,
       'data-seed': 'logId',
       wrapProps,
     },
     (buttonIndex) => {
-      const p = this.props.property;
       this.setState({ clicked: BUTTONS[buttonIndex] });
       if ( buttonIndex === 0 ) {
         p.setInDirectCallForBuy( p.fbid, p.relatedFbid );         
       }
       if ( buttonIndex === 1 ) {
-        window.location.href="tel://"+ 66896696;
+        window.location.href="tel://"+ p.contactPhone;
       }
-      if ( buttonIndex === 2 ) {
-         this.props.store.app.passByRef = p;
-         this.props.store.router.goTo(views.saleAgentForm, {
-           keyID: p.fbid,
-           typeTo: p.typeTo,
-           filterID: this.props.filterID
-        })
-      }
+      // if ( buttonIndex === 2 ) {
+      //    this.props.store.app.passByRef = p;
+      //    this.props.store.router.goTo(views.saleAgentForm, {
+      //      keyID: p.fbid,
+      //      typeTo: p.typeTo,
+      //      filterID: this.props.filterID
+      //   })
+      // }
       
     });
   }
@@ -142,9 +140,9 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
     return (
       <div>
         <Item
-          extra={<Badge text={property.typeByFollowUpLabel} />}
-          arrow="horizontal"
-          onClick={this.showActionSheet }
+        extra={<Badge text="Call" />}
+        arrow="horizontal"
+          onClick={this.showActionSheet}
           thumb="http://hair.losstreatment.com/icons/building-up.svg"
           multipleLine
         >

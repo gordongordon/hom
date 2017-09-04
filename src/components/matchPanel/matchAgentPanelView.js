@@ -164,23 +164,23 @@ class MatchAgentPanelView extends React.Component {
     // Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[index] });
     if (this.state.selectedSegmentIndex === 0 ) {
     switch ( selectedTab ) {
-      case 'buy' : return <ListOfMatchAgentBuyPropertys propertys={filter.buyRequest} filterID={MobxStore.router.params.keyID}/>;
+      case 'buy' : return <ListOfMatchAgentBuyPropertys segment="filter" propertys={filter.buyRequest} filterID={MobxStore.router.params.keyID}/>;
       break;
-      case 'sale': return <ListOfMatchAgentSalePropertys propertys={filter.saleRequest} filterID={MobxStore.router.params.keyID}/>;
+      case 'sale': return <ListOfMatchAgentSalePropertys  segment="filter" propertys={filter.saleRequest} filterID={MobxStore.router.params.keyID}/>;
       break;
-      case 'rent': return <ListOfMatchAgentRentPropertys propertys={filter.rentRequest} filterID={MobxStore.router.params.keyID}/>;
+      case 'rent': return <ListOfMatchAgentRentPropertys segment="filter" propertys={filter.rentRequest} filterID={MobxStore.router.params.keyID}/>;
       break;
-      case 'lease': return <ListOfMatchAgentLeasePropertys propertys={filter.leaseRequest} filterID={MobxStore.router.params.keyID}/>;
+      case 'lease': return <ListOfMatchAgentLeasePropertys segment="filter" propertys={filter.leaseRequest} filterID={MobxStore.router.params.keyID}/>;
       break;
     } } else {
       switch ( selectedTab ) {
-        case 'buy' : return <ListOfMatchAgentBuyPropertys propertys={filter.buyCase} filterID={MobxStore.router.params.keyID}/>;
+        case 'buy' : return <ListOfMatchAgentBuyPropertys segment="case" propertys={filter.buyCase} filterID={MobxStore.router.params.keyID}/>;
         break;
-        case 'sale': return <ListOfMatchAgentSalePropertys propertys={filter.saleCase} filterID={MobxStore.router.params.keyID}/>;
+        case 'sale': return <ListOfMatchAgentSalePropertys segment="case" propertys={filter.saleCase} filterID={MobxStore.router.params.keyID}/>;
         break;
-        case 'rent': return <ListOfMatchAgentRentPropertys propertys={filter.rentCase} filterID={MobxStore.router.params.keyID}/>;
+        case 'rent': return <ListOfMatchAgentRentPropertys segment="case" propertys={filter.rentCase} filterID={MobxStore.router.params.keyID}/>;
         break;
-        case 'lease': return <ListOfMatchAgentLeasePropertys propertys={filter.leaseCase} filterID={MobxStore.router.params.keyID}/>;
+        case 'lease': return <ListOfMatchAgentLeasePropertys segment="case" propertys={filter.leaseCase} filterID={MobxStore.router.params.keyID}/>;
         break;
       }  
       // switch ( selectedTab ) {

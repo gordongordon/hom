@@ -71,19 +71,19 @@ export default class SingleSaleAgentPropertyForRespondView extends React.Compone
    * Implement ActionSheet which to handle multi actions
    */
   showActionSheet = () => {
-    const BUTTONS = ['容許對方打俾你', '直接打俾對方', 'Go saleAgentForm', '取消'];
+    const p = this.props.property;
+    const BUTTONS = ['容許對方打俾你', 'Call' + p.contactPhone, 'Go saleAgentForm', '取消'];
     ActionSheet.showActionSheetWithOptions({
       options: BUTTONS,
       cancelButtonIndex: BUTTONS.length - 1,
       destructiveButtonIndex: BUTTONS.length - 2,
       // title: '标题',
-      message: '請選擇其中一項',
+      message: 'SaleAgent~RespondView',
       maskClosable: true,
       'data-seed': 'logId',
       wrapProps,
     },
     (buttonIndex) => {
-      const p = this.props.property;
       this.setState({ clicked: BUTTONS[buttonIndex] });
       if ( buttonIndex === 0 ) {
         p.setBuyInDirectCallForSaleAgent( p.fbid, p.relatedFbid );         
@@ -116,7 +116,7 @@ export default class SingleSaleAgentPropertyForRespondView extends React.Compone
     return (
       <div>
         <Item
-        extra={<Badge text={property.typeByFollowUpLabel} />}
+        extra={<Badge text="Call" />}
         arrow="horizontal"
           onClick={this.showActionSheet }
           thumb="http://hair.losstreatment.com/icons/rent-up.svg"

@@ -11,7 +11,8 @@ import {
   InputItem,
   WhiteSpace,
   Button,
-  SegmentedControl
+  SegmentedControl,
+  ActionSheet
 } from "antd-mobile";
 //import moment from 'moment';
 //import 'moment/locale/zh-cn';
@@ -22,6 +23,17 @@ import views from "views";
 
 const Item = List.Item;
 const Brief = Item.Brief;
+
+// fix touch to scroll background page on iOS
+// https://github.com/ant-design/ant-design-mobile/issues/307
+// https://github.com/ant-design/ant-design-mobile/issues/163
+const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
+let wrapProps;
+if (isIPhone) {
+  wrapProps = {
+    onTouchStart: e => e.preventDefault(),
+  };
+}
 
 export default class SingleLeaseCaseView extends React.Component {
   constructor(props) {
@@ -42,6 +54,40 @@ export default class SingleLeaseCaseView extends React.Component {
     //    console.log( 'realTime will mount', this.props.property.realTime)
   }
 
+    /**
+   * Implement ActionSheet which to handle multi actions
+   */
+  showActionSheet = () => {
+    const p = this.props.property;
+    const BUTTONS = ['直接打俾對方', 'edit', '取消'];
+    ActionSheet.showActionSheetWithOptions({
+      options: BUTTONS,
+      cancelButtonIndex: BUTTONS.length - 1,
+      destructiveButtonIndex: BUTTONS.length - 2,
+      // title: '标题',
+      message: 'singleLeaseCaseView',
+      maskClosable: true,
+      'data-seed': 'logId',
+      wrapProps,
+    },
+    (buttonIndex) => {
+      this.setState({ clicked: BUTTONS[buttonIndex] });
+      if ( buttonIndex === 0 ) {
+        window.location.href="tel://"+ p.contactPhone;
+      }
+      if ( buttonIndex === 1 ) {
+         this.props.store.app.passByRef = p;
+         this.props.store.router.goTo(views.rentAgentForm, {
+           keyID: p.fbid,
+           typeTo: p.typeTo,
+           filterID: this.props.filterID
+        })
+      }
+      
+    });
+  }
+
+
   render() {
     const { property } = this.props;
     const that = this;
@@ -54,14 +100,8 @@ export default class SingleLeaseCaseView extends React.Component {
         <Item
         extra={<Badge text="edit" />}
         arrow="horizontal"
-          onClick={() => {
-            MobxStore.app.passByRef = property
-            MobxStore.router.goTo(views.rentAgentForm, {
-              keyID: property.fbid,
-              typeTo: property.typeTo,
-              filterID: this.props.filterID
-            })}}
-          thumb="http://hair.losstreatment.com/icons/rent-up.svg"
+        onClick={this.showActionSheet }
+        thumb="http://hair.losstreatment.com/icons/rent-up.svg"
           multipleLine
         >
        {property.addressLocationLabel}/{property.nameOfBuildingLabel}/{property.contactNameLabel}

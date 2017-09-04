@@ -5,7 +5,9 @@ import React from 'react'
 //import 'moment/locale/zh-cn';
 //import {propertys} from 'userModelView'
 import SingleSaleAgentPropertyForRespondView from '../singlePropertyView/singleSaleAgentPropertyForRespondView'
+import SingleSaleAgentFilterView from '../singlePropertyView/singleSaleAgentFilterView'
 import SingleSaleCaseView from '../singlePropertyView/singleSaleCaseView'
+
 import { observer } from 'mobx-react';
 //const Item = List.Item;
 //const Brief = Item.Brief;
@@ -38,17 +40,22 @@ export class ListOfMatchAgentSalePropertys extends React.Component {
     //  const c = moment( timeEnter );
 
     list.forEach( (p, keyID) => {
-      if ( p.relatedFbid ) {  // Is it a sale case
-        element.push(
-             <SingleSaleCaseView property={p} key={keyID} filterID={this.props.filterID}/>
+      const segment = this.props.segment;
+
+      if ( segment === "case" ) {
+           element.push(
+           <SingleSaleCaseView property={p} key={keyID} filterID={this.props.filterID}/>
            )
-        } else {
-          debugger
-          element.push(
-            <SingleSaleAgentPropertyForRespondView property={p} key={keyID} filterID={this.props.filterID}/>
-          )
-        }
-  
+      } else if ( segment === "filter") {
+        element.push(
+          <SingleSaleAgentFilterView property={p} key={keyID} filterID={this.props.filterID}/>
+        )
+      } else {
+        element.push(
+          <SingleSaleAgentPropertyForRespondView property={p} key={keyID} filterID={this.props.filterID}/>
+        )
+
+      }
 
     })
 

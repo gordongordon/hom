@@ -12,7 +12,8 @@ import {
   WhiteSpace,
   Button,
   SegmentedControl,
-  Accordion
+  Accordion,
+  ActionSheet
 } from "antd-mobile";
 // import { createForm } from "rc-form";
 //import moment from 'moment';
@@ -25,6 +26,17 @@ import {inject, observer} from "mobx-react"
 
 const Item = List.Item;
 const Brief = Item.Brief;
+
+// fix touch to scroll background page on iOS
+// https://github.com/ant-design/ant-design-mobile/issues/307
+// https://github.com/ant-design/ant-design-mobile/issues/163
+const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
+let wrapProps;
+if (isIPhone) {
+  wrapProps = {
+    onTouchStart: e => e.preventDefault(),
+  };
+}
 
 @inject("store") @observer
 class SingleBuyCaseView extends React.Component {
@@ -45,6 +57,43 @@ class SingleBuyCaseView extends React.Component {
     this.props.property.setTimeStamp();
 
     //    console.log( 'realTime will mount', this.props.property.realTime)
+  }
+
+ /**
+   * Implement ActionSheet which to handle multi actions
+   */
+  showActionSheet = () => {
+    const p = this.props.property;
+        
+    const BUTTONS = ['Call '+p.contactPhone, 'edit', '取消'];
+    ActionSheet.showActionSheetWithOptions({
+      options: BUTTONS,
+      cancelButtonIndex: BUTTONS.length - 1,
+      destructiveButtonIndex: BUTTONS.length - 2,
+      // title: '标题',
+      message: 'singleBuyCaseView',
+      maskClosable: true,
+      'data-seed': 'logId',
+      wrapProps,
+    },
+    (buttonIndex) => {
+      this.setState({ clicked: BUTTONS[buttonIndex] });
+      // if ( buttonIndex === 0 ) {
+      //   p.setInDirectCallForBuy( p.fbid, p.relatedFbid );         
+      // }
+      if ( buttonIndex === 0 ) {
+        window.location.href="tel://"+ p.contactPhone;
+      }
+      if ( buttonIndex === 1 ) {
+         this.props.store.app.passByRef = p;
+         this.props.store.router.goTo(views.saleAgentForm, {
+           keyID: p.fbid,
+           typeTo: p.typeTo,
+           filterID: this.props.filterID
+        })
+      }
+      
+    });
   }
 
   render() {
@@ -69,14 +118,7 @@ class SingleBuyCaseView extends React.Component {
         <Item
           extra={<Badge text="edit" />}
           arrow="horizontal"
-          onClick={() => {
-            this.props.store.app.passByRef = property
-            this.props.store.goTo(views.saleAgentForm, {
-              keyID: property.fbid,
-              typeTo: property.typeTo,
-              filterID: this.props.filterID
-
-            })}}
+          onClick={this.showActionSheet }
           thumb="http://hair.losstreatment.com/icons/building-up.svg"
           multipleLine
         >

@@ -52,7 +52,7 @@ class MatchBuyPanelView extends React.Component {
   renderList = ( property ) => {
     if ( this.state.selectedSegmentIndex === 0 ) {
       return <div>
-               <ListOfMatchAgentSalePropertys propertys={property.responsedPropertys} timeEnter={this.props.timeEnter}/>
+               <ListOfMatchAgentSalePropertys propertys={property.responsedPropertys}/>
             </div>
     } else {
       return   <ListOfMatchOldSalePropertys propertys={property.matchedPropertys}/>

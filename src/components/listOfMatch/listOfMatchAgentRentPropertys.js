@@ -5,6 +5,7 @@ import React from 'react'
 //import 'moment/locale/zh-cn';
 //import {propertys} from 'userModelView'
 import SingleRentAgentPropertyForRespondView from '../singlePropertyView/SingleRentAgentPropertyForRespondView'
+import SingleRentAgentFilterView from '../singlePropertyView/SingleRentAgentFilterView'
 import SingleRentCaseView from '../singlePropertyView/SingleRentCaseView'
 import { observer } from 'mobx-react';
 //const Item = List.Item;
@@ -39,16 +40,23 @@ export class ListOfMatchAgentRentPropertys extends React.Component {
     //  const c = moment( timeEnter );
 
     list.forEach( (p, keyID) => {
-      if ( p.relatedFbid ) {
-        element.push(
-             <SingleRentCaseView property={p} key={keyID} filterID={this.props.filterID}/>
+      const segment = this.props.segment;
+
+      if ( segment === "case" ) {
+           element.push(
+           <SingleRentCaseView property={p} key={keyID} filterID={this.props.filterID}/>
            )
-        } else {
-          element.push(
-            <SingleRentAgentPropertyForRespondView property={p} key={keyID} filterID={this.props.filterID}/>
-          )
-        }
-  
+      } else if ( segment === "filter") {
+        element.push(
+          <SingleRentAgentFilterView property={p} key={keyID} filterID={this.props.filterID}/>
+        )
+      } else {
+        element.push(
+          <SingleRentAgentPropertyForRespondView property={p} key={keyID} filterID={this.props.filterID}/>
+        )
+
+      }
+
     })
 
      return <div>{element.reverse()}</div>
