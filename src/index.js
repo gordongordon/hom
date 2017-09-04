@@ -5,14 +5,15 @@ import {MobxRouter, startRouter} from 'mobx-router';
 //import DevTools from 'mobx-react-devtools';
 //mobx
 import {Provider} from 'mobx-react';
+//router 
+import views from 'views';
 import MobxStore from 'mobxStore';
+
+
 import firebase from 'firebase'
 import NavigationBar from 'navigationBar'
 
 import { NoticeBar } from 'antd-mobile';
-
-//router
-import views from 'views';
 
 import initReactFastclick from 'react-fastclick';
 import {Fb} from 'firebase-store'

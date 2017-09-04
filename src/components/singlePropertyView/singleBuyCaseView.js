@@ -19,13 +19,15 @@ import {
 //import 'moment/locale/zh-cn';
 import { propertys } from "userModelView";
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
-import MobxStore from "mobxStore";
+// import MobxStore from "mobxStore";
 import views from "views";
+import {inject, observer} from "mobx-react"
 
 const Item = List.Item;
 const Brief = Item.Brief;
 
-export default class SingleBuyCaseView extends React.Component {
+@inject("store") @observer
+class SingleBuyCaseView extends React.Component {
 
   constructor(props) {
     super(props);
@@ -68,8 +70,8 @@ export default class SingleBuyCaseView extends React.Component {
           extra={<Badge text="edit" />}
           arrow="horizontal"
           onClick={() => {
-            MobxStore.app.passByRef = property
-            MobxStore.router.goTo(views.saleAgentForm, {
+            this.props.store.app.passByRef = property
+            this.props.store.goTo(views.saleAgentForm, {
               keyID: property.fbid,
               typeTo: property.typeTo,
               filterID: this.props.filterID
@@ -131,3 +133,5 @@ export default class SingleBuyCaseView extends React.Component {
     );
   }
 }
+
+export default SingleBuyCaseView;

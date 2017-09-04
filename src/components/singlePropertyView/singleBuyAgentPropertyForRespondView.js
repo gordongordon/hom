@@ -19,8 +19,9 @@ import { createForm } from "rc-form";
 //import 'moment/locale/zh-cn';
 import { propertys } from "userModelView";
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
-import MobxStore from "mobxStore";
+//import MobxStore from "mobxStore";
 import views from "views";
+import {inject, observer} from "mobx-react";
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -37,7 +38,8 @@ const Brief = Item.Brief;
 //    'MOSSSC' : '新港城'
 // }
 
-export default class SingleBuyAgentPropertyForRespondView extends React.Component {
+@inject("store") @observer
+class SingleBuyAgentPropertyForRespondView extends React.Component {
   constructor(props) {
     super(props);
 
@@ -80,9 +82,9 @@ export default class SingleBuyAgentPropertyForRespondView extends React.Componen
           extra={<Badge text={property.typeByFollowUpLabel} />}
           arrow="horizontal"
           onClick={() => {
-            MobxStore.app.passByRef = property
+            this.props.store.app.passByRef = property
             
-            MobxStore.router.goTo(views.saleAgentForm, {
+            this.props.store.router.goTo(views.saleAgentForm, {
               keyID: property.fbid,
               typeTo: property.typeTo,
               filterID: this.props.filterID
@@ -193,7 +195,7 @@ export default class SingleBuyAgentPropertyForRespondView extends React.Componen
       />
 
 
-            </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
+            </Brief>f:{property.fbid} <br />r:{property.relatedFbid} <br /><a href="tel:96181448">96181448</a>
             </Item>
             <WhiteSpace size="sm" />
             </div>
@@ -201,6 +203,8 @@ export default class SingleBuyAgentPropertyForRespondView extends React.Componen
     );
   }
 }
+
+export default SingleBuyAgentPropertyForRespondView;
 
 // {/* <div>
 // <SwipeAction
