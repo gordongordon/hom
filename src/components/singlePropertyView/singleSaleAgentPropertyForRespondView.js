@@ -72,7 +72,14 @@ export default class SingleSaleAgentPropertyForRespondView extends React.Compone
    */
   showActionSheet = () => {
     const p = this.props.property;
-    const BUTTONS = ['容許對方打俾你', 'Call' + p.contactPhone, 'Go saleAgentForm', '取消'];
+    const showPhone = this.props.showPhone;
+    let phone = 911; 
+    if ( showPhone ) {
+      phone = p.contactPhone;
+    }
+
+    const BUTTONS = ['容許對方打俾你', 'Call' + phone, '取消'];
+
     ActionSheet.showActionSheetWithOptions({
       options: BUTTONS,
       cancelButtonIndex: BUTTONS.length - 1,
@@ -86,19 +93,19 @@ export default class SingleSaleAgentPropertyForRespondView extends React.Compone
     (buttonIndex) => {
       this.setState({ clicked: BUTTONS[buttonIndex] });
       if ( buttonIndex === 0 ) {
-        p.setBuyInDirectCallForSaleAgent( p.fbid, p.relatedFbid );         
+        p.setSaleInDirectCall( p.fbid, MobxStore.router.params.keyID );         
       }
       if ( buttonIndex === 1 ) {
-        window.location.href="tel://"+ 66896696;
+        window.location.href="tel://"+ p.contactPhone;
       }
-      if ( buttonIndex === 2 ) {
-         this.props.store.app.passByRef = p;
-         this.props.store.router.goTo(views.buyAgentForm, {
-           keyID: p.fbid,
-           typeTo: p.typeTo,
-           filterID: this.props.filterID
-        })
-      }
+      // if ( buttonIndex === 2 ) {
+      //    this.props.store.app.passByRef = p;
+      //    this.props.store.router.goTo(views.buyAgentForm, {
+      //      keyID: p.fbid,
+      //      typeTo: p.typeTo,
+      //      filterID: this.props.filterID
+      //   })
+      // }
       
     });
   }

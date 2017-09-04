@@ -55,6 +55,8 @@ class UserModelView {
             var p = Propertyhk.deserialize( snapshot.val() )
             console.log( 'p', p)
 
+            p.buildInDirectCall();
+              
             // p.buildMatchProperty( snapshot.key, p.typeFor, p.location);
             //p.buildMatchProperty( snapshot.key, p.typeFor, p.nameOfBuilding);
             p.buildMatchUserPropertyByRunTime( snapshot.key, p.typeFor, p.addressLocation);

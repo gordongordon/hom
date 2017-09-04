@@ -27,7 +27,8 @@ export class Propertyhk extends Property {
   @observable buyCase = observable.map({});
   @observable leaseCase = observable.map({});
   @observable rentCase = observable.map({});
-  
+  @observable inDirectCall = observable.map({});
+
   @observable responsedPropertys = observable.map({});
   //@observable responsedPropertys = new Map();
   // @observable matchedPropertys = new Map();
@@ -157,6 +158,7 @@ export class Propertyhk extends Property {
         // console.log( 'saleCase.size ', this.saleCase.size )
         // console.log( 'saleCase object',this.buyRequest.get( relatedFbid ) )
         // console.log( 'saleCase key', key )
+
       }
       // Remove followed request
       this.buyRequest.delete( relatedFbid );
@@ -520,17 +522,50 @@ export class Propertyhk extends Property {
    * relatedFbid is buyer id
    */
   setBuyInDirectCall = ( fbid, relatedFbid ) => {
-        //  id = Fb.app.usersRef.push().key;
-        //Fb.app.usersRef.update({ [id]: p.serialize() });
-        // Fb.sale.child('agentLeaseRef.push().key;
-        //Fb.saleIndirectCallRef.set( { fbid, relatedFbid } );
-
+        
         // by using [fbid], catch all different propertys
         // Fb.root.ref('propertys/buy/' + relatedFbid + '/inDirectCall').update({ [fbid]: { fbid, relatedFbid, inDirectCall : true } });
-        Fb.root.ref('inDirectCall/buy/').update({ [relatedFbid + '_call_'+fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
+//        Fb.root.ref('inDirectCall/buy/').update({ [relatedFbid + '_call_'+fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
         
-  }
+        Fb.root.ref('inDirectCall/buy/'+ relatedFbid).update({ [fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
+      }
     
+  /**
+   * fbid is agent id
+   * relatedFbid is buyer id
+   */
+  setSaleInDirectCall = ( fbid, relatedFbid ) => {
+    
+    // by using [fbid], catch all different propertys
+    // Fb.root.ref('propertys/buy/' + relatedFbid + '/inDirectCall').update({ [fbid]: { fbid, relatedFbid, inDirectCall : true } });
+  //  Fb.root.ref('inDirectCall/sale/').update({ [relatedFbid + '_call_'+fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
+    Fb.root.ref('inDirectCall/sale/'+ relatedFbid).update({ [fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
+  }
+
+  /**
+   * fbid is agent id
+   * relatedFbid is buyer id
+   */
+  setRentInDirectCall = ( fbid, relatedFbid ) => {
+    
+    // by using [fbid], catch all different propertys
+    // Fb.root.ref('propertys/buy/' + relatedFbid + '/inDirectCall').update({ [fbid]: { fbid, relatedFbid, inDirectCall : true } });
+//    Fb.root.ref('inDirectCall/rent/').update({ [relatedFbid + '_call_'+fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
+    Fb.root.ref('inDirectCall/rent/'+ relatedFbid).update({ [fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
+}
+
+  /**
+   * fbid is agent id
+   * relatedFbid is buyer id
+   */
+  setLeaseInDirectCall = ( fbid, relatedFbid ) => {
+    
+    // by using [fbid], catch all different propertys
+    // Fb.root.ref('propertys/buy/' + relatedFbid + '/inDirectCall').update({ [fbid]: { fbid, relatedFbid, inDirectCall : true } });
+//    Fb.root.ref('inDirectCall/lease/').update({ [relatedFbid + '_call_'+fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
+     Fb.root.ref('inDirectCall/lease/'+ relatedFbid).update({ [fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
+  }
+
 
   setInDirectCallForSale = ( fbid, relatedFbid ) => {
 //     id = Fb.app.usersRef.push().key;
@@ -556,6 +591,30 @@ export class Propertyhk extends Property {
     
         //Fb.root.ref('inDirectCall/')
       }
+
+/**
+ * Building all inDirectCall list
+ */
+  buildInDirectCall() {
+
+    const that = this;
+    // var userId = firebase.auth().currentUser.uid;
+    // return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+    //   var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+    //   // ...
+    // });
+
+    Fb.root.ref('inDirectCall/'+this.typeFor + "/"+this.fbid).once('value').then( function (snapshot ) {
+
+      snapshot.forEach( ( data ) => {
+          console.log( `inDirect ${data.key}, ${data.val().inDirectCall}`);
+          that.inDirectCall.set( data.key, data.val() );
+      })
+      //this.inDirectCall.set( )
+      //console.log( 'inDirecal', snapshot.val() );
+      // this.inDirectCall.set( snapshot.val().fbid, snapshot.val() );
+    })
+ }
 
   /**
    * @compareTo is name of variable e.g. name, price, location

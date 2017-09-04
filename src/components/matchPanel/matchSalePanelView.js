@@ -52,7 +52,7 @@ class MatchSalePanelView extends React.Component {
     if ( this.state.selectedSegmentIndex === 0 ) {
       return <ListOfMatchAgentBuyPropertys propertys={property.responsedPropertys} timeEnter={this.props.timeEnter}/>
     } else {
-      return  <ListOfMatchOldBuyPropertys propertys={property.matchedPropertys}/>
+      return  <ListOfMatchOldBuyPropertys inDirectCall={property.inDirectCall}  propertys={property.matchedPropertys}/>
     }
   }
 

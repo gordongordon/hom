@@ -4,8 +4,9 @@ import React from 'react'
 import moment from 'moment';
 //import 'moment/locale/zh-cn';
 //import {propertys} from 'userModelView'
-import SingleSalePropertyForMatchView from '../singlePropertyView/singleSalePropertyForMatchView'
-import { observer } from 'mobx-react';
+//import SingleSalePropertyForMatchView from '../singlePropertyView/singleSalePropertyForMatchView'
+import SingleSaleAgentPropertyForRespondView from '../singlePropertyView/singleSaleAgentPropertyForRespondView'
+import { inject, observer } from 'mobx-react';
 //const Item = List.Item;
 //const Brief = Item.Brief;
 
@@ -15,7 +16,7 @@ import { observer } from 'mobx-react';
 //   { value: 'MOSSSC', label: '新港城' },
 // ];
 
-@observer
+@inject("store") @observer
 export class ListOfMatchOldSalePropertys extends React.Component {
 
   constructor(props) {
@@ -30,16 +31,27 @@ export class ListOfMatchOldSalePropertys extends React.Component {
         return null;
      }
 
-     const timeEnter = this.props.timeEnter;
+     //const timeEnter = this.props.timeEnter;
      // Try to show most uptoday item only
      var element = [];
+//           <SingleSalePropertyForMatchView property={property} key={keyID} timeEnter={timeEnter}/>
+//           <SingleSaleAgentPropertyForRespondView property={property} key={keyID} timeEnter={timeEnter}/>
 
     list.forEach( (property, keyID) => {
+      
+      let call = this.props.inDirectCall.get(  keyID );
+      console.log( 'this.props.store.router.params.keyID',this.props.store.router.params.keyID )
+      let showPhone = false;
+      if ( call ) {
+       console.log( 'call ', call.inDirectCall );
+       showPhone = call.inDirectCall;
+     }
 
+     debugger
        element.push(
-           <SingleSalePropertyForMatchView property={property} key={keyID} timeEnter={timeEnter}/>
-         )
-       } );
+           <SingleSaleAgentPropertyForRespondView showPhone={showPhone} property={property} key={keyID} />
+)
+} );
 
      return <div>{element.reverse()}</div>
   }

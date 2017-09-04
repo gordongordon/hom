@@ -4,8 +4,11 @@ import React from 'react'
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 //import {propertys} from 'userModelView'
-import SingleRentPropertyForMatchView from '../singlePropertyView/singleRentPropertyForMatchView'
-import { observer } from 'mobx-react';
+//import SingleRentPropertyForMatchView from '../singlePropertyView/singleRentPropertyForMatchView'
+import { inject, observer } from 'mobx-react';
+//import SingleRentAgentPropertyForRespondView from '../singlePropertyView/singleRentAgentPropertyForRespondView';
+// Note Problem of sing vs Sing file name
+import SingleRentAgentPropertyForRespondView from '../singlePropertyView/SingleRentAgentPropertyForRespondView';
 //const Item = List.Item;
 //const Brief = Item.Brief;
 
@@ -15,7 +18,7 @@ import { observer } from 'mobx-react';
 //   { value: 'MOSSSC', label: '新港城' },
 // ];
 
-@observer
+@inject("store") @observer
 export class ListOfMatchOldRentPropertys extends React.Component {
 
   constructor(props) {
@@ -35,11 +38,18 @@ export class ListOfMatchOldRentPropertys extends React.Component {
 
      // Try to show most uptoday item only
      var element = [];
+//           <SingleRentPropertyForMatchView property={property} key={keyID}/>
 
     list.forEach( (property, keyID) => {
+      let call = this.props.inDirectCall.get(  this.props.store.router.params.keyID);
+      let showPhone = false;
+      if ( call ) {
+       console.log( 'call ', call.inDirectCall );
+       showPhone = call.inDirectCall;
+     }
 
        element.push(
-           <SingleRentPropertyForMatchView property={property} key={keyID}/>
+           <SingleRentAgentPropertyForRespondView property={property} key={keyID}/>
          )
        } );
 

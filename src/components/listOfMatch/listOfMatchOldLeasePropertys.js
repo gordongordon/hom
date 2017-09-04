@@ -4,8 +4,10 @@ import React from 'react'
  //import moment from 'moment';
 // import 'moment/locale/zh-cn';
 //import {propertys} from 'userModelView'
-import SingleLeasePropertyForMatchView from '../singlePropertyView/singleLeasePropertyForMatchView'
-import { observer } from 'mobx-react';
+//import SingleLeasePropertyForMatchView from '../singlePropertyView/singleLeasePropertyForMatchView'
+import SingleLeaseAgentPropertyForRespondView from '../singlePropertyView/singleLeaseAgentPropertyForRespondView'
+import { inject, observer } from 'mobx-react';
+import {MobxRouter} from 'mobx-router';
 //const Item = List.Item;
 //const Brief = Item.Brief;
 
@@ -15,7 +17,7 @@ import { observer } from 'mobx-react';
 //   { value: 'MOSSSC', label: '新港城' },
 // ];
 
-@observer
+@inject("store") @observer
 export class ListOfMatchOldLeasePropertys extends React.Component {
 
   constructor(props) {
@@ -34,10 +36,16 @@ export class ListOfMatchOldLeasePropertys extends React.Component {
      // Try to show most uptoday item only
      var element = [];
 
-    list.forEach( (property, keyID) =>
+    list.forEach( (property, keyID) => {
+      let call = this.props.inDirectCall.get(   this.props.store.router.params.keyID);
+      let showPhone = false;
+      if ( call ) {
+       console.log( 'call ', call.inDirectCall );
+       showPhone = call.inDirectCall;
+     }
        element.push(
-           <SingleLeasePropertyForMatchView property={property} key={keyID}/>
-         ) );
+           <SingleLeaseAgentPropertyForRespondView property={property} key={keyID}/>
+         ) });
 
      return <div>{element.reverse()}</div>
   }

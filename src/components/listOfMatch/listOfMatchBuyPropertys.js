@@ -5,6 +5,7 @@ import moment from 'moment';
 // import 'moment/locale/zh-cn';
 //import {propertys} from 'userModelView'
 import SingleBuyPropertyForMatchView from '../singlePropertyView/singleBuyPropertyForMatchView'
+import SingleBuyCaseView from '../singlePropertyView/singleBuyCaseView'
 import { observer } from 'mobx-react';
 //const Item = List.Item;
 //const Brief = Item.Brief;
@@ -44,12 +45,13 @@ export class ListOfMatchBuyPropertys extends React.Component {
        console.log( 'a ', a)
        console.log( 'b ', b)
        console.log( 'c ', c)
+//           <SingleBuyPropertyForMatchView property={property} key={keyID}/>
 
        if ( b >= c ) {
          //console.log( b > c)
        element.push(
-           <SingleBuyPropertyForMatchView property={property} key={keyID}/>
-         )
+             <SingleBuyCaseView property={property} key={keyID}/>
+       )
        }
 
     })

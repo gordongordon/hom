@@ -55,7 +55,7 @@ class MatchBuyPanelView extends React.Component {
                <ListOfMatchAgentSalePropertys propertys={property.responsedPropertys}/>
             </div>
     } else {
-      return   <ListOfMatchOldSalePropertys propertys={property.matchedPropertys}/>
+      return   <ListOfMatchOldSalePropertys inDirectCall={property.inDirectCall} propertys={property.matchedPropertys}/>
     }
   }
 

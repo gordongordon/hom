@@ -23,6 +23,8 @@ import { propertys } from "userModelView";
 //import MobxStore from "mobxStore";
 import views from "views";
 import {inject, observer} from "mobx-react";
+import MobxStore from "mobxStore";
+
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -92,7 +94,7 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
     (buttonIndex) => {
       this.setState({ clicked: BUTTONS[buttonIndex] });
       if ( buttonIndex === 0 ) {
-        p.setInDirectCallForBuy( p.fbid, p.relatedFbid );         
+        p.setBuyInDirectCall( p.fbid, MobxStore.router.params.keyID  );         
       }
       if ( buttonIndex === 1 ) {
         window.location.href="tel://"+ p.contactPhone;
@@ -250,9 +252,6 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
 
             </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
             </Item>
-            <Item>
-            <a href="tel:96181448">96181448</a>
-            </Item>            
             <WhiteSpace size="sm" />
             </div>
                   

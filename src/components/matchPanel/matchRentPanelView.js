@@ -59,7 +59,7 @@ class MatchRentPanelView extends React.Component {
     //   property.buildMatchProperty( property.fbid, property.typeFor, property.nameOfBuilding);
     // }
 
-      return  <ListOfMatchOldLeasePropertys propertys={property.matchedPropertys}/>
+      return  <ListOfMatchOldLeasePropertys inDirectCall={property.inDirectCall}  propertys={property.matchedPropertys}/>
     }
   }
 

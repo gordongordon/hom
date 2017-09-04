@@ -85,7 +85,7 @@ export default class SingleLeaseAgentPropertyForRespondView extends React.Compon
     (buttonIndex) => {
       this.setState({ clicked: BUTTONS[buttonIndex] });
       if ( buttonIndex === 0 ) {
-        p.setInDirectCallForBuy( p.fbid, p.relatedFbid );         
+        p.setLeaseInDirectCall( p.fbid, MobxStore.router.params.keyID  );         
       }
       if ( buttonIndex === 1 ) {
         window.location.href="tel://"+ p.contactPhone;

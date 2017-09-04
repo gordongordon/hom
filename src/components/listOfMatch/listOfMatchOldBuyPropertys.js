@@ -4,8 +4,9 @@ import React from 'react'
 //import moment from 'moment';
 // import 'moment/locale/zh-cn';
 //import {propertys} from 'userModelView'
-import SingleBuyPropertyForMatchView from '../singlePropertyView/singleBuyPropertyForMatchView'
-import { observer } from 'mobx-react';
+// import SingleBuyPropertyForMatchView from '../singlePropertyView/singleBuyPropertyForMatchView'
+import SingleBuyAgentPropertyForRespondView from '../singlePropertyView/singleBuyAgentPropertyForRespondView'
+import { inject, observer } from 'mobx-react';
 //const Item = List.Item;
 //const Brief = Item.Brief;
 
@@ -15,7 +16,7 @@ import { observer } from 'mobx-react';
 //   { value: 'MOSSSC', label: '新港城' },
 // ];
 
-@observer
+@inject("store") @observer
 export class ListOfMatchOldBuyPropertys extends React.Component {
 
   constructor(props) {
@@ -34,8 +35,17 @@ export class ListOfMatchOldBuyPropertys extends React.Component {
      var element = [];
 
     list.forEach( (property, keyID) => {
-       element.push(
-           <SingleBuyPropertyForMatchView property={property} key={keyID}/>
+
+
+       let call = this.props.inDirectCall.get( this.props.store.router.params.keyID);
+
+       let showPhone = false;
+       if ( call ) {
+        console.log( 'call ', call.inDirectCall );
+        showPhone = call.inDirectCall;
+      }
+   element.push(
+           <SingleBuyAgentPropertyForRespondView showPhone={this.showPhone} property={property} key={keyID}/>
          )
        } );
 

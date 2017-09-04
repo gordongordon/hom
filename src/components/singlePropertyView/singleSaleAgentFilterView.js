@@ -194,6 +194,18 @@ export default class SingleSaleAgentFitlerView extends React.Component {
             }}
           />
           <Badge
+              text={property.dayListed}
+              style={{
+                marginLeft: 12,
+                padding: "0 0.06rem",
+                backgroundColor: "#fff",
+                borderRadius: 2,
+                color: "#f19736",
+                border: "1px solid #f19736"
+              }}
+            />
+
+          <Badge
           text={property.isSaleWithLeaseLabel}
           style={{
             marginLeft: 6,

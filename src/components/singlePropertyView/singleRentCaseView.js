@@ -48,7 +48,7 @@ if (isIPhone) {
 //    'MOSSSC' : '新港城'
 // }
 
-export default class SingleRentView extends React.Component {
+export default class SingleRentCaseView extends React.Component {
   constructor(props) {
     super(props);
 
