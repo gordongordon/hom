@@ -43,6 +43,7 @@ export class ListOfMatchAgentSalePropertys extends React.Component {
              <SingleSaleCaseView property={p} key={keyID} filterID={this.props.filterID}/>
            )
         } else {
+          debugger
           element.push(
             <SingleSaleAgentPropertyForRespondView property={p} key={keyID} filterID={this.props.filterID}/>
           )

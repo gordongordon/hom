@@ -2,6 +2,7 @@ import { observable, computed, action } from "mobx";
 import { Fb } from "firebase-store";
 import { toJS } from "mobx";
 import { Property } from "property";
+import MobxStore from 'mobxStore';
 
 // import moment from 'moment'
 
@@ -513,6 +514,48 @@ export class Propertyhk extends Property {
 
     return that.responsedPropertys;
   };
+
+  /**
+   * fbid is agent id
+   * relatedFbid is buyer id
+   */
+  setBuyInDirectCall = ( fbid, relatedFbid ) => {
+        //  id = Fb.app.usersRef.push().key;
+        //Fb.app.usersRef.update({ [id]: p.serialize() });
+        // Fb.sale.child('agentLeaseRef.push().key;
+        //Fb.saleIndirectCallRef.set( { fbid, relatedFbid } );
+
+        // by using [fbid], catch all different propertys
+        // Fb.root.ref('propertys/buy/' + relatedFbid + '/inDirectCall').update({ [fbid]: { fbid, relatedFbid, inDirectCall : true } });
+        Fb.root.ref('inDirectCall/buy/'+ 'fbid_'+relatedFbid).update({ [fbid]: { fbid, relatedFbid, inDirectCall : true } });
+        
+  }
+    
+
+  setInDirectCallForSale = ( fbid, relatedFbid ) => {
+//     id = Fb.app.usersRef.push().key;
+    //Fb.app.usersRef.update({ [id]: p.serialize() });
+    // Fb.sale.child('agentLeaseRef.push().key;
+    //Fb.saleIndirectCallRef.set( { fbid, relatedFbid } );
+    Fb.root.ref('propertys/sale/' + fbid + '/inDirectCall').update({ [fbid]: { fbid, relatedFbid } });
+    
+  }
+
+  setInDirectCallForBuy = ( fbid, relatedFbid ) => {
+
+    //const id = Fb.root.ref('propertys/buy/inDirectCall/').push().key;
+    // working
+//    Fb.root.ref('propertys/buy/inDirectCall/').update({ [fbid]: { fbid : fbid } });
+    Fb.root.ref('propertys/buy/' + fbid + '/inDirectCall').update({ [fbid]: { fbid : fbid } });
+    
+
+        //Fb.root.ref('propertys/buy/inDirectCall/').child(fbid).set( { fbid, relatedFbid} )
+            //const id = Fb.buyIndirectCallRef.push().key;
+        // Fb.sale.child('agentLeaseRef.push().key;
+        //Fb.buyIndirectCallRef.child(id).set( { fbid, relatedFbid } );
+    
+        //Fb.root.ref('inDirectCall/')
+      }
 
   /**
    * @compareTo is name of variable e.g. name, price, location

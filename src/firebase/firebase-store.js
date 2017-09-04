@@ -106,10 +106,12 @@ const startLogout = () => {
 //console.log( 'MobxStore.app', MobxStore)
 //var uid =  MobxStore.app.uid;
 //console.log('uid', MobxStore.app.uid)
-const root = firebase.database().ref();
+const root = firebase.database();
 const propertys = firebase.database().ref('propertys');
 // Testing for different type
 const sale = firebase.database().ref('propertys/sale');
+const saleIndirectCallRef = firebase.database().ref('propertys/sale/inDirectCall');
+const buyIndirectCallRef = firebase.database().ref('propertys/buy/inDirectCall');
 const lease = firebase.database().ref('propertys/lease');
 const buy = firebase.database().ref('propertys/buy');
 const rent = firebase.database().ref('propertys/rent');
@@ -139,6 +141,8 @@ const Fb = {
   startLoginAnonyhmously,
   startLoginFacebook,
   startLoginGoogle,
+  saleIndirectCallRef,
+  buyIndirectCallRef,
   //propertysForRent,
   //propertysForSale,
   //propertysForLease,

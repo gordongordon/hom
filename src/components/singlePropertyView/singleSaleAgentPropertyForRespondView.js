@@ -11,7 +11,8 @@ import {
   InputItem,
   WhiteSpace,
   Button,
-  SegmentedControl
+  SegmentedControl,
+  ActionSheet
 } from "antd-mobile";
 //import { createForm } from "rc-form";
 //import moment from 'moment';
@@ -20,10 +21,21 @@ import { propertys } from "userModelView";
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 import MobxStore from "mobxStore";
 import views from "views";
+import {Modal} from 'antd';
 
 const Item = List.Item;
 const Brief = Item.Brief;
 
+// fix touch to scroll background page on iOS
+// https://github.com/ant-design/ant-design-mobile/issues/307
+// https://github.com/ant-design/ant-design-mobile/issues/163
+const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
+let wrapProps;
+if (isIPhone) {
+  wrapProps = {
+    onTouchStart: e => e.preventDefault(),
+  };
+}
 // const NameOfBuilding = [
 //   { value: 'MOSDBC', label: '迎海' },
 //   { value: 'MOSCTO', label: '第一城' },
@@ -55,6 +67,42 @@ export default class SingleSaleAgentPropertyForRespondView extends React.Compone
     //    console.log( 'realTime will mount', this.props.property.realTime)
   }
 
+  /**
+   * Implement ActionSheet which to handle multi actions
+   */
+  showActionSheet = () => {
+    const BUTTONS = ['容許對方打俾你', '直接打俾對方', 'Go saleAgentForm', '取消'];
+    ActionSheet.showActionSheetWithOptions({
+      options: BUTTONS,
+      cancelButtonIndex: BUTTONS.length - 1,
+      destructiveButtonIndex: BUTTONS.length - 2,
+      // title: '标题',
+      message: '請選擇其中一項',
+      maskClosable: true,
+      'data-seed': 'logId',
+      wrapProps,
+    },
+    (buttonIndex) => {
+      const p = this.props.property;
+      this.setState({ clicked: BUTTONS[buttonIndex] });
+      if ( buttonIndex === 0 ) {
+        p.setBuyInDirectCallForSaleAgent( p.fbid, p.relatedFbid );         
+      }
+      if ( buttonIndex === 1 ) {
+        window.location.href="tel://"+ 66896696;
+      }
+      if ( buttonIndex === 2 ) {
+         this.props.store.app.passByRef = p;
+         this.props.store.router.goTo(views.buyAgentForm, {
+           keyID: p.fbid,
+           typeTo: p.typeTo,
+           filterID: this.props.filterID
+        })
+      }
+      
+    });
+  }
+
   render() {
     const { property } = this.props;
     const that = this;
@@ -70,14 +118,7 @@ export default class SingleSaleAgentPropertyForRespondView extends React.Compone
         <Item
         extra={<Badge text={property.typeByFollowUpLabel} />}
         arrow="horizontal"
-          onClick={() => {
-            MobxStore.app.passByRef = property
-            MobxStore.router.goTo(views.buyAgentForm, {
-                keyID: property.fbid,
-                typeTo: property.typeTo,
-                filterID: this.props.filterID,
-                isPassingLastProperty : false,  // Open,
-              })} }
+          onClick={this.showActionSheet }
           thumb="http://hair.losstreatment.com/icons/rent-up.svg"
           multipleLine
         >

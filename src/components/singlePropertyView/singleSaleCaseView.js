@@ -11,6 +11,7 @@ import {
   InputItem,
   WhiteSpace,
   Button,
+  ActionSheet,
   SegmentedControl
 } from "antd-mobile";
 //import { createForm } from "rc-form";
@@ -23,6 +24,17 @@ import views from "views";
 
 const Item = List.Item;
 const Brief = Item.Brief;
+
+// fix touch to scroll background page on iOS
+// https://github.com/ant-design/ant-design-mobile/issues/307
+// https://github.com/ant-design/ant-design-mobile/issues/163
+const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
+let wrapProps;
+if (isIPhone) {
+  wrapProps = {
+    onTouchStart: e => e.preventDefault(),
+  };
+}
 
 // const NameOfBuilding = [
 //   { value: 'MOSDBC', label: '迎海' },
@@ -55,6 +67,44 @@ export default class SingleSaleCaseView extends React.Component {
     //    console.log( 'realTime will mount', this.props.property.realTime)
   }
 
+
+    /**
+   * Implement ActionSheet which to handle multi actions
+   */
+  showActionSheet = () => {
+    const BUTTONS = ['容許對方打俾你', '直接打俾對方', 'Go BuyAgentForm', '取消'];
+    ActionSheet.showActionSheetWithOptions({
+      options: BUTTONS,
+      cancelButtonIndex: BUTTONS.length - 1,
+      destructiveButtonIndex: BUTTONS.length - 2,
+      // title: '标题',
+      message: '請選擇其中一項',
+      maskClosable: true,
+      'data-seed': 'logId',
+      wrapProps,
+    },
+    (buttonIndex) => {
+      const p = this.props.property;
+      this.setState({ clicked: BUTTONS[buttonIndex] });
+      if ( buttonIndex === 0 ) {
+        p.setBuyInDirectCall( p.fbid, p.relatedFbid );         
+      }
+      if ( buttonIndex === 1 ) {
+        window.location.href="tel://"+ 66896696;
+      }
+      if ( buttonIndex === 2 ) {
+         this.props.store.app.passByRef = p;
+         this.props.store.router.goTo(views.buyAgentForm, {
+           keyID: p.fbid,
+           typeTo: p.typeTo,
+           filterID: this.props.filterID
+        })
+      }
+      
+    });
+  }
+
+
   render() {
     // property is a sale case 
     const { property } = this.props;
@@ -71,16 +121,8 @@ export default class SingleSaleCaseView extends React.Component {
         <Item
         extra={<Badge text="edit"/>}
         arrow="horizontal"
-          onClick={() => {
-
-            MobxStore.app.passByRef = property
-            MobxStore.router.goTo(views.buyAgentForm, {
-                keyID: property.fbid,
-                typeTo: property.typeTo,
-                filterID: this.props.filterID,
-                isPassingLastProperty : true  // Open,
-              })}
-            } 
+        onClick={this.showActionSheet }
+        
           thumb="http://hair.losstreatment.com/icons/rent-up.svg"
           multipleLine
         >
@@ -176,19 +218,6 @@ export default class SingleSaleCaseView extends React.Component {
 
             </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
             </Item>
-        <Item>
-          <Button type="primary" size="small" onClick={this.onSubmit} inline>
-            Submit
-          </Button>
-          <Button
-            onClick={this.onReset}
-            size="small"
-            inline
-            style={{ marginLeft: 5 }}
-          >
-            Reset
-          </Button>
-        </Item>
         <WhiteSpace size="sm" />
       </div>
     );
