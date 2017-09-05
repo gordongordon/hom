@@ -271,7 +271,7 @@ class SingleBuyAgentRespondView extends React.Component {
                 valuePropName: 'checked',
               })}
               onClick={(checked) => {    
-                this.props.filter.setBuyInDirectCall( property.fbid, MobxStore.router.params.keyID, checked );  
+                this.props.filter.setBuyInDirectCall( property.fbid, MobxStore.router.params.keyID, true );  
                 console.log(checked); }} 
               />}
     

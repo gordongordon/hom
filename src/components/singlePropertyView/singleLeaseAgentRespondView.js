@@ -220,7 +220,7 @@ class SingleLeaseAgentRespondView extends React.Component {
                 valuePropName: 'checked',
               })}
               onClick={(checked) => { 
-                this.props.filter.setLeaseInDirectCall( property.fbid, MobxStore.router.params.keyID, checked );  
+                this.props.filter.setLeaseInDirectCall( property.fbid, MobxStore.router.params.keyID, true );  
                 console.log(checked); }}
             />}
     

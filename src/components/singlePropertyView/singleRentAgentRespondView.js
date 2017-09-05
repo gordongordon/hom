@@ -251,7 +251,7 @@ class SingleRentAgentRespondView extends React.Component {
                 valuePropName: 'checked',
               })}
               onClick={(checked) => { 
-                this.props.filter.setRentInDirectCall( property.fbid, MobxStore.router.params.keyID, checked );  
+                this.props.filter.setRentInDirectCall( property.fbid, MobxStore.router.params.keyID, true );  
                 console.log(checked); }}
             />}
     
