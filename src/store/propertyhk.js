@@ -752,8 +752,11 @@ export class Propertyhk extends Property {
   //       }
 
   /**
- * Building all inDirectCall list
- */
+   * Building all inDirectCall list
+   * It read his's own firebase data at inDirectCall
+   * this is beginning called by user filter only. 
+   * it would't call at single view component
+   */
   buildInDirectCall() {
     const that = this;
     this.inDirectCall.clear();
