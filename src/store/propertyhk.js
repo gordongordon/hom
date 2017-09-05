@@ -649,6 +649,10 @@ export class Propertyhk extends Property {
     }
   };
 
+  /**
+   * May be use later for display phone number
+   * 
+   */
   displayPhoneNumber = subjectID => {
     let object = this.inDirectCall.get(subjectID);
 
@@ -752,6 +756,7 @@ export class Propertyhk extends Property {
  */
   buildInDirectCall() {
     const that = this;
+    this.inDirectCall.clear();
     // var userId = firebase.auth().currentUser.uid;
     // return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
     //   var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
@@ -763,29 +768,74 @@ export class Propertyhk extends Property {
     );
 
     Fb.root
-      .ref("inDirectCall/" + this.typeTo + "/" + this.fbid)
-      .once("value")
-      .then(function(snapshot) {
-        snapshot.forEach(data => {
-          console.log(
-            `inDirectCall ${data.key}, subID ${data.val()
-              .subjectID}, objID ${data.val().objectID}`
-          );
-          const status = new Status(
-            data.val().subjectID,
-            data.val().objectID,
-            data.val().isShowPhone
-          );
-          that.inDirectCall.set(data.key, status);
-          console.log(
-            `inDirectCall typeFor ${that.typeFor}, that.fbid ${that.fbid}, inDirectCall.size ${that
-              .inDirectCall.size}`
-          );
-        });
-        //this.inDirectCall.set( )
-        //console.log( 'inDirecal', snapshot.val() );
-        // this.inDirectCall.set( snapshot.val().fbid, snapshot.val() );
+    .ref("inDirectCall/" + this.typeTo + "/" + this.fbid)
+    .on("child_added", function(data) {
+
+      const status = new Status(
+        data.val().subjectID,
+        data.val().objectID,
+        data.val().isShowPhone
+      );
+      that.inDirectCall.set(data.key, status);
+      console.log(
+        `inDirectCall typeFor ${that.typeTo}, that.fbid ${that.fbid}, inDirectCall.size ${that
+          .inDirectCall.size}`
+      );
       });
+
+      Fb.root
+      .ref("inDirectCall/" + this.typeTo + "/" + this.fbid)
+      .on("child_changed", function(data) {
+        // Get an element with all functions, propertys
+        // Recreate a new properts { ... }
+        // otherwise propertys.responsedPropertys = undefined error
+        //                  const p = that.matchedPropertys.get( snapshot.key )
+        // const p = Propertyhk.deserialize(snapshot.val());
+        // that.matchedPropertys.set(snapshot.key, p);
+
+        const status = new Status(
+          data.val().subjectID,
+          data.val().objectID,
+          data.val().isShowPhone
+        );
+        that.inDirectCall.set(data.key, status);
+          
+
+        //                  that.matchedPropertys.set( snapshot.key, { ...p, ...snapshot.val() });
+        //console.log('child_changed snapshot.val() ',  snapshot.val() )
+      });      
+
+
+      Fb.root
+      .ref("inDirectCall/" + this.typeTo + "/" + this.fbid)
+      .on("child_removed", function(data) {
+        that.inDirectCall.delete(data.key);
+      });
+
+    // Fb.root
+    //   .ref("inDirectCall/" + this.typeTo + "/" + this.fbid)
+    //   .once("value")
+    //   .then(function(snapshot) {
+    //     snapshot.forEach(data => {
+    //       console.log(
+    //         `inDirectCall ${data.key}, subID ${data.val()
+    //           .subjectID}, objID ${data.val().objectID}`
+    //       );
+    //       const status = new Status(
+    //         data.val().subjectID,
+    //         data.val().objectID,
+    //         data.val().isShowPhone
+    //       );
+    //       that.inDirectCall.set(data.key, status);
+    //       console.log(
+    //         `inDirectCall typeFor ${that.typeFor}, that.fbid ${that.fbid}, inDirectCall.size ${that
+    //           .inDirectCall.size}`
+    //       );
+    //     });
+    //     //this.inDirectCall.set( )
+    //     //console.log( 'inDirecal', snapshot.val() );
+    //     // this.inDirectCall.set( snapshot.val().fbid, snapshot.val() );
+    //   });
     //    console.log( `inDirectCall typeFor ${this.typeFor}, key ${this.fbid}, inDirectCall.size ${that.inDirectCall.size}` );
   }
 

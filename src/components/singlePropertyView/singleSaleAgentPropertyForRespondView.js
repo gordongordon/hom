@@ -99,7 +99,9 @@ export default class SingleSaleAgentPropertyForRespondView extends React.Compone
     (buttonIndex) => {
       this.setState({ clicked: BUTTONS[buttonIndex] });
       if ( buttonIndex === 0 ) {
-        this.props.filter.setSaleInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone );         
+        this.props.filter.setSaleInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone );    
+        // this.props.filter.buildInDirectCall();
+        // debugger
       }
       if ( buttonIndex === 1 ) {
         window.location.href="tel://"+ p.contactPhone;
