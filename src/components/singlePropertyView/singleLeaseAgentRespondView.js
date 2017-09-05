@@ -216,11 +216,11 @@ class SingleLeaseAgentRespondView extends React.Component {
             <List.Item
             extra={<Switch
               {...getFieldProps('isShowPhone', {
-                initialValue: true,
+                initialValue: false,
                 valuePropName: 'checked',
               })}
               onClick={(checked) => { 
-                this.props.filter.setLeaseInDirectCall( property.fbid, MobxStore.router.params.keyID, true );  
+                this.props.filter.setLeaseInDirectCall( property.fbid, MobxStore.router.params.keyID, checked );  
                 console.log(checked); }}
             />}
     

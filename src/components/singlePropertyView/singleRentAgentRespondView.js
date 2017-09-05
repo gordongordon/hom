@@ -247,11 +247,11 @@ class SingleRentAgentRespondView extends React.Component {
             <List.Item
             extra={<Switch
               {...getFieldProps('isShowPhone', {
-                initialValue: true,
+                initialValue: false,
                 valuePropName: 'checked',
               })}
               onClick={(checked) => { 
-                this.props.filter.setRentInDirectCall( property.fbid, MobxStore.router.params.keyID, true );  
+                this.props.filter.setRentInDirectCall( property.fbid, MobxStore.router.params.keyID, checked );  
                 console.log(checked); }}
             />}
     

@@ -84,7 +84,7 @@ class SingleSaleAgentRespondView extends React.Component {
       phone = p.contactPhone;
     } 
 
-    const BUTTONS = ['容許對方打俾你', 'Call' + phone, '取消'];
+    const BUTTONS = ['容許對方打俾你', 'Call ' + p.contactPhone, '取消'];
 
     ActionSheet.showActionSheetWithOptions({
       options: BUTTONS,
@@ -100,8 +100,6 @@ class SingleSaleAgentRespondView extends React.Component {
       this.setState({ clicked: BUTTONS[buttonIndex] });
       if ( buttonIndex === 0 ) {
         this.props.filter.setSaleInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone );    
-        // this.props.filter.buildInDirectCall();
-        // debugger
       }
       if ( buttonIndex === 1 ) {
         window.location.href="tel://"+ p.contactPhone;
@@ -232,12 +230,12 @@ class SingleSaleAgentRespondView extends React.Component {
             <Item
           extra={<Switch
           {...getFieldProps('isShowPhone', {
-            initialValue: false,
+            initialValue: property.isShowPhone(filter.fbid),
             valuePropName: 'checked',
           })}
           onClick={(checked) => { 
-              this.props.filter.setSaleInDirectCall( property.fbid, MobxStore.router.params.keyID, true );  
-              console.log(checked); }}
+              this.props.filter.setSaleInDirectCall( property.fbid, MobxStore.router.params.keyID, checked );  
+              console.log( 'single sale agent Respond view ',checked); }}
         />}
         >Tel: {property.contactPhone}
         </Item>

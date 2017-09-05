@@ -265,17 +265,12 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
             </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
             </Item>
 
-              <List.Item
-        extra={<Switch
-          {...getFieldProps('isShowPhone', {
-            initialValue: true,
-            valuePropName: 'checked',
-          })}
-          onClick={(checked) => { console.log(checked); }}
-        />}
-
-        >Tel: {property.contactPhone}
-        </List.Item>
+            <List.Item
+            extra={<Switch
+                  checked={this.props.status === undefined ? false : this.props.status.isShowPhone}
+            />}
+            >Tel: {this.props.status === undefined ? "" : (this.props.status.isShowPhone? property.contactPhone : "") }
+              </List.Item>
             
             <WhiteSpace size="sm" />
             </div>

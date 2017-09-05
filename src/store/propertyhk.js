@@ -30,6 +30,7 @@ export class Propertyhk extends Property {
   @observable inDirectCall = observable.map({});
 
   @observable responsedPropertys = observable.map({});
+  @observable showPhone = false;
   //@observable responsedPropertys = new Map();
   // @observable matchedPropertys = new Map();
 
@@ -648,6 +649,21 @@ export class Propertyhk extends Property {
       this.inDirectCall.set(fbid, status);
     }
   };
+
+
+  
+  isShowPhone(id) {
+    this.buildInDirectCall();
+    let object;
+
+  //  Fb.root.ref("inDirectCall/sale/" + fbid).update({ [relatedFbid]: status });
+    if ( this.inDirectCall.size > 0) {
+       object = this.inDirectCall.get(id);
+       return this.showPhone = object.isShowPhone;
+    }
+
+    return this.showPhone = false;
+  } 
 
   /**
    * May be use later for display phone number
