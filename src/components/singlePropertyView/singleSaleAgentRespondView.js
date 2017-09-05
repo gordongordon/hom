@@ -232,10 +232,12 @@ class SingleSaleAgentRespondView extends React.Component {
             <Item
           extra={<Switch
           {...getFieldProps('isShowPhone', {
-            initialValue: true,
+            initialValue: false,
             valuePropName: 'checked',
           })}
-          onClick={(checked) => { console.log(checked); }}
+          onClick={(checked) => { 
+              this.props.filter.setSaleInDirectCall( property.fbid, MobxStore.router.params.keyID, checked );  
+              console.log(checked); }}
         />}
         >Tel: {property.contactPhone}
         </Item>

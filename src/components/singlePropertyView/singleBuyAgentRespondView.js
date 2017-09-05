@@ -266,10 +266,17 @@ class SingleBuyAgentRespondView extends React.Component {
             </Item>
             <List.Item
             extra={<Switch
-                  checked={this.props.status === undefined ? false : this.props.status.isShowPhone}
-            />}
+              {...getFieldProps('isShowPhone', {
+                initialValue: false,
+                valuePropName: 'checked',
+              })}
+              onClick={(checked) => {    
+                this.props.filter.setBuyInDirectCall( property.fbid, MobxStore.router.params.keyID, checked );  
+                console.log(checked); }} 
+              />}
+    
             >Tel: {property.contactPhone}
-              </List.Item>
+            </List.Item>
             <WhiteSpace size="sm" />
             </div>
                   
@@ -278,6 +285,8 @@ class SingleBuyAgentRespondView extends React.Component {
 }
 
 export const SingleBuyAgentRespondViewWrapper = createForm()(SingleBuyAgentRespondView);
+
+//checked={this.props.status === undefined ? false : this.props.status.isShowPhone}
 
 // export default SingleBuyAgentRespondView;
 
