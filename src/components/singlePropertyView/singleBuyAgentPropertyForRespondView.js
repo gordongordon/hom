@@ -13,7 +13,8 @@ import {
   Button,
   SegmentedControl,
   Accordion,
-  ActionSheet
+  ActionSheet,
+  Switch
 } from "antd-mobile";
 import { createForm } from "rc-form";
 //import moment from 'moment';
@@ -80,6 +81,15 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
    */
   showActionSheet = () => {
     const p = this.props.property;
+    let showPhone = this.props.showPhone;
+    let phone = 911; 
+    if ( showPhone ) {
+      phone = p.contactPhone;
+    }  else {
+      showPhone = false;
+    }
+
+
     const BUTTONS = ['容許對方打俾你', 'Call' + p.contactPhone, '取消'];
     ActionSheet.showActionSheetWithOptions({
       options: BUTTONS,
@@ -94,7 +104,9 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
     (buttonIndex) => {
       this.setState({ clicked: BUTTONS[buttonIndex] });
       if ( buttonIndex === 0 ) {
-        p.setBuyInDirectCall( p.fbid, MobxStore.router.params.keyID  );         
+//        p.setBuyInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone  );    
+        this.props.filter.setBuyInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone );         
+        
       }
       if ( buttonIndex === 1 ) {
         window.location.href="tel://"+ p.contactPhone;
@@ -112,7 +124,7 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
   }
 
   render() {
-    const { property } = this.props;
+    const { property, filter } = this.props;
     const that = this;
     //        const { getFieldProps } = this.props.form;
 
@@ -252,6 +264,14 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
 
             </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
             </Item>
+            <List.Item
+            extra={<Switch
+                  checked={this.props.status === undefined ? false : this.props.status.isShowPhone}
+            />}
+            >Tel: {this.props.status === undefined ? "" : (this.props.status.isShowPhone? property.contactPhone : "") }
+              </List.Item>
+    
+            
             <WhiteSpace size="sm" />
             </div>
                   

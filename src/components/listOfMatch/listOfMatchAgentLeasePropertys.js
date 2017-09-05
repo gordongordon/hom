@@ -50,7 +50,7 @@ export class ListOfMatchAgentLeasePropertys extends React.Component {
         )
       } else {
         element.push(
-          <SingleLeaseAgentPropertyForRespondView property={p} key={keyID} filterID={this.props.filterID}/>
+          <SingleLeaseAgentPropertyForRespondView filter={this.props.filter} property={p} key={keyID} filterID={this.props.filterID}/>
         )
 
       }

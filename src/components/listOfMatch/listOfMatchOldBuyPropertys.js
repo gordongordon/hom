@@ -36,16 +36,16 @@ export class ListOfMatchOldBuyPropertys extends React.Component {
 
     list.forEach( (property, keyID) => {
 
+      let status = this.props.inDirectCall.get(  keyID );
+      // console.log( 'this.props.store.router.params.keyID',this.props.store.router.params.keyID )
+      let showPhone = false;
+      if ( status ) {
+       console.log( 'call ', status.isShowPhone );
+       showPhone = status.isShowPhone;
+     }
 
-       let call = this.props.inDirectCall.get( this.props.store.router.params.keyID);
-
-       let showPhone = false;
-       if ( call ) {
-        console.log( 'call ', call.inDirectCall );
-        showPhone = call.inDirectCall;
-      }
    element.push(
-           <SingleBuyAgentPropertyForRespondView showPhone={this.showPhone} property={property} key={keyID}/>
+           <SingleBuyAgentPropertyForRespondView filter={this.props.filter} status={status} property={property} key={keyID}/>
          )
        } );
 

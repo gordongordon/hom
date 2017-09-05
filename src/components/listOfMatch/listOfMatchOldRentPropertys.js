@@ -44,12 +44,12 @@ export class ListOfMatchOldRentPropertys extends React.Component {
       let call = this.props.inDirectCall.get(  this.props.store.router.params.keyID);
       let showPhone = false;
       if ( call ) {
-       console.log( 'call ', call.inDirectCall );
-       showPhone = call.inDirectCall;
+       console.log( 'call ', call.isShowPhone );
+       showPhone = call.isShowPhone;
      }
 
        element.push(
-           <SingleRentAgentPropertyForRespondView property={property} key={keyID}/>
+           <SingleRentAgentPropertyForRespondView filter={this.props.filter} status={status} property={property} key={keyID}/>
          )
        } );
 

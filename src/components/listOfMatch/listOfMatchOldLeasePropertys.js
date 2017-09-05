@@ -40,11 +40,11 @@ export class ListOfMatchOldLeasePropertys extends React.Component {
       let call = this.props.inDirectCall.get(   this.props.store.router.params.keyID);
       let showPhone = false;
       if ( call ) {
-       console.log( 'call ', call.inDirectCall );
-       showPhone = call.inDirectCall;
+       console.log( 'call ', call.isShowPhone );
+       showPhone = call.isShowPhone;
      }
        element.push(
-           <SingleLeaseAgentPropertyForRespondView property={property} key={keyID}/>
+           <SingleLeaseAgentPropertyForRespondView filter={this.props.filter} status={status} property={property} key={keyID}/>
          ) });
 
      return <div>{element.reverse()}</div>

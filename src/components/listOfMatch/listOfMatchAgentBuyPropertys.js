@@ -55,7 +55,7 @@ export class ListOfMatchAgentBuyPropertys extends React.Component {
         )
       } else {
         element.push(
-          <SingleBuyAgentPropertyForRespondView property={p} key={keyID} filterID={this.props.filterID}/>
+          <SingleBuyAgentPropertyForRespondView filter={this.props.filter} property={p} key={keyID} filterID={this.props.filterID}/>
         )
 
       }

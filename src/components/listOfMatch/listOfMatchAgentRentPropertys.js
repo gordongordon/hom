@@ -52,7 +52,7 @@ export class ListOfMatchAgentRentPropertys extends React.Component {
         )
       } else {
         element.push(
-          <SingleRentAgentPropertyForRespondView property={p} key={keyID} filterID={this.props.filterID}/>
+          <SingleRentAgentPropertyForRespondView filter={this.props.filter}  property={p} key={keyID} filterID={this.props.filterID}/>
         )
 
       }

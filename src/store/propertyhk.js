@@ -2,14 +2,14 @@ import { observable, computed, action } from "mobx";
 import { Fb } from "firebase-store";
 import { toJS } from "mobx";
 import { Property } from "property";
-import MobxStore from 'mobxStore';
+import MobxStore from "mobxStore";
+import Status from "status";
 
 // import moment from 'moment'
 
 // List of user properties, to be .on
 // propertyViewModel
 export class Propertyhk extends Property {
-
   @observable matchedPropertys = observable.map({});
   //@observable matchedPropertys = new Map();
   // responsed propertys from agent only
@@ -42,6 +42,7 @@ export class Propertyhk extends Property {
 
   constructor(props) {
     super(props);
+    this.displayPhoneNumber.bind(this);
   }
 
   // constructor( v ) {
@@ -54,26 +55,33 @@ export class Propertyhk extends Property {
   }
 
   @computed
-  get sizeLabel(){
-     
-     if ( this.typeBy === "engage" ) {
-       // Engage we use opposite size buy vs sale, ..
-       switch( this.typeTo ) {
-         case 'buy' : return this.saleFollow.size;
-         case 'sale' : return this.buyFollow.size;
-         case 'lease' : return this.rentFollow.size;
-         case 'rent' : return this.leaseFollow.size;
-        }
-     } else {
-      switch( this.typeTo ) {
-        case 'buy' : return this.buyRequest.size;
-        case 'sale' : return this.saleRequest.size;
-        case 'lease' : return this.leaseRequest.size;
-        case 'rent' : return this.rentRequest.size;
-       }
-     }
+  get sizeLabel() {
+    if (this.typeBy === "engage") {
+      // Engage we use opposite size buy vs sale, ..
+      switch (this.typeTo) {
+        case "buy":
+          return this.saleFollow.size;
+        case "sale":
+          return this.buyFollow.size;
+        case "lease":
+          return this.rentFollow.size;
+        case "rent":
+          return this.leaseFollow.size;
+      }
+    } else {
+      switch (this.typeTo) {
+        case "buy":
+          return this.buyRequest.size;
+        case "sale":
+          return this.saleRequest.size;
+        case "lease":
+          return this.leaseRequest.size;
+        case "rent":
+          return this.rentRequest.size;
+      }
+    }
 
-     return 0;
+    return 0;
   }
 
   /**
@@ -83,25 +91,21 @@ export class Propertyhk extends Property {
    * @typeBy 
    * return request // can be removed!since, input request
    */
-  buildRequest = ( fb, request, orderByChild, equalTo, id, typeTo, typeBy) => {
+  buildRequest = (fb, request, orderByChild, equalTo, id, typeTo, typeBy) => {
     const that = this;
-    
+
     //debugger
     // Handle match propertys
     fb
       .orderByChild(orderByChild)
       .equalTo(equalTo)
       .on("child_added", function(snap) {
-
         const p = Propertyhk.deserialize(snap.val());
 
         request.set(snap.key, p);
-        console.log(
-          "propertyhk.child_added - request.size",
-          request.size
-        );
+        console.log("propertyhk.child_added - request.size", request.size);
       });
-  
+
     fb
       .orderByChild(orderByChild)
       .equalTo(equalTo)
@@ -111,7 +115,7 @@ export class Propertyhk extends Property {
         // otherwise propertys.responsedPropertys = undefined error
 
         // THis one doesn't work for this update
-        // Get and 
+        // Get and
         // var p = request.get(snapshot.key);
         // p.restore(snapshot.val());
         // request.set(snapshot.key, p);
@@ -119,10 +123,7 @@ export class Propertyhk extends Property {
         const p = Propertyhk.deserialize(snapshot.val());
         request.set(snapshot.key, p);
 
-        console.log(
-          "propertyhk.child_changed - request.size",
-          request.size
-        );
+        console.log("propertyhk.child_changed - request.size", request.size);
       });
 
     fb
@@ -130,90 +131,80 @@ export class Propertyhk extends Property {
       .equalTo(equalTo)
       .on("child_removed", function(snap) {
         request.delete(snap.key);
-        console.log(
-          "child_removed - request.size",
-          request.size
-        );
+        console.log("child_removed - request.size", request.size);
       });
 
     return request;
   };
 
-  buildCase(){
-    
-    this.saleFollow.forEach( (element, key) => {
-      
+  buildCase() {
+    this.saleFollow.forEach((element, key) => {
       const relatedFbid = element.relatedFbid;
-      const p = this.buyRequest.get( relatedFbid)
+      const p = this.buyRequest.get(relatedFbid);
 
       // Catch undefined since, you may call buildCase everywhere
-      if ( p === undefined ) {
-         console.log('buyRequest undefined with key ', relatedFbid);
+      if (p === undefined) {
+        console.log("buyRequest undefined with key ", relatedFbid);
       } else {
         // Setup ref
         const np = Propertyhk.deserialize(p);
-        np.relatedFbid = key;   
+        np.relatedFbid = key;
         // p.contactName = 'kky'
-        this.buyCase.set( key, np );
+        this.buyCase.set(key, np);
         // console.log( 'saleCase.size ', this.saleCase.size )
         // console.log( 'saleCase object',this.buyRequest.get( relatedFbid ) )
         // console.log( 'saleCase key', key )
-
       }
       // Remove followed request
-      this.buyRequest.delete( relatedFbid );
+      this.buyRequest.delete(relatedFbid);
       // debugger
     });
 
-    this.buyFollow.forEach( (element, key) => {
+    this.buyFollow.forEach((element, key) => {
       const relatedFbid = element.relatedFbid;
-      const p = this.saleRequest.get( relatedFbid)
-      //p.relatedFbid = key;   
+      const p = this.saleRequest.get(relatedFbid);
+      //p.relatedFbid = key;
       const np = Propertyhk.deserialize(p);
-      np.relatedFbid = key;   
-      
-      this.saleCase.set( key, np );
-      console.log( 'saleCase key', key )
+      np.relatedFbid = key;
+
+      this.saleCase.set(key, np);
+      console.log("saleCase key", key);
       // Remove followed request
-      this.saleRequest.delete( relatedFbid );
+      this.saleRequest.delete(relatedFbid);
     });
 
-    this.rentFollow.forEach( (element, key) => {
+    this.rentFollow.forEach((element, key) => {
       const relatedFbid = element.relatedFbid;
-      const p = this.leaseRequest.get( relatedFbid)
+      const p = this.leaseRequest.get(relatedFbid);
 
-      if ( p === undefined ) {
-        console.log('leaseRequest undefined with key ', relatedFbid);
-     } else {
-     
-      const np = Propertyhk.deserialize(p);
-      np.relatedFbid = key;   
-      
-      this.leaseCase.set( key, np );
-      console.log( 'leaseCase key', key )
-     }
+      if (p === undefined) {
+        console.log("leaseRequest undefined with key ", relatedFbid);
+      } else {
+        const np = Propertyhk.deserialize(p);
+        np.relatedFbid = key;
+
+        this.leaseCase.set(key, np);
+        console.log("leaseCase key", key);
+      }
       // Remove followed request
-      this.leaseRequest.delete( relatedFbid );
+      this.leaseRequest.delete(relatedFbid);
     });
 
-    this.leaseFollow.forEach( (element, key) => {
+    this.leaseFollow.forEach((element, key) => {
       const relatedFbid = element.relatedFbid;
-      const p = this.rentRequest.get( relatedFbid)
-      if ( p === undefined ) {
-        console.log('rentRequest undefined with key ', relatedFbid);
-     } else {
+      const p = this.rentRequest.get(relatedFbid);
+      if (p === undefined) {
+        console.log("rentRequest undefined with key ", relatedFbid);
+      } else {
+        const np = Propertyhk.deserialize(p);
+        np.relatedFbid = key;
 
-      const np = Propertyhk.deserialize(p);
-      np.relatedFbid = key;   
-      
-      this.rentCase.set( key, np );
-      console.log( 'rentCase key', key )
-     }
+        this.rentCase.set(key, np);
+        console.log("rentCase key", key);
+      }
       // Remove followed request
-      this.rentRequest.delete( relatedFbid );
-      
+      this.rentRequest.delete(relatedFbid);
     });
-
   }
 
   /**
@@ -266,28 +257,93 @@ export class Propertyhk extends Property {
     // }
 
     console.log(
-      `property.hk orderByChild ${this.orderByChild} equalTo ${this.equalTo} id ${this.fbid}`
+      `property.hk orderByChild ${this.orderByChild} equalTo ${this
+        .equalTo} id ${this.fbid}`
     );
 
     // this.buildRequest( fb, that.matchedPropertys, this.orderByChild, this.equalTo, id, typeTo, typeBy );
     // Make sale request
-     this.buildRequest( Fb.sale, that.saleRequest, this.orderByChild, this.equalTo, id, typeTo, typeBy );
+    this.buildRequest(
+      Fb.sale,
+      that.saleRequest,
+      this.orderByChild,
+      this.equalTo,
+      id,
+      typeTo,
+      typeBy
+    );
     // Make buyt request
-    this.buildRequest( Fb.buy, that.buyRequest, this.orderByChild, this.equalTo, id, typeTo, typeBy );
+    this.buildRequest(
+      Fb.buy,
+      that.buyRequest,
+      this.orderByChild,
+      this.equalTo,
+      id,
+      typeTo,
+      typeBy
+    );
     // Make rent request
-    this.buildRequest( Fb.rent, that.rentRequest, this.orderByChild, this.equalTo, id, typeTo, typeBy );
+    this.buildRequest(
+      Fb.rent,
+      that.rentRequest,
+      this.orderByChild,
+      this.equalTo,
+      id,
+      typeTo,
+      typeBy
+    );
     // Make lease request
-    this.buildRequest( Fb.lease, that.leaseRequest, this.orderByChild, this.equalTo, id, typeTo, typeBy );
+    this.buildRequest(
+      Fb.lease,
+      that.leaseRequest,
+      this.orderByChild,
+      this.equalTo,
+      id,
+      typeTo,
+      typeBy
+    );
 
     // Make sale request
-    this.buildRequest(  Fb.app.agentSaleRef, that.saleFollow, this.orderByChild, this.equalTo, id, typeTo, typeBy );
+    this.buildRequest(
+      Fb.app.agentSaleRef,
+      that.saleFollow,
+      this.orderByChild,
+      this.equalTo,
+      id,
+      typeTo,
+      typeBy
+    );
     // Make buyt request
-    this.buildRequest(  Fb.app.agentBuyRef, that.buyFollow, this.orderByChild, this.equalTo, id, typeTo, typeBy );
+    this.buildRequest(
+      Fb.app.agentBuyRef,
+      that.buyFollow,
+      this.orderByChild,
+      this.equalTo,
+      id,
+      typeTo,
+      typeBy
+    );
     // Make rent request
-    this.buildRequest(  Fb.app.agentRentRef, that.rentFollow, this.orderByChild, this.equalTo, id, typeTo, typeBy );
+    this.buildRequest(
+      Fb.app.agentRentRef,
+      that.rentFollow,
+      this.orderByChild,
+      this.equalTo,
+      id,
+      typeTo,
+      typeBy
+    );
     // Make lease request
-    this.buildRequest(  Fb.app.agentLeaseRef, that.leaseFollow, this.orderByChild, this.equalTo, id, typeTo, typeBy );
-    
+    this.buildRequest(
+      Fb.app.agentLeaseRef,
+      that.leaseFollow,
+      this.orderByChild,
+      this.equalTo,
+      id,
+      typeTo,
+      typeBy
+    );
+
     // Building case, once, we have request and follow
     this.buildCase();
 
@@ -308,7 +364,7 @@ export class Propertyhk extends Property {
     //     );
     //     //         }
     //   });
-  
+
     // fb
     //   .orderByChild(this.orderByChild)
     //   .equalTo(this.equalTo)
@@ -367,7 +423,7 @@ export class Propertyhk extends Property {
       `property.hk orderByChild ${this.orderByChild} equalTo ${this
         .equalTo} id ${this.fbid}`
     );
-    
+
     // Handle match propertys
     fb
       .orderByChild(this.orderByChild)
@@ -378,7 +434,14 @@ export class Propertyhk extends Property {
         const p = Propertyhk.deserialize(snap.val());
         //p.realTime = moment().format('YYYY-MM-DD HH:mm:ss');
 
-        that.matchedPropertys.set(snap.key, p);
+        console.log(`this.uid ${that.uid}, p.uid ${p.uid}`);
+
+        // skep own property, don't match it
+        if (that.uid != p.uid) {
+          that.matchedPropertys.set(snap.key, p);
+          //           console.log( `this.uid ${that.uid}, p.uid ${p.uid}`)
+        }
+
         console.log(
           "propertyhk.child_added - matchProperty.size",
           that.matchedPropertys.size
@@ -521,100 +584,210 @@ export class Propertyhk extends Property {
    * fbid is agent id
    * relatedFbid is buyer id
    */
-  setBuyInDirectCall = ( fbid, relatedFbid ) => {
-        
+  @action
+  setBuyInDirectCall = (fbid, relatedFbid, showPhone) => {
+    let status = new Status(relatedFbid, fbid, !showPhone);
+
+    
         // by using [fbid], catch all different propertys
         // Fb.root.ref('propertys/buy/' + relatedFbid + '/inDirectCall').update({ [fbid]: { fbid, relatedFbid, inDirectCall : true } });
-//        Fb.root.ref('inDirectCall/buy/').update({ [relatedFbid + '_call_'+fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
-        
-        Fb.root.ref('inDirectCall/buy/'+ relatedFbid).update({ [fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
-      }
+        //  Fb.root.ref('inDirectCall/sale/').update({ [relatedFbid + '_call_'+fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
     
+    Fb.root.ref("inDirectCall/buy/" + fbid).update({ [relatedFbid]: status });
+
+    if (showPhone) {
+      let status = this.inDirectCall.get(fbid);
+      // debugger
+      // this.inDirectCall.delete( fbid );
+      status.isShowPhone = !status.isShowPhone;
+      this.inDirectCall.set(fbid, status);
+    } else {
+      // debugger
+      let status = new Status(relatedFbid, fbid, !showPhone);
+      this.inDirectCall.set(fbid, status);
+    }
+
+    // by using [fbid], catch all different propertys
+    // Fb.root.ref('propertys/buy/' + relatedFbid + '/inDirectCall').update({ [fbid]: { fbid, relatedFbid, inDirectCall : true } });
+    //        Fb.root.ref('inDirectCall/buy/').update({ [relatedFbid + '_call_'+fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
+
+    // Fb.root.ref('inDirectCall/buy/'+ relatedFbid).update({ [fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : !showPhone } });
+    // if ( showPhone ) {
+    //           this.inDirectCall.delete( fbid );
+    //         } else {
+
+    //           this.inDirectCall.set( fbid, { subjectID : relatedFbid, objectID : fbid, inDirectCall : !showPhone });
+    //         }
+  };
+
   /**
    * fbid is agent id
    * relatedFbid is buyer id
    */
-  setSaleInDirectCall = ( fbid, relatedFbid ) => {
-    
+  @action
+  setSaleInDirectCall = (fbid, relatedFbid, showPhone) => {
+    let status = new Status(relatedFbid, fbid, !showPhone);
+
     // by using [fbid], catch all different propertys
     // Fb.root.ref('propertys/buy/' + relatedFbid + '/inDirectCall').update({ [fbid]: { fbid, relatedFbid, inDirectCall : true } });
-  //  Fb.root.ref('inDirectCall/sale/').update({ [relatedFbid + '_call_'+fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
-    Fb.root.ref('inDirectCall/sale/'+ relatedFbid).update({ [fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
-  }
+    //  Fb.root.ref('inDirectCall/sale/').update({ [relatedFbid + '_call_'+fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
+
+//    Fb.root.ref("inDirectCall/sale/" + relatedFbid).update({ [fbid]: status });
+    Fb.root.ref("inDirectCall/sale/" + fbid).update({ [relatedFbid]: status });
+    
+    console.log(`inDirectCall setSaleInDirecTCall this.fbid ${this.fbid}`);
+    if (showPhone) {
+      let status = this.inDirectCall.get(fbid);
+      //debugger
+      // this.inDirectCall.delete( fbid );
+      status.isShowPhone = !status.isShowPhone;
+      this.inDirectCall.set(fbid, status);
+    } else {
+      // debugger
+      let status = new Status(relatedFbid, fbid, !showPhone);
+      this.inDirectCall.set(fbid, status);
+    }
+  };
+
+  displayPhoneNumber = subjectID => {
+    let object = this.inDirectCall.get(subjectID);
+
+    console.log(
+      `displayPhoneNumber this.fbid ${this.fbid}, typeTo ${this
+        .typeTo}, inDirectCall.size ${this.inDirectCall
+        .size}, subjectID ${subjectID} object ${object}`
+    );
+    if (object) {
+      return this.contactPhone;
+    }
+
+    return "0000-0000";
+  };
 
   /**
    * fbid is agent id
    * relatedFbid is buyer id
    */
-  setRentInDirectCall = ( fbid, relatedFbid ) => {
-    
+  @action
+  setRentInDirectCall = (fbid, relatedFbid, showPhone) => {
+    let status = new Status(relatedFbid, fbid, !showPhone);
+
     // by using [fbid], catch all different propertys
     // Fb.root.ref('propertys/buy/' + relatedFbid + '/inDirectCall').update({ [fbid]: { fbid, relatedFbid, inDirectCall : true } });
-//    Fb.root.ref('inDirectCall/rent/').update({ [relatedFbid + '_call_'+fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
-    Fb.root.ref('inDirectCall/rent/'+ relatedFbid).update({ [fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
-}
+    //    Fb.root.ref('inDirectCall/rent/').update({ [relatedFbid + '_call_'+fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
+    Fb.root.ref("inDirectCall/rent/" + fbid).update({ [relatedFbid]: status });
+    
+    console.log(`inDirectCall setSaleInDirecTCall this.fbid ${this.fbid}`);
+    if (showPhone) {
+      let status = this.inDirectCall.get(fbid);
+      //debugger
+      // this.inDirectCall.delete( fbid );
+      status.isShowPhone = !status.isShowPhone;
+      this.inDirectCall.set(fbid, status);
+    } else {
+      //debugger
+      let status = new Status(relatedFbid, fbid, !showPhone);
+      this.inDirectCall.set(fbid, status);
+    }
+  };
 
   /**
    * fbid is agent id
    * relatedFbid is buyer id
    */
-  setLeaseInDirectCall = ( fbid, relatedFbid ) => {
-    
+  @action
+  setLeaseInDirectCall = (fbid, relatedFbid, showPhone) => {
+    let status = new Status(relatedFbid, fbid, !showPhone);
+
     // by using [fbid], catch all different propertys
     // Fb.root.ref('propertys/buy/' + relatedFbid + '/inDirectCall').update({ [fbid]: { fbid, relatedFbid, inDirectCall : true } });
-//    Fb.root.ref('inDirectCall/lease/').update({ [relatedFbid + '_call_'+fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
-     Fb.root.ref('inDirectCall/lease/'+ relatedFbid).update({ [fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
-  }
-
-
-  setInDirectCallForSale = ( fbid, relatedFbid ) => {
-//     id = Fb.app.usersRef.push().key;
-    //Fb.app.usersRef.update({ [id]: p.serialize() });
-    // Fb.sale.child('agentLeaseRef.push().key;
-    //Fb.saleIndirectCallRef.set( { fbid, relatedFbid } );
-    Fb.root.ref('propertys/sale/' + fbid + '/inDirectCall').update({ [fbid]: { fbid, relatedFbid } });
+    //    Fb.root.ref('inDirectCall/lease/').update({ [relatedFbid + '_call_'+fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
+    Fb.root.ref("inDirectCall/lease/" + fbid).update({ [relatedFbid]: status });
     
-  }
+    console.log(`inDirectCall setSaleInDirecTCall this.fbid ${this.fbid}`);
+    if (showPhone) {
+      let status = this.inDirectCall.get(fbid);
+      //debugger
+      // this.inDirectCall.delete( fbid );
+      status.isShowPhone = !status.isShowPhone;
+      this.inDirectCall.set(fbid, status);
+    } else {
+      //debugger
+      let status = new Status(relatedFbid, fbid, !showPhone);
+      this.inDirectCall.set(fbid, status);
+    }
+  };
 
-  setInDirectCallForBuy = ( fbid, relatedFbid ) => {
+  //   setSaleInDirectCall = ( fbid, relatedFbid ) => {
+  // //     id = Fb.app.usersRef.push().key;
+  //     //Fb.app.usersRef.update({ [id]: p.serialize() });
+  //     // Fb.sale.child('agentLeaseRef.push().key;
+  //     //Fb.saleIndirectCallRef.set( { fbid, relatedFbid } );
+  //     Fb.root.ref('propertys/sale/' + fbid + '/inDirectCall').update({ [fbid]: { fbid, relatedFbid } });
+  //     if ( !showPhone ) {
+  //       this.inDirectCall.delete( fbid );
+  //     } else {
+  //       this.inDirectCall.set( fbid, { subjectID : relatedFbid, objectID : fbid, inDirectCall : !showPhone });
+  //     }
 
-    //const id = Fb.root.ref('propertys/buy/inDirectCall/').push().key;
-    // working
-//    Fb.root.ref('propertys/buy/inDirectCall/').update({ [fbid]: { fbid : fbid } });
-    Fb.root.ref('propertys/buy/' + fbid + '/inDirectCall').update({ [fbid]: { fbid : fbid } });
-    
+  //   }
 
-        //Fb.root.ref('propertys/buy/inDirectCall/').child(fbid).set( { fbid, relatedFbid} )
-            //const id = Fb.buyIndirectCallRef.push().key;
-        // Fb.sale.child('agentLeaseRef.push().key;
-        //Fb.buyIndirectCallRef.child(id).set( { fbid, relatedFbid } );
-    
-        //Fb.root.ref('inDirectCall/')
-      }
+  //   setInDirectCallForBuy = ( fbid, relatedFbid ) => {
 
-/**
+  //     //const id = Fb.root.ref('propertys/buy/inDirectCall/').push().key;
+  //     // working
+  // //    Fb.root.ref('propertys/buy/inDirectCall/').update({ [fbid]: { fbid : fbid } });
+  //     Fb.root.ref('propertys/buy/' + fbid + '/inDirectCall').update({ [fbid]: { fbid : fbid } });
+
+  //         //Fb.root.ref('propertys/buy/inDirectCall/').child(fbid).set( { fbid, relatedFbid} )
+  //             //const id = Fb.buyIndirectCallRef.push().key;
+  //         // Fb.sale.child('agentLeaseRef.push().key;
+  //         //Fb.buyIndirectCallRef.child(id).set( { fbid, relatedFbid } );
+
+  //         //Fb.root.ref('inDirectCall/')
+  //       }
+
+  /**
  * Building all inDirectCall list
  */
   buildInDirectCall() {
-
     const that = this;
     // var userId = firebase.auth().currentUser.uid;
     // return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
     //   var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
     //   // ...
     // });
+    console.log(
+      `inDirectCall typeFor ${that.typeTo}, that.fbid ${that.fbid}, inDirectCall.size ${that
+        .inDirectCall.size}`
+    );
 
-    Fb.root.ref('inDirectCall/'+this.typeFor + "/"+this.fbid).once('value').then( function (snapshot ) {
-
-      snapshot.forEach( ( data ) => {
-          console.log( `inDirect ${data.key}, ${data.val().inDirectCall}`);
-          that.inDirectCall.set( data.key, data.val() );
-      })
-      //this.inDirectCall.set( )
-      //console.log( 'inDirecal', snapshot.val() );
-      // this.inDirectCall.set( snapshot.val().fbid, snapshot.val() );
-    })
- }
+    Fb.root
+      .ref("inDirectCall/" + this.typeTo + "/" + this.fbid)
+      .once("value")
+      .then(function(snapshot) {
+        snapshot.forEach(data => {
+          console.log(
+            `inDirectCall ${data.key}, subID ${data.val()
+              .subjectID}, objID ${data.val().objectID}`
+          );
+          const status = new Status(
+            data.val().subjectID,
+            data.val().objectID,
+            data.val().isShowPhone
+          );
+          that.inDirectCall.set(data.key, status);
+          console.log(
+            `inDirectCall typeFor ${that.typeFor}, that.fbid ${that.fbid}, inDirectCall.size ${that
+              .inDirectCall.size}`
+          );
+        });
+        //this.inDirectCall.set( )
+        //console.log( 'inDirecal', snapshot.val() );
+        // this.inDirectCall.set( snapshot.val().fbid, snapshot.val() );
+      });
+    //    console.log( `inDirectCall typeFor ${this.typeFor}, key ${this.fbid}, inDirectCall.size ${that.inDirectCall.size}` );
+  }
 
   /**
    * @compareTo is name of variable e.g. name, price, location

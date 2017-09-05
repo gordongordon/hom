@@ -70,7 +70,7 @@ class ControlLeaseView extends React.Component {
 
         // console.log( 'SingleLeaseProperty property', this.props.property )
 
-        console.log( 'SingleLeaseProperty property', property )
+        console.log( `ControlLeaseView fbid ${property.fbid}, matched.size ${property.matchedPropertys.size}`);
         var selectedIndex = this.props.selectedIndex;
         const onChange = this.props.onChange;
 
@@ -88,7 +88,7 @@ class ControlLeaseView extends React.Component {
       <SegmentedControl values={['超新鮮 即時回覆', '全部配對']}  selectedIndex={this.props.selectedIndex}  onChange={onChange} />
 <List>
 
-      <List.Item arrow="empty" extra={property.nameOfBuildingLabel}>租物業</List.Item>
+      <List.Item arrow="empty" extra={property.nameOfBuildingLabel}>Leaser物業</List.Item>
 
 
       <List.Item extra={

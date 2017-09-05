@@ -46,7 +46,7 @@ class ControlBuyView extends React.Component {
 
         // console.log( 'SingleLeaseProperty property', this.props.property )
 
-        console.log( 'SingleLeaseProperty property', property )
+        console.log( `ControlBuyView fbid ${property.fbid}, matched.size ${property.matchedPropertys.size}`);
         var selectedIndex = this.props.selectedIndex;
         const onChange = this.props.onChange;
 
@@ -64,7 +64,7 @@ class ControlBuyView extends React.Component {
 <List>
 
 
-      <List.Item arrow="empty" extra={property.nameOfBuildingLabel}>租物業</List.Item>
+      <List.Item arrow="empty" extra={property.nameOfBuildingLabel}>買物業</List.Item>
 
 
       <List.Item extra={

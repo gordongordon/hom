@@ -12,6 +12,7 @@ import {
   WhiteSpace,
   Button,
   SegmentedControl,
+  Switch,
   ActionSheet
 } from "antd-mobile";
 //import { createForm } from "rc-form";
@@ -22,6 +23,7 @@ import { propertys } from "userModelView";
 import MobxStore from "mobxStore";
 import views from "views";
 import {Modal} from 'antd';
+import {observer } from 'mobx-react'
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -48,6 +50,7 @@ if (isIPhone) {
 //    'MOSSSC' : '新港城'
 // }
 
+@observer
 export default class SingleSaleAgentPropertyForRespondView extends React.Component {
   constructor(props) {
     super(props);
@@ -72,11 +75,14 @@ export default class SingleSaleAgentPropertyForRespondView extends React.Compone
    */
   showActionSheet = () => {
     const p = this.props.property;
-    const showPhone = this.props.showPhone;
-    let phone = 911; 
-    if ( showPhone ) {
+    //let showPhone = this.props.showPhone;
+    let showPhone = false;
+    let phone = 888;
+
+    if ( this.props.status ) {
+      showPhone = this.props.status.isShowPhone;
       phone = p.contactPhone;
-    }
+    } 
 
     const BUTTONS = ['容許對方打俾你', 'Call' + phone, '取消'];
 
@@ -93,7 +99,7 @@ export default class SingleSaleAgentPropertyForRespondView extends React.Compone
     (buttonIndex) => {
       this.setState({ clicked: BUTTONS[buttonIndex] });
       if ( buttonIndex === 0 ) {
-        p.setSaleInDirectCall( p.fbid, MobxStore.router.params.keyID );         
+        this.props.filter.setSaleInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone );         
       }
       if ( buttonIndex === 1 ) {
         window.location.href="tel://"+ p.contactPhone;
@@ -111,7 +117,7 @@ export default class SingleSaleAgentPropertyForRespondView extends React.Compone
   }
 
   render() {
-    const { property } = this.props;
+    const { property , filter } = this.props;
     const that = this;
     //        const { getFieldProps } = this.props.form;
 
@@ -221,11 +227,18 @@ export default class SingleSaleAgentPropertyForRespondView extends React.Compone
 
             </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
             </Item>
+            <List.Item
+        extra={<Switch
+              checked={this.props.status === undefined ? false : this.props.status.isShowPhone}
+        />}
+        >Tel: {this.props.status === undefined ? "" : (this.props.status.isShowPhone? property.contactPhone : "") }
+          </List.Item>
         <WhiteSpace size="sm" />
       </div>
     );
   }
 }
+//>Tel: {property.displayPhoneNumber(filter.fbid)} </List.Item>
 
 // {/* <div>
 // <SwipeAction

@@ -70,7 +70,8 @@ class ControlRentView extends React.Component {
 
         // console.log( 'SingleLeaseProperty property', this.props.property )
 
-        console.log( 'SingleLeaseProperty property', property )
+        console.log( `ControlRentView fbid ${property.fbid}, matched.size ${property.matchedPropertys.size}`);
+        
         var selectedIndex = this.props.selectedIndex;
         const onChange = this.props.onChange;
 

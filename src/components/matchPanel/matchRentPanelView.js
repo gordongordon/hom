@@ -51,7 +51,7 @@ class MatchRentPanelView extends React.Component {
   renderList = ( property ) => {
     //debugger
     if ( this.state.selectedSegmentIndex === 0 ) {
-      return <ListOfMatchAgentLeasePropertys propertys={property.responsedPropertys} timeEnter={this.props.timeEnter}/>
+      return <ListOfMatchAgentLeasePropertys  filter={property} propertys={property.responsedPropertys} timeEnter={this.props.timeEnter}/>
     } else {
 
      // Gordon
@@ -59,7 +59,7 @@ class MatchRentPanelView extends React.Component {
     //   property.buildMatchProperty( property.fbid, property.typeFor, property.nameOfBuilding);
     // }
 
-      return  <ListOfMatchOldLeasePropertys inDirectCall={property.inDirectCall}  propertys={property.matchedPropertys}/>
+      return  <ListOfMatchOldLeasePropertys filter={property} inDirectCall={property.inDirectCall}  propertys={property.matchedPropertys}/>
     }
   }
 
