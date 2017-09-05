@@ -1,5 +1,6 @@
-import React from 'react'
+import React from 'react';
 //import { List , Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl} from 'antd-mobile';
+
 //import { createForm } from 'rc-form';
 import moment from 'moment';
 //import 'moment/locale/zh-cn';
@@ -7,10 +8,12 @@ import moment from 'moment';
 import SingleBuyAgentPropertyForRespondView from '../singlePropertyView/singleBuyAgentPropertyForRespondView'
 import SingleBuyAgentFilterView from '../singlePropertyView/SingleBuyAgentFilterView'
 import SingleBuyCaseView from '../singlePropertyView/singleBuyCaseView'
+import {SingleBuyAgentRespondViewWrapper} from '../singlePropertyView/singleBuyAgentRespondView'
 
 import { observer } from 'mobx-react';
 import {Accordion, List
 } from "antd-mobile";
+
 //const Item = List.Item;
 //const Brief = Item.Brief;
 
@@ -53,12 +56,15 @@ export class ListOfMatchAgentBuyPropertys extends React.Component {
         element.push(
           <SingleBuyAgentFilterView property={p} key={keyID} filterID={this.props.filterID}/>
         )
+      } else if ( segment === "response" ) {
+        element.push(
+          <SingleBuyAgentRespondViewWrapper  filter={this.props.filter} property={p} key={keyID} filterID={this.props.filterID}/>
+       ) 
       } else {
         element.push(
           <SingleBuyAgentPropertyForRespondView filter={this.props.filter} property={p} key={keyID} filterID={this.props.filterID}/>
         )
-
-      }
+      } 
 
     })
 

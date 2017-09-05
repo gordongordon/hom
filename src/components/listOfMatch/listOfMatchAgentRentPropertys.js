@@ -8,6 +8,8 @@ import SingleRentAgentPropertyForRespondView from '../singlePropertyView/SingleR
 import SingleRentAgentFilterView from '../singlePropertyView/SingleRentAgentFilterView'
 import SingleRentCaseView from '../singlePropertyView/SingleRentCaseView'
 import { observer } from 'mobx-react';
+import {SingleRentAgentRespondViewWrapper} from '../singlePropertyView/singleRentAgentRespondView'
+
 //const Item = List.Item;
 //const Brief = Item.Brief;
 
@@ -50,11 +52,14 @@ export class ListOfMatchAgentRentPropertys extends React.Component {
         element.push(
           <SingleRentAgentFilterView property={p} key={keyID} filterID={this.props.filterID}/>
         )
+      } else if ( segment === "response" ) {
+        element.push(
+          <SingleRentAgentRespondViewWrapper  filter={this.props.filter} property={p} key={keyID} filterID={this.props.filterID}/>
+       ) 
       } else {
         element.push(
           <SingleRentAgentPropertyForRespondView filter={this.props.filter}  property={p} key={keyID} filterID={this.props.filterID}/>
         )
-
       }
 
     })

@@ -12,25 +12,19 @@ import {
   WhiteSpace,
   Button,
   SegmentedControl,
-  Accordion,
   ActionSheet,
   Switch
 } from "antd-mobile";
-import { createForm } from "rc-form";
+ import { createForm } from "rc-form";
 //import moment from 'moment';
 //import 'moment/locale/zh-cn';
 import { propertys } from "userModelView";
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
-//import MobxStore from "mobxStore";
-import views from "views";
-import {inject, observer} from "mobx-react";
 import MobxStore from "mobxStore";
-
+import views from "views";
 
 const Item = List.Item;
 const Brief = Item.Brief;
-
-
 // fix touch to scroll background page on iOS
 // https://github.com/ant-design/ant-design-mobile/issues/307
 // https://github.com/ant-design/ant-design-mobile/issues/163
@@ -53,17 +47,13 @@ if (isIPhone) {
 //    'MOSSSC' : '新港城'
 // }
 
-@inject("store") @observer
-class SingleBuyAgentPropertyForRespondView extends React.Component {
+class SingleRentAgentRespondView extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       disabled: false,
-      selectedSegmentIndex: 0,
-      clicked: 'none',
-      clicked1: 'none',
-      clicked2: 'none'
+      selectedSegmentIndex: 0
     };
   }
 
@@ -89,14 +79,13 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
       showPhone = false;
     }
 
-
     const BUTTONS = ['容許對方打俾你', 'Call' + p.contactPhone, '取消'];
     ActionSheet.showActionSheetWithOptions({
       options: BUTTONS,
       cancelButtonIndex: BUTTONS.length - 1,
       destructiveButtonIndex: BUTTONS.length - 2,
       // title: '标题',
-      message: 'SingleBuyAgentPropertyForRespondView',
+      message: 'rentAgentRespondView',
       maskClosable: true,
       'data-seed': 'logId',
       wrapProps,
@@ -104,8 +93,8 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
     (buttonIndex) => {
       this.setState({ clicked: BUTTONS[buttonIndex] });
       if ( buttonIndex === 0 ) {
-//        p.setBuyInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone  );    
-        this.props.filter.setBuyInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone );         
+//         p.setRentInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone  );         
+        this.props.filter.setRentInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone );         
         
       }
       if ( buttonIndex === 1 ) {
@@ -113,7 +102,7 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
       }
       // if ( buttonIndex === 2 ) {
       //    this.props.store.app.passByRef = p;
-      //    this.props.store.router.goTo(views.saleAgentForm, {
+      //    this.props.store.router.goTo(views.rentAgentForm, {
       //      keyID: p.fbid,
       //      typeTo: p.typeTo,
       //      filterID: this.props.filterID
@@ -124,46 +113,48 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
   }
 
   render() {
-    const { property, filter } = this.props;
+    const { property , filter} = this.props;
     const that = this;
+    const { getFieldProps } = this.props.form;    
     //        const { getFieldProps } = this.props.form;
 
-    //debugger
-    // onClick={() =>
-    //     MobxStore.router.goTo(views.saleAgentForm,
-    //          {
-    //       keyID: property.fbid,
-    //       typeTo: property.typeTo
-    //     }
-    // )}
-
     // repair goTo by passing property
-    //MobxStore.app.lastProperty = property;
+    //MobxStore.app.lastProperty = property
     
-
-    
-    // this.props.store.app.passByRef = property
-    
-    // this.props.store.router.goTo(views.saleAgentForm, {
-    //   keyID: property.fbid,
-    //   typeTo: property.typeTo,
-    //   filterID: this.props.filterID
-
-    // })}
+    // onClick={() => {
+    //   MobxStore.app.passByRef = property
+      
+    //   MobxStore.router.goTo(views.leaseAgentForm, {
+    //     keyID: property.fbid,
+    //     typeTo: property.typeTo,
+    //     filterID: this.props.filterID
+    //   })} }
 
     return (
       <div>
         <Item
         extra={<Badge text="Call" />}
         arrow="horizontal"
-          onClick={this.showActionSheet}
-          thumb="http://hair.losstreatment.com/icons/building-up.svg"
+        onClick={this.showActionSheet}
+
+          thumb="http://hair.losstreatment.com/icons/rent-up.svg"
           multipleLine
         >
         {property.addressLocationLabel}/{property.nameOfBuildingLabel}/{property.contactNameLabel}
           <Brief>
-            {property.partitionLabel}{property.buyBudgetMaxLabel}
+            {property.incomeLabel}
+            {property.rentBudgetMaxLabel}
             <br />
+            <br />
+            <Badge
+            text={property.numOfPeopleLivingLabel}
+            style={{
+              marginLeft: 12,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByFresh,
+              borderRadius: 2
+            }}      
+            />    
             <Badge
             text={property.isPetAllowedLabel}
             style={{
@@ -172,126 +163,108 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
               backgroundColor: property.colorByFresh,
               borderRadius: 2
             }}      
-            />            
-            <Badge
-            text={property.isViewAbleLabel}
-            style={{
-              marginLeft: 6,
-              padding: "0 0.06rem",
-              backgroundColor: property.colorByFresh,
-              borderRadius: 5
-            }}
-          />
-            
+            />    
+
             <Badge
             text={property.levelLabel}
             style={{
-              marginLeft: 6,
+              marginLeft: 12,
               padding: "0 0.06rem",
-              backgroundColor: property.colorByRoleName,
-              borderRadius: 5
-            }}
-          />            
+              backgroundColor: property.colorByFresh,
+              borderRadius: 2
+            }}      
+            />               
+
             <Badge
+            text={property.isViewAbleLabel}
+            style={{
+              marginLeft: 12,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByFresh,
+              borderRadius: 2
+            }}      
+            />               
+            <Badge
+            text={property.hasHomeHardwareLabel}
+            style={{
+              marginLeft: 12,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByFresh,
+              borderRadius: 2
+            }}      
+            />               
+
+            <Badge
+            text={property.leasingPeriodLabel}
+            style={{
+              marginLeft: 12,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByFresh,
+              borderRadius: 2
+            }}      
+            />               
+            <br />
+            <Badge
+            text={property.jobNatureLabel}
+            style={{
+              marginLeft: 12,
+              padding: "0 0.06rem",
+              backgroundColor: property.colorByFresh,
+              borderRadius: 2
+            }}
+          />
+          <Badge
               text={property.roleName}
               style={{
-                marginLeft: 6,
+                marginLeft: 12,
                 padding: "0 0.06rem",
                 backgroundColor: property.colorByRoleName,
-                borderRadius: 5
-              }}
-            />
-            <Badge
-              text={property.howFresh}
-              style={{
-                marginLeft: 6,
-                padding: "0 0.06rem",
-                backgroundColor: property.colorByFresh,
-                borderRadius: 5
+                borderRadius: 2
               }}
             />
             <Badge
               text={property.dayListed}
               style={{
-                marginLeft: 6,
+                marginLeft: 12,
                 padding: "0 0.06rem",
                 backgroundColor: "#fff",
-                borderRadius: 5,
+                borderRadius: 2,
                 color: "#f19736",
-                border: "2px solid #f19736"
+                border: "1px solid #f19736"
               }}
             />
-            <br />
             <Badge
-            text={property.netSizeLabel}
+            text={property.howFresh}
             style={{
-              marginLeft: 6,
+              marginLeft: 12,
               padding: "0 0.06rem",
               backgroundColor: property.colorByFresh,
-              borderRadius: 5
+              borderRadius: 2
             }}
           />
-          <Badge
-          text={property.isSaleWithLeaseLabel}
-          style={{
-            marginLeft: 6,
-            padding: "0 0.06rem",
-            backgroundColor: property.colorByFresh,
-            borderRadius: 5
-          }}
-        />
-        <br />
-        <Badge
-        text={property.earlyTimeToViewLabel}
-        style={{
-          marginLeft: 6,
-          padding: "0 0.06rem",
-          backgroundColor: property.colorByFresh,
-          borderRadius: 5
-        }}
-        />
-      
-        <Badge
-        text={property.dueDayLabel}
-        style={{
-          marginLeft: 6,
-          padding: "0 0.06rem",
-          backgroundColor: property.colorByFresh,
-          borderRadius: 5
-        }}
-      />
-
-
-            </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
+          </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
             </Item>
-
-              <List.Item
-        extra={<Switch
-          {...getFieldProps('isShowPhone', {
-            initialValue: true,
-            valuePropName: 'checked',
-          })}
-          onClick={(checked) => { console.log(checked); }}
-        />}
-
-        >Tel: {property.contactPhone}
-        </List.Item>
+            <List.Item
+            extra={<Switch
+              {...getFieldProps('isShowPhone', {
+                initialValue: true,
+                valuePropName: 'checked',
+              })}
+              onClick={(checked) => { console.log(checked); }}
+            />}
+    
+            >Tel: {property.contactPhone}
+            </List.Item>
+    
             
-            <WhiteSpace size="sm" />
-            </div>
-                  
+        <WhiteSpace size="sm" />
+      </div>
     );
   }
 }
 
-export default SingleBuyAgentPropertyForRespondView;
+export const SingleRentAgentRespondViewWrapper = createForm()(SingleRentAgentRespondView);
 
-            // <List.Item
-            // extra={<Switch
-            //       checked={this.props.status === undefined ? false : this.props.status.isShowPhone}
-            // />}
-            // >Tel: {this.props.status === undefined ? "" : (this.props.status.isShowPhone? property.contactPhone : "") }
-            //   </List.Item>
 
 // {/* <div>
 // <SwipeAction

@@ -27,6 +27,7 @@ import {inject, observer} from "mobx-react";
 import MobxStore from "mobxStore";
 
 
+// const { getFieldProps } = props.form;
 const Item = List.Item;
 const Brief = Item.Brief;
 
@@ -53,8 +54,9 @@ if (isIPhone) {
 //    'MOSSSC' : '新港城'
 // }
 
-@inject("store") @observer
-class SingleBuyAgentPropertyForRespondView extends React.Component {
+//@inject("store")
+//@observer
+class SingleBuyAgentRespondView extends React.Component {
   constructor(props) {
     super(props);
 
@@ -89,14 +91,13 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
       showPhone = false;
     }
 
-
     const BUTTONS = ['容許對方打俾你', 'Call' + p.contactPhone, '取消'];
     ActionSheet.showActionSheetWithOptions({
       options: BUTTONS,
       cancelButtonIndex: BUTTONS.length - 1,
       destructiveButtonIndex: BUTTONS.length - 2,
       // title: '标题',
-      message: 'SingleBuyAgentPropertyForRespondView',
+      message: 'SingleBuyAgentRespondView',
       maskClosable: true,
       'data-seed': 'logId',
       wrapProps,
@@ -126,6 +127,7 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
   render() {
     const { property, filter } = this.props;
     const that = this;
+    const { getFieldProps } = this.props.form;    
     //        const { getFieldProps } = this.props.form;
 
     //debugger
@@ -260,23 +262,14 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
           borderRadius: 5
         }}
       />
-
-
             </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
             </Item>
-
-              <List.Item
-        extra={<Switch
-          {...getFieldProps('isShowPhone', {
-            initialValue: true,
-            valuePropName: 'checked',
-          })}
-          onClick={(checked) => { console.log(checked); }}
-        />}
-
-        >Tel: {property.contactPhone}
-        </List.Item>
-            
+            <List.Item
+            extra={<Switch
+                  checked={this.props.status === undefined ? false : this.props.status.isShowPhone}
+            />}
+            >Tel: {property.contactPhone}
+              </List.Item>
             <WhiteSpace size="sm" />
             </div>
                   
@@ -284,14 +277,9 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
   }
 }
 
-export default SingleBuyAgentPropertyForRespondView;
+export const SingleBuyAgentRespondViewWrapper = createForm()(SingleBuyAgentRespondView);
 
-            // <List.Item
-            // extra={<Switch
-            //       checked={this.props.status === undefined ? false : this.props.status.isShowPhone}
-            // />}
-            // >Tel: {this.props.status === undefined ? "" : (this.props.status.isShowPhone? property.contactPhone : "") }
-            //   </List.Item>
+// export default SingleBuyAgentRespondView;
 
 // {/* <div>
 // <SwipeAction

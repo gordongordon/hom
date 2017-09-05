@@ -8,6 +8,9 @@ import SingleLeaseAgentPropertyForRespondView from '../singlePropertyView/single
 import SingleLeaseAgentFilterView from '../singlePropertyView/singleLeaseAgentFilterView'
 import SingleLeaseCaseView from '../singlePropertyView/singleLeaseCaseView'
 import { observer } from 'mobx-react';
+import {SingleLeaseAgentRespondViewWrapper} from '../singlePropertyView/singleLeaseAgentRespondView'
+
+
 //const Item = List.Item;
 //const Brief = Item.Brief;
 
@@ -38,21 +41,25 @@ export class ListOfMatchAgentLeasePropertys extends React.Component {
 
      console.log( 'list.size', list.size )
      list.forEach( (p, keyID) => {
+      
       const segment = this.props.segment;
 
-      if ( segment === "case" ) {
-           element.push(
+      if ( segment === "case" ) { 
+        element.push(
            <SingleLeaseCaseView property={p} key={keyID} filterID={this.props.filterID}/>
            )
       } else if ( segment === "filter") {
         element.push(
           <SingleLeaseAgentFilterView property={p} key={keyID} filterID={this.props.filterID}/>
         )
-      } else {
+      } else if ( segment === "response" ) {
+        element.push(
+          <SingleLeaseAgentRespondViewWrapper  filter={this.props.filter} property={p} key={keyID} filterID={this.props.filterID}/>
+       ) 
+      } else { 
         element.push(
           <SingleLeaseAgentPropertyForRespondView filter={this.props.filter} property={p} key={keyID} filterID={this.props.filterID}/>
         )
-
       }
 
     })

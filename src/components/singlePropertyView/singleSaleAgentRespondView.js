@@ -12,24 +12,21 @@ import {
   WhiteSpace,
   Button,
   SegmentedControl,
-  Accordion,
-  ActionSheet,
-  Switch
+  Switch,
+  ActionSheet
 } from "antd-mobile";
 import { createForm } from "rc-form";
 //import moment from 'moment';
 //import 'moment/locale/zh-cn';
 import { propertys } from "userModelView";
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
-//import MobxStore from "mobxStore";
-import views from "views";
-import {inject, observer} from "mobx-react";
 import MobxStore from "mobxStore";
-
+import views from "views";
+import {Modal} from 'antd';
+import {observer } from 'mobx-react'
 
 const Item = List.Item;
 const Brief = Item.Brief;
-
 
 // fix touch to scroll background page on iOS
 // https://github.com/ant-design/ant-design-mobile/issues/307
@@ -53,17 +50,14 @@ if (isIPhone) {
 //    'MOSSSC' : '新港城'
 // }
 
-@inject("store") @observer
-class SingleBuyAgentPropertyForRespondView extends React.Component {
+//@observer
+class SingleSaleAgentRespondView extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       disabled: false,
-      selectedSegmentIndex: 0,
-      clicked: 'none',
-      clicked1: 'none',
-      clicked2: 'none'
+      selectedSegmentIndex: 0
     };
   }
 
@@ -81,22 +75,23 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
    */
   showActionSheet = () => {
     const p = this.props.property;
-    let showPhone = this.props.showPhone;
-    let phone = 911; 
-    if ( showPhone ) {
+    //let showPhone = this.props.showPhone;
+    let showPhone = false;
+    let phone = 888;
+
+    if ( this.props.status ) {
+      showPhone = this.props.status.isShowPhone;
       phone = p.contactPhone;
-    }  else {
-      showPhone = false;
-    }
+    } 
 
+    const BUTTONS = ['容許對方打俾你', 'Call' + phone, '取消'];
 
-    const BUTTONS = ['容許對方打俾你', 'Call' + p.contactPhone, '取消'];
     ActionSheet.showActionSheetWithOptions({
       options: BUTTONS,
       cancelButtonIndex: BUTTONS.length - 1,
       destructiveButtonIndex: BUTTONS.length - 2,
       // title: '标题',
-      message: 'SingleBuyAgentPropertyForRespondView',
+      message: 'SaleAgentRespondView',
       maskClosable: true,
       'data-seed': 'logId',
       wrapProps,
@@ -104,16 +99,16 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
     (buttonIndex) => {
       this.setState({ clicked: BUTTONS[buttonIndex] });
       if ( buttonIndex === 0 ) {
-//        p.setBuyInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone  );    
-        this.props.filter.setBuyInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone );         
-        
+        this.props.filter.setSaleInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone );    
+        // this.props.filter.buildInDirectCall();
+        // debugger
       }
       if ( buttonIndex === 1 ) {
         window.location.href="tel://"+ p.contactPhone;
       }
       // if ( buttonIndex === 2 ) {
       //    this.props.store.app.passByRef = p;
-      //    this.props.store.router.goTo(views.saleAgentForm, {
+      //    this.props.store.router.goTo(views.buyAgentForm, {
       //      keyID: p.fbid,
       //      typeTo: p.typeTo,
       //      filterID: this.props.filterID
@@ -124,45 +119,29 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
   }
 
   render() {
-    const { property, filter } = this.props;
+    const { property , filter } = this.props;
     const that = this;
+    const { getFieldProps } = this.props.form;    
     //        const { getFieldProps } = this.props.form;
 
-    //debugger
-    // onClick={() =>
-    //     MobxStore.router.goTo(views.saleAgentForm,
-    //          {
-    //       keyID: property.fbid,
-    //       typeTo: property.typeTo
-    //     }
-    // )}
+    //onClick={() => MobxStore.router.goTo(views.leaseAgentForm, { keyID : property.fbid, typeTo : property.typeTo})}
 
     // repair goTo by passing property
     //MobxStore.app.lastProperty = property;
     
-
-    
-    // this.props.store.app.passByRef = property
-    
-    // this.props.store.router.goTo(views.saleAgentForm, {
-    //   keyID: property.fbid,
-    //   typeTo: property.typeTo,
-    //   filterID: this.props.filterID
-
-    // })}
-
     return (
       <div>
         <Item
         extra={<Badge text="Call" />}
         arrow="horizontal"
-          onClick={this.showActionSheet}
-          thumb="http://hair.losstreatment.com/icons/building-up.svg"
+          onClick={this.showActionSheet }
+          thumb="http://hair.losstreatment.com/icons/rent-up.svg"
           multipleLine
         >
-        {property.addressLocationLabel}/{property.nameOfBuildingLabel}/{property.contactNameLabel}
+       {property.addressLocationLabel}/{property.nameOfBuildingLabel}/{property.contactNameLabel}
           <Brief>
-            {property.partitionLabel}{property.buyBudgetMaxLabel}
+            {property.partitionLabel}
+            {property.salePriceLabel}
             <br />
             <Badge
             text={property.isPetAllowedLabel}
@@ -210,17 +189,6 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
                 borderRadius: 5
               }}
             />
-            <Badge
-              text={property.dayListed}
-              style={{
-                marginLeft: 6,
-                padding: "0 0.06rem",
-                backgroundColor: "#fff",
-                borderRadius: 5,
-                color: "#f19736",
-                border: "2px solid #f19736"
-              }}
-            />
             <br />
             <Badge
             text={property.netSizeLabel}
@@ -242,16 +210,6 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
         />
         <br />
         <Badge
-        text={property.earlyTimeToViewLabel}
-        style={{
-          marginLeft: 6,
-          padding: "0 0.06rem",
-          backgroundColor: property.colorByFresh,
-          borderRadius: 5
-        }}
-        />
-      
-        <Badge
         text={property.dueDayLabel}
         style={{
           marginLeft: 6,
@@ -260,38 +218,35 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
           borderRadius: 5
         }}
       />
-
-
+      <Badge
+      text={property.earlyTimeToViewLabel}
+      style={{
+        marginLeft: 6,
+        padding: "0 0.06rem",
+        backgroundColor: property.colorByFresh,
+        borderRadius: 5
+      }}
+      />
             </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
             </Item>
-
-              <List.Item
-        extra={<Switch
+            <Item
+          extra={<Switch
           {...getFieldProps('isShowPhone', {
             initialValue: true,
             valuePropName: 'checked',
           })}
           onClick={(checked) => { console.log(checked); }}
         />}
-
         >Tel: {property.contactPhone}
-        </List.Item>
-            
-            <WhiteSpace size="sm" />
-            </div>
-                  
+        </Item>
+        <WhiteSpace size="sm" />
+        </div>
     );
   }
 }
+export const SingleSaleAgentRespondViewWrapper = createForm()(SingleSaleAgentRespondView);
 
-export default SingleBuyAgentPropertyForRespondView;
-
-            // <List.Item
-            // extra={<Switch
-            //       checked={this.props.status === undefined ? false : this.props.status.isShowPhone}
-            // />}
-            // >Tel: {this.props.status === undefined ? "" : (this.props.status.isShowPhone? property.contactPhone : "") }
-            //   </List.Item>
+//>Tel: {property.displayPhoneNumber(filter.fbid)} </List.Item>
 
 // {/* <div>
 // <SwipeAction

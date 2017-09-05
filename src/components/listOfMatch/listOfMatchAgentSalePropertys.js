@@ -7,6 +7,8 @@ import React from 'react'
 import SingleSaleAgentPropertyForRespondView from '../singlePropertyView/singleSaleAgentPropertyForRespondView'
 import SingleSaleAgentFilterView from '../singlePropertyView/singleSaleAgentFilterView'
 import SingleSaleCaseView from '../singlePropertyView/singleSaleCaseView'
+import {SingleSaleAgentRespondViewWrapper} from '../singlePropertyView/singleSaleAgentRespondView'
+
 
 import { observer } from 'mobx-react';
 //const Item = List.Item;
@@ -50,11 +52,14 @@ export class ListOfMatchAgentSalePropertys extends React.Component {
         element.push(
           <SingleSaleAgentFilterView property={p} key={keyID} filterID={this.props.filterID}/>
         )
+      } else if ( segment === "response" ) {
+        element.push(
+          <SingleSaleAgentRespondViewWrapper  filter={this.props.filter} property={p} key={keyID} filterID={this.props.filterID}/>
+       ) 
       } else {
         element.push(
           <SingleSaleAgentPropertyForRespondView filter={this.props.filter} property={p} key={keyID} filterID={this.props.filterID}/>
         )
-
       }
 
     })

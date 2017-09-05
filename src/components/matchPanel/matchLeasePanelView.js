@@ -48,7 +48,7 @@ class MatchLeasePanelView extends React.Component {
 
   renderList = ( property ) => {
     if ( this.state.selectedSegmentIndex === 0 ) {
-      return <ListOfMatchAgentRentPropertys  filter={property} propertys={property.responsedPropertys} timeEnter={this.props.timeEnter}/>
+      return <ListOfMatchAgentRentPropertys segment="response" filter={property} propertys={property.responsedPropertys} timeEnter={this.props.timeEnter}/>
     } else {
         // testing calling this at running time.
         //property.buildMatchProperty( property.fbid, property.typeFor, property.nameOfBuilding);
