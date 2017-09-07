@@ -83,7 +83,6 @@ class MatchAgentPanelView extends React.Component {
   constructor(props) {
     super(props);
 
-
     this.state = {
       disabled: false,
       selectedSegmentIndex: MobxStore.router.params.selectedSegmentIndex,
@@ -159,7 +158,7 @@ class MatchAgentPanelView extends React.Component {
    */
   renderList = filter => {
     const selectedTab = this.state.selectedTab;
-
+    //debugger
     // debugger
     // Fb.app.agentsFilterRef.child(this.state.id).update({ typeFor: typeForString[index] });
     if (this.state.selectedSegmentIndex === 0 ) {

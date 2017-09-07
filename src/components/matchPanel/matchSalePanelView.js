@@ -9,7 +9,7 @@ import {propertys} from 'userModelView'
 import {ControlSaleViewWrapper} from '../control/controlSaleView'
 
 //import {ListOfMatchPropertys} from 'listOfMatch/listOfMatchPropertys'
-import {ListOfMatchBuyPropertys} from '../listOfMatch/listOfMatchBuyPropertys'
+//import {ListOfMatchBuyPropertys} from '../listOfMatch/listOfMatchBuyPropertys'
 import {ListOfMatchAgentBuyPropertys} from '../listOfMatch/listOfMatchAgentBuyPropertys'
 import {ListOfMatchOldBuyPropertys} from '../listOfMatch/listOfMatchOldBuyPropertys'
 import { observer } from 'mobx-react';

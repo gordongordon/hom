@@ -1,12 +1,12 @@
-import React from 'react'
+import React from "react";
 //import { List , Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl} from 'antd-mobile';
 //import { createForm } from 'rc-form';
 //import moment from 'moment';
 // import 'moment/locale/zh-cn';
 //import {propertys} from 'userModelView'
 // import SingleBuyPropertyForMatchView from '../singlePropertyView/singleBuyPropertyForMatchView'
-import SingleBuyAgentPropertyForRespondView from '../singlePropertyView/singleBuyAgentPropertyForRespondView'
-import { inject, observer } from 'mobx-react';
+import { SingleBuyUserMatchViewWrapper } from "../singlePropertyView/singleBuyUserMatchView";
+import { inject, observer } from "mobx-react";
 //const Item = List.Item;
 //const Brief = Item.Brief;
 
@@ -16,52 +16,49 @@ import { inject, observer } from 'mobx-react';
 //   { value: 'MOSSSC', label: '新港城' },
 // ];
 
-@inject("store") @observer
+@inject("store")
+@observer
 export class ListOfMatchOldBuyPropertys extends React.Component {
-
   constructor(props) {
-    super(props)
+    super(props);
   }
 
-  display = ( propertys ) => {
-     const list = propertys;
-     // Catched empty list, don't do anything!
-     if ( list.size === 0 )
-     {
-        return null;
-     }
+  display = propertys => {
+    const list = propertys;
+    // Catched empty list, don't do anything!
+    if (list.size === 0) {
+      return null;
+    }
 
-     // Try to show most uptoday item only
-     var element = [];
+    // Try to show most uptoday item only
+    var element = [];
 
-    list.forEach( (property, keyID) => {
-
-      let status = this.props.inDirectCall.get(  keyID );
+    list.forEach((property, keyID) => {
+      let status = this.props.inDirectCall.get(keyID);
       // console.log( 'this.props.store.router.params.keyID',this.props.store.router.params.keyID )
       let showPhone = false;
-      if ( status ) {
-       console.log( 'call ', status.isShowPhone );
-       showPhone = status.isShowPhone;
-     }
+      if (status) {
+        console.log("call ", status.isShowPhone);
+        showPhone = status.isShowPhone;
+      }
 
-   element.push(
-           <SingleBuyAgentPropertyForRespondView filter={this.props.filter} status={status} property={property} key={keyID}/>
-         )
-       } );
+      element.push(
+        <SingleBuyUserMatchViewWrapper
+          filter={this.props.filter}
+          status={status}
+          property={property}
+          key={keyID}
+        />
+      );
+    });
 
-     return <div>{element.reverse()}</div>
-  }
-
+    return <div>{element.reverse()}</div>;
+  };
 
   render() {
-        const {propertys} = this.props;
-        const that = this;
+    const { propertys } = this.props;
+    const that = this;
 
-    return (
-      <div>
-      {
-         that.display( propertys )
-      }
-     </div>);
+    return <div>{that.display(propertys)}</div>;
   }
 }

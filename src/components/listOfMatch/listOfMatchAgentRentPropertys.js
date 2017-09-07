@@ -1,14 +1,14 @@
-import React from 'react'
+import React from "react";
 //import { List , Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl} from 'antd-mobile';
 //import { createForm } from 'rc-form';
 //import moment from 'moment';
 //import 'moment/locale/zh-cn';
 //import {propertys} from 'userModelView'
-import SingleRentAgentPropertyForRespondView from '../singlePropertyView/SingleRentAgentPropertyForRespondView'
-import SingleRentAgentFilterView from '../singlePropertyView/SingleRentAgentFilterView'
-import SingleRentCaseView from '../singlePropertyView/SingleRentCaseView'
-import { observer } from 'mobx-react';
-import {SingleRentAgentRespondViewWrapper} from '../singlePropertyView/singleRentAgentRespondView'
+import { SingleRentUserMatchViewWrapper } from "../singlePropertyView/SingleRentUserMatchView";
+import SingleRentAgentFilterView from "../singlePropertyView/SingleRentAgentFilterView";
+import SingleRentCaseView from "../singlePropertyView/SingleRentCaseView";
+import { observer } from "mobx-react";
+import { SingleRentAgentRespondViewWrapper } from "../singlePropertyView/singleRentAgentRespondView";
 
 //const Item = List.Item;
 //const Brief = Item.Brief;
@@ -21,62 +21,71 @@ import {SingleRentAgentRespondViewWrapper} from '../singlePropertyView/singleRen
 
 @observer
 export class ListOfMatchAgentRentPropertys extends React.Component {
-
   constructor(props) {
-    super(props)
+    super(props);
   }
 
-  display = ( propertys ) => {
-     const list = propertys;
+  display = propertys => {
+    const list = propertys;
 
-     // Catched empty list, don't do anything!
-     if ( list.size === 0 )
-     {
-        return null;
-     }
+    // Catched empty list, don't do anything!
+    if (list.size === 0) {
+      return null;
+    }
 
-     // Try to show most uptoday item only
-     var element = [];
+    // Try to show most uptoday item only
+    var element = [];
 
     //  const timeEnter = this.props.timeEnter;
     //  const c = moment( timeEnter );
 
-    list.forEach( (p, keyID) => {
+    list.forEach((p, keyID) => {
       const segment = this.props.segment;
 
-      if ( segment === "case" ) {
-           element.push(
-           <SingleRentCaseView property={p} key={keyID} filterID={this.props.filterID}/>
-           )
-      } else if ( segment === "filter") {
+      if (segment === "case") {
         element.push(
-          <SingleRentAgentFilterView property={p} key={keyID} filterID={this.props.filterID}/>
-        )
-      } else if ( segment === "response" ) {
+          <SingleRentCaseView
+            property={p}
+            key={keyID}
+            filterID={this.props.filterID}
+          />
+        );
+      } else if (segment === "filter") {
         element.push(
-          <SingleRentAgentRespondViewWrapper  filter={this.props.filter} property={p} key={keyID} filterID={this.props.filterID}/>
-       ) 
+          <SingleRentAgentFilterView
+            property={p}
+            key={keyID}
+            filterID={this.props.filterID}
+          />
+        );
+      } else if (segment === "response") {
+        element.push(
+          <SingleRentAgentRespondViewWrapper
+            filter={this.props.filter}
+            property={p}
+            key={keyID}
+            filterID={this.props.filterID}
+          />
+        );
       } else {
         element.push(
-          <SingleRentAgentPropertyForRespondView filter={this.props.filter}  property={p} key={keyID} filterID={this.props.filterID}/>
-        )
+          <SingleRentUserMatchViewWrapper
+            filter={this.props.filter}
+            property={p}
+            key={keyID}
+            filterID={this.props.filterID}
+          />
+        );
       }
+    });
 
-    })
-
-     return <div>{element.reverse()}</div>
-  }
-
+    return <div>{element.reverse()}</div>;
+  };
 
   render() {
-        const {propertys} = this.props;
-        const that = this;
+    const { propertys } = this.props;
+    const that = this;
 
-    return (
-      <div>
-      {
-         that.display( propertys )
-      }
-     </div>);
+  return (<div>{that.display(propertys)}</div>);
   }
 }

@@ -110,7 +110,17 @@ export default class SingleRentCaseView extends React.Component {
     return (
       <div>
         <Item
-        extra={<Badge text="edit" />}
+        extra={
+            <Badge
+              text={property.showPhoneStatus.status}
+              style={{
+                marginLeft: 12,
+                padding: "0 0.06rem",
+                backgroundColor: property.showPhoneStatus.color,
+                borderRadius: 2
+              }}
+            />
+          }
         arrow="horizontal"
         onClick={this.showActionSheet }
         thumb="http://hair.losstreatment.com/icons/rent-up.svg"

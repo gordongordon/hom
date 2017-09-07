@@ -9,7 +9,7 @@ import {agentModel} from 'agentModelView'
 //import {SingleRentPropertyForMatchViewWrapper} from 'singleRentPropertyForMatchView'
 import {ControlBuyViewWrapper} from '../control/controlBuyView'
 
-import {ListOfMatchSalePropertys} from '../listOfMatch/listOfMatchSalePropertys'
+//import {ListOfMatchSalePropertys} from '../listOfMatch/listOfMatchSalePropertys'
 import {ListOfMatchOldSalePropertys} from '../listOfMatch/listOfMatchOldSalePropertys'
 import {ListOfMatchAgentSalePropertys} from '../listOfMatch/listOfMatchAgentSalePropertys'
 import { observer } from 'mobx-react';

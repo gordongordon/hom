@@ -23,22 +23,22 @@ import { propertys } from "userModelView";
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 //import MobxStore from "mobxStore";
 import views from "views";
-import {inject, observer} from "mobx-react";
+import { inject, observer } from "mobx-react";
 import MobxStore from "mobxStore";
-
 
 const Item = List.Item;
 const Brief = Item.Brief;
 
-
 // fix touch to scroll background page on iOS
 // https://github.com/ant-design/ant-design-mobile/issues/307
 // https://github.com/ant-design/ant-design-mobile/issues/163
-const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
+const isIPhone = new RegExp("\\biPhone\\b|\\biPod\\b", "i").test(
+  window.navigator.userAgent
+);
 let wrapProps;
 if (isIPhone) {
   wrapProps = {
-    onTouchStart: e => e.preventDefault(),
+    onTouchStart: e => e.preventDefault()
   };
 }
 // const NameOfBuilding = [
@@ -53,17 +53,18 @@ if (isIPhone) {
 //    'MOSSSC' : '新港城'
 // }
 
-@inject("store") @observer
-class SingleBuyAgentPropertyForRespondView extends React.Component {
+@inject("store")
+@observer
+class SingleBuyUserMatchView extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       disabled: false,
       selectedSegmentIndex: 0,
-      clicked: 'none',
-      clicked1: 'none',
-      clicked2: 'none'
+      clicked: "none",
+      clicked1: "none",
+      clicked2: "none"
     };
   }
 
@@ -82,51 +83,54 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
   showActionSheet = () => {
     const p = this.props.property;
     let showPhone = this.props.showPhone;
-    let phone = 911; 
-    if ( showPhone ) {
+    let phone = 911;
+    if (showPhone) {
       phone = p.contactPhone;
-    }  else {
+    } else {
       showPhone = false;
     }
 
-
-    const BUTTONS = ['容許對方打俾你', 'Call' + p.contactPhone, '取消'];
-    ActionSheet.showActionSheetWithOptions({
-      options: BUTTONS,
-      cancelButtonIndex: BUTTONS.length - 1,
-      destructiveButtonIndex: BUTTONS.length - 2,
-      // title: '标题',
-      message: 'SingleBuyAgentPropertyForRespondView',
-      maskClosable: true,
-      'data-seed': 'logId',
-      wrapProps,
-    },
-    (buttonIndex) => {
-      this.setState({ clicked: BUTTONS[buttonIndex] });
-      if ( buttonIndex === 0 ) {
-//        p.setBuyInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone  );    
-        this.props.filter.setBuyInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone );         
-        
+    const BUTTONS = ["容許對方打俾你", "Call" + p.contactPhone, "取消"];
+    ActionSheet.showActionSheetWithOptions(
+      {
+        options: BUTTONS,
+        cancelButtonIndex: BUTTONS.length - 1,
+        destructiveButtonIndex: BUTTONS.length - 2,
+        // title: '标题',
+        message: "SingleBuyUserMatchView",
+        maskClosable: true,
+        "data-seed": "logId",
+        wrapProps
+      },
+      buttonIndex => {
+        this.setState({ clicked: BUTTONS[buttonIndex] });
+        if (buttonIndex === 0) {
+          //        p.setBuyInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone  );
+          this.props.filter.setBuyInDirectCall(
+            p.fbid,
+            MobxStore.router.params.keyID,
+            p.showPhoneStatus.isShowPhone
+          );
+        }
+        if (buttonIndex === 1) {
+          window.location.href = "tel://" + p.contactPhone;
+        }
+        // if ( buttonIndex === 2 ) {
+        //    this.props.store.app.passByRef = p;
+        //    this.props.store.router.goTo(views.saleAgentForm, {
+        //      keyID: p.fbid,
+        //      typeTo: p.typeTo,
+        //      filterID: this.props.filterID
+        //   })
+        // }
       }
-      if ( buttonIndex === 1 ) {
-        window.location.href="tel://"+ p.contactPhone;
-      }
-      // if ( buttonIndex === 2 ) {
-      //    this.props.store.app.passByRef = p;
-      //    this.props.store.router.goTo(views.saleAgentForm, {
-      //      keyID: p.fbid,
-      //      typeTo: p.typeTo,
-      //      filterID: this.props.filterID
-      //   })
-      // }
-      
-    });
-  }
+    );
+  };
 
   render() {
     const { property, filter } = this.props;
     const that = this;
-    //        const { getFieldProps } = this.props.form;
+    const { getFieldProps } = this.props.form;
 
     //debugger
     // onClick={() =>
@@ -139,11 +143,9 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
 
     // repair goTo by passing property
     //MobxStore.app.lastProperty = property;
-    
 
-    
     // this.props.store.app.passByRef = property
-    
+
     // this.props.store.router.goTo(views.saleAgentForm, {
     //   keyID: property.fbid,
     //   typeTo: property.typeTo,
@@ -154,44 +156,55 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
     return (
       <div>
         <Item
-        extra={<Badge text="Call" />}
-        arrow="horizontal"
+          extra={
+            <Badge
+              text={property.showPhoneStatus.status}
+              style={{
+                marginLeft: 12,
+                padding: "0 0.06rem",
+                backgroundColor: property.showPhoneStatus.color,
+                borderRadius: 2
+              }}
+            />
+          }
+          arrow="horizontal"
           onClick={this.showActionSheet}
           thumb="http://hair.losstreatment.com/icons/building-up.svg"
           multipleLine
         >
-        {property.addressLocationLabel}/{property.nameOfBuildingLabel}/{property.contactNameLabel}
+          {property.addressLocationLabel}/{property.nameOfBuildingLabel}/{property.contactNameLabel}
           <Brief>
-            {property.partitionLabel}{property.buyBudgetMaxLabel}
+            {property.partitionLabel}
+            {property.buyBudgetMaxLabel}
             <br />
             <Badge
-            text={property.isPetAllowedLabel}
-            style={{
-              marginLeft: 12,
-              padding: "0 0.06rem",
-              backgroundColor: property.colorByFresh,
-              borderRadius: 2
-            }}      
-            />            
+              text={property.isPetAllowedLabel}
+              style={{
+                marginLeft: 12,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 2
+              }}
+            />
             <Badge
-            text={property.isViewAbleLabel}
-            style={{
-              marginLeft: 6,
-              padding: "0 0.06rem",
-              backgroundColor: property.colorByFresh,
-              borderRadius: 5
-            }}
-          />
-            
+              text={property.isViewAbleLabel}
+              style={{
+                marginLeft: 6,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 5
+              }}
+            />
+
             <Badge
-            text={property.levelLabel}
-            style={{
-              marginLeft: 6,
-              padding: "0 0.06rem",
-              backgroundColor: property.colorByRoleName,
-              borderRadius: 5
-            }}
-          />            
+              text={property.levelLabel}
+              style={{
+                marginLeft: 6,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByRoleName,
+                borderRadius: 5
+              }}
+            />
             <Badge
               text={property.roleName}
               style={{
@@ -223,70 +236,87 @@ class SingleBuyAgentPropertyForRespondView extends React.Component {
             />
             <br />
             <Badge
-            text={property.netSizeLabel}
-            style={{
-              marginLeft: 6,
-              padding: "0 0.06rem",
-              backgroundColor: property.colorByFresh,
-              borderRadius: 5
-            }}
-          />
-          <Badge
-          text={property.isSaleWithLeaseLabel}
-          style={{
-            marginLeft: 6,
-            padding: "0 0.06rem",
-            backgroundColor: property.colorByFresh,
-            borderRadius: 5
-          }}
-        />
-        <br />
-        <Badge
-        text={property.earlyTimeToViewLabel}
-        style={{
-          marginLeft: 6,
-          padding: "0 0.06rem",
-          backgroundColor: property.colorByFresh,
-          borderRadius: 5
-        }}
-        />
-      
-        <Badge
-        text={property.dueDayLabel}
-        style={{
-          marginLeft: 6,
-          padding: "0 0.06rem",
-          backgroundColor: property.colorByFresh,
-          borderRadius: 5
-        }}
-      />
+              text={property.netSizeLabel}
+              style={{
+                marginLeft: 6,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 5
+              }}
+            />
+            <Badge
+              text={property.isSaleWithLeaseLabel}
+              style={{
+                marginLeft: 6,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 5
+              }}
+            />
+            <br />
+            <Badge
+              text={property.earlyTimeToViewLabel}
+              style={{
+                marginLeft: 6,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 5
+              }}
+            />
 
+            <Badge
+              text={property.dueDayLabel}
+              style={{
+                marginLeft: 6,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 5
+              }}
+            />
+          </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
+        </Item>
 
-            </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
-            </Item>
+        <List.Item
+          extra={
+            <Switch
+              {...getFieldProps("isShowPhone", {
+                initialValue: property.isShowPhone(filter.fbid),
+                valuePropName: "checked"
+              })}
+              onClick={checked => {
+                this.props.filter.setBuyInDirectCall(
+                  property.fbid,
+                  MobxStore.router.params.keyID,
+                  checked
+                );
+                console.log("single sale agent Respond view ", checked);
+              }}
+            />
+          }
+        >
+          Tel:{" "}
+          {this.props.status === undefined ? (
+            ""
+          ) : this.props.status.isShowPhone ? (
+            property.contactPhone
+          ) : (
+            ""
+          )}
+        </List.Item>
 
-            <List.Item
-            extra={<Switch
-                  checked={this.props.status === undefined ? false : this.props.status.isShowPhone}
-            />}
-            >Tel: {this.props.status === undefined ? "" : (this.props.status.isShowPhone? property.contactPhone : "") }
-              </List.Item>
-            
-            <WhiteSpace size="sm" />
-            </div>
-                  
+        <WhiteSpace size="sm" />
+      </div>
     );
   }
 }
+export const SingleBuyUserMatchViewWrapper = createForm()(SingleBuyUserMatchView);
 
-export default SingleBuyAgentPropertyForRespondView;
-
-            // <List.Item
-            // extra={<Switch
-            //       checked={this.props.status === undefined ? false : this.props.status.isShowPhone}
-            // />}
-            // >Tel: {this.props.status === undefined ? "" : (this.props.status.isShowPhone? property.contactPhone : "") }
-            //   </List.Item>
+// <List.Item
+// extra={<Switch
+//       checked={this.props.status === undefined ? false : this.props.status.isShowPhone}
+// />}
+// >Tel: {this.props.status === undefined ? "" : (this.props.status.isShowPhone? property.contactPhone : "") }
+//   </List.Item>
 
 // {/* <div>
 // <SwipeAction

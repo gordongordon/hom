@@ -1,18 +1,17 @@
-import React from 'react';
+import React from "react";
 //import { List , Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl} from 'antd-mobile';
 
 //import { createForm } from 'rc-form';
-import moment from 'moment';
+import moment from "moment";
 //import 'moment/locale/zh-cn';
 //import {propertys} from 'userModelView'
-import SingleBuyAgentPropertyForRespondView from '../singlePropertyView/singleBuyAgentPropertyForRespondView'
-import SingleBuyAgentFilterView from '../singlePropertyView/SingleBuyAgentFilterView'
-import SingleBuyCaseView from '../singlePropertyView/singleBuyCaseView'
-import {SingleBuyAgentRespondViewWrapper} from '../singlePropertyView/singleBuyAgentRespondView'
+import { SingleBuyUserMatchViewWrapper } from "../singlePropertyView/singleBuyUserMatchView";
+import SingleBuyAgentFilterView from "../singlePropertyView/SingleBuyAgentFilterView";
+import SingleBuyCaseView from "../singlePropertyView/singleBuyCaseView";
+import { SingleBuyAgentRespondViewWrapper } from "../singlePropertyView/singleBuyAgentRespondView";
 
-import { observer } from 'mobx-react';
-import {Accordion, List
-} from "antd-mobile";
+import { observer } from "mobx-react";
+import { Accordion, List } from "antd-mobile";
 
 //const Item = List.Item;
 //const Brief = Item.Brief;
@@ -25,61 +24,71 @@ import {Accordion, List
 
 @observer
 export class ListOfMatchAgentBuyPropertys extends React.Component {
-
   constructor(props) {
     super(props);
   }
 
-  display = ( propertys ) => {
-     const list = propertys;
-     // Catched empty list, don't do anything!
-     if ( list.size === 0 )
-     {
-        // debugger
-        return null;
-     }
-     
-     // Try to show most uptoday item only
-     var element = [];
+  display = propertys => {
+    const list = propertys;
+    // Catched empty list, don't do anything!
+    if (list.size === 0) {
+      // debugger
+      return null;
+    }
+
+    // Try to show most uptoday item only
+    var element = [];
 
     //  const timeEnter = this.props.timeEnter;
     //  const c = moment( timeEnter );
 
-    list.forEach( (p, keyID) => {
+    list.forEach((p, keyID) => {
       const segment = this.props.segment;
 
-      if ( segment === "case" ) {
-           element.push(
-           <SingleBuyCaseView property={p} key={keyID} filterID={this.props.filterID}/>
-           )
-      } else if ( segment === "filter") {
+      if (segment === "case") {
         element.push(
-          <SingleBuyAgentFilterView property={p} key={keyID} filterID={this.props.filterID}/>
-        )
-      } else if ( segment === "response" ) {
+          <SingleBuyCaseView
+            property={p}
+            key={keyID}
+            filterID={this.props.filterID}
+          />
+        );
+      } else if (segment === "filter") {
         element.push(
-          <SingleBuyAgentRespondViewWrapper  filter={this.props.filter} property={p} key={keyID} filterID={this.props.filterID}/>
-       ) 
+          <SingleBuyAgentFilterView
+            property={p}
+            key={keyID}
+            filterID={this.props.filterID}
+          />
+        );
+      } else if (segment === "response") {
+        element.push(
+          <SingleBuyAgentRespondViewWrapper
+            filter={this.props.filter}
+            property={p}
+            key={keyID}
+            filterID={this.props.filterID}
+          />
+        );
       } else {
         element.push(
-          <SingleBuyAgentPropertyForRespondView filter={this.props.filter} property={p} key={keyID} filterID={this.props.filterID}/>
-        )
-      } 
+          <SingleBuyUserMatchViewWrapper
+            filter={this.props.filter}
+            property={p}
+            key={keyID}
+            filterID={this.props.filterID}
+          />
+        );
+      }
+    });
 
-    })
-
-     return <div>{element.reverse()}</div>
-  }
+    return <div>{element.reverse()}</div>;
+  };
 
   render() {
-        const {propertys} = this.props;
-        const that = this;
+    const { propertys } = this.props;
+    const that = this;
 
-    return (
-      <div>
-      {
-         that.display( propertys )
-      }
-     </div>);
+  return (<div>{that.display(propertys)}</div>);
   }
 }

@@ -15,7 +15,7 @@ import {
   ActionSheet,
   Switch
 } from "antd-mobile";
-// import { createForm } from "rc-form";
+import { createForm } from "rc-form";
 //import moment from 'moment';
 //import 'moment/locale/zh-cn';
 import { propertys } from "userModelView";
@@ -28,11 +28,13 @@ const Brief = Item.Brief;
 // fix touch to scroll background page on iOS
 // https://github.com/ant-design/ant-design-mobile/issues/307
 // https://github.com/ant-design/ant-design-mobile/issues/163
-const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
+const isIPhone = new RegExp("\\biPhone\\b|\\biPod\\b", "i").test(
+  window.navigator.userAgent
+);
 let wrapProps;
 if (isIPhone) {
   wrapProps = {
-    onTouchStart: e => e.preventDefault(),
+    onTouchStart: e => e.preventDefault()
   };
 }
 // const NameOfBuilding = [
@@ -47,7 +49,7 @@ if (isIPhone) {
 //    'MOSSSC' : '新港城'
 // }
 
-export default class SingleRentAgentPropertyForRespondView extends React.Component {
+class SingleRentUserMatchView extends React.Component {
   constructor(props) {
     super(props);
 
@@ -72,57 +74,61 @@ export default class SingleRentAgentPropertyForRespondView extends React.Compone
   showActionSheet = () => {
     const p = this.props.property;
     let showPhone = this.props.showPhone;
-    let phone = 911; 
-    if ( showPhone ) {
+    let phone = 911;
+    if (showPhone) {
       phone = p.contactPhone;
-    }  else {
+    } else {
       showPhone = false;
     }
 
-    const BUTTONS = ['容許對方打俾你', 'Call' + p.contactPhone, '取消'];
-    ActionSheet.showActionSheetWithOptions({
-      options: BUTTONS,
-      cancelButtonIndex: BUTTONS.length - 1,
-      destructiveButtonIndex: BUTTONS.length - 2,
-      // title: '标题',
-      message: 'rentAgent~RespondView',
-      maskClosable: true,
-      'data-seed': 'logId',
-      wrapProps,
-    },
-    (buttonIndex) => {
-      this.setState({ clicked: BUTTONS[buttonIndex] });
-      if ( buttonIndex === 0 ) {
-//         p.setRentInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone  );         
-        this.props.filter.setRentInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone );         
-        
+    const BUTTONS = ["容許對方打俾你", "Call" + p.contactPhone, "取消"];
+    ActionSheet.showActionSheetWithOptions(
+      {
+        options: BUTTONS,
+        cancelButtonIndex: BUTTONS.length - 1,
+        destructiveButtonIndex: BUTTONS.length - 2,
+        // title: '标题',
+        message: "SingleRentUserMatchView",
+        maskClosable: true,
+        "data-seed": "logId",
+        wrapProps
+      },
+      buttonIndex => {
+        this.setState({ clicked: BUTTONS[buttonIndex] });
+        if (buttonIndex === 0) {
+          //         p.setRentInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone  );
+          this.props.filter.setRentInDirectCall(
+            p.fbid,
+            MobxStore.router.params.keyID,
+            showPhone
+          );
+        }
+        if (buttonIndex === 1) {
+          window.location.href = "tel://" + p.contactPhone;
+        }
+        // if ( buttonIndex === 2 ) {
+        //    this.props.store.app.passByRef = p;
+        //    this.props.store.router.goTo(views.rentAgentForm, {
+        //      keyID: p.fbid,
+        //      typeTo: p.typeTo,
+        //      filterID: this.props.filterID
+        //   })
+        // }
       }
-      if ( buttonIndex === 1 ) {
-        window.location.href="tel://"+ p.contactPhone;
-      }
-      // if ( buttonIndex === 2 ) {
-      //    this.props.store.app.passByRef = p;
-      //    this.props.store.router.goTo(views.rentAgentForm, {
-      //      keyID: p.fbid,
-      //      typeTo: p.typeTo,
-      //      filterID: this.props.filterID
-      //   })
-      // }
-      
-    });
-  }
+    );
+  };
 
   render() {
-    const { property , filter} = this.props;
+    const { property, filter } = this.props;
     const that = this;
-    //        const { getFieldProps } = this.props.form;
+    const { getFieldProps } = this.props.form;
 
     // repair goTo by passing property
     //MobxStore.app.lastProperty = property
-    
+
     // onClick={() => {
     //   MobxStore.app.passByRef = property
-      
+
     //   MobxStore.router.goTo(views.leaseAgentForm, {
     //     keyID: property.fbid,
     //     typeTo: property.typeTo,
@@ -132,87 +138,96 @@ export default class SingleRentAgentPropertyForRespondView extends React.Compone
     return (
       <div>
         <Item
-        extra={<Badge text="Call" />}
-        arrow="horizontal"
-        onClick={this.showActionSheet}
-
+          extra={
+            <Badge
+              text={property.showPhoneStatus.status}
+              style={{
+                marginLeft: 12,
+                padding: "0 0.06rem",
+                backgroundColor: property.showPhoneStatus.color,
+                borderRadius: 2
+              }}
+            />
+          }
+          arrow="horizontal"
+          onClick={this.showActionSheet}
           thumb="http://hair.losstreatment.com/icons/rent-up.svg"
           multipleLine
         >
-        {property.addressLocationLabel}/{property.nameOfBuildingLabel}/{property.contactNameLabel}
+          {property.addressLocationLabel}/{property.nameOfBuildingLabel}/{property.contactNameLabel}
           <Brief>
             {property.incomeLabel}
             {property.rentBudgetMaxLabel}
             <br />
             <br />
             <Badge
-            text={property.numOfPeopleLivingLabel}
-            style={{
-              marginLeft: 12,
-              padding: "0 0.06rem",
-              backgroundColor: property.colorByFresh,
-              borderRadius: 2
-            }}      
-            />    
+              text={property.numOfPeopleLivingLabel}
+              style={{
+                marginLeft: 12,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 2
+              }}
+            />
             <Badge
-            text={property.isPetAllowedLabel}
-            style={{
-              marginLeft: 12,
-              padding: "0 0.06rem",
-              backgroundColor: property.colorByFresh,
-              borderRadius: 2
-            }}      
-            />    
+              text={property.isPetAllowedLabel}
+              style={{
+                marginLeft: 12,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 2
+              }}
+            />
 
             <Badge
-            text={property.levelLabel}
-            style={{
-              marginLeft: 12,
-              padding: "0 0.06rem",
-              backgroundColor: property.colorByFresh,
-              borderRadius: 2
-            }}      
-            />               
+              text={property.levelLabel}
+              style={{
+                marginLeft: 12,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 2
+              }}
+            />
 
             <Badge
-            text={property.isViewAbleLabel}
-            style={{
-              marginLeft: 12,
-              padding: "0 0.06rem",
-              backgroundColor: property.colorByFresh,
-              borderRadius: 2
-            }}      
-            />               
+              text={property.isViewAbleLabel}
+              style={{
+                marginLeft: 12,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 2
+              }}
+            />
             <Badge
-            text={property.hasHomeHardwareLabel}
-            style={{
-              marginLeft: 12,
-              padding: "0 0.06rem",
-              backgroundColor: property.colorByFresh,
-              borderRadius: 2
-            }}      
-            />               
+              text={property.hasHomeHardwareLabel}
+              style={{
+                marginLeft: 12,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 2
+              }}
+            />
 
             <Badge
-            text={property.leasingPeriodLabel}
-            style={{
-              marginLeft: 12,
-              padding: "0 0.06rem",
-              backgroundColor: property.colorByFresh,
-              borderRadius: 2
-            }}      
-            />               
+              text={property.leasingPeriodLabel}
+              style={{
+                marginLeft: 12,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 2
+              }}
+            />
             <br />
             <Badge
-            text={property.jobNatureLabel}
-            style={{
-              marginLeft: 12,
-              padding: "0 0.06rem",
-              backgroundColor: property.colorByFresh,
-              borderRadius: 2
-            }}
-          />
-          <Badge
+              text={property.jobNatureLabel}
+              style={{
+                marginLeft: 12,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 2
+              }}
+            />
+            <Badge
               text={property.roleName}
               style={{
                 marginLeft: 12,
@@ -233,29 +248,50 @@ export default class SingleRentAgentPropertyForRespondView extends React.Compone
               }}
             />
             <Badge
-            text={property.howFresh}
-            style={{
-              marginLeft: 12,
-              padding: "0 0.06rem",
-              backgroundColor: property.colorByFresh,
-              borderRadius: 2
-            }}
-          />
+              text={property.howFresh}
+              style={{
+                marginLeft: 12,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 2
+              }}
+            />
           </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
-            </Item>
-            <List.Item
-            extra={<Switch
-                  checked={this.props.status === undefined ? false : this.props.status.isShowPhone}
-            />}
-            >Tel: {this.props.status === undefined ? "" : (this.props.status.isShowPhone? property.contactPhone : "") }
-              </List.Item>
-    
-            
+        </Item>
+        <List.Item
+          extra={
+            <Switch
+              {...getFieldProps("isShowPhone", {
+                initialValue: property.isShowPhone(filter.fbid),
+                valuePropName: "checked"
+              })}
+              onClick={checked => {
+                this.props.filter.setRentInDirectCall(
+                  property.fbid,
+                  MobxStore.router.params.keyID,
+                  checked
+                );
+                console.log("single sale agent Respond view ", checked);
+              }}
+            />
+          }
+        >
+          Tel:{" "}
+          {this.props.status === undefined ? (
+            ""
+          ) : this.props.status.isShowPhone ? (
+            property.contactPhone
+          ) : (
+            ""
+          )}
+        </List.Item>
+
         <WhiteSpace size="sm" />
       </div>
     );
   }
 }
+export const SingleRentUserMatchViewWrapper = createForm()(SingleRentUserMatchView);
 
 // {/* <div>
 // <SwipeAction

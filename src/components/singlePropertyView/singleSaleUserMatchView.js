@@ -15,7 +15,7 @@ import {
   Switch,
   ActionSheet
 } from "antd-mobile";
-//import { createForm } from "rc-form";
+import { createForm } from "rc-form";
 //import moment from 'moment';
 //import 'moment/locale/zh-cn';
 import { propertys } from "userModelView";
@@ -50,8 +50,8 @@ if (isIPhone) {
 //    'MOSSSC' : '新港城'
 // }
 
-@observer
-export default class SingleSaleAgentPropertyForRespondView extends React.Component {
+// @observer
+class SingleSaleUserMatchView extends React.Component {
   constructor(props) {
     super(props);
 
@@ -91,7 +91,7 @@ export default class SingleSaleAgentPropertyForRespondView extends React.Compone
       cancelButtonIndex: BUTTONS.length - 1,
       destructiveButtonIndex: BUTTONS.length - 2,
       // title: '标题',
-      message: 'SaleAgent~RespondView',
+      message: 'SingleSaleUserMatchView',
       maskClosable: true,
       'data-seed': 'logId',
       wrapProps,
@@ -121,17 +121,26 @@ export default class SingleSaleAgentPropertyForRespondView extends React.Compone
   render() {
     const { property , filter } = this.props;
     const that = this;
-    //        const { getFieldProps } = this.props.form;
+    const { getFieldProps } = this.props.form;
 
     //onClick={() => MobxStore.router.goTo(views.leaseAgentForm, { keyID : property.fbid, typeTo : property.typeTo})}
 
     // repair goTo by passing property
     //MobxStore.app.lastProperty = property;
     
-    return (
-      <div>
+    return ( <div>
         <Item
-        extra={<Badge text="Call" />}
+        extra={
+            <Badge
+              text={property.showPhoneStatus.status}
+              style={{
+                marginLeft: 12,
+                padding: "0 0.06rem",
+                backgroundColor: property.showPhoneStatus.color,
+                borderRadius: 2
+              }}
+            />
+          }
         arrow="horizontal"
           onClick={this.showActionSheet }
           thumb="http://hair.losstreatment.com/icons/rent-up.svg"
@@ -198,6 +207,18 @@ export default class SingleSaleAgentPropertyForRespondView extends React.Compone
               borderRadius: 5
             }}
           />
+
+          <Badge
+              text={property.dayListed}
+              style={{
+                marginLeft: 12,
+                padding: "0 0.06rem",
+                backgroundColor: "#fff",
+                borderRadius: 2,
+                color: "#f19736",
+                border: "1px solid #f19736"
+              }}
+            />
           <Badge
           text={property.isSaleWithLeaseLabel}
           style={{
@@ -230,9 +251,15 @@ export default class SingleSaleAgentPropertyForRespondView extends React.Compone
             </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
             </Item>
             <List.Item
-        extra={<Switch
-              checked={this.props.status === undefined ? false : this.props.status.isShowPhone}
-        />}
+            extra={<Switch
+              {...getFieldProps('isShowPhone', {
+                initialValue: property.isShowPhone(filter.fbid),
+                valuePropName: 'checked',
+              })}
+              onClick={(checked) => { 
+                  this.props.filter.setSaleInDirectCall( property.fbid, MobxStore.router.params.keyID, checked );  
+                  console.log( 'single sale agent Respond view ',checked); }}
+            />}
         >Tel: {this.props.status === undefined ? "" : (this.props.status.isShowPhone? property.contactPhone : "") }
           </List.Item>
         <WhiteSpace size="sm" />
@@ -240,6 +267,7 @@ export default class SingleSaleAgentPropertyForRespondView extends React.Compone
     );
   }
 }
+export const SingleSaleUserMatchViewWrapper = createForm()(SingleSaleUserMatchView);
 //>Tel: {property.displayPhoneNumber(filter.fbid)} </List.Item>
 
 // {/* <div>

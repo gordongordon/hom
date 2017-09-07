@@ -8,7 +8,7 @@ import {propertys} from 'userModelView'
 //import {SingleRentPropertyForMatchViewWrapper} from 'singleRentPropertyForMatchView'
 import {ControlRentViewWrapper} from '../control/controlRentView'
 //import {ListOfMatchPropertys} from 'listOfMatch/listOfMatchPropertys'
-import {ListOfMatchLeasePropertys} from '../listOfMatch/listOfMatchLeasePropertys'
+//import {ListOfMatchLeasePropertys} from '../listOfMatch/listOfMatchLeasePropertys'
 import {ListOfMatchAgentLeasePropertys} from '../listOfMatch/listOfMatchAgentLeasePropertys'
 import {ListOfMatchOldLeasePropertys} from '../listOfMatch/listOfMatchOldLeasePropertys'
 

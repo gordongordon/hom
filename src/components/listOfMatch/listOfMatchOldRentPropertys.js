@@ -1,14 +1,14 @@
-import React from 'react'
+import React from "react";
 //import { List , Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl} from 'antd-mobile';
 //import { createForm } from 'rc-form';
-import moment from 'moment';
-import 'moment/locale/zh-cn';
+// import moment from "moment";
+// import "moment/locale/zh-cn";
 //import {propertys} from 'userModelView'
 //import SingleRentPropertyForMatchView from '../singlePropertyView/singleRentPropertyForMatchView'
-import { inject, observer } from 'mobx-react';
+import { inject, observer } from "mobx-react";
 //import SingleRentAgentPropertyForRespondView from '../singlePropertyView/singleRentAgentPropertyForRespondView';
 // Note Problem of sing vs Sing file name
-import SingleRentAgentPropertyForRespondView from '../singlePropertyView/SingleRentAgentPropertyForRespondView';
+import { SingleRentUserMatchViewWrapper } from "../singlePropertyView/SingleRentUserMatchView";
 //const Item = List.Item;
 //const Brief = Item.Brief;
 
@@ -18,54 +18,54 @@ import SingleRentAgentPropertyForRespondView from '../singlePropertyView/SingleR
 //   { value: 'MOSSSC', label: '新港城' },
 // ];
 
-@inject("store") @observer
+@inject("store")
+@observer
 export class ListOfMatchOldRentPropertys extends React.Component {
-
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      lastUpdate : false
+      lastUpdate: false
+    };
+  }
+
+  display = propertys => {
+    const list = propertys;
+    // Catched empty list, don't do anything!
+    if (list.size === 0) {
+      return null;
     }
-  }
 
-  display = ( propertys ) => {
-     const list = propertys;
-     // Catched empty list, don't do anything!
-     if ( list.size === 0 )
-     {
-        return null;
-     }
+    // Try to show most uptoday item only
+    var element = [];
+    //           <SingleRentPropertyForMatchView property={property} key={keyID}/>
 
-     // Try to show most uptoday item only
-     var element = [];
-//           <SingleRentPropertyForMatchView property={property} key={keyID}/>
-
-    list.forEach( (property, keyID) => {
-      let call = this.props.inDirectCall.get(  this.props.store.router.params.keyID);
+    list.forEach((property, keyID) => {
+      let call = this.props.inDirectCall.get(
+        this.props.store.router.params.keyID
+      );
       let showPhone = false;
-      if ( call ) {
-       console.log( 'call ', call.isShowPhone );
-       showPhone = call.isShowPhone;
-     }
+      if (call) {
+        console.log("call ", call.isShowPhone);
+        showPhone = call.isShowPhone;
+      }
 
-       element.push(
-           <SingleRentAgentPropertyForRespondView filter={this.props.filter} status={status} property={property} key={keyID}/>
-         )
-       } );
+      element.push(
+        <SingleRentUserMatchViewWrapper
+          filter={this.props.filter}
+          status={status}
+          property={property}
+          key={keyID}
+        />
+      );
+    });
 
-     return <div>{element.reverse()}</div>
-  }
-
+    return <div>{element.reverse()}</div>;
+  };
 
   render() {
-        const {propertys} = this.props;
-        const that = this;
+    const { propertys } = this.props;
+    const that = this;
 
-    return (
-      <div>
-      {
-         that.display( propertys )
-      }
-     </div>);
+    return <div>{that.display(propertys)}</div>;
   }
 }

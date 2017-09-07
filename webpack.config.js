@@ -139,58 +139,58 @@ module.exports = {
       }
     ],
     rules: [
-      {
-        exclude: [/\.less$/, /\.svg$/]
-      },
-      // Process JS with Babel.
-      {
-        test: /\.(js|jsx)$/,
-        options: {
-          plugins: [["import", { libraryName: "antd-mobile", style: true }]],
-          cacheDirectory: true
-        }
-      },
+      // {
+      //   exclude: [/\.less$/, /\.svg$/]
+      // },
+      // // Process JS with Babel.
+      // {
+      //   test: /\.(js|jsx)$/,
+      //   options: {
+      //     plugins: [["import", { libraryName: "antd-mobile", style: true }]],
+      //     cacheDirectory: true
+      //   }
+      // },
       // It is generally necessary to use the Icon component, need to configure svg-sprite-loader
-      {
-        test: /\.(svg)$/i,
-        loader: "svg-sprite-loader",
-        include: [
-          require.resolve("antd-mobile").replace(/warn\.js$/, "") // 1. svg files of antd-mobile
-          // path.resolve(__dirname, 'src/my-project-svg-foler'),  // folder of svg files in your project
-        ]
-      },
-      {
-        test: /\.less$/,
-        use: [
-          require.resolve("style-loader"),
-          require.resolve("css-loader"),
-          {
-            loader: require.resolve("postcss-loader"),
-            options: {
-              ident: "postcss", // https://webpack.js.org/guides/migrating/#complex-options
-              plugins: () => [
-                autoprefixer({
-                  browsers: [
-                    "last 2 versions",
-                    "Firefox ESR",
-                    "> 1%",
-                    "ie >= 8",
-                    "iOS >= 8",
-                    "Android >= 4"
-                  ]
-                }),
-                pxtorem({ rootValue: 100, propWhiteList: [] })
-              ]
-            }
-          },
-          {
-            loader: require.resolve("less-loader"),
-            options: {
-              modifyVars: { "@primary-color": "#1DA57A" }
-            }
-          }
-        ]
-      }
+      // {
+      //   test: /\.(svg)$/i,
+      //   loader: "svg-sprite-loader",
+      //   include: [
+      //     require.resolve("antd-mobile").replace(/warn\.js$/, "") // 1. svg files of antd-mobile
+      //     // path.resolve(__dirname, 'src/my-project-svg-foler'),  // folder of svg files in your project
+      //   ]
+      // },
+      // {
+      //   test: /\.less$/,
+      //   use: [
+      //     require.resolve("style-loader"),
+      //     require.resolve("css-loader"),
+      //     {
+      //       loader: require.resolve("postcss-loader"),
+      //       options: {
+      //         ident: "postcss", // https://webpack.js.org/guides/migrating/#complex-options
+      //         plugins: () => [
+      //           autoprefixer({
+      //             browsers: [
+      //               "last 2 versions",
+      //               "Firefox ESR",
+      //               "> 1%",
+      //               "ie >= 8",
+      //               "iOS >= 8",
+      //               "Android >= 4"
+      //             ]
+      //           }),
+      //           pxtorem({ rootValue: 100, propWhiteList: [] })
+      //         ]
+      //       }
+      //     },
+      //     {
+      //       loader: require.resolve("less-loader"),
+      //       options: {
+      //         modifyVars: { "@primary-color": "#1DA57A" }
+      //       }
+      //     }
+      //   ]
+      // }
     ]
   },
   devServer: {

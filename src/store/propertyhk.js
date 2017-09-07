@@ -139,6 +139,8 @@ export class Propertyhk extends Property {
   };
 
   buildCase() {
+
+    // this is filter in here
     this.saleFollow.forEach((element, key) => {
       const relatedFbid = element.relatedFbid;
       const p = this.buyRequest.get(relatedFbid);
@@ -150,8 +152,16 @@ export class Propertyhk extends Property {
         // Setup ref
         const np = Propertyhk.deserialize(p);
         np.relatedFbid = key;
+
+        // Testing for showPhoneByCase, Case Only
+        // Having to call, before any call of showPhoneByCase
+        np.buildInDirectCallAgent( np.typeFor )
+        
         // p.contactName = 'kky'
         this.buyCase.set(key, np);
+ 
+        
+
         // console.log( 'saleCase.size ', this.saleCase.size )
         // console.log( 'saleCase object',this.buyRequest.get( relatedFbid ) )
         // console.log( 'saleCase key', key )
@@ -167,6 +177,9 @@ export class Propertyhk extends Property {
       //p.relatedFbid = key;
       const np = Propertyhk.deserialize(p);
       np.relatedFbid = key;
+
+      // Testing for showPhoneByCase, Case Only
+      np.buildInDirectCallAgent( np.typeFor )
 
       this.saleCase.set(key, np);
       console.log("saleCase key", key);
@@ -184,6 +197,9 @@ export class Propertyhk extends Property {
         const np = Propertyhk.deserialize(p);
         np.relatedFbid = key;
 
+        // Testing for showPhoneByCase, Case Only
+        np.buildInDirectCallAgent( np.typeFor )
+        
         this.leaseCase.set(key, np);
         console.log("leaseCase key", key);
       }
@@ -200,6 +216,9 @@ export class Propertyhk extends Property {
         const np = Propertyhk.deserialize(p);
         np.relatedFbid = key;
 
+        // Testing for showPhoneByCase, Case Only
+        np.buildInDirectCallAgent( np.typeFor )
+        
         this.rentCase.set(key, np);
         console.log("rentCase key", key);
       }
@@ -651,6 +670,28 @@ export class Propertyhk extends Property {
   };
 
 
+  // Gordno doing here
+  /**
+   * make sure call this before this.buildInDirectCallAgent(this.typeFor) 
+   * somewehere if use showPhoneByCase();
+   */
+  @computed
+  get showPhoneByCase() {
+     const p = this.inDirectCall.get( this.fbid );
+     if ( p && p.isShowPhone ) {
+       return this.contactPhone;
+     }
+    return "no share phone"
+  }
+
+  @computed
+  get showPhoneStatus(){
+    const p = this.inDirectCall.get( this.fbid );
+    if ( p && p.isShowPhone ) {
+      return { status : "已留電話", color : "#000", isShowPhone :  true};
+    }
+    return { status : "等待聯絡" , color : "#E67E22", isShowPhone : false };
+  }
   
   isShowPhone(id) {
     this.buildInDirectCall();
@@ -766,6 +807,98 @@ export class Propertyhk extends Property {
 
   //         //Fb.root.ref('inDirectCall/')
   //       }
+
+ /**
+   * Building all inDirectCall list
+   * It read his's own firebase data at inDirectCall
+   * this is beginning called by user filter only. 
+   * it would't call at single view component
+   */
+  buildInDirectCallAgent(type) {
+    const that = this;
+    //this.inDirectCall.clear();
+    // var userId = firebase.auth().currentUser.uid;
+    // return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+    //   var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+    //   // ...
+    // });
+    console.log(
+      `inDirectCall typeFor ${type}, that.fbid ${that.fbid}, inDirectCall.size ${that
+        .inDirectCall.size}`
+    );
+
+    Fb.root
+    .ref("inDirectCall/" + type + "/" + this.relatedFbid)
+    .on("child_added", function(data) {
+
+      const status = new Status(
+        data.val().subjectID,
+        data.val().objectID,
+        data.val().isShowPhone
+      );
+      that.inDirectCall.set(data.key, status);
+      console.log(
+        `inDirectCall typeFor ${type}, that.fbid ${that.fbid}, inDirectCall.size ${that
+          .inDirectCall.size}`
+      );
+      });
+
+      Fb.root
+      .ref("inDirectCall/" + type + "/" + this.relatedFbid)
+      .on("child_changed", function(data) {
+        // Get an element with all functions, propertys
+        // Recreate a new properts { ... }
+        // otherwise propertys.responsedPropertys = undefined error
+        //                  const p = that.matchedPropertys.get( snapshot.key )
+        // const p = Propertyhk.deserialize(snapshot.val());
+        // that.matchedPropertys.set(snapshot.key, p);
+
+        const status = new Status(
+          data.val().subjectID,
+          data.val().objectID,
+          data.val().isShowPhone
+        );
+        that.inDirectCall.set(data.key, status);
+
+        //                  that.matchedPropertys.set( snapshot.key, { ...p, ...snapshot.val() });
+        //console.log('child_changed snapshot.val() ',  snapshot.val() )
+      });      
+
+
+      Fb.root
+      .ref("inDirectCall/" + this.typeTo + "/" + this.relatedFbid)
+      .on("child_removed", function(data) {
+        that.inDirectCall.delete(data.key);
+      });
+
+    // Fb.root
+    //   .ref("inDirectCall/" + this.typeTo + "/" + this.fbid)
+    //   .once("value")
+    //   .then(function(snapshot) {
+    //     snapshot.forEach(data => {
+    //       console.log(
+    //         `inDirectCall ${data.key}, subID ${data.val()
+    //           .subjectID}, objID ${data.val().objectID}`
+    //       );
+    //       const status = new Status(
+    //         data.val().subjectID,
+    //         data.val().objectID,
+    //         data.val().isShowPhone
+    //       );
+    //       that.inDirectCall.set(data.key, status);
+    //       console.log(
+    //         `inDirectCall typeFor ${that.typeFor}, that.fbid ${that.fbid}, inDirectCall.size ${that
+    //           .inDirectCall.size}`
+    //       );
+    //     });
+    //     //this.inDirectCall.set( )
+    //     //console.log( 'inDirecal', snapshot.val() );
+    //     // this.inDirectCall.set( snapshot.val().fbid, snapshot.val() );
+    //   });
+    //    console.log( `inDirectCall typeFor ${this.typeFor}, key ${this.fbid}, inDirectCall.size ${that.inDirectCall.size}` );
+  }
+
+
 
   /**
    * Building all inDirectCall list

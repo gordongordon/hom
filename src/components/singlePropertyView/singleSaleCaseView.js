@@ -21,6 +21,7 @@ import { propertys } from "userModelView";
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 import MobxStore from "mobxStore";
 import views from "views";
+import { observer } from "mobx-react";
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -28,11 +29,13 @@ const Brief = Item.Brief;
 // fix touch to scroll background page on iOS
 // https://github.com/ant-design/ant-design-mobile/issues/307
 // https://github.com/ant-design/ant-design-mobile/issues/163
-const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
+const isIPhone = new RegExp("\\biPhone\\b|\\biPod\\b", "i").test(
+  window.navigator.userAgent
+);
 let wrapProps;
 if (isIPhone) {
   wrapProps = {
-    onTouchStart: e => e.preventDefault(),
+    onTouchStart: e => e.preventDefault()
   };
 }
 
@@ -48,6 +51,7 @@ if (isIPhone) {
 //    'MOSSSC' : '新港城'
 // }
 
+@observer
 export default class SingleSaleCaseView extends React.Component {
   constructor(props) {
     super(props);
@@ -59,51 +63,48 @@ export default class SingleSaleCaseView extends React.Component {
   }
 
   componentWillMount() {
-    //const p = this.props;
-    //    const t = moment().format('YYYY-MM-DD HH:mm:ss');
-    //  this.props.property.realTime = moment( t );
-    this.props.property.setTimeStamp();
+    //    const p = this.props.property;
 
-    //    console.log( 'realTime will mount', this.props.property.realTime)
+    //    p.buildInDirectCallAgent(p.typeFor)
+    this.props.property.setTimeStamp();
   }
 
-
-    /**
+  /**
    * Implement ActionSheet which to handle multi actions
    */
   showActionSheet = () => {
     const p = this.props.property;
-    const BUTTONS = ['直接打俾對方', 'edit', '取消'];
-    ActionSheet.showActionSheetWithOptions({
-      options: BUTTONS,
-      cancelButtonIndex: BUTTONS.length - 1,
-      destructiveButtonIndex: BUTTONS.length - 2,
-      // title: '标题',
-      message: 'singleSaleCaseView',
-      maskClosable: true,
-      'data-seed': 'logId',
-      wrapProps,
-    },
-    (buttonIndex) => {
-      this.setState({ clicked: BUTTONS[buttonIndex] });
-      if ( buttonIndex === 0 ) {
-        window.location.href="tel://"+ p.contactPhone;
+    const BUTTONS = ["Call " + p.showPhoneByCase, "edit", "取消"];
+    ActionSheet.showActionSheetWithOptions(
+      {
+        options: BUTTONS,
+        cancelButtonIndex: BUTTONS.length - 1,
+        destructiveButtonIndex: BUTTONS.length - 2,
+        // title: '标题',
+        message: "singleSaleCaseView",
+        maskClosable: true,
+        "data-seed": "logId",
+        wrapProps
+      },
+      buttonIndex => {
+        this.setState({ clicked: BUTTONS[buttonIndex] });
+        if (buttonIndex === 0) {
+          window.location.href = "tel://" + p.contactPhone;
+        }
+        if (buttonIndex === 1) {
+          this.props.store.app.passByRef = p;
+          this.props.store.router.goTo(views.buyAgentForm, {
+            keyID: p.fbid,
+            typeTo: p.typeTo,
+            filterID: this.props.filterID
+          });
+        }
       }
-      if ( buttonIndex === 1 ) {
-         this.props.store.app.passByRef = p;
-         this.props.store.router.goTo(views.buyAgentForm, {
-           keyID: p.fbid,
-           typeTo: p.typeTo,
-           filterID: this.props.filterID
-        })
-      }
-      
-    });
-  }
-
+    );
+  };
 
   render() {
-    // property is a sale case 
+    // property is a sale case
     const { property } = this.props;
     const that = this;
     //        const { getFieldProps } = this.props.form;
@@ -112,109 +113,118 @@ export default class SingleSaleCaseView extends React.Component {
 
     // repair goTo by passing property
     //MobxStore.app.lastProperty = property;
-    
+    //extra={<Badge text={property.showPhoneByCase.toString()} />}
+
     return (
       <div>
         <Item
-        extra={<Badge text="edit"/>}
-        arrow="horizontal"
-        onClick={this.showActionSheet }
-        
+          extra={
+            <Badge
+              text={property.showPhoneStatus.status}
+              style={{
+                marginLeft: 12,
+                padding: "0 0.06rem",
+                backgroundColor: property.showPhoneStatus.color,
+                borderRadius: 2
+              }}
+            />
+          }
+          arrow="horizontal"
+          onClick={this.showActionSheet}
           thumb="http://hair.losstreatment.com/icons/rent-up.svg"
           multipleLine
         >
-        {property.addressLocationLabel}/{property.nameOfBuildingLabel}/{property.contactNameLabel}
-        <Brief>
-          {property.partitionLabel}
-          {property.salePriceLabel}
-          <br />
-          <Badge
-          text={property.isPetAllowedLabel}
-          style={{
-            marginLeft: 12,
-            padding: "0 0.06rem",
-            backgroundColor: property.colorByFresh,
-            borderRadius: 2
-          }}      
-          />            
-          <Badge
-          text={property.isViewAbleLabel}
-          style={{
-            marginLeft: 6,
-            padding: "0 0.06rem",
-            backgroundColor: property.colorByFresh,
-            borderRadius: 5
-          }}
-        />
-          
-          <Badge
-          text={property.levelLabel}
-          style={{
-            marginLeft: 6,
-            padding: "0 0.06rem",
-            backgroundColor: property.colorByRoleName,
-            borderRadius: 5
-          }}
-        />            
-          <Badge
-            text={property.roleName}
-            style={{
-              marginLeft: 6,
-              padding: "0 0.06rem",
-              backgroundColor: property.colorByRoleName,
-              borderRadius: 5
-            }}
-          />
-          <Badge
-            text={property.howFresh}
-            style={{
-              marginLeft: 6,
-              padding: "0 0.06rem",
-              backgroundColor: property.colorByFresh,
-              borderRadius: 5
-            }}
-          />
-          <br />
-          <Badge
-          text={property.netSizeLabel}
-          style={{
-            marginLeft: 6,
-            padding: "0 0.06rem",
-            backgroundColor: property.colorByFresh,
-            borderRadius: 5
-          }}
-        />
-        <Badge
-        text={property.isSaleWithLeaseLabel}
-        style={{
-          marginLeft: 6,
-          padding: "0 0.06rem",
-          backgroundColor: property.colorByFresh,
-          borderRadius: 5
-        }}
-      />
-      <br />
-      <Badge
-      text={property.dueDayLabel}
-      style={{
-        marginLeft: 6,
-        padding: "0 0.06rem",
-        backgroundColor: property.colorByFresh,
-        borderRadius: 5
-      }}
-    />
-    <Badge
-    text={property.earlyTimeToViewLabel}
-    style={{
-      marginLeft: 6,
-      padding: "0 0.06rem",
-      backgroundColor: property.colorByFresh,
-      borderRadius: 5
-    }}
-  />
+          {property.addressLocationLabel}/{property.nameOfBuildingLabel}/{property.contactNameLabel}
+          <Brief>
+            {property.partitionLabel}
+            {property.salePriceLabel}
+            <br />
+            <Badge
+              text={property.isPetAllowedLabel}
+              style={{
+                marginLeft: 12,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 2
+              }}
+            />
+            <Badge
+              text={property.isViewAbleLabel}
+              style={{
+                marginLeft: 6,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 5
+              }}
+            />
 
-            </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
-            </Item>
+            <Badge
+              text={property.levelLabel}
+              style={{
+                marginLeft: 6,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByRoleName,
+                borderRadius: 5
+              }}
+            />
+            <Badge
+              text={property.roleName}
+              style={{
+                marginLeft: 6,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByRoleName,
+                borderRadius: 5
+              }}
+            />
+            <Badge
+              text={property.howFresh}
+              style={{
+                marginLeft: 6,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 5
+              }}
+            />
+            <br />
+            <Badge
+              text={property.netSizeLabel}
+              style={{
+                marginLeft: 6,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 5
+              }}
+            />
+            <Badge
+              text={property.isSaleWithLeaseLabel}
+              style={{
+                marginLeft: 6,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 5
+              }}
+            />
+            <br />
+            <Badge
+              text={property.dueDayLabel}
+              style={{
+                marginLeft: 6,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 5
+              }}
+            />
+            <Badge
+              text={property.earlyTimeToViewLabel}
+              style={{
+                marginLeft: 6,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 5
+              }}
+            />
+          </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
+        </Item>
         <WhiteSpace size="sm" />
       </div>
     );

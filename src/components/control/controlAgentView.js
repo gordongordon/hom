@@ -1,10 +1,25 @@
-import React from 'react';
-import { List, TabBar, Tabs, Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, Button, WhiteSpace, SegmentedControl } from 'antd-mobile';
-import { createForm } from 'rc-form';
+import React from "react";
+import {
+  List,
+  TabBar,
+  Tabs,
+  Card,
+  Stepper,
+  Picker,
+  SwipeAction,
+  DatePicker,
+  Badge,
+  Flex,
+  InputItem,
+  Button,
+  WhiteSpace,
+  SegmentedControl
+} from "antd-mobile";
+import { createForm } from "rc-form";
 
-import { Fb } from 'firebase-store';
-import { observer } from 'mobx-react';
-import { DISTRICK } from 'DISTRICK';
+import { Fb } from "firebase-store";
+import { observer } from "mobx-react";
+import { DISTRICK } from "DISTRICK";
 
 const TabPane = Tabs.TabPane;
 
@@ -25,18 +40,27 @@ const TabPane = Tabs.TabPane;
 const CustomChildren = props => (
   <div
     onClick={props.onClick}
-    style={{ backgroundColor: '#fff', padding: '0.2rem 0.2rem' }}
+    style={{ backgroundColor: "#fff", padding: "0.2rem 0.2rem" }}
   >
-    <div style={{ display: 'flex', height: '0.9rem', lineHeight: '0.9rem' }}>
-      <div style={{ padding: '0.1rem', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{props.children}</div>
-      <div style={{ textAlign: 'right', color: '#888' }}>{props.extra} ></div>
+    <div style={{ display: "flex", height: "0.9rem", lineHeight: "0.9rem" }}>
+      <div
+        style={{
+          padding: "0.1rem",
+          flex: 1,
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap"
+        }}
+      >
+        {props.children}
+      </div>
+      <div style={{ textAlign: "right", color: "#888" }}>{props.extra} ></div>
     </div>
   </div>
 );
 
 @observer
 class ControlAgentView extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -48,12 +72,10 @@ class ControlAgentView extends React.Component {
 
     this.onChangeAddress = this.onChangeAddress.bind(this);
     // this.onChangeEarlyTimeToView = this.onChangeEarlyTimeToView.bind(this);
-
   } // End of constructor
 
   //
-  onChangeAddress = (value) => {
-
+  onChangeAddress = value => {
     const id = this.state.id;
     // var value = this.props.form.getFieldsValue();
 
@@ -61,29 +83,28 @@ class ControlAgentView extends React.Component {
     const addressLocation = value[1];
     const addressBuilding = value[2];
 
-    console.log(`location ${addressLocation}, building ${addressBuilding} with ${id} ${value}`);
+    console.log(
+      `location ${addressLocation}, building ${addressBuilding} with ${id} ${value}`
+    );
     //     console.log( 'address ${}')
 
-    if (addressBuilding === 'ALL') {
+    if (addressBuilding === "ALL") {
       // console.log( 'MOS0000')
       Fb.app.agentsFilterRef.child(id).update({
-        orderByChild: 'addressLocation',
+        orderByChild: "addressLocation",
         addressRegion: addressRegion,
         addressLocation: addressLocation,
         nameOfBuilding: addressBuilding
       });
     } else {
       Fb.app.agentsFilterRef.child(id).update({
-        orderByChild: 'nameOfBuilding',
+        orderByChild: "nameOfBuilding",
         addressRegion: addressRegion,
         addressLocation: addressLocation,
         nameOfBuilding: addressBuilding
       });
     }
-
-  }
-
-
+  };
 
   // onChange = (e) => {
   //   console.log(`ControlAgentView.selectedIndex:${e.nativeEvent.selectedSegmentIndex}`);
@@ -94,7 +115,6 @@ class ControlAgentView extends React.Component {
   // }
 
   render() {
-
     const { property } = this.props;
     const that = this;
     const { getFieldProps } = this.props.form;
@@ -111,17 +131,17 @@ class ControlAgentView extends React.Component {
     //console.log(`address ${address}`)
 
     const address = property.addressToArray;
-//    console.log('Single Agent Property property', property)
+    //    console.log('Single Agent Property property', property)
     var selectedIndex = this.props.selectedIndex;
     const onChange = this.props.onChange;
 
     if (property.nameOfBuildingLabel === undefined) {
-      console.log('*nameOfBuildingLabel undefined');
+      console.log("*nameOfBuildingLabel undefined");
     }
 
-//     <SegmentedControl values={['B搵買盤', 'S放賣盤', 'R搵租盤', 'L放租盤', '已跟進/回覆']} selectedIndex={this.props.selectedIndex} onChange={onChange} />
-    
-/* <List.Item extra={
+    //     <SegmentedControl values={['B搵買盤', 'S放賣盤', 'R搵租盤', 'L放租盤', '已跟進/回覆']} selectedIndex={this.props.selectedIndex} onChange={onChange} />
+
+    /* <List.Item extra={
   <Stepper
     style={{ width: '100%', minWidth: '2rem' }}
     {...getFieldProps('buyBudgetMax', {
@@ -136,17 +156,23 @@ class ControlAgentView extends React.Component {
   預算上限/萬
      </List.Item> */
 
-
     return (
-
-
       <div>
-        <SegmentedControl  values={['有人搵你', '已跟進']} selectedIndex={this.props.selectedIndex} onChange={onChange} />
+        <SegmentedControl
+          values={["有人搵你", "已跟進"]}
+          selectedIndex={this.props.selectedIndex}
+          onChange={onChange}
+        />
         <List>
-          <Picker data={DISTRICK} cols={3} {...getFieldProps('districk', {
-            initialValue: address,
-          }) }
-            className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑"
+          <Picker
+            data={DISTRICK}
+            cols={3}
+            {...getFieldProps("districk", {
+              initialValue: address
+            })}
+            className="forss"
+            title="請選擇大廈/屋苑"
+            extra="請選擇大廈/屋苑"
             onChange={this.onChangeAddress}
           >
             <CustomChildren>大廈/屋苑</CustomChildren>
