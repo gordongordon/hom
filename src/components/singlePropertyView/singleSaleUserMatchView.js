@@ -251,17 +251,25 @@ class SingleSaleUserMatchView extends React.Component {
             </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
             </Item>
             <List.Item
-            extra={<Switch
-              {...getFieldProps('isShowPhone', {
-                initialValue: property.isShowPhone(filter.fbid),
-                valuePropName: 'checked',
-              })}
-              onClick={(checked) => { 
-                  this.props.filter.setSaleInDirectCall( property.fbid, MobxStore.router.params.keyID, checked );  
-                  console.log( 'single sale agent Respond view ',checked); }}
-            />}
-        >Tel: {this.props.status === undefined ? "" : (this.props.status.isShowPhone? property.contactPhone : "") }
-          </List.Item>
+            extra={
+              <Switch
+                {...getFieldProps("isShowPhone", {
+                  initialValue: property.showPhoneStatus.isShowPhone,
+                  valuePropName: "checked"
+                })}
+                onClick={checked => {
+                  this.props.filter.setSaleInDirectCall(
+                    property.fbid,
+                    MobxStore.router.params.keyID,
+                    checked
+                  );
+                  console.log("single sale agent Respond view ", checked);
+                }}
+              />
+            }
+          >
+            Tel: {property.showPhoneStatus.contactPhone}
+            </List.Item>
         <WhiteSpace size="sm" />
       </div>
     );

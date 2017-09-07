@@ -688,9 +688,9 @@ export class Propertyhk extends Property {
   get showPhoneStatus(){
     const p = this.inDirectCall.get( this.fbid );
     if ( p && p.isShowPhone ) {
-      return { status : "已留電話", color : "#000", isShowPhone :  true};
+      return { status : "已留電話", color : "#000", isShowPhone :  true, contactPhone : this.contactPhone };
     }
-    return { status : "等待聯絡" , color : "#E67E22", isShowPhone : false };
+    return { status : "等待聯絡" , color : "#E67E22", isShowPhone : false, contactPhone : "no share phone"};
   }
   
   isShowPhone(id) {

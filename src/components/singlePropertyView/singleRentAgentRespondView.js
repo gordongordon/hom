@@ -133,7 +133,6 @@ class SingleRentAgentRespondView extends React.Component {
     return (
       <div>
         <Item
-        extra={<Badge text="Call" />}
         arrow="horizontal"
         onClick={this.showActionSheet}
 

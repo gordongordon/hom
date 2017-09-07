@@ -130,7 +130,6 @@ class SingleSaleAgentRespondView extends React.Component {
     return (
       <div>
         <Item
-        extra={<Badge text="Call" />}
         arrow="horizontal"
           onClick={this.showActionSheet }
           thumb="http://hair.losstreatment.com/icons/rent-up.svg"

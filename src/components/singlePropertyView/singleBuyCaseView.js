@@ -65,7 +65,7 @@ class SingleBuyCaseView extends React.Component {
   showActionSheet = () => {
     const p = this.props.property;
         
-    const BUTTONS = ['Call '+p.contactPhone, 'edit', '取消'];
+    const BUTTONS = ['Call '+ p.showPhoneByCase, 'edit', '取消'];
     ActionSheet.showActionSheetWithOptions({
       options: BUTTONS,
       cancelButtonIndex: BUTTONS.length - 1,

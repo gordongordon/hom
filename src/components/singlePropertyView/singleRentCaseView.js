@@ -72,7 +72,7 @@ export default class SingleRentCaseView extends React.Component {
    */
   showActionSheet = () => {
     const p = this.props.property;
-    const BUTTONS = ['直接打俾對方', 'edit', '取消'];
+    const BUTTONS = ['Call '+ p.showPhoneByCase, 'edit', '取消'];
     ActionSheet.showActionSheetWithOptions({
       options: BUTTONS,
       cancelButtonIndex: BUTTONS.length - 1,
