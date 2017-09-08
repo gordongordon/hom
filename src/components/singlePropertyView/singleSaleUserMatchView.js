@@ -75,16 +75,15 @@ class SingleSaleUserMatchView extends React.Component {
    */
   showActionSheet = () => {
     const p = this.props.property;
-    //let showPhone = this.props.showPhone;
-    let showPhone = false;
-    let phone = 888;
+    const f = this.props.filter;
+    const status = p.getStatus(f.fbid).get();
+    var BUTTONS; 
 
-    if ( this.props.status ) {
-      showPhone = this.props.status.isShowPhone;
-      phone = p.contactPhone;
-    } 
-
-    const BUTTONS = ['容許對方打俾你', 'Call' + phone, '取消'];
+    if ( status.isShowPhone ) {
+      BUTTONS = ["容許對方打俾你", "Call" + status.contactPhone, "取消"];
+   } else {
+      BUTTONS = ["容許對方打俾你", "取消"];
+   }
 
     ActionSheet.showActionSheetWithOptions({
       options: BUTTONS,
@@ -99,12 +98,16 @@ class SingleSaleUserMatchView extends React.Component {
     (buttonIndex) => {
       this.setState({ clicked: BUTTONS[buttonIndex] });
       if ( buttonIndex === 0 ) {
-        this.props.filter.setSaleInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone );    
+        f.setBuyInDirectCall( 
+           MobxStore.router.params.keyID, 
+           p.fbid, 
+           status.isShowPhone 
+          );    
         // this.props.filter.buildInDirectCall();
         // debugger
       }
-      if ( buttonIndex === 1 ) {
-        window.location.href="tel://"+ p.contactPhone;
+      if ( buttonIndex === 1 && status.isShowPhone) {
+        window.location.href="tel://"+ status.contactPhone;
       }
       // if ( buttonIndex === 2 ) {
       //    this.props.store.app.passByRef = p;
@@ -123,6 +126,7 @@ class SingleSaleUserMatchView extends React.Component {
     const that = this;
     const { getFieldProps } = this.props.form;
 
+    const status = property.getStatus(filter.fbid).get();
     //onClick={() => MobxStore.router.goTo(views.leaseAgentForm, { keyID : property.fbid, typeTo : property.typeTo})}
 
     // repair goTo by passing property
@@ -132,11 +136,11 @@ class SingleSaleUserMatchView extends React.Component {
         <Item
         extra={
             <Badge
-              text={property.getStatus(filter.fbid).get().status}
+              text={status.status}
               style={{
                 marginLeft: 12,
                 padding: "0 0.06rem",
-                backgroundColor: property.getStatus(filter.fbid).get().color,
+                backgroundColor: status.color,
                 borderRadius: 2
               }}
             />
@@ -254,7 +258,7 @@ class SingleSaleUserMatchView extends React.Component {
             extra={
               <Switch
                 {...getFieldProps("isShowPhone", {
-                  initialValue: property.getStatus(filter.fbid).get().isShowPhone,
+                  initialValue: status.isShowPhone,
                   valuePropName: "checked"
                 })}
                 onClick={checked => {
@@ -270,7 +274,7 @@ class SingleSaleUserMatchView extends React.Component {
               />
             }
           >
-          Tel : {property.getStatus(filter.fbid).get().contactPhone}
+          Tel : {status.contactPhone}
           </List.Item>
         <WhiteSpace size="sm" />
       </div>

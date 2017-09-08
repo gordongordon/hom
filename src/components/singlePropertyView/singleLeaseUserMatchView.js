@@ -77,15 +77,15 @@ class SingleLeaseUserMatchView extends React.Component {
    */
   showActionSheet = () => {
     const p = this.props.property;
-    let showPhone = this.props.showPhone;
-    let phone = 911;
-    if (showPhone) {
-      phone = p.contactPhone;
-    } else {
-      showPhone = false;
-    }
+    const f = this.props.filter;
+    const status = p.getStatus(f.fbid).get();
+    var BUTTONS; 
 
-    const BUTTONS = ["容許對方打俾你", "Call" + p.contactPhone, "取消"];
+    if ( status.isShowPhone ) {
+      BUTTONS = ["容許對方打俾你", "Call" + status.contactPhone, "取消"];
+   } else {
+      BUTTONS = ["容許對方打俾你", "取消"];
+   }
     ActionSheet.showActionSheetWithOptions(
       {
         options: BUTTONS,
@@ -101,13 +101,13 @@ class SingleLeaseUserMatchView extends React.Component {
         this.setState({ clicked: BUTTONS[buttonIndex] });
         if (buttonIndex === 0) {
           //        p.setLeaseInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone  );
-          this.props.filter.setLeaseInDirectCall(
-            p.fbid,
+          f.setRentInDirectCall(
             MobxStore.router.params.keyID,
-            p.showPhoneStatus.isShowPhone
+            p.fbid,
+            status.isShowPhone
           );
         }
-        if (buttonIndex === 1) {
+        if (buttonIndex === 1 && status.isShowPhone) {
           window.location.href = "tel://" + p.contactPhone;
         }
         // if ( buttonIndex === 2 ) {
@@ -126,17 +126,18 @@ class SingleLeaseUserMatchView extends React.Component {
     const { property, filter } = this.props;
     const that = this;
     const { getFieldProps } = this.props.form;
+    const status = property.getStatus(filter.fbid).get();
 
     return (
       <div>
         <Item
           extra={
             <Badge
-            text={property.getStatus(filter.fbid).get().status}
+            text={status.status}
             style={{
                 marginLeft: 12,
                 padding: "0 0.06rem",
-                backgroundColor: property.getStatus(filter.fbid).get().color,
+                backgroundColor: status.color,
                 borderRadius: 2
               }}
             />
@@ -234,7 +235,7 @@ class SingleLeaseUserMatchView extends React.Component {
           extra={
             <Switch
               {...getFieldProps("isShowPhone", {
-                initialValue: property.getStatus(filter.fbid).get().isShowPhone,
+                initialValue: status.isShowPhone,
                 valuePropName: "checked"
               })}
               onClick={checked => {
@@ -248,7 +249,7 @@ class SingleLeaseUserMatchView extends React.Component {
             />
           }
         >
-        Tel : {property.getStatus(filter.fbid).get().contactPhone}
+        Tel : {status.contactPhone}
         
         </List.Item>
 
