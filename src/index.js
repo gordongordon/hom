@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import {MobxRouter, startRouter} from 'mobx-router';
 //import {FrontPageTabBar} from 'frontPageTabBar';
 //import DevTools from 'mobx-react-devtools';
@@ -21,6 +22,11 @@ import {Fb} from 'firebase-store'
 // import {FormSaleChatbot} from 'chatbot/formSaleChatbot'
 
 import DevTools, { setLogEnabled, setUpdatesEnabled, setGraphEnabled } from 'mobx-react-devtools';
+
+import { AppContainer } from 'react-hot-loader';
+import App from 'app';
+import { BrowserRouter } from 'react-router-dom';
+
 
 setLogEnabled(false); // same as configureDevtool({ logEnabled: true });
 setUpdatesEnabled(false); // same as configureDevtool({ updatesEnabled: false });
@@ -132,6 +138,11 @@ firebase.auth().onAuthStateChanged( (user) => {
 
 //<MobxRouter/>
 
+// ReactDOM.render(
+//  <App/>
+//  , document.getElementById('root')
+// )
+
 ReactDOM.render(
   <Provider store={MobxStore}>
     <div>
@@ -141,6 +152,45 @@ ReactDOM.render(
   </Provider>, document.getElementById('root')
 )
 
+
+// ReactDOM.render(
+// <AppContainer>
+//      <App />
+// </AppContainer>,
+// document.getElementById('root')
+// );
+
+// if (module.hot) {
+// module.hot.accept('app', () => {
+//  const NextApp = require('app').default;
+
+//  ReactDOM.render(
+//    <AppContainer>
+//      <NextApp />
+//    </AppContainer>,
+//    document.getElementById('root')
+//  );
+// });
+// }
+
+// render( <AppContainer>
+//      <BrowserRouter >
+//      <App />
+//     </BrowserRouter>
+//     </AppContainer>, document.getElementById('root') 
+// );
+
+// if (module.hot) {
+// module.hot.accept('app', () => {
+//  const NextApp = require('app').default;
+
+//  render( <AppContainer>
+//          <NextApp />
+//          </AppContainer>,
+//          document.getElementById('root')
+//  );
+// });
+// }
 
 
 //<button onClick={() => MobxStore.router.goTo(views.second)}>Go First</button>

@@ -254,7 +254,7 @@ class SingleSaleUserMatchView extends React.Component {
             extra={
               <Switch
                 {...getFieldProps("isShowPhone", {
-                  initialValue: property.showPhoneStatus.isShowPhone,
+                  initialValue: filter.isShowPhone(property.fbid),
                   valuePropName: "checked"
                 })}
                 onClick={checked => {
@@ -264,12 +264,13 @@ class SingleSaleUserMatchView extends React.Component {
                     checked
                   );
                   console.log("single sale agent Respond view ", checked);
+                  console.log("filer.size", filter.inDirectCall.size )
                 }}
               />
             }
           >
-            Tel: {property.showPhoneStatus.contactPhone}
-            </List.Item>
+          Tel: {this.props.status === undefined ? ( "") : filter.isShowPhone(property.fbid)? ( property.contactPhone ) : ( "" )}
+          </List.Item>
         <WhiteSpace size="sm" />
       </div>
     );

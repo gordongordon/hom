@@ -44,6 +44,9 @@ export class ListOfMatchOldSalePropertys extends React.Component {
       //   console.log("call ", status.isShowPhone);
       //   showPhone = status.isShowPhone;
       // }
+      // if ( status === undefined ) {
+      //    status = new Status( this., 0, false)
+      // }
 
       //     debugger
       element.push(

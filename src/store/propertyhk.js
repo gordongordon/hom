@@ -31,6 +31,7 @@ export class Propertyhk extends Property {
 
   @observable responsedPropertys = observable.map({});
   @observable showPhone = false;
+  matchID; 
   //@observable responsedPropertys = new Map();
   // @observable matchedPropertys = new Map();
 
@@ -456,6 +457,8 @@ export class Propertyhk extends Property {
 
         console.log(`this.uid ${that.uid}, p.uid ${p.uid}`);
 
+        // Testing set Matchid
+        
         // skep own property, don't match it
         if (that.uid != p.uid) {
           that.matchedPropertys.set(snap.key, p);
@@ -693,19 +696,41 @@ export class Propertyhk extends Property {
     return { status : "等待聯絡" , color : "#E67E22", isShowPhone : false, contactPhone : "no share phone"};
   }
   
+  @computed
+  get showPhoneStatusMatchID(){
+    const p = this.inDirectCall.get( this.matchID );
+    if ( p && p.isShowPhone ) {
+      return { status : "已留電話", color : "#000", isShowPhone :  true, contactPhone : this.contactPhone };
+    }
+    return { status : "等待聯絡" , color : "#E67E22", isShowPhone : false, contactPhone : "no share phone"};
+  }
+
+  //@action
+  /**
+   * use for setting, before calling showPhoneStatusMatchID
+   * this funnction should be called on every matched property
+   */
+  setMatchID( id ) {
+    this.matchID = id;
+  }
+
+  // used by filter
   isShowPhone(id) {
-    this.buildInDirectCall();
-    let object;
+    //this.buildInDirectCall();
+    //let object;
 
   //  Fb.root.ref("inDirectCall/sale/" + fbid).update({ [relatedFbid]: status });
     if ( this.inDirectCall.size > 0) {
-       object = this.inDirectCall.get(id);
-       return this.showPhone = object.isShowPhone;
+      let object = this.inDirectCall.get(id);
+
+      if ( object && object.isShowPhone ) 
+       return this.showPhone = true;
     }
 
     return this.showPhone = false;
   } 
-
+  
+  
   /**
    * May be use later for display phone number
    * 
@@ -811,7 +836,7 @@ export class Propertyhk extends Property {
  /**
    * Building all inDirectCall list
    * It read his's own firebase data at inDirectCall
-   * this is beginning called by user filter only. 
+   * this was called by user filter only. 
    * it would't call at single view component
    */
   buildInDirectCallAgent(type) {

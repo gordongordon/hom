@@ -280,7 +280,7 @@ class SingleBuyUserMatchView extends React.Component {
           extra={
             <Switch
               {...getFieldProps("isShowPhone", {
-                initialValue: property.showPhoneStatus.isShowPhone,
+                initialValue: filter.isShowPhone(property.fbid),
                 valuePropName: "checked"
               })}
               onClick={checked => {
@@ -294,7 +294,8 @@ class SingleBuyUserMatchView extends React.Component {
             />
           }
         >
-        Tel: {property.showPhoneStatus.contactPhone}
+        Tel: {this.props.status === undefined ? ( "") : filter.isShowPhone(property.fbid) ? ( property.contactPhone ) : ( "" )}
+
         </List.Item>
 
         <WhiteSpace size="sm" />
