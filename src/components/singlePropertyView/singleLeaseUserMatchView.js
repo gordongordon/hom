@@ -79,13 +79,14 @@ class SingleLeaseUserMatchView extends React.Component {
     const p = this.props.property;
     const f = this.props.filter;
     const status = p.getStatus(f.fbid).get();
+    const fStatus = f.getStatus(p.fbid).get();
     var BUTTONS; 
 
-    if ( status.isShowPhone ) {
-      BUTTONS = ["容許對方打俾你", "Call" + status.contactPhone, "取消"];
-   } else {
-      BUTTONS = ["容許對方打俾你", "取消"];
-   }
+    if ( fStatus.isShowPhone ) {
+      BUTTONS = [fStatus.message, "直接致電: " + status.contactPhone, "取消"];
+    } else {
+      BUTTONS = [fStatus.message, "直接致電: " + status.contactPhone, "取消"];
+    }
     ActionSheet.showActionSheetWithOptions(
       {
         options: BUTTONS,
@@ -104,7 +105,7 @@ class SingleLeaseUserMatchView extends React.Component {
           f.setRentInDirectCall(
             MobxStore.router.params.keyID,
             p.fbid,
-            status.isShowPhone
+            !fStatus.isShowPhone
           );
         }
         if (buttonIndex === 1 && status.isShowPhone) {
@@ -127,17 +128,18 @@ class SingleLeaseUserMatchView extends React.Component {
     const that = this;
     const { getFieldProps } = this.props.form;
     const status = property.getStatus(filter.fbid).get();
-
+    const fStatus = filter.getStatus(property.fbid).get();
+    
     return (
       <div>
         <Item
           extra={
             <Badge
-            text={status.status}
+            text={fStatus.status}
             style={{
                 marginLeft: 12,
                 padding: "0 0.06rem",
-                backgroundColor: status.color,
+                backgroundColor: fStatus.color,
                 borderRadius: 2
               }}
             />
@@ -235,7 +237,7 @@ class SingleLeaseUserMatchView extends React.Component {
           extra={
             <Switch
               {...getFieldProps("isShowPhone", {
-                initialValue: status.isShowPhone,
+                initialValue: filter.getStatus( property.fbid ).get().isShowPhone,
                 valuePropName: "checked"
               })}
               onClick={checked => {

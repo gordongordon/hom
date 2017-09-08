@@ -659,7 +659,7 @@ export class Propertyhk extends Property {
    */
   @action
   setSaleInDirectCall = (fbid, relatedFbid, showPhone) => {
-    let status = new Status(relatedFbid, fbid, showPhone);
+    let status = new Status(relatedFbid, fbid, !showPhone);
 
     // by using [fbid], catch all different propertys
     // Fb.root.ref('propertys/buy/' + relatedFbid + '/inDirectCall').update({ [fbid]: { fbid, relatedFbid, inDirectCall : true } });
@@ -730,9 +730,9 @@ export class Propertyhk extends Property {
         const p = that.inDirectCall.get( id );
         //debugger
         if ( p && p.isShowPhone ) {
-          return { status : "已留電話", color : "#000", isShowPhone :  true, contactPhone : this.contactPhone };
+          return { status : "已留電話", message : "停止! 顯示電話給對方!", color : "#000", isShowPhone :  true, contactPhone : this.contactPhone };
         }
-        return { status : "等待聯絡", color : "#E67E22", isShowPhone :  false, contactPhone : "no share phone" };
+        return { status : "留電話..", message : "顯示我的電話！要對方打俾我", color : "#E67E22", isShowPhone :  false, contactPhone : "no share phone" };
       })
     }
   //@action
