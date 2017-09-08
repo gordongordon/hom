@@ -55,7 +55,7 @@ if (isIPhone) {
 // }
 
 //@inject("store")
-//@observer
+@observer
 class SingleBuyAgentRespondView extends React.Component {
   constructor(props) {
     super(props);

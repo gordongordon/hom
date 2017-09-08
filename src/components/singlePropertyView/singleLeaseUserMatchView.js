@@ -22,6 +22,9 @@ import { propertys } from "userModelView";
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 import MobxStore from "mobxStore";
 import views from "views";
+import { inject, observer } from "mobx-react";
+
+
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -49,6 +52,7 @@ if (isIPhone) {
 //    'MOSSSC' : '新港城'
 // }
 
+@observer
 class SingleLeaseUserMatchView extends React.Component {
   constructor(props) {
     super(props);
@@ -128,11 +132,11 @@ class SingleLeaseUserMatchView extends React.Component {
         <Item
           extra={
             <Badge
-              text={property.showPhoneStatus.status}
-              style={{
+            text={property.getStatus(filter.fbid).get().status}
+            style={{
                 marginLeft: 12,
                 padding: "0 0.06rem",
-                backgroundColor: property.showPhoneStatus.color,
+                backgroundColor: property.getStatus(filter.fbid).get().color,
                 borderRadius: 2
               }}
             />
@@ -230,13 +234,13 @@ class SingleLeaseUserMatchView extends React.Component {
           extra={
             <Switch
               {...getFieldProps("isShowPhone", {
-                initialValue: filter.isShowPhone(property.fbid),
+                initialValue: property.getStatus(filter.fbid).get().isShowPhone,
                 valuePropName: "checked"
               })}
               onClick={checked => {
                 this.props.filter.setLeaseInDirectCall(
-                  property.fbid,
                   MobxStore.router.params.keyID,
+                  property.fbid,
                   checked
                 );
                 console.log("single sale agent Respond view ", checked);
@@ -244,7 +248,7 @@ class SingleLeaseUserMatchView extends React.Component {
             />
           }
         >
-        Tel: {this.props.status === undefined ? ( "") : filter.isShowPhone(property.fbid) ? ( property.contactPhone ) : ( "" )}
+        Tel : {property.getStatus(filter.fbid).get().contactPhone}
         
         </List.Item>
 

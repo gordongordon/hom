@@ -158,11 +158,11 @@ class SingleBuyUserMatchView extends React.Component {
         <Item
           extra={
             <Badge
-              text={property.showPhoneStatus.status}
-              style={{
+            text={property.getStatus(filter.fbid).get().status}
+            style={{
                 marginLeft: 12,
                 padding: "0 0.06rem",
-                backgroundColor: property.showPhoneStatus.color,
+                backgroundColor: property.getStatus(filter.fbid).get().color,
                 borderRadius: 2
               }}
             />
@@ -277,26 +277,27 @@ class SingleBuyUserMatchView extends React.Component {
         </Item>
 
         <List.Item
-          extra={
-            <Switch
-              {...getFieldProps("isShowPhone", {
-                initialValue: filter.isShowPhone(property.fbid),
-                valuePropName: "checked"
-              })}
-              onClick={checked => {
-                this.props.filter.setBuyInDirectCall(
-                  property.fbid,
-                  MobxStore.router.params.keyID,
-                  checked
-                );
-                console.log("single sale agent Respond view ", checked);
-              }}
-            />
-          }
-        >
-        Tel: {this.props.status === undefined ? ( "") : filter.isShowPhone(property.fbid) ? ( property.contactPhone ) : ( "" )}
-
-        </List.Item>
+        extra={
+          <Switch
+            {...getFieldProps("isShowPhone", {
+              initialValue: property.getStatus(filter.fbid).get().isShowPhone,
+              valuePropName: "checked"
+            })}
+            onClick={checked => {
+              this.props.filter.setSaleInDirectCall(
+                MobxStore.router.params.keyID,
+                property.fbid,
+                checked
+              );
+              console.log("single sale agent Respond view ", checked);
+              console.log("filer.size", filter.inDirectCall.size )
+              console.log("p.size", property.inDirectCall.size )
+            }}
+          />
+        }
+      >
+      Tel : {property.getStatus(filter.fbid).get().contactPhone}
+      </List.Item>
 
         <WhiteSpace size="sm" />
       </div>

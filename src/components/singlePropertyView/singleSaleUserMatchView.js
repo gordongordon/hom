@@ -50,7 +50,7 @@ if (isIPhone) {
 //    'MOSSSC' : '新港城'
 // }
 
-// @observer
+@observer
 class SingleSaleUserMatchView extends React.Component {
   constructor(props) {
     super(props);
@@ -132,11 +132,11 @@ class SingleSaleUserMatchView extends React.Component {
         <Item
         extra={
             <Badge
-              text={property.showPhoneStatus.status}
+              text={property.getStatus(filter.fbid).get().status}
               style={{
                 marginLeft: 12,
                 padding: "0 0.06rem",
-                backgroundColor: property.showPhoneStatus.color,
+                backgroundColor: property.getStatus(filter.fbid).get().color,
                 borderRadius: 2
               }}
             />
@@ -254,22 +254,23 @@ class SingleSaleUserMatchView extends React.Component {
             extra={
               <Switch
                 {...getFieldProps("isShowPhone", {
-                  initialValue: filter.isShowPhone(property.fbid),
+                  initialValue: property.getStatus(filter.fbid).get().isShowPhone,
                   valuePropName: "checked"
                 })}
                 onClick={checked => {
-                  this.props.filter.setSaleInDirectCall(
-                    property.fbid,
+                  this.props.filter.setBuyInDirectCall(
                     MobxStore.router.params.keyID,
+                    property.fbid,
                     checked
                   );
                   console.log("single sale agent Respond view ", checked);
                   console.log("filer.size", filter.inDirectCall.size )
+                  console.log("p.size", property.inDirectCall.size )
                 }}
               />
             }
           >
-          Tel: {this.props.status === undefined ? ( "") : filter.isShowPhone(property.fbid)? ( property.contactPhone ) : ( "" )}
+          Tel : {property.getStatus(filter.fbid).get().contactPhone}
           </List.Item>
         <WhiteSpace size="sm" />
       </div>

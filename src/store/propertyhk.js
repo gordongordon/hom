@@ -458,7 +458,12 @@ export class Propertyhk extends Property {
         console.log(`this.uid ${that.uid}, p.uid ${p.uid}`);
 
         // Testing set Matchid
-        
+        // set up the user filter, as matchID, so that
+        // property can be found who is browsering! 
+        // in order to make use of status in display phone ##
+        //this.setMatchID( this.fbid );
+        p.buildInDirectCall();
+
         // skep own property, don't match it
         if (that.uid != p.uid) {
           that.matchedPropertys.set(snap.key, p);
@@ -480,6 +485,9 @@ export class Propertyhk extends Property {
         // Recreate a new properts { ... }
         // otherwise propertys.responsedPropertys = undefined error
         const p = Propertyhk.deserialize(snapshot.val());
+
+        // p.buildInDirectCall();
+
         that.matchedPropertys.set(snapshot.key, p);
         console.log(
           "propertyhk.child_changed - matchProperty.size",
@@ -618,17 +626,19 @@ export class Propertyhk extends Property {
     
     Fb.root.ref("inDirectCall/buy/" + fbid).update({ [relatedFbid]: status });
 
-    if (showPhone) {
-      let status = this.inDirectCall.get(fbid);
-      // debugger
-      // this.inDirectCall.delete( fbid );
-      status.isShowPhone = !status.isShowPhone;
-      this.inDirectCall.set(fbid, status);
-    } else {
-      // debugger
-      let status = new Status(relatedFbid, fbid, !showPhone);
-      this.inDirectCall.set(fbid, status);
-    }
+    //status = this.inDirectCall.get(fbid);
+    
+    // if ( showPhone ) {
+    //   let status = this.inDirectCall.get(fbid);
+    //   // debugger
+    //   // this.inDirectCall.delete( fbid );
+    //   status.isShowPhone = !status.isShowPhone;
+    //   this.inDirectCall.set(fbid, status);
+    // } else {
+    //   // debugger
+    //   let status = new Status(relatedFbid, fbid, !showPhone);
+    //   this.inDirectCall.set(fbid, status);
+    // }
 
     // by using [fbid], catch all different propertys
     // Fb.root.ref('propertys/buy/' + relatedFbid + '/inDirectCall').update({ [fbid]: { fbid, relatedFbid, inDirectCall : true } });
@@ -649,7 +659,7 @@ export class Propertyhk extends Property {
    */
   @action
   setSaleInDirectCall = (fbid, relatedFbid, showPhone) => {
-    let status = new Status(relatedFbid, fbid, !showPhone);
+    let status = new Status(relatedFbid, fbid, showPhone);
 
     // by using [fbid], catch all different propertys
     // Fb.root.ref('propertys/buy/' + relatedFbid + '/inDirectCall').update({ [fbid]: { fbid, relatedFbid, inDirectCall : true } });
@@ -658,18 +668,22 @@ export class Propertyhk extends Property {
 //    Fb.root.ref("inDirectCall/sale/" + relatedFbid).update({ [fbid]: status });
     Fb.root.ref("inDirectCall/sale/" + fbid).update({ [relatedFbid]: status });
     
-    console.log(`inDirectCall setSaleInDirecTCall this.fbid ${this.fbid}`);
-    if (showPhone) {
-      let status = this.inDirectCall.get(fbid);
-      //debugger
-      // this.inDirectCall.delete( fbid );
-      status.isShowPhone = !status.isShowPhone;
-      this.inDirectCall.set(fbid, status);
-    } else {
-      // debugger
-      let status = new Status(relatedFbid, fbid, !showPhone);
-      this.inDirectCall.set(fbid, status);
-    }
+    // console.log(`inDirectCall setSaleInDirecTCall this.fbid ${this.fbid}`);
+    // if (showPhone ) {
+    //   let status = this.inDirectCall.get(fbid);
+    //   //debugger
+    //   // this.inDirectCall.delete( fbid );
+    //   status.isShowPhone = !status.isShowPhone;
+    //   this.inDirectCall.set(fbid, status);
+    // } else {
+    //   // debugger
+    //   let status = new Status(relatedFbid, fbid, !showPhone);
+    //   this.inDirectCall.set(fbid, status);
+    // }
+
+    // let saveStatus = this.inDirectCall.get( fbid );
+
+
   };
 
 
@@ -705,6 +719,22 @@ export class Propertyhk extends Property {
     return { status : "等待聯絡" , color : "#E67E22", isShowPhone : false, contactPhone : "no share phone"};
   }
 
+
+  /**
+   * Get Status by giving and id
+   */
+  getStatus(id) {
+    //debugger
+    const that = this;
+    return computed(() => {
+        const p = that.inDirectCall.get( id );
+        //debugger
+        if ( p && p.isShowPhone ) {
+          return { status : "已留電話", color : "#000", isShowPhone :  true, contactPhone : this.contactPhone };
+        }
+        return { status : "等待聯絡", color : "#E67E22", isShowPhone :  false, contactPhone : "no share phone" };
+      })
+    }
   //@action
   /**
    * use for setting, before calling showPhoneStatusMatchID
@@ -763,18 +793,18 @@ export class Propertyhk extends Property {
     //    Fb.root.ref('inDirectCall/rent/').update({ [relatedFbid + '_call_'+fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
     Fb.root.ref("inDirectCall/rent/" + fbid).update({ [relatedFbid]: status });
     
-    console.log(`inDirectCall setSaleInDirecTCall this.fbid ${this.fbid}`);
-    if (showPhone) {
-      let status = this.inDirectCall.get(fbid);
-      //debugger
-      // this.inDirectCall.delete( fbid );
-      status.isShowPhone = !status.isShowPhone;
-      this.inDirectCall.set(fbid, status);
-    } else {
-      //debugger
-      let status = new Status(relatedFbid, fbid, !showPhone);
-      this.inDirectCall.set(fbid, status);
-    }
+     console.log(`inDirectCall setSaleInDirecTCall this.fbid ${this.fbid}`);
+    // if (showPhone) {
+    //   let status = this.inDirectCall.get(fbid);
+    //   //debugger
+    //   // this.inDirectCall.delete( fbid );
+    //   status.isShowPhone = !status.isShowPhone;
+    //   this.inDirectCall.set(fbid, status);
+    // } else {
+    //   //debugger
+    //   let status = new Status(relatedFbid, fbid, !showPhone);
+    //   this.inDirectCall.set(fbid, status);
+    // }
   };
 
   /**
@@ -791,17 +821,17 @@ export class Propertyhk extends Property {
     Fb.root.ref("inDirectCall/lease/" + fbid).update({ [relatedFbid]: status });
     
     console.log(`inDirectCall setSaleInDirecTCall this.fbid ${this.fbid}`);
-    if (showPhone) {
-      let status = this.inDirectCall.get(fbid);
-      //debugger
-      // this.inDirectCall.delete( fbid );
-      status.isShowPhone = !status.isShowPhone;
-      this.inDirectCall.set(fbid, status);
-    } else {
-      //debugger
-      let status = new Status(relatedFbid, fbid, !showPhone);
-      this.inDirectCall.set(fbid, status);
-    }
+    // if (showPhone) {
+    //   let status = this.inDirectCall.get(fbid);
+    //   //debugger
+    //   // this.inDirectCall.delete( fbid );
+    //   status.isShowPhone = !status.isShowPhone;
+    //   this.inDirectCall.set(fbid, status);
+    // } else {
+    //   //debugger
+    //   let status = new Status(relatedFbid, fbid, !showPhone);
+    //   this.inDirectCall.set(fbid, status);
+    // }
   };
 
   //   setSaleInDirectCall = ( fbid, relatedFbid ) => {
@@ -970,12 +1000,19 @@ export class Propertyhk extends Property {
         // const p = Propertyhk.deserialize(snapshot.val());
         // that.matchedPropertys.set(snapshot.key, p);
 
-        const status = new Status(
-          data.val().subjectID,
-          data.val().objectID,
-          data.val().isShowPhone
-        );
+        let status = that.inDirectCall.get( data.key );
+
+        //status.subjectID = data.val().subjectID;
+        //status.objectID = data.val().objectID;
+        status.isShowPhone = data.val().isShowPhone;
+        // const status = new Status(
+        //   data.val().subjectID,
+        //   data.val().objectID,
+        //   data.val().isShowPhone
+        // );
+        
         that.inDirectCall.set(data.key, status);
+
           
 
         //                  that.matchedPropertys.set( snapshot.key, { ...p, ...snapshot.val() });
