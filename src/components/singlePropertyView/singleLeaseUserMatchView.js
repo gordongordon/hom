@@ -244,7 +244,7 @@ class SingleLeaseUserMatchView extends React.Component {
                 this.props.filter.setLeaseInDirectCall(
                   MobxStore.router.params.keyID,
                   property.fbid,
-                  checked
+                  fStatus.isShowPhone
                 );
                 console.log("single sale agent Respond view ", checked);
               }}

@@ -132,7 +132,6 @@ class SingleSaleUserMatchView extends React.Component {
 
     const status = property.getStatus(filter.fbid).get();
     const fStatus = filter.getStatus(property.fbid).get();
-    
     //onClick={() => MobxStore.router.goTo(views.leaseAgentForm, { keyID : property.fbid, typeTo : property.typeTo})}
 
     // repair goTo by passing property
@@ -271,7 +270,7 @@ class SingleSaleUserMatchView extends React.Component {
                   this.props.filter.setBuyInDirectCall(
                     MobxStore.router.params.keyID,
                     property.fbid,
-                    checked
+                    fStatus.isShowPhone
                   );
                   console.log("single sale agent Respond view ", checked);
                   console.log("filer.size", filter.inDirectCall.size )

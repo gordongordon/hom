@@ -75,8 +75,8 @@ class SingleLeaseAgentRespondView extends React.Component {
     const f = this.props.filter;
     const status = p.getStatus(f.fbid).get();
     const fStatus = f.getStatus(p.fbid).get();
-    const BUTTONS = [fStatus.message, "直接致電: " + p.contactPhone, "取消"];
-
+    const BUTTONS = [fStatus.message, "致電(地產代理): "  + p.contactPhone, "取消"];
+    
     ActionSheet.showActionSheetWithOptions({
       options: BUTTONS,
       cancelButtonIndex: BUTTONS.length - 1,
@@ -215,13 +215,16 @@ class SingleLeaseAgentRespondView extends React.Component {
             <List.Item
             extra={<Switch
               {...getFieldProps('isShowPhone', {
-                initialValue: false,
+                initialValue: fStatus.isShowPhone,
                 valuePropName: 'checked',
               })}
-              onClick={(checked) => { 
-                this.props.filter.setLeaseInDirectCall( property.fbid, MobxStore.router.params.keyID, checked );  
-                console.log(checked); }}
-            />}
+              onClick={(checked) => {    
+                filter.setRentInDirectCall( 
+                   MobxStore.router.params.keyID, 
+                   property.fbid, 
+                   fStatus.isShowPhone );  
+                   console.log( `checked ${checked}, isShowPhone ${fStatus.isShowPhone}`); }} 
+                   />}
     
             >Tel: {property.contactPhone}
             </List.Item>

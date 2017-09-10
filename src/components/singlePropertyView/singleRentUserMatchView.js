@@ -276,7 +276,7 @@ class SingleRentUserMatchView extends React.Component {
                 this.props.filter.setRentInDirectCall(
                   MobxStore.router.params.keyID,
                   property.fbid,
-                  checked
+                  fStatus.isShowPhone
                 );
                 console.log("single sale agent Respond view ", checked);
               }}

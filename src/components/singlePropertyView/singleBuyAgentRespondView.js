@@ -86,8 +86,8 @@ class SingleBuyAgentRespondView extends React.Component {
     const f = this.props.filter;
     const status = p.getStatus(f.fbid).get();
     const fStatus = f.getStatus(p.fbid).get();
-    const BUTTONS = [fStatus.message, "直接致電: " + p.contactPhone, "取消"];
-
+    const BUTTONS = [fStatus.message, "致電(地產代理): "  + p.contactPhone, "取消"];
+    
     ActionSheet.showActionSheetWithOptions({
       options: BUTTONS,
       cancelButtonIndex: BUTTONS.length - 1,
@@ -101,8 +101,6 @@ class SingleBuyAgentRespondView extends React.Component {
     (buttonIndex) => {
       this.setState({ clicked: BUTTONS[buttonIndex] });
       if ( buttonIndex === 0 ) {
-//        p.setBuyInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone  );    
-        // this.props.filter.setBuyInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone );         
         this.props.filter.setSaleInDirectCall( 
           MobxStore.router.params.keyID, 
           p.fbid, 
@@ -112,15 +110,6 @@ class SingleBuyAgentRespondView extends React.Component {
       if (buttonIndex === 1 ) {
         window.location.href = "tel://" + p.contactPhone;
       }
-      // if ( buttonIndex === 2 ) {
-      //    this.props.store.app.passByRef = p;
-      //    this.props.store.router.goTo(views.saleAgentForm, {
-      //      keyID: p.fbid,
-      //      typeTo: p.typeTo,
-      //      filterID: this.props.filterID
-      //   })
-      // }
-      
     });
   }
 
@@ -279,15 +268,15 @@ class SingleBuyAgentRespondView extends React.Component {
             <List.Item
             extra={<Switch
               {...getFieldProps('isShowPhone', {
-                initialValue: fStatus.isShowPhone,
+                initialValue: filter.getStatus(property.fbid).get().isShowPhone,
                 valuePropName: 'checked',
               })}
               onClick={(checked) => {    
                 filter.setSaleInDirectCall( 
                    MobxStore.router.params.keyID, 
                    property.fbid, 
-                   checked );  
-                console.log(checked); }} 
+                   filter.getStatus(property.fbid).get().isShowPhone );  
+                console.log( `checked ${checked}, isShowPhone ${fStatus.isShowPhone}`); }} 
               />}
     
             >Tel: {property.contactPhone}

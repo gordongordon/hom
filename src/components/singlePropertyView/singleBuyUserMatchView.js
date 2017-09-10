@@ -283,14 +283,14 @@ class SingleBuyUserMatchView extends React.Component {
         extra={
           <Switch
             {...getFieldProps("isShowPhone", {
-              initialValue: filter.getStatus( property.fbid ).get().isShowPhone,
+              initialValue: fStatus.isShowPhone,
               valuePropName: "checked"
             })}
             onClick={checked => {
               this.props.filter.setSaleInDirectCall(
                 MobxStore.router.params.keyID,
                 property.fbid,
-                checked
+                fStatus.isShowPhone
               );
               console.log("single sale agent Respond view ", checked);
               console.log("filer.size", filter.inDirectCall.size )
