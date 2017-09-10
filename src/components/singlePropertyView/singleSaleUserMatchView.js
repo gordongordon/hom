@@ -107,7 +107,7 @@ class SingleSaleUserMatchView extends React.Component {
           f.setBuyInDirectCall(
             MobxStore.router.params.keyID,
             p.fbid,
-            !fStatus.isShowPhone
+            fStatus.isShowPhone
           );
         }
         if (buttonIndex === 1 && status.isShowPhone ) {

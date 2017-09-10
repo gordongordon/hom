@@ -105,7 +105,7 @@ class SingleRentUserMatchView extends React.Component {
           f.setLeaseInDirectCall(
             MobxStore.router.params.keyID,
             p.fbid,
-            !fStatus.isShowPhone
+            fStatus.isShowPhone
           );
         }
         if (buttonIndex === 1 && status.isShowPhone) {
