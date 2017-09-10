@@ -59,7 +59,14 @@ export default class SingleLeaseCaseView extends React.Component {
    */
   showActionSheet = () => {
     const p = this.props.property;
-    const BUTTONS = ['Call '+ p.showPhoneByCase, 'edit', '取消'];
+    const status = p.getStatus(p.relatedFbid).get();
+    var BUTTONS; 
+
+    if ( status.isShowPhone ) {
+      BUTTONS = ["直接致電: " + status.contactPhone, 'edit', "取消"];
+    } else {
+      BUTTONS = ["直接致電: " + status.contactPhone, 'edit', "取消"];
+    }
     ActionSheet.showActionSheetWithOptions({
       options: BUTTONS,
       cancelButtonIndex: BUTTONS.length - 1,
@@ -72,8 +79,8 @@ export default class SingleLeaseCaseView extends React.Component {
     },
     (buttonIndex) => {
       this.setState({ clicked: BUTTONS[buttonIndex] });
-      if ( buttonIndex === 0 ) {
-        window.location.href="tel://"+ p.contactPhone;
+      if ( buttonIndex === 0 && status.isShowPhone ) {
+        window.location.href = "tel://" + status.contactPhone;
       }
       if ( buttonIndex === 1 ) {
          this.props.store.app.passByRef = p;
@@ -94,21 +101,22 @@ export default class SingleLeaseCaseView extends React.Component {
     //        const { getFieldProps } = this.props.form;
     // repair goTo by passing property
     //MobxStore.app.lastProperty = property
+    const status = property.getStatus(property.relatedFbid).get();    
     
     return (
       <div>
         <Item
         extra={
-            <Badge
-              text={property.showPhoneStatus.status}
-              style={{
-                marginLeft: 12,
-                padding: "0 0.06rem",
-                backgroundColor: property.showPhoneStatus.color,
-                borderRadius: 2
-              }}
-            />
-          }
+          <Badge
+            text={status.status}
+            style={{
+              marginLeft: 12,
+              padding: "0 0.06rem",
+              backgroundColor: status.color,
+              borderRadius: 2
+            }}
+          />
+        }
         arrow="horizontal"
         onClick={this.showActionSheet }
         thumb="http://hair.losstreatment.com/icons/rent-up.svg"
@@ -172,6 +180,9 @@ export default class SingleLeaseCaseView extends React.Component {
             />
             </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
             </Item>
+            <Item>
+        Tel : {status.contactPhone}
+        </Item>            
         <WhiteSpace size="sm" />
       </div>
     );

@@ -75,23 +75,17 @@ class SingleSaleAgentRespondView extends React.Component {
    */
   showActionSheet = () => {
     const p = this.props.property;
-    //let showPhone = this.props.showPhone;
-    let showPhone = false;
-    let phone = 888;
-
-    if ( this.props.status ) {
-      showPhone = this.props.status.isShowPhone;
-      phone = p.contactPhone;
-    } 
-
-    const BUTTONS = ['容許對方打俾你', 'Call ' + p.contactPhone, '取消'];
+    const f = this.props.filter;
+    const status = p.getStatus(f.fbid).get();
+    const fStatus = f.getStatus(p.fbid).get();
+    const BUTTONS = [fStatus.message, "直接致電: " + p.contactPhone, "取消"];
 
     ActionSheet.showActionSheetWithOptions({
       options: BUTTONS,
       cancelButtonIndex: BUTTONS.length - 1,
       destructiveButtonIndex: BUTTONS.length - 2,
       // title: '标题',
-      message: 'SaleAgentRespondView',
+      message: 'SingleBuyAgentRespondView',
       maskClosable: true,
       'data-seed': 'logId',
       wrapProps,
@@ -99,20 +93,15 @@ class SingleSaleAgentRespondView extends React.Component {
     (buttonIndex) => {
       this.setState({ clicked: BUTTONS[buttonIndex] });
       if ( buttonIndex === 0 ) {
-        this.props.filter.setSaleInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone );    
+        this.props.filter.setBuyInDirectCall( 
+          MobxStore.router.params.keyID, 
+          p.fbid, 
+          fStatus.isShowPhone
+         );  
       }
-      if ( buttonIndex === 1 ) {
-        window.location.href="tel://"+ p.contactPhone;
+      if (buttonIndex === 1 ) {
+        window.location.href = "tel://" + p.contactPhone;
       }
-      // if ( buttonIndex === 2 ) {
-      //    this.props.store.app.passByRef = p;
-      //    this.props.store.router.goTo(views.buyAgentForm, {
-      //      keyID: p.fbid,
-      //      typeTo: p.typeTo,
-      //      filterID: this.props.filterID
-      //   })
-      // }
-      
     });
   }
 
@@ -120,6 +109,8 @@ class SingleSaleAgentRespondView extends React.Component {
     const { property , filter } = this.props;
     const that = this;
     const { getFieldProps } = this.props.form;    
+    const fStatus = filter.getStatus(property.fbid).get();
+    
     //        const { getFieldProps } = this.props.form;
 
     //onClick={() => MobxStore.router.goTo(views.leaseAgentForm, { keyID : property.fbid, typeTo : property.typeTo})}
@@ -130,6 +121,17 @@ class SingleSaleAgentRespondView extends React.Component {
     return (
       <div>
         <Item
+        extra={
+          <Badge
+          text={fStatus.status}
+          style={{
+              marginLeft: 12,
+              padding: "0 0.06rem",
+              backgroundColor: fStatus.color,
+              borderRadius: 2
+            }}
+          />
+        }            
         arrow="horizontal"
           onClick={this.showActionSheet }
           thumb="http://hair.losstreatment.com/icons/rent-up.svg"

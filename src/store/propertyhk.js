@@ -156,7 +156,9 @@ export class Propertyhk extends Property {
 
         // Testing for showPhoneByCase, Case Only
         // Having to call, before any call of showPhoneByCase
-        np.buildInDirectCallAgent( np.typeFor )
+//        np.buildInDirectCallAgent( np.typeFor )
+        np.buildInDirectCall();
+        
         
         // p.contactName = 'kky'
         this.buyCase.set(key, np);
@@ -180,7 +182,9 @@ export class Propertyhk extends Property {
       np.relatedFbid = key;
 
       // Testing for showPhoneByCase, Case Only
-      np.buildInDirectCallAgent( np.typeFor )
+      //np.buildInDirectCallAgent( np.typeFor )
+      np.buildInDirectCall();
+      
 
       this.saleCase.set(key, np);
       console.log("saleCase key", key);
@@ -199,8 +203,11 @@ export class Propertyhk extends Property {
         np.relatedFbid = key;
 
         // Testing for showPhoneByCase, Case Only
-        np.buildInDirectCallAgent( np.typeFor )
+//        np.buildInDirectCallAgent( np.typeFor )
+        np.buildInDirectCall();
         
+
+
         this.leaseCase.set(key, np);
         console.log("leaseCase key", key);
       }
@@ -218,8 +225,10 @@ export class Propertyhk extends Property {
         np.relatedFbid = key;
 
         // Testing for showPhoneByCase, Case Only
-        np.buildInDirectCallAgent( np.typeFor )
+//        np.buildInDirectCallAgent( np.typeFor )
+        np.buildInDirectCall();
         
+
         this.rentCase.set(key, np);
         console.log("rentCase key", key);
       }
@@ -722,6 +731,8 @@ export class Propertyhk extends Property {
 
   /**
    * Get Status by giving and id
+   * id the property, you are matching at the inDirectCall/typeTo/selfid/id
+   * this is for display single view
    */
   getStatus(id) {
     //debugger

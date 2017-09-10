@@ -74,7 +74,15 @@ export default class SingleSaleCaseView extends React.Component {
    */
   showActionSheet = () => {
     const p = this.props.property;
-    const BUTTONS = ["Call " + p.showPhoneByCase, "edit", "取消"];
+    const status = p.getStatus(p.relatedFbid).get();
+    var BUTTONS; 
+
+    if ( status.isShowPhone ) {
+      BUTTONS = ["直接致電: " + status.contactPhone, 'edit', "取消"];
+    } else {
+      BUTTONS = ["直接致電: " + status.contactPhone, 'edit', "取消"];
+    }
+    
     ActionSheet.showActionSheetWithOptions(
       {
         options: BUTTONS,
@@ -88,8 +96,8 @@ export default class SingleSaleCaseView extends React.Component {
       },
       buttonIndex => {
         this.setState({ clicked: BUTTONS[buttonIndex] });
-        if (buttonIndex === 0) {
-          window.location.href = "tel://" + p.contactPhone;
+        if ( buttonIndex === 0 && status.isShowPhone ) {
+          window.location.href = "tel://" + status.contactPhone;
         }
         if (buttonIndex === 1) {
           this.props.store.app.passByRef = p;
@@ -107,6 +115,7 @@ export default class SingleSaleCaseView extends React.Component {
     // property is a sale case
     const { property } = this.props;
     const that = this;
+    const status = property.getStatus(property.relatedFbid).get();    
     //        const { getFieldProps } = this.props.form;
 
     //onClick={() => MobxStore.router.goTo(views.leaseAgentForm, { keyID : property.fbid, typeTo : property.typeTo})}
@@ -115,16 +124,17 @@ export default class SingleSaleCaseView extends React.Component {
     //MobxStore.app.lastProperty = property;
     //extra={<Badge text={property.showPhoneByCase.toString()} />}
 
+
     return (
       <div>
         <Item
           extra={
             <Badge
-              text={property.showPhoneStatus.status}
+              text={status.status}
               style={{
                 marginLeft: 12,
                 padding: "0 0.06rem",
-                backgroundColor: property.showPhoneStatus.color,
+                backgroundColor: status.color,
                 borderRadius: 2
               }}
             />
@@ -224,6 +234,9 @@ export default class SingleSaleCaseView extends React.Component {
               }}
             />
           </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
+        </Item>
+        <Item>
+        Tel : {status.contactPhone}
         </Item>
         <WhiteSpace size="sm" />
       </div>

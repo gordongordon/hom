@@ -71,21 +71,17 @@ class SingleRentAgentRespondView extends React.Component {
    */
   showActionSheet = () => {
     const p = this.props.property;
-    let showPhone = this.props.showPhone;
-    let phone = 911; 
-    if ( showPhone ) {
-      phone = p.contactPhone;
-    }  else {
-      showPhone = false;
-    }
+    const f = this.props.filter;
+    const status = p.getStatus(f.fbid).get();
+    const fStatus = f.getStatus(p.fbid).get();
+    const BUTTONS = [fStatus.message, "直接致電: " + p.contactPhone, "取消"];
 
-    const BUTTONS = ['容許對方打俾你', 'Call' + p.contactPhone, '取消'];
     ActionSheet.showActionSheetWithOptions({
       options: BUTTONS,
       cancelButtonIndex: BUTTONS.length - 1,
       destructiveButtonIndex: BUTTONS.length - 2,
       // title: '标题',
-      message: 'rentAgentRespondView',
+      message: 'SingleBuyAgentRespondView',
       maskClosable: true,
       'data-seed': 'logId',
       wrapProps,
@@ -93,22 +89,15 @@ class SingleRentAgentRespondView extends React.Component {
     (buttonIndex) => {
       this.setState({ clicked: BUTTONS[buttonIndex] });
       if ( buttonIndex === 0 ) {
-//         p.setRentInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone  );         
-        this.props.filter.setRentInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone );         
-        
+        this.props.filter.setLeaseInDirectCall( 
+          MobxStore.router.params.keyID, 
+          p.fbid, 
+          fStatus.isShowPhone
+         );  
       }
-      if ( buttonIndex === 1 ) {
-        window.location.href="tel://"+ p.contactPhone;
+      if (buttonIndex === 1 ) {
+        window.location.href = "tel://" + p.contactPhone;
       }
-      // if ( buttonIndex === 2 ) {
-      //    this.props.store.app.passByRef = p;
-      //    this.props.store.router.goTo(views.rentAgentForm, {
-      //      keyID: p.fbid,
-      //      typeTo: p.typeTo,
-      //      filterID: this.props.filterID
-      //   })
-      // }
-      
     });
   }
 
@@ -117,7 +106,8 @@ class SingleRentAgentRespondView extends React.Component {
     const that = this;
     const { getFieldProps } = this.props.form;    
     //        const { getFieldProps } = this.props.form;
-
+    const fStatus = filter.getStatus(property.fbid).get();
+    
     // repair goTo by passing property
     //MobxStore.app.lastProperty = property
     
@@ -133,6 +123,17 @@ class SingleRentAgentRespondView extends React.Component {
     return (
       <div>
         <Item
+        extra={
+          <Badge
+          text={fStatus.status}
+          style={{
+              marginLeft: 12,
+              padding: "0 0.06rem",
+              backgroundColor: fStatus.color,
+              borderRadius: 2
+            }}
+          />
+        }            
         arrow="horizontal"
         onClick={this.showActionSheet}
 

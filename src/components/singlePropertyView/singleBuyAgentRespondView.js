@@ -83,15 +83,11 @@ class SingleBuyAgentRespondView extends React.Component {
    */
   showActionSheet = () => {
     const p = this.props.property;
-    let showPhone = this.props.showPhone;
-    let phone = 911; 
-    if ( showPhone ) {
-      phone = p.contactPhone;
-    }  else {
-      showPhone = false;
-    }
+    const f = this.props.filter;
+    const status = p.getStatus(f.fbid).get();
+    const fStatus = f.getStatus(p.fbid).get();
+    const BUTTONS = [fStatus.message, "直接致電: " + p.contactPhone, "取消"];
 
-    const BUTTONS = ['容許對方打俾你', 'Call' + p.contactPhone, '取消'];
     ActionSheet.showActionSheetWithOptions({
       options: BUTTONS,
       cancelButtonIndex: BUTTONS.length - 1,
@@ -106,11 +102,15 @@ class SingleBuyAgentRespondView extends React.Component {
       this.setState({ clicked: BUTTONS[buttonIndex] });
       if ( buttonIndex === 0 ) {
 //        p.setBuyInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone  );    
-        this.props.filter.setBuyInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone );         
-        
+        // this.props.filter.setBuyInDirectCall( p.fbid, MobxStore.router.params.keyID, showPhone );         
+        this.props.filter.setSaleInDirectCall( 
+          MobxStore.router.params.keyID, 
+          p.fbid, 
+          fStatus.isShowPhone
+         );  
       }
-      if ( buttonIndex === 1 ) {
-        window.location.href="tel://"+ p.contactPhone;
+      if (buttonIndex === 1 ) {
+        window.location.href = "tel://" + p.contactPhone;
       }
       // if ( buttonIndex === 2 ) {
       //    this.props.store.app.passByRef = p;
@@ -128,6 +128,8 @@ class SingleBuyAgentRespondView extends React.Component {
     const { property, filter } = this.props;
     const that = this;
     const { getFieldProps } = this.props.form;    
+    const fStatus = filter.getStatus(property.fbid).get();
+    
     //        const { getFieldProps } = this.props.form;
 
     //debugger
@@ -156,6 +158,17 @@ class SingleBuyAgentRespondView extends React.Component {
     return (
       <div>
         <Item
+        extra={
+          <Badge
+          text={fStatus.status}
+          style={{
+              marginLeft: 12,
+              padding: "0 0.06rem",
+              backgroundColor: fStatus.color,
+              borderRadius: 2
+            }}
+          />
+        }    
         arrow="horizontal"
           onClick={this.showActionSheet}
           thumb="http://hair.losstreatment.com/icons/building-up.svg"
@@ -266,11 +279,14 @@ class SingleBuyAgentRespondView extends React.Component {
             <List.Item
             extra={<Switch
               {...getFieldProps('isShowPhone', {
-                initialValue: false,
+                initialValue: fStatus.isShowPhone,
                 valuePropName: 'checked',
               })}
               onClick={(checked) => {    
-                this.props.filter.setBuyInDirectCall( property.fbid, MobxStore.router.params.keyID, checked );  
+                filter.setSaleInDirectCall( 
+                   MobxStore.router.params.keyID, 
+                   property.fbid, 
+                   checked );  
                 console.log(checked); }} 
               />}
     
