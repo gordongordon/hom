@@ -210,6 +210,16 @@ class SingleLeaseAgentRespondView extends React.Component {
             borderRadius: 5
           }}
         />
+        <br />
+            <Badge
+              text={property.netSizeLabel}
+              style={{
+                marginLeft: 6,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 5
+              }}
+            />        
             </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
             </Item>
             <List.Item

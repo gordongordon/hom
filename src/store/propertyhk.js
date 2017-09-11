@@ -845,6 +845,13 @@ export class Propertyhk extends Property {
     // }
   };
 
+  /**
+   * id is the matched property id
+   */
+  // setView( id ) {
+  //   Fb.root.ref("inDirectCall/" + this.typeTo + "/" + this.fbid).update({ [relatedFbid]: status });
+  // }
+  
   //   setSaleInDirectCall = ( fbid, relatedFbid ) => {
   // //     id = Fb.app.usersRef.push().key;
   //     //Fb.app.usersRef.update({ [id]: p.serialize() });

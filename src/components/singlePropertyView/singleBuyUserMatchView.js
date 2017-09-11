@@ -239,7 +239,7 @@ class SingleBuyUserMatchView extends React.Component {
             />
             <br />
             <Badge
-              text={property.netSizeLabel}
+              text={property.netSizeMinLabel}
               style={{
                 marginLeft: 6,
                 padding: "0 0.06rem",

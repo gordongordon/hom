@@ -221,7 +221,16 @@ class SingleLeaseUserMatchView extends React.Component {
                 borderRadius: 5
               }}
             />
-
+            <br />
+            <Badge
+              text={property.netSizeLabel}
+              style={{
+                marginLeft: 6,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 5
+              }}
+            />
             <Badge
               text={property.isFreeForSevenDayLabel}
               style={{

@@ -311,12 +311,12 @@ export class Property {
 
   @computed
   get netSizeMinLabel(){
-     return this.netSizeMin + "尺";
+     return "最少有" + this.netSizeMin + "尺";
   }
 
   @computed
   get netSizeLabel(){
-     return this.netSizeMin + "尺";
+     return "實用" + this.netSize + "尺";
   }
 
   @computed
@@ -365,6 +365,10 @@ export class Property {
     const tenThousandDigit = parseInt(price / 10000);
     const thousandDigit = parseInt(price % 10000 / 1000);
     const hundredDigit = parseInt(price % 1000 / 100);
+
+    if ( price <= 0 ) {
+      return "0 error";
+    }
 
     if (tenThousandDigit >= 1) {
       label += tenThousandDigit + "萬";

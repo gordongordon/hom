@@ -185,16 +185,6 @@ class SingleBuyAgentRespondView extends React.Component {
               borderRadius: 5
             }}
           />
-            
-            <Badge
-            text={property.levelLabel}
-            style={{
-              marginLeft: 6,
-              padding: "0 0.06rem",
-              backgroundColor: property.colorByRoleName,
-              borderRadius: 5
-            }}
-          />            
             <Badge
               text={property.roleName}
               style={{
@@ -225,15 +215,6 @@ class SingleBuyAgentRespondView extends React.Component {
               }}
             />
             <br />
-            <Badge
-            text={property.netSizeLabel}
-            style={{
-              marginLeft: 6,
-              padding: "0 0.06rem",
-              backgroundColor: property.colorByFresh,
-              borderRadius: 5
-            }}
-          />
           <Badge
           text={property.isSaleWithLeaseLabel}
           style={{
