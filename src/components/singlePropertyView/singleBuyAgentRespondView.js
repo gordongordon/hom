@@ -278,7 +278,7 @@ class SingleBuyAgentRespondView extends React.Component {
                    filter.getStatus(property.fbid).get().isShowPhone );  
                 console.log( `checked ${checked}, isShowPhone ${fStatus.isShowPhone}`); }} 
               />}
-    
+              
             >Tel: {property.contactPhone}
             </List.Item>
             <WhiteSpace size="sm" />

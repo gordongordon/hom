@@ -874,95 +874,95 @@ export class Propertyhk extends Property {
   //         //Fb.root.ref('inDirectCall/')
   //       }
 
- /**
-   * Building all inDirectCall list
-   * It read his's own firebase data at inDirectCall
-   * this was called by user filter only. 
-   * it would't call at single view component
-   */
-  buildInDirectCallAgent(type) {
-    const that = this;
-    //this.inDirectCall.clear();
-    // var userId = firebase.auth().currentUser.uid;
-    // return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-    //   var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-    //   // ...
-    // });
-    console.log(
-      `inDirectCall typeFor ${type}, that.fbid ${that.fbid}, inDirectCall.size ${that
-        .inDirectCall.size}`
-    );
+//  /**
+//    * Building all inDirectCall list
+//    * It read his's own firebase data at inDirectCall
+//    * this was called by user filter only. 
+//    * it would't call at single view component
+//    */
+//   buildInDirectCallAgent(type) {
+//     const that = this;
+//     //this.inDirectCall.clear();
+//     // var userId = firebase.auth().currentUser.uid;
+//     // return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+//     //   var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+//     //   // ...
+//     // });
+//     console.log(
+//       `inDirectCall typeFor ${type}, that.fbid ${that.fbid}, inDirectCall.size ${that
+//         .inDirectCall.size}`
+//     );
 
-    Fb.root
-    .ref("inDirectCall/" + type + "/" + this.relatedFbid)
-    .on("child_added", function(data) {
+//     Fb.root
+//     .ref("inDirectCall/" + type + "/" + this.relatedFbid)
+//     .on("child_added", function(data) {
 
-      const status = new Status(
-        data.val().subjectID,
-        data.val().objectID,
-        data.val().isShowPhone
-      );
-      that.inDirectCall.set(data.key, status);
-      console.log(
-        `inDirectCall typeFor ${type}, that.fbid ${that.fbid}, inDirectCall.size ${that
-          .inDirectCall.size}`
-      );
-      });
+//       const status = new Status(
+//         data.val().subjectID,
+//         data.val().objectID,
+//         data.val().isShowPhone
+//       );
+//       that.inDirectCall.set(data.key, status);
+//       console.log(
+//         `inDirectCall typeFor ${type}, that.fbid ${that.fbid}, inDirectCall.size ${that
+//           .inDirectCall.size}`
+//       );
+//       });
 
-      Fb.root
-      .ref("inDirectCall/" + type + "/" + this.relatedFbid)
-      .on("child_changed", function(data) {
-        // Get an element with all functions, propertys
-        // Recreate a new properts { ... }
-        // otherwise propertys.responsedPropertys = undefined error
-        //                  const p = that.matchedPropertys.get( snapshot.key )
-        // const p = Propertyhk.deserialize(snapshot.val());
-        // that.matchedPropertys.set(snapshot.key, p);
+//       Fb.root
+//       .ref("inDirectCall/" + type + "/" + this.relatedFbid)
+//       .on("child_changed", function(data) {
+//         // Get an element with all functions, propertys
+//         // Recreate a new properts { ... }
+//         // otherwise propertys.responsedPropertys = undefined error
+//         //                  const p = that.matchedPropertys.get( snapshot.key )
+//         // const p = Propertyhk.deserialize(snapshot.val());
+//         // that.matchedPropertys.set(snapshot.key, p);
 
-        const status = new Status(
-          data.val().subjectID,
-          data.val().objectID,
-          data.val().isShowPhone
-        );
-        that.inDirectCall.set(data.key, status);
+//         const status = new Status(
+//           data.val().subjectID,
+//           data.val().objectID,
+//           data.val().isShowPhone
+//         );
+//         that.inDirectCall.set(data.key, status);
 
-        //                  that.matchedPropertys.set( snapshot.key, { ...p, ...snapshot.val() });
-        //console.log('child_changed snapshot.val() ',  snapshot.val() )
-      });      
+//         //                  that.matchedPropertys.set( snapshot.key, { ...p, ...snapshot.val() });
+//         //console.log('child_changed snapshot.val() ',  snapshot.val() )
+//       });      
 
 
-      Fb.root
-      .ref("inDirectCall/" + this.typeTo + "/" + this.relatedFbid)
-      .on("child_removed", function(data) {
-        that.inDirectCall.delete(data.key);
-      });
+//       Fb.root
+//       .ref("inDirectCall/" + this.typeTo + "/" + this.relatedFbid)
+//       .on("child_removed", function(data) {
+//         that.inDirectCall.delete(data.key);
+//       });
 
-    // Fb.root
-    //   .ref("inDirectCall/" + this.typeTo + "/" + this.fbid)
-    //   .once("value")
-    //   .then(function(snapshot) {
-    //     snapshot.forEach(data => {
-    //       console.log(
-    //         `inDirectCall ${data.key}, subID ${data.val()
-    //           .subjectID}, objID ${data.val().objectID}`
-    //       );
-    //       const status = new Status(
-    //         data.val().subjectID,
-    //         data.val().objectID,
-    //         data.val().isShowPhone
-    //       );
-    //       that.inDirectCall.set(data.key, status);
-    //       console.log(
-    //         `inDirectCall typeFor ${that.typeFor}, that.fbid ${that.fbid}, inDirectCall.size ${that
-    //           .inDirectCall.size}`
-    //       );
-    //     });
-    //     //this.inDirectCall.set( )
-    //     //console.log( 'inDirecal', snapshot.val() );
-    //     // this.inDirectCall.set( snapshot.val().fbid, snapshot.val() );
-    //   });
-    //    console.log( `inDirectCall typeFor ${this.typeFor}, key ${this.fbid}, inDirectCall.size ${that.inDirectCall.size}` );
-  }
+//     // Fb.root
+//     //   .ref("inDirectCall/" + this.typeTo + "/" + this.fbid)
+//     //   .once("value")
+//     //   .then(function(snapshot) {
+//     //     snapshot.forEach(data => {
+//     //       console.log(
+//     //         `inDirectCall ${data.key}, subID ${data.val()
+//     //           .subjectID}, objID ${data.val().objectID}`
+//     //       );
+//     //       const status = new Status(
+//     //         data.val().subjectID,
+//     //         data.val().objectID,
+//     //         data.val().isShowPhone
+//     //       );
+//     //       that.inDirectCall.set(data.key, status);
+//     //       console.log(
+//     //         `inDirectCall typeFor ${that.typeFor}, that.fbid ${that.fbid}, inDirectCall.size ${that
+//     //           .inDirectCall.size}`
+//     //       );
+//     //     });
+//     //     //this.inDirectCall.set( )
+//     //     //console.log( 'inDirecal', snapshot.val() );
+//     //     // this.inDirectCall.set( snapshot.val().fbid, snapshot.val() );
+//     //   });
+//     //    console.log( `inDirectCall typeFor ${this.typeFor}, key ${this.fbid}, inDirectCall.size ${that.inDirectCall.size}` );
+//   }
 
 
 

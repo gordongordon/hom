@@ -2,11 +2,18 @@ Todo:
 
 **Issue**
 1. jest coverage
-2. issue 
+2. issue missing matched item, need a test case
 3. ListOfRentProperty with '../singlePropertyView/SingleRentAgentPropertyForRespondView';
     should be '../singlePropertyView/singleRentAgentPropertyForRespondView';
 
 **Todo**
-1. Create 8 reference in firebase for PropertyHK
-2. Running test 
-
+1. Create 8 reference in firebase for PropertyHK (done)
+2. Running test (partial)
+3. Phone Sharing (done) user <> agent, user <> user Sept, 11st! 
+4. Read notices
+5. member account
+6. react-loadable 
+7. interface clean up
+8. use filters
+9. firebase optimization
+10. Chat room
