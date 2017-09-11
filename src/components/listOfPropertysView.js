@@ -40,7 +40,7 @@ const Brief = Item.Brief;
 // ];
 
 @observer
-export class ListOfPropertysView extends React.Component {
+export default class ListOfPropertysView extends React.Component {
   onClick = key => {
     console.log(key);
   };

@@ -7,34 +7,52 @@ const svgDirs = [
   //path.resolve(__dirname, 'src/my-project-svg-foler'),  // 2. 自己私人的 svg 存放目录
 ];
 
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+
 //var CompressionPlugin = require("compression-webpack-plugin");
 // var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 //const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 // loaders: [ 'style-loader', 'css-loader', 'sass-loader' ]
-module.exports = {
+module.exports = { 
   //devtool: 'eval',
   //
-  entry: [
-    "webpack-dev-server/client?http://localhost:3000",
-    "webpack/hot/only-dev-server",
-    "./src/index"
-  ],
-  output: {
-    // path: path.join(__dirname, 'public'),
-    // filename: 'bundle.js',
-    // publicPath: '/public/'
-
-    path: path.join(__dirname, "public"),
-    // filename: 'bundle.js',
-    publicPath: "/public/",
-
-    filename: "bundle.js"
-    //path: __dirname + '/dist'
+  //context: __dirname + "/public",
+  entry: {
+//    "webpack-dev-server/client?http://localhost:3000",
+//    "webpack/hot/only-dev-server",
+//    "./src/index"
+     index : './src/index.js'
   },
+
+  output: {
+    publicPath: '/',
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'public')
+  },
+
+//   output: {
+//     // path: path.join(__dirname, 'public'),
+//     // filename: 'bundle.js',
+//     publicPath: '/public/',
+
+// //    path: path.join(__dirname, "public"),
+//     // filename: 'bundle.js',
+//     //publicPath: "/public/",
+
+// //    filename: "bundle.js"
+//     //path: __dirname + '/dist'
+//     filename: '[name].bundle.js',
+//     path: path.resolve(__dirname, 'public')    
+//   },
+
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    //new webpack.HotModuleReplacementPlugin(),
+    // new HTMLWebpackPlugin({
+    //   title: 'Code Splitting'
+    // })    
     //  new CompressionPlugin({
     // 		asset: "[path].gz[query]",
     // 		algorithm: "gzip",
@@ -44,12 +62,12 @@ module.exports = {
     // 	}),
     //new BundleAnalyzerPlugin(),
     //new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new webpack.DefinePlugin({
-      // <-- key to reducing React's size
-      "process.env": {
-        NODE_ENV: JSON.stringify("production")
-      }
-    })
+    // new webpack.DefinePlugin({
+    //   // <-- key to reducing React's size
+    //   "process.env": {
+    //     NODE_ENV: JSON.stringify("production")
+    //   }
+    // })
     //  new webpack.optimize.DedupePlugin(), //dedupe similar code
     //  new webpack.optimize.UglifyJsPlugin({
     //    mangle: true,
@@ -73,16 +91,13 @@ module.exports = {
     // } )
     //new webpackConfig.babel.plugins.push(['import', { libraryName: 'antd-mobile', style: 'css' }])
   ],
-  resolveLoader: {
-    root: path.resolve(__dirname, "node_modules")
-  },
+  // resolveLoader: {
+  //   root: path.resolve(__dirname, "node_modules")
+  // },
   resolve: {
-    root: __dirname,
-    modulesDirectories: [
-      "node_modules",
-      //        path.join(__dirname, '../node_modules'),
+    modules: [
       path.join(__dirname, "src"),
-      //        './src',
+      "node_modules",
       "./components",
       "./data",
       "./store",
@@ -90,111 +105,106 @@ module.exports = {
       "./mobxs",
       "./tests"
     ],
-
-    extensions: ["",".web.jsx", ".web.js", ".js", ".jsx", ".json"]
+    extensions: [".web.jsx", ".web.js", ".js", ".jsx", ".json"]
   },
-  // "alias": {
-  //   "react": "preact-compat",
-  //   "react-dom": "preact-compat"
-  // },
   module: {
-    //{ test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
-    // preLoaders: [
+//    loaders: [
+     rules: [
+
+      // {
+      //   test: /\.(js|jsx)$/,
+      //   // exclude: /node_modules/,
+      //   loader: "babel-loader",
+      //   // include: path.join(__dirname, "src")
+      // },
     //   {
-    //     test: /\.(js|jsx)$/,
-    //     loader: 'eslint-loader',
-    //     exclude: /node_modules/,
-    //     query: require(path.resolve(__dirname, 'eslink.config.js'))
+    //     test: /\.css$/,
+    //     include: /node_modules/,
+    //     loaders: ["style-loader", "css-loader", "sass-loader"]
+    //   },
+    //   {
+    //     test: /\.(svg)$/,
+    //     loader: 'svg-sprite-loader',
+    //     include: svgDirs,  // 把 svgDirs 路径下的所有 svg 文件交给 svg-sprite-loader 插件处理        
     //   }
     // ],
-    loaders: [
-      {
-        //      test: /\.jsx?$/,
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        //      loaders: ['babel'],
-        //loaders: ['babel'],
-        //loaders: ['babel'],
-        loader: "babel-loader",
-        include: path.join(__dirname, "src")
-        //include: path.join(__dirname, 'node_modules'),
-      },
-      {
-        test: /\.css$/,
-//        exclude: /node_modules/,
-        include: /node_modules/,
-        loaders: ["style-loader", "css-loader", "sass-loader"]
-      },
-      // { test: /\.css$/, loader: 'style!css' }, // 把css处理成内联style，动态插入到页面
-      {
-        test: /\.(svg)$/,
-        //test: /\.(svg)$/i,
-        loader: 'svg-sprite-loader',
-        include: svgDirs,  // 把 svgDirs 路径下的所有 svg 文件交给 svg-sprite-loader 插件处理        
-        // loader: "svg-sprite-loader",
-        // include: [
-        //   require.resolve("antd-mobile").replace(/warn\.js$/, "") // 1. svg files of antd-mobile
-        //   // path.resolve(__dirname, 'src/my-project-svg-foler'),  // folder of svg files in your project
-        // ]
-      }
-    ],
-    rules: [
+    //rules: [
       // {
       //   exclude: [/\.less$/, /\.svg$/]
       // },
-      // // Process JS with Babel.
-      // {
-      //   test: /\.(js|jsx)$/,
-      //   options: {
-      //     plugins: [["import", { libraryName: "antd-mobile", style: true }]],
-      //     cacheDirectory: true
-      //   }
-      // },
-      // It is generally necessary to use the Icon component, need to configure svg-sprite-loader
-      // {
-      //   test: /\.(svg)$/i,
-      //   loader: "svg-sprite-loader",
-      //   include: [
-      //     require.resolve("antd-mobile").replace(/warn\.js$/, "") // 1. svg files of antd-mobile
-      //     // path.resolve(__dirname, 'src/my-project-svg-foler'),  // folder of svg files in your project
-      //   ]
-      // },
-      // {
-      //   test: /\.less$/,
-      //   use: [
-      //     require.resolve("style-loader"),
-      //     require.resolve("css-loader"),
-      //     {
-      //       loader: require.resolve("postcss-loader"),
-      //       options: {
-      //         ident: "postcss", // https://webpack.js.org/guides/migrating/#complex-options
-      //         plugins: () => [
-      //           autoprefixer({
-      //             browsers: [
-      //               "last 2 versions",
-      //               "Firefox ESR",
-      //               "> 1%",
-      //               "ie >= 8",
-      //               "iOS >= 8",
-      //               "Android >= 4"
-      //             ]
-      //           }),
-      //           pxtorem({ rootValue: 100, propWhiteList: [] })
-      //         ]
-      //       }
-      //     },
-      //     {
-      //       loader: require.resolve("less-loader"),
-      //       options: {
-      //         modifyVars: { "@primary-color": "#1DA57A" }
-      //       }
-      //     }
-      //   ]
-      // }
+      // Process JS with Babel.
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+        query: {
+            "presets": [
+              "react",
+              "es2015",
+              "stage-0"
+            ],
+            "plugins": [
+              "transform-decorators-legacy",
+              ["import", { "style": "css", "libraryName": "antd-mobile" }]
+            ]
+        }
+      },
+      //It is generally necessary to use the Icon component, need to configure svg-sprite-loader
+      {
+        test: /\.(svg)$/,
+        loader: "svg-sprite-loader",
+        include: [
+          require.resolve("antd-mobile").replace(/warn\.js$/, "") // 1. svg files of antd-mobile
+          // path.resolve(__dirname, 'src/my-project-svg-foler'),  // folder of svg files in your project
+        ]
+      },
+      {
+        test: /\.css$/,
+        include: /node_modules/,
+        use: ["style-loader", "css-loader", "sass-loader"]
+      },      
+      {
+        test: /\.less$/,
+        use: [
+          {
+             loader: "style-loader",
+             loader: "css-loader"
+          },
+          {
+            loader: "postcss-loader",
+            options: {
+              ident: "postcss", // https://webpack.js.org/guides/migrating/#complex-options
+              plugins: () => [
+                autoprefixer({
+                  browsers: [
+                    "last 2 versions",
+                    "Firefox ESR",
+                    "> 1%",
+                    "ie >= 8",
+                    "iOS >= 8",
+                    "Android >= 4"
+                  ]
+                }),
+                pxtorem({ rootValue: 100, propWhiteList: [] })
+              ]
+            }
+          },
+          {
+            loader: "less-loader",
+            options: {
+              modifyVars: { "@primary-color": "#1DA57A" }
+            }
+          }
+        ]
+      }
     ]
   },
-  devServer: {
-    historyApiFallback: true
-  },
+  // devServer: {
+  //   historyApiFallback: true
+  // },
+  // devServer: {
+  //   open: true, // to open the local server in browser
+  //   contentBase: __dirname + '/src',
+  // },  
   devtool: "cheap-module-eval-source-map"
 };

@@ -1,0 +1,93 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Marketplace
+Explore
+ @gordongordon
+ Sign out
+ Watch 0
+  Star 0  Fork 0 gordongordon/hom
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Settings Insights 
+Branch: master Find file Copy pathhom/public/index.html
+dfc0b85  on 9 Aug
+@gordongordon gordongordon add theme address bar color andriod
+1 contributor
+RawBlameHistory     
+64 lines (62 sloc)  1.93 KB
+<html>
+  <head>
+    <title>Public App</title>
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#317EFB">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#317EFB">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#317EFB">
+    <link rel="manifest" href="/manifest.json">
+    <script type="text/javascript">
+    <!-- Disable Double Click -->
+    function attachEvent(element, evtId, handler) {
+        if (element.addEventListener) {
+            element.addEventListener(evtId, handler, false);
+        } else if (element.attachEvent) {
+            var ieEvtId = "on"+evtId;
+            element.attachEvent(ieEvtId, handler);
+        } else {
+            var legEvtId = "on"+evtId;
+            element[legEvtId] = handler;
+        }
+    }
+    function getSender(evt, local) {
+        if (!evt) {
+            evt = window.event;
+        }
+        var sender;
+        if (evt.srcElement) {
+            sender = evt.srcElement;
+        } else {
+            sender = local;
+        }
+        return sender;
+    }
+    function onBeforeZoom(evt) {
+        var zoom = 320 / window.innerWidth;
+        var element = getSender(evt);
+        element.style.fontSize = Math.ceil(16 / zoom) + "px";
+    }
+    function onAfterZoom(evt) {
+        var element = getSender(evt);
+        element.style.fontSize = "";
+    }
+    function disableZoom() {
+        // Search all relevant input elements and attach zoom-events
+        var inputs = document.getElementsByTagName("input");
+        for (var i=0; i<inputs.length; i++) {
+            attachEvent(inputs[i], "focus", onBeforeZoom);
+            attachEvent(inputs[i], "blur", onAfterZoom);
+        }
+    }
+    attachEvent(window, "load", disableZoom);
+    // -->
+    </script>
+
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="bundle.js"></script>
+  </body>
+</html>
+© 2017 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+API
+Training
+Shop
+Blog
+About

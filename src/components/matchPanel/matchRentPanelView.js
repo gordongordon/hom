@@ -9,7 +9,7 @@ import {propertys} from 'userModelView'
 import {ControlRentViewWrapper} from '../control/controlRentView'
 //import {ListOfMatchPropertys} from 'listOfMatch/listOfMatchPropertys'
 //import {ListOfMatchLeasePropertys} from '../listOfMatch/listOfMatchLeasePropertys'
-import {ListOfMatchAgentLeasePropertys} from '../listOfMatch/listOfMatchAgentLeasePropertys'
+import ListOfMatchAgentLeasePropertys from '../listOfMatch/listOfMatchAgentLeasePropertys'
 import {ListOfMatchOldLeasePropertys} from '../listOfMatch/listOfMatchOldLeasePropertys'
 
 import { observer } from 'mobx-react';
@@ -25,7 +25,7 @@ import MobxStore from 'mobxStore';
 // ];
 
 // @observer
-class MatchRentPanelView extends React.Component {
+export default class MatchRentPanelView extends React.Component {
 
   constructor(props) {
     super(props)
@@ -96,4 +96,4 @@ class MatchRentPanelView extends React.Component {
   }
 }
   // <ListOfMatchPropertys propertys={property.matchedPropertys} />
-export const MatchRentPanelViewWrapper = createForm()(MatchRentPanelView);
+//export const MatchRentPanelViewWrapper = createForm()(MatchRentPanelView);

@@ -13,7 +13,7 @@ const Brief = Item.Brief;
 
 
 @observer
-export class ListOfAgentPropertysView extends React.Component {
+export default class ListOfAgentPropertysView extends React.Component {
 
   onClick = (key) => {
     console.log(key)

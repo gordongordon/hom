@@ -11,7 +11,7 @@ import {ControlBuyViewWrapper} from '../control/controlBuyView'
 
 //import {ListOfMatchSalePropertys} from '../listOfMatch/listOfMatchSalePropertys'
 import {ListOfMatchOldSalePropertys} from '../listOfMatch/listOfMatchOldSalePropertys'
-import {ListOfMatchAgentSalePropertys} from '../listOfMatch/listOfMatchAgentSalePropertys'
+import ListOfMatchAgentSalePropertys from '../listOfMatch/listOfMatchAgentSalePropertys'
 import { observer } from 'mobx-react';
 import MobxStore from 'mobxStore';
 
@@ -25,7 +25,7 @@ import MobxStore from 'mobxStore';
 // ];
 
 @observer
-class MatchBuyPanelView extends React.Component {
+export default class MatchBuyPanelView extends React.Component {
 
   constructor(props) {
     super(props)
@@ -106,4 +106,4 @@ class MatchBuyPanelView extends React.Component {
   }
 }
   // <ListOfMatchPropertys propertys={property.matchedPropertys} />
-export const MatchBuyPanelViewWrapper = createForm()(MatchBuyPanelView);
+// export const MatchBuyPanelViewWrapper = createForm()(MatchBuyPanelView);

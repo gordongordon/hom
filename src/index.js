@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { render } from 'react-dom';
+//import { render } from 'react-dom';
 import {MobxRouter, startRouter} from 'mobx-router';
 //import {FrontPageTabBar} from 'frontPageTabBar';
 //import DevTools from 'mobx-react-devtools';
@@ -8,14 +8,11 @@ import {MobxRouter, startRouter} from 'mobx-router';
 import {Provider} from 'mobx-react';
 //router 
 import views from 'views';
+
 import MobxStore from 'mobxStore';
-
-
 import firebase from 'firebase'
 import NavigationBar from 'navigationBar'
-
-import { NoticeBar } from 'antd-mobile';
-
+//import { NoticeBar } from 'antd-mobile';
 import initReactFastclick from 'react-fastclick';
 import {Fb} from 'firebase-store'
 // import ChatBot from 'react-simple-chatbot';
@@ -23,9 +20,9 @@ import {Fb} from 'firebase-store'
 
 import DevTools, { setLogEnabled, setUpdatesEnabled, setGraphEnabled } from 'mobx-react-devtools';
 
-import { AppContainer } from 'react-hot-loader';
-import App from 'app';
-import { BrowserRouter } from 'react-router-dom';
+// import { AppContainer } from 'react-hot-loader';
+// import App from 'app';
+// import { BrowserRouter } from 'react-router-dom';
 
 
 setLogEnabled(false); // same as configureDevtool({ logEnabled: true });

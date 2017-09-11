@@ -5,16 +5,16 @@ import React from "react";
 //import 'moment/locale/zh-cn';
 //import {propertys} from 'userModelView'
 //import SingleSalePropertyForMatchView from '../singlePropertyView/singleSalePropertyForMatchView'
+
+
 import { SingleSaleUserMatchViewWrapper } from "../singlePropertyView/singleSaleUserMatchView";
+
 import { inject, observer } from "mobx-react";
 //const Item = List.Item;
 //const Brief = Item.Brief;
 
-// const NameOfBuilding = [
-//   { value: 'MOSDBC', label: '迎海' },
-//   { value: 'MOSCTO', label: '第一城' },
-//   { value: 'MOSSSC', label: '新港城' },
-// ];
+
+
 
 @inject("store")
 @observer
@@ -22,6 +22,7 @@ export class ListOfMatchOldSalePropertys extends React.Component {
   constructor(props) {
     super(props);
   }
+
 
   display = propertys => {
     const list = propertys;

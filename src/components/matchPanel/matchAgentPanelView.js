@@ -15,27 +15,40 @@ import {
   WhiteSpace,
   Button,
   SegmentedControl
-} from "antd-mobile";
-import { createForm } from "rc-form";
+} from 'antd-mobile';
+import { createForm } from 'rc-form';
 // import moment from 'moment';
 // import 'moment/locale/zh-cn';
-import { agentModel } from "agentModelView";
+import { agentModel } from 'agentModelView';
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 //import {SingleRentPropertyForMatchViewWrapper} from 'singleRentPropertyForMatchView'
 import { ControlAgentViewWrapper } from "../control/controlAgentView";
 
-import { ListOfMatchAgentBuyPropertys } from "../listOfMatch/listOfMatchAgentBuyPropertys";
-import { ListOfMatchAgentSalePropertys } from "../listOfMatch/listOfMatchAgentSalePropertys";
-import { ListOfMatchAgentRentPropertys } from "../listOfMatch/listOfMatchAgentRentPropertys";
-import { ListOfMatchAgentLeasePropertys } from "../listOfMatch/listOfMatchAgentLeasePropertys";
+import ListOfMatchAgentBuyPropertys from "../listOfMatch/listOfMatchAgentBuyPropertys";
+import ListOfMatchAgentSalePropertys from "../listOfMatch/listOfMatchAgentSalePropertys";
+import ListOfMatchAgentRentPropertys from "../listOfMatch/listOfMatchAgentRentPropertys";
+import ListOfMatchAgentLeasePropertys from "../listOfMatch/listOfMatchAgentLeasePropertys";
 
-import { ListOfAgentPropertysView } from "../listOfMatch/listOfAgentPropertysView";
+import ListOfAgentPropertysView from "../listOfMatch/listOfAgentPropertysView";
 import { ListOfMatchAgentPropertysView } from "../listOfMatch/listOfMatchAgentPropertysView";
 import { observer } from "mobx-react";
 import MobxStore from "mobxStore";
 import { DISTRICK } from "DISTRICK";
 import { Fb } from "firebase-store";
 import views from "views";
+
+// import Loadable from 'react-loadable';
+
+// function MyLoadingComponent() {
+//   return <div>Loading...</div>;
+// }
+
+// const LoadableAnotherComponent = Loadable({
+//   loader: () => import('../singlePropertyView/singleSaleUserMatchView'),
+//   LoadingComponent: MyLoadingComponent
+// });
+
+
 
 // const Item = List.Item;
 // const Brief = Item.Brief;
@@ -343,17 +356,17 @@ class MatchAgentPanelView extends React.Component {
             }}
             title="房 東"
             key="我的"
-            selected={this.state.selectedTab === "lease"}
+            selected={this.state.selectedTab === 'lease'}
             badge={ this.state.selectedSegmentIndex === 0? filter.leaseRequest.size : filter.rentFollow.size }
             onPress={() => {
               this.setState({
-                selectedTab: "lease",
+                selectedTab: 'lease',
             //    selectedTabBar: 3
               });
               Fb.app.agentsFilterRef
                 .child(this.state.id)
                 .update({ typeFor: typeForString[3],
-                  typeTo : "lease"  });
+                  typeTo : 'lease'  });
             }}
           >
             {this.renderList(filter)}

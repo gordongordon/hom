@@ -5,15 +5,15 @@ import {Route} from 'mobx-router';
 
 //components
 //import {MatchPanelViewWrapper} from 'matchPanelView'
-import {ListOfPropertysView} from 'listOfPropertysView'
-import {ListOfAgentPropertysView} from 'listOfMatch/listOfAgentPropertysView'
+//import {ListOfPropertysView} from 'listOfPropertysView'
+//import ListOfAgentPropertysView from 'listOfMatch/listOfAgentPropertysView'
 
 //import {FrontPapePanelViewSegment} from 'frontPagePanelViewSegment'
-import {FrontPageView} from 'frontPageView'
+import {FrontPageView} from 'frontPageView';
 import MobxStore from 'mobxStore';
 //import FrontPage from 'frontPage'
 //import {MobxRouter} from 'mobx-router';
-import moment from 'moment';
+//import moment from 'moment';
 
 
 // Form
@@ -29,13 +29,13 @@ import {FormLeaseAgentPropertyAntMobileWrapper} from 'form/formLeaseAgentPropert
 import {FormAgentFilterWrapper} from 'form/formAgentFilter';
 
 // Match Panel views
-import {MatchLeasePanelViewWrapper} from 'matchPanel/matchLeasePanelView'
-import {MatchRentPanelViewWrapper} from 'matchPanel/matchRentPanelView'
-import {MatchSalePanelViewWrapper} from 'matchPanel/matchSalePanelView'
-import {MatchBuyPanelViewWrapper} from 'matchPanel/matchBuyPanelView'
-import {MatchAgentPanelViewWrapper} from 'matchPanel/matchAgentPanelView'
+//import {MatchLeasePanelViewWrapper} from 'matchPanel/matchLeasePanelView';
+//import {MatchRentPanelViewWrapper} from 'matchPanel/matchRentPanelView';
+//import {MatchSalePanelViewWrapper} from 'matchPanel/matchSalePanelView';
+//import {MatchBuyPanelViewWrapper} from 'matchPanel/matchBuyPanelView';
+import {MatchAgentPanelViewWrapper} from 'matchPanel/matchAgentPanelView';
 
-import {AgentAppView} from 'agentAppView'
+// import {AgentAppView} from 'agentAppView'
 
 // From chatbot
 //import FormSaleChatbot from 'chatbot/formSaleChatbot'
@@ -43,6 +43,62 @@ import {AgentAppView} from 'agentAppView'
 
 // testing
 // import TestListView from 'testListView'
+
+import Loadable from 'react-loadable';
+//import Loading from  'loading'
+
+function MyLoadingComponent(props) {
+  if (props.isLoading) {
+    // While our other component is loading...
+    if (props.timedOut) {
+      // In case we've timed out loading our other component.
+      return <div>Loader timed out!</div>;
+    } else if (props.pastDelay) {
+      // Display a loading screen after a set delay.
+      return <div>Loading...</div>;
+    } else {
+      // Don't flash "Loading..." when we don't need to.
+      return null;
+    }
+  } else if (props.error) {
+    // If we aren't loading, maybe
+    return <div>Error! Component failed to load</div>;
+  } else {
+    // This case shouldn't happen... but we'll return null anyways.
+    return null;
+  }
+}
+
+const ListOfPropertysViewLoader = Loadable({
+ loader: () => import('listOfPropertysView'),
+ loading: MyLoadingComponent,
+});
+
+const ListOfAgentPropertysViewLoader = Loadable({
+  loader: () => import('listOfMatch/listOfAgentPropertysView'),
+  loading: MyLoadingComponent,
+ });
+
+ const MatchBuyPanelViewLoader= Loadable({
+  loader: () => import('matchPanel/matchBuyPanelView'),
+  loading: MyLoadingComponent,
+ });
+ 
+ const MatchSalePanelViewLoader= Loadable({
+  loader: () => import('matchPanel/matchSalePanelView'),
+  loading: MyLoadingComponent,
+ });
+
+ const MatchLeasePanelViewLoader= Loadable({
+  loader: () => import('matchPanel/matchLeasePanelView'),
+  loading: MyLoadingComponent,
+ });
+ 
+ const MatchRentPanelViewLoader= Loadable({
+  loader: () => import('matchPanel/matchRentPanelView'),
+  loading: MyLoadingComponent,
+ });
+
 
 var save = false;
 
@@ -59,21 +115,21 @@ const views = {
       MobxStore.app.previousView = route;
     }
   }),
-  agent: new Route({
-    path: '/agent',
-    component: <AgentAppView/>,
-    onEnter: (route, params, store, queryParams) => {
-      MobxStore.app.setTitle( 'Agent App View');
-    },
-    beforeExit: (route, params) => {
-      console.log('exiting ListOfPRoperysView!');
-      console.log('params changed to', params);
-      MobxStore.app.previousView = route;
-    }
-  }),
+  // agent: new Route({
+  //   path: '/agent',
+  //   component: <AgentAppView/>,
+  //   onEnter: (route, params, store, queryParams) => {
+  //     MobxStore.app.setTitle( 'Agent App View');
+  //   },
+  //   beforeExit: (route, params) => {
+  //     console.log('exiting ListOfPRoperysView!');
+  //     console.log('params changed to', params);
+  //     MobxStore.app.previousView = route;
+  //   }
+  // }),
   list: new Route({
     path: '/list',
-    component: <ListOfPropertysView />,
+    component: <ListOfPropertysViewLoader />,
     onEnter: ( route, params, store, queryParams ) => {
 
       console.log('entering ListOfPropertysView!');
@@ -106,7 +162,7 @@ const views = {
   matchLease: new Route({
       path: '/matchLease/:keyID',
       // timeEnter for matching iktems only that time and after
-      component: <MatchLeasePanelViewWrapper/>,
+      component: <MatchLeasePanelViewLoader/>,
       onEnter: (route, params, store, queryParams) => {
       	console.log('third.current query params are -> ', queryParams);
         console.log('third.current params are -> ', params);
@@ -126,7 +182,7 @@ const views = {
   }),
   matchRent: new Route({
       path: '/matchRent/:keyID',
-      component: <MatchRentPanelViewWrapper/>,
+      component: <MatchRentPanelViewLoader/>,
       onEnter: (route, params, store, queryParams) => {
       	console.log('third.current query params are -> ', queryParams);
         console.log('third.current params are -> ', params);
@@ -146,7 +202,7 @@ const views = {
   }),
   matchSale: new Route({
       path: '/matchSale/:keyID',
-      component: <MatchSalePanelViewWrapper/>,
+      component: <MatchSalePanelViewLoader/>,
       onEnter: (route, params, store, queryParams) => {
       	console.log('third.current query params are -> ', queryParams);
         console.log('third.current params are -> ', params);
@@ -166,14 +222,14 @@ const views = {
   }),
   matchBuy: new Route({
       path: '/matchBuy/:keyID',
-      component: <MatchBuyPanelViewWrapper timeEnter={ moment().format('YYYY-MM-DD HH:mm:ss')}/>,
+      component: <MatchBuyPanelViewLoader />,
       onEnter: (route, params, store, queryParams) => {
       	console.log('third.current query params are -> ', queryParams);
         console.log('third.current params are -> ', params);
         MobxStore.app.setTitle( '最新鮮配對 買家');
         console.log('route', route)
         MobxStore.app.viewHistory.set( 'matchBuy', MobxStore.app.previousView  )
-        console.log( 'timeEnter from view', moment().format('YYYY-MM-DD HH:mm:ss'))
+        //console.log( 'timeEnter from view', moment().format('YYYY-MM-DD HH:mm:ss'))
       },
       beforeExit: (route, params) => {
         console.log('exiting user profile!');
@@ -272,7 +328,7 @@ const views = {
   }),
   listAgent: new Route({
     path: '/listAgent',
-    component: <ListOfAgentPropertysView />,
+    component: <ListOfAgentPropertysViewLoader />,
     onEnter: ( route, params, store, queryParams ) => {
 
       console.log('entering ListOfAgentPropertysView!');

@@ -23,7 +23,7 @@ import { Accordion, List } from "antd-mobile";
 // ];
 
 @observer
-export class ListOfMatchAgentBuyPropertys extends React.Component {
+export default class ListOfMatchAgentBuyPropertys extends React.Component {
   constructor(props) {
     super(props);
   }

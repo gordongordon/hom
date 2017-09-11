@@ -20,7 +20,7 @@ import { SingleLeaseAgentRespondViewWrapper } from "../singlePropertyView/single
 // ];
 
 @observer
-export class ListOfMatchAgentLeasePropertys extends React.Component {
+export default class ListOfMatchAgentLeasePropertys extends React.Component {
   constructor(props) {
     super(props);
   }

@@ -1,6 +1,6 @@
 import React from 'react'
 import {  NoticeBar,List , Card, Stepper, Icon, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl} from 'antd-mobile';
-import { createForm } from 'rc-form';
+//import { createForm } from 'rc-form';
 // import moment from 'moment';
 // import 'moment/locale/zh-cn';
 import {propertys} from 'userModelView'
@@ -10,7 +10,7 @@ import {ControlSaleViewWrapper} from '../control/controlSaleView'
 
 //import {ListOfMatchPropertys} from 'listOfMatch/listOfMatchPropertys'
 //import {ListOfMatchBuyPropertys} from '../listOfMatch/listOfMatchBuyPropertys'
-import {ListOfMatchAgentBuyPropertys} from '../listOfMatch/listOfMatchAgentBuyPropertys'
+import ListOfMatchAgentBuyPropertys from '../listOfMatch/listOfMatchAgentBuyPropertys'
 import {ListOfMatchOldBuyPropertys} from '../listOfMatch/listOfMatchOldBuyPropertys'
 import { observer } from 'mobx-react';
 import MobxStore from 'mobxStore';
@@ -25,7 +25,7 @@ import MobxStore from 'mobxStore';
 // ];
 
 @observer
-class MatchSalePanelView extends React.Component {
+export default class MatchSalePanelView extends React.Component {
 
   constructor(props) {
     super(props)
@@ -103,4 +103,4 @@ class MatchSalePanelView extends React.Component {
   }
 }
   // <ListOfMatchPropertys propertys={property.matchedPropertys} />
-export const MatchSalePanelViewWrapper = createForm()(MatchSalePanelView);
+// export const MatchSalePanelViewWrapper = createForm()(MatchSalePanelView);

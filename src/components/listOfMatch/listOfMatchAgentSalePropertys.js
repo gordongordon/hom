@@ -5,8 +5,8 @@ import React from "react";
 //import 'moment/locale/zh-cn';
 //import {propertys} from 'userModelView'
 import { SingleSaleUserMatchViewWrapper } from "../singlePropertyView/singleSaleUserMatchView";
-import SingleSaleAgentFilterView from "../singlePropertyView/singleSaleAgentFilterView";
-import SingleSaleCaseView from "../singlePropertyView/singleSaleCaseView";
+//import SingleSaleAgentFilterView from "../singlePropertyView/singleSaleAgentFilterView";
+//import SingleSaleCaseView from "../singlePropertyView/singleSaleCaseView";
 import { SingleSaleAgentRespondViewWrapper } from "../singlePropertyView/singleSaleAgentRespondView";
 
 import { observer } from "mobx-react";
@@ -19,8 +19,55 @@ import { observer } from "mobx-react";
 //   { value: 'MOSSSC', label: '新港城' },
 // ];
 
+
+import Loadable from 'react-loadable';
+//import Loading from  'loading'
+
+function MyLoadingComponent(props) {
+  if (props.isLoading) {
+    // While our other component is loading...
+    if (props.timedOut) {
+      // In case we've timed out loading our other component.
+      return <div>Loader timed out!</div>;
+    } else if (props.pastDelay) {
+      // Display a loading screen after a set delay.
+      return <div>Loading...</div>;
+    } else {
+      // Don't flash "Loading..." when we don't need to.
+      return null;
+    }
+  } else if (props.error) {
+    // If we aren't loading, maybe
+    return <div>Error! Component failed to load</div>;
+  } else {
+    // This case shouldn't happen... but we'll return null anyways.
+    return null;
+  }
+}
+
+const SingleSaleCaseViewLoader = Loadable({
+ loader: () => import('../singlePropertyView/singleSaleCaseView'),
+ loading: MyLoadingComponent,
+});
+
+const SingleSaleAgentFilterViewLoader = Loadable({
+  loader: () => import('../singlePropertyView/singleSaleAgentFilterView'),
+  loading: MyLoadingComponent,
+ });
+
+//  const SingleSaleCaseViewLoader = Loadable({
+//   loader: () => import('../singlePropertyView/singleSaleCaseView'),
+//   loading: MyLoadingComponent,
+//  });
+
+//  const SingleSaleCaseViewLoader = Loadable({
+//   loader: () => import('../singlePropertyView/singleSaleCaseView'),
+//   loading: MyLoadingComponent,
+//  });
+ 
+
 @observer
-export class ListOfMatchAgentSalePropertys extends React.Component {
+export default class ListOfMatchAgentSalePropertys extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -43,7 +90,7 @@ export class ListOfMatchAgentSalePropertys extends React.Component {
 
       if (segment === "case") {
         element.push(
-          <SingleSaleCaseView
+          <SingleSaleCaseViewLoader
             property={p}
             filter={this.props.filter}
             key={keyID}
@@ -52,7 +99,7 @@ export class ListOfMatchAgentSalePropertys extends React.Component {
         );
       } else if (segment === "filter") {
         element.push(
-          <SingleSaleAgentFilterView
+          <SingleSaleAgentFilterViewLoader
             property={p}
             key={keyID}
             filterID={this.props.filterID}
