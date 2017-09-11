@@ -20,7 +20,8 @@ import { observer } from "mobx-react";
 // ];
 
 
-import Loadable from 'react-loadable';
+//import Loadable from 'react-loadable';
+import LoadableVisibility from 'react-loadable-visibility/react-loadable';
 //import Loading from  'loading'
 
 function MyLoadingComponent(props) {
@@ -45,12 +46,12 @@ function MyLoadingComponent(props) {
   }
 }
 
-const SingleSaleCaseViewLoader = Loadable({
+const SingleSaleCaseViewLoader = LoadableVisibility({
  loader: () => import('../singlePropertyView/singleSaleCaseView'),
  loading: MyLoadingComponent,
 });
 
-const SingleSaleAgentFilterViewLoader = Loadable({
+const SingleSaleAgentFilterViewLoader = LoadableVisibility({
   loader: () => import('../singlePropertyView/singleSaleAgentFilterView'),
   loading: MyLoadingComponent,
  });

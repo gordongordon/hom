@@ -61,14 +61,14 @@ module.exports = {
     // 		minRatio: 0.8
     // 	}),
     //new BundleAnalyzerPlugin(),
-    //new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    // new webpack.DefinePlugin({
-    //   // <-- key to reducing React's size
-    //   "process.env": {
-    //     NODE_ENV: JSON.stringify("production")
-    //   }
-    // })
-    //  new webpack.optimize.DedupePlugin(), //dedupe similar code
+     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+     new webpack.DefinePlugin({
+       // <-- key to reducing React's size
+       "process.env": {
+         NODE_ENV: JSON.stringify("production")
+       }
+     }),
+     //new webpack.optimize.DedupePlugin(), //dedupe similar code
     //  new webpack.optimize.UglifyJsPlugin({
     //    mangle: true,
     //    compress: {
@@ -83,12 +83,12 @@ module.exports = {
     //    },
     //    exclude: [/\.min\.js$/gi] // skip pre-minified libs
     //  }),
-    //  new webpack.optimize.AggressiveMergingPlugin(),//Merge chunks
-    //   new webpack.optimize.UglifyJsPlugin({
-    // compress: {
-    //   warnings: false
-    // }
-    // } )
+    new webpack.optimize.AggressiveMergingPlugin(),//Merge chunks
+      new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false
+    }
+    } )
     //new webpackConfig.babel.plugins.push(['import', { libraryName: 'antd-mobile', style: 'css' }])
   ],
   // resolveLoader: {

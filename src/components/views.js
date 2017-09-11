@@ -44,8 +44,9 @@ import {MatchAgentPanelViewWrapper} from 'matchPanel/matchAgentPanelView';
 // testing
 // import TestListView from 'testListView'
 
-import Loadable from 'react-loadable';
+//import Loadable from 'react-loadable';
 //import Loading from  'loading'
+import LoadableVisibility from 'react-loadable-visibility/react-loadable'
 
 function MyLoadingComponent(props) {
   if (props.isLoading) {
@@ -69,32 +70,32 @@ function MyLoadingComponent(props) {
   }
 }
 
-const ListOfPropertysViewLoader = Loadable({
+const ListOfPropertysViewLoader = LoadableVisibility({
  loader: () => import('listOfPropertysView'),
  loading: MyLoadingComponent,
 });
 
-const ListOfAgentPropertysViewLoader = Loadable({
+const ListOfAgentPropertysViewLoader = LoadableVisibility({
   loader: () => import('listOfMatch/listOfAgentPropertysView'),
   loading: MyLoadingComponent,
  });
 
- const MatchBuyPanelViewLoader= Loadable({
+ const MatchBuyPanelViewLoader= LoadableVisibility({
   loader: () => import('matchPanel/matchBuyPanelView'),
   loading: MyLoadingComponent,
  });
  
- const MatchSalePanelViewLoader= Loadable({
+ const MatchSalePanelViewLoader= LoadableVisibility({
   loader: () => import('matchPanel/matchSalePanelView'),
   loading: MyLoadingComponent,
  });
 
- const MatchLeasePanelViewLoader= Loadable({
+ const MatchLeasePanelViewLoader= LoadableVisibility({
   loader: () => import('matchPanel/matchLeasePanelView'),
   loading: MyLoadingComponent,
  });
  
- const MatchRentPanelViewLoader= Loadable({
+ const MatchRentPanelViewLoader= LoadableVisibility({
   loader: () => import('matchPanel/matchRentPanelView'),
   loading: MyLoadingComponent,
  });
