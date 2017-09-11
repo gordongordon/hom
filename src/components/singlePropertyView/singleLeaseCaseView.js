@@ -18,8 +18,10 @@ import {
 //import 'moment/locale/zh-cn';
 import { propertys } from "userModelView";
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
-import MobxStore from "mobxStore";
+//import MobxStore from "mobxStore";
 import views from "views";
+import {inject, observer} from "mobx-react"
+
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -35,6 +37,7 @@ if (isIPhone) {
   };
 }
 
+@inject("store") @observer
 export default class SingleLeaseCaseView extends React.Component {
   constructor(props) {
     super(props);
@@ -60,14 +63,18 @@ export default class SingleLeaseCaseView extends React.Component {
   showActionSheet = () => {
     const p = this.props.property;
     const status = p.getStatus(p.relatedFbid).get();
+    const f = this.props.filter;
     var BUTTONS; 
 
+    // debugger
+
     if ( status.isShowPhone ) {
-      BUTTONS = ["直接致電: " + status.contactPhone, 'edit', "取消"];
+      BUTTONS = [ `直接致電(${f.roleName}):  ${status.contactPhone}`, '更新回覆內容', "取消"];
     } else {
-      BUTTONS = ["直接致電: " + status.contactPhone, 'edit', "取消"];
+      BUTTONS = [ `直接致電(${f.roleName}):  ${status.contactPhone}`, '更新回覆內容', "取消"];
     }
-    ActionSheet.showActionSheetWithOptions({
+
+      ActionSheet.showActionSheetWithOptions({
       options: BUTTONS,
       cancelButtonIndex: BUTTONS.length - 1,
       destructiveButtonIndex: BUTTONS.length - 2,
@@ -76,7 +83,7 @@ export default class SingleLeaseCaseView extends React.Component {
       maskClosable: true,
       'data-seed': 'logId',
       wrapProps,
-    },
+      },
     (buttonIndex) => {
       this.setState({ clicked: BUTTONS[buttonIndex] });
       if ( buttonIndex === 0 && status.isShowPhone ) {

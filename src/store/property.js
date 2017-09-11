@@ -345,6 +345,9 @@ export class Property {
     const thousandDigit = parseInt(price % 10000 / 1000);
     const hundredDigit = parseInt(price % 1000 / 100);
 
+    if ( price <= 0) {
+      return "0";
+    }
     if (tenThousandDigit >= 1) {
       label += tenThousandDigit + "萬";
     }

@@ -69,12 +69,14 @@ class SingleBuyCaseView extends React.Component {
 
     const p = this.props.property;
     const status = p.getStatus(p.relatedFbid).get();
+    const f = this.props.filter;
     var BUTTONS; 
 
+
     if ( status.isShowPhone ) {
-      BUTTONS = ["直接致電: " + status.contactPhone, 'edit', "取消"];
+      BUTTONS = [ `直接致電(${f.roleName}):  ${status.contactPhone}`, '更新回覆內容', "取消"];
     } else {
-      BUTTONS = ["直接致電: " + status.contactPhone, 'edit', "取消"];
+      BUTTONS = [ `直接致電(${f.roleName}):  ${status.contactPhone}`, '更新回覆內容', "取消"];
     }
     // const BUTTONS = ['Call '+ p.showPhoneByCase, 'edit', '取消'];
     ActionSheet.showActionSheetWithOptions({

@@ -44,6 +44,7 @@ export class ListOfMatchAgentLeasePropertys extends React.Component {
         element.push(
           <SingleLeaseCaseView
             property={p}
+            filter={this.props.filter}
             key={keyID}
             filterID={this.props.filterID}
           />

@@ -156,7 +156,7 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
     //p.isRentAbleNow = v.isRentAbleNow;
     p.isFreeForSevenDay = v.isFreeForSevenDay;
     p.hasHomeHardware = v.hasHomeHardware;
-    p.isViewAble = v.isViewAble;
+    // p.isViewAble = v.isViewAble;
     p.contactName = v.contactName;
     p.contactPhone = parseInt(v.contactPhone);
     p.contactEmail = v.contactEmail;
@@ -385,21 +385,6 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
               提供家俬設備
             </List.Item>
 
-            <List.Item
-              extra={
-                <Switch
-                  {...getFieldProps("isViewAble", {
-                    initialValue: property.isViewAble,
-                    valuePropName: "checked"
-                  })}
-                  onClick={checked => {
-                    console.log(checked);
-                  }}
-                />
-              }
-            >
-              有樓睇
-            </List.Item>
           </List>
 
           <InputItem
@@ -455,6 +440,22 @@ export const FormLeaseAgentPropertyAntMobileWrapper = createForm()(
   FormLeaseAgentPropertyAntMobile
 );
 
+
+            // <List.Item
+            //   extra={
+            //     <Switch
+            //       {...getFieldProps("isViewAble", {
+            //         initialValue: property.isViewAble,
+            //         valuePropName: "checked"
+            //       })}
+            //       onClick={checked => {
+            //         console.log(checked);
+            //       }}
+            //     />
+            //   }
+            // >
+            //   有樓睇
+            // </List.Item>
 // ReactDOM.render(<TestWrapper />, mountNode);
 // .picker-list .am-list-item .am-list-line .am-list-extra {
 //   flex-basis: initial;

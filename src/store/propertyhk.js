@@ -701,32 +701,32 @@ export class Propertyhk extends Property {
    * make sure call this before this.buildInDirectCallAgent(this.typeFor) 
    * somewehere if use showPhoneByCase();
    */
-  @computed
-  get showPhoneByCase() {
-     const p = this.inDirectCall.get( this.fbid );
-     if ( p && p.isShowPhone ) {
-       return this.contactPhone;
-     }
-    return "no share phone"
-  }
+  // @computed
+  // get showPhoneByCase() {
+  //    const p = this.inDirectCall.get( this.fbid );
+  //    if ( p && p.isShowPhone ) {
+  //      return this.contactPhone;
+  //    }
+  //   return "no share phone"
+  // }
 
-  @computed
-  get showPhoneStatus(){
-    const p = this.inDirectCall.get( this.fbid );
-    if ( p && p.isShowPhone ) {
-      return { status : "已留電話", color : "#000", isShowPhone :  true, contactPhone : this.contactPhone };
-    }
-    return { status : "等待聯絡" , color : "#E67E22", isShowPhone : false, contactPhone : "no share phone"};
-  }
+  // @computed
+  // get showPhoneStatus(){
+  //   const p = this.inDirectCall.get( this.fbid );
+  //   if ( p && p.isShowPhone ) {
+  //     return { status : "已留電話", color : "#000", isShowPhone :  true, contactPhone : this.contactPhone };
+  //   }
+  //   return { status : "等待聯絡" , color : "#E67E22", isShowPhone : false, contactPhone : "no share phone"};
+  // }
   
-  @computed
-  get showPhoneStatusMatchID(){
-    const p = this.inDirectCall.get( this.matchID );
-    if ( p && p.isShowPhone ) {
-      return { status : "已留電話", color : "#000", isShowPhone :  true, contactPhone : this.contactPhone };
-    }
-    return { status : "等待聯絡" , color : "#E67E22", isShowPhone : false, contactPhone : "no share phone"};
-  }
+  // @computed
+  // get showPhoneStatusMatchID(){
+  //   const p = this.inDirectCall.get( this.matchID );
+  //   if ( p && p.isShowPhone ) {
+  //     return { status : "已留電話", color : "#000", isShowPhone :  true, contactPhone : this.contactPhone };
+  //   }
+  //   return { status : "等待聯絡" , color : "#E67E22", isShowPhone : false, contactPhone : "no share phone"};
+  // }
 
 
   /**
@@ -741,9 +741,9 @@ export class Propertyhk extends Property {
         const p = that.inDirectCall.get( id );
         //debugger
         if ( p && p.isShowPhone ) {
-          return { status : "已留電話", message : "停止! 顯示電話給對方!", color : "#000", isShowPhone :  true, contactPhone : this.contactPhone };
+          return { status : "已留電話", message : "停止! 顯示電話給對方!", color : "#000", isShowPhone :  true, contactPhone : this.contactPhone, roleName : this.roleName };
         }
-        return { status : "留電話..", message : "顯示我的電話！要對方打俾我", color : "#E67E22", isShowPhone :  false, contactPhone : "no share phone" };
+        return { status : "留電話..", message : "顯示我的電話！要對方打俾我", color : "#E67E22", isShowPhone :  false, contactPhone : "no share phone", roleName : this.roleName };
       })
     }
   //@action
@@ -751,25 +751,25 @@ export class Propertyhk extends Property {
    * use for setting, before calling showPhoneStatusMatchID
    * this funnction should be called on every matched property
    */
-  setMatchID( id ) {
-    this.matchID = id;
-  }
+  // setMatchID( id ) {
+  //   this.matchID = id;
+  // }
 
-  // used by filter
-  isShowPhone(id) {
-    //this.buildInDirectCall();
-    //let object;
+  // // used by filter
+  // isShowPhone(id) {
+  //   //this.buildInDirectCall();
+  //   //let object;
 
-  //  Fb.root.ref("inDirectCall/sale/" + fbid).update({ [relatedFbid]: status });
-    if ( this.inDirectCall.size > 0) {
-      let object = this.inDirectCall.get(id);
+  // //  Fb.root.ref("inDirectCall/sale/" + fbid).update({ [relatedFbid]: status });
+  //   if ( this.inDirectCall.size > 0) {
+  //     let object = this.inDirectCall.get(id);
 
-      if ( object && object.isShowPhone ) 
-       return this.showPhone = true;
-    }
+  //     if ( object && object.isShowPhone ) 
+  //      return this.showPhone = true;
+  //   }
 
-    return this.showPhone = false;
-  } 
+  //   return this.showPhone = false;
+  // } 
   
   
   /**
@@ -851,7 +851,7 @@ export class Propertyhk extends Property {
   // setView( id ) {
   //   Fb.root.ref("inDirectCall/" + this.typeTo + "/" + this.fbid).update({ [relatedFbid]: status });
   // }
-  
+
   //   setSaleInDirectCall = ( fbid, relatedFbid ) => {
   // //     id = Fb.app.usersRef.push().key;
   //     //Fb.app.usersRef.update({ [id]: p.serialize() });

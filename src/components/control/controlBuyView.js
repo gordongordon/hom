@@ -73,7 +73,7 @@ class ControlBuyView extends React.Component {
     return (
       <div>
         <SegmentedControl
-          values={["超新鮮 即時回覆", "全部配對"]}
+          values={["地產經紀-即時回覆", "業主-配對"]}
           selectedIndex={this.props.selectedIndex}
           onChange={onChange}
         />

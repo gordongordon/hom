@@ -46,6 +46,7 @@ export class ListOfMatchAgentRentPropertys extends React.Component {
         element.push(
           <SingleRentCaseView
             property={p}
+            filter={this.props.filter}
             key={keyID}
             filterID={this.props.filterID}
           />

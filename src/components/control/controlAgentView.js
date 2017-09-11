@@ -159,7 +159,7 @@ class ControlAgentView extends React.Component {
     return (
       <div>
         <SegmentedControl
-          values={["有人搵你", "已跟進"]}
+          values={[property.roleName+"-查詢", "已跟進-"+property.roleName]}
           selectedIndex={this.props.selectedIndex}
           onChange={onChange}
         />

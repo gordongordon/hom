@@ -82,7 +82,7 @@ class SingleLeaseAgentRespondView extends React.Component {
       cancelButtonIndex: BUTTONS.length - 1,
       destructiveButtonIndex: BUTTONS.length - 2,
       // title: '标题',
-      message: 'SingleBuyAgentRespondView',
+      message: 'SingleLeaseAgentRespondView',
       maskClosable: true,
       'data-seed': 'logId',
       wrapProps,
