@@ -22,7 +22,7 @@ import { propertys } from "userModelView";
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 import MobxStore from "mobxStore";
 import views from "views";
-import {Modal} from 'antd';
+//import {Modal} from 'antd';
 import {observer } from 'mobx-react'
 
 const Item = List.Item;

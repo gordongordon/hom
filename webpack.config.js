@@ -10,7 +10,7 @@ const svgDirs = [
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 //var CompressionPlugin = require("compression-webpack-plugin");
-// var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+ var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 //const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
@@ -60,7 +60,7 @@ module.exports = {
     // 		threshold: 10240,
     // 		minRatio: 0.8
     // 	}),
-    //new BundleAnalyzerPlugin(),
+     new BundleAnalyzerPlugin(),
      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
      new webpack.DefinePlugin({
        // <-- key to reducing React's size
@@ -68,8 +68,7 @@ module.exports = {
          NODE_ENV: JSON.stringify("production")
        }
      }),
-     //new webpack.optimize.DedupePlugin(), //dedupe similar code
-      new webpack.optimize.UglifyJsPlugin({
+     new webpack.optimize.UglifyJsPlugin({
        mangle: true,
        compress: {
          warnings: false, // Suppress uglification warnings
@@ -88,11 +87,7 @@ module.exports = {
        exclude: [/\.min\.js$/gi] // skip pre-minified libs
      }),
      new webpack.optimize.AggressiveMergingPlugin(),//Merge chunks
-    //  new webpack.optimize.UglifyJsPlugin({
-    // compress: {
-    //   warnings: false
-    // }
-    // } )
+
     //new webpackConfig.babel.plugins.push(['import', { libraryName: 'antd-mobile', style: 'css' }])
   ],
   // resolveLoader: {

@@ -69,7 +69,6 @@
     "webpack-dev-server": "^1.16.5"
   },
   "dependencies": {
-    "antd": "^2.12.6",
     "antd-mobile": "^1.6.2",
     "compression": "^1.7.0",
     "express": "^4.15.4",
