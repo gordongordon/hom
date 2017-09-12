@@ -17,7 +17,7 @@ import MobxStore from 'mobxStore';
 
 
 // Form
-import {FormSalePropertyAntMobileWrapper} from 'form/formSalePropertyAntMobile';
+//import {FormSalePropertyAntMobileWrapper} from 'form/formSalePropertyAntMobile';
 import {FormLeasePropertyAntMobileWrapper} from 'form/formLeasePropertyAntMobile';
 import {FormBuyPropertyAntMobileWrapper} from 'form/formBuyPropertyAntMobile';
 import {FormRentPropertyAntMobileWrapper} from 'form/formRentPropertyAntMobile';
@@ -26,7 +26,7 @@ import {FormBuyAgentPropertyAntMobileWrapper} from 'form/formBuyAgentPropertyAnt
 import {FormSaleAgentPropertyAntMobileWrapper} from 'form/formSaleAgentPropertyAntMobile';
 import {FormRentAgentPropertyAntMobileWrapper} from 'form/formRentAgentPropertyAntMobile';
 import {FormLeaseAgentPropertyAntMobileWrapper} from 'form/formLeaseAgentPropertyAntMobile';
-import {FormAgentFilterWrapper} from 'form/formAgentFilter';
+//import FormAgentFilter from 'form/formAgentFilter';
 
 // Match Panel views
 //import {MatchLeasePanelViewWrapper} from 'matchPanel/matchLeasePanelView';
@@ -44,9 +44,9 @@ import {MatchAgentPanelViewWrapper} from 'matchPanel/matchAgentPanelView';
 // testing
 // import TestListView from 'testListView'
 
-//import Loadable from 'react-loadable';
+import Loadable from 'react-loadable';
 //import Loading from  'loading'
-import LoadableVisibility from 'react-loadable-visibility/react-loadable'
+//import LoadableVisibility from 'react-loadable-visibility/react-loadable'
 
 function MyLoadingComponent(props) {
   if (props.isLoading) {
@@ -70,35 +70,46 @@ function MyLoadingComponent(props) {
   }
 }
 
-const ListOfPropertysViewLoader = LoadableVisibility({
+const ListOfPropertysViewLoader = Loadable({
  loader: () => import('listOfPropertysView'),
  loading: MyLoadingComponent,
 });
 
-const ListOfAgentPropertysViewLoader = LoadableVisibility({
+const ListOfAgentPropertysViewLoader = Loadable({
   loader: () => import('listOfMatch/listOfAgentPropertysView'),
   loading: MyLoadingComponent,
  });
 
- const MatchBuyPanelViewLoader= LoadableVisibility({
+ const MatchBuyPanelViewLoader= Loadable({
   loader: () => import('matchPanel/matchBuyPanelView'),
   loading: MyLoadingComponent,
  });
  
- const MatchSalePanelViewLoader= LoadableVisibility({
+ const MatchSalePanelViewLoader= Loadable({
   loader: () => import('matchPanel/matchSalePanelView'),
   loading: MyLoadingComponent,
  });
 
- const MatchLeasePanelViewLoader= LoadableVisibility({
+ const MatchLeasePanelViewLoader= Loadable({
   loader: () => import('matchPanel/matchLeasePanelView'),
   loading: MyLoadingComponent,
  });
  
- const MatchRentPanelViewLoader= LoadableVisibility({
+ const MatchRentPanelViewLoader= Loadable({
   loader: () => import('matchPanel/matchRentPanelView'),
   loading: MyLoadingComponent,
  });
+
+ const FormAgentFilterLoader= Loadable({
+  loader: () => import('form/formAgentFilter'),
+  loading: MyLoadingComponent,
+ });
+
+ const FormSalePropertyAntMobileLoader= Loadable({
+  loader: () => import('form/formSalePropertyAntMobile'),
+  loading: MyLoadingComponent,
+ });
+
 
 
 var save = false;
@@ -109,6 +120,10 @@ const views = {
     component: <FrontPageView/>,
     onEnter: (route, params, store, queryParams) => {
       MobxStore.app.setTitle( '好 .. Matching');
+      ListOfAgentPropertysViewLoader.preload();
+      ListOfPropertysViewLoader.preload();
+      MatchLeasePanelViewLoader.preload();
+      // debugger
     },
     beforeExit: (route, params) => {
       console.log('exiting ListOfPRoperysView!');
@@ -303,7 +318,7 @@ const views = {
   }),
   sale : new Route({
     path: '/sale',
-    component: <FormSalePropertyAntMobileWrapper />,
+    component: <FormSalePropertyAntMobileLoader />,
     onEnter: (route, params, store, queryParams) => {
       MobxStore.app.setTitle( '業主');
 
@@ -316,7 +331,7 @@ const views = {
   }),
   createAgentFilter : new Route({
     path: '/createAgentFilter',
-    component: <FormAgentFilterWrapper />,
+    component: <FormAgentFilterLoader />,
     onEnter: (route, params, store, queryParams) => {
       MobxStore.app.setTitle( 'Filter');
 

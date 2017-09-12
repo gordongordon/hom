@@ -422,9 +422,7 @@ class FormSalePropertyAntMobile extends React.Component {
   }
 }
 
-export const FormSalePropertyAntMobileWrapper = createForm()(
-  FormSalePropertyAntMobile
-);
+export default createForm()(FormSalePropertyAntMobile);
 
 // ReactDOM.render(<TestWrapper />, mountNode);
 // .picker-list .am-list-item .am-list-line .am-list-extra {

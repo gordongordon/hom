@@ -55,6 +55,11 @@ const roomKey = {
   '5': '5房',
 }
 
+
+//var FormAgentFilterWrapper = createForm( class extends React.Component {
+
+// function FormAgentFilterWrapper() {
+//     return 
 class FormAgentFilter extends React.Component {
 
   state = {
@@ -355,8 +360,9 @@ class FormAgentFilter extends React.Component {
       </List>
 
     </div>
-    )
+    );
   }
 }
-
-export const FormAgentFilterWrapper = createForm()(FormAgentFilter);
+//export default FormAgentFilterWrapper;
+export default createForm()(FormAgentFilter);
+//export const FormAgentFilterWrapper = createForm()(FormAgentFilter);

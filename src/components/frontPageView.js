@@ -7,7 +7,7 @@ import React from 'react'
 // import MobxStore from 'mobxStore'
 import views from 'views'
 //import FrontPageDisplay from 'frontPageDisplay'
-import {FrontPageTabBar} from 'frontPageTabBar'
+//import {FrontPageTabBar} from 'frontPageTabBar'
 import {inject, observer} from 'mobx-react';
 
 @inject("store") @observer

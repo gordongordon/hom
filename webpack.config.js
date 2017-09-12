@@ -69,26 +69,30 @@ module.exports = {
        }
      }),
      //new webpack.optimize.DedupePlugin(), //dedupe similar code
-    //  new webpack.optimize.UglifyJsPlugin({
-    //    mangle: true,
-    //    compress: {
-    //      warnings: false, // Suppress uglification warnings
-    //      pure_getters: true,
-    //      unsafe: true,
-    //      unsafe_comps: true,
-    //      screw_ie8: true
-    //    },
-    //    output: {
-    //      comments: false,
-    //    },
-    //    exclude: [/\.min\.js$/gi] // skip pre-minified libs
-    //  }),
-    new webpack.optimize.AggressiveMergingPlugin(),//Merge chunks
       new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false
-    }
-    } )
+       mangle: true,
+       compress: {
+         warnings: false, // Suppress uglification warnings
+         pure_getters: true,
+         unsafe: true,
+         unsafe_comps: true,
+         screw_ie8: true
+       },
+       parallel: {
+        cache: true,
+        workers: 2 // for e.g
+      },       
+       output: {
+         comments: false,
+       },
+       exclude: [/\.min\.js$/gi] // skip pre-minified libs
+     }),
+     new webpack.optimize.AggressiveMergingPlugin(),//Merge chunks
+    //  new webpack.optimize.UglifyJsPlugin({
+    // compress: {
+    //   warnings: false
+    // }
+    // } )
     //new webpackConfig.babel.plugins.push(['import', { libraryName: 'antd-mobile', style: 'css' }])
   ],
   // resolveLoader: {
@@ -206,5 +210,6 @@ module.exports = {
   //   open: true, // to open the local server in browser
   //   contentBase: __dirname + '/src',
   // },  
-  devtool: "cheap-module-eval-source-map"
+  devtool: "eval"
+  //devtool: "cheap-module-eval-source-map"
 };
