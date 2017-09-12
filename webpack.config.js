@@ -68,6 +68,11 @@ module.exports = {
          NODE_ENV: JSON.stringify("production")
        }
      }),
+    //  new webpack.DefinePlugin({
+    //   'process.env': {
+    //     'NODE_ENV': JSON.stringify('development')
+    //   }
+    // });     
      new webpack.optimize.UglifyJsPlugin({
        mangle: true,
        compress: {
@@ -94,6 +99,10 @@ module.exports = {
   //   root: path.resolve(__dirname, "node_modules")
   // },
   resolve: {
+    // "alias": {
+    //   "react": "preact-compat",
+    //   "react-dom": "preact-compat"
+    // },    
     modules: [
       path.join(__dirname, "src"),
       "node_modules",
