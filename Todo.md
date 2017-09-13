@@ -10,8 +10,8 @@ Todo:
 1. Create 8 reference in firebase for PropertyHK (done)
 2. Running test (partial)
 3. Phone Sharing (done) user <> agent, user <> user Sept, 11st! 
-4. Read notices
-5. member account
+4. Read notices (do it later, not for now, need to study)
+5. member account ()
 6. react-loadable 
 7. interface clean up
 8. use filters
