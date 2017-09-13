@@ -467,6 +467,4 @@ class FormRentAgentPropertyAntMobile extends React.Component {
   }
 }
 
-export const FormRentAgentPropertyAntMobileWrapper = createForm()(
-  FormRentAgentPropertyAntMobile
-);
+export default createForm()(FormRentAgentPropertyAntMobile);

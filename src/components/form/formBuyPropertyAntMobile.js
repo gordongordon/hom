@@ -396,7 +396,7 @@ class FormBuyPropertyAntMobile extends React.Component {
   }
 }
 
-export const FormBuyPropertyAntMobileWrapper = createForm()(FormBuyPropertyAntMobile);
+export default createForm()(FormBuyPropertyAntMobile);
 
 
 

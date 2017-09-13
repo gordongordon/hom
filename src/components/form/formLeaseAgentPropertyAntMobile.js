@@ -436,9 +436,7 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
   }
 }
 
-export const FormLeaseAgentPropertyAntMobileWrapper = createForm()(
-  FormLeaseAgentPropertyAntMobile
-);
+export default createForm()(FormLeaseAgentPropertyAntMobile);
 
 
             // <List.Item

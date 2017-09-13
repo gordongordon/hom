@@ -1,8 +1,5 @@
 import React from 'react';
-
-//models
 import {Route} from 'mobx-router';
-
 //components
 //import {MatchPanelViewWrapper} from 'matchPanelView'
 //import {ListOfPropertysView} from 'listOfPropertysView'
@@ -15,17 +12,16 @@ import MobxStore from 'mobxStore';
 //import {MobxRouter} from 'mobx-router';
 //import moment from 'moment';
 
-
 // Form
 //import {FormSalePropertyAntMobileWrapper} from 'form/formSalePropertyAntMobile';
-import {FormLeasePropertyAntMobileWrapper} from 'form/formLeasePropertyAntMobile';
-import {FormBuyPropertyAntMobileWrapper} from 'form/formBuyPropertyAntMobile';
-import {FormRentPropertyAntMobileWrapper} from 'form/formRentPropertyAntMobile';
+// import {FormLeasePropertyAntMobileWrapper} from 'form/formLeasePropertyAntMobile';
+// import {FormBuyPropertyAntMobileWrapper} from 'form/formBuyPropertyAntMobile';
+// import {FormRentPropertyAntMobileWrapper} from 'form/formRentPropertyAntMobile';
 // From for agents
-import {FormBuyAgentPropertyAntMobileWrapper} from 'form/formBuyAgentPropertyAntMobile';
-import {FormSaleAgentPropertyAntMobileWrapper} from 'form/formSaleAgentPropertyAntMobile';
-import {FormRentAgentPropertyAntMobileWrapper} from 'form/formRentAgentPropertyAntMobile';
-import {FormLeaseAgentPropertyAntMobileWrapper} from 'form/formLeaseAgentPropertyAntMobile';
+//import FormBuyAgentPropertyAntMobile from 'form/formBuyAgentPropertyAntMobile';
+//import {FormSaleAgentPropertyAntMobileWrapper} from 'form/formSaleAgentPropertyAntMobile';
+//import {FormRentAgentPropertyAntMobileWrapper} from 'form/formRentAgentPropertyAntMobile';
+//import {FormLeaseAgentPropertyAntMobileWrapper} from 'form/formLeaseAgentPropertyAntMobile';
 //import FormAgentFilter from 'form/formAgentFilter';
 
 // Match Panel views
@@ -100,13 +96,49 @@ const ListOfAgentPropertysViewLoader = Loadable({
   loading: MyLoadingComponent,
  });
 
- const FormAgentFilterLoader= Loadable({
+ const FormAgentFilterLoader = Loadable({
   loader: () => import('form/formAgentFilter'),
   loading: MyLoadingComponent,
  });
 
- const FormSalePropertyAntMobileLoader= Loadable({
+ const FormSalePropertyAntMobileLoader = Loadable({
   loader: () => import('form/formSalePropertyAntMobile'),
+  loading: MyLoadingComponent,
+ });
+
+ const FormBuyPropertyAntMobileLoader = Loadable({
+  loader: () => import('form/formBuyPropertyAntMobile'),
+  loading: MyLoadingComponent,
+ });
+
+ const FormLeasePropertyAntMobileLoader = Loadable({
+  loader: () => import('form/formLeasePropertyAntMobile'),
+  loading: MyLoadingComponent,
+ });
+
+ const FormRentPropertyAntMobileLoader = Loadable({
+  loader: () => import('form/formRentPropertyAntMobile'),
+  loading: MyLoadingComponent,
+ });
+
+
+ const FormBuyAgentPropertyAntMobileLoader = Loadable({
+  loader: () => import('form/formBuyAgentPropertyAntMobile'),
+  loading: MyLoadingComponent,
+ });
+
+ const FormSaleAgentPropertyAntMobileLoader = Loadable({
+  loader: () => import('form/formSaleAgentPropertyAntMobile'),
+  loading: MyLoadingComponent,
+ });
+
+ const FormLeaseAgentPropertyAntMobileLoader = Loadable({
+  loader: () => import('form/formLeaseAgentPropertyAntMobile'),
+  loading: MyLoadingComponent,
+ });
+
+ const FormRentAgentPropertyAntMobileLoader = Loadable({
+  loader: () => import('form/formRentAgentPropertyAntMobile'),
   loading: MyLoadingComponent,
  });
 
@@ -120,17 +152,31 @@ const views = {
     component: <FrontPageView/>,
     onEnter: (route, params, store, queryParams) => {
       MobxStore.app.setTitle( '好 .. Matching');
-      ListOfAgentPropertysViewLoader.preload();
-      ListOfPropertysViewLoader.preload();
-      MatchLeasePanelViewLoader.preload();
       // debugger
     },
     beforeExit: (route, params) => {
-      console.log('exiting ListOfPRoperysView!');
+      console.log('exiting home /!');
       console.log('params changed to', params);
       MobxStore.app.previousView = route;
-    }
-  }),
+      MatchBuyPanelViewLoader.preload();
+      MatchSalePanelViewLoader.preload();
+      MatchRentPanelViewLoader.preload();
+      MatchLeasePanelViewLoader.preload();
+      FormSalePropertyAntMobileLoader.preload();
+      FormBuyPropertyAntMobileLoader.preload();
+      FormLeasePropertyAntMobileLoader.preload();
+      FormRentPropertyAntMobileLoader.preload();
+      FormAgentFilterLoader.preload();
+      ListOfPropertysViewLoader.preload();
+      ListOfAgentPropertysViewLoader.preload();
+      ListOfPropertysViewLoader.preload();
+      MatchLeasePanelViewLoader.preload();
+      FormBuyAgentPropertyAntMobileLoader.preload();
+      FormSaleAgentPropertyAntMobileLoader.preload();
+      FormLeaseAgentPropertyAntMobileLoader.preload();
+      FormRentAgentPropertyAntMobileLoader.preload();
+      //      debugger
+  }}),
   // agent: new Route({
   //   path: '/agent',
   //   component: <AgentAppView/>,
@@ -280,7 +326,7 @@ const views = {
   }),
   lease : new Route({
     path: '/lease',
-    component: <FormLeasePropertyAntMobileWrapper />,
+    component: <FormLeasePropertyAntMobileLoader />,
     onEnter: (route, params, store, queryParams) => {
       MobxStore.app.setTitle( '房東');
 
@@ -293,7 +339,7 @@ const views = {
   }),
   rent : new Route({
     path: '/rent',
-    component: <FormRentPropertyAntMobileWrapper />,
+    component: <FormRentPropertyAntMobileLoader />,
     onEnter: (route, params, store, queryParams) => {
       MobxStore.app.setTitle( '租客');
 
@@ -306,7 +352,7 @@ const views = {
   }),
   buy : new Route({
     path: '/buy',
-    component: <FormBuyPropertyAntMobileWrapper />,
+    component: <FormBuyPropertyAntMobileLoader/>,
     onEnter: (route, params, store, queryParams) => {
       MobxStore.app.setTitle( '買家');
     },
@@ -378,7 +424,7 @@ const views = {
     }}),
 buyAgentForm : new Route({
   path: '/BuyAgentForm/keyID/:keyID/:typeTo/filterID/:filterID',
-  component: <FormBuyAgentPropertyAntMobileWrapper />,
+  component: <FormBuyAgentPropertyAntMobileLoader />,
   onEnter: (route, params, store, queryParams) => {
     MobxStore.app.setTitle( '地產代理回復 業主');
 
@@ -391,7 +437,7 @@ buyAgentForm : new Route({
 }),
 saleAgentForm : new Route({
   path: '/SaleAgentForm/keyID/:keyID/:typeTo/filterID/:filterID',
-  component: <FormSaleAgentPropertyAntMobileWrapper />,
+  component: <FormSaleAgentPropertyAntMobileLoader />,
   onEnter: (route, params, store, queryParams) => {
     MobxStore.app.setTitle( '地產代理回復 買家');
 
@@ -404,7 +450,7 @@ saleAgentForm : new Route({
 }),
 rentAgentForm : new Route({
   path: '/RentAgentForm/keyID/:keyID/:typeTo/filterID/:filterID',
-  component: <FormRentAgentPropertyAntMobileWrapper />,
+  component: <FormRentAgentPropertyAntMobileLoader />,
   onEnter: (route, params, store, queryParams) => {
     MobxStore.app.setTitle( '地產代理回復 租客');
 
@@ -417,7 +463,7 @@ rentAgentForm : new Route({
 }),
 leaseAgentForm : new Route({
   path: '/LeaseAgentForm/keyID/:keyID/:typeTo/filterID/:filterID',
-  component: <FormLeaseAgentPropertyAntMobileWrapper />,
+  component: <FormLeaseAgentPropertyAntMobileLoader />,
   onEnter: (route, params, store, queryParams) => {
     MobxStore.app.setTitle( '地產代理回復 房東');
 

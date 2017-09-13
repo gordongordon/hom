@@ -365,7 +365,7 @@ class FormBuyAgentPropertyAntMobile extends React.Component {
   }
 }
 
-export const FormBuyAgentPropertyAntMobileWrapper = createForm()(FormBuyAgentPropertyAntMobile);
+export default createForm()(FormBuyAgentPropertyAntMobile);
 
 // ReactDOM.render(<TestWrapper />, mountNode);
 // .picker-list .am-list-item .am-list-line .am-list-extra {
