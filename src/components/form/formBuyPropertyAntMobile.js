@@ -155,6 +155,7 @@ class FormBuyPropertyAntMobile extends React.Component {
     p.contactPhone = parseInt(v.contactPhone);
     p.contactEmail = v.contactEmail;
 
+    //debugger
     p.isPetAllowed = v.isPetAllowed;
     // debugger
 
@@ -260,36 +261,9 @@ class FormBuyPropertyAntMobile extends React.Component {
           maxDate={maxDate}
         >
         <List.Item arrow="horizontal">最快幾時可以樓睇</List.Item>
-
         </DatePicker>
 
-                <InputItem
-                  {...getFieldProps('buyBudgetMax', {
-                    initialValue : 380,
-                    normalize: (v, prev) => {
-                      if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
-                        if (v === '.') {
-                          return '0.';
-                        }
-                        return prev;
-                      }
-                      return v;
-                    },
-                  })}
-                  type="number"
-                  placeholder="請輸入預算上限"
-                  onFocus={() => {
-                    this.setState({
-                      netSizefocused: false,
-                    });
-                  }}
 
-                  focused={this.state.netSizefocused}
-                  extra="萬"
-                  clear
-                  labelNumber="7"
-                  maxLength="4"
-                >付出預算上限</InputItem>
 
 
 
@@ -350,7 +324,33 @@ class FormBuyPropertyAntMobile extends React.Component {
             >
               可養寵物
             </List.Item>
+            <InputItem
+                  {...getFieldProps('buyBudgetMax', {
+                    initialValue : 380,
+                    normalize: (v, prev) => {
+                      if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
+                        if (v === '.') {
+                          return '0.';
+                        }
+                        return prev;
+                      }
+                      return v;
+                    },
+                  })}
+                  type="number"
+                  placeholder="請輸入預算上限"
+                  onFocus={() => {
+                    this.setState({
+                      netSizefocused: false,
+                    });
+                  }}
 
+                  focused={this.state.netSizefocused}
+                  extra="萬"
+                  clear
+                  labelNumber="7"
+                  maxLength="4"
+                >付出預算上限</InputItem>
                 <InputItem
                   {...getFieldProps('contactName', {
                     initialValue : 'John Lee',
@@ -365,7 +365,7 @@ class FormBuyPropertyAntMobile extends React.Component {
                   {...getFieldProps('contactPhone', {
                     initialValue : '66896696'
                   })}
-                  type="phone"
+                  type="number"
                   placeholder="請輸入電話"
                 >聯絡手機</InputItem>
 

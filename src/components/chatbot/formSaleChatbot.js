@@ -14,7 +14,7 @@ class Review extends Component {
   }
 
   componentWillMount() {
-    const { steps } = this.props;
+    const { steps, headerTitle ,hideSubmitButton} = this.props;
     const { name, gender, age } = steps;
 
     this.setState({ name, gender, age });
@@ -34,17 +34,26 @@ class Review extends Component {
 }
 
 Review.propTypes = {
-  steps: PropTypes.object,
+  steps: PropTypes.object
 };
 
 Review.defaultProps = {
-  steps: undefined,
+  steps: undefined
 };
+
 
 class FormSaleChatbot extends Component {
   render() {
+     
+    
+    
+
     return (
       <ChatBot
+      floating="true"
+      headerTitle="gordon"
+      hideSubmitButton="false"
+      hideBotAvatar="true"
         steps={[
           {
             id: '1',

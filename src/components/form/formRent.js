@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Public App</title>
     <!-- Chrome, Firefox OS and Opera -->
     <meta name="theme-color" content="#317EFB">
     <!-- Windows Phone -->
@@ -17,12 +13,3 @@
     <!-- <meta name="MobileOptimized" content="480"> -->
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="viewport" content="width=640px, initial-scale=.5, maximum-scale=.5" />
-  </head>
-  <body>
-
-    <div id="root"></div>
-<!--     <script type="text/javascript" src="/kk.js"></script></body> -->
-    <script type="text/javascript" src="/index.bundle.js"></script></body>
-
-</html>

@@ -86,15 +86,22 @@ const jobNature = [
 // ];
 
 class FormRentPropertyAntMobile extends React.Component {
+
+
   state = {
     data: [],
     cols: 1,
     //pickerValue: [],
     asyncValue: [],
     sValue: ["2001", "3001"],
-
+    incomeFocus: false,
+    phoneFocus : false,
+    secondFocus : false,
+    nameFocus: true,
+    emailFocus: false,
+    type: 'money',
     // input net size
-    netSizefocused: false
+    //netSizefocused: false
   };
 
   onClick = () => {
@@ -206,7 +213,6 @@ class FormRentPropertyAntMobile extends React.Component {
     Fb.app.usersRef.update({ [id]: p.serialize() });
 
     Fb.propertys.child(id).set(p.serialize());
-
     Fb.rent.child(id).set(p.serialize());
 
     MobxStore.router.goTo(views.matchRent, { keyID: id });
@@ -239,6 +245,7 @@ class FormRentPropertyAntMobile extends React.Component {
       { value: 1, label: "包地租/稅" },
       { value: 2, label: "包管理費" }
     ];
+    const { type } = this.state;
 
     // For DatePicker
     const minDate = moment()
@@ -248,7 +255,7 @@ class FormRentPropertyAntMobile extends React.Component {
 
     return (
       <div>
-        <List style={{ backgroundColor: "white" }} className="picker-list">
+        <List style={{ backgroundColor: "#3399ff" }}  renderHeader={() => 'Rent Form'}>
           <Picker
             data={DISTRICK}
             cols={3}
@@ -277,27 +284,21 @@ class FormRentPropertyAntMobile extends React.Component {
 
           <InputItem
             {...getFieldProps("income", {
-              initialValue: 13000,
-              normalize: (v, prev) => {
-                if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
-                  if (v === ".") {
-                    return "0.";
-                  }
-                  return prev;
-                }
-                return v;
-              }
+              initialValue: '',
             })}
+            maxLength={8}            
             type="number"
             placeholder=""
-            onFocus={() => {
-              this.setState({
-                netSizefocused: false
-              });
-            }}
-            focused={this.state.netSizefocused}
-            clear
             extra="元"
+            onBlur={()=> {
+              this.setState({
+                incomeFocus : false,
+                phoneFocus : false,
+                emailFocus : false,
+                nameFocus : false
+              })
+            }}
+            focused={this.state.incomeFocus}
           >
             收入(生活費)
           </InputItem>
@@ -429,40 +430,41 @@ class FormRentPropertyAntMobile extends React.Component {
           >
             較喜歡有家俬設備提供
           </List.Item>
-
-          <InputItem
-            {...getFieldProps("contactName", {
-              initialValue: "Ken Wong"
-            })}
-            type="text"
-            placeholder="請輸入姓名"
-            clear
-          >
-            姓名
-          </InputItem>
-
+         </List>
+          <List renderHeader={() => 'Contact Info'} >
           <InputItem
             clear
-            {...getFieldProps("contactPhone", {
-              initialValue: "51085265"
+            {...getFieldProps('contactPhone', {
+              initialValue: ''
             })}
-            type="phone"
+            type="number"
+            maxLength={8}
             placeholder="請輸入電話"
-          >
+
+            >
             聯絡手機
           </InputItem>
-
           <InputItem
-            {...getFieldProps("contactEmail", {
-              initialValue: "h003@ymatchx.com"
+            {...getFieldProps('contactEmail', {
+              initialValue: 'h003@ymatchx.com'
             })}
             clear
             placeholder="請輸入電郵地址"
+          
           >
             聯絡電郵
           </InputItem>
-
-          <List.Item
+          <InputItem
+            clear
+            {...getFieldProps("contactName", {
+              initialValue: 'Ken Wong'
+            })}
+            type="text"
+            placeholder="請輸入姓名"
+        
+          >
+            姓名
+          </InputItem>          <List.Item
             extra={
               <Button type="ghost" size="large" inline onClick={this.submit}>
                 獲得匹配
@@ -470,10 +472,10 @@ class FormRentPropertyAntMobile extends React.Component {
             }
             multipleLine
           >
-            HoMatching
+           HoMatching
             <List.Item.Brief>尊重您的私隱和信息，不會被共享。</List.Item.Brief>
-          </List.Item>
-        </List>
+            </List.Item>
+            </List>
       </div>
     );
   }

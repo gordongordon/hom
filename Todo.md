@@ -5,6 +5,7 @@ Todo:
 2. issue missing matched item, need a test case
 3. ListOfRentProperty with '../singlePropertyView/SingleRentAgentPropertyForRespondView';
     should be '../singlePropertyView/singleRentAgentPropertyForRespondView';
+4. <meta name="viewport" content="width=640px, initial-scale=.5, maximum-scale=.5" /> fix the zooming 
 
 **Todo**
 1. Create 8 reference in firebase for PropertyHK (done)

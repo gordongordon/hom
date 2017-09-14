@@ -139,11 +139,12 @@ firebase.auth().onAuthStateChanged( (user) => {
 //  <App/>
 //  , document.getElementById('root')
 // )
+//      <NavigationBar/>
+
 
 ReactDOM.render(
   <Provider store={MobxStore}>
     <div>
-      <NavigationBar/>
       <MobxRouter/>
     </div>
   </Provider>, document.getElementById('root')

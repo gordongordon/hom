@@ -160,6 +160,8 @@ class FormSalePropertyAntMobile extends React.Component {
     p.level = v.level[0];
     p.isPetAllowed = v.isPetAllowed;
 
+    debugger
+
     // Catch none user syn method wait to be true
     if (MobxStore.app.uid === null) {
       if (Fb.startLoginAnonyhmously()) {
@@ -176,7 +178,6 @@ class FormSalePropertyAntMobile extends React.Component {
 
     //    const id2 = Fb.propertys.push().key;
     Fb.propertys.child(id).set(p.serialize());
-
     Fb.sale.child(id).set(p.serialize());
 
     MobxStore.router.goTo(views.matchSale, { keyID: id });
@@ -329,12 +330,7 @@ class FormSalePropertyAntMobile extends React.Component {
             })}
             type="number"
             placeholder="請求入場價格/每萬"
-            onFocus={() => {
-              this.setState({
-                netSizefocused: false
-              });
-            }}
-            focused={this.state.netSizefocused}
+
             clear
             extra="萬元"
           >
@@ -374,7 +370,7 @@ class FormSalePropertyAntMobile extends React.Component {
           </List.Item>
 
           <InputItem
-            {...getFieldProps("contactName", {
+            {...getFieldProps('contactName', {
               initialValue: "Jeff Chan"
             })}
             type="text"
@@ -386,18 +382,21 @@ class FormSalePropertyAntMobile extends React.Component {
 
           <InputItem
             clear
-            {...getFieldProps("contactPhone", {
-              initialValue: "66958844"
+            {...getFieldProps('contactPhone', {
+              initialValue: '66958844'
             })}
-            type="phone"
+
+            focused="true"         
+            type="number"
             placeholder="請輸入電話"
+
           >
             聯絡手機
           </InputItem>
 
           <InputItem
-            {...getFieldProps("contactEmail", {
-              initialValue: "h004@ymatchx.com"
+            {...getFieldProps('contactEmail', {
+              initialValue: 'h004@ymatchx.com'
             })}
             clear
             placeholder="請輸入電郵地址"

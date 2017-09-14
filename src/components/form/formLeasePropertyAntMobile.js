@@ -413,8 +413,8 @@ class FormLeasePropertyAntMobile extends React.Component {
 
           <InputItem
             clear
-            {...getFieldProps("contactPhone", {
-              initialValue: "96181448"
+            {...getFieldProps('contactPhone', {
+              initialValue: '96181448'
             })}
             type="phone"
             placeholder="請輸入電話"
@@ -423,8 +423,8 @@ class FormLeasePropertyAntMobile extends React.Component {
           </InputItem>
 
           <InputItem
-            {...getFieldProps("contactEmail", {
-              initialValue: "h001@ymatchx.com"
+            {...getFieldProps('contactEmail', {
+              initialValue: 'h001@ymatchx.com'
             })}
             clear
             placeholder="請輸入電郵地址"

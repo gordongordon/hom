@@ -92,6 +92,12 @@ render ()  {
        <Button type="ghost" onClick={ () => goTo( views.listAgent, store.app.params, store )}> 地產代理篩選</Button>
     <WhiteSpace />
     <WhiteSpace />
+       <Button type="ghost" onClick={ () => goTo( views.bmi, store.app.params, store )}> Chatbot </Button>
+    <WhiteSpace />
+    <WhiteSpace />
+       <Button type="ghost" onClick={ () => goTo( views.formSaleChatbot, store.app.params, store )}> Chat Form </Button>
+    <WhiteSpace />
+    <WhiteSpace />
     <WhiteSpace />
     </WingBlank>
     </div>
