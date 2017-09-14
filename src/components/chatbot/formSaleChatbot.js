@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ChatBot from '../react-simple-chatbot/dist/react-simple-chatbot';
+//import ChatBot from '../react-simple-chatbot/dist/react-simple-chatbot';
+import ChatBot from 'react-simple-chatbot';
+import chatpicker from './chatpicker'
 
 class Review extends Component {
   constructor(props) {
@@ -14,7 +16,7 @@ class Review extends Component {
   }
 
   componentWillMount() {
-    const { steps, headerTitle ,hideSubmitButton} = this.props;
+    const { steps} = this.props;
     const { name, gender, age } = steps;
 
     this.setState({ name, gender, age });
@@ -25,8 +27,8 @@ class Review extends Component {
     return (
       <div style={{ width: '100%', fontSize: 34}}>
         <h3>資料將回覆客人</h3>
-        樓盤: {name.value} <br />
-        {gender.value}<br />
+        尋找樓盤: {name.value} <br />
+        你是 {gender.value}<br />
         想買 {age.value} 萬 <br />
       </div>
     );
@@ -50,14 +52,14 @@ class FormSaleChatbot extends Component {
 
     return (
       <ChatBot
-      floating="true"
-      headerTitle="gordon"
+      headerTitle="Mr.House"
       hideSubmitButton="false"
-      hideBotAvatar="true"
+      hideBotAvatar="false"
+
         steps={[
           {
             id: '1',
-            message: '請輸入樓盤?',
+            message: '歡迎來到Mr House,請輸入樓盤名稱',
             trigger: 'name',
           },
           {
@@ -67,14 +69,16 @@ class FormSaleChatbot extends Component {
           },
           {
             id: '3',
-            message: 'Hi {previousValue}! 買or賣 盤?',
+            message: '請選擇其中一個不需要輸入?',
             trigger: 'gender',
           },
           {
             id: 'gender',
             options: [
-              { value: 'male', label: '買盤', trigger: '5' },
-              { value: 'female', label: ' 盤賣', trigger: '5' },
+              { value: '房東', label: '房東', trigger: '5' },
+              { value: '買家', label: '買家', trigger: '5' },
+              { value: '業主', label: '業主', trigger: '5' },
+              { value: '租客', label: '租客', trigger: '5' },
             ],
           },
           {

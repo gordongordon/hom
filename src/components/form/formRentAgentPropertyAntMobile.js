@@ -89,27 +89,27 @@ const jobNature = [
 
 class FormRentAgentPropertyAntMobile extends React.Component {
   state = {
-    data: [],
-    cols: 1,
+    //data: [],
+    //cols: 1,
     //pickerValue: [],
-    asyncValue: [],
-    sValue: ["2001", "3001"],
+    //asyncValue: [],
+    //sValue: ["2001", "3001"],
 
     // input net size
-    netSizefocused: false
+    //netSizefocused: false
   };
 
-  onClick = () => {
-    setTimeout(() => {
-      this.setState({
-        data: province
-      });
-    }, 120);
-  };
+  // onClick = () => {
+  //   setTimeout(() => {
+  //     this.setState({
+  //       data: province
+  //     });
+  //   }, 120);
+  // };
 
-  onChange = val => {
-    console.log(val);
-  };
+  // onChange = val => {
+  //   console.log(val);
+  // };
 
   // onPickerChange = (val) => {
   //   console.log(val);

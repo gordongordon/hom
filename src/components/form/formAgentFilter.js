@@ -63,23 +63,23 @@ const roomKey = {
 class FormAgentFilter extends React.Component {
 
   state = {
-    data: [],
-    cols: 1,
-    //pickerValue: [],
-    asyncValue: [],
-    sValue: ['2001', '3001'],
+    // data: [],
+    // cols: 1,
+    // //pickerValue: [],
+    // asyncValue: [],
+    // sValue: ['2001', '3001'],
 
-    // input net size
-    netSizefocused: false,
+    // // input net size
+    // netSizefocused: false,
   };
 
-  onClick = () => {
-    setTimeout(() => {
-      this.setState({
-        data: province,
-      });
-    }, 120);
-  };
+  // onClick = () => {
+  //   setTimeout(() => {
+  //     this.setState({
+  //       data: province,
+  //     });
+  //   }, 120);
+  // };
 
 
   addFilter = (v) => {

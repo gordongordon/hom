@@ -65,23 +65,23 @@ const roomKey = {
 
 class FormSalePropertyAntMobile extends React.Component {
   state = {
-    data: [],
-    cols: 1,
+    // data: [],
+    //cols: 1,
     //pickerValue: [],
-    asyncValue: [],
-    sValue: ["2001", "3001"],
+    //asyncValue: [],
+    //sValue: ["2001", "3001"],
 
     // input net size
-    netSizefocused: false
+    //netSizefocused: false
   };
 
-  onClick = () => {
-    setTimeout(() => {
-      this.setState({
-        data: province
-      });
-    }, 120);
-  };
+  // onClick = () => {
+  //   setTimeout(() => {
+  //     this.setState({
+  //       data: province
+  //     });
+  //   }, 120);
+  // };
   //
   // onPickerChange = (val) => {
   //   console.log(val);
@@ -244,12 +244,6 @@ class FormSalePropertyAntMobile extends React.Component {
             })}
             type="number"
             placeholder="0"
-            onFocus={() => {
-              this.setState({
-                netSizefocused: false
-              });
-            }}
-            focused={this.state.netSizefocused}
             clear
             extra="呎"
           >
@@ -385,8 +379,6 @@ class FormSalePropertyAntMobile extends React.Component {
             {...getFieldProps('contactPhone', {
               initialValue: '66958844'
             })}
-
-            focused="true"         
             type="number"
             placeholder="請輸入電話"
 

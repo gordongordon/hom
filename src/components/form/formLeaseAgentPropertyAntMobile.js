@@ -70,14 +70,14 @@ const CheckboxItem = Checkbox.CheckboxItem;
 @observer
 class FormLeaseAgentPropertyAntMobile extends React.Component {
   state = {
-    data: [],
-    cols: 1,
-    //pickerValue: [],
-    asyncValue: [],
-    sValue: ["2001", "3001"],
+    // data: [],
+    // cols: 1,
+    // //pickerValue: [],
+    // asyncValue: [],
+    // sValue: ["2001", "3001"],
 
-    // input net size
-    netSizefocused: false
+    // // input net size
+    // netSizefocused: false
   };
 
   // onClick = () => {
@@ -285,12 +285,6 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
             })}
             type="number"
             placeholder="請輸入實用面積"
-            onFocus={() => {
-              this.setState({
-                netSizefocused: false
-              });
-            }}
-            focused={this.state.netSizefocused}
             extra="呎"
           >
             實用面 積
@@ -326,12 +320,6 @@ class FormLeaseAgentPropertyAntMobile extends React.Component {
             })}
             type="number"
             placeholder="請輸入租金月"
-            onFocus={() => {
-              this.setState({
-                netSizefocused: false
-              });
-            }}
-            focused={this.state.netSizefocused}
             extra="元"
           >
             租金

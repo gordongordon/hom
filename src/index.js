@@ -145,7 +145,9 @@ firebase.auth().onAuthStateChanged( (user) => {
 ReactDOM.render(
   <Provider store={MobxStore}>
     <div>
+      <NavigationBar/>
       <MobxRouter/>
+
     </div>
   </Provider>, document.getElementById('root')
 )

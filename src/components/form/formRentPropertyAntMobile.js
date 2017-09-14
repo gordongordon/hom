@@ -89,17 +89,19 @@ class FormRentPropertyAntMobile extends React.Component {
 
 
   state = {
-    data: [],
-    cols: 1,
+    hasError: false,
+    value : ''
+    //data: [],
+    //cols: 1,
     //pickerValue: [],
-    asyncValue: [],
-    sValue: ["2001", "3001"],
-    incomeFocus: false,
-    phoneFocus : false,
-    secondFocus : false,
-    nameFocus: true,
-    emailFocus: false,
-    type: 'money',
+    //asyncValue: [],
+    //sValue: ["2001", "3001"],
+    // incomeFocus: false,
+    // phoneFocus : false,
+    // secondFocus : false,
+    // nameFocus: true,
+    // emailFocus: false,
+    // type: 'money',
     // input net size
     //netSizefocused: false
   };
@@ -220,8 +222,16 @@ class FormRentPropertyAntMobile extends React.Component {
 
   submit = e => {
     const value = this.props.form.getFieldsValue();
-
     e.preventDefault();
+
+    this.props.form.validateFields((error, values) => {
+      if (!error) {
+        console.log('ok', values);
+      } else {
+        console.log('error', error, values);
+      }
+    });    
+
     //  console.log( '地鐵線', value.MTR )
     //  console.log( '呎', value.netSize)
     //  console.log( '租金', value.leasePrice )
@@ -235,11 +245,46 @@ class FormRentPropertyAntMobile extends React.Component {
     //    MobxStore.router.goTo( views.second )
   };
 
+  // checkContactPhone = (value) => {
+  //   if (value.replace(/\s/g, '').length < 8) {
+  //     this.setState({
+  //       hasError: true,
+  //     });
+  //   } else {
+  //     this.setState({
+  //       hasError: false,
+  //     });
+  //   }
+  //   this.setState({
+  //     value,
+  //   });
+  // }
+
   sale = () => {};
+
+  toNumber = (v) => {
+    if (v === undefined) {
+      return v;
+    }
+    if (v === '') {
+      return undefined;
+    }
+    if (v && v.trim() === '') {
+      return NaN;
+    }
+    return Number(v);
+  }
 
   // '房東', '租人','賣家','買家'
   render() {
-    const { getFieldProps } = this.props.form;
+    const that = this;
+    //const { getFieldProps, setFieldsInitialValue } = this.props.form;
+    const { getFieldProps, getFieldError, isFieldValidating } = this.props.form;    
+    const errorContactPhone = getFieldError('contactPhone');
+    const errorContactEmail = getFieldError('contactEmail');
+    const errorContactName = getFieldError('contactName');
+    const errorIncome = getFieldError('income');
+    
     const leaseWith = [
       { value: 0, label: "包差餉" },
       { value: 1, label: "包地租/稅" },
@@ -255,7 +300,7 @@ class FormRentPropertyAntMobile extends React.Component {
 
     return (
       <div>
-        <List style={{ backgroundColor: "#3399ff" }}  renderHeader={() => 'Rent Form'}>
+        <List renderHeader={() => 'Rent Form'}>
           <Picker
             data={DISTRICK}
             cols={3}
@@ -283,24 +328,27 @@ class FormRentPropertyAntMobile extends React.Component {
           </Picker>
 
           <InputItem
-            {...getFieldProps("income", {
-              initialValue: '',
-            })}
-            maxLength={8}            
+          {...getFieldProps('income', {
+            initialValue: '0',
+            validate: [{
+              trigger: 'onBlur',
+              rules: [
+              {
+                required : true,
+                transform: that.toNumber,
+                type : 'number',
+                min : 0
+              }
+             ],
+            }],
+          })}
+          error={errorIncome ? true : false}
+            maxLength={7}            
             type="number"
             placeholder=""
             extra="元"
-            onBlur={()=> {
-              this.setState({
-                incomeFocus : false,
-                phoneFocus : false,
-                emailFocus : false,
-                nameFocus : false
-              })
-            }}
-            focused={this.state.incomeFocus}
           >
-            收入(生活費)
+          任何收入
           </InputItem>
 
           <DatePicker
@@ -435,36 +483,68 @@ class FormRentPropertyAntMobile extends React.Component {
           <InputItem
             clear
             {...getFieldProps('contactPhone', {
-              initialValue: ''
+              initialValue: '96181448',
+              validate: [{
+                trigger: 'onBlur',
+                rules: [
+                {
+                  required : true,
+                  transform: that.toNumber,
+                  type : 'number',
+                  min : 10000000
+                }
+               ],
+              }],
             })}
             type="number"
             maxLength={8}
             placeholder="請輸入電話"
-
+            error={errorContactPhone ? true : false}
             >
             聯絡手機
           </InputItem>
           <InputItem
-            {...getFieldProps('contactEmail', {
-              initialValue: 'h003@ymatchx.com'
-            })}
+          {...getFieldProps('contactEmail', {
+            validate: [{
+              trigger: 'onBlur',
+              rules: [{
+                required: true,
+              }],
+            }, {
+              trigger: ['onBlur'],
+              rules: [{
+                type: 'email',
+                message: '错误格式',
+              }],
+            }],
+          })}
             clear
             placeholder="請輸入電郵地址"
-          
+            error={errorContactEmail ? true : false}
           >
-            聯絡電郵
+            電郵
           </InputItem>
           <InputItem
             clear
-            {...getFieldProps("contactName", {
-              initialValue: 'Ken Wong'
+            error={errorContactName ? true : false}
+            {...getFieldProps('contactName', {
+              initialValue: 'Gordon',
+              validate: [{
+                trigger: 'onBlur',
+                rules: [
+                {
+                  required : true,
+                  type : 'string',
+                }
+               ],
+              }],
             })}
             type="text"
             placeholder="請輸入姓名"
-        
-          >
+            >
             姓名
-          </InputItem>          <List.Item
+          </InputItem>
+          <List.Item
             extra={
               <Button type="ghost" size="large" inline onClick={this.submit}>
                 獲得匹配

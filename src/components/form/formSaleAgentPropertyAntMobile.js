@@ -254,12 +254,6 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
             })}
             type="number"
             placeholder="0"
-            onFocus={() => {
-              this.setState({
-                netSizefocused: false
-              });
-            }}
-            focused={this.state.netSizefocused}
             clear
             extra="呎"
           >
@@ -323,12 +317,6 @@ class FormSaleAgentPropertyAntMobile extends React.Component {
             })}
             type="number"
             placeholder="請求入場價格/每萬"
-            onFocus={() => {
-              this.setState({
-                netSizefocused: false
-              });
-            }}
-            focused={this.state.netSizefocused}
             clear
             extra="萬元"
           >

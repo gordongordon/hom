@@ -57,23 +57,23 @@ const roomKey = {
 class FormBuyPropertyAntMobile extends React.Component {
 
   state = {
-    data: [],
-    cols: 1,
-    //pickerValue: [],
-    asyncValue: [],
-    sValue: ['2001', '3001'],
+    // data: [],
+    // cols: 1,
+    // //pickerValue: [],
+    // asyncValue: [],
+    // sValue: ['2001', '3001'],
 
-    // input net size
-    netSizefocused: false,
+    // // input net size
+    // netSizefocused: false,
   };
 
-  onClick = () => {
-    setTimeout(() => {
-      this.setState({
-        data: province,
-      });
-    }, 120);
-  };
+  // onClick = () => {
+  //   setTimeout(() => {
+  //     this.setState({
+  //       data: province,
+  //     });
+  //   }, 120);
+  // };
 
 
   // onPickerChange = (val) => {
@@ -262,14 +262,8 @@ class FormBuyPropertyAntMobile extends React.Component {
         >
         <List.Item arrow="horizontal">最快幾時可以樓睇</List.Item>
         </DatePicker>
-
-
-
-
-
-
-                <List.Item
-                extra={<Switch
+        <List.Item
+             extra={<Switch
                           {...getFieldProps('isBuyWithLease', {
                             initialValue: true,
                             valuePropName: 'checked',
@@ -339,13 +333,6 @@ class FormBuyPropertyAntMobile extends React.Component {
                   })}
                   type="number"
                   placeholder="請輸入預算上限"
-                  onFocus={() => {
-                    this.setState({
-                      netSizefocused: false,
-                    });
-                  }}
-
-                  focused={this.state.netSizefocused}
                   extra="萬"
                   clear
                   labelNumber="7"
