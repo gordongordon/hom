@@ -203,9 +203,30 @@ class FormSalePropertyAntMobile extends React.Component {
 
   sale = () => {};
 
+  toNumber = (v) => {
+    if (v === undefined) {
+      return v;
+    }
+    if (v === '') {
+      return undefined;
+    }
+    if (v && v.trim() === '') {
+      return NaN;
+    }
+    return Number(v);
+  }
+
   // '房東', '租人','賣家','買家'
   render() {
-    const { getFieldProps } = this.props.form;
+    const that = this;
+    //  const { getFieldProps } = this.props.form;
+    const { getFieldProps, getFieldError, isFieldValidating } = this.props.form;    
+    const errorContactPhone = getFieldError('contactPhone');
+    const errorContactEmail = getFieldError('contactEmail');
+    const errorContactName = getFieldError('contactName');
+    const errorNetSize = getFieldError('netSize');
+    const errorSalePrice = getFieldError('salePrice');
+  
 
     // For DatePicker
     const minDate = moment()
@@ -230,18 +251,21 @@ class FormSalePropertyAntMobile extends React.Component {
           </Picker>
 
           <InputItem
-            {...getFieldProps("netSize", {
-              initialValue: 300,
-              normalize: (v, prev) => {
-                if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
-                  if (v === ".") {
-                    return "0.";
-                  }
-                  return prev;
-                }
-                return v;
+          error={errorNetSize ? true : false}
+          {...getFieldProps('netSize', {
+            initialValue: '50',
+            validate: [{
+              trigger: 'onBlur',
+              rules: [
+              {
+                required : true,
+                transform: that.toNumber,
+                type : 'number',
+                min : 50
               }
-            })}
+             ],
+            }],
+          })}
             type="number"
             placeholder="0"
             clear
@@ -310,18 +334,21 @@ class FormSalePropertyAntMobile extends React.Component {
 
         
           <InputItem
-            {...getFieldProps("salePrice", {
-              initialValue: 350,
-              normalize: (v, prev) => {
-                if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
-                  if (v === ".") {
-                    return "0.";
-                  }
-                  return prev;
-                }
-                return v;
+          error={errorSalePrice ? true : false}
+          {...getFieldProps('salePrice', {
+            initialValue: '1',
+            validate: [{
+              trigger: 'onBlur',
+              rules: [
+              {
+                required : true,
+                transform: that.toNumber,
+                type : 'number',
+                min : 1
               }
-            })}
+             ],
+            }],
+          })}
             type="number"
             placeholder="請求入場價格/每萬"
 
@@ -362,40 +389,73 @@ class FormSalePropertyAntMobile extends React.Component {
           >
             有樓睇
           </List.Item>
+          </List>
 
+          <List renderHeader={() => 'Contact Info'} >
           <InputItem
+            clear
+            error={errorContactPhone ? true : false}
+            {...getFieldProps('contactPhone', {
+              initialValue: '96181448',
+              validate: [{
+                trigger: 'onBlur',
+                rules: [
+                {
+                  required : true,
+                  transform: that.toNumber,
+                  type : 'number',
+                  min : 10000000
+                }
+               ],
+              }],
+            })}
+            type="number"
+            maxLength={8}
+            placeholder="請輸入電話"
+            >
+            聯絡手機
+          </InputItem>
+          <InputItem
+          {...getFieldProps('contactEmail', {
+            validate: [{
+              trigger: 'onBlur',
+              rules: [{
+                required: true,
+              }],
+            }, {
+              trigger: ['onBlur'],
+              rules: [{
+                type: 'email',
+                message: '错误格式',
+              }],
+            }],
+          })}
+            clear
+            placeholder="請輸入電郵地址"
+            error={errorContactEmail ? true : false}
+          >
+            電郵
+          </InputItem>
+          <InputItem
+            clear
+            error={errorContactName ? true : false}
             {...getFieldProps('contactName', {
-              initialValue: "Jeff Chan"
+              initialValue: 'Gordon',
+              validate: [{
+                trigger: 'onBlur',
+                rules: [
+                {
+                  required : true,
+                  type : 'string',
+                }
+               ],
+              }],
             })}
             type="text"
             placeholder="請輸入姓名"
-            clear
-          >
+            >
             姓名
           </InputItem>
-
-          <InputItem
-            clear
-            {...getFieldProps('contactPhone', {
-              initialValue: '66958844'
-            })}
-            type="number"
-            placeholder="請輸入電話"
-
-          >
-            聯絡手機
-          </InputItem>
-
-          <InputItem
-            {...getFieldProps('contactEmail', {
-              initialValue: 'h004@ymatchx.com'
-            })}
-            clear
-            placeholder="請輸入電郵地址"
-          >
-            聯絡電郵
-          </InputItem>
-
           <List.Item
             extra={
               <Button type="ghost" size="large" inline onClick={this.submit}>
@@ -404,10 +464,11 @@ class FormSalePropertyAntMobile extends React.Component {
             }
             multipleLine
           >
-            HoMatching
-            <List.Item.Brief>尊重您的私隱和信息，不會被共享。</List.Item.Brief>
+           HoMatching
+           <List.Item.Brief>尊重您的私隱和信息，不會被共享。</List.Item.Brief>
           </List.Item>
-        </List>
+          </List>
+
       </div>
     );
   }

@@ -210,9 +210,28 @@ class FormBuyPropertyAntMobile extends React.Component {
 
   }
 
+  toNumber = (v) => {
+    if (v === undefined) {
+      return v;
+    }
+    if (v === '') {
+      return undefined;
+    }
+    if (v && v.trim() === '') {
+      return NaN;
+    }
+    return Number(v);
+  }
+
 // '房東', '租人','賣家','買家'
   render() {
-    const { getFieldProps } = this.props.form;
+    const that = this;
+    const { getFieldProps, getFieldError, isFieldValidating } = this.props.form;    
+    const errorContactPhone = getFieldError('contactPhone');
+    const errorContactEmail = getFieldError('contactEmail');
+    const errorContactName = getFieldError('contactName');
+    const errorBuyBudgetMax = getFieldError('buyBudgetMax');
+    //const errorSalePrice = getFieldError('salePrice');
 
     const log = (name) => {
       return (value) => {
@@ -319,17 +338,20 @@ class FormBuyPropertyAntMobile extends React.Component {
               可養寵物
             </List.Item>
             <InputItem
-                  {...getFieldProps('buyBudgetMax', {
-                    initialValue : 380,
-                    normalize: (v, prev) => {
-                      if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
-                        if (v === '.') {
-                          return '0.';
-                        }
-                        return prev;
-                      }
-                      return v;
-                    },
+            error={errorBuyBudgetMax ? true : false}
+            {...getFieldProps('buyBudgetMax', {
+                initialValue : 380,
+                    validate: [{
+                trigger: 'onBlur',
+                rules: [
+                {
+                  required : true,
+                  transform: that.toNumber,
+                  type : 'number',
+                  min : 9999
+                }
+               ],
+              }],
                   })}
                   type="number"
                   placeholder="請輸入預算上限"
@@ -338,45 +360,88 @@ class FormBuyPropertyAntMobile extends React.Component {
                   labelNumber="7"
                   maxLength="4"
                 >付出預算上限</InputItem>
-                <InputItem
-                  {...getFieldProps('contactName', {
-                    initialValue : 'John Lee',
-                  }) }
-                  type="text"
-                  placeholder="請輸入姓名"
-                  clear
-                >姓名</InputItem>
+   
 
-                <InputItem
-                  clear
-                  {...getFieldProps('contactPhone', {
-                    initialValue : '66896696'
-                  })}
-                  type="number"
-                  placeholder="請輸入電話"
-                >聯絡手機</InputItem>
+                </List>
 
-                <InputItem
-                  {...getFieldProps('contactEmail', {
-                    initialValue : 'h002@ymatchx.com',
-                  })}
-                  clear
-                  placeholder="請輸入電郵地址"
-                  type="email"
-                >聯絡電郵</InputItem>
-
-
-
-        <List.Item
-              extra={<Button type="ghost" size="large" inline onClick={this.submit}>獲得匹配</Button>}
-              multipleLine
+          <List renderHeader={() => 'Contact Info'} >
+          <InputItem
+            clear
+            error={errorContactPhone ? true : false}
+            {...getFieldProps('contactPhone', {
+              initialValue: '96181448',
+              validate: [{
+                trigger: 'onBlur',
+                rules: [
+                {
+                  required : true,
+                  transform: that.toNumber,
+                  type : 'number',
+                  min : 10000000
+                }
+               ],
+              }],
+            })}
+            type="number"
+            maxLength={8}
+            placeholder="請輸入電話"
             >
-              HoMatching
-              <List.Item.Brief>
-              尊重您的私隱和信息，不會被共享。
-              </List.Item.Brief>
-            </List.Item>
-        </List>
+            聯絡手機
+          </InputItem>
+          <InputItem
+          {...getFieldProps('contactEmail', {
+            validate: [{
+              trigger: 'onBlur',
+              rules: [{
+                required: true,
+              }],
+            }, {
+              trigger: ['onBlur'],
+              rules: [{
+                type: 'email',
+                message: '错误格式',
+              }],
+            }],
+          })}
+            clear
+            placeholder="請輸入電郵地址"
+            error={errorContactEmail ? true : false}
+          >
+            電郵
+          </InputItem>
+          <InputItem
+            clear
+            error={errorContactName ? true : false}
+            {...getFieldProps('contactName', {
+              initialValue: 'Gordon',
+              validate: [{
+                trigger: 'onBlur',
+                rules: [
+                {
+                  required : true,
+                  type : 'string',
+                }
+               ],
+              }],
+            })}
+            type="text"
+            placeholder="請輸入姓名"
+            >
+            姓名
+          </InputItem>
+          <List.Item
+            extra={
+              <Button type="ghost" size="large" inline onClick={this.submit}>
+                獲得匹配
+              </Button>
+            }
+            multipleLine
+          >
+           HoMatching
+           <List.Item.Brief>尊重您的私隱和信息，不會被共享。</List.Item.Brief>
+          </List.Item>
+          </List>
+
 
     </div>
     )

@@ -211,7 +211,15 @@ class FormLeasePropertyAntMobile extends React.Component {
 
   // '房東', '租人','賣家','買家'
   render() {
-    const { getFieldProps } = this.props.form;
+    const that = this;
+    const { getFieldProps, getFieldError, isFieldValidating } = this.props.form;    
+    const errorContactPhone = getFieldError('contactPhone');
+    const errorContactEmail = getFieldError('contactEmail');
+    const errorContactName = getFieldError('contactName');
+    const errorNetSize = getFieldError('netSize');
+    const errorSalePrice = getFieldError('salePrice');
+
+
     const leaseWith = [
       { value: 0, label: "包差餉" },
       { value: 1, label: "包地租/稅" },
