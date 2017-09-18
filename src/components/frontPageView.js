@@ -98,7 +98,7 @@ render ()  {
        <Button type="ghost" onClick={ () => goTo( views.bmi, store.app.params, store )}> Chatbot </Button>
     <WhiteSpace />
     <WhiteSpace />
-       <Button type="ghost" onClick={ () => goTo( views.formSaleChatbot, store.app.params, store )}> Chat Form </Button>
+       <Button type="primary" onClick={ () => goTo( views.formSaleChatbot, store.app.params, store )}> Chatbot Form </Button>
     <WhiteSpace />
     <WhiteSpace />
     <WhiteSpace />
