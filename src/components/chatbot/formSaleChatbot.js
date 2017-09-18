@@ -74,7 +74,7 @@ class FormSaleChatbot extends Component {
           },
           {
             id: '2',
-            message: '請輸入樓盤名稱',
+            message: '請選擇樓盤名稱',
             trigger: '2b',
           },
           {
@@ -86,7 +86,7 @@ class FormSaleChatbot extends Component {
           },
           {
             id: '3',
-            message: '請選擇其中一個不需要輸入?',
+            message: '你是？',
             trigger: 'role',
           },
           {
@@ -100,7 +100,7 @@ class FormSaleChatbot extends Component {
           },
           {
             id: '6',
-            message: '請選擇 房?',
+            message: '請選擇(房)間隔?',
             trigger: '6b',
           },
           {
