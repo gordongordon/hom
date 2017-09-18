@@ -1,5 +1,8 @@
-import { PickerView,SegmentedControl } from 'antd-mobile';
+import { Picker, List } from 'antd-mobile';
 import React, { Component } from 'react';
+import { DISTRICK } from 'DISTRICK';
+
+import { createForm } from 'rc-form';
 
 const seasons = [
   [
@@ -35,14 +38,16 @@ class Chatpicker extends Component {
     });
   };
   render() {
+    const { getFieldProps } = this.props.form;
     return (
-      <SegmentedControl
-      values={['買家', '房東', '業主','租客']}
-      onChange={this.onChange}
-      style={{ height: '2rem', width: '5rem' }}
-    />
+        <Picker data={DISTRICK} cols={3} {...getFieldProps('districk', {
+          initialValue: ['NTTV', 'MOS', 'MOS0001'],
+        }) } className="forss" title="請選擇大廈/屋苑" extra="請選擇大廈/屋苑">
+          <List.Item arrow="horizontal" style={{    width: '16rem' }} >大廈/屋苑</List.Item>
+        </Picker>
     );
   }
 }
 
-export default Chatpicker;
+//export default Chatpicker;
+export default createForm()(Chatpicker);

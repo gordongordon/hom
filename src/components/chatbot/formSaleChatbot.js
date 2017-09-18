@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 //import ChatBot from '../react-simple-chatbot/dist/react-simple-chatbot';
 import ChatBot from 'react-simple-chatbot';
 import Chatpicker from './chatpicker'
+import TabExample from './TabExample'
 
 class Review extends Component {
   constructor(props) {
@@ -17,19 +18,20 @@ class Review extends Component {
 
   componentWillMount() {
     const { steps} = this.props;
-    const { name, gender, age } = steps;
+    const { name, role, price, building } = steps;
 
-    this.setState({ name, gender, age });
+    this.setState({ name, role, price, building, });
   }
 
   render() {
-    const { name, gender, age } = this.state;
+    const { name, role, price, building } = this.state;
     return (
       <div style={{ width: '100%', fontSize: 34}}>
         <h3>資料將回覆客人</h3>
-        尋找樓盤: {name.value} <br />
-        你是 {gender.value}<br />
-        想買 {age.value} 萬 <br />
+        name: {name.value} <br />
+        尋找樓盤: 迎海 <br />
+        你是 {role.value}<br />
+        想買 {price.value} 萬 <br />
       </div>
     );
   }
@@ -54,51 +56,72 @@ class FormSaleChatbot extends Component {
       <ChatBot
       headerTitle="Mr.House"
       hideSubmitButton="false"
-      hideBotAvatar="false"
+      // hideBotAvatar="false"
 
         steps={[
           {
             id: '1',
-            message: '歡迎來到Mr House,請輸入樓盤名稱',
-            // component: (
-            //    <Chatpicker/>
-            // ),            
+            message: '歡迎來到Mr House,請輸入名稱',
             trigger: 'name',
           },
           {
             id: 'name',
+            // component: (
+            //     <Chatpicker />
+            //  ),            
             user: true,
+            trigger: '2',
+          },
+          {
+            id: '2',
+            message: '請輸入樓盤名稱',
+            trigger: '2b',
+          },
+          {
+            id: '2b',
+            component: (
+                 <Chatpicker />
+            ),            
             trigger: '3',
           },
           {
             id: '3',
             message: '請選擇其中一個不需要輸入?',
-            trigger: 'gender',
+            trigger: 'role',
           },
           {
-            id: 'gender',
+            id: 'role',
             options: [
-              { value: '房東', label: '房東', trigger: '5' },
-              { value: '買家', label: '買家', trigger: '5' },
-              { value: '業主', label: '業主', trigger: '5' },
-              { value: '租客', label: '租客', trigger: '5' },
-              { value: 'aa', label: 'aa', trigger: '5' },
-              { value: 'bb', label: 'bb', trigger: '5' },
-              { value: 'cc', label: 'cc', trigger: '5' },
-              { value: 'dd', label: 'dd', trigger: '5' },
-              { value: 'ee', label: 'ee', trigger: '5' },
-              { value: 'ff', label: 'ff', trigger: '5' },
-              { value: 'gg', label: 'gg', trigger: '5' },
-              { value: 'hh', label: 'hh', trigger: '5' },
+              { value: '房東', label: '房東', trigger: '6' },
+              { value: '買家', label: '買家', trigger: '6' },
+              { value: '業主', label: '業主', trigger: '6' },
+              { value: '租客', label: '租客', trigger: '6' }
+            ],
+          },
+          {
+            id: '6',
+            message: '請選擇 房?',
+            trigger: '6b',
+          },
+          {
+            id: '6b',
+            options: [
+              { value: '開放式', label: '開放式', trigger: '5' },
+              { value: '0房', label: '0房', trigger: '5' },
+              { value: '1房', label: '1房', trigger: '5' },
+              { value: '2房', label: '2房', trigger: '5' },
+              { value: '3房', label: '3房', trigger: '5' },
+              { value: '4房', label: '4房', trigger: '5' },
+              { value: '5房', label: '5房', trigger: '5' },
             ],
           },
           {
             id: '5',
             message: '想買多少萬?',
-            trigger: 'age',
+            trigger: 'price',
           },
           {
-            id: 'age',
+            id: 'price',
             user: true,
             trigger: '7',
             validator: (value) => {
@@ -145,8 +168,8 @@ class FormSaleChatbot extends Component {
             id: 'update-fields',
             options: [
               { value: 'name', label: 'Name', trigger: 'update-name' },
-              { value: 'gender', label: 'Gender', trigger: 'update-gender' },
-              { value: 'age', label: 'Age', trigger: 'update-age' },
+              { value: 'role', label: 'Role', trigger: 'update-role' },
+              { value: 'price', label: 'Price', trigger: 'update-price' },
             ],
           },
           {
@@ -155,13 +178,13 @@ class FormSaleChatbot extends Component {
             trigger: '7',
           },
           {
-            id: 'update-gender',
-            update: 'gender',
+            id: 'update-role',
+            update: 'role',
             trigger: '7',
           },
           {
-            id: 'update-age',
-            update: 'age',
+            id: 'update-price',
+            update: 'price',
             trigger: '7',
           },
           {
