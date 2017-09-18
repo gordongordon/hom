@@ -34,12 +34,13 @@ import {MatchAgentPanelViewWrapper} from 'matchPanel/matchAgentPanelView';
 // import {AgentAppView} from 'agentAppView'
 
 // From chatbot
-import FormSaleChatbot from 'chatbot/formSaleChatbot'
-import BMIChatbot from 'chatbot/bmiChatbot'
+import FormSaleChatbot from 'chatbot/formSaleChatbot';
+import BMIChatbot from 'chatbot/bmiChatbot';
+import ActionSheetExample from 'chatbot/actionSheetExample';
 
 // testing
 // import TestListView from 'testListView'
-import FrontPageFilter from 'frontPageFilter'
+import FrontPageFilter from 'frontPageFilter';
 
 
 import Loadable from 'react-loadable';
@@ -191,6 +192,8 @@ const views = {
     },
     onParamsChange: (route, params) => {
     }}),
+
+
   
   // agent: new Route({
   //   path: '/agent',
@@ -502,6 +505,14 @@ leaseAgentForm : new Route({
       MobxStore.app.previousView = route;
     }
   }),
+  actionSheetExample : new Route({
+    path: '/ActionSheetExample',
+    component: <ActionSheetExample />,
+    onEnter: (route, params, store, queryParams) => {
+    },
+    beforeExit: (route, params) => {
+    }
+  }),  
   bmi : new Route({
     path: '/bmi',
     component: <BMIChatbot />,
