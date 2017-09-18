@@ -219,7 +219,6 @@ class FormSalePropertyAntMobile extends React.Component {
   // '房東', '租人','賣家','買家'
   render() {
     const that = this;
-    //  const { getFieldProps } = this.props.form;
     const { getFieldProps, getFieldError, isFieldValidating } = this.props.form;    
     const errorContactPhone = getFieldError('contactPhone');
     const errorContactEmail = getFieldError('contactEmail');

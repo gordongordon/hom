@@ -3,6 +3,7 @@
   <head>
     <title>Mr.House</title>
     <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#317EFB"/>
     <!-- Chrome, Firefox OS and Opera -->
     <meta name="theme-color" content="#317EFB">
     <!-- Windows Phone -->
@@ -18,7 +19,8 @@
     <!-- <meta name="MobileOptimized" content="480"> -->
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=.5 minimum-scale=.5 user-scalable=no"/>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=.5, maximum-scale=.5 minimum-scale=.5 user-scalable=no"/>
+
   </head>
   <body>
 
@@ -27,3 +29,20 @@
     <script type="text/javascript" src="/index.bundle.js"></script></body>
 
 </html>
+
+    <!-- Service Worker -->
+    <!-- 
+    <script>
+      if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('%PUBLIC_URL%/service-worker-mrhouse.js').then(function(registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
+}  
+</script>
+-->

@@ -3,9 +3,9 @@ import {
      WhiteSpace,
       WingBlank,
       Button } from 'antd-mobile';
-import React from 'react'
+import React from 'react';
 // import MobxStore from 'mobxStore'
-import views from 'views'
+import views from 'views';
 //import FrontPageDisplay from 'frontPageDisplay'
 //import {FrontPageTabBar} from 'frontPageTabBar'
 import {inject, observer} from 'mobx-react';
@@ -85,6 +85,9 @@ render ()  {
       <Button type="primary" onClick={ () => goTo( views.lease, store.app.params, store )}>房 東</Button>
     <WhiteSpace />
     { this.renderHistoryButton( store )  }
+    <WhiteSpace />
+       <Button type="ghost" onClick={ () => goTo( views.filter, store.app.params, store )}> 3 Questions </Button>
+    <WhiteSpace />
     <WhiteSpace />
         <Button type="ghost" onClick={ () => goTo( views.createAgentFilter, store.app.params, store )}> 增加 地產代理篩選 </Button>
     <WhiteSpace />

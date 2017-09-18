@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 //import ChatBot from '../react-simple-chatbot/dist/react-simple-chatbot';
 import ChatBot from 'react-simple-chatbot';
-import chatpicker from './chatpicker'
+import Chatpicker from './chatpicker'
 
 class Review extends Component {
   constructor(props) {
@@ -60,6 +60,9 @@ class FormSaleChatbot extends Component {
           {
             id: '1',
             message: '歡迎來到Mr House,請輸入樓盤名稱',
+            // component: (
+            //    <Chatpicker/>
+            // ),            
             trigger: 'name',
           },
           {
@@ -79,6 +82,14 @@ class FormSaleChatbot extends Component {
               { value: '買家', label: '買家', trigger: '5' },
               { value: '業主', label: '業主', trigger: '5' },
               { value: '租客', label: '租客', trigger: '5' },
+              { value: 'aa', label: 'aa', trigger: '5' },
+              { value: 'bb', label: 'bb', trigger: '5' },
+              { value: 'cc', label: 'cc', trigger: '5' },
+              { value: 'dd', label: 'dd', trigger: '5' },
+              { value: 'ee', label: 'ee', trigger: '5' },
+              { value: 'ff', label: 'ff', trigger: '5' },
+              { value: 'gg', label: 'gg', trigger: '5' },
+              { value: 'hh', label: 'hh', trigger: '5' },
             ],
           },
           {

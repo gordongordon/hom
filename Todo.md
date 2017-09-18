@@ -18,3 +18,4 @@ Todo:
 8. use filters
 9. firebase optimization
 10. Chat room
+11. Server Worker (done with simple version)

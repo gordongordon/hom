@@ -347,6 +347,7 @@ class FormRentPropertyAntMobile extends React.Component {
             type="number"
             placeholder=""
             extra="元"
+            auto
           >
           任何收入
           </InputItem>
@@ -479,9 +480,12 @@ class FormRentPropertyAntMobile extends React.Component {
             較喜歡有家俬設備提供
           </List.Item>
          </List>
+
+
           <List renderHeader={() => 'Contact Info'} >
           <InputItem
             clear
+            error={errorContactPhone ? true : false}
             {...getFieldProps('contactPhone', {
               initialValue: '96181448',
               validate: [{
@@ -499,7 +503,6 @@ class FormRentPropertyAntMobile extends React.Component {
             type="number"
             maxLength={8}
             placeholder="請輸入電話"
-            error={errorContactPhone ? true : false}
             >
             聯絡手機
           </InputItem>
@@ -518,6 +521,8 @@ class FormRentPropertyAntMobile extends React.Component {
               }],
             }],
           })}
+            type="email"
+            autocomplete="email"
             clear
             placeholder="請輸入電郵地址"
             error={errorContactEmail ? true : false}
@@ -556,6 +561,8 @@ class FormRentPropertyAntMobile extends React.Component {
             <List.Item.Brief>尊重您的私隱和信息，不會被共享。</List.Item.Brief>
             </List.Item>
             </List>
+
+            
       </div>
     );
   }

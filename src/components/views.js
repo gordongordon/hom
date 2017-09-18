@@ -39,6 +39,8 @@ import BMIChatbot from 'chatbot/bmiChatbot'
 
 // testing
 // import TestListView from 'testListView'
+import FrontPageFilter from 'frontPageFilter'
+
 
 import Loadable from 'react-loadable';
 //import Loading from  'loading'
@@ -153,17 +155,7 @@ const views = {
     onEnter: (route, params, store, queryParams) => {
       MobxStore.app.setTitle( '好 .. Matching');
       // debugger
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/sw.js').then(function(registration) {
-            // Registration was successful
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-          }, function(err) {
-            // registration failed :(
-            console.log('ServiceWorker registration failed: ', err);
-          });
-        });
-      }      
+    
     },
     beforeExit: (route, params) => {
       console.log('exiting home /!');
@@ -188,6 +180,18 @@ const views = {
       FormRentAgentPropertyAntMobileLoader.preload();
       //      debugger
   }}),
+  filter : new Route({
+    path: '/filter',
+    component: <FrontPageFilter/>,
+    onEnter: ( route, params, store, queryParams ) => {
+    },
+    beforeEnter: (route, params, store) => {
+    },
+    beforeExit: (route, params) => {
+    },
+    onParamsChange: (route, params) => {
+    }}),
+  
   // agent: new Route({
   //   path: '/agent',
   //   component: <AgentAppView/>,

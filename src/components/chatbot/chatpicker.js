@@ -1,4 +1,4 @@
-import { PickerView } from 'antd-mobile';
+import { PickerView,SegmentedControl } from 'antd-mobile';
 import React, { Component } from 'react';
 
 const seasons = [
@@ -24,7 +24,7 @@ const seasons = [
   ],
 ];
 
-class chatpicker extends Component {
+class Chatpicker extends Component {
   state = {
     value: null,
   };
@@ -36,14 +36,13 @@ class chatpicker extends Component {
   };
   render() {
     return (
-      <PickerView
-        onChange={this.onChange}
-        value={this.state.value}
-        data={seasons}
-        cascade={false}
-      />
+      <SegmentedControl
+      values={['買家', '房東', '業主','租客']}
+      onChange={this.onChange}
+      style={{ height: '2rem', width: '5rem' }}
+    />
     );
   }
 }
 
-export default chatpicker;
+export default Chatpicker;

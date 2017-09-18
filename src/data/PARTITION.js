@@ -21,6 +21,10 @@ const PARTITION = [
   }
 ],  [
   {
+    label : '0廁',
+    value:  '0',
+  }, 
+  {
     label : '1廁',
     value:  '1',
   }, {
@@ -38,6 +42,10 @@ const PARTITION = [
   }
 ], [
   {
+    label : '0廳',
+    value:  '0',
+  }, 
+  {
     label : '1廳',
     value:  '1',
   }, {
@@ -49,6 +57,24 @@ const PARTITION = [
   }, {
     value:  '4',
     label : '4廳',
+  }
+], [
+  {
+    label : '3百實用尺',
+    value:  '0',
+  }, 
+  {
+    label : '3~5百實用尺',
+    value:  '1',
+  }, {
+    label : '5~7百實用尺',
+    value:  '2',
+  }, {
+    label : '7~9百實用尺',
+    value:  '3',
+  }, {
+    value:  '4',
+    label : '9~12百實用尺',
   }
 ],
 
