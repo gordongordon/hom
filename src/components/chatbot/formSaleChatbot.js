@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import ChatBot from 'react-simple-chatbot';
 import Chatpicker from './chatpicker'
 import TabExample from './TabExample'
+import MobxStore from 'mobxStore';
+import views from 'views';
 
 class Review extends Component {
   constructor(props) {
@@ -11,26 +13,28 @@ class Review extends Component {
 
     this.state = {
       name: '',
-      gender: '',
-      age: '',
+      role: '',
+      price: '',
+      building: ''
     };
   }
 
   componentWillMount() {
     const { steps} = this.props;
-    const { name, role, price, building } = steps;
+    const { name, role, price, building, room } = steps;
 
-    this.setState({ name, role, price, building, });
+    this.setState({ name, role, price, building, room});
   }
 
   render() {
-    const { name, role, price, building } = this.state;
+    const { name, role, price, building , room} = this.state;
     return (
       <div style={{ width: '100%', fontSize: 34}}>
         <h3>資料將回覆客人</h3>
-        name: {name.value} <br />
-        尋找樓盤: 迎海 <br />
+        名稱: {name.value} <br />
         你是 {role.value}<br />
+        尋找樓盤: {building.value} <br />
+        間隔(房): {room.value} <br />
         想買 {price.value} 萬 <br />
       </div>
     );
@@ -48,28 +52,10 @@ Review.defaultProps = {
 
 class FormSaleChatbot extends Component {
 
-  showActionSheet = () => {
-    const BUTTONS = ['操作一', '操作二', '操作三', '删除', '取消'];
-    ActionSheet.showActionSheetWithOptions({
-      options: BUTTONS,
-      cancelButtonIndex: BUTTONS.length - 1,
-      destructiveButtonIndex: BUTTONS.length - 2,
-      // title: '标题',
-      message: '我是描述我是描述',
-      maskClosable: true,
-      'data-seed': 'logId',
-      wrapProps,
-    },
-    (buttonIndex) => {
-      this.setState({ clicked: BUTTONS[buttonIndex] });
-    });
-  }
+  
 
   render() {
      
-    
-    
-
     return (
       <ChatBot
       headerTitle="Mr.House"
@@ -88,41 +74,42 @@ class FormSaleChatbot extends Component {
             //     <Chatpicker />
             //  ),            
             user: true,
-            trigger: '2',
-          },
-          {
-            id: '2',
-            message: '請選擇樓盤名稱',
-            trigger: '2b',
-          },
-          {
-            id: '2b',
-            component: (
-                 <Chatpicker />
-            ),            
             trigger: '3',
           },
           {
             id: '3',
-            message: '你是？',
+            message: '你是 {previousValue}？',
             trigger: 'role',
           },
           {
             id: 'role',
             options: [
-              { value: '房東', label: '房東', trigger: '6' },
-              { value: '買家', label: '買家', trigger: '6' },
-              { value: '業主', label: '業主', trigger: '6' },
-              { value: '租客', label: '租客', trigger: '6' }
+              { value: '房東', label: '房東', trigger: '2' },
+              { value: '買家', label: '買家', trigger: '2' },
+              { value: '業主', label: '業主', trigger: '2' },
+              { value: '租客', label: '租客', trigger: '2' }
             ],
+          },
+          {
+            id: '2',
+            message: '請選擇樓盤名稱',
+            trigger: 'building',
+          },
+          {
+            id: 'building',
+            component: (
+                 <Chatpicker />
+            ),            
+            waitAction: true,
+            trigger: '6',
           },
           {
             id: '6',
             message: '請選擇(房)間隔?',
-            trigger: '6b',
+            trigger: 'room',
           },
           {
-            id: '6b',
+            id: 'room',
             options: [
               { value: '開放式', label: '開放式', trigger: '5' },
               { value: '0房', label: '0房', trigger: '5' },
@@ -175,6 +162,7 @@ class FormSaleChatbot extends Component {
             options: [
               { value: 'yes', label: 'Yes', trigger: 'update-yes' },
               { value: 'no', label: 'No', trigger: 'end-message' },
+              { value: 'matching', label: 'matching', trigger: 'matching' },
             ],
           },
           {
@@ -208,6 +196,14 @@ class FormSaleChatbot extends Component {
           {
             id: 'end-message',
             message: 'Thanks! Your data was submitted successfully!',
+            end: true,
+          },
+          {
+            id: 'matching',
+            component : (
+              <button onClick={ () => MobxStore.router.goTo( views.list ) }>Matching</button>
+            ),
+//            message: 'Thanks! Your data was submitted successfully!',
             end: true,
           },
         ]}

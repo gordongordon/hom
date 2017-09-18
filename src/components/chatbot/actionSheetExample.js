@@ -139,8 +139,9 @@ class ActionSheetExample extends React.Component {
     return (
       <ChatBot
       headerTitle="Mr.House"
-      hideSubmitButton="false"
+      hideSubmitButton='false'
       // hideBotAvatar="false"
+      placeholder="your name"
 
         steps={[
           {
