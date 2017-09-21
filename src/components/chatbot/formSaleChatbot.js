@@ -2,23 +2,84 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 //import ChatBot from '../react-simple-chatbot/dist/react-simple-chatbot';
 import ChatBot from 'react-simple-chatbot';
-import Chatpicker from './chatpicker'
-import TabExample from './TabExample'
+import Chatpicker from './chatpicker';
+//import TabExample from './TabExample'
 import MobxStore from 'mobxStore';
 import views from 'views';
 
 import { ThemeProvider } from 'styled-components';
 
+
+// Pepsi
 const theme = {
   background: '#F2f2f2',
   fontFamily: 'Helvetica Neue',
-  headerBgColor: '#F55869',
-  headerFontColor: '#FECEA8',
-  botBubbleColor: '#e6e6e6',
-  botFontColor: '#000',
-  userBubbleColor: '#FECEA8',
-  userFontColor: '#000',
+  headerBgColor: '#ED1B24',
+  headerFontColor: '#fff',
+  botBubbleColor: '#002F6F',
+  botFontColor: '#fff',
+  userBubbleColor: '#0174C9',
+  userFontColor: '#fff',
 };
+
+// Double Cove
+// const theme = {
+//   background: '#FAFAFA',
+//   fontFamily: 'Helvetica Neue',
+//   headerBgColor: '#000',
+//   headerFontColor: '#FF8000',
+//   botBubbleColor: '#e6e6e6',
+//   botFontColor: '#000',
+//   userBubbleColor: '#FF8000',
+//   userFontColor: '#fff',
+// };
+
+// Apple
+// const theme = {
+//   background: '#FAFAFA',
+//   fontFamily: 'Helvetica Neue',
+//   headerBgColor: '#32302F',
+//   headerFontColor: '#fff',
+//   botBubbleColor: '#e6e6e6',
+//   botFontColor: '#000',
+//   userBubbleColor: '#F2f2f2',
+//   userFontColor: '#000',
+// };
+
+// const theme = {
+//   background: '#F2f2f2',
+//   fontFamily: 'Helvetica Neue',
+//   headerBgColor: '#71B238',
+//   headerFontColor: '#A6CB45',
+//   botBubbleColor: '#e6e6e6',
+//   botFontColor: '#000',
+//   userBubbleColor: '#A6CB45',
+//   userFontColor: '#000',
+// };
+
+// Other for lala
+// const theme = {
+//   background: '#F2f2f2',
+//   fontFamily: 'Helvetica Neue',
+//   headerBgColor: '#F55869',
+//   headerFontColor: '#FECEA8',
+//   botBubbleColor: '#e6e6e6',
+//   botFontColor: '#000',
+//   userBubbleColor: '#FEFCD7',
+//   userFontColor: '#000',
+// };
+
+// Final Pink
+// const theme = {
+//   background: '#F2f2f2',
+//   fontFamily: 'Helvetica Neue',
+//   headerBgColor: '#F55869',
+//   headerFontColor: '#FECEA8',
+//   botBubbleColor: '#e6e6e6',
+//   botFontColor: '#000',
+//   userBubbleColor: '#FECEA8',
+//   userFontColor: '#000',
+// };
 
 
 // Green
@@ -112,7 +173,8 @@ const FormSaleChatbot = () => (
       <ChatBot
       headerTitle="Mr.House"
       hideSubmitButton="false"
-      // hideBotAvatar="false"
+      cache="true"
+      //hideBotAvatar="false"
 
         steps={[
           {

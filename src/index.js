@@ -18,7 +18,7 @@ import {Fb} from 'firebase-store'
 // import ChatBot from 'react-simple-chatbot';
 // import {FormSaleChatbot} from 'chatbot/formSaleChatbot'
 
-import DevTools, { setLogEnabled, setUpdatesEnabled, setGraphEnabled } from 'mobx-react-devtools';
+//import DevTools, { setLogEnabled, setUpdatesEnabled, setGraphEnabled } from 'mobx-react-devtools';
 import FormSaleChatbot from 'chatbot/formSaleChatbot'
 
 // import { AppContainer } from 'react-hot-loader';
@@ -26,9 +26,9 @@ import FormSaleChatbot from 'chatbot/formSaleChatbot'
 // import { BrowserRouter } from 'react-router-dom';
 
 
-setLogEnabled(false); // same as configureDevtool({ logEnabled: true });
-setUpdatesEnabled(false); // same as configureDevtool({ updatesEnabled: false });
-setGraphEnabled(true); // same as configureDevtool({ graphEnabled: false });
+// setLogEnabled(false); // same as configureDevtool({ logEnabled: true });
+// setUpdatesEnabled(false); // same as configureDevtool({ updatesEnabled: false });
+// setGraphEnabled(true); // same as configureDevtool({ graphEnabled: false });
 
 startRouter(views, MobxStore);
 
@@ -85,54 +85,54 @@ initReactFastclick();
 // //disableScroll();
 
 
-firebase.auth().onAuthStateChanged( (user) => {
+// firebase.auth().onAuthStateChanged( (user) => {
 
-   // update currentUser login or not
-   MobxStore.app.user = firebase.auth().currentUser;
-   // MobxStore.app.user = true;
-   // User is signed in.
+//    // update currentUser login or not
+//    MobxStore.app.user = firebase.auth().currentUser;
+//    // MobxStore.app.user = true;
+//    // User is signed in.
 
-  if ( user)  {
-    var isAnonymous = user.isAnonymous;
-    //var uid = user.uid;
+//   if ( user)  {
+//     var isAnonymous = user.isAnonymous;
+//     //var uid = user.uid;
 
-     console.log( 'user signed', user)
-     // Redirect to member page!
-     //MobxStore.app.startLogin();
-     //Fb.startLogin();
-     MobxStore.app.uid = user.uid;
-     if ( isAnonymous ) {
-     MobxStore.app.displayName = 'anonymous';
-     MobxStore.app.email = 'anonymous';
-     MobxStore.app.providerId = 'anonymous'
-   } else {
-     MobxStore.app.displayName = user.displayName;
-     MobxStore.app.email = user.email;
-     MobxStore.app.providerId = user.providerData[0].providerId;
-     // user.emailVerified.
+//      console.log( 'user signed', user)
+//      // Redirect to member page!
+//      //MobxStore.app.startLogin();
+//      //Fb.startLogin();
+//      MobxStore.app.uid = user.uid;
+//      if ( isAnonymous ) {
+//      MobxStore.app.displayName = 'anonymous';
+//      MobxStore.app.email = 'anonymous';
+//      MobxStore.app.providerId = 'anonymous'
+//    } else {
+//      MobxStore.app.displayName = user.displayName;
+//      MobxStore.app.email = user.email;
+//      MobxStore.app.providerId = user.providerData[0].providerId;
+//      // user.emailVerified.
 
-   }
-     //MobxStore.app.setTitle( user.displayName )
+//    }
+//      //MobxStore.app.setTitle( user.displayName )
 
-     console.log( 'displayName', user.displayName)
+//      console.log( 'displayName', user.displayName)
 
-     // Think over before remove this like, may cause matchedPropertys = null
-     Fb.app.updateUid();
-     MobxStore.router.goTo( views.home , {}, MobxStore )
-  } else {
-       console.log( 'user donot sign')
-       //MobxStore.app.startLogout();
-       Fb.startLogout();
+//      // Think over before remove this like, may cause matchedPropertys = null
+//      Fb.app.updateUid();
+//      MobxStore.router.goTo( views.home , {}, MobxStore )
+//   } else {
+//        console.log( 'user donot sign')
+//        //MobxStore.app.startLogout();
+//        Fb.startLogout();
 
-       MobxStore.app.uid = null;
-       MobxStore.app.displayName = 'none'
-       MobxStore.app.email = 'none'
-       MobxStore.app.providerId = 'none'
+//        MobxStore.app.uid = null;
+//        MobxStore.app.displayName = 'none'
+//        MobxStore.app.email = 'none'
+//        MobxStore.app.providerId = 'none'
 
-       MobxStore.router.goTo( views.home , {}, MobxStore )
+//        MobxStore.router.goTo( views.home , {}, MobxStore )
 
-  }
-})
+//   }
+// })
 
 //<MobxRouter/>
 
