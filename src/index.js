@@ -19,6 +19,7 @@ import {Fb} from 'firebase-store'
 // import {FormSaleChatbot} from 'chatbot/formSaleChatbot'
 
 import DevTools, { setLogEnabled, setUpdatesEnabled, setGraphEnabled } from 'mobx-react-devtools';
+import FormSaleChatbot from 'chatbot/formSaleChatbot'
 
 // import { AppContainer } from 'react-hot-loader';
 // import App from 'app';
@@ -142,13 +143,17 @@ firebase.auth().onAuthStateChanged( (user) => {
 
 
 ReactDOM.render(
-  <Provider store={MobxStore}>
-    <div>
-      <NavigationBar/>
-      <MobxRouter/>
-    </div>
-  </Provider>, document.getElementById('root')
+  <FormSaleChatbot />
+  , document.getElementById('root')
 )
+
+  // <Provider store={MobxStore}>
+  //   <div>
+  //     <NavigationBar/>
+  //     <MobxRouter/>
+  //   </div>
+  // </Provider>, document.getElementById('root')
+
 
 
 // ReactDOM.render(

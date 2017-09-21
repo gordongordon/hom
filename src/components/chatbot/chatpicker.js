@@ -78,7 +78,7 @@ class Chatpicker extends Component {
     const label =  this.nameOfBuildingLabel( region, location, building )
     
     this.setState({ trigger: true }, () => {
-      this.props.triggerNextStep( { value: label  });
+      this.props.triggerNextStep( { value: label, label : label });
     });
   }
 

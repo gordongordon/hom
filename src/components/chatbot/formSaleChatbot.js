@@ -7,6 +7,58 @@ import TabExample from './TabExample'
 import MobxStore from 'mobxStore';
 import views from 'views';
 
+import { ThemeProvider } from 'styled-components';
+
+const theme = {
+  background: '#F2f2f2',
+  fontFamily: 'Helvetica Neue',
+  headerBgColor: '#F55869',
+  headerFontColor: '#FECEA8',
+  botBubbleColor: '#e6e6e6',
+  botFontColor: '#000',
+  userBubbleColor: '#FECEA8',
+  userFontColor: '#000',
+};
+
+
+// Green
+// const theme = {
+//   background: '#F2f2f2',
+//   fontFamily: 'Helvetica Neue',
+//   headerBgColor: '#F55869',
+//   headerFontColor: '#000',
+//   botBubbleColor: '#e6e6e6',
+//   botFontColor: '#000',
+//   userBubbleColor: '#fecea8',
+//   userFontColor: '#000',
+// };
+
+
+// Blue
+// const theme = {
+//   background: '#f5f8fb',
+//   fontFamily: 'Helvetica Neue',
+//   headerBgColor: '#FFD200',
+//   headerFontColor: '#000',
+//   botBubbleColor: '#FFE552',
+//   botFontColor: '#000',
+//   userBubbleColor: '#fff',
+//   userFontColor: '#4a4a4a',
+// };
+
+// Gold Color
+// const theme = {
+//   background: '#f5f8fb',
+//   fontFamily: 'Helvetica Neue',
+//   headerBgColor: '#FFD200',
+//   headerFontColor: '#000',
+//   botBubbleColor: '#FFE552',
+//   botFontColor: '#000',
+//   userBubbleColor: '#fff',
+//   userFontColor: '#4a4a4a',
+// };
+
+
 class Review extends Component {
   constructor(props) {
     super(props);
@@ -50,13 +102,13 @@ Review.defaultProps = {
 };
 
 
-class FormSaleChatbot extends Component {
+//class FormSaleChatbot extends Component {
 
-  
-
-  render() {
+  //  render() {
      
-    return (
+    //return (
+const FormSaleChatbot = () => (
+  <ThemeProvider theme={theme}>
       <ChatBot
       headerTitle="Mr.House"
       hideSubmitButton="false"
@@ -105,7 +157,7 @@ class FormSaleChatbot extends Component {
           },
           {
             id: '6',
-            message: '請選擇(房)間隔?',
+            message: '請選擇(房){previousValue}間隔?',
             trigger: 'room',
           },
           {
@@ -208,8 +260,10 @@ class FormSaleChatbot extends Component {
           },
         ]}
       />
+      </ThemeProvider>      
+      
     );
-  }
-}
+  //}
+//}
 
 export default FormSaleChatbot;
