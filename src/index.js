@@ -14,13 +14,13 @@ import firebase from 'firebase'
 import NavigationBar from 'navigationBar'
 //import { NoticeBar } from 'antd-mobile';
 import initReactFastclick from 'react-fastclick';
-import {Fb} from 'firebase-store'
+import {Fb} from 'firebase-store';
 // import ChatBot from 'react-simple-chatbot';
 // import {FormSaleChatbot} from 'chatbot/formSaleChatbot'
 
 //import DevTools, { setLogEnabled, setUpdatesEnabled, setGraphEnabled } from 'mobx-react-devtools';
-import FormSaleChatbot from 'chatbot/formSaleChatbot'
-
+//import FormSaleChatbot from 'chatbot/formSaleChatbot'
+import FormSaleChatbot from './components/chatbot/formSaleChatbot';
 // import { AppContainer } from 'react-hot-loader';
 // import App from 'app';
 // import { BrowserRouter } from 'react-router-dom';

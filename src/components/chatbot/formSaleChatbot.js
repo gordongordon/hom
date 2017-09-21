@@ -172,8 +172,9 @@ const FormSaleChatbot = () => (
   <ThemeProvider theme={theme}>
       <ChatBot
       headerTitle="Mr.House"
-      hideSubmitButton="false"
+      //hideSubmitButton="false"
       cache="true"
+      hideSubmitButton={false}
       //hideBotAvatar="false"
 
         steps={[

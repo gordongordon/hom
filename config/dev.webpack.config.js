@@ -12,8 +12,6 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 //var CompressionPlugin = require("compression-webpack-plugin");
  var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
- process.traceDeprecation = true;
-
 //const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 // loaders: [ 'style-loader', 'css-loader', 'sass-loader' ]
