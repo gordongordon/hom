@@ -179,7 +179,7 @@ const FormSaleChatbot = () => (
         steps={[
           {
             id: '1',
-            message: '歡迎來到Mr House,請輸入名稱',
+            message: 'a歡迎來到Mr House,請輸入名稱',
             trigger: 'name',
           },
           {

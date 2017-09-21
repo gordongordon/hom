@@ -13,6 +13,7 @@ app.use(compression({
   level: 9
 }));
 
+
 // app.use(compression({filter: shouldCompress}))
 // Gordon
 // function shouldCompress (req, res) {

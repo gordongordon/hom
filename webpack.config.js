@@ -1,7 +1,7 @@
 var path = require("path");
 var webpack = require("webpack");
 const pxtorem = require("postcss-pxtorem");
-
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const svgDirs = [
   require.resolve("antd-mobile").replace(/warn\.js$/, "") // 1. 属于 antd-mobile 内置 svg 文件
   //path.resolve(__dirname, 'src/my-project-svg-foler'),  // 2. 自己私人的 svg 存放目录
@@ -30,9 +30,17 @@ module.exports = {
     publicPath: '/',
     filename: '[name].bundle.js',
     chunkFilename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'public')
+    path: path.resolve(__dirname , 'public')
+//    path: path.resolve(__dirname, 'public')
   },
-
+  devServer: {
+    contentBase: path.join(__dirname, '/public/'),
+    //contentBase: __dirname + `\public\`,
+    inline: true,
+    host: "0.0.0.0",
+    compress: true,
+    port: 8080,
+  },
 //   output: {
 //     // path: path.join(__dirname, 'public'),
 //     // filename: 'bundle.js',
@@ -49,6 +57,14 @@ module.exports = {
 //   },
 
   plugins: [
+    // new CopyWebpackPlugin([
+    //   {
+    //     context: path.resolve(__dirname, 'app/'),
+    //     from: 'index.html',
+    //     to: path.resolve(__dirname, 'public'),
+    //   },
+    // ]),    
+
     //new webpack.HotModuleReplacementPlugin(),
     // new HTMLWebpackPlugin({
     //   title: 'Code Splitting'
@@ -60,7 +76,7 @@ module.exports = {
     // 		threshold: 10240,
     // 		minRatio: 0.8
     // 	}),
-     new BundleAnalyzerPlugin(),
+     //new BundleAnalyzerPlugin(),
      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
      new webpack.DefinePlugin({
        // <-- key to reducing React's size
