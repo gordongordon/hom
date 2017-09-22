@@ -70,7 +70,7 @@
     "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
     "svg-sprite-loader": "^0.3.1",
-    "webpack": "^2.7.0",
+    "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.8.3",
     "webpack-dev-server": "^2.8.2"
   },
