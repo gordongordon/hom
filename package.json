@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "description": "MobX Boilerplate with Ant.Design",
   "scripts": {
-    "start": "./node_modules/.bin/webpack-dev-server --inline --content-base build/ -d",
+    "kk": "./node_modules/.bin/webpack-dev-server --inline --content-base build/ -d",
     "build": "./node_modules/.bin/webpack -p",
     "make": "npm run build && node server.js",
     "webpack": "webpack",
