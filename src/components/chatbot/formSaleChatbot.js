@@ -198,7 +198,19 @@ const FormSaleChatbot = () => (
           },
           {
             id: 'mrhouse2',
-            message : `令你失去信心同預算。Mr.House 肯定係! 最新最齊嘅樓盤資訊一定唔係互聯網！全部都係地產代理手上! Mr.House 幫你嘅係! 將你需要即時廣傳比所有地產代理知道等佢即時回覆!         記住Mr.House 搵到嘅係/即時顯示係！ 啱你心水樓盤係由全港唔同嘅地產代理即時(提供/價錢)！所以先可以一次集齊最新最齊啱你心水樓盤！搵樓  Mr.House`,
+            message : `令你失去信心同預算。Mr.House 肯定係! 最新最齊嘅樓盤資訊一定唔係互聯網!`,
+            delay : 5000,
+            trigger: 'mrhouse3',
+          },
+          {
+            id: 'mrhouse3',
+            message : `全部都係地產代理手上! Mr.House 幫你嘅係! 將你需要即時廣傳比所有地產代理知道等佢即時回覆!`,
+            delay : 5000,
+            trigger: 'mrhouse4',
+          },
+          {
+            id: 'mrhouse4',
+            message : `記住Mr.House 搵到嘅係/即時顯示係！ 啱你心水樓盤係由全港唔同嘅地產代理即時(提供/價錢)！所以先可以一次集齊最新最齊啱你心水樓盤！搵樓  Mr.House`,
             delay : 5000,
             trigger: 'startForm',
           },
