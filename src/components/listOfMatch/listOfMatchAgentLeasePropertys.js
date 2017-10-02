@@ -83,7 +83,6 @@ export default class ListOfMatchAgentLeasePropertys extends React.Component {
 
   render() {
     const { propertys } = this.props;
-    const that = this;
 
     if (propertys === undefined) {
       console.log(
@@ -91,6 +90,6 @@ export default class ListOfMatchAgentLeasePropertys extends React.Component {
       );
     }
 
-  return (<div>{that.display(propertys)}</div>);
+  return (<div>{this.display(propertys)}</div>);
   }
 }

@@ -122,3 +122,24 @@ console.log( moment.duration().asMinutes() )
 // var mm = dueDay.get('M');
 // var dd = dueDay.get('D')
 // console.log( "due MM", )
+const map = f => x => Array.prototype.map.call(x, f)
+
+const getFullName = ({ first, last }) => `${first} ${last}`
+
+getFullName({ first: 'Max', last: 'Power' })
+// => 'Max Power'
+
+console.log(map(getFullName)([
+  { first: 'Max', last: 'Power' },
+  { first: 'Disco', last: 'Stu' },
+  { first: 'Joe', last: 'Kickass' }
+]))
+
+
+var myMap = new Map();
+myMap.set('0', 'foo');
+myMap.set(1, 'bar');
+myMap.set({}, 'baz');
+
+var mapIter = [...myMap.values()];
+console.log(mapIter); // "0"

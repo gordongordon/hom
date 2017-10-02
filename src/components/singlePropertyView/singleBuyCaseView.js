@@ -70,14 +70,20 @@ class SingleBuyCaseView extends React.Component {
     const p = this.props.property;
     const status = p.getStatus(p.relatedFbid).get();
     const f = this.props.filter;
+    const isStatusShowPhone = status => status && status.isShowPhone;
+
     var BUTTONS; 
 
 
-    if ( status.isShowPhone ) {
-      BUTTONS = [ `直接致電(${f.roleName}):  ${status.contactPhone}`, '更新回覆內容', "取消"];
-    } else {
-      BUTTONS = [ `直接致電(${f.roleName}):  ${status.contactPhone}`, '更新回覆內容', "取消"];
-    }
+//    if ( status.isShowPhone ) {
+    isStatusShowPhone( status ) ? BUTTONS = [ `直接致電(${f.roleName}):  ${status.contactPhone}`, '更新回覆內容', "取消"] 
+                                : BUTTONS = [ `直接致電(${f.roleName}):  ${status.contactPhone}`, '更新回覆內容', "取消"];
+
+    // if ( isStatusShowPhone( status ) ) {
+    //   BUTTONS = [ `直接致電(${f.roleName}):  ${status.contactPhone}`, '更新回覆內容', "取消"];
+    // } else {
+    //   BUTTONS = [ `直接致電(${f.roleName}):  ${status.contactPhone}`, '更新回覆內容', "取消"];
+    // }
     // const BUTTONS = ['Call '+ p.showPhoneByCase, 'edit', '取消'];
     ActionSheet.showActionSheetWithOptions({
       options: BUTTONS,
@@ -156,7 +162,7 @@ class SingleBuyCaseView extends React.Component {
             text={property.isPetAllowedLabel}
             style={{
               marginLeft: 12,
-              padding: "0 0.06rem",
+              padding: '0 0.06rem',
               backgroundColor: property.colorByFresh,
               borderRadius: 2
             }}      

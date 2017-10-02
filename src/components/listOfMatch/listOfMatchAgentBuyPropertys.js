@@ -36,60 +36,66 @@ export default class ListOfMatchAgentBuyPropertys extends React.Component {
       return null;
     }
 
-    // Try to show most uptoday item only
-    var element = [];
+    const segment = this.props.segment;
+    const isSegmentType = type => segment => (segment === type ? true : false);
+    const array = [...list.values()]; // Convert Map into array
+    const filter = this.props.filter;
+    const filterID = this.props.filterID;
 
-    //  const timeEnter = this.props.timeEnter;
-    //  const c = moment( timeEnter );
+    if (isSegmentType("case", segment)) {
+      const getSingleBuyCaseView = p => (
+        <SingleBuyCaseView
+          property={p}
+          filter={filter}
+          key={p.keyID}
+          filterID={filterID}
+        />
+      );
 
-    list.forEach((p, keyID) => {
-      const segment = this.props.segment;
+      const element = array.map(getSingleBuyCaseView);
+      return <div>{element.reverse()}</div>;
+    }
+    if (isSegmentType("filter", segment)) {
+      const getSingleBuyAgentFilterView = p => (
+        <SingleBuyAgentFilterView
+          property={p}
+          key={p.keyID}
+          filterID={filterID}
+        />
+      );
 
-      if (segment === "case") {
-        element.push(
-          <SingleBuyCaseView
-            property={p}
-            filter={this.props.filter}
-            key={keyID}
-            filterID={this.props.filterID}
-          />
-        );
-      } else if (segment === "filter") {
-        element.push(
-          <SingleBuyAgentFilterView
-            property={p}
-            key={keyID}
-            filterID={this.props.filterID}
-          />
-        );
-      } else if (segment === "response") {
-        element.push(
-          <SingleBuyAgentRespondViewWrapper
-            filter={this.props.filter}
-            property={p}
-            key={keyID}
-            filterID={this.props.filterID}
-          />
-        );
-      } else {
-        element.push(
-          <SingleBuyUserMatchViewWrapper
-            filter={this.props.filter}
-            property={p}
-            key={keyID}
-            filterID={this.props.filterID}
-          />
-        );
-      }
-    });
+      const element = array.map(getSingleBuyAgentFilterView);
+      return <div>{element.reverse()}</div>;
+    }
+    if (isSegmentType("response", segment)) {
+      const getSingleBuyAgentRespondViewWrapper = p => (
+        <SingleBuyAgentRespondViewWrapper
+          filter={filter}
+          property={p}
+          key={p.keyID}
+          filterID={filterID}
+        />
+      );
 
+      const element = array.map(getSingleBuyAgentRespondViewWrapper);
+      return <div>{element.reverse()}</div>;
+    }
+    const getSingleBuyUserMatchViewWrapper = p => (
+      <SingleBuyUserMatchViewWrapper
+        filter={filter}
+        property={p}
+        key={p.keyID}
+        filterID={filterID}
+      />
+    );
+
+    const element = array.map(getSingleBuyUserMatchViewWrapper);
     return <div>{element.reverse()}</div>;
   };
 
   render() {
     const { propertys } = this.props;
-    const that = this;
 
-  return (<div>{that.display(propertys)}</div>);
+    return <div>{this.display(propertys)}</div>;
   }
 }

@@ -132,8 +132,7 @@ export default class ListOfMatchAgentSalePropertys extends React.Component {
 
   render() {
     const { propertys } = this.props;
-    const that = this;
 
-  return (<div>{that.display(propertys)}</div>);
+  return (<div>{this.display(propertys)}</div>);
   }
 }

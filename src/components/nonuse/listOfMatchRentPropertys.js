@@ -26,12 +26,14 @@ export class ListOfMatchRentPropertys extends React.Component {
   }
 
   display = ( propertys ) => {
-     const list = propertys;
-     // Catched empty list, don't do anything!
-     if ( list.size === 0 )
-     {
-        return null;
-     }
+    const list = propertys;
+    
+    const isListEmpty = list => list.size === 0 ? true : null ; 
+    
+    // Catched empty list, don't do anything!
+    if ( isListEmpty( list ) ) {
+       return null;
+    }
      
      // Try to show most uptoday item only
      const timeEnter = this.props.timeEnter;

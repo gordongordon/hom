@@ -41,12 +41,18 @@ export default class ListOfAgentPropertysView extends React.Component {
    */
   renderPropertys = (model, propertys, h) => {
 
-    var list = propertys;
+    const list = propertys;
+
+    const isListEmpty = list => list.size === 0 ? true : null ; 
 
     // Catched empty list, don't do anything!
-    if (list.size === 0) {
+    if ( isListEmpty( list ) ) {
       return null;
     }
+
+    // if (list.size === 0 ) {
+    //   return null;
+    // }
 
     const that = this;
 

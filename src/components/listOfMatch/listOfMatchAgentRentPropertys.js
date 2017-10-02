@@ -27,66 +27,72 @@ export default class ListOfMatchAgentRentPropertys extends React.Component {
 
   display = propertys => {
     const list = propertys;
-
     // Catched empty list, don't do anything!
     if (list.size === 0) {
+      // debugger
       return null;
     }
 
-    // Try to show most uptoday item only
-    var element = [];
+    const segment = this.props.segment;
+    const isSegmentType = type => segment => (segment === type ? true : false);
+    const array = [...list.values()]; // Convert Map into array
+    const filter = this.props.filter;
+    const filterID = this.props.filterID;
 
-    //  const timeEnter = this.props.timeEnter;
-    //  const c = moment( timeEnter );
+    if (isSegmentType("case", segment)) {
+      const getSingleRentCaseView = p => (
+        <SingleRentCaseView
+          property={p}
+          filter={filter}
+          key={p.keyID}
+          filterID={filterID}
+        />
+      );
 
-    list.forEach((p, keyID) => {
-      const segment = this.props.segment;
+      const element = array.map(getSingleRentCaseView);
+      return <div>{element.reverse()}</div>;
+    }
+    if (isSegmentType("filter", segment)) {
+      const getSingleRentAgentFilterView = p => (
+        <SingleRentAgentFilterView
+          property={p}
+          key={p.keyID}
+          filterID={filterID}
+        />
+      );
 
-      if (segment === "case") {
-        element.push(
-          <SingleRentCaseView
-            property={p}
-            filter={this.props.filter}
-            key={keyID}
-            filterID={this.props.filterID}
-          />
-        );
-      } else if (segment === "filter") {
-        element.push(
-          <SingleRentAgentFilterView
-            property={p}
-            key={keyID}
-            filterID={this.props.filterID}
-          />
-        );
-      } else if (segment === "response") {
-        element.push(
-          <SingleRentAgentRespondViewWrapper
-            filter={this.props.filter}
-            property={p}
-            key={keyID}
-            filterID={this.props.filterID}
-          />
-        );
-      } else {
-        element.push(
-          <SingleRentUserMatchViewWrapper
-            filter={this.props.filter}
-            property={p}
-            key={keyID}
-            filterID={this.props.filterID}
-          />
-        );
-      }
-    });
+      const element = array.map(getSingleRentAgentFilterView);
+      return <div>{element.reverse()}</div>;
+    }
+    if (isSegmentType("response", segment)) {
+      const getSingleRentAgentRespondViewWrapper = p => (
+        <SingleRentAgentRespondViewWrapper
+          filter={filter}
+          property={p}
+          key={p.keyID}
+          filterID={filterID}
+        />
+      );
 
+      const element = array.map(getSingleRentAgentRespondViewWrapper);
+      return <div>{element.reverse()}</div>;
+    }
+    const getSingleRentUserMatchViewWrapper = p => (
+      <SingleRentUserMatchViewWrapper
+        filter={filter}
+        property={p}
+        key={p.keyID}
+        filterID={filterID}
+      />
+    );
+
+    const element = array.map(getSingleRentUserMatchViewWrapper);
     return <div>{element.reverse()}</div>;
   };
 
   render() {
     const { propertys } = this.props;
-    const that = this;
 
-  return (<div>{that.display(propertys)}</div>);
+  return (<div>{this.display(propertys)}</div>);
   }
 }

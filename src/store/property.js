@@ -16,12 +16,17 @@ const LABEL_JOBNATURE = {
   "4": "海外人士"
 };
 
+
+
 // this is our domain model class
 export class Property {
   constructor() {
     this.nameOfBuilding = "MOS0001";
   }
 
+
+  isTypeBy = type => this.typeBy === type;
+  
   // ** Every time add a new variable
   // make sure also handle in serialize, restore, deserialize, otherwise error
 
@@ -618,12 +623,16 @@ export class Property {
     return "x廁";
   }
 
+//  const isTypeBy = type => this.typeBy === type;
+
   @computed 
   get typeByLabel() {
-    if ( this.typeBy === "open") {
-      return "等待回覆 "
-    }
-    return "已跟進 "
+
+    return this.isTypeBy( "open " ) ? "等待回覆 " : "已跟進 ";
+    // if ( this.typeBy === "open") {
+    //   return "等待回覆 "
+    // }
+    // return "已跟進 "
   }
   @computed 
   get typeByFollowUpLabel() {
@@ -861,9 +870,11 @@ export class Property {
       this.typeFor = v.typeFor, 
       this.district = v.district, 
       this.addressRegion = v.addressRegion, 
-      this.addressLocation = v.addressLocation, (this.nameOfBuilding =
-      v.nameOfBuilding), (this.propertyType = v.propertyType), (this.flatType =
-      v.flatType), (this.nearByMtrLine = v.nearByMtrLine), (this.nearByMtrStop =
+      this.addressLocation = v.addressLocation, 
+      this.nameOfBuilding =v.nameOfBuilding, 
+      this.propertyType = v.propertyType, 
+      this.flatType = v.flatType, 
+      this.nearByMtrLine = v.nearByMtrLine, (this.nearByMtrStop =
       v.nearByMtrStop), (this.salePrice = v.salePrice), (this.salePriceMin =
       v.salePriceMin), (this.salePriceMax = v.salePriceMax), (this.leasePrice =
       v.leasePrice), (this.leasePriceWithTax =

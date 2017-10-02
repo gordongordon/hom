@@ -65,10 +65,16 @@ export default class ListOfPropertysView extends React.Component {
    * h is a callback to handle next route wiht keyID
    */
   renderPropertys = (model, propertys, h) => {
-    var list = propertys;
+    const list = propertys;
+
+    // Function to test is list empty
+    const isListEmpty = list =>
+      list === null
+        ? console.log("list === null")
+        : list.size >= 0 ? false : true;
 
     // Catched empty list, don't do anything!
-    if (list.size === 0) {
+    if (isListEmpty(list)) {
       return null;
     }
 
@@ -119,10 +125,12 @@ export default class ListOfPropertysView extends React.Component {
                 onClick={() =>
                   MobxStore.router.goTo(views.matchLease, { keyID })}
                 multipleLine
-                extra={<Badge text={"回覆"+property.responsedPropertys.size} />}
+                extra={<Badge text={"回覆" + property.responsedPropertys.size} />}
               >
                 {property.typeToLabel}:{property.addressLocationLabel}/{property.nameOfBuildingLabel}
-                <Brief>實用面積{property.netSize}呎/租金${property.leasePrice}</Brief>
+                <Brief>
+                  實用面積{property.netSize}呎/租金${property.leasePrice}
+                </Brief>
                 {keyID}
               </Item>
             </SwipeAction>
@@ -172,10 +180,12 @@ export default class ListOfPropertysView extends React.Component {
                 onClick={() =>
                   MobxStore.router.goTo(views.matchRent, { keyID })}
                 multipleLine
-                extra={<Badge text={"回覆"+property.responsedPropertys.size} />}
-                >
+                extra={<Badge text={"回覆" + property.responsedPropertys.size} />}
+              >
                 {property.typeToLabel}:{property.addressLocationLabel}/{property.nameOfBuildingLabel}
-                <Brief>最少{property.netSizeMin}呎實用面積/租金上限${property.rentBudgetMax}</Brief>
+                <Brief>
+                  最少{property.netSizeMin}呎實用面積/租金上限${property.rentBudgetMax}
+                </Brief>
                 {keyID}
               </Item>
             </SwipeAction>
@@ -223,10 +233,12 @@ export default class ListOfPropertysView extends React.Component {
                 arrow="horizontal"
                 onClick={() => MobxStore.router.goTo(views.matchBuy, { keyID })}
                 multipleLine
-                extra={<Badge text={"回覆"+property.responsedPropertys.size} />}
-                >
+                extra={<Badge text={"回覆" + property.responsedPropertys.size} />}
+              >
                 {property.typeToLabel}:{property.addressLocationLabel}/{property.nameOfBuildingLabel}
-                <Brief>最少 {property.netSizeMin}呎實用面積/預算上限${property.buyBudgetMax}萬</Brief>
+                <Brief>
+                  最少 {property.netSizeMin}呎實用面積/預算上限${property.buyBudgetMax}萬
+                </Brief>
                 {keyID}
               </Item>
             </SwipeAction>
@@ -276,10 +288,12 @@ export default class ListOfPropertysView extends React.Component {
                 onClick={() =>
                   MobxStore.router.goTo(views.matchSale, { keyID })}
                 multipleLine
-                extra={<Badge text={"回覆"+property.responsedPropertys.size} />}
-                >
+                extra={<Badge text={"回覆" + property.responsedPropertys.size} />}
+              >
                 {property.typeToLabel}:{property.addressLocationLabel}/{property.nameOfBuildingLabel}
-                <Brief>實用面積:{property.netSize}呎/售價${property.salePrice}萬</Brief>
+                <Brief>
+                  實用面積:{property.netSize}呎/售價${property.salePrice}萬
+                </Brief>
                 {keyID}
               </Item>
             </SwipeAction>

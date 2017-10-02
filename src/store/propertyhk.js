@@ -31,7 +31,7 @@ export class Propertyhk extends Property {
 
   @observable responsedPropertys = observable.map({});
   @observable showPhone = false;
-  matchID; 
+  matchID;
   //@observable responsedPropertys = new Map();
   // @observable matchedPropertys = new Map();
 
@@ -140,6 +140,8 @@ export class Propertyhk extends Property {
   };
 
   buildCase() {
+    const isUndefinedProperty = element =>
+      element === undefined ? true : false;
 
     // this is filter in here
     this.saleFollow.forEach((element, key) => {
@@ -147,7 +149,7 @@ export class Propertyhk extends Property {
       const p = this.buyRequest.get(relatedFbid);
 
       // Catch undefined since, you may call buildCase everywhere
-      if (p === undefined) {
+      if (isUndefinedProperty(p)) {
         console.log("buyRequest undefined with key ", relatedFbid);
       } else {
         // Setup ref
@@ -156,14 +158,11 @@ export class Propertyhk extends Property {
 
         // Testing for showPhoneByCase, Case Only
         // Having to call, before any call of showPhoneByCase
-//        np.buildInDirectCallAgent( np.typeFor )
+        //        np.buildInDirectCallAgent( np.typeFor )
         np.buildInDirectCall();
-        
-        
+
         // p.contactName = 'kky'
         this.buyCase.set(key, np);
- 
-        
 
         // console.log( 'saleCase.size ', this.saleCase.size )
         // console.log( 'saleCase object',this.buyRequest.get( relatedFbid ) )
@@ -184,7 +183,6 @@ export class Propertyhk extends Property {
       // Testing for showPhoneByCase, Case Only
       //np.buildInDirectCallAgent( np.typeFor )
       np.buildInDirectCall();
-      
 
       this.saleCase.set(key, np);
       console.log("saleCase key", key);
@@ -196,17 +194,15 @@ export class Propertyhk extends Property {
       const relatedFbid = element.relatedFbid;
       const p = this.leaseRequest.get(relatedFbid);
 
-      if (p === undefined) {
+      if (isUndefinedProperty(p)) {
         console.log("leaseRequest undefined with key ", relatedFbid);
       } else {
         const np = Propertyhk.deserialize(p);
         np.relatedFbid = key;
 
         // Testing for showPhoneByCase, Case Only
-//        np.buildInDirectCallAgent( np.typeFor )
+        //        np.buildInDirectCallAgent( np.typeFor )
         np.buildInDirectCall();
-        
-
 
         this.leaseCase.set(key, np);
         console.log("leaseCase key", key);
@@ -218,16 +214,15 @@ export class Propertyhk extends Property {
     this.leaseFollow.forEach((element, key) => {
       const relatedFbid = element.relatedFbid;
       const p = this.rentRequest.get(relatedFbid);
-      if (p === undefined) {
+      if (isUndefinedProperty(p)) {
         console.log("rentRequest undefined with key ", relatedFbid);
       } else {
         const np = Propertyhk.deserialize(p);
         np.relatedFbid = key;
 
         // Testing for showPhoneByCase, Case Only
-//        np.buildInDirectCallAgent( np.typeFor )
+        //        np.buildInDirectCallAgent( np.typeFor )
         np.buildInDirectCall();
-        
 
         this.rentCase.set(key, np);
         console.log("rentCase key", key);
@@ -468,7 +463,7 @@ export class Propertyhk extends Property {
 
         // Testing set Matchid
         // set up the user filter, as matchID, so that
-        // property can be found who is browsering! 
+        // property can be found who is browsering!
         // in order to make use of status in display phone ##
         //this.setMatchID( this.fbid );
         p.buildInDirectCall();
@@ -628,15 +623,14 @@ export class Propertyhk extends Property {
   setBuyInDirectCall = (fbid, relatedFbid, showPhone) => {
     let status = new Status(relatedFbid, fbid, !showPhone);
 
-    
-        // by using [fbid], catch all different propertys
-        // Fb.root.ref('propertys/buy/' + relatedFbid + '/inDirectCall').update({ [fbid]: { fbid, relatedFbid, inDirectCall : true } });
-        //  Fb.root.ref('inDirectCall/sale/').update({ [relatedFbid + '_call_'+fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
-    
+    // by using [fbid], catch all different propertys
+    // Fb.root.ref('propertys/buy/' + relatedFbid + '/inDirectCall').update({ [fbid]: { fbid, relatedFbid, inDirectCall : true } });
+    //  Fb.root.ref('inDirectCall/sale/').update({ [relatedFbid + '_call_'+fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
+
     Fb.root.ref("inDirectCall/buy/" + fbid).update({ [relatedFbid]: status });
 
     //status = this.inDirectCall.get(fbid);
-    
+
     // if ( showPhone ) {
     //   let status = this.inDirectCall.get(fbid);
     //   // debugger
@@ -674,9 +668,9 @@ export class Propertyhk extends Property {
     // Fb.root.ref('propertys/buy/' + relatedFbid + '/inDirectCall').update({ [fbid]: { fbid, relatedFbid, inDirectCall : true } });
     //  Fb.root.ref('inDirectCall/sale/').update({ [relatedFbid + '_call_'+fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
 
-//    Fb.root.ref("inDirectCall/sale/" + relatedFbid).update({ [fbid]: status });
+    //    Fb.root.ref("inDirectCall/sale/" + relatedFbid).update({ [fbid]: status });
     Fb.root.ref("inDirectCall/sale/" + fbid).update({ [relatedFbid]: status });
-    
+
     // console.log(`inDirectCall setSaleInDirecTCall this.fbid ${this.fbid}`);
     // if (showPhone ) {
     //   let status = this.inDirectCall.get(fbid);
@@ -691,10 +685,7 @@ export class Propertyhk extends Property {
     // }
 
     // let saveStatus = this.inDirectCall.get( fbid );
-
-
   };
-
 
   // Gordno doing here
   /**
@@ -718,7 +709,7 @@ export class Propertyhk extends Property {
   //   }
   //   return { status : "等待聯絡" , color : "#E67E22", isShowPhone : false, contactPhone : "no share phone"};
   // }
-  
+
   // @computed
   // get showPhoneStatusMatchID(){
   //   const p = this.inDirectCall.get( this.matchID );
@@ -727,7 +718,6 @@ export class Propertyhk extends Property {
   //   }
   //   return { status : "等待聯絡" , color : "#E67E22", isShowPhone : false, contactPhone : "no share phone"};
   // }
-
 
   /**
    * Get Status by giving and id
@@ -738,14 +728,29 @@ export class Propertyhk extends Property {
     //debugger
     const that = this;
     return computed(() => {
-        const p = that.inDirectCall.get( id );
-        //debugger
-        if ( p && p.isShowPhone ) {
-          return { status : "已留電話", message : "停止! 顯示電話給對方!", color : "#000", isShowPhone :  true, contactPhone : this.contactPhone, roleName : this.roleName };
-        }
-        return { status : "留電話..", message : "顯示我的電話！要對方打俾我", color : "#E67E22", isShowPhone :  false, contactPhone : "no share phone", roleName : this.roleName };
-      })
-    }
+      const p = that.inDirectCall.get(id);
+      const messageWithPhone = {
+        status: "已留電話",
+        message: "停止! 顯示電話給對方!",
+        color: "#000",
+        isShowPhone: true,
+        contactPhone: this.contactPhone,
+        roleName: this.roleName
+      };
+      const messageWithOutPhone = {
+        status: '留電話..',
+        message: '顯示我的電話！要對方打俾我',
+        color: '#E67E22',
+        isShowPhone: false,
+        contactPhone: 'no share phone',
+        roleName: this.roleName
+      };
+      const isShowPhone = p => p && p.isShowPhone;
+      
+      //debugger
+      return isShowPhone(p) ? messageWithPhone : messageWithOutPhone;
+    }); // End o Computed
+  }
   //@action
   /**
    * use for setting, before calling showPhoneStatusMatchID
@@ -764,14 +769,13 @@ export class Propertyhk extends Property {
   //   if ( this.inDirectCall.size > 0) {
   //     let object = this.inDirectCall.get(id);
 
-  //     if ( object && object.isShowPhone ) 
+  //     if ( object && object.isShowPhone )
   //      return this.showPhone = true;
   //   }
 
   //   return this.showPhone = false;
-  // } 
-  
-  
+  // }
+
   /**
    * May be use later for display phone number
    * 
@@ -803,8 +807,8 @@ export class Propertyhk extends Property {
     // Fb.root.ref('propertys/buy/' + relatedFbid + '/inDirectCall').update({ [fbid]: { fbid, relatedFbid, inDirectCall : true } });
     //    Fb.root.ref('inDirectCall/rent/').update({ [relatedFbid + '_call_'+fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
     Fb.root.ref("inDirectCall/rent/" + fbid).update({ [relatedFbid]: status });
-    
-     console.log(`inDirectCall setSaleInDirecTCall this.fbid ${this.fbid}`);
+
+    console.log(`inDirectCall setSaleInDirecTCall this.fbid ${this.fbid}`);
     // if (showPhone) {
     //   let status = this.inDirectCall.get(fbid);
     //   //debugger
@@ -830,7 +834,7 @@ export class Propertyhk extends Property {
     // Fb.root.ref('propertys/buy/' + relatedFbid + '/inDirectCall').update({ [fbid]: { fbid, relatedFbid, inDirectCall : true } });
     //    Fb.root.ref('inDirectCall/lease/').update({ [relatedFbid + '_call_'+fbid]: { subjectID : relatedFbid, objectID : fbid, inDirectCall : true } });
     Fb.root.ref("inDirectCall/lease/" + fbid).update({ [relatedFbid]: status });
-    
+
     console.log(`inDirectCall setSaleInDirecTCall this.fbid ${this.fbid}`);
     // if (showPhone) {
     //   let status = this.inDirectCall.get(fbid);
@@ -881,97 +885,94 @@ export class Propertyhk extends Property {
   //         //Fb.root.ref('inDirectCall/')
   //       }
 
-//  /**
-//    * Building all inDirectCall list
-//    * It read his's own firebase data at inDirectCall
-//    * this was called by user filter only. 
-//    * it would't call at single view component
-//    */
-//   buildInDirectCallAgent(type) {
-//     const that = this;
-//     //this.inDirectCall.clear();
-//     // var userId = firebase.auth().currentUser.uid;
-//     // return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-//     //   var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-//     //   // ...
-//     // });
-//     console.log(
-//       `inDirectCall typeFor ${type}, that.fbid ${that.fbid}, inDirectCall.size ${that
-//         .inDirectCall.size}`
-//     );
+  //  /**
+  //    * Building all inDirectCall list
+  //    * It read his's own firebase data at inDirectCall
+  //    * this was called by user filter only.
+  //    * it would't call at single view component
+  //    */
+  //   buildInDirectCallAgent(type) {
+  //     const that = this;
+  //     //this.inDirectCall.clear();
+  //     // var userId = firebase.auth().currentUser.uid;
+  //     // return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+  //     //   var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+  //     //   // ...
+  //     // });
+  //     console.log(
+  //       `inDirectCall typeFor ${type}, that.fbid ${that.fbid}, inDirectCall.size ${that
+  //         .inDirectCall.size}`
+  //     );
 
-//     Fb.root
-//     .ref("inDirectCall/" + type + "/" + this.relatedFbid)
-//     .on("child_added", function(data) {
+  //     Fb.root
+  //     .ref("inDirectCall/" + type + "/" + this.relatedFbid)
+  //     .on("child_added", function(data) {
 
-//       const status = new Status(
-//         data.val().subjectID,
-//         data.val().objectID,
-//         data.val().isShowPhone
-//       );
-//       that.inDirectCall.set(data.key, status);
-//       console.log(
-//         `inDirectCall typeFor ${type}, that.fbid ${that.fbid}, inDirectCall.size ${that
-//           .inDirectCall.size}`
-//       );
-//       });
+  //       const status = new Status(
+  //         data.val().subjectID,
+  //         data.val().objectID,
+  //         data.val().isShowPhone
+  //       );
+  //       that.inDirectCall.set(data.key, status);
+  //       console.log(
+  //         `inDirectCall typeFor ${type}, that.fbid ${that.fbid}, inDirectCall.size ${that
+  //           .inDirectCall.size}`
+  //       );
+  //       });
 
-//       Fb.root
-//       .ref("inDirectCall/" + type + "/" + this.relatedFbid)
-//       .on("child_changed", function(data) {
-//         // Get an element with all functions, propertys
-//         // Recreate a new properts { ... }
-//         // otherwise propertys.responsedPropertys = undefined error
-//         //                  const p = that.matchedPropertys.get( snapshot.key )
-//         // const p = Propertyhk.deserialize(snapshot.val());
-//         // that.matchedPropertys.set(snapshot.key, p);
+  //       Fb.root
+  //       .ref("inDirectCall/" + type + "/" + this.relatedFbid)
+  //       .on("child_changed", function(data) {
+  //         // Get an element with all functions, propertys
+  //         // Recreate a new properts { ... }
+  //         // otherwise propertys.responsedPropertys = undefined error
+  //         //                  const p = that.matchedPropertys.get( snapshot.key )
+  //         // const p = Propertyhk.deserialize(snapshot.val());
+  //         // that.matchedPropertys.set(snapshot.key, p);
 
-//         const status = new Status(
-//           data.val().subjectID,
-//           data.val().objectID,
-//           data.val().isShowPhone
-//         );
-//         that.inDirectCall.set(data.key, status);
+  //         const status = new Status(
+  //           data.val().subjectID,
+  //           data.val().objectID,
+  //           data.val().isShowPhone
+  //         );
+  //         that.inDirectCall.set(data.key, status);
 
-//         //                  that.matchedPropertys.set( snapshot.key, { ...p, ...snapshot.val() });
-//         //console.log('child_changed snapshot.val() ',  snapshot.val() )
-//       });      
+  //         //                  that.matchedPropertys.set( snapshot.key, { ...p, ...snapshot.val() });
+  //         //console.log('child_changed snapshot.val() ',  snapshot.val() )
+  //       });
 
+  //       Fb.root
+  //       .ref("inDirectCall/" + this.typeTo + "/" + this.relatedFbid)
+  //       .on("child_removed", function(data) {
+  //         that.inDirectCall.delete(data.key);
+  //       });
 
-//       Fb.root
-//       .ref("inDirectCall/" + this.typeTo + "/" + this.relatedFbid)
-//       .on("child_removed", function(data) {
-//         that.inDirectCall.delete(data.key);
-//       });
-
-//     // Fb.root
-//     //   .ref("inDirectCall/" + this.typeTo + "/" + this.fbid)
-//     //   .once("value")
-//     //   .then(function(snapshot) {
-//     //     snapshot.forEach(data => {
-//     //       console.log(
-//     //         `inDirectCall ${data.key}, subID ${data.val()
-//     //           .subjectID}, objID ${data.val().objectID}`
-//     //       );
-//     //       const status = new Status(
-//     //         data.val().subjectID,
-//     //         data.val().objectID,
-//     //         data.val().isShowPhone
-//     //       );
-//     //       that.inDirectCall.set(data.key, status);
-//     //       console.log(
-//     //         `inDirectCall typeFor ${that.typeFor}, that.fbid ${that.fbid}, inDirectCall.size ${that
-//     //           .inDirectCall.size}`
-//     //       );
-//     //     });
-//     //     //this.inDirectCall.set( )
-//     //     //console.log( 'inDirecal', snapshot.val() );
-//     //     // this.inDirectCall.set( snapshot.val().fbid, snapshot.val() );
-//     //   });
-//     //    console.log( `inDirectCall typeFor ${this.typeFor}, key ${this.fbid}, inDirectCall.size ${that.inDirectCall.size}` );
-//   }
-
-
+  //     // Fb.root
+  //     //   .ref("inDirectCall/" + this.typeTo + "/" + this.fbid)
+  //     //   .once("value")
+  //     //   .then(function(snapshot) {
+  //     //     snapshot.forEach(data => {
+  //     //       console.log(
+  //     //         `inDirectCall ${data.key}, subID ${data.val()
+  //     //           .subjectID}, objID ${data.val().objectID}`
+  //     //       );
+  //     //       const status = new Status(
+  //     //         data.val().subjectID,
+  //     //         data.val().objectID,
+  //     //         data.val().isShowPhone
+  //     //       );
+  //     //       that.inDirectCall.set(data.key, status);
+  //     //       console.log(
+  //     //         `inDirectCall typeFor ${that.typeFor}, that.fbid ${that.fbid}, inDirectCall.size ${that
+  //     //           .inDirectCall.size}`
+  //     //       );
+  //     //     });
+  //     //     //this.inDirectCall.set( )
+  //     //     //console.log( 'inDirecal', snapshot.val() );
+  //     //     // this.inDirectCall.set( snapshot.val().fbid, snapshot.val() );
+  //     //   });
+  //     //    console.log( `inDirectCall typeFor ${this.typeFor}, key ${this.fbid}, inDirectCall.size ${that.inDirectCall.size}` );
+  //   }
 
   /**
    * Building all inDirectCall list
@@ -993,22 +994,21 @@ export class Propertyhk extends Property {
     );
 
     Fb.root
-    .ref("inDirectCall/" + this.typeTo + "/" + this.fbid)
-    .on("child_added", function(data) {
-
-      const status = new Status(
-        data.val().subjectID,
-        data.val().objectID,
-        data.val().isShowPhone
-      );
-      that.inDirectCall.set(data.key, status);
-      console.log(
-        `inDirectCall typeFor ${that.typeTo}, that.fbid ${that.fbid}, inDirectCall.size ${that
-          .inDirectCall.size}`
-      );
+      .ref("inDirectCall/" + this.typeTo + "/" + this.fbid)
+      .on("child_added", function(data) {
+        const status = new Status(
+          data.val().subjectID,
+          data.val().objectID,
+          data.val().isShowPhone
+        );
+        that.inDirectCall.set(data.key, status);
+        console.log(
+          `inDirectCall typeFor ${that.typeTo}, that.fbid ${that.fbid}, inDirectCall.size ${that
+            .inDirectCall.size}`
+        );
       });
 
-      Fb.root
+    Fb.root
       .ref("inDirectCall/" + this.typeTo + "/" + this.fbid)
       .on("child_changed", function(data) {
         // Get an element with all functions, propertys
@@ -1018,7 +1018,7 @@ export class Propertyhk extends Property {
         // const p = Propertyhk.deserialize(snapshot.val());
         // that.matchedPropertys.set(snapshot.key, p);
 
-        let status = that.inDirectCall.get( data.key );
+        let status = that.inDirectCall.get(data.key);
 
         //status.subjectID = data.val().subjectID;
         //status.objectID = data.val().objectID;
@@ -1028,17 +1028,14 @@ export class Propertyhk extends Property {
         //   data.val().objectID,
         //   data.val().isShowPhone
         // );
-        
-        that.inDirectCall.set(data.key, status);
 
-          
+        that.inDirectCall.set(data.key, status);
 
         //                  that.matchedPropertys.set( snapshot.key, { ...p, ...snapshot.val() });
         //console.log('child_changed snapshot.val() ',  snapshot.val() )
-      });      
+      });
 
-
-      Fb.root
+    Fb.root
       .ref("inDirectCall/" + this.typeTo + "/" + this.fbid)
       .on("child_removed", function(data) {
         that.inDirectCall.delete(data.key);
