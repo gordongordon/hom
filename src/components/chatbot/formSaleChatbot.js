@@ -180,8 +180,31 @@ const FormSaleChatbot = () => (
 
         steps={[
           {
-            id: '1',
-            message: 'a歡迎來到Mr House,請輸入名稱',
+            id: '0',
+            message: 'Welcome to Mr.House？',
+            trigger: 'introduction',
+          },
+          {
+            id: 'introduction',
+            options: [
+              { value: 'mrhouse', label: 'Mr.House', trigger: 'mrhouse' },
+              { value: 'startForm', label: 'search', trigger: 'startForm' },
+            ],
+          },
+          {
+            id: 'mrhouse',
+            message: `你有冇試過上網搵樓盤?傳統網上搵到嘅樓盤資訊一定過時同唔齊全，`,
+            trigger: 'mrhouse2',
+          },
+          {
+            id: 'mrhouse2',
+            message : `令你失去信心同預算。Mr.House 肯定係! 最新最齊嘅樓盤資訊一定唔係互聯網！全部都係地產代理手上! Mr.House 幫你嘅係! 將你需要即時廣傳比所有地產代理知道等佢即時回覆!         記住Mr.House 搵到嘅係/即時顯示係！ 啱你心水樓盤係由全港唔同嘅地產代理即時(提供/價錢)！所以先可以一次集齊最新最齊啱你心水樓盤！搵樓  Mr.House`,
+            delay : 5000,
+            trigger: 'startForm',
+          },
+          {
+            id: 'startForm',
+            message: '讓我們開始回答我的問題，然後才能幫忙! 只需一分鐘!',
             trigger: 'name',
           },
           {

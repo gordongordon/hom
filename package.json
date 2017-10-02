@@ -71,8 +71,7 @@
     "style-loader": "^0.13.1",
     "svg-sprite-loader": "^0.3.1",
     "webpack": "^3.6.0",
-    "webpack-bundle-analyzer": "^2.8.3",
-    "webpack-dev-server": "^2.8.2"
+    "webpack-bundle-analyzer": "^2.8.3"
   },
   "dependencies": {
     "antd-mobile": "^1.6.11",
@@ -95,7 +94,8 @@
     "react-simple-chatbot": "^0.2.6",
     "styled-components": "^2.1.2",
     "uuid": "^3.1.0",
-    "validatorjs": "^3.13.3"
+    "validatorjs": "^3.13.3",
+    "webpack-dev-server": "^2.9.1"
   },
   "jest": {
     "setupFiles": [
