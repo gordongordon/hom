@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 //import { List , Card, Stepper, Picker, SwipeAction, DatePicker, Badge, Flex, InputItem, WhiteSpace, Button, SegmentedControl} from 'antd-mobile';
 
 //import { createForm } from 'rc-form';
-import moment from "moment";
+import moment from 'moment';
 //import 'moment/locale/zh-cn';
 //import {propertys} from 'userModelView'
 import { SingleBuyUserMatchViewWrapper } from "../singlePropertyView/singleBuyUserMatchView";
@@ -12,6 +12,8 @@ import { SingleBuyAgentRespondViewWrapper } from "../singlePropertyView/singleBu
 
 import { observer } from "mobx-react";
 import { Accordion, List } from "antd-mobile";
+import PropTypes from 'prop-types';
+
 
 //const Item = List.Item;
 //const Brief = Item.Brief;
@@ -23,7 +25,8 @@ import { Accordion, List } from "antd-mobile";
 // ];
 
 @observer
-export default class ListOfMatchAgentBuyPropertys extends React.Component {
+class ListOfMatchAgentBuyPropertys
+ extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -43,23 +46,25 @@ export default class ListOfMatchAgentBuyPropertys extends React.Component {
     const filterID = this.props.filterID;
 
     if (isSegmentType("case", segment)) {
-      const getSingleBuyCaseView = p => (
+      const getSingleBuyCaseView = p => { 
+        //console.log( `p.keyID ${p.keyID}, p.fbid ${p.fbid}, filter ${filter}`)
+        return (
         <SingleBuyCaseView
           property={p}
           filter={filter}
-          key={p.keyID}
+          key={p.fbid}
           filterID={filterID}
         />
-      );
+      )};
 
       const element = array.map(getSingleBuyCaseView);
-      return <div>{element.reverse()}</div>;
+      return <div key='3'>{element.reverse()}</div>;
     }
     if (isSegmentType("filter", segment)) {
       const getSingleBuyAgentFilterView = p => (
         <SingleBuyAgentFilterView
           property={p}
-          key={p.keyID}
+          key={p.fbid}
           filterID={filterID}
         />
       );
@@ -72,7 +77,7 @@ export default class ListOfMatchAgentBuyPropertys extends React.Component {
         <SingleBuyAgentRespondViewWrapper
           filter={filter}
           property={p}
-          key={p.keyID}
+          key={p.fbid}
           filterID={filterID}
         />
       );
@@ -84,7 +89,7 @@ export default class ListOfMatchAgentBuyPropertys extends React.Component {
       <SingleBuyUserMatchViewWrapper
         filter={filter}
         property={p}
-        key={p.keyID}
+        key={p.fbid}
         filterID={filterID}
       />
     );
@@ -95,7 +100,16 @@ export default class ListOfMatchAgentBuyPropertys extends React.Component {
 
   render() {
     const { propertys } = this.props;
-
+    // debugger
     return <div>{this.display(propertys)}</div>;
   }
 }
+
+ListOfMatchAgentBuyPropertys.propTypes = {
+  segment : PropTypes.oneOf( ['case', 'filter', 'response'] ),
+  filter  : PropTypes.object.isRequired,
+  filterID : PropTypes.string,
+  propertys : PropTypes.object.isRequired
+};
+
+export default ListOfMatchAgentBuyPropertys;

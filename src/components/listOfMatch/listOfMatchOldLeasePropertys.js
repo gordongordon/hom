@@ -8,6 +8,8 @@ import React from "react";
 import { SingleLeaseUserMatchViewWrapper } from "../singlePropertyView/singleLeaseUserMatchView";
 import { inject, observer } from "mobx-react";
 import { MobxRouter } from "mobx-router";
+import PropTypes from 'prop-types';
+
 //const Item = List.Item;
 //const Brief = Item.Brief;
 
@@ -58,8 +60,13 @@ export class ListOfMatchOldLeasePropertys extends React.Component {
 
   render() {
     const { propertys } = this.props;
-    const that = this;
 
-    return <div>{that.display(propertys)}</div>;
+    return <div>{this.display(propertys)}</div>;
   }
 }
+
+ListOfMatchOldLeasePropertys.propTypes = {
+  inDirectCall : PropTypes.object.isRequired,
+  filter  : PropTypes.object.isRequired,
+  propertys : PropTypes.object.isRequired
+};

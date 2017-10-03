@@ -6,6 +6,7 @@ import React from 'react'
 //import {propertys} from 'userModelView'
 import SingleRentPropertyForMatchView from '../singlePropertyView/singleRentPropertyForMatchView'
 import { observer } from 'mobx-react';
+import PropTypes from 'prop-types';
 //const Item = List.Item;
 //const Brief = Item.Brief;
 
@@ -35,13 +36,16 @@ export class ListOfMatchPropertys extends React.Component {
 
   render() {
         const {propertys} = this.props;
-        const that = this;
-
+        
     return (
       <div>
       {
-         that.display( propertys )
+         this.display( propertys )
       }
      </div>);
   }
 }
+
+ListOfMatchPropertys.propTypes = {
+  propertys : PropTypes.object.isRequired
+};

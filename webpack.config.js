@@ -80,36 +80,36 @@ module.exports = {
     // 	}),
      //new BundleAnalyzerPlugin(),
      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-     new webpack.DefinePlugin({
-       // <-- key to reducing React's size
-       "process.env": {
-         NODE_ENV: JSON.stringify("production")
-       }
-     }),
+    //  new webpack.DefinePlugin({
+    //    // <-- key to reducing React's size
+    //    "process.env": {
+    //      NODE_ENV: JSON.stringify("production")
+    //    }
+    //  }),
     //  new webpack.DefinePlugin({
     //   'process.env': {
     //     'NODE_ENV': JSON.stringify('development')
     //   }
     // });     
-     new webpack.optimize.UglifyJsPlugin({
-       mangle: true,
-       compress: {
-         warnings: false, // Suppress uglification warnings
-         pure_getters: true,
-         unsafe: true,
-         unsafe_comps: true,
-         screw_ie8: true
-       },
-       parallel: {
-        cache: true,
-        workers: 2 // for e.g
-      },       
-       output: {
-         comments: false,
-       },
-       exclude: [/\.min\.js$/gi] // skip pre-minified libs
-     }),
-     new webpack.optimize.AggressiveMergingPlugin(),//Merge chunks
+    //  new webpack.optimize.UglifyJsPlugin({
+    //    mangle: true,
+    //    compress: {
+    //      warnings: false, // Suppress uglification warnings
+    //      pure_getters: true,
+    //      unsafe: true,
+    //      unsafe_comps: true,
+    //      screw_ie8: true
+    //    },
+    //    parallel: {
+    //     cache: true,
+    //     workers: 2 // for e.g
+    //   },       
+    //    output: {
+    //      comments: false,
+    //    },
+    //    exclude: [/\.min\.js$/gi] // skip pre-minified libs
+    //  }),
+     // new webpack.optimize.AggressiveMergingPlugin(),//Merge chunks
 
     //new webpackConfig.babel.plugins.push(['import', { libraryName: 'antd-mobile', style: 'css' }])
   ],
@@ -177,10 +177,10 @@ module.exports = {
       },
       //It is generally necessary to use the Icon component, need to configure svg-sprite-loader
       {
-        test: /\.(svg)$/,
-        loader: "svg-sprite-loader",
+        test: /\.(svg)$/i,
+        loader: 'svg-sprite-loader',
         include: [
-          require.resolve("antd-mobile").replace(/warn\.js$/, "") // 1. svg files of antd-mobile
+          require.resolve('antd-mobile').replace(/warn\.js$/, '') // 1. svg files of antd-mobile
           // path.resolve(__dirname, 'src/my-project-svg-foler'),  // folder of svg files in your project
         ]
       },

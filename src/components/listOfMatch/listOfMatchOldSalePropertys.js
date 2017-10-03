@@ -10,6 +10,8 @@ import React from "react";
 import { SingleSaleUserMatchViewWrapper } from "../singlePropertyView/singleSaleUserMatchView";
 
 import { inject, observer } from "mobx-react";
+import PropTypes from 'prop-types';
+
 //const Item = List.Item;
 //const Brief = Item.Brief;
 
@@ -77,3 +79,9 @@ export class ListOfMatchOldSalePropertys extends React.Component {
   //   return <div>{that.display(propertys)}</div>;
   // }
 }
+
+ListOfMatchOldSalePropertys.propTypes = {
+  inDirectCall : PropTypes.object.isRequired,
+  filter  : PropTypes.object.isRequired,
+  propertys : PropTypes.object.isRequired
+};

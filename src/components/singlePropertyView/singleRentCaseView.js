@@ -21,7 +21,9 @@ import { propertys } from "userModelView";
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 //import MobxStore from "mobxStore";
 import views from "views";
-import {inject, observer} from "mobx-react"
+import {inject, observer} from "mobx-react";
+import PropTypes from 'prop-types';
+
 
 
 const Item = List.Item;
@@ -194,6 +196,13 @@ export default class SingleRentCaseView extends React.Component {
     );
   }
 }
+
+SingleRentCaseView.propTypes = {
+  property : PropTypes.object.isRequired,
+  filterID : PropTypes.string.isRequired,
+  filter : PropTypes.object.isRequired
+}
+
 
 // {/* <div>
 // <SwipeAction

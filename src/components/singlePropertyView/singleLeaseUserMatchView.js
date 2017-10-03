@@ -23,6 +23,7 @@ import { propertys } from "userModelView";
 import MobxStore from "mobxStore";
 import views from "views";
 import { inject, observer } from "mobx-react";
+import PropTypes from 'prop-types';
 
 
 
@@ -269,6 +270,12 @@ class SingleLeaseUserMatchView extends React.Component {
     );
   }
 }
+
+SingleLeaseUserMatchView.propTypes = {
+  property : PropTypes.object.isRequired,
+  filter : PropTypes.object.isRequired
+}
+
 export const SingleLeaseUserMatchViewWrapper = createForm()(SingleLeaseUserMatchView);
 
 // {/* <div>

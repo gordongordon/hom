@@ -1002,10 +1002,10 @@ export class Propertyhk extends Property {
           data.val().isShowPhone
         );
         that.inDirectCall.set(data.key, status);
-        console.log(
-          `inDirectCall typeFor ${that.typeTo}, that.fbid ${that.fbid}, inDirectCall.size ${that
-            .inDirectCall.size}`
-        );
+        // console.log(
+        //   `inDirectCall typeFor ${that.typeTo}, that.fbid ${that.fbid}, inDirectCall.size ${that
+        //     .inDirectCall.size}`
+        // );
       });
 
     Fb.root
@@ -1084,10 +1084,10 @@ export class Propertyhk extends Property {
         // Fb.matchedPropertys.child( snap.key ).set( snap.val() )
         //          Fb.propertys.update( { snap.key : { } })
         that.matchedPropertys.set(snap.key, snap.val());
-        console.log(
-          "child_added - matchProperty.size",
-          that.matchedPropertys.size
-        );
+        // console.log(
+        //   "child_added - matchProperty.size",
+        //   that.matchedPropertys.size
+        // );
       });
 
     Fb.propertys

@@ -9,6 +9,8 @@ import { inject, observer } from "mobx-react";
 //import SingleRentAgentPropertyForRespondView from '../singlePropertyView/singleRentAgentPropertyForRespondView';
 // Note Problem of sing vs Sing file name
 import { SingleRentUserMatchViewWrapper } from "../singlePropertyView/SingleRentUserMatchView";
+import PropTypes from 'prop-types';
+
 //const Item = List.Item;
 //const Brief = Item.Brief;
 
@@ -69,3 +71,9 @@ export class ListOfMatchOldRentPropertys extends React.Component {
     return <div>{that.display(propertys)}</div>;
   }
 }
+
+ListOfMatchOldRentPropertys.propTypes = {
+  inDirectCall : PropTypes.object.isRequired,
+  filter  : PropTypes.object.isRequired,
+  propertys : PropTypes.object.isRequired
+};

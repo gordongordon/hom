@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "description": "MobX Boilerplate with Ant.Design",
   "scripts": {
-    "kk": "./node_modules/.bin/webpack-dev-server --inline --content-base build/ -d",
+    "start": "./node_modules/.bin/webpack-dev-server --inline --content-base build/ -d",
     "build": "./node_modules/.bin/webpack -p",
     "make": "npm run build && node server.js",
     "webpack": "webpack",
@@ -28,13 +28,13 @@
     "mobx",
     "starter-kit"
   ],
-  "author": "Yoni Weisbrod <yoni@fastmail.com> (http://github.com/yonibot)",
+  "author": "Gordon Wong",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mobxjs/mobx/issues"
   },
   "engines": {
-    "node": "6.10.0"
+    "node": "6.11.3"
   },
   "homepage": "http://mobxjs.github.com/mobx",
   "devDependencies": {
@@ -84,8 +84,8 @@
     "moment": "^2.18.1",
     "path-to-regexp": "^1.7.0",
     "rc-form": "^1.4.6",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-fastclick": "^3.0.2",
     "react-loadable": "^4.0.5",
     "react-loadable-visibility": "^2.3.0",

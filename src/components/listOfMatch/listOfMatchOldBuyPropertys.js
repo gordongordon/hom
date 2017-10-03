@@ -7,6 +7,7 @@ import React from "react";
 // import SingleBuyPropertyForMatchView from '../singlePropertyView/singleBuyPropertyForMatchView'
 import { SingleBuyUserMatchViewWrapper } from "../singlePropertyView/singleBuyUserMatchView";
 import { inject, observer } from "mobx-react";
+import PropTypes from 'prop-types';
 //const Item = List.Item;
 //const Brief = Item.Brief;
 
@@ -57,8 +58,13 @@ export class ListOfMatchOldBuyPropertys extends React.Component {
 
   render() {
     const { propertys } = this.props;
-    const that = this;
-
-    return <div>{that.display(propertys)}</div>;
+    
+    return <div>{this.display(propertys)}</div>;
   }
 }
+
+ListOfMatchOldBuyPropertys.propTypes = {
+  inDirectCall : PropTypes.object.isRequired,
+  filter  : PropTypes.object.isRequired,
+  propertys : PropTypes.object.isRequired
+};

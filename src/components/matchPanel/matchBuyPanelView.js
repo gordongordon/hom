@@ -14,7 +14,7 @@ import {ListOfMatchOldSalePropertys} from '../listOfMatch/listOfMatchOldSaleProp
 import ListOfMatchAgentSalePropertys from '../listOfMatch/listOfMatchAgentSalePropertys'
 import { observer } from 'mobx-react';
 import MobxStore from 'mobxStore';
-import FormSaleChatbot from '../chatbot/formSaleChatbot';
+//import FormSaleChatbot from '../chatbot/formSaleChatbot';
 
 // const Item = List.Item;
 // const Brief = Item.Brief;
@@ -103,8 +103,6 @@ export default class MatchBuyPanelView extends React.Component {
 
     <WhiteSpace size="sm" />
             {this.renderList( property )}
-            <FormSaleChatbot />
-            
     </div>);
   }
 }

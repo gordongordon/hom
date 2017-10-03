@@ -25,6 +25,7 @@ import { propertys } from "userModelView";
 import views from "views";
 import { inject, observer } from "mobx-react";
 import MobxStore from "mobxStore";
+import PropTypes from 'prop-types';
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -307,6 +308,13 @@ class SingleBuyUserMatchView extends React.Component {
     );
   }
 }
+
+SingleBuyUserMatchView.propTypes = {
+  property : PropTypes.object.isRequired,
+  filter : PropTypes.object.isRequired
+}
+
+
 export const SingleBuyUserMatchViewWrapper = createForm()(SingleBuyUserMatchView);
 
 // <List.Item

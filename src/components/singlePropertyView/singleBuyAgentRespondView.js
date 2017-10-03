@@ -25,6 +25,7 @@ import { propertys } from "userModelView";
 import views from "views";
 import {inject, observer} from "mobx-react";
 import MobxStore from "mobxStore";
+import PropTypes from 'prop-types';
 
 
 // const { getFieldProps } = props.form;
@@ -268,6 +269,16 @@ class SingleBuyAgentRespondView extends React.Component {
     );
   }
 }
+
+SingleBuyAgentRespondView.propTypes = {
+  property : PropTypes.object.isRequired,
+  filterID : PropTypes.string.isRequired,
+  filterID : PropTypes.string.isRequired,
+  keyID : PropTypes.string.isRequired,
+  form : PropTypes.object.isRequired
+
+}
+
 
 export const SingleBuyAgentRespondViewWrapper = createForm()(SingleBuyAgentRespondView);
 

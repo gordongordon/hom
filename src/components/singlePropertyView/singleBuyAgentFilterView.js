@@ -23,6 +23,7 @@ import { propertys } from "userModelView";
 //import MobxStore from "mobxStore";
 import views from "views";
 import { inject, observer } from "mobx-react";
+import PropTypes from 'prop-types';
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -138,6 +139,7 @@ class SingleBuyAgentFilterView extends React.Component {
     return (
       <div>
         <Item
+          key={this.props.key}
           extra={<Badge text={property.typeByFollowUpLabel} />}
           arrow="horizontal"
           onClick={() => {
@@ -258,6 +260,12 @@ class SingleBuyAgentFilterView extends React.Component {
       </div>
     );
   }
+}
+
+SingleBuyAgentFilterView.propTypes = {
+  property : PropTypes.object.isRequired,
+  filterID : PropTypes.string.isRequired,
+  keyID : PropTypes.string.isRequired
 }
 
 export default SingleBuyAgentFilterView;

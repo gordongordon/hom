@@ -10,16 +10,7 @@ import { SingleSaleUserMatchViewWrapper } from "../singlePropertyView/singleSale
 import { SingleSaleAgentRespondViewWrapper } from "../singlePropertyView/singleSaleAgentRespondView";
 
 import { observer } from "mobx-react";
-//const Item = List.Item;
-//const Brief = Item.Brief;
-
-// const NameOfBuilding = [
-//   { value: 'MOSDBC', label: '迎海' },
-//   { value: 'MOSCTO', label: '第一城' },
-//   { value: 'MOSSSC', label: '新港城' },
-// ];
-
-
+import PropTypes from 'prop-types';
 //import Loadable from 'react-loadable';
 import LoadableVisibility from 'react-loadable-visibility/react-loadable';
 //import Loading from  'loading'
@@ -136,3 +127,10 @@ export default class ListOfMatchAgentSalePropertys extends React.Component {
   return (<div>{this.display(propertys)}</div>);
   }
 }
+
+ListOfMatchAgentSalePropertys.propTypes = {
+  segment : PropTypes.oneOf( ['case', 'filter', 'response'] ),
+  filter  : PropTypes.object.isRequired,
+  filterID : PropTypes.string,
+  propertys : PropTypes.object.isRequired
+};

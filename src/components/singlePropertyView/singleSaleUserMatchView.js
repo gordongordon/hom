@@ -22,7 +22,9 @@ import { propertys } from "userModelView";
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 import MobxStore from "mobxStore";
 import views from "views";
-import {observer } from 'mobx-react'
+import { observer } from "mobx-react";
+
+import PropTypes from "prop-types";
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -30,11 +32,13 @@ const Brief = Item.Brief;
 // fix touch to scroll background page on iOS
 // https://github.com/ant-design/ant-design-mobile/issues/307
 // https://github.com/ant-design/ant-design-mobile/issues/163
-const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
+const isIPhone = new RegExp("\\biPhone\\b|\\biPod\\b", "i").test(
+  window.navigator.userAgent
+);
 let wrapProps;
 if (isIPhone) {
   wrapProps = {
-    onTouchStart: e => e.preventDefault(),
+    onTouchStart: e => e.preventDefault()
   };
 }
 // const NameOfBuilding = [
@@ -80,9 +84,9 @@ class SingleSaleUserMatchView extends React.Component {
     const f = this.props.filter;
     const status = p.getStatus(f.fbid).get();
     const fStatus = f.getStatus(p.fbid).get();
-    var BUTTONS; 
+    var BUTTONS;
 
-    if ( fStatus.isShowPhone ) {
+    if (fStatus.isShowPhone) {
       BUTTONS = [fStatus.message, "直接致電: " + status.contactPhone, "取消"];
     } else {
       BUTTONS = [fStatus.message, "直接致電: " + status.contactPhone, "取消"];
@@ -109,7 +113,7 @@ class SingleSaleUserMatchView extends React.Component {
             fStatus.isShowPhone
           );
         }
-        if (buttonIndex === 1 && status.isShowPhone ) {
+        if (buttonIndex === 1 && status.isShowPhone) {
           window.location.href = "tel://" + status.contactPhone;
         }
         // if ( buttonIndex === 2 ) {
@@ -125,7 +129,7 @@ class SingleSaleUserMatchView extends React.Component {
   };
 
   render() {
-    const { property , filter } = this.props;
+    const { property, filter } = this.props;
     const that = this;
     const { getFieldProps } = this.props.form;
 
@@ -135,10 +139,11 @@ class SingleSaleUserMatchView extends React.Component {
 
     // repair goTo by passing property
     //MobxStore.app.lastProperty = property;
-    
-    return ( <div>
+
+    return (
+      <div>
         <Item
-        extra={
+          extra={
             <Badge
               text={fStatus.status}
               style={{
@@ -149,44 +154,44 @@ class SingleSaleUserMatchView extends React.Component {
               }}
             />
           }
-        arrow="horizontal"
-          onClick={this.showActionSheet }
+          arrow="horizontal"
+          onClick={this.showActionSheet}
           thumb="http://hair.losstreatment.com/icons/rent-up.svg"
           multipleLine
         >
-       {property.addressLocationLabel}/{property.nameOfBuildingLabel}/{property.contactNameLabel}
+          {property.addressLocationLabel}/{property.nameOfBuildingLabel}/{property.contactNameLabel}
           <Brief>
             {property.partitionLabel}
             {property.salePriceLabel}
             <br />
             <Badge
-            text={property.isPetAllowedLabel}
-            style={{
-              marginLeft: 12,
-              padding: "0 0.06rem",
-              backgroundColor: property.colorByFresh,
-              borderRadius: 2
-            }}      
-            />            
+              text={property.isPetAllowedLabel}
+              style={{
+                marginLeft: 12,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 2
+              }}
+            />
             <Badge
-            text={property.isViewAbleLabel}
-            style={{
-              marginLeft: 6,
-              padding: "0 0.06rem",
-              backgroundColor: property.colorByFresh,
-              borderRadius: 5
-            }}
-          />
-            
+              text={property.isViewAbleLabel}
+              style={{
+                marginLeft: 6,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 5
+              }}
+            />
+
             <Badge
-            text={property.levelLabel}
-            style={{
-              marginLeft: 6,
-              padding: "0 0.06rem",
-              backgroundColor: property.colorByRoleName,
-              borderRadius: 5
-            }}
-          />            
+              text={property.levelLabel}
+              style={{
+                marginLeft: 6,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByRoleName,
+                borderRadius: 5
+              }}
+            />
             <Badge
               text={property.roleName}
               style={{
@@ -207,16 +212,16 @@ class SingleSaleUserMatchView extends React.Component {
             />
             <br />
             <Badge
-            text={property.netSizeLabel}
-            style={{
-              marginLeft: 6,
-              padding: "0 0.06rem",
-              backgroundColor: property.colorByFresh,
-              borderRadius: 5
-            }}
-          />
+              text={property.netSizeLabel}
+              style={{
+                marginLeft: 6,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 5
+              }}
+            />
 
-          <Badge
+            <Badge
               text={property.dayListed}
               style={{
                 marginLeft: 12,
@@ -227,65 +232,72 @@ class SingleSaleUserMatchView extends React.Component {
                 border: "1px solid #f19736"
               }}
             />
-          <Badge
-          text={property.isSaleWithLeaseLabel}
-          style={{
-            marginLeft: 6,
-            padding: "0 0.06rem",
-            backgroundColor: property.colorByFresh,
-            borderRadius: 5
-          }}
-        />
-        <br />
-        <Badge
-        text={property.dueDayLabel}
-        style={{
-          marginLeft: 6,
-          padding: "0 0.06rem",
-          backgroundColor: property.colorByFresh,
-          borderRadius: 5
-        }}
-      />
-      <Badge
-      text={property.earlyTimeToViewLabel}
-      style={{
-        marginLeft: 6,
-        padding: "0 0.06rem",
-        backgroundColor: property.colorByFresh,
-        borderRadius: 5
-      }}
-    />
-
-            </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
-            </Item>
-            <List.Item
-            extra={
-              <Switch
-                {...getFieldProps("isShowPhone", {
-                  initialValue: filter.getStatus( property.fbid ).get().isShowPhone,
-                  valuePropName: "checked"
-                })}
-                onClick={checked => {
-                  this.props.filter.setBuyInDirectCall(
-                    MobxStore.router.params.keyID,
-                    property.fbid,
-                    fStatus.isShowPhone
-                  );
-                  console.log("single sale agent Respond view ", checked);
-                  console.log("filer.size", filter.inDirectCall.size )
-                  console.log("p.size", property.inDirectCall.size )
-                }}
-              />
-            }
-          >
+            <Badge
+              text={property.isSaleWithLeaseLabel}
+              style={{
+                marginLeft: 6,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 5
+              }}
+            />
+            <br />
+            <Badge
+              text={property.dueDayLabel}
+              style={{
+                marginLeft: 6,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 5
+              }}
+            />
+            <Badge
+              text={property.earlyTimeToViewLabel}
+              style={{
+                marginLeft: 6,
+                padding: "0 0.06rem",
+                backgroundColor: property.colorByFresh,
+                borderRadius: 5
+              }}
+            />
+          </Brief>f:{property.fbid} <br />r:{property.relatedFbid}
+        </Item>
+        <List.Item
+          extra={
+            <Switch
+              {...getFieldProps("isShowPhone", {
+                initialValue: filter.getStatus(property.fbid).get().isShowPhone,
+                valuePropName: "checked"
+              })}
+              onClick={checked => {
+                this.props.filter.setBuyInDirectCall(
+                  MobxStore.router.params.keyID,
+                  property.fbid,
+                  fStatus.isShowPhone
+                );
+                console.log("single sale agent Respond view ", checked);
+                console.log("filer.size", filter.inDirectCall.size);
+                console.log("p.size", property.inDirectCall.size);
+              }}
+            />
+          }
+        >
           Tel : {status.contactPhone}
-          </List.Item>
+        </List.Item>
         <WhiteSpace size="sm" />
       </div>
     );
   }
 }
-export const SingleSaleUserMatchViewWrapper = createForm()(SingleSaleUserMatchView);
+
+SingleSaleUserMatchView.propTypes = {
+  property: PropTypes.object.isRequired,
+  filter: PropTypes.object.isRequired
+};
+
+export const SingleSaleUserMatchViewWrapper = createForm()(
+  SingleSaleUserMatchView
+);
 //>Tel: {property.displayPhoneNumber(filter.fbid)} </List.Item>
 
 // {/* <div>

@@ -9,6 +9,7 @@ import SingleRentAgentFilterView from "../singlePropertyView/SingleRentAgentFilt
 import SingleRentCaseView from "../singlePropertyView/SingleRentCaseView";
 import { observer } from "mobx-react";
 import { SingleRentAgentRespondViewWrapper } from "../singlePropertyView/singleRentAgentRespondView";
+import PropTypes from 'prop-types';
 
 //const Item = List.Item;
 //const Brief = Item.Brief;
@@ -44,7 +45,7 @@ export default class ListOfMatchAgentRentPropertys extends React.Component {
         <SingleRentCaseView
           property={p}
           filter={filter}
-          key={p.keyID}
+          key={p.fbid}
           filterID={filterID}
         />
       );
@@ -56,7 +57,7 @@ export default class ListOfMatchAgentRentPropertys extends React.Component {
       const getSingleRentAgentFilterView = p => (
         <SingleRentAgentFilterView
           property={p}
-          key={p.keyID}
+          key={p.fbid}
           filterID={filterID}
         />
       );
@@ -69,7 +70,7 @@ export default class ListOfMatchAgentRentPropertys extends React.Component {
         <SingleRentAgentRespondViewWrapper
           filter={filter}
           property={p}
-          key={p.keyID}
+          key={p.fbid}
           filterID={filterID}
         />
       );
@@ -81,7 +82,7 @@ export default class ListOfMatchAgentRentPropertys extends React.Component {
       <SingleRentUserMatchViewWrapper
         filter={filter}
         property={p}
-        key={p.keyID}
+        key={p.fbid}
         filterID={filterID}
       />
     );
@@ -96,3 +97,10 @@ export default class ListOfMatchAgentRentPropertys extends React.Component {
   return (<div>{this.display(propertys)}</div>);
   }
 }
+
+ListOfMatchAgentRentPropertys.propTypes = {
+  segment : PropTypes.oneOf( ['case', 'filter', 'response'] ),
+  filter  : PropTypes.object.isRequired,
+  filterID : PropTypes.string,
+  propertys : PropTypes.object.isRequired
+};

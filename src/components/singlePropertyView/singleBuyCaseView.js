@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   List,
   Card,
@@ -14,15 +14,19 @@ import {
   SegmentedControl,
   Accordion,
   ActionSheet
-} from "antd-mobile";
+} from 'antd-mobile';
 // import { createForm } from "rc-form";
 //import moment from 'moment';
 //import 'moment/locale/zh-cn';
-import { propertys } from "userModelView";
+import { propertys } from 'userModelView';
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 // import MobxStore from "mobxStore";
-import views from "views";
-import {inject, observer} from "mobx-react"
+import views from 'views';
+import {inject, observer} from "mobx-react";
+import PropTypes from 'prop-types';
+import SingleSaleCaseView from '../../../../../../../../Users/MSI-TITAN-6QE/Desktop/homatching/src/components/singlePropertyView/singleSaleCaseView';
+
+
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -208,5 +212,12 @@ class SingleBuyCaseView extends React.Component {
     );
   }
 }
+
+SingleBuyCaseView.propTypes = {
+  property : PropTypes.object.isRequired,
+  filterID : PropTypes.string.isRequired,
+  filter : PropTypes.object.isRequired
+}
+
 
 export default SingleBuyCaseView;

@@ -22,6 +22,8 @@ import { propertys } from "userModelView";
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 import MobxStore from "mobxStore";
 import views from "views";
+//import {PropTypes} from 'mobx-react';
+import PropTypes from 'prop-types';
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -266,6 +268,15 @@ class SingleRentAgentRespondView extends React.Component {
       </div>
     );
   }
+}
+
+SingleRentAgentRespondView.propTypes = {
+  property : PropTypes.object.isRequired,
+  filterID : PropTypes.string.isRequired,
+  filterID : PropTypes.string.isRequired,
+  keyID : PropTypes.string.isRequired,
+  form : PropTypes.object.isRequired
+
 }
 
 export const SingleRentAgentRespondViewWrapper = createForm()(SingleRentAgentRespondView);

@@ -181,14 +181,16 @@ const FormSaleChatbot = () => (
         steps={[
           {
             id: '0',
-            message: 'Welcome to Mr.House？',
+            message: '歡迎來到 Mr.House! 請選擇任何一個?',
             trigger: 'introduction',
           },
           {
             id: 'introduction',
             options: [
-              { value: 'mrhouse', label: 'Mr.House', trigger: 'mrhouse' },
-              { value: 'startForm', label: 'search', trigger: 'startForm' },
+              { value: 'mrhouse', label: '了解更多Mr.House', trigger: 'mrhouse' },
+              { value: 'startForm', label: '尋找物業', trigger: 'startForm' },
+              { value: 'askForListing', label: '放物業', trigger: 'startForm' },
+              { value: 'other', label: '其他', trigger: 'other' },
             ],
           },
           {
@@ -199,37 +201,29 @@ const FormSaleChatbot = () => (
           {
             id: 'mrhouse2',
             message : `令你失去信心同預算。Mr.House 肯定係! 最新最齊嘅樓盤資訊一定唔係互聯網!`,
-            delay : 5000,
+            delay : 500,
             trigger: 'mrhouse3',
           },
           {
             id: 'mrhouse3',
             message : `全部都係地產代理手上! Mr.House 幫你嘅係! 將你需要即時廣傳比所有地產代理知道等佢即時回覆!`,
-            delay : 5000,
+            delay : 500,
             trigger: 'mrhouse4',
           },
           {
             id: 'mrhouse4',
             message : `記住Mr.House 搵到嘅係/即時顯示係！ 啱你心水樓盤係由全港唔同嘅地產代理即時(提供/價錢)！所以先可以一次集齊最新最齊啱你心水樓盤！搵樓  Mr.House`,
-            delay : 5000,
+            delay : 500,
             trigger: 'startForm',
           },
           {
             id: 'startForm',
-            message: '讓我們開始回答我的問題，然後才能幫忙! 只需一分鐘!',
-            trigger: 'name',
+            message: '讓我們開始尋找房子! 開始回答我的問題，然後才能幫忙! 只需一分鐘!',
+            trigger: 'userType',
           },
           {
-            id: 'name',
-            // component: (
-            //     <Chatpicker />
-            //  ),            
-            user: true,
-            trigger: '3',
-          },
-          {
-            id: '3',
-            message: '你是 {previousValue}？',
+            id: 'userType',
+            message: '什麼角色最適合你？',
             trigger: 'role',
           },
           {
@@ -256,19 +250,19 @@ const FormSaleChatbot = () => (
           },
           {
             id: '6',
-            message: '請選擇(房){previousValue}間隔?',
+            message: '請選擇({previousValue})間隔?',
             trigger: 'room',
           },
           {
             id: 'room',
             options: [
               { value: '開放式', label: '開放式', trigger: '5' },
-              { value: '0房', label: '0房', trigger: '5' },
               { value: '1房', label: '1房', trigger: '5' },
               { value: '2房', label: '2房', trigger: '5' },
               { value: '3房', label: '3房', trigger: '5' },
               { value: '4房', label: '4房', trigger: '5' },
               { value: '5房', label: '5房', trigger: '5' },
+              { value: 'other', label: '其他', trigger: 'other'}
             ],
           },
           {
@@ -279,7 +273,7 @@ const FormSaleChatbot = () => (
           {
             id: 'price',
             user: true,
-            trigger: '7',
+            trigger: 'name',
             validator: (value) => {
               if (isNaN(value)) {
                 return 'value must be a number';
@@ -293,7 +287,37 @@ const FormSaleChatbot = () => (
             },
           },
           {
-            id: '7',
+            id: 'name',
+            message: '你的姓氏是什麼',
+            trigger: 'lastName'
+          },
+          {
+            id: 'lastName',
+            user: true,
+            trigger: 'firstNameMessage'
+          },
+          {
+            id: 'firstNameMessage',
+            message : '你的名字是什麼',
+            trigger : 'firstName'
+          },
+          {
+            id: 'firstName',
+            user: true,
+            trigger: 'phoneMessage'
+          },
+          {
+            id: 'phoneMessage',
+            message : '你的Phone什麼',
+            trigger : 'phone'
+          },
+          {
+            id: 'phone',
+            user: true,
+            trigger: 'reviewMessage'
+          },
+          {
+            id: 'reviewMessage',
             message: '以下是你的輸入請確認',
             trigger: 'review',
           },

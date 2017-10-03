@@ -9,6 +9,8 @@ import SingleLeaseAgentFilterView from "../singlePropertyView/singleLeaseAgentFi
 import SingleLeaseCaseView from "../singlePropertyView/singleLeaseCaseView";
 import { observer } from "mobx-react";
 import { SingleLeaseAgentRespondViewWrapper } from "../singlePropertyView/singleLeaseAgentRespondView";
+//import ListOfMatchAgentBuyPropertys from '../../../../../../../../Users/MSI-TITAN-6QE/Desktop/homatching/src/components/listOfMatch/listOfMatchAgentBuyPropertys';
+import PropTypes from 'prop-types';
 
 //const Item = List.Item;
 //const Brief = Item.Brief;
@@ -93,3 +95,11 @@ export default class ListOfMatchAgentLeasePropertys extends React.Component {
   return (<div>{this.display(propertys)}</div>);
   }
 }
+
+
+ListOfMatchAgentLeasePropertys.propTypes = {
+  segment : PropTypes.oneOf( ['case', 'filter', 'response'] ),
+  filter  : PropTypes.object.isRequired,
+  filterID : PropTypes.string,
+  propertys : PropTypes.object.isRequired
+};

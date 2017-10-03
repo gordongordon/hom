@@ -7,6 +7,7 @@ import { agentModel } from 'agentModelView'
 import { observer } from 'mobx-react';
 import MobxStore from 'mobxStore';
 import views from 'views';
+import Proptypes from 'prop-types';
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -311,3 +312,8 @@ export default class ListOfAgentPropertysView extends React.Component {
     )
   }
 }
+
+ListOfAgentPropertysView.propTypes = {
+  handleNextProperty : Proptypes.object.isRequired,
+  store : Proptypes.object
+};

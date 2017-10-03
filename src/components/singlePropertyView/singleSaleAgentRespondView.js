@@ -23,7 +23,9 @@ import { propertys } from "userModelView";
 import MobxStore from "mobxStore";
 import views from "views";
 //import {Modal} from 'antd';
-import {observer } from 'mobx-react'
+import {observer} from 'mobx-react';
+import PropTypes from 'prop-types';
+
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -260,6 +262,16 @@ class SingleSaleAgentRespondView extends React.Component {
     );
   }
 }
+
+SingleSaleAgentRespondView.propTypes = {
+  property : PropTypes.object.isRequired,
+  filterID : PropTypes.string.isRequired,
+  filterID : PropTypes.string.isRequired,
+  keyID : PropTypes.string.isRequired,
+  form : PropTypes.object.isRequired
+
+}
+
 export const SingleSaleAgentRespondViewWrapper = createForm()(SingleSaleAgentRespondView);
 
 //>Tel: {property.displayPhoneNumber(filter.fbid)} </List.Item>
