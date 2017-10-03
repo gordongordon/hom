@@ -273,7 +273,6 @@ class SingleBuyAgentRespondView extends React.Component {
 SingleBuyAgentRespondView.propTypes = {
   property : PropTypes.object.isRequired,
   filterID : PropTypes.string.isRequired,
-  filterID : PropTypes.string.isRequired,
   keyID : PropTypes.string.isRequired,
   form : PropTypes.object.isRequired
 

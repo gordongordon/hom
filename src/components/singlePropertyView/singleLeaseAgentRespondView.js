@@ -250,7 +250,6 @@ class SingleLeaseAgentRespondView extends React.Component {
 SingleLeaseAgentRespondView.propTypes = {
   property : PropTypes.string.isRequired,
   filterID : PropTypes.string.isRequired,
-  filterID : PropTypes.string.isRequired,
   keyID : PropTypes.string.isRequired,
   form : PropTypes.object.isRequired
 }
