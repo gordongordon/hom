@@ -192,7 +192,7 @@ class ActionSheetExample extends React.Component {
        trigger: "isBuyWithLeaseOptions"  
     },
     {  //on.OPTION1 .. n
-       id: "mrhouseOptions",
+       id: "isBuyWithLeaseOptions",
        options: [
            { value: "yes", label: "yes", trigger: "getNetSizeMin" },
            { value: "no", label: "no", trigger: "getNetSizeMin" }

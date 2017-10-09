@@ -1,19 +1,19 @@
 steps={[
     {  // welcome
        id : "welcome",
-       message: "welcome",
+       message: "歡迎你今天怎麼樣?",
        trigger: "welcomeOptions"
     },
     {  // on.OPTION1..n
        id: "welcomeOptions",
        options : [
-           { value: "mrhouse", label: "mrhouse", trigger: "mrhouse"}, // Option1
-           { value: "buy", label: "buy", trigger: "buy"}  // Option2
+           { value: "mrhouse", label: "讓我介紹Mr.Houseee", trigger: "mrhouse"}, // Option1
+           { value: "buy", label: "買房子", trigger: "buy"}  // Option2
           ]
     },
     {  // mrhouse
        id: "mrhouse",
-       message: "mrhouse",
+       message: "讓我介紹Mr.Housee",
        trigger: "mrhouseOptions"  
     },
     {  //on.OPTION1 .. n
@@ -26,13 +26,13 @@ steps={[
 
     {  // buy with on.NEXT
        id : "buy",
-       message: "buy",
+       message: "你準備找房子了嗎",
        trigger: "getBuilding"
     },
 
     {  // getBuilding
        id: 'getBuilding',
-       message: "getBuilding", 
+       message: "你可以選擇一個你有興趣購買的房子", 
        trigger: "getBuildingUserInput"
        // MISSED " validation = false"
     },
@@ -165,31 +165,3 @@ steps={[
         end: true
     }
   ]}
-  
-  
-    // Input Field
-    {  // getXXX
-       id: 'getX',
-       message: "", 
-       trigger: "getXUserInput"
-       // MISSED " validation = false"
-    },
-    {  // on.FILLED
-       id: "getXUserInput",
-       user: true,
-       trigger: "",
-    },    
- 
-    // toggle
-    {  // isBuyWithLease
-        id: "isX,
-        message: "",
-        trigger: "isXOptions"  
-     },
-     {  //on.OPTION1 .. n
-        id: "isXOptions",
-        options: [
-            { value: "yes", label: "yes", trigger: "" },
-            { value: "no", label: "no", trigger: "" }
-           ]
-     },
