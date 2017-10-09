@@ -1,0 +1,93 @@
+{
+	"id": "light",
+	"initial": "welcome",
+	"states": {
+		"welcome": {
+			"on": {
+				"OPTION1": "mrhouse",
+				"OPTION2": "buy"
+			},
+			"message": "this message"
+		},
+		"mrhouse": {
+			"on": {
+				"OPTION1": "buy",
+				"OPTION2": "stop"
+			},
+			"message": "this message"
+		},
+		"buy": {
+			"on": {
+				"NEXT": "getBuilding"
+			},
+			"message": "this message"
+		},
+		"getBuilding": {
+			"on": {
+				"FILLED": "isBuyWithLease",
+			},
+			"message": "this message"
+		},
+		"isBuyWithLease": {
+			"on": {
+				"TRUE": "getNetSizeMin",
+				"FALSE": "getNetSizeMin"
+			},
+			"message": "我可以賣買連租賃嗎?"
+		},
+		"getNetSizeMin": {
+			"on": {
+				"FILLED": "getPartition",
+			},
+			"message": "最少實用面積/呎?"
+		},
+		"getPartition": {
+			"on": {
+				"FILLED": "isPetAllowed",
+			},
+			"message": "間隔"
+		},
+		"isPetAllowed": {
+			"on": {
+				"TRUE": "getSalePrice",
+				"FALSE": "getSalePrice"
+			},
+			"mssage": "可養寵物嗎?"
+		},
+		"getSalePrice": {
+			"on": {
+				"FILLED": "getLastName",
+			},
+			"message": "付出預算上限?"
+    },
+    "getLastName" : {
+      "on" : {
+				"FILLED": "getFirstName",
+      },
+      "message" : "我可以有你的姓氏?"
+    },
+    "getFirstName" : {
+      "on" : {
+				"FILLED": "getEmail",
+      },
+      "message" : "我可以有你的名字嗎?"
+    },
+    "getEmail" : {
+      "on" : {
+				"FILLED": "getPhone",
+      },
+      "message" : "我可以有你的電子郵件地址?"
+    },
+    "getPhone" : {
+      "on" : {
+				"FILLED": "stop",
+      },
+      "message" : "我可以有你的電話號碼?"
+    },
+		"stop": {}
+	}
+}
+
+
+
+//  "welcome": { "on": { "OPTION1": "mrhouse", "OPTION2": "buy" }, "message" : "this message" },
