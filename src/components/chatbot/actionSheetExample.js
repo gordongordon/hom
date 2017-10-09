@@ -151,8 +151,8 @@ class ActionSheetExample extends React.Component {
     {  // on.OPTION1..n
        id: "welcomeOptions",
        options : [
-           { value: "mrhouse", label: "mrhouse", trigger: "mrhouse"}, // Option1
-           { value: "buy", label: "buy", trigger: "buy"}  // Option2
+           { value: "mrhouse", label: "讓我介紹Mr.Houseee", trigger: "mrhouse"}, // Option1
+           { value: "buy", label: "買房子", trigger: "buy"}  // Option2
           ]
     },
     {  // mrhouse
