@@ -34,9 +34,10 @@ import {MatchAgentPanelViewWrapper} from 'matchPanel/matchAgentPanelView';
 // import {AgentAppView} from 'agentAppView'
 
 // From chatbot
-import FormSaleChatbot from 'chatbot/formSaleChatbot';
+//import FormSaleChatbot from 'chatbot/formSaleChatbot';
 import BMIChatbot from 'chatbot/bmiChatbot';
 import ActionSheetExample from 'chatbot/actionSheetExample';
+import MrHouse from 'chatbot/mrHouse';
 
 // testing
 // import TestListView from 'testListView'
@@ -493,9 +494,9 @@ leaseAgentForm : new Route({
   }
 }),
   // For Chat bot example
-  formSaleChatbot : new Route({
-    path: '/FormSaleChatbox',
-    component: <FormSaleChatbot />,
+  mrHouse : new Route({
+    path: '/MrHouse',
+    component: <MrHouse />,
     onEnter: (route, params, store, queryParams) => {
       MobxStore.app.setTitle( 'Chat Bot 賣 樓');
     },
