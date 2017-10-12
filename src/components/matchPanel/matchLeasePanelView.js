@@ -58,9 +58,9 @@ export default class MatchLeasePanelView extends React.Component {
 
   renderNoticeBarMessage = () => {
     if ( this.state.selectedSegmentIndex === 0 ) {
-      return <div>群發信息現正開始: 以下是 HoMatching ... 超新鮮回覆請等待!</div>
+      return <div>群發信息現正開始: 以下是 Mr.House ... 超新鮮回覆請等待!</div>
     } else {
-      return <div>  以下是 HoMatching 為你配對嘅客!</div>
+      return <div>  以下是 Mr.House 為你配對嘅客!</div>
     }
   }
 

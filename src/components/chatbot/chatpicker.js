@@ -40,7 +40,8 @@ class Chatpicker extends Component {
       
 
     this.triggetNext = this.triggetNext.bind(this);
-    this.nameOfBuildingLabel = this.nameOfBuildingLabel.bind(this);
+    //this.nameOfBuildingLabel = this.nameOfBuildingLabel.bind(this);
+    this.getPickerLabel = this.getPickerLabel.bind(this);
   }
 
   onChange = value => {
@@ -50,32 +51,54 @@ class Chatpicker extends Component {
     });
   };
 
-  nameOfBuildingLabel = ( region, location, building ) => {
+  // nameOfBuildingLabel = ( region, location, building ) => {
+  //   // debugger
+  //   var region = DISTRICK.find(element => element.value === region);
+  //   // console.log( 'region', region)
+  //   if (region === undefined) {
+  //     return "region doesn't exist!";
+  //   }
+  //   var location = region.children.find(
+  //     element => element.value === location
+  //   );
+  //   if (location === undefined) {
+  //     return "location doesn't exist!";
+  //   }
+  //   // console.log( 'location', location )
+  //   var building = location.children.find(
+  //     element => element.value === building
+  //   );
+  //   return building.label;
+  // }
+
+
+  getPickerLabel = (data, first, second, third) => {
     // debugger
-    var region = DISTRICK.find(element => element.value === region);
+    //var region = DISTRICK.find(element => element.value === region);
+
+    first = data.find(element => element.value === first);
     // console.log( 'region', region)
-    if (region === undefined) {
-      return "region doesn't exist!";
+    if (first === undefined) {
+      return 'first doesn\'t exist!';
     }
-    var location = region.children.find(
-      element => element.value === location
-    );
-    if (location === undefined) {
-      return "location doesn't exist!";
+    second = first.children.find(element => element.value === second);
+    
+    if (second === undefined) {
+      return 'second doesn\'t exist!';
     }
     // console.log( 'location', location )
-    var building = location.children.find(
-      element => element.value === building
-    );
-    return building.label;
-  }
+    third = second.children.find(element => element.value === third);
+
+    return third.label;
+  };
+
 
   triggetNext() {
     const v = this.props.form.getFieldsValue();
     const region = v.districk[0];
     const location = v.districk[1];
     const building = v.districk[2];
-    const label =  this.nameOfBuildingLabel( region, location, building )
+    const label =  this.getPickerLabel( DISTRICK, region, location, building )
     
     this.setState({ trigger: true }, () => {
       this.props.triggerNextStep( { value: label, label : label });

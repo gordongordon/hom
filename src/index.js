@@ -11,7 +11,7 @@ import views from 'views';
 
 import MobxStore from 'mobxStore';
 import firebase from 'firebase'
-import NavigationBar from 'navigationBar'
+import NavigationBar from 'navigationBar';
 //import { NoticeBar } from 'antd-mobile';
 import initReactFastclick from 'react-fastclick';
 import {Fb} from 'firebase-store';
@@ -20,7 +20,8 @@ import {Fb} from 'firebase-store';
 
 //import DevTools, { setLogEnabled, setUpdatesEnabled, setGraphEnabled } from 'mobx-react-devtools';
 //import FormSaleChatbot from 'chatbot/formSaleChatbot'
-import FormSaleChatbot from './components/chatbot/formSaleChatbot';
+//import FormSaleChatbot from './components/chatbot/formSaleChatbot';
+import MrHouse from './components/chatbot/mrHouse';
 // import { AppContainer } from 'react-hot-loader';
 // import App from 'app';
 // import { BrowserRouter } from 'react-router-dom';
@@ -141,19 +142,19 @@ firebase.auth().onAuthStateChanged( (user) => {
 //  , document.getElementById('root')
 // )
 
-// ReactDOM.render(
-//   <FormSaleChatbot />
-//   , document.getElementById('root')
-// )
+ ReactDOM.render(
+   <MrHouse />
+   , document.getElementById('root')
+ )
 
-ReactDOM.render(
-  <Provider store={MobxStore}>
-    <div>
-      <NavigationBar/>
-      <MobxRouter/>
-    </div>
-  </Provider>, document.getElementById('root')
-)
+// ReactDOM.render(
+//   <Provider store={MobxStore}>
+//     <div>
+//       <NavigationBar/>
+//       <MobxRouter/>
+//     </div>
+//   </Provider>, document.getElementById('root')
+// )
 
   // <Provider store={MobxStore}>
   //   <div>

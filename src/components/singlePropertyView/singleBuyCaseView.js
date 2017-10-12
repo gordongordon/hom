@@ -24,7 +24,6 @@ import { propertys } from 'userModelView';
 import views from 'views';
 import {inject, observer} from "mobx-react";
 import PropTypes from 'prop-types';
-import SingleSaleCaseView from '../../../../../../../../Users/MSI-TITAN-6QE/Desktop/homatching/src/components/singlePropertyView/singleSaleCaseView';
 
 
 

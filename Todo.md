@@ -19,3 +19,6 @@ Todo:
 9. firebase optimization
 10. Chat room
 11. Server Worker (done with simple version)
+
+css: 
+1. Fonts : a serif and a sans-serif fonts

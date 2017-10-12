@@ -9,7 +9,6 @@ import SingleLeaseAgentFilterView from "../singlePropertyView/singleLeaseAgentFi
 import SingleLeaseCaseView from "../singlePropertyView/singleLeaseCaseView";
 import { observer } from "mobx-react";
 import { SingleLeaseAgentRespondViewWrapper } from "../singlePropertyView/singleLeaseAgentRespondView";
-//import ListOfMatchAgentBuyPropertys from '../../../../../../../../Users/MSI-TITAN-6QE/Desktop/homatching/src/components/listOfMatch/listOfMatchAgentBuyPropertys';
 import PropTypes from 'prop-types';
 
 //const Item = List.Item;
