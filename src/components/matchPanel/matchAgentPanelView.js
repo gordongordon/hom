@@ -250,7 +250,7 @@ class MatchAgentPanelView extends React.Component {
         <TabBar
           unselectedTintColor="#949494"
           tintColor="#33A3F4"
-          barTintColor="white"
+          barTintColor="white"npm 
           hidden={this.state.hidden}
         >
           <TabBar.Item

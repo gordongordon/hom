@@ -37,12 +37,11 @@ import {MatchAgentPanelViewWrapper} from 'matchPanel/matchAgentPanelView';
 //import FormSaleChatbot from 'chatbot/formSaleChatbot';
 import BMIChatbot from 'chatbot/bmiChatbot';
 import ActionSheetExample from 'chatbot/actionSheetExample';
-import MrHouse from 'chatbot/mrHouse';
 
 // testing
 // import TestListView from 'testListView'
 import FrontPageFilter from 'frontPageFilter';
-
+import MrHouse from 'chatbot/mrHouse';
 
 import Loadable from 'react-loadable';
 //import Loading from  'loading'
@@ -153,7 +152,8 @@ var save = false;
 const views = {
   home: new Route({
     path: '/',
-    component: <FrontPageView/>,
+//    component: <FrontPageView/>,
+    component: <MrHouse />,
     onEnter: (route, params, store, queryParams) => {
       MobxStore.app.setTitle( '好 .. Matching');
       // debugger

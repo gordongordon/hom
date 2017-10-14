@@ -11,6 +11,8 @@ import MobxStore from "mobxStore";
 import views from "views";
 
 import PartitionPicker from "./partitionPicker";
+import { Fb } from "firebase-store";
+import { Property } from "property";
 
 // Green
 const theme = {
@@ -98,7 +100,7 @@ class Review extends React.Component {
       getPartitionUserInput: "",
       isPetAllowedBoolean: "",
       isBuyWithLeaseBoolean: "",
-      getSalePriceUserInput: "",
+      getBuyBudgetMaxInput: "",
       getLastNameUserInput: "",
       getEmailUserInput: "",
       getPhoneUserInput: ""
@@ -114,7 +116,7 @@ class Review extends React.Component {
       getPartitionUserInput,
       isPetAllowedBoolean,
       isBuyWithLeaseBoolean,
-      getSalePriceUserInput,
+      getBuyBudgetMaxInput,
       getLastNameUserInput,
       getEmailUserInput,
       getPhoneUserInput
@@ -126,7 +128,7 @@ class Review extends React.Component {
       getPartitionUserInput,
       isPetAllowedBoolean,
       isBuyWithLeaseBoolean,
-      getSalePriceUserInput,
+      getBuyBudgetMaxInput,
       getLastNameUserInput,
       getEmailUserInput,
       getPhoneUserInput
@@ -142,7 +144,7 @@ class Review extends React.Component {
       getPartitionUserInput,
       isPetAllowedBoolean,
       isBuyWithLeaseBoolean,
-      getSalePriceUserInput,
+      getBuyBudgetMaxInput,
       getLastNameUserInput,
       getEmailUserInput,
       getPhoneUserInput
@@ -155,7 +157,7 @@ class Review extends React.Component {
         <br />
         最少實用面積/呎: {getNetSizeMinUserInput.value}
         <br />
-        付出預算上限: {getSalePriceUserInput.value}
+        付出預算上限: {getBuyBudgetMaxInput.value}
         <br />
         間隔: {getPartitionUserInput.value}/ 可養寵物: {isPetAllowedBoolean.value}
         <br />
@@ -179,13 +181,14 @@ Review.defaultProps = {
 };
 
 class MrHouse extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       clicked: "none",
       clicked1: "none",
       clicked2: "none"
     };
+    //this.addPropertyForBuy = this.addPropertyForBuy.bind(this);
   }
 
   showActionSheet = () => {
@@ -247,17 +250,172 @@ class MrHouse extends React.Component {
   };
 
   componentDidMount() {
-    this.handleEnd = this.handleEnd.bind(this);
+    //this.handleEnd = this.handleEnd.bind(this);
   }
 
-  handleEnd({ steps, values }) {
+  // addPropertyForBuy = ( steps ) =>
+  // {
+  //   var p = new Property();
+  //   var id;
+
+  //   const {
+  //     getBuildingUserInput,
+  //     getNetSizeMinUserInput,
+  //     getPartitionUserInput,
+  //     isPetAllowedBoolean,
+  //     isBuyWithLeaseBoolean,
+  //     getBuyBudgetMaxInput,
+  //     getLastNameUserInput,
+  //     getEmailUserInput,
+  //     getPhoneUserInput
+  //   } = steps;
+
+  //   //p.uid = MobxStore.app.uid;
+  //   //     ["NTTV", "MOS", "MOS0001"]
+  //   p.addressRegion = "NTTV";
+  //   p.addressLocation = "MOS";
+  //   p.nameOfBuilding = "MOS0001";
+
+  //   // p.dueDay = v.dueDay.toJSON();
+  //   // p.earlyTimeToView = v.earlyTimeToView.toJSON();
+  //   // p.salePriceMax = parseInt( v.salePriceMax )
+
+  //   //p.leasePrice = parseInt(v.leasePrice);
+  //   //debugger
+  //   p.numOfRoom = parseInt("0");
+  //   p.numOfBathroom = parseInt("1");
+  //   p.numOfLivingroom = parseInt("1");
+
+  //   p.isBuyWithLease = isBuyWithLeaseBoolean;
+  //   p.netSizeMin = parseInt(getNetSizeMinUserInput);
+  //   p.buyBudgetMax = parseInt( getBuyBudgetMaxInput);
+
+  //   //p.isPreferPayAnnually = v.isPreferPayAnnually;
+  //   //p.isRentAbleNow = v.isRentAbleNow;
+  //   //p.isFreeForSevenDay = v.isFreeForSevenDay;
+
+  //   //p.hasHomeHardware = v.hasHomeHardware;
+  //   //p.isViewAble = v.isViewAble;
+  //   //    p.howToContact = parseInt( howToContact[0] );
+  //   p.contactName = getLastNameUserInput;
+  //   debugger
+  //   p.contactPhone = parseInt(getPhoneUserInput);
+  //   p.contactEmail = getEmailUserInput;
+  //   p.isPetAllowed = isPetAllowedBoolean;
+
+  //   if (MobxStore.app.uid === null) {
+  //     if (Fb.startLoginAnonyhmously()) {
+  //       id = Fb.app.usersRef.push().key;
+  //     }
+  //   } else {
+  //     id = Fb.app.usersRef.push().key;
+  //   }
+  //   p.uid = MobxStore.app.uid;
+  //   p.typeFor = 'sale';
+  //   p.typeTo = 'buy';
+  //   p.fbid = id; // Assign a reference
+
+  //   Fb.app.usersRef.update({ [id]: p.serialize() });
+
+  //   Fb.propertys.child(id).set(p.serialize());
+  //   Fb.buy.child(id).set(p.serialize());
+
+  //   // const id2 = Fb.propertys.push().key;
+  //   // Fb.propertys.update( {[id2]:  p.serialize() });
+  //   MobxStore.router.goTo(views.matchBuy, { keyID: id });
+
+  //   return id;
+  // }
+
+  handleEnd = ({ steps, values }) => {
+    var p = new Property();
+    var id;
+
+    const {
+      getBuildingUserInput,
+      getNetSizeMinUserInput,
+      getPartitionUserInput,
+      isPetAllowedBoolean,
+      isBuyWithLeaseBoolean,
+      getBuyBudgetMaxInput,
+      getLastNameUserInput,
+      getEmailUserInput,
+      getPhoneUserInput
+    } = steps;
+
+    //    R.isNil(getBuyBudgetMaxInput)
+    console.log("handleEnd steps", steps);
+
+    //p.uid = MobxStore.app.uid;
+    //     ["NTTV", "MOS", "MOS0001"]
+    p.addressRegion = "NTTV";
+    p.addressLocation = "MOS";
+    p.nameOfBuilding = "MOS0001";
+
+    // p.dueDay = v.dueDay.toJSON();
+    // p.earlyTimeToView = v.earlyTimeToView.toJSON();
+    // p.salePriceMax = parseInt( v.salePriceMax )
+
+    //p.leasePrice = parseInt(v.leasePrice);
+    //debugger
+    p.numOfRoom = parseInt("0");
+    p.numOfBathroom = parseInt("1");
+    p.numOfLivingroom = parseInt("1");
+
+    p.isBuyWithLease = isBuyWithLeaseBoolean.value;
+    p.netSizeMin = parseInt(getNetSizeMinUserInput.value);
+    //debugger
+    p.buyBudgetMax = parseInt(getBuyBudgetMaxInput.value);
+    //    p.buyBudgetMax = 100;
+
+    //p.isPreferPayAnnually = v.isPreferPayAnnually;
+    //p.isRentAbleNow = v.isRentAbleNow;
+    //p.isFreeForSevenDay = v.isFreeForSevenDay;
+
+    //p.hasHomeHardware = v.hasHomeHardware;
+    //p.isViewAble = v.isViewAble;
+    //    p.howToContact = parseInt( howToContact[0] );
+    p.contactName = getLastNameUserInput.value;
+    //debugger
+    p.contactPhone = parseInt(getPhoneUserInput.value);
+    p.contactEmail = getEmailUserInput.value;
+    p.isPetAllowed = isPetAllowedBoolean.value;
+
+    if (MobxStore.app.uid === null) {
+      if (Fb.startLoginAnonyhmously()) {
+        id = Fb.app.usersRef.push().key;
+      }
+    } else {
+      id = Fb.app.usersRef.push().key;
+    }
+    p.uid = MobxStore.app.uid;
+    p.typeFor = "sale";
+    p.typeTo = "buy";
+    p.fbid = id; // Assign a reference
+
+    Fb.app.usersRef.update({ [id]: p.serialize() });
+
+    Fb.propertys.child(id).set(p.serialize());
+    Fb.buy.child(id).set(p.serialize());
+
+    // const id2 = Fb.propertys.push().key;
+    // Fb.propertys.update( {[id2]:  p.serialize() });
+    MobxStore.router.goTo(views.matchBuy, { keyID: id });
+
     // console.log(steps);
     // console.log(values);
     // alert(`Chat handleEnd callback! Number: ${values[0]}`);
-    MobxStore.router.goTo(views.list);
-  }
+    //MobxStore.router.goTo(views.list);
+    // const keyID = this.addPropertyForBuy( value )
+    // debugger;
+    // console.log(steps);
+    // this.addPropertyForBuy( steps );
+    //MobxStore.router.goTo( views.matchBuy, { keyID } )
+  };
 
   render() {
+    //console.log( this.addPropertyForBuy );
+    // debugger
     return (
       <ThemeProvider theme={theme}>
         <ChatBot
@@ -266,8 +424,8 @@ class MrHouse extends React.Component {
           // hideBotAvatar="false"
           placeholder="請輸入這裏"
           handleEnd={this.handleEnd}
-          floating="true"
-          bubbleStyle={{ overflow: "visible", fontSize: "0.2rem" }}
+          //floating="true"
+          bubbleStyle={{ overflow: "visible", fontSize: "0.3rem" }}
           steps={[
             {
               // welcome
@@ -358,9 +516,9 @@ class MrHouse extends React.Component {
               //on.OPTION1 .. n
               id: "validaBuildingBoolean",
               options: [
-                { value: "yes", label: "是的", trigger: "isBuyWithLease" },
+                { value: "true", label: "是的", trigger: "isBuyWithLease" },
                 {
-                  value: "no",
+                  value: "false",
                   label: "不是",
                   trigger: "update-buildingUserInput"
                 }
@@ -383,8 +541,8 @@ class MrHouse extends React.Component {
               //on.OPTION1 .. n
               id: "isBuyWithLeaseBoolean",
               options: [
-                { value: "yes", label: "yes", trigger: "getNetSizeMin" },
-                { value: "no", label: "no", trigger: "getNetSizeMin" }
+                { value: "true", label: "我 可以", trigger: "getNetSizeMin" },
+                { value: "false", label: "我 不可以", trigger: "getNetSizeMin" }
               ]
             },
 
@@ -405,45 +563,45 @@ class MrHouse extends React.Component {
             // Input Field
             {
               // getPartition
-              id: 'getPartition',
-              message: '間隔',
-              trigger: 'getPartitionUserInput'
+              id: "getPartition",
+              message: "間隔",
+              trigger: "getPartitionUserInput"
               // MISSED " validation = false"
             },
             {
-              id: 'getPartitionUserInput',
+              id: "getPartitionUserInput",
               component: <PartitionPicker />,
               waitAction: true,
-              trigger: 'isPetAllowed'
+              trigger: "isPetAllowed"
             },
 
             // toggle
             {
               //
-              id: 'isPetAllowed',
-              message: '可養寵物嗎?',
-              trigger: 'isPetAllowedBoolean'
+              id: "isPetAllowed",
+              message: "可養寵物嗎?",
+              trigger: "isPetAllowedBoolean"
             },
             {
               //on.OPTION1 .. n
-              id: 'isPetAllowedBoolean',
+              id: "isPetAllowedBoolean",
               options: [
-                { value: "yes", label: "yes", trigger: "getSalePrice" },
-                { value: "no", label: "no", trigger: "getSalePrice" }
+                { value: "true", label: "是可以養寵物", trigger: "getBuyBudgetMax" },
+                { value: "false", label: "不可以養寵物", trigger: "getBuyBudgetMax" }
               ]
             },
 
             // Input Field
             {
               // getXXX
-              id: "getSalePrice",
+              id: "getBuyBudgetMax",
               message: "付出預算上限?",
-              trigger: "getSalePriceUserInput"
+              trigger: "getBuyBudgetMaxInput"
               // MISSED " validation = false"
             },
             {
               // on.FILLED
-              id: "getSalePriceUserInput",
+              id: "getBuyBudgetMaxInput",
               user: true,
               trigger: "getLastName"
             },
@@ -452,7 +610,7 @@ class MrHouse extends React.Component {
             {
               // getXXX
               id: "getLastName",
-              message: "我可以有你的姓氏?",
+              message: "你好請問點稱呼你?",
               trigger: "getLastNameUserInput"
               // MISSED " validation = false"
             },
@@ -481,7 +639,7 @@ class MrHouse extends React.Component {
             {
               // getXXX
               id: "getPhone",
-              message: "我可以有你的電話號碼?",
+              message: "你介唔介意比你嘅電話我！",
               trigger: "getPhoneUserInput"
               // MISSED " validation = false"
             },
@@ -489,17 +647,167 @@ class MrHouse extends React.Component {
               // on.FILLED
               id: "getPhoneUserInput",
               user: true,
+              validator: value => {
+                if (isNaN(value)) {
+                  return "value must be a number";
+                } else if (value < 0) {
+                  return "value must be positive";
+                } else if (value > 10000000) {
+                  return `${value}? Come on!`;
+                }
+
+                return true;
+              },
               trigger: "review"
             },
             {
               id: "review",
-              message: "以下是你的輸入請確認",
+              message: "你以前是({previousValue}),以下是你的輸入請確認",
               trigger: "isReview"
             },
             {
               id: "isReview",
               component: <Review />,
               asMessage: true,
+              trigger: "update"
+            },
+            {
+              id: "update",
+              message: "你想更新一些內容嗎？",
+              trigger: "update-question"
+            },
+            {
+              id: "update-question",
+              options: [
+                { value: "yes", label: "更新", trigger: "update-yes" },
+                { value: "no", label: "No", trigger: "redirectMessage" }
+              ]
+            },
+            {
+              id: "update-yes",
+              message: "您要更新哪個內容？",
+              trigger: "update-fields"
+            },
+            {
+              id: "update-fields",
+              options: [
+                {
+                  value: "redirectMessage",
+                  label: "取消更新",
+                  trigger: "redirectMessage"
+                },
+                {
+                  value: "getBuildingUserInput",
+                  label: "建築名稱",
+                  trigger: "update-getBuildingUserInput"
+                },
+                {
+                  value: "getnetSizeMinUserInput",
+                  label: "實用面積/呎",
+                  trigger: "update-getNetSizeMinUserInput"
+                },
+                {
+                  value: "getPartitionUserInput",
+                  label: "間隔",
+                  trigger: "update-getPartitionUserInput"
+                },
+                {
+                  value: "isPetAllowedBoolean",
+                  label: "可養寵物",
+                  trigger: "update-isPetAllowedBoolean"
+                },
+                {
+                  value: "isBuyWithLeaseBoolean",
+                  label: "賣買連租賃",
+                  trigger: "update-isBuyWithLeaseBoolean"
+                },
+                {
+                  value: "getBuyBudgetMax",
+                  label: "預算上限",
+                  trigger: "update-getBuyBudgetMaxInput"
+                },
+                {
+                  value: "getLastNameUserInput",
+                  label: "姓氏",
+                  trigger: "update-getLastNameUserInput"
+                },
+                {
+                  value: "getEmailuserInput",
+                  label: "eMail",
+                  trigger: "update-getEmailUserInput"
+                },
+                {
+                  value: "getPhoneUserInput",
+                  label: "電話號碼",
+                  trigger: "update-getPhoneUserInput"
+                }
+              ]
+            },
+            // Update review
+            {
+              // update if previous ask no
+              id: "update-getBuildingUserInput",
+              update: "getBuildingUserInput",
+              trigger: "review"
+            },
+            // Update review
+            {
+              // update if previous ask no
+              id: "update-getNetSizeMinUserInput",
+              update: "getNetSizeMinUserInput",
+              trigger: "review"
+            },
+            // Update review
+            {
+              // update if previous ask no
+              id: "update-getPartitionUserInput",
+              update: "getPartitionUserInput",
+              trigger: "review"
+            },
+            // Update review
+            {
+              // update if previous ask no
+              id: "update-isPetAllowedBoolean",
+              update: "isPetAllowedBoolean",
+              trigger: "review"
+            },
+            // Update review
+            {
+              // update if previous ask no
+              id: "update-isBuyWithLeaseBoolean",
+              update: "isBuyWIthLeaseBoolean",
+              trigger: "review"
+            },
+            // Update review
+            // Update review
+            {
+              // update if previous ask no
+              id: "update-getBuyBudgetMaxInput",
+              update: "getBuyBudgetMaxInput",
+              trigger: "review"
+            },
+
+            {
+              // update if previous ask no
+              id: "update-getLastNameUserInput",
+              update: "getLastNameUserInput",
+              trigger: "review"
+            },
+            {
+              // update if previous ask no
+              id: "update-getEmailUserInput",
+              update: "getEmailUserInput",
+              trigger: "review"
+            },
+            {
+              // update if previous ask no
+              id: "update-getPhoneUserInput",
+              update: "getPhoneUserInput",
+              trigger: "review"
+            },
+            {
+              id: "redirectMessage",
+              message: "will be redirect for matching",
               trigger: "stop"
             },
             {

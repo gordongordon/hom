@@ -76,7 +76,7 @@ class PartitionPicker extends Component {
       numOfBathroom
     );
 
-    debugger
+    //debugger
     this.setState({ trigger: true }, () => {
       this.props.triggerNextStep({ value: label, label: label });
     });

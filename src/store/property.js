@@ -881,21 +881,26 @@ export class Property {
       v.leasePriceWithTax), (this.leasePriceWithLandTax =
       v.leasePriceWithLandTax), (this.leasePriceWithManagementFee =
       v.leasePriceWithManagementFee), (this.leaseDepositPerMonth =
-      v.leaseDepositPerMonth), (this.rentBudgetMax =
-      v.rentBudgetMax), (this.buyBudgetMax = v.buyBudgetMax), (this.netSize =
-      v.netSize), (this.netSizeMin = v.netSizeMin), (this.netSizeMax =
-      v.netSizeMax), (this.numOfRoom = v.numOfRoom), (this.numOfBathroom =
-      v.numOfBathroom), (this.numOfLivingroom =
-      v.numOfLivingroom), (this.numOfPeopleLiving =
-      v.numOfPeopleLiving), (this.contactName =
-      v.contactName), (this.contactPhone = v.contactPhone), (this.contactEmail =
-      v.contactEmail), (this.numOfDayClosingDeal = // Sale Property
-      v.numOfDayClosingDeal), (this.isSaleWithLease = //            isViewAble : v.isViewAble, //            isNegotiable : v.isNegotiable,
-      v.isSaleWithLease), (this.isNegotiable = // lease property
-      v.isNegotiable), (this.isViewAble =
-      v.isViewAble), (this.isPreferPayAnnually =
-      v.isPreferPayAnnually), (this.hasHomeHardware =
-      v.hasHomeHardware), (this.jobNature = v.jobNature), (this.isViewAbleNow =
+      v.leaseDepositPerMonth),
+      this.rentBudgetMax = v.rentBudgetMax, 
+      this.buyBudgetMax = v.buyBudgetMax, 
+      this.netSize = v.netSize, 
+      this.netSizeMin = v.netSizeMin, 
+      this.netSizeMax = v.netSizeMax, 
+      this.numOfRoom = v.numOfRoom, 
+      this.numOfBathroom = v.numOfBathroom, 
+      this.numOfLivingroom = v.numOfLivingroom, 
+      this.numOfPeopleLiving = v.numOfPeopleLiving, 
+      this.contactName = v.contactName, 
+      this.contactPhone = v.contactPhone, 
+      this.contactEmail = v.contactEmail, 
+      this.numOfDayClosingDeal = v.numOfDayClosingDeal, 
+      this.isSaleWithLease = v.isSaleWithLease, 
+      this.isNegotiable = v.isNegotiable, 
+      this.isViewAble = v.isViewAble, 
+      this.isPreferPayAnnually =v.isPreferPayAnnually,
+      this.hasHomeHardware = v.hasHomeHardware, 
+      (this.jobNature = v.jobNature), (this.isViewAbleNow =
       v.isViewAbleNow), (this.isRentAbleNow =
       v.isRentAbleNow), (this.isFreeForSevenDay =
       v.isFreeForSevenDay), (this.dueDay = v.dueDay), (this.earlyTimeToView = //earlyTimeToView : this.earlyTimeToView.toJSON(), //            dueDay : this.dueDay.toJSON(),

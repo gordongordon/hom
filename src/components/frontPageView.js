@@ -9,6 +9,7 @@ import views from 'views';
 //import FrontPageDisplay from 'frontPageDisplay'
 //import {FrontPageTabBar} from 'frontPageTabBar'
 import {inject, observer} from 'mobx-react';
+import MrHouse from 'chatbot/mrHouse';
 
 @inject("store") @observer
 export class FrontPageView extends React.Component {
@@ -71,6 +72,7 @@ render ()  {
     <div>
   <WingBlank>
     <WhiteSpace />
+    <MrHouse />
     <WhiteSpace />
     <WhiteSpace />
     <Button type="primary" onClick={ () => this.loadingToast( store, goTo ) }>買 家</Button>
