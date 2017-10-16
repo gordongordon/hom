@@ -825,7 +825,6 @@ class MrHouse extends React.Component {
           ]}
         />
       </ThemeProvider>
-      <h1>hellow</h1>
       </div>
     );
   }
