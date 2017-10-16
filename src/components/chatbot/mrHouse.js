@@ -425,7 +425,8 @@ class MrHouse extends React.Component {
           placeholder="請輸入這裏"
           handleEnd={this.handleEnd}
           //floating="true"
-          bubbleStyle={{ overflow: "visible", fontSize: "0.3rem" }}
+//          bubbleStyle={{ overflow: "visible", fontSize: "0.3rem" }}
+
           steps={[
             {
               // welcome
@@ -652,7 +653,7 @@ class MrHouse extends React.Component {
                   return "value must be a number";
                 } else if (value < 0) {
                   return "value must be positive";
-                } else if (value > 10000000) {
+                } else if (value > 100000000) {
                   return `${value}? Come on!`;
                 }
 

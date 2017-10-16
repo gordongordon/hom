@@ -142,19 +142,19 @@ firebase.auth().onAuthStateChanged( (user) => {
 //  , document.getElementById('root')
 // )
 
- ReactDOM.render(
-   <MrHouse />
-   , document.getElementById('root')
- )
+//  ReactDOM.render(
+//    <MrHouse />
+//    , document.getElementById('root')
+//  )
 
-// ReactDOM.render(
-//   <Provider store={MobxStore}>
-//     <div>
-//       <NavigationBar/>
-//       <MobxRouter/>
-//     </div>
-//   </Provider>, document.getElementById('root')
-// )
+ReactDOM.render(
+  <Provider store={MobxStore}>
+    <div>
+      <NavigationBar/>
+      <MobxRouter/>
+    </div>
+  </Provider>, document.getElementById('root')
+)
 
   // <Provider store={MobxStore}>
   //   <div>
