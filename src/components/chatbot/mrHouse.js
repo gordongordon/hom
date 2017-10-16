@@ -97,11 +97,14 @@ class Review extends React.Component {
     this.state = {
       getBuildingUserInput: "",
       getNetSizeMinUserInput: "",
-      getPartitionUserInput: "",
+      getNumOfRoom: "",
+      getNumOfBathroom: "",
+      getNumOfLivingroom: "",
       isPetAllowedBoolean: "",
       isBuyWithLeaseBoolean: "",
       getBuyBudgetMaxInput: "",
       getLastNameUserInput: "",
+      getSexUserInput : "",
       getEmailUserInput: "",
       getPhoneUserInput: ""
     };
@@ -113,11 +116,15 @@ class Review extends React.Component {
     const {
       getBuildingUserInput,
       getNetSizeMinUserInput,
-      getPartitionUserInput,
+//      getPartitionUserInput,
+      getNumOfRoom,
+      getNumOfBathroom,
+      getNumOfLivingroom,
       isPetAllowedBoolean,
       isBuyWithLeaseBoolean,
       getBuyBudgetMaxInput,
       getLastNameUserInput,
+      getSexUserInput,
       getEmailUserInput,
       getPhoneUserInput
     } = steps;
@@ -125,11 +132,15 @@ class Review extends React.Component {
     this.setState({
       getBuildingUserInput,
       getNetSizeMinUserInput,
-      getPartitionUserInput,
+//      getPartitionUserInput,
+      getNumOfRoom,
+      getNumOfBathroom,
+      getNumOfLivingroom,
       isPetAllowedBoolean,
       isBuyWithLeaseBoolean,
       getBuyBudgetMaxInput,
       getLastNameUserInput,
+      getSexUserInput,
       getEmailUserInput,
       getPhoneUserInput
     });
@@ -141,11 +152,15 @@ class Review extends React.Component {
     const {
       getBuildingUserInput,
       getNetSizeMinUserInput,
-      getPartitionUserInput,
+//      getPartitionUserInput,
+      getNumOfRoom,
+      getNumOfBathroom,
+      getNumOfLivingroom,
       isPetAllowedBoolean,
       isBuyWithLeaseBoolean,
       getBuyBudgetMaxInput,
       getLastNameUserInput,
+      getSexUserInput,
       getEmailUserInput,
       getPhoneUserInput
     } = this.state;
@@ -159,13 +174,13 @@ class Review extends React.Component {
         <br />
         付出預算上限: {getBuyBudgetMaxInput.value}
         <br />
-        間隔: {getPartitionUserInput.value}
+        間隔: {getNumOfRoom.value}房,{getNumOfBathroom.vlaue}廁,{getNumOfLivingroom.value}廳
         <br />
         可養寵物: {isPetAllowedBoolean.value}
         <br />
         我可以賣買連租賃: {isBuyWithLeaseBoolean.value}
         <br />
-        姓名: {getLastNameUserInput.value}
+        姓名: {getLastNameUserInput.value} {getSexUserInput.value} 
         <br />
         聯絡手機: {getPhoneUserInput.value}
         <br />
@@ -338,11 +353,15 @@ class MrHouse extends React.Component {
     const {
       getBuildingUserInput,
       getNetSizeMinUserInput,
-      getPartitionUserInput,
+//      getPartitionUserInput,
+      getNumOfRoom,
+      getNumOfBathroom,
+      getNumOfLivingroom,
       isPetAllowedBoolean,
       isBuyWithLeaseBoolean,
       getBuyBudgetMaxInput,
       getLastNameUserInput,
+      getSexUserInput,
       getEmailUserInput,
       getPhoneUserInput
     } = steps;
@@ -362,9 +381,9 @@ class MrHouse extends React.Component {
 
     //p.leasePrice = parseInt(v.leasePrice);
     //debugger
-    p.numOfRoom = parseInt("0");
-    p.numOfBathroom = parseInt("1");
-    p.numOfLivingroom = parseInt("1");
+    p.numOfRoom = parseInt(getNumOfRoom);
+    p.numOfBathroom = parseInt(getNumOfBathroom);
+    p.numOfLivingroom = parseInt(getNumOfLivingroom);
 
     p.isBuyWithLease = isBuyWithLeaseBoolean.value;
     p.netSizeMin = parseInt(getNetSizeMinUserInput.value);
@@ -379,7 +398,7 @@ class MrHouse extends React.Component {
     //p.hasHomeHardware = v.hasHomeHardware;
     //p.isViewAble = v.isViewAble;
     //    p.howToContact = parseInt( howToContact[0] );
-    p.contactName = getLastNameUserInput.value;
+    p.contactName = getLastNameUserInput.value + getSexUserInput.value;
     //debugger
     p.contactPhone = parseInt(getPhoneUserInput.value);
     p.contactEmail = getEmailUserInput.value;
@@ -437,7 +456,13 @@ class MrHouse extends React.Component {
               // welcome
               id: "welcome",
               message: "歡迎你今天怎麼樣?",
+              trigger: "welcome2"
+            },
+            {
+              id: "welcome2",
+              message: "五分鐘前，我們協助陳先生找房子出租。結果，他有五名物業代理人在3分鐘內回覆。我該怎麼幫你？",
               trigger: "welcomeOptions"
+
             },
             {
               // on.OPTION1..n
@@ -445,10 +470,10 @@ class MrHouse extends React.Component {
               options: [
                 {
                   value: "mrhouse",
-                  label: "讓我介紹Mr.Houseee",
+                  label: "讓我介紹Mr.House如何幫助你!",
                   trigger: "mrhouse"
                 }, // Option1
-                { value: "buy", label: "買房子", trigger: "buy" } // Option2
+                { value: "buy", label: "1)我想買屋", trigger: "buy" } // Option2
               ]
             },
             {
@@ -562,23 +587,67 @@ class MrHouse extends React.Component {
             {
               // on.FILLED
               id: "getNetSizeMinUserInput",
-              user: true,
-              trigger: "getPartition"
+//              user: true,
+              options: [
+                { value: "200", label: "200", trigger: "getPartition" },
+                { value: "300", label: "300", trigger: "getPartition" },
+                { value: "500", label: "500", trigger: "getPartition" },
+                { value: "700", label: "700", trigger: "getPartition" },
+                { value: "900", label: "900", trigger: "getPartition" },
+                { value: "1100", label: "1100", trigger: "getPartition" },
+                { value: "1300", label: "1300", trigger: "getPartition" },
+                { value: "1500", label: "1500", trigger: "getPartition" },
+                { value: "1700", label: "1700", trigger: "getPartition" },
+                { value: "2000", label: "2000+", trigger: "getPartition" },
+              ]
+              //trigger: "getPartition"
             },
 
             // Input Field
             {
               // getPartition
               id: "getPartition",
-              message: "間隔",
-              trigger: "getPartitionUserInput"
+              message: "請告訴什麼(間隔)適合你? e.g. 1房,1廁,1廳",
+              trigger: "getNumOfRoom"
               // MISSED " validation = false"
             },
+//            {
+ //            id: "getPartitionUserInput",
+  //           component: <PartitionPicker />,
+  //           waitAction: true,
+   //          trigger: "getNumOfRoom"
+    //        },
             {
-              id: "getPartitionUserInput",
-              component: <PartitionPicker />,
-              waitAction: true,
-              trigger: "isPetAllowed"
+              id: "getNumOfRoom",
+              options: [
+                { value: "0", label: "開放式", trigger: "getNumOfBathroom" },
+                { value: "1", label: "1房", trigger: "getNumOfBathroom" },
+                { value: "2", label: "2房", trigger: "getNumOfBathroom" },
+                { value: "3", label: "3房", trigger: "getNumOfBathroom" },
+                { value: "4", label: "4房", trigger: "getNumOfBathroom" },
+              ]
+            },
+            {
+              id: "getNumOfBathroom",
+              options: [
+                { value: "0", label: "0廁", trigger: "getNumOfLivingroom" },
+                { value: "1", label: "1廁", trigger: "getNumOfLivingroom" },
+                { value: "2", label: "2廁", trigger: "getNumOfLivingroom" },
+                { value: "3", label: "3廁", trigger: "getNumOfLivingroom" },
+                { value: "4", label: "4廁", trigger: "getNumOfLivingroom" },
+                { value: "10", label: "共用廁", trigger: "getNumOfLivingroom" },
+              ]
+            },
+            {
+              id: "getNumOfLivingroom",
+              options: [
+                { value: "0", label: "0廳", trigger: "isPetAllowed" },
+                { value: "1", label: "1廳", trigger: "isPetAllowed" },
+                { value: "2", label: "2廳", trigger: "isPetAllowed" },
+                { value: "3", label: "3廳", trigger: "isPetAllowed" },
+                { value: "4", label: "4廳", trigger: "isPetAllowed" },
+                { value: "10", label: "共用廳", trigger: "isPetAllowed" },
+              ]
             },
 
             // toggle
@@ -601,7 +670,7 @@ class MrHouse extends React.Component {
             {
               // getXXX
               id: "getBuyBudgetMax",
-              message: "付出預算上限?",
+              message: "付出預算上限/萬元? e.g. 300",
               trigger: "getBuyBudgetMaxInput"
               // MISSED " validation = false"
             },
@@ -609,14 +678,25 @@ class MrHouse extends React.Component {
               // on.FILLED
               id: "getBuyBudgetMaxInput",
               user: true,
-              trigger: "getLastName"
+              trigger: "getSex"
             },
-
+            {
+              id: "getSex",
+              message: "你好請問點稱呼你?",
+              trigger: "getSexUserInput"
+            },
+            {
+              id: "getSexUserInput",
+              options: [
+                { value: "先生", label: "先生(Mr)", trigger: "getLastName" },
+                { value: "小姐", label: "小姐(Miss)", trigger: "getLastName" }
+              ]
+            },
             // Input Field
             {
               // getXXX
               id: "getLastName",
-              message: "你好請問點稱呼你?",
+              message: "{previousValue} 我可以有你的姓氏嗎?",
               trigger: "getLastNameUserInput"
               // MISSED " validation = false"
             },
@@ -630,7 +710,9 @@ class MrHouse extends React.Component {
             {
               // getXXX
               id: "getEmail",
-              message: "hi,{previousValue}! 我可以有你的電子郵件地址?",
+              message :  ({ previousValue, steps }) => {
+                         return `hi,${previousValue} ${steps.getSexUserInput.value} ! 我可以有你的電子郵件地址? e.g. info@mr.house` 
+                                      },
               trigger: "getEmailUserInput"
               // MISSED " validation = false"
             },
@@ -645,7 +727,7 @@ class MrHouse extends React.Component {
             {
               // getXXX
               id: "getPhone",
-              message: "你介唔介意比你嘅電話我！",
+              message: "你介唔介意比你嘅電話我！ e.g. 96181448",
               trigger: "getPhoneUserInput"
               // MISSED " validation = false"
             },
@@ -686,7 +768,8 @@ class MrHouse extends React.Component {
               id: "update-question",
               options: [
                 { value: "yes", label: "更新", trigger: "update-yes" },
-                { value: "no", label: "No", trigger: "redirectMessage" }
+                { value: "message", label: "沒必要謝謝!請告訴我下一步是什麼!", trigger: "redirectMessage" },
+                { value: "next", label: "沒必要謝謝!直接去下一個屏幕!", trigger: "countDown" },
               ]
             },
             {
@@ -813,7 +896,31 @@ class MrHouse extends React.Component {
             },
             {
               id: "redirectMessage",
-              message: "will be redirect for matching",
+              message: "準備滿足您的要求！ 聊天將關閉並重定向到新屏幕!",
+              trigger: "matchingMessage"
+            },
+            {
+              id: "matchingMessage",
+              message: "我們開始向所有地產代理廣播您的請求，在下一個屏幕上，您將被所有物業代理人通知回复。",
+              delay: 5000,
+              trigger: "countDown"
+            },
+            {
+              id: "countDown",
+              message: "3...",
+              delay : 2000,
+              trigger: "countDown2"
+            },
+            {
+              id: "countDown2",
+              message: "2..",
+              delay : 1000,
+              trigger: "countDown1"
+            },
+            {
+              id: "countDown1",
+              message: "1.",
+              delay : 1000,
               trigger: "stop"
             },
             {
