@@ -151,7 +151,7 @@ class Review extends React.Component {
     } = this.state;
 
     return (
-      <div style={{ width: "100%", fontSize: "0.2rem" }}>
+      <div style={{ width: "100%", fontSize: "0.6rem" }}>
         <h4>資料將回覆客人</h4>
         尋找樓盤: {getBuildingUserInput.value}
         <br />
@@ -159,13 +159,17 @@ class Review extends React.Component {
         <br />
         付出預算上限: {getBuyBudgetMaxInput.value}
         <br />
-        間隔: {getPartitionUserInput.value}/ 可養寵物: {isPetAllowedBoolean.value}
+        間隔: {getPartitionUserInput.value}
+        <br />
+        可養寵物: {isPetAllowedBoolean.value}
         <br />
         我可以賣買連租賃: {isBuyWithLeaseBoolean.value}
         <br />
         姓名: {getLastNameUserInput.value}
         <br />
-        聯絡手機: {getPhoneUserInput.value}/ 電郵: {getEmailUserInput.value}
+        聯絡手機: {getPhoneUserInput.value}
+        <br />
+        電郵: {getEmailUserInput.value}
         <br />
       </div>
     );
@@ -417,6 +421,7 @@ class MrHouse extends React.Component {
     //console.log( this.addPropertyForBuy );
     // debugger
     return (
+      <div>
       <ThemeProvider theme={theme}>
         <ChatBot
           headerTitle="Mr.House"
@@ -625,7 +630,7 @@ class MrHouse extends React.Component {
             {
               // getXXX
               id: "getEmail",
-              message: "我可以有你的電子郵件地址?",
+              message: "hi,{previousValue}! 我可以有你的電子郵件地址?",
               trigger: "getEmailUserInput"
               // MISSED " validation = false"
             },
@@ -820,6 +825,8 @@ class MrHouse extends React.Component {
           ]}
         />
       </ThemeProvider>
+      <h1>hellow</h1>
+      </div>
     );
   }
 }
