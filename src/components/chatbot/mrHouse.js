@@ -13,6 +13,8 @@ import views from "views";
 import PartitionPicker from "./partitionPicker";
 import { Fb } from "firebase-store";
 import { Property } from "property";
+import Key from './key';
+
 
 // Green
 const theme = {
@@ -160,11 +162,10 @@ class Review extends React.Component {
       isBuyWithLeaseBoolean,
       getBuyBudgetMaxInput,
       getLastNameUserInput,
-      getSexUserInput,
+      getSexUserInput, 
       getEmailUserInput,
-      getPhoneUserInput
-    } = this.state;
-
+      getPhoneUserInput 
+    } = this.state; 
     return (
       <div style={{ width: "100%", fontSize: "0.6rem" }}>
         <h4>資料將回覆客人</h4>
@@ -381,9 +382,9 @@ class MrHouse extends React.Component {
 
     //p.leasePrice = parseInt(v.leasePrice);
     //debugger
-    p.numOfRoom = parseInt(getNumOfRoom);
-    p.numOfBathroom = parseInt(getNumOfBathroom);
-    p.numOfLivingroom = parseInt(getNumOfLivingroom);
+    p.numOfRoom = parseInt(getNumOfRoom.value);
+    p.numOfBathroom = parseInt(getNumOfBathroom.value);
+    p.numOfLivingroom = parseInt(getNumOfLivingroom.value);
 
     p.isBuyWithLease = isBuyWithLeaseBoolean.value;
     p.netSizeMin = parseInt(getNetSizeMinUserInput.value);
@@ -450,13 +451,12 @@ class MrHouse extends React.Component {
           handleEnd={this.handleEnd}
           //floating="true"
 //          bubbleStyle={{ overflow: "visible", fontSize: "0.3rem" }}
-
           steps={[
             {
               // welcome
               id: "welcome",
               message: "歡迎你今天怎麼樣?",
-              trigger: "welcome2"
+              trigger: "welcome2" 
             },
             {
               id: "welcome2",
@@ -532,6 +532,7 @@ class MrHouse extends React.Component {
             {
               // on.FILLED
               id: "getBuildingUserInput",
+              //component: <Key placeholder="96181448"/>,
               component: <Chatpicker />,
               waitAction: true,
               trigger: "validaBuildingUserInput"
@@ -678,6 +679,8 @@ class MrHouse extends React.Component {
               // on.FILLED
               id: "getBuyBudgetMaxInput",
               user: true,
+              inputType: 'number',
+              pattern : "[0-9]*",
               trigger: "getSex"
             },
             {
@@ -704,6 +707,7 @@ class MrHouse extends React.Component {
               // on.FILLED
               id: "getLastNameUserInput",
               user: true,
+              inputType: 'text',
               trigger: "getEmail"
             },
             // Input Field
@@ -720,6 +724,8 @@ class MrHouse extends React.Component {
               // on.FILLED
               id: "getEmailUserInput",
               user: true,
+              inputType: 'email',
+              pattern: "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$",
               trigger: "getPhone"
             },
 
@@ -741,11 +747,13 @@ class MrHouse extends React.Component {
                 } else if (value < 0) {
                   return "value must be positive";
                 } else if (value > 100000000) {
-                  return `${value}? Come on!`;
+                  return `${value}? Come on!`; 
                 }
 
                 return true;
               },
+              inputType: 'number',
+              pattern : "[0-9]*",
               trigger: "review"
             },
             {
