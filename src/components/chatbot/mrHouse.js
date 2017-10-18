@@ -25,7 +25,7 @@ const theme = {
   botBubbleColor: "#e6e6e6",
   botFontColor: "#000",
   userBubbleColor: "#fecea8",
-  userFontColor: "#000"
+  userFontColor: "#000" 
 };
 
 // fix touch to scroll background page on iOS
