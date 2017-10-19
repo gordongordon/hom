@@ -21,6 +21,7 @@ export default class Status {
        }
     }
 
+    @action
     restore(v) {
         this.subjectID = v.subjectID;
         this.objectID = v.objectID;

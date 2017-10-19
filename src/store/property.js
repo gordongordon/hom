@@ -1,8 +1,12 @@
-import { observable, computed } from "mobx";
+import { useStrict, observable, computed, action } from "mobx";
 import moment from "moment";
 import uuidv1 from "uuid/v1";
 import { DISTRICK } from "DISTRICK";
 import { LEVEL } from "LEVEL";
+
+
+//You can force your app to only modify state through actions by using 
+//useStrict(true);
 
 // ignore the two lines below, they just creates unique IDs for the todo
 // var _nextId = 0
@@ -20,11 +24,12 @@ const LABEL_JOBNATURE = {
 
 // this is our domain model class
 export class Property {
+
   constructor() {
     this.nameOfBuilding = "MOS0001";
   }
 
-
+  
   isTypeBy = type => this.typeBy === type;
   
   // ** Every time add a new variable
@@ -166,6 +171,7 @@ export class Property {
     return this.text !== "";
   }
 
+  @action
   setTimeStamp() {
     const t = moment().format("YYYY-MM-DD HH:mm:ss");
     this.realTime = moment(t);
@@ -238,14 +244,15 @@ export class Property {
  @computed
  get addressLocationLabel() {
    // debugger
-   var region = DISTRICK.find(element => element.value === this.addressRegion);
+   const region = DISTRICK.find(element => element.value === this.addressRegion);
    // console.log( 'region', region)
    if (region === undefined) {
      return "region doesn't exist!";
    }
-   var location = region.children.find(
+   const location = region.children.find(
      element => element.value === this.addressLocation
    );
+
    if (location === undefined) {
      return "location doesn't exist!";
    }
@@ -257,19 +264,19 @@ export class Property {
   @computed
   get nameOfBuildingLabel() {
     // debugger
-    var region = DISTRICK.find(element => element.value === this.addressRegion);
+    const region = DISTRICK.find(element => element.value === this.addressRegion);
     // console.log( 'region', region)
     if (region === undefined) {
       return "region doesn't exist!";
     }
-    var location = region.children.find(
+    const location = region.children.find(
       element => element.value === this.addressLocation
     );
     if (location === undefined) {
       return "location doesn't exist!";
     }
     // console.log( 'location', location )
-    var building = location.children.find(
+    const building = location.children.find(
       element => element.value === this.nameOfBuilding
     );
     return building.label;
@@ -634,6 +641,7 @@ export class Property {
     // }
     // return "已跟進 "
   }
+
   @computed 
   get typeByFollowUpLabel() {
 
@@ -680,6 +688,7 @@ export class Property {
   // // this two methods will serialize and deserialize the todo
   // to keep the example clean I have done them, but you should consider using
   //https://github.com/mobxjs/serializr
+  
   serialize() {
     //debugger
     return {
@@ -762,6 +771,7 @@ export class Property {
     };
   }
 
+  @action
   static deserialize(json: Object) {
     const property = new Property();
     //property.id = json['id'] || nextId()
@@ -782,6 +792,7 @@ export class Property {
     return property;
   }
 
+  @action
   static deserializeObj(v, p) {
     //      const p = new Property();
     p.id = v.id;
@@ -854,6 +865,7 @@ export class Property {
     return p;
   }
 
+  @action
   restore(v) {
       this.id  = v.id, 
       this.uid  = v.uid, 

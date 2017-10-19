@@ -3,6 +3,7 @@ import MobxStore from 'mobxStore'
 import AppStore from 'app-store'
 import {propertys as userModelView} from 'userModelView'
 import {agentModel} from 'agentModelView'
+import {action, observable} from 'mobx';
 
 
 try {
@@ -89,6 +90,32 @@ firebase.auth().signInAnonymously().then(function(snapshot) {
 // });
 
 }
+
+
+// // Plain object syntax
+// const a = observable({
+// 	act: action(() => {
+// 		// unbounded, cannot be bound
+// 	}),
+// 	act: action(function() {
+// 		// unbounded. Bind in MobX 3?
+// 	})
+// })
+
+// const startLogout = observable( {
+//    act: action( () => {
+//   return firebase.auth().signOut().then( ()=> {
+//     console.log( 'Logged out!')
+//     //propertys.clear();
+//     // agentModel.clear();
+
+//     MobxStore.app.user = false;
+//     userModelView.clear();
+//     MobxStore.app.uid = null;
+//     agentModel.clear();
+//   });
+// }
+//    ) });
 
 const startLogout = () => {
   return firebase.auth().signOut().then( ()=> {

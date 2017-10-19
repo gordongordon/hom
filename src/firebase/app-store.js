@@ -2,9 +2,10 @@ import firebase from 'firebase';
 import MobxStore from 'mobxStore'
 import {propertys} from 'userModelView'
 import {agentModel} from 'agentModelView'
-
+//import {observable, action} from 'mobx';
 
 export default class AppStore {
+
     constructor() {
       this.usersRef = undefined;
       this.matchedPropertysRef = undefined;

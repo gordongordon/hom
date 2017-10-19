@@ -1,4 +1,4 @@
-import { observable, computed, action } from "mobx";
+import { useStrict, observable, computed, action } from "mobx";
 import { Fb } from "firebase-store";
 import { toJS } from "mobx";
 import { Property } from "property";
@@ -6,6 +6,8 @@ import MobxStore from "mobxStore";
 import Status from "status";
 
 // import moment from 'moment'
+
+//useStrict( true );
 
 // List of user properties, to be .on
 // propertyViewModel
@@ -139,6 +141,7 @@ export class Propertyhk extends Property {
     return request;
   };
 
+  @action
   buildCase() {
     const isUndefinedProperty = element =>
       element === undefined ? true : false;
@@ -245,6 +248,7 @@ export class Propertyhk extends Property {
    *     } ) 
    * return
    */
+  @action
   buildMatchPropertyByRunTime = (id, typeTo, typeBy) => {
     const that = this;
     //var fb; // firebase ref;
@@ -425,6 +429,7 @@ export class Propertyhk extends Property {
    * @location is no use
    * return
    */
+  @action
   buildMatchUserPropertyByRunTime = (id, typeFor, location) => {
     const that = this;
     var fb; // firebase ref;
@@ -518,6 +523,7 @@ export class Propertyhk extends Property {
    * @valueTo   is value equal to.  e.g. 'shatin'
    * return
    */
+  @action
   buildMatchProperty = (id, typeFor, location) => {
     const that = this;
 
@@ -570,6 +576,7 @@ export class Propertyhk extends Property {
    * @valueTo   is value equal to.  e.g. 'shatin'
    * return
    */
+  @action
   buildResponseProperty = (id, typeFor, location) => {
     var that = this;
 
@@ -980,6 +987,7 @@ export class Propertyhk extends Property {
    * this is beginning called by user filter only. 
    * it would't call at single view component
    */
+  @action
   buildInDirectCall() {
     const that = this;
     this.inDirectCall.clear();
@@ -1073,6 +1081,7 @@ export class Propertyhk extends Property {
    * @valueTo   is value equal to.  e.g. 'shatin'
    * return
    */
+  @action
   buildMatchAgentProperty = (id, typeFor, location) => {
     var that = this;
 
