@@ -3,6 +3,9 @@ dist
 other
 src/styles
 public/*.hot*
+public/*.woff
+public/*.woff2
+public/*.ttf
 coverage
 npm-debug.log
 .DS_Store
