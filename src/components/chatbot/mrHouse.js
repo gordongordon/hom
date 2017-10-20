@@ -455,14 +455,18 @@ class MrHouse extends React.Component {
             {
               // welcome
               id: "welcome",
-              message: "歡迎你今天怎麼樣?",
+              message: "歡迎你今天怎麼樣? 嘩，好消息！",
               trigger: "welcome2" 
             },
             {
               id: "welcome2",
-              message: "五分鐘前，我們協助陳先生找房子出租。結果，他有五名物業代理人在3分鐘內回覆。我該怎麼幫你？",
-              trigger: "welcomeOptions"
+              message: "5分鐘前，我幫陳先生放租。結果，已經有 5位地產agents係3分鐘內回覆佢。👏",
+              trigger: "welcome3"
 
+            },
+            { id: "welcome3",
+              message: "你好，我係Mr.House！我最鍾意幫人分擔房屋嘅問題！今日我可以點樣幫你呢？（按以下options就OK)",
+              trigger: "welcomeOptions"
             },
             {
               // on.OPTION1..n
@@ -479,37 +483,47 @@ class MrHouse extends React.Component {
             {
               // mrhouse
               id: "mrhouse",
-              message: "讓我介紹Mr.Housee",
+              message: " 好，而家等我好快咁同你講解下乜嘢係Mr.House",
+              delay: 5000,
               trigger: "mrhouse1"
             },
             {
               id: "mrhouse1",
-              message: `你有冇試過上網搵樓盤?傳統網上搵到嘅樓盤資訊一定過時同唔齊全，`,
+              message: `你有冇試過上網搵樓盤? 傳統網上搵樓盤嘅資訊一定過時同唔齊全，令你失去信心同預算。`,
+              delay: 5000,
               trigger: "mrhouse2"
             },
             {
               id: "mrhouse2",
-              message: `令你失去信心同預算。Mr.House 肯定係! 最新最齊嘅樓盤資訊一定唔係互聯網!`,
-              delay: 500,
+              message: `Mr.House 肯定最新最齊嘅樓盤資訊一定唔係互聯網！全部都係地產代理手上! `,
+              delay: 5000,
               trigger: "mrhouse3"
             },
             {
               id: "mrhouse3",
-              message: `全部都係地產代理手上! Mr.House 幫你嘅係! 將你需要即時廣傳比所有地產代理知道等佢即時回覆!`,
-              delay: 500,
+              message: `因此Mr.House 即時幫你廣傳你嘅需要比所有地產代理即時回覆`,
+              delay: 5000,
               trigger: "mrhouse4"
             },
             {
               id: "mrhouse4",
-              message: `記住Mr.House 搵到嘅係/即時顯示係！ 啱你心水樓盤係由全港唔同嘅地產代理即時(提供/價錢)！所以先可以一次集齊最新最齊啱你心水樓盤！搵樓  Mr.House`,
+              message: `記住Mr.House 顯示嘅樓盤資訊係由全港唔同嘅地產代理即時提供，所以先可以一次個集齊最新最齊啱你心水嘅樓盤！`,
               delay: 500,
+              trigger: "mrhouse5"
+            },
+            {
+              id: "mrhouse5",
+              message: "希望你了解多咗，你今日有咩需要呀？我想買樓/ 我想賣樓/我想租屋/我想放租",
               trigger: "mrhouseOptions"
             },
             {
               //on.OPTION1 .. n
               id: "mrhouseOptions",
               options: [
-                { value: "buy", label: "buy", trigger: "buy" },
+                { value: "buy", label: "我想 買樓", trigger: "buy" },
+                { value: "buy", label: "我想 賣樓", trigger: "buy" },
+                { value: "buy", label: "我想 租屋", trigger: "buy" },
+                { value: "buy", label: "我想 放租", trigger: "buy" },
                 { value: "stop", label: "stop", trigger: "stop" }
               ]
             },
@@ -524,7 +538,7 @@ class MrHouse extends React.Component {
             {
               // getBuilding
               id: "getBuilding",
-              message: "你可以選擇一個你有興趣購買的房子",
+              message: "好高興認識你呀☺  你暫時個心水樓盤喺邊度？",
               trigger: "getBuildingUserInput"
               // MISSED " validation = false"
             },
@@ -541,17 +555,17 @@ class MrHouse extends React.Component {
             {
               //
               id: "validaBuildingUserInput",
-              message: "this is {previousValue}!",
+              message: "你選擇左 {previousValue}!",
               trigger: "validaBuildingBoolean"
             },
             {
               //on.OPTION1 .. n
               id: "validaBuildingBoolean",
               options: [
-                { value: "true", label: "是的", trigger: "isBuyWithLease" },
+                { value: "true", label: "係", trigger: "isBuyWithLease" },
                 {
                   value: "false",
-                  label: "不是",
+                  label: "唔係",
                   trigger: "update-buildingUserInput"
                 }
               ]
@@ -566,22 +580,22 @@ class MrHouse extends React.Component {
             {
               // isBuyWithLease
               id: "isBuyWithLease",
-              message: "({previousValue})! 我可以賣買連租賃嗎?",
+              message: "({previousValue})!冇樓睇租左俾人唔會買嗎? (買賣連租賃嘅意思係個樓盤已經簽咗一份租約俾人)",
               trigger: "isBuyWithLeaseBoolean"
             },
             {
               //on.OPTION1 .. n
               id: "isBuyWithLeaseBoolean",
               options: [
-                { value: "true", label: "我 可以", trigger: "getNetSizeMin" },
-                { value: "false", label: "我 不可以", trigger: "getNetSizeMin" }
+                { value: "true", label: "可以", trigger: "getNetSizeMin" },
+                { value: "false", label: "不可以", trigger: "getNetSizeMin" }
               ]
             },
 
             {
               // getNetSizeMin
               id: "getNetSizeMin",
-              message: "最少實用面積/呎?",
+              message: "你個心水樓盤最小要幾多實用面積（呎）?",
               trigger: "getNetSizeMinUserInput"
               // MISSED " validation = false"
             },
@@ -608,7 +622,7 @@ class MrHouse extends React.Component {
             {
               // getPartition
               id: "getPartition",
-              message: "請告訴什麼(間隔)適合你? e.g. 1房,1廁,1廳",
+              message: "你想要咩間隔？ e.g. 1房,1廁,1廳",
               trigger: "getNumOfRoom"
               // MISSED " validation = false"
             },
@@ -655,15 +669,15 @@ class MrHouse extends React.Component {
             {
               //
               id: "isPetAllowed",
-              message: "可養寵物嗎?",
+              message: "你會唔會養貓貓豿豿呢？",
               trigger: "isPetAllowedBoolean"
             },
             {
               //on.OPTION1 .. n
               id: "isPetAllowedBoolean",
               options: [
-                { value: "true", label: "是可以養寵物", trigger: "getBuyBudgetMax" },
-                { value: "false", label: "不可以養寵物", trigger: "getBuyBudgetMax" }
+                { value: "true", label: "一定/可能啦", trigger: "getBuyBudgetMax" },
+                { value: "false", label: "絕對不會", trigger: "getBuyBudgetMax" }
               ]
             },
 
@@ -685,7 +699,7 @@ class MrHouse extends React.Component {
             },
             {
               id: "getSex",
-              message: "你好請問點稱呼你?",
+              message: "我應該稱呼你先生(Mr)/ 小姐(Ms)?",
               trigger: "getSexUserInput"
             },
             {
@@ -699,7 +713,7 @@ class MrHouse extends React.Component {
             {
               // getXXX
               id: "getLastName",
-              message: "{previousValue} 我可以有你的姓氏嗎?",
+              message: "OK, {previousValue} 明白。請問你貴姓？",
               trigger: "getLastNameUserInput"
               // MISSED " validation = false"
             },
@@ -715,7 +729,7 @@ class MrHouse extends React.Component {
               // getXXX
               id: "getEmail",
               message :  ({ previousValue, steps }) => {
-                         return `hi,${previousValue} ${steps.getSexUserInput.value} ! 我可以有你的電子郵件地址? e.g. info@mr.house` 
+                         return `hi,${previousValue} ${steps.getSexUserInput.value} ! 最後，可唔可以要你email ？（ 如果有正嘢我可以通知你，電郵絕對保密，放心！）e.g. info@mr.house` 
                                       },
               trigger: "getEmailUserInput"
               // MISSED " validation = false"
@@ -733,7 +747,7 @@ class MrHouse extends React.Component {
             {
               // getXXX
               id: "getPhone",
-              message: "你介唔介意比你嘅電話我！ e.g. 96181448",
+              message: "OK! 係我廣播你嘅房屋要求比所有地產agents之前，介唔介意比你電話號碼我？（當你想聯絡對方，你可以share電話比人。電話絕對保密 e.g. 96181448",
               trigger: "getPhoneUserInput"
               // MISSED " validation = false"
             },
@@ -758,7 +772,7 @@ class MrHouse extends React.Component {
             },
             {
               id: "review",
-              message: "你以前是({previousValue}),以下是你的輸入請確認",
+              message: "請check一check以下你輸入啲資料係咪正確：",
               trigger: "isReview"
             },
             {
@@ -769,20 +783,20 @@ class MrHouse extends React.Component {
             },
             {
               id: "update",
-              message: "你想更新一些內容嗎？",
+              message: "有冇野要更改？",
               trigger: "update-question"
             },
             {
               id: "update-question",
               options: [
-                { value: "yes", label: "更新", trigger: "update-yes" },
-                { value: "message", label: "沒必要謝謝!請告訴我下一步是什麼!", trigger: "redirectMessage" },
+                { value: "yes", label: "有野要更改", trigger: "update-yes" },
+                { value: "message", label: "冇呀，謝謝！請帶我到下一步/ 我要更改資料", trigger: "redirectMessage" },
                 { value: "next", label: "沒必要謝謝!直接去下一個屏幕!", trigger: "countDown" },
               ]
             },
             {
               id: "update-yes",
-              message: "您要更新哪個內容？",
+              message: "你要更改邊個內容？？",
               trigger: "update-fields"
             },
             {
@@ -909,19 +923,24 @@ class MrHouse extends React.Component {
             },
             {
               id: "matchingMessage",
-              message: "我們開始向所有地產代理廣播您的請求，在下一個屏幕上，您將被所有物業代理人通知回复。",
+              message: "太好了。 現在我們開始廣播你的請求比所有地產agents知。聊天將會關閉並重新定向到新屏幕。",
               delay: 5000,
+              trigger: "matchingMessage2"
+            },
+            {
+              id: "matchingMessage2",
+              message: "在下一個屏幕，你可以係左上角揀取地產agents的回覆或右上角揀取Mr. House為你配對的業主。",
               trigger: "countDown"
             },
             {
               id: "countDown",
-              message: "3...",
+              message: "3...你準備好未？",
               delay : 2000,
               trigger: "countDown2"
             },
             {
               id: "countDown2",
-              message: "2..",
+              message: "2..Yes! 快啲跳去下一頁",
               delay : 1000,
               trigger: "countDown1"
             },
