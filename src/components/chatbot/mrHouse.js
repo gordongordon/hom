@@ -169,19 +169,20 @@ class Review extends React.Component {
       getPhoneUserInput 
     } = this.state; 
     return (
-      <div style={{ width: "100%", fontSize: "0.6rem" }}>
-        <h4>資料將回覆客人</h4>
+      <div style={{ width: "100%", fontSize: "1rem" }}>
+        資料將回覆客人
+        <br />
         尋找樓盤: {getBuildingUserInput.value}
         <br />
-        最少實用面積/呎: {getNetSizeMinUserInput.value}
+        最少實用面積: {getNetSizeMinUserInput.value} 呎
         <br />
         付出預算上限: {getBuyBudgetMaxInput.value}
         <br />
         間隔: {getNumOfRoom.value}房,{getNumOfBathroom.vlaue}廁,{getNumOfLivingroom.value}廳
         <br />
-        可養寵物: {isPetAllowedBoolean.value}
+        你會唔會養物: {isPetAllowedBoolean.value}
         <br />
-        我可以賣買連租賃: {isBuyWithLeaseBoolean.value}
+        冇樓睇租左俾人會唔會買: {isBuyWithLeaseBoolean.value}
         <br />
         姓名: {getLastNameUserInput.value} {getSexUserInput.value} 
         <br />
@@ -457,12 +458,12 @@ class MrHouse extends React.Component {
             {
               // welcome
               id: "welcome",
-              message: "歡迎你今天怎麼樣? 嘩，好消息！",
+              message: "嘩，好消息！",
               trigger: "welcome2" 
             },
             {
               id: "welcome2",
-              message: "5分鐘前，我幫陳先生放租。結果，已經有 5位地產agents係3分鐘內回覆佢。👏",
+              message: "5分鐘前，我幫陳先生放租。結果，已經有5位地產👩🏻agents係3分鐘內回覆佢。👏",
               trigger: "welcome3"
 
             },
@@ -474,12 +475,14 @@ class MrHouse extends React.Component {
               // on.OPTION1..n
               id: "welcomeOptions",
               options: [
-                {
-                  value: "mrhouse",
-                  label: "讓我介紹Mr.House如何幫助你!",
+                { value: "mrhouse",
+                  label: "我想了解Mr.House 先讓我介紹Mr.House如何幫助你!",
                   trigger: "mrhouse"
                 }, // Option1
-                { value: "buy", label: "1)我想買屋", trigger: "buy" } // Option2
+                { value: "buy", label: "我想買樓", trigger: "getSex" },
+                { value: "sale", label: "我想賣樓", trigger: "getSex" },
+                { value: "rent", label: "我想租屋", trigger: "getSex" },
+                { value: "lease", label: "我想放租", trigger: "getSex" }
               ]
             },
             {
@@ -514,32 +517,62 @@ class MrHouse extends React.Component {
             },
             {
               id: "mrhouse5",
-              message: "希望你了解多咗，你今日有咩需要呀？我想買樓/ 我想賣樓/我想租屋/我想放租",
+              message: "希望你了解多咗，你今日有咩需要呀？",
               trigger: "mrhouseOptions"
             },
             {
               //on.OPTION1 .. n
               id: "mrhouseOptions",
               options: [
-                { value: "buy", label: "我想 買樓", trigger: "buy" },
-                { value: "buy", label: "我想 賣樓", trigger: "buy" },
-                { value: "buy", label: "我想 租屋", trigger: "buy" },
-                { value: "buy", label: "我想 放租", trigger: "buy" },
+                { value: "buy", label: "我想 買樓", trigger: "getSex" },
+                { value: "sale", label: "我想 賣樓", trigger: "getSex" },
+                { value: "rent", label: "我想 租屋", trigger: "getSex" },
+                { value: "lease", label: "我想 放租", trigger: "getSex" },
                 { value: "stop", label: "stop", trigger: "stop" }
+              ]
+            },   
+            {
+              id: "getSex",
+              message: "{previousValue} 我應該稱呼你先生(Mr)/ 小姐(Ms)?",
+              trigger: "getSexUserInput"
+            },
+            {
+              id: "getSexUserInput",
+              options: [
+                { value: "先生", label: "先生(Mr)", trigger: "getLastName" },
+                { value: "小姐", label: "小姐(Miss)", trigger: "getLastName" }
               ]
             },
 
+            // Input Field
             {
-              // buy with on.NEXT
-              id: "buy",
-              message: "你準備找房子了嗎",
+              // getXXX
+              id: "getLastName",
+              message: " Ok, {previousValue} 明白。請問你貴姓？",
+              trigger: "getLastNameUserInput"
+              // MISSED " validation = false"
+            },
+            {
+              // on.FILLED
+              id: "getLastNameUserInput",
+              user: true,
+              inputType: 'text',
               trigger: "getBuilding"
             },
+           
+            // {
+            //  buy with on.NEXT
+            //  id: "buy",
+            //  message: "你準備找房子了嗎",
+            //  trigger: "getBuilding"
+            //  },
 
             {
               // getBuilding
               id: "getBuilding",
-              message: "好高興認識你呀☺  你暫時個心水樓盤喺邊度？",
+              message :  ({ previousValue, steps }) => {
+                return `${steps.getLastNameUserInput.value} ${steps.getSexUserInput.value} 好高興認識你呀☺  你暫時個心水樓盤喺邊度？`;
+                },
               trigger: "getBuildingUserInput"
               // MISSED " validation = false"
             },
@@ -556,17 +589,17 @@ class MrHouse extends React.Component {
             {
               //
               id: "validaBuildingUserInput",
-              message: "你選擇左 {previousValue}!",
+              message: "你選擇左 「{previousValue}」!",
               trigger: "validaBuildingBoolean"
             },
             {
               //on.OPTION1 .. n
               id: "validaBuildingBoolean",
               options: [
-                { value: "true", label: "係", trigger: "isBuyWithLease" },
+                { value: "true", label: "👍🏻係", trigger: "isBuyWithLease" },
                 {
                   value: "false",
-                  label: "唔係",
+                  label: "👎🏻唔係",
                   trigger: "update-buildingUserInput"
                 }
               ]
@@ -581,15 +614,15 @@ class MrHouse extends React.Component {
             {
               // isBuyWithLease
               id: "isBuyWithLease",
-              message: "({previousValue})!冇樓睇租左俾人唔會買嗎? (買賣連租賃嘅意思係個樓盤已經簽咗一份租約俾人)",
+              message: "想問你! 冇樓睇租左俾人會唔會買? (即係買賣連租賃嘅意思係個樓盤已經簽咗一份租約俾人)",
               trigger: "isBuyWithLeaseBoolean"
             },
             {
               //on.OPTION1 .. n
               id: "isBuyWithLeaseBoolean",
               options: [
-                { value: "true", label: "可以", trigger: "getNetSizeMin" },
-                { value: "false", label: "不可以", trigger: "getNetSizeMin" }
+                { value: "true", label: "唔會買", trigger: "getNetSizeMin" },
+                { value: "false", label: "會買", trigger: "getNetSizeMin" }
               ]
             },
 
@@ -670,15 +703,15 @@ class MrHouse extends React.Component {
             {
               //
               id: "isPetAllowed",
-              message: "你會唔會養貓貓豿豿呢？",
+              message: "你會唔會養😺😺🐶🐶呢？",
               trigger: "isPetAllowedBoolean"
             },
             {
               //on.OPTION1 .. n
               id: "isPetAllowedBoolean",
               options: [
-                { value: "true", label: "一定/可能啦", trigger: "getBuyBudgetMax" },
-                { value: "false", label: "絕對不會", trigger: "getBuyBudgetMax" }
+                { value: "false", label: "絕對不會", trigger: "getBuyBudgetMax" },
+                { value: "true", label: "一定/可能啦", trigger: "getBuyBudgetMax" }
               ]
             },
 
@@ -686,7 +719,7 @@ class MrHouse extends React.Component {
             {
               // getXXX
               id: "getBuyBudgetMax",
-              message: "付出預算上限/萬元? e.g. 300",
+              message: "付出預算上限/萬元💵? e.g. 300",
               trigger: "getBuyBudgetMaxInput"
               // MISSED " validation = false"
             },
@@ -696,41 +729,15 @@ class MrHouse extends React.Component {
               user: true,
               inputType: 'number',
               pattern : "[0-9]*",
-              trigger: "getSex"
-            },
-            {
-              id: "getSex",
-              message: "我應該稱呼你先生(Mr)/ 小姐(Ms)?",
-              trigger: "getSexUserInput"
-            },
-            {
-              id: "getSexUserInput",
-              options: [
-                { value: "先生", label: "先生(Mr)", trigger: "getLastName" },
-                { value: "小姐", label: "小姐(Miss)", trigger: "getLastName" }
-              ]
-            },
-            // Input Field
-            {
-              // getXXX
-              id: "getLastName",
-              message: "OK, {previousValue} 明白。請問你貴姓？",
-              trigger: "getLastNameUserInput"
-              // MISSED " validation = false"
-            },
-            {
-              // on.FILLED
-              id: "getLastNameUserInput",
-              user: true,
-              inputType: 'text',
               trigger: "getEmail"
             },
+
             // Input Field
             {
               // getXXX
               id: "getEmail",
               message :  ({ previousValue, steps }) => {
-                         return `hi,${previousValue} ${steps.getSexUserInput.value} ! 最後，可唔可以要你email ？（ 如果有正嘢我可以通知你，電郵絕對保密，放心！）e.g. info@mr.house` 
+                         return `hi,${steps.getLastNameUserInput.value} ${steps.getSexUserInput.value} ! 最後，可唔可以要你email ？（ 如果有正嘢我可以通知你，📧電郵絕對保密，放心！）e.g. info@mr.house` 
                                       },
               trigger: "getEmailUserInput"
               // MISSED " validation = false"
@@ -748,7 +755,7 @@ class MrHouse extends React.Component {
             {
               // getXXX
               id: "getPhone",
-              message: "OK! 係我廣播你嘅房屋要求比所有地產agents之前，介唔介意比你電話號碼我？（當你想聯絡對方，你可以share電話比人。電話絕對保密 e.g. 96181448",
+              message: "OK! 係我廣播你嘅房屋要求比所有地產agents之前，介唔介意比你📞電話號碼我？（當你想聯絡對方，你可以share電話比人。電話絕對保密 e.g. 96181448",
               trigger: "getPhoneUserInput"
               // MISSED " validation = false"
             },
@@ -931,6 +938,7 @@ class MrHouse extends React.Component {
             {
               id: "matchingMessage2",
               message: "在下一個屏幕，你可以係左上角揀取地產agents的回覆或右上角揀取Mr. House為你配對的業主。",
+              delay: 5000,
               trigger: "countDown"
             },
             {
@@ -966,6 +974,35 @@ class MrHouse extends React.Component {
 }
 
 export default MrHouse;
+
+
+// {
+//   id: "getSex",
+//   message: "我應該稱呼你先生(Mr)/ 小姐(Ms)?",
+//   trigger: "getSexUserInput"
+// },
+// {
+//   id: "getSexUserInput",
+//   options: [
+//     { value: "先生", label: "先生(Mr)", trigger: "getLastName" },
+//     { value: "小姐", label: "小姐(Miss)", trigger: "getLastName" }
+//   ]
+// },
+// // Input Field
+// {
+//   // getXXX
+//   id: "getLastName",
+//   message: "OK, {previousValue} 明白。請問你貴姓？",
+//   trigger: "getLastNameUserInput"
+//   // MISSED " validation = false"
+// },
+// {
+//   // on.FILLED
+//   id: "getLastNameUserInput",
+//   user: true,
+//   inputType: 'text',
+//   trigger: "getEmail"
+// },
 
 //   render() {
 //     return (<div className="actionSheetContainer">
