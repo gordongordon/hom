@@ -20,6 +20,7 @@ import Key from './key';
 // Green
 const theme = {
   background: "#F2f2f2",
+  background: "#F2f2f2",
   fontFamily: "Helvetica Neue",
   headerBgColor: "#F55869",
   headerFontColor: "#fecea8",
@@ -485,7 +486,6 @@ class MrHouse extends React.Component {
               // mrhouse
               id: "mrhouse",
               message: " 好，而家等我好快咁同你講解下乜嘢係Mr.House",
-              delay: 5000,
               trigger: "mrhouse1"
             },
             {
