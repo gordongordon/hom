@@ -232,6 +232,6 @@ module.exports = {
   //   open: true, // to open the local server in browser
   //   contentBase: __dirname + '/src',
   // },  
-  //devtool: "eval"
-  devtool: "cheap-module-source-map"
+  devtool: "eval"
+  //devtool: "cheap-module-source-map"
 };
