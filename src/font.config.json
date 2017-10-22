@@ -1,0 +1,7 @@
+{
+    "source": {
+        "path": "src/**/*",
+    },
+    "font": "./mrhouse.ttf",
+    "output": "./public/mrhouse"
+}

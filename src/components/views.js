@@ -152,8 +152,8 @@ var save = false;
 const views = {
   home: new Route({
     path: '/',
-//    component: <FrontPageView/>,
-    component: <MrHouse />,
+    component: <FrontPageView/>,
+//    component: <MrHouse />,
     onEnter: (route, params, store, queryParams) => {
       MobxStore.app.setTitle( '好 .. Matching');
       // debugger

@@ -72,7 +72,6 @@ render ()  {
     <div>
   <WingBlank>
     <WhiteSpace />
-    <MrHouse />
     <WhiteSpace />
     <WhiteSpace />
     <Button type="primary" onClick={ () => this.loadingToast( store, goTo ) }>買 家</Button>

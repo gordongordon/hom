@@ -169,9 +169,7 @@ class Review extends React.Component {
       getPhoneUserInput 
     } = this.state; 
     return (
-      <div style={{ width: "100%", fontSize: "1rem" }}>
-        資料將回覆客人
-        <br />
+      <div style={{ width: "100%", fontSize: "0.9rem" }}>
         尋找樓盤: {getBuildingUserInput.value}
         <br />
         最少實用面積: {getNetSizeMinUserInput.value} 呎
@@ -926,12 +924,7 @@ class MrHouse extends React.Component {
             },
             {
               id: "redirectMessage",
-              message: "準備滿足您的要求！ 聊天將關閉並重定向到新屏幕!",
-              trigger: "matchingMessage"
-            },
-            {
-              id: "matchingMessage",
-              message: "太好了。 現在我們開始廣播你的請求比所有地產agents知。聊天將會關閉並重新定向到新屏幕。",
+              message: "太好了。 現在準備滿足您的要求！我們開始廣播你的請求比所有地產agents知。聊天將會關閉並重新定向到新屏幕。",
               delay: 5000,
               trigger: "matchingMessage2"
             },
