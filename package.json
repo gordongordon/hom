@@ -74,7 +74,7 @@
     "webpack-bundle-analyzer": "^2.8.3"
   },
   "dependencies": {
-    "antd-mobile": "^1.6.11",
+    "antd-mobile" : "^1.7.1",
     "compression": "^1.7.0",
     "express": "^4.15.4",
     "firebase": "^4.1.3",

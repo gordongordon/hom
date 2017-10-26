@@ -16,6 +16,8 @@ import { Fb } from "firebase-store";
 import { Property } from "property";
 import Key from './key';
 
+import Slick from './slick';
+
 
 // Green
 const theme = {
@@ -169,7 +171,7 @@ class Review extends React.Component {
       getPhoneUserInput 
     } = this.state; 
     return (
-      <div style={{ width: "100%", fontSize: "0.9rem" }}>
+      <div style={{ width: "100%", fontSize: "0.8rem" }}>
         尋找樓盤: {getBuildingUserInput.value}
         <br />
         最少實用面積: {getNetSizeMinUserInput.value} 呎
@@ -450,6 +452,8 @@ class MrHouse extends React.Component {
           // hideBotAvatar="false"
           placeholder="請輸入這裏"
           handleEnd={this.handleEnd}
+          //cache="true"
+          //cacheName="mrhouse"
           //floating="true"
 //          bubbleStyle={{ overflow: "visible", fontSize: "0.3rem" }}
           steps={[
@@ -492,25 +496,25 @@ class MrHouse extends React.Component {
             {
               id: "mrhouse1",
               message: `你有冇試過上網搵樓盤? 傳統網上搵樓盤嘅資訊一定過時同唔齊全，令你失去信心同預算。`,
-              delay: 5000,
+              delay: 3000,
               trigger: "mrhouse2"
             },
             {
               id: "mrhouse2",
-              message: `Mr.House 肯定最新最齊嘅樓盤資訊一定唔係互聯網！全部都係地產代理手上! `,
-              delay: 5000,
+              message:  `Mr.House 肯定最新最齊嘅樓盤資訊一定唔係互聯網！全部都係地產代理手上! `,
+              delay: 3000,
               trigger: "mrhouse3"
             },
             {
               id: "mrhouse3",
               message: `因此Mr.House 即時幫你廣傳你嘅需要比所有地產代理即時回覆`,
-              delay: 5000,
+              delay: 3000,
               trigger: "mrhouse4"
             },
             {
               id: "mrhouse4",
               message: `記住Mr.House 顯示嘅樓盤資訊係由全港唔同嘅地產代理即時提供，所以先可以一次個集齊最新最齊啱你心水嘅樓盤！`,
-              delay: 500,
+              delay: 2000,
               trigger: "mrhouse5"
             },
             {
@@ -579,7 +583,8 @@ class MrHouse extends React.Component {
               // on.FILLED
               id: "getBuildingUserInput",
               //component: <Key placeholder="96181448"/>,
-              component: <Chatpicker />,
+//              component: <Chatpicker />,
+              component: <Slick />,
               waitAction: true,
               trigger: "validaBuildingUserInput"
             },
