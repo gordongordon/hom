@@ -42,7 +42,7 @@ export default class Slick extends React.Component {
           afterChange={index => console.log('slide to', index)}
         >
         <div style={hProp} key={1}>
-        尋找樓盤: 
+        尋找樓盤: Double Cove
         <br />
         最少實用面積: 
         <br />
@@ -63,9 +63,9 @@ export default class Slick extends React.Component {
         <Button onClick={ () => this.triggetNext() }>call now</Button>
       </div>       
         <div style={hProp} key={2}>
-        尋找樓盤: 
+        尋找樓盤: City One
         <br />
-        最少實用面積: 
+        最少實用面積: 1690
         <br />
         付出預算上限: 
         <br />
@@ -84,9 +84,9 @@ export default class Slick extends React.Component {
         <Button onClick={ () => this.triggetNext() }>call now</Button>
         </div>       
       <div style={hProp} key={3}>
-      尋找樓盤: 
+      尋找樓盤: New Plaza
       <br />
-      最少實用面積: 
+      最少實用面積: 330
       <br />
       付出預算上限: 
       <br />
