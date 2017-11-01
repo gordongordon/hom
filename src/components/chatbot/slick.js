@@ -1,5 +1,7 @@
 import React from 'react';
 import { Carousel, WhiteSpace, WingBlank, Button } from 'antd-mobile';
+import { Generic } from 'react-simple-chatbot';
+import PropTypes from 'prop-types';
 
 export default class Slick extends React.Component {
   constructor( props ) {
@@ -35,77 +37,27 @@ export default class Slick extends React.Component {
         <Carousel
           className="my-carousel"
           autoplay={false}
-          infinite
-          selectedIndex={1}
-          swipeSpeed={35}
+          dots={true}
+          selectedIndex={0}
+          swipeSpeed={3}
           beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
           afterChange={index => console.log('slide to', index)}
         >
-        <div style={hProp} key={1}>
-        尋找樓盤: Double Cove
-        <br />
-        最少實用面積: 
-        <br />
-        付出預算上限: 
-        <br />
-        間隔:    
-        <br />
-        你會唔會養物: 
-        <br />
-        冇樓睇租左俾人會唔會買: 
-        <br />
-        姓名: 
-        <br />
-        聯絡手機: 
-        <br />
-        電郵: 
-        <br />
-        <Button onClick={ () => this.triggetNext() }>call now</Button>
-      </div>       
-        <div style={hProp} key={2}>
-        尋找樓盤: City One
-        <br />
-        最少實用面積: 1690
-        <br />
-        付出預算上限: 
-        <br />
-        間隔:    
-        <br />
-        你會唔會養物: 
-        <br />
-        冇樓睇租左俾人會唔會買: 
-        <br />
-        姓名: 
-        <br />
-        聯絡手機: 
-        <br />
-        電郵: 
-        <br />
-        <Button onClick={ () => this.triggetNext() }>call now</Button>
-        </div>       
-      <div style={hProp} key={3}>
-      尋找樓盤: New Plaza
-      <br />
-      最少實用面積: 330
-      <br />
-      付出預算上限: 
-      <br />
-      間隔:    
-      <br />
-      你會唔會養物: 
-      <br />
-      冇樓睇租左俾人會唔會買: 
-      <br />
-      姓名: 
-      <br />
-      聯絡手機: 
-      <br />
-      電郵: 
-      <br />
-      <Button onClick={ () => this.triggetNext() }>call now</Button>
-      </div>       
+        <Generic onClick={this.triggetNext} />
+        <Generic onClick={this.triggetNext} />
+        <Generic onClick={this.triggetNext} />
       </Carousel>
 
     );
   }
 }
+
+Slick.propTypes = {
+  steps: PropTypes.object,
+  triggerNextStep: PropTypes.func,
+};
+
+Slick.defaultProps = {
+  steps: undefined,
+  triggerNextStep: undefined,
+};

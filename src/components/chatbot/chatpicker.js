@@ -92,7 +92,6 @@ class Chatpicker extends Component {
     return third.label;
   };
 
-
   triggetNext() {
     const v = this.props.form.getFieldsValue();
     const region = v.districk[0];
@@ -138,5 +137,6 @@ Chatpicker.defaultProps = {
   steps: undefined,
   triggerNextStep: undefined,
 };
+
 //export default Chatpicker;
 export default createForm()(Chatpicker);

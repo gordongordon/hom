@@ -2,6 +2,7 @@
 import React from "react";
 import { ActionSheet, Button, Toast, Icon } from "antd-mobile";
 import PropTypes from "prop-types";
+import styled from 'styled-components';
 
 //import ChatBot from '../react-simple-chatbot/dist/react-simple-chatbot';
 import ChatBot from "react-simple-chatbot";
@@ -18,6 +19,7 @@ import Key from './key';
 
 import Slick from './slick';
 import RCarouse from './rcarousel';
+
 //import Generic from './chatbot-message-ui';
 
 
@@ -586,9 +588,9 @@ class MrHouse extends React.Component {
               // on.FILLED
               id: "getBuildingUserInput",
               //component: <Key placeholder="96181448"/>,
-//              component: <Chatpicker />,
-              //component: <Slick />,
-              component: <RCarouse />,
+              //component: <Chatpicker />,
+              component: <Slick />,
+              //component: <RCarouse />,
               //component: <Generic className="cumi Generic"/>,
 
               waitAction: true,
