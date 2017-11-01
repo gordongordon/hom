@@ -15,6 +15,7 @@
     "react/jsx-uses-vars": 2,
     "react/jsx-no-undef" : 2,
     "react/react-in-jsx-scope": 2,
+     "linebreak-style" : ["error", "windows"]
   },
   "plugins": [
     "react"

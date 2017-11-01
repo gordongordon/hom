@@ -17,6 +17,8 @@ import { Property } from "property";
 import Key from './key';
 
 import Slick from './slick';
+import RCarouse from './rcarousel';
+//import Generic from './chatbot-message-ui';
 
 
 // Green
@@ -585,7 +587,10 @@ class MrHouse extends React.Component {
               id: "getBuildingUserInput",
               //component: <Key placeholder="96181448"/>,
 //              component: <Chatpicker />,
-              component: <Slick />,
+              //component: <Slick />,
+              component: <RCarouse />,
+              //component: <Generic className="cumi Generic"/>,
+
               waitAction: true,
               trigger: "validaBuildingUserInput"
             },
