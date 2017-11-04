@@ -588,8 +588,8 @@ class MrHouse extends React.Component {
               // on.FILLED
               id: "getBuildingUserInput",
               //component: <Key placeholder="96181448"/>,
-              //component: <Chatpicker />,
-              component: <Slick />,
+              component: <Chatpicker />,
+              //component: <Slick />,
               //component: <RCarouse />,
               //component: <Generic className="cumi Generic"/>,
 
