@@ -231,7 +231,7 @@ export default class ListOfPropertysView extends React.Component {
               <Item
                 thumb="http://hair.losstreatment.com/icons/rent-up.svg"
                 arrow="horizontal"
-                onClick={() => MobxStore.router.goTo(views.matchBuy, { keyID })}
+                onClick={() => MobxStore.router.goTo(views.chatMatching, { keyID })}
                 multipleLine
                 extra={<Badge text={"回覆" + property.responsedPropertys.size} />}
               >

@@ -42,6 +42,7 @@ import ActionSheetExample from 'chatbot/actionSheetExample';
 // import TestListView from 'testListView'
 import FrontPageFilter from 'frontPageFilter';
 import MrHouse from 'chatbot/mrHouse';
+import ChatMatching from 'chatbot/chatMatching'
 
 import Loadable from 'react-loadable';
 //import Loading from  'loading'
@@ -152,8 +153,10 @@ var save = false;
 const views = {
   home: new Route({
     path: '/',
-//    component: <FrontPageView/>,
-    component: <MrHouse />,
+    component: <FrontPageView/>,
+
+    // component: <MrHouse />,
+    // component: <ChatMatching />,
     onEnter: (route, params, store, queryParams) => {
       MobxStore.app.setTitle( '好 .. Matching');
       // debugger
@@ -506,6 +509,19 @@ leaseAgentForm : new Route({
       MobxStore.app.previousView = route;
     }
   }),
+    // For Chat bot example
+    chatMatching : new Route({
+      path: '/chatMatching',
+      component: <ChatMatching />,
+      onEnter: (route, params, store, queryParams) => {
+        MobxStore.app.setTitle( 'CBUY_Matching');
+      },
+      beforeExit: (route, params) => {
+        console.log('exiting ListOfPRoperysView!');
+        console.log('params changed to', params);
+        MobxStore.app.previousView = route;
+      }
+    }),
   actionSheetExample : new Route({
     path: '/ActionSheetExample',
     component: <ActionSheetExample />,

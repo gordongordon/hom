@@ -9,7 +9,8 @@ import views from 'views';
 //import FrontPageDisplay from 'frontPageDisplay'
 //import {FrontPageTabBar} from 'frontPageTabBar'
 import {inject, observer} from 'mobx-react';
-import MrHouse from 'chatbot/mrHouse';
+// import MrHouse from 'chatbot/mrHouse';
+
 //import Generic from 'chatbot/chatbot-message-ui';
 
 
@@ -99,6 +100,9 @@ render ()  {
     <WhiteSpace />
     <WhiteSpace />
        <Button type="ghost" onClick={ () => goTo( views.actionSheetExample, store.app.params, store )}> actionSheet </Button>
+    <WhiteSpace />
+    <WhiteSpace />
+       <Button type="primary" onClick={ () => goTo( views.chatMatching, store.app.params, store )}> ChatMatching </Button>
     <WhiteSpace />
     <WhiteSpace />
        <Button type="primary" onClick={ () => goTo( views.mrHouse, store.app.params, store )}> Mr.House Chatbot </Button>

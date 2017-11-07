@@ -107,7 +107,7 @@ export class Propertyhk extends Property {
         const p = Propertyhk.deserialize(snap.val());
 
         request.set(snap.key, p);
-        console.log("propertyhk.child_added - request.size", request.size);
+        //console.log("propertyhk.child_added - request.size", request.size);
       });
 
     fb
@@ -127,7 +127,7 @@ export class Propertyhk extends Property {
         const p = Propertyhk.deserialize(snapshot.val());
         request.set(snapshot.key, p);
 
-        console.log("propertyhk.child_changed - request.size", request.size);
+        //console.log("propertyhk.child_changed - request.size", request.size);
       });
 
     fb
