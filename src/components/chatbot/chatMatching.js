@@ -505,289 +505,9 @@ class ChatMatching extends React.Component {
                 // component: <Generic className="cumi Generic"/>,
   
                 waitAction: true,
-                trigger: "welcome"
-            },
-            {
-              // welcome
-              id: "welcome",
-              message: "嘩，好消息！",
-              trigger: "welcome2" 
-            },
-            {
-              id: "welcome2",
-              message: "5分鐘前，我幫陳先生放租。結果，已經有5位地產👩🏻agents係3分鐘內回覆佢。👏",
-              trigger: "welcome3"
-
-            },
-            { id: "welcome3",
-              message: "你好，我係Mr.House！我最鍾意幫人分擔房屋嘅問題！今日我可以點樣幫你呢？（按以下options就OK)",
-              trigger: "welcomeOptions"
-            },
-            {
-              // on.OPTION1..n
-              id: "welcomeOptions",
-              options: [
-                { value: "mrhouse",
-                  label: "我想了解Mr.House 先讓我介紹Mr.House如何幫助你!",
-                  trigger: "mrhouse"
-                }, // Option1
-                { value: "buy", label: "我想買樓", trigger: "getSex" },
-                { value: "sale", label: "我想賣樓", trigger: "getSex" },
-                { value: "rent", label: "我想租屋", trigger: "getSex" },
-                { value: "lease", label: "我想放租", trigger: "getSex" }
-              ]
-            },
-            {
-              // mrhouse
-              id: "mrhouse",
-              message: " 好，而家等我好快咁同你講解下乜嘢係Mr.House",
-              trigger: "mrhouse1"
-            },
-            {
-              id: "mrhouse1",
-              message: `你有冇試過上網搵樓盤? 傳統網上搵樓盤嘅資訊一定過時同唔齊全，令你失去信心同預算。`,
-              delay: 3000,
-              trigger: "mrhouse2"
-            },
-            {
-              id: "mrhouse2",
-              message:  `Mr.House 肯定最新最齊嘅樓盤資訊一定唔係互聯網！全部都係地產代理手上! `,
-              delay: 3000,
-              trigger: "mrhouse3"
-            },
-            {
-              id: "mrhouse3",
-              message: `因此Mr.House 即時幫你廣傳你嘅需要比所有地產代理即時回覆`,
-              delay: 3000,
-              trigger: "mrhouse4"
-            },
-            {
-              id: "mrhouse4",
-              message: `記住Mr.House 顯示嘅樓盤資訊係由全港唔同嘅地產代理即時提供，所以先可以一次個集齊最新最齊啱你心水嘅樓盤！`,
-              delay: 2000,
-              trigger: "mrhouse5"
-            },
-            {
-              id: "mrhouse5",
-              message: "希望你了解多咗，你今日有咩需要呀？",
-              trigger: "mrhouseOptions"
-            },
-            {
-              //on.OPTION1 .. n
-              id: "mrhouseOptions",
-              options: [
-                { value: "buy", label: "我想 買樓", trigger: "getSex" },
-                { value: "sale", label: "我想 賣樓", trigger: "getSex" },
-                { value: "rent", label: "我想 租屋", trigger: "getSex" },
-                { value: "lease", label: "我想 放租", trigger: "getSex" },
-                { value: "stop", label: "stop", trigger: "stop" }
-              ]
-            },   
-            {
-              id: "getSex",
-              message: "{previousValue} 我應該稱呼你先生(Mr)/ 小姐(Ms)?",
-              trigger: "getSexUserInput"
-            },
-            {
-              id: "getSexUserInput",
-              options: [
-                { value: "先生", label: "先生(Mr)", trigger: "getLastName" },
-                { value: "小姐", label: "小姐(Miss)", trigger: "getLastName" }
-              ]
+                trigger: "getPhone"
             },
 
-            // Input Field
-            {
-              // getXXX
-              id: "getLastName",
-              message: " Ok, {previousValue} 明白。請問你貴姓？",
-              trigger: "getLastNameUserInput"
-              // MISSED " validation = false"
-            },
-            {
-              // on.FILLED
-              id: "getLastNameUserInput",
-              user: true,
-              inputType: 'text',
-              trigger: "getBuilding"
-            },
-           
-            // {
-            //  buy with on.NEXT
-            //  id: "buy",
-            //  message: "你準備找房子了嗎",
-            //  trigger: "getBuilding"
-            //  },
-
-            {
-              // getBuilding
-              id: "getBuilding",
-              message :  ({ previousValue, steps }) => {
-                return `${steps.getLastNameUserInput.value} ${steps.getSexUserInput.value} 好高興認識你呀☺  你暫時個心水樓盤喺邊度？`;
-                },
-              trigger: "getBuildingUserInput"
-              // MISSED " validation = false"
-            },
-
-
-            {
-              // on.FILLED
-              id: "getBuildingUserInput",
-              //component: <Key placeholder="96181448"/>,
-              //component: <Chatpicker />,
-              component: <Slick />,
-              //component: <RCarouse />,
-              //component: <Generic className="cumi Generic"/>,
-
-              waitAction: true,
-              trigger: "validaBuildingUserInput"
-            },
-            // valida chatbot input
-            {
-              //
-              id: "validaBuildingUserInput",
-              message: "你選擇左 「{previousValue}」!",
-              trigger: "validaBuildingBoolean"
-            },
-            {
-              //on.OPTION1 .. n
-              id: "validaBuildingBoolean",
-              options: [
-                { value: "true", label: "👍🏻係", trigger: "isBuyWithLease" },
-                {
-                  value: "false",
-                  label: "👎🏻唔係",
-                  trigger: "update-buildingUserInput"
-                }
-              ]
-            },
-            {
-              // update if previous ask no
-              id: "update-buildingUserInput",
-              update: "getBuildingUserInput",
-              trigger: "validaBuildingUserInput"
-            },
-
-            {
-              // isBuyWithLease
-              id: "isBuyWithLease",
-              message: "想問你! 冇樓睇租左俾人會唔會買? (即係買賣連租賃嘅意思係個樓盤已經簽咗一份租約俾人)",
-              trigger: "isBuyWithLeaseBoolean"
-            },
-            {
-              //on.OPTION1 .. n
-              id: "isBuyWithLeaseBoolean",
-              options: [
-                { value: "true", label: "唔會買", trigger: "getNetSizeMin" },
-                { value: "false", label: "會買", trigger: "getNetSizeMin" }
-              ]
-            },
-
-            {
-              // getNetSizeMin
-              id: "getNetSizeMin",
-              message: "你個心水樓盤最小要幾多實用面積（呎）?",
-              trigger: "getNetSizeMinUserInput"
-              // MISSED " validation = false"
-            },
-            {
-              // on.FILLED
-              id: "getNetSizeMinUserInput",
-//              user: true,
-              options: [
-                { value: "200", label: "200", trigger: "getPartition" },
-                { value: "300", label: "300", trigger: "getPartition" },
-                { value: "500", label: "500", trigger: "getPartition" },
-                { value: "700", label: "700", trigger: "getPartition" },
-                { value: "900", label: "900", trigger: "getPartition" },
-                { value: "1100", label: "1100", trigger: "getPartition" },
-                { value: "1300", label: "1300", trigger: "getPartition" },
-                { value: "1500", label: "1500", trigger: "getPartition" },
-                { value: "1700", label: "1700", trigger: "getPartition" },
-                { value: "2000", label: "2000+", trigger: "getPartition" },
-              ]
-              //trigger: "getPartition"
-            },
-
-            // Input Field
-            {
-              // getPartition
-              id: "getPartition",
-              message: "你想要咩間隔？ e.g. 1房,1廁,1廳",
-              trigger: "getNumOfRoom"
-              // MISSED " validation = false"
-            },
-//            {
- //            id: "getPartitionUserInput",
-  //           component: <PartitionPicker />,
-  //           waitAction: true,
-   //          trigger: "getNumOfRoom"
-    //        },
-            {
-              id: "getNumOfRoom",
-              options: [
-                { value: "0", label: "開放式", trigger: "getNumOfBathroom" },
-                { value: "1", label: "1房", trigger: "getNumOfBathroom" },
-                { value: "2", label: "2房", trigger: "getNumOfBathroom" },
-                { value: "3", label: "3房", trigger: "getNumOfBathroom" },
-                { value: "4", label: "4房", trigger: "getNumOfBathroom" },
-              ]
-            },
-            {
-              id: "getNumOfBathroom",
-              options: [
-                { value: "0", label: "0廁", trigger: "getNumOfLivingroom" },
-                { value: "1", label: "1廁", trigger: "getNumOfLivingroom" },
-                { value: "2", label: "2廁", trigger: "getNumOfLivingroom" },
-                { value: "3", label: "3廁", trigger: "getNumOfLivingroom" },
-                { value: "4", label: "4廁", trigger: "getNumOfLivingroom" },
-                { value: "10", label: "共用廁", trigger: "getNumOfLivingroom" },
-              ]
-            },
-            {
-              id: "getNumOfLivingroom",
-              options: [
-                { value: "0", label: "0廳", trigger: "isPetAllowed" },
-                { value: "1", label: "1廳", trigger: "isPetAllowed" },
-                { value: "2", label: "2廳", trigger: "isPetAllowed" },
-                { value: "3", label: "3廳", trigger: "isPetAllowed" },
-                { value: "4", label: "4廳", trigger: "isPetAllowed" },
-                { value: "10", label: "共用廳", trigger: "isPetAllowed" },
-              ]
-            },
-
-            // toggle
-            {
-              //
-              id: "isPetAllowed",
-              message: "你會唔會養😺😺🐶🐶呢？",
-              trigger: "isPetAllowedBoolean"
-            },
-            {
-              //on.OPTION1 .. n
-              id: "isPetAllowedBoolean",
-              options: [
-                { value: "false", label: "絕對不會", trigger: "getBuyBudgetMax" },
-                { value: "true", label: "一定/可能啦", trigger: "getBuyBudgetMax" }
-              ]
-            },
-
-            // Input Field
-            {
-              // getXXX
-              id: "getBuyBudgetMax",
-              message: "付出預算上限/萬元💵? e.g. 300",
-              trigger: "getBuyBudgetMaxInput"
-              // MISSED " validation = false"
-            },
-            {
-              // on.FILLED
-              id: "getBuyBudgetMaxInput",
-              user: true,
-              inputType: 'number',
-              pattern : "[0-9]*",
-              trigger: "getEmail"
-            },
 
             // Input Field
             {
@@ -833,8 +553,39 @@ class ChatMatching extends React.Component {
               },
               inputType: 'number',
               pattern : "[0-9]*",
-              trigger: "review"
+              trigger: "validaPhoneUserInput"
             },
+
+
+            // valida chatbot input
+            {
+              //
+              id: "validaPhoneUserInput",
+              message: "你選擇左 「{previousValue}」!",
+              trigger: "validaBuildingBoolean"
+            },
+            {
+              //on.OPTION1 .. n
+              id: "validaBuildingBoolean",
+              options: [
+                { value: "true", label: "👍🏻係", trigger: "CBUY_Matching" },
+                {
+                  value: "false",
+                  label: "👎🏻唔係",
+                  trigger: "update-PhoneUserInput"
+                }
+              ]
+            },
+            {
+              // update if previous ask no
+              id: "update-PhoneUserInput",
+              update: "getPhoneUserInput",
+              trigger: "validaPhoneUserInput"
+            },
+     
+
+
+
             {
               id: "review",
               message: "請check一check以下你輸入啲資料係咪正確：",

@@ -39,7 +39,7 @@ module.exports = {
     inline: true,
     host: "0.0.0.0",
     compress: true,
-    port: 8080,
+    port: 9090,
   },
 //   output: {
 //     // path: path.join(__dirname, 'public'),

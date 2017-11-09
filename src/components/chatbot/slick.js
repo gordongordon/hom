@@ -23,6 +23,7 @@ export default class Slick extends React.Component {
     this.display = this.display.bind(this);
   }
 
+
   componentDidMount() {
     // simulate img loading
     setTimeout(() => {
@@ -40,6 +41,11 @@ export default class Slick extends React.Component {
 
   display( propertys, filter, inDirectCall ) {
     const list = propertys;
+    
+//    const p = this.props.property;
+//    const f = this.props.filter;
+    //const status = p.getStatus(f.fbid).get();
+
     // const status = property.getStatus(filter.fbid).get();
     // const fStatus = filter.getStatus(property.fbid).get();
 
@@ -54,8 +60,12 @@ export default class Slick extends React.Component {
     //           <SingleSalePropertyForMatchView property={property} key={keyID} timeEnter={timeEnter}/>
     //           <SingleSaleAgentPropertyForRespondView property={property} key={keyID} timeEnter={timeEnter}/>
 
+    var count = 0;
     list.forEach((property, keyID) => {
-      let status = inDirectCall.get( keyID);
+      //let status = inDirectCall.get( keyID);
+//      let status = property.getStatus(filter.fbid).get();      
+      const fStatus = filter.getStatus(property.fbid).get();
+      const status = property.getStatus(filter.fbid).get();
       // let status = this.props.inDirectCall.get(keyID);
       // console.log( 'this.props.store.router.params.keyID',this.props.store.router.params.keyID )
       // let showPhone = false;
@@ -77,11 +87,34 @@ export default class Slick extends React.Component {
       //   />
       // );
 
+      if ( count == 0 ) {
       element.push(
         <Generic key={keyID}
+          status={status}
+          filter={filter}
           property={property}
+          fStatus={fStatus}
+          onClick={this.triggetNext}
+          isFirst={true}
+          isLast={false}
         />
       );      
+    } else 
+    {
+      element.push(
+        <Generic key={keyID}
+          status={status}
+          filter={filter}
+          property={property}
+          fStatus={fStatus}
+          onClick={this.triggetNext}
+          isFirst={false}
+          isLast={false}
+          
+        />
+      );      
+      count++;
+    }
     });
 
   return (element);
@@ -89,8 +122,7 @@ export default class Slick extends React.Component {
 
   render() {
     const hProp = this.state.initialHeight ? { height: this.state.initialHeight } : {};
-    const keyID = this.props.keyID; 
-
+    const keyID = this.props.keyID;  
 
     //filter={property} inDirectCall={property.inDirectCall} propertys={property.matchedPropertys}
 
