@@ -35,6 +35,9 @@ const Brief = Item.Brief;
 const isIPhone = new RegExp("\\biPhone\\b|\\biPod\\b", "i").test(
   window.navigator.userAgent
 );
+
+
+
 let wrapProps;
 if (isIPhone) {
   wrapProps = {
@@ -84,6 +87,7 @@ class SingleSaleUserMatchView extends React.Component {
     const f = this.props.filter;
     const status = p.getStatus(f.fbid).get();
     const fStatus = f.getStatus(p.fbid).get();
+    
     var BUTTONS;
 
     if (fStatus.isShowPhone) {

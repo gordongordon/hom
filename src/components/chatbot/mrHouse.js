@@ -208,8 +208,13 @@ Review.defaultProps = {
 };
 
 class MrHouse extends React.Component {
+
+
   constructor(props) {
     super(props);
+
+    displayName = "MrHouse";
+    
     this.state = {
       clicked: "none",
       clicked1: "none",

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Carousel, WhiteSpace, WingBlank, Button } from 'antd-mobile';
+import { Modal, Toast , Carousel, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 //import { Generic } from 'react-simple-chatbot';
 import PropTypes from 'prop-types';
 import {propertys} from 'userModelView';
@@ -8,6 +8,8 @@ import { SingleSaleUserMatchViewWrapper } from "../singlePropertyView/singleSale
 import {observer } from "mobx-react";
 import {Generic} from "react-simple-chatbot";
 
+
+const prompt = Modal.prompt;
 
 @observer
 export default class Slick extends React.Component {
@@ -20,6 +22,8 @@ export default class Slick extends React.Component {
       trigger: false
     };
     this.triggetNext = this.triggetNext.bind(this);
+    this.onSharePhone = this.onSharePhone.bind(this);
+    this.onCall = this.onCall.bind(this);
     this.display = this.display.bind(this);
   }
 
@@ -37,6 +41,32 @@ export default class Slick extends React.Component {
     this.setState({ trigger: true }, () => {
       this.props.triggerNextStep( { value: 'building', label : 'matching' });
     });
+  }
+
+  onSharePhone() {
+    return <Button onClick={() => prompt('請輸入您的電話號碼', '這個號碼只會顯示給這個用戶',
+    [
+      { text: '取消' },
+      {
+        text: '提交',
+        onPress: value => new Promise((resolve) => {
+          Toast.info('onPress promise', 1);
+          setTimeout(() => {
+            resolve();
+            console.log(`value:${value}`);
+          }, 1000);
+        }),
+      },
+    ], 'default', null, ['96181448'])}
+  >留電話給對方</Button>
+  }
+
+  onCall(phone) {
+////
+      //window.location.href = "tel://" + status.contactPhone;
+      window.location.href = "tel://" + phone;
+      console.log( `onCall(${phone});`);
+   // }
   }
 
   display( propertys, filter, inDirectCall ) {
@@ -94,27 +124,33 @@ export default class Slick extends React.Component {
           filter={filter}
           property={property}
           fStatus={fStatus}
-          onClick={this.triggetNext}
+          onCall={this.onCall}
+          onTriggetNext={this.triggetNext}
+          onSharePhone={this.onSharePhone}
           isFirst={true}
           isLast={false}
         />
       );      
     } else 
     {
+  
       element.push(
         <Generic key={keyID}
           status={status}
           filter={filter}
           property={property}
           fStatus={fStatus}
-          onClick={this.triggetNext}
+          onCall={this.onCall}
+          onTriggetNext={this.triggetNext}
+          onSharePhone={this.onSharePhone}
           isFirst={false}
           isLast={false}
           
         />
       );      
-      count++;
+
     }
+    count++;
     });
 
   return (element);

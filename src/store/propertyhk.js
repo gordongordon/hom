@@ -625,6 +625,8 @@ export class Propertyhk extends Property {
   /**
    * fbid is agent id
    * relatedFbid is buyer id
+   * showPhone is bool of show phone
+   * asssign a reference to fbid with relatedFbid, so that can be indicated a phone from other user has grant. 
    */
   @action
   setBuyInDirectCall = (fbid, relatedFbid, showPhone) => {
