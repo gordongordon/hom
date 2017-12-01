@@ -3,15 +3,15 @@ import {  NoticeBar,List , Card, Stepper, Icon, Picker, SwipeAction, DatePicker,
 import { createForm } from 'rc-form';
 // import moment from 'moment';
 // import 'moment/locale/zh-cn';
-import {propertys} from 'userModelView'
-import {agentModel} from 'agentModelView'
+import {propertys} from 'userModelView';
+import {agentModel} from 'agentModelView';
 //import {SingleLeasePropertyForMatchViewWrapper} from 'singleLeasePropertyForMatchView'
 //import {SingleRentPropertyForMatchViewWrapper} from 'singleRentPropertyForMatchView'
-import {ControlBuyViewWrapper} from '../control/controlBuyView'
+import {ControlBuyViewWrapper} from '../control/controlBuyView';
 
 //import {ListOfMatchSalePropertys} from '../listOfMatch/listOfMatchSalePropertys'
-import {ListOfMatchOldSalePropertys} from '../listOfMatch/listOfMatchOldSalePropertys'
-import ListOfMatchAgentSalePropertys from '../listOfMatch/listOfMatchAgentSalePropertys'
+import {ListOfMatchOldSalePropertys} from '../listOfMatch/listOfMatchOldSalePropertys';
+import ListOfMatchAgentSalePropertys from '../listOfMatch/listOfMatchAgentSalePropertys';
 import { observer } from 'mobx-react';
 import MobxStore from 'mobxStore';
 //import FormSaleChatbot from '../chatbot/formSaleChatbot';

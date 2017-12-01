@@ -18,6 +18,7 @@ import { Property } from "property";
 import Key from './key';
 
 import Slick from './slick';
+import SlickAgentSaleProperty from './slickAgentSaleProperty';
 import RCarouse from './rcarousel';
 //import Generic from './chatbot-message-ui';
 
@@ -500,7 +501,8 @@ class ChatMatching extends React.Component {
                 id: "CBUY_Matching",
                 //component: <Key placeholder="96181448"/>,
                 // component: <Chatpicker />,
-                component: <Slick keyID={keyID}/>,
+//                component: <Slick keyID={keyID}/>,
+                component: <SlickAgentSaleProperty keyID={keyID}/>,
                 //component: <RCarouse />,
                 // component: <Generic className="cumi Generic"/>,
   

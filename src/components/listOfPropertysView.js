@@ -244,7 +244,7 @@ export default class ListOfPropertysView extends React.Component {
             </SwipeAction>
           </div>
         );
-      } // end of buy
+      } // end of buy, views.chatMatching
 
       if (property.typeTo === "sale") {
         element.push(
