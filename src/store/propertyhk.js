@@ -464,7 +464,10 @@ export class Propertyhk extends Property {
         const p = Propertyhk.deserialize(snap.val());
         //p.realTime = moment().format('YYYY-MM-DD HH:mm:ss');
 
-        console.log(`this.uid ${that.uid}, p.uid ${p.uid}`);
+        /**
+         * hide it first
+         */
+        //console.log(`this.uid ${that.uid}, p.uid ${p.uid}`);
 
         // Testing set Matchid
         // set up the user filter, as matchID, so that
@@ -479,10 +482,13 @@ export class Propertyhk extends Property {
           //           console.log( `this.uid ${that.uid}, p.uid ${p.uid}`)
         }
 
-        console.log(
-          "propertyhk.child_added - matchProperty.size",
-          that.matchedPropertys.size
-        );
+        /**
+         * Hide it first
+         */
+        // console.log(
+        //   "propertyhk.child_added - matchProperty.size",
+        //   that.matchedPropertys.size
+        // );
         //         }
       });
 

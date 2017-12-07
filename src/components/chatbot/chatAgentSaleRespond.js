@@ -494,7 +494,7 @@ class ChatAgentSaleRespond extends React.Component {
             },
             {
                 id: "5",
-                message: '佢哋輸入中…',
+                message: '佢哋輸入中 ...',
                 trigger: 'CBUY_Matching'
             },
             {

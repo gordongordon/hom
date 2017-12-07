@@ -72,28 +72,28 @@ export default class SlickAgentSaleProperty extends React.Component {
   display( propertys, filter, inDirectCall ) {
     const list = propertys;
     
-//    const p = this.props.property;
-//    const f = this.props.filter;
-    //const status = p.getStatus(f.fbid).get();
+    // const p = this.props.property; 
+    // const f = this.props.filter;
+    // const status = p.getStatus(f.fbid).get();
 
     // const status = property.getStatus(filter.fbid).get();
     // const fStatus = filter.getStatus(property.fbid).get();
 
     // Catched empty list, don't do anything!
     if (list.size === 0) {
-      return null;
+      return <div>Waiting for respond ... </div>;
     }
 
     //const timeEnter = this.props.timeEnter;
-    // Try to show most uptoday item only
+    //  Try to show most uptoday item only
     var element = [];
-    //           <SingleSalePropertyForMatchView property={property} key={keyID} timeEnter={timeEnter}/>
-    //           <SingleSaleAgentPropertyForRespondView property={property} key={keyID} timeEnter={timeEnter}/>
+    //  <SingleSalePropertyForMatchView property={property} key={keyID} timeEnter={timeEnter}/>
+    //  <SingleSaleAgentPropertyForRespondView property={property} key={keyID} timeEnter={timeEnter}/>
 
     var count = 0;
     list.forEach((property, keyID) => {
-      //let status = inDirectCall.get( keyID);
-//      let status = property.getStatus(filter.fbid).get();      
+      // let status = inDirectCall.get( keyID);
+      // let status = property.getStatus(filter.fbid).get();      
       const fStatus = filter.getStatus(property.fbid).get();
       const status = property.getStatus(filter.fbid).get();
       // let status = this.props.inDirectCall.get(keyID);
@@ -173,6 +173,7 @@ export default class SlickAgentSaleProperty extends React.Component {
     const localpropertys = property.responsedPropertys;
     const filter = property;
     const inDirectCall = property.inDirectCall;    
+    
     // Sell Property ID
     //const property = propertys.propertys.get( '-Kte6f8sOgZ0gsVWwv2k' );
     // return (

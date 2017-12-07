@@ -216,6 +216,7 @@ class ChatMatching extends React.Component {
       clicked2: "none"
     };
     //this.addPropertyForBuy = this.addPropertyForBuy.bind(this);
+    this.handleEnd.bind(this);
   }
 
   showActionSheet = () => {
@@ -354,6 +355,13 @@ class ChatMatching extends React.Component {
   //   return id;
   // }
 
+
+  /**
+   * Handle End of Message, 
+   * We use for redirect to matching bot
+   * @steps
+   * @values
+   */
   handleEnd = ({ steps, values }) => {
     var p = new Property();
     var id;
@@ -431,8 +439,9 @@ class ChatMatching extends React.Component {
 
     // const id2 = Fb.propertys.push().key;
     // Fb.propertys.update( {[id2]:  p.serialize() });
+//    MobxStore.router.goTo(views.matchBuy, { keyID: id });
     MobxStore.router.goTo(views.matchBuy, { keyID: id });
-
+    
     // console.log(steps);
     // console.log(values);
     // alert(`Chat handleEnd callback! Number: ${values[0]}`);
@@ -443,6 +452,13 @@ class ChatMatching extends React.Component {
     // this.addPropertyForBuy( steps );
     //MobxStore.router.goTo( views.matchBuy, { keyID } )
   };
+
+  // handleEnd({ steps, values }) {
+  //   // console.log(steps);
+  //   // console.log(values);
+  //   alert(`Chat handleEnd callback! Number: ${values[0]}`);
+  // }
+
 
   render() {
     const keyID = MobxStore.router.params.keyID;
@@ -456,6 +472,7 @@ class ChatMatching extends React.Component {
           headerTitle="Mr.House"
           hideSubmitButton="false"
           // hideBotAvatar="false"
+          handleEnd={this.handleEnd}
           placeholder="請輸入這裏"
           handleEnd={this.handleEnd}
           //cache="true"
