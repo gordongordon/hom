@@ -123,7 +123,7 @@ export default class ListOfPropertysView extends React.Component {
                 thumb="http://hair.losstreatment.com/icons/building-down.svg"
                 arrow="horizontal"
                 onClick={() =>
-                  MobxStore.router.goTo(views.matchLease, { keyID })}
+                  MobxStore.router.goTo(views.chatAgentRentRespond, { keyID })}
                 multipleLine
                 extra={<Badge text={"回覆" + property.responsedPropertys.size} />}
               >
@@ -136,7 +136,7 @@ export default class ListOfPropertysView extends React.Component {
             </SwipeAction>
           </div>
         );
-      } // end of lease
+      } // end of lease //  MobxStore.router.goTo(views.matchLease, { keyID })}
 
       if (property.typeTo === "rent") {
         element.push(
@@ -178,7 +178,7 @@ export default class ListOfPropertysView extends React.Component {
                 thumb="http://hair.losstreatment.com/icons/rent-up.svg"
                 arrow="horizontal"
                 onClick={() =>
-                  MobxStore.router.goTo(views.matchRent, { keyID })}
+                  MobxStore.router.goTo(views.chatAgentLeaseRespond, { keyID })}
                 multipleLine
                 extra={<Badge text={"回覆" + property.responsedPropertys.size} />}
               >
@@ -191,7 +191,8 @@ export default class ListOfPropertysView extends React.Component {
             </SwipeAction>
           </div>
         );
-      } // end of rent
+      } // end of rent //                   MobxStore.router.goTo(views.matchRent, { keyID })}
+      
       if (property.typeTo === "buy") {
         element.push(
           <div key={keyID}>
@@ -231,7 +232,7 @@ export default class ListOfPropertysView extends React.Component {
               <Item
                 thumb="http://hair.losstreatment.com/icons/rent-up.svg"
                 arrow="horizontal"
-                onClick={() => MobxStore.router.goTo(views.chatMatching, { keyID })}
+                onClick={() => MobxStore.router.goTo(views.chatAgentSaleRespond, { keyID })}
                 multipleLine
                 extra={<Badge text={"回覆" + property.responsedPropertys.size} />}
               >
@@ -286,7 +287,7 @@ export default class ListOfPropertysView extends React.Component {
                 thumb="http://hair.losstreatment.com/icons/rent.svg"
                 arrow="horizontal"
                 onClick={() =>
-                  MobxStore.router.goTo(views.matchSale, { keyID })}
+                  MobxStore.router.goTo(views.chatAgentBuyRespond, { keyID })}
                 multipleLine
                 extra={<Badge text={"回覆" + property.responsedPropertys.size} />}
               >
@@ -299,7 +300,8 @@ export default class ListOfPropertysView extends React.Component {
             </SwipeAction>
           </div>
         );
-      } // end of sale
+      } // end of sale //                   MobxStore.router.goTo(views.matchSale, { keyID })}
+      
     });
     return <div>{element.reverse()}</div>;
   };

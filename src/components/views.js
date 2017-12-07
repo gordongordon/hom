@@ -42,7 +42,13 @@ import ActionSheetExample from 'chatbot/actionSheetExample';
 // import TestListView from 'testListView'
 import FrontPageFilter from 'frontPageFilter';
 import MrHouse from 'chatbot/mrHouse';
-import ChatMatching from 'chatbot/chatMatching'
+import ChatMatching from 'chatbot/chatMatching';
+import ChatAgentBuyRespond from 'chatbot/chatAgentBuyRespond';
+import ChatAgentSaleRespond from 'chatbot/chatAgentSaleRespond';
+import ChatAgentRentRespond from 'chatbot/chatAgentRentRespond';
+import ChatAgentLeaseRespond from 'chatbot/chatAgentLeaseRespond';
+import BuyAgentBot from 'chatbot/buyAgentBot';
+
 
 import Loadable from 'react-loadable';
 //import Loading from  'loading'
@@ -506,11 +512,11 @@ leaseAgentForm : new Route({
     beforeExit: (route, params) => {
       console.log('exiting ListOfPRoperysView!');
       console.log('params changed to', params);
-      MobxStore.app.previousView = route;
+      MobxStore.app.pre1viousView = route;
     }
   }),
-    // For Chat bot example
-    chatMatching : new Route({
+  // For Chat bot example
+  chatMatching : new Route({
       path: '/chatMatching',
       component: <ChatMatching />,
       onEnter: (route, params, store, queryParams) => {
@@ -521,8 +527,60 @@ leaseAgentForm : new Route({
         console.log('params changed to', params);
         MobxStore.app.previousView = route;
       }
-    }),
-  actionSheetExample : new Route({
+  }),
+  // For Chat bot example
+  chatAgentBuyRespond : new Route({
+    path: '/chatAgentBuyRespond',
+    component: <ChatAgentBuyRespond />,
+    onEnter: (route, params, store, queryParams) => {
+      MobxStore.app.setTitle( 'CBUY_Matching');
+    },
+    beforeExit: (route, params) => {
+      console.log('exiting ListOfPRoperysView!');
+      console.log('params changed to', params);
+      MobxStore.app.previousView = route;
+    }
+}),
+  // For Chat bot example
+chatAgentSaleRespond : new Route({
+    path: '/chatAgentSaleRespond',
+    component: <ChatAgentSaleRespond />,
+    onEnter: (route, params, store, queryParams) => {
+      MobxStore.app.setTitle( 'CSALE_Matching');
+    },
+    beforeExit: (route, params) => {
+      console.log('exiting ListOfPRoperysView!');
+      console.log('params changed to', params);
+      MobxStore.app.previousView = route;
+    }
+}),
+  // For Chat bot example
+  chatAgentRentRespond : new Route({
+    path: '/chatAgentRentRespond',
+    component: <ChatAgentRentRespond />,
+    onEnter: (route, params, store, queryParams) => {
+      MobxStore.app.setTitle( 'CSALE_Matching');
+    },
+    beforeExit: (route, params) => {
+      console.log('exiting ListOfPRoperysView!');
+      console.log('params changed to', params);
+      MobxStore.app.previousView = route;
+    }
+}),
+  // For Chat bot example
+  chatAgentLeaseRespond : new Route({
+    path: '/chatAgentLeaseRespond',
+    component: <ChatAgentLeaseRespond />,
+    onEnter: (route, params, store, queryParams) => {
+      MobxStore.app.setTitle( 'CSALE_Matching');
+    },
+    beforeExit: (route, params) => {
+      console.log('exiting ListOfPRoperysView!');
+      console.log('params changed to', params);
+      MobxStore.app.previousView = route;
+    }
+}),
+actionSheetExample : new Route({
     path: '/ActionSheetExample',
     component: <ActionSheetExample />,
     onEnter: (route, params, store, queryParams) => {
