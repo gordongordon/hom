@@ -6,6 +6,12 @@ public/*.hot*
 public/*.woff
 public/*.woff2
 public/*.ttf
+public/*.map
+public/*.eot
+react-simple-chat/node_modules
+singleBundo.js.zip
+singleBundo.js.html
 coverage
 npm-debug.log
 .DS_Store
+
