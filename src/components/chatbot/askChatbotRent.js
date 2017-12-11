@@ -537,7 +537,7 @@ class AskChatbotRent extends React.Component {
         //on.OPTION1 .. n
         id: "validaBuildingBoolean",
         options: [
-          { value: "true", label: "👍🏻係", trigger: "isBuyWithLease" },
+          { value: "true", label: "👍🏻係", trigger: "getNetSizeMin" },
           {
             value: "false",
             label: "👎🏻唔係",
@@ -551,22 +551,6 @@ class AskChatbotRent extends React.Component {
         update: "getBuildingUserInput",
         trigger: "validaBuildingUserInput"
       },
-
-      {
-        // isBuyWithLease
-        id: "isBuyWithLease",
-        message: "想問你! 冇樓睇租左俾人會唔會買? (即係買賣連租賃嘅意思係個樓盤已經簽咗一份租約俾人)",
-        trigger: "isBuyWithLeaseBoolean"
-      },
-      {
-        //on.OPTION1 .. n
-        id: "isBuyWithLeaseBoolean",
-        options: [
-          { value: "true", label: "唔會買", trigger: "getNetSizeMin" },
-          { value: "false", label: "會買", trigger: "getNetSizeMin" }
-        ]
-      },
-
       {
         // getNetSizeMin
         id: "getNetSizeMin",
@@ -579,20 +563,39 @@ class AskChatbotRent extends React.Component {
         id: "getNetSizeMinUserInput",
 //              user: true,
         options: [
-          { value: "200", label: "200", trigger: "getPartition" },
-          { value: "300", label: "300", trigger: "getPartition" },
-          { value: "500", label: "500", trigger: "getPartition" },
-          { value: "700", label: "700", trigger: "getPartition" },
-          { value: "900", label: "900", trigger: "getPartition" },
-          { value: "1100", label: "1100", trigger: "getPartition" },
-          { value: "1300", label: "1300", trigger: "getPartition" },
-          { value: "1500", label: "1500", trigger: "getPartition" },
-          { value: "1700", label: "1700", trigger: "getPartition" },
-          { value: "2000", label: "2000+", trigger: "getPartition" },
+          { value: "200", label: "200", trigger: "getNumOfPeopleLiving" },
+          { value: "300", label: "300", trigger: "getNumOfPeopleLiving" },
+          { value: "500", label: "500", trigger: "getNumOfPeopleLiving" },
+          { value: "700", label: "700", trigger: "getNumOfPeopleLiving" },
+          { value: "900", label: "900", trigger: "getNumOfPeopleLiving" },
+          { value: "1100", label: "1100", trigger: "getNumOfPeopleLiving" },
+          { value: "1300", label: "1300", trigger: "getNumOfPeopleLiving" },
+          { value: "1500", label: "1500", trigger: "getNumOfPeopleLiving" },
+          { value: "1700", label: "1700", trigger: "getNumOfPeopleLiving" },
+          { value: "2000", label: "2000+", trigger: "getNumOfPeopleLiving" },
         ]
         //trigger: "getPartition"
       },
-
+      {
+        id: "getNumOfPeopleLiving",
+        message : "個單位會有幾多人同你住？",
+        trigger: "getNumOfPeopleLivingInput"
+      },
+      {
+        // on.FILLED
+        id: "getNumOfPeopleLivingInput",
+//              user: true,
+        options: [
+          { value: "1", label: "1人", trigger: "getPartition" },
+          { value: "2", label: "2人", trigger: "getPartition" },
+          { value: "3", label: "3人", trigger: "getPartition" },
+          { value: "4", label: "4人", trigger: "getPartition" },
+          { value: "5", label: "5人", trigger: "getPartition" },
+          { value: "6", label: "6人", trigger: "getPartition" },
+        ]
+        //trigger: "getPartition"
+      },
+      
       // Input Field
       {
         // getPartition
@@ -651,28 +654,89 @@ class AskChatbotRent extends React.Component {
         //on.OPTION1 .. n
         id: "isPetAllowedBoolean",
         options: [
-          { value: "false", label: "絕對不會", trigger: "getBuyBudgetMax" },
-          { value: "true", label: "一定/可能啦", trigger: "getBuyBudgetMax" }
+          { value: "false", label: "絕對不會", trigger: "hasHomeHardware" },
+          { value: "true", label: "一定/可能啦", trigger: "hasHomeHardware" }
+        ]
+      },
+      // toggle
+      {
+        //
+        id: "hasHomeHardware",
+        message: "需唔需要傢俬？",
+        trigger: "hasHomeHardwareBoolean"
+      },
+      {
+        //on.OPTION1 .. n
+        id: "hasHomeHardwareBoolean",
+        options: [
+          { value: "false" , label: "唔需要", trigger: "getRentBudgetMax" }, 
+          { value: "true" , label: "一定要", trigger: "getRentBudgetMax" }
         ]
       },
 
       // Input Field
       {
         // getXXX
-        id: "getBuyBudgetMax",
-        message: "付出預算上限/萬元💵? e.g. 300",
-        trigger: "getBuyBudgetMaxInput"
+        id: "getRentBudgetMax",
+        message: "你嘅租金預算係幾多（元）💵? e.g. 8000",
+        trigger: "getRentBudgetMaxInput"
         // MISSED " validation = false"
       },
       {
         // on.FILLED
-        id: "getBuyBudgetMaxInput",
+        id: "getRentBudgetMaxInput",
         user: true,
         inputType: 'number',
         pattern : "[0-9]*",
-        trigger: "getEmail"
+        trigger: "getLeasingPeriod"
       },
-
+      {
+         id: "getLeasingPeriod",
+         message : "你打算租幾耐 (月)？",
+         trigger: "getLeasingPeriodInput"
+      },
+      {
+        id: "getLeasingPeriodInput",
+        options: [
+          { value: "12", label: "12月", trigger: "getJobNature" },
+          { value: "24", label: "24月", trigger: "getJobNature" },
+          { value: "2",  label:  "2月", trigger: "getJobNature" },
+          { value: "4",  label:  "4月", trigger: "getJobNature" },
+          { value: "6",  label:  "6月", trigger: "getJobNature" },
+        ]
+      },
+      {
+        id: "getJobNature",
+        message : "為咗業主可以了解你多啲, 加唔介意話我知你嘅職業？（想保守私隱，可以填寫others)？",
+        trigger: "getJobNatureInput"
+     },
+     {
+       id: "getJobNatureInput",
+       options: [
+         { value: "A", label: "Job A", trigger: "getIncome" },
+         { value: "B", label: "Job B", trigger: "getIncome" },
+         { value: "C",  label:  "Job C", trigger: "getIncome" },
+         { value: "D",  label:  "Job D", trigger: "getIncome" },
+       ]
+     },
+     {
+       id: "getIncome", 
+       message : "你嘅收入範圍係幾多？",
+       trigger: "getIncomeInput"
+     },
+     {
+      id: "getIncomeInput",
+      options: [
+        { value: "10", label: "under 10K", trigger: "getEmail" },
+        { value: "15", label:   "11k~15k", trigger: "getEmail" },
+        { value: "20",  label:  "16k~20k", trigger: "getEmail" },
+        { value: "25",  label:  "21k~25k", trigger: "getEmail" },
+        { value: "30",  label:  "26k~30k", trigger: "getEmail" },
+        { value: "35",  label:  "31k~35k", trigger: "getEmail" },
+        { value: "40",  label:     "36k+", trigger: "getEmail" },
+      ]
+    },
+    
       // Input Field
       {
         // getXXX
@@ -744,7 +808,7 @@ class AskChatbotRent extends React.Component {
       },
       {
         id: "update-yes",
-        message: "你要更改邊個內容？？",
+        message: "你要更改邊個內容？",
         trigger: "update-fields"
       },
       {
@@ -771,6 +835,11 @@ class AskChatbotRent extends React.Component {
             trigger: "update-getPartitionUserInput"
           },
           {
+            value: "hasHardwareBoolean",
+            label: "需唔需要傢俬",
+            trigger: "update-hasHardwareBoolean"
+          },
+          {
             value: "isPetAllowedBoolean",
             label: "可養寵物",
             trigger: "update-isPetAllowedBoolean"
@@ -780,6 +849,27 @@ class AskChatbotRent extends React.Component {
             label: "賣買連租賃",
             trigger: "update-isBuyWithLeaseBoolean"
           },
+          {
+            value: "getLeasingPeriodInput",
+            label: " 你打算租幾耐 (月)",
+            trigger: "update-getLeasingPeriodInput"
+          },
+          {
+            value: "getJobNatureInput",
+            label: "職業",
+            trigger: "update-getJobNatureInput"
+          },
+          {
+            value: "getNumOfPeopleLivingInput",
+            label: "職業",
+            trigger: "update-getNumOfPeopleLivingInput"
+          },
+          {
+            value: "getIncomeInput",
+            label: "收入範圍",
+            trigger: "update-getIncomeInput"
+          },
+
           {
             value: "getBuyBudgetMax",
             label: "預算上限",
@@ -826,6 +916,34 @@ class AskChatbotRent extends React.Component {
       // Update review
       {
         // update if previous ask no
+        id: "update-hasHardwareBoolean",
+        update: "hasHardwareBoolean",
+        trigger: "review"
+      },
+      // Update review
+      {
+        // update if previous ask no
+        id: "update-getIncomeInput",
+        update: "getIncomeInput",
+        trigger: "review"
+      },
+      // Update review
+      {
+        // update if previous ask no
+        id: "update-getJobNatureInput",
+        update: "getJobNatureInput",
+        trigger: "review"
+      },
+      // Update review
+      {
+        // update if previous ask no
+        id: "update-getLeasingPeriodInput",
+        update: "getLeasingPeriodInput",
+        trigger: "review"
+      },
+      // Update review
+      {
+        // update if previous ask no
         id: "update-isPetAllowedBoolean",
         update: "isPetAllowedBoolean",
         trigger: "review"
@@ -835,6 +953,13 @@ class AskChatbotRent extends React.Component {
         // update if previous ask no
         id: "update-isBuyWithLeaseBoolean",
         update: "isBuyWIthLeaseBoolean",
+        trigger: "review"
+      },
+      // Update review
+      {
+        // update if previous ask no
+        id: "update-getNumOfPeopleLivingInput",
+        update: "getNumOfPeopleLivingInput",
         trigger: "review"
       },
       // Update review
