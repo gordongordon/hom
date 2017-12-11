@@ -81,7 +81,7 @@ export default class SlickAgentRentProperty extends React.Component {
 
     // Catched empty list, don't do anything!
     if (list.size === 0) {
-      return null;
+      return <div>Waiting for respond ... </div>;
     }
 
     //const timeEnter = this.props.timeEnter;

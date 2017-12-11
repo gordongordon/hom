@@ -106,13 +106,14 @@ class Review extends React.Component {
 
     this.state = {
       getBuildingUserInput: "",
-      getNetSizeMinUserInput: "",
+      getNetSizeUserInput: "",
       getNumOfRoom: "",
       getNumOfBathroom: "",
       getNumOfLivingroom: "",
       isPetAllowedBoolean: "",
       isBuyWithLeaseBoolean: "",
-      getBuyBudgetMaxInput: "",
+      getSalePriceInput: "",
+      getLevelOptionis : "",
       getLastNameUserInput: "",
       getSexUserInput : "",
       getEmailUserInput: "",
@@ -125,14 +126,15 @@ class Review extends React.Component {
     //const { name, role, price, building } = steps;
     const {
       getBuildingUserInput,
-      getNetSizeMinUserInput,
+      getNetSizeUserInput,
 //      getPartitionUserInput,
       getNumOfRoom,
       getNumOfBathroom,
       getNumOfLivingroom,
       isPetAllowedBoolean,
       isBuyWithLeaseBoolean,
-      getBuyBudgetMaxInput,
+      getSalePriceInput,
+      getLevelOptions,
       getLastNameUserInput,
       getSexUserInput,
       getEmailUserInput,
@@ -141,14 +143,15 @@ class Review extends React.Component {
 
     this.setState({
       getBuildingUserInput,
-      getNetSizeMinUserInput,
+      getNetSizeUserInput,
 //      getPartitionUserInput,
       getNumOfRoom,
       getNumOfBathroom,
       getNumOfLivingroom,
       isPetAllowedBoolean,
       isBuyWithLeaseBoolean,
-      getBuyBudgetMaxInput,
+      getLevelOptions,
+      getSalePriceInput,
       getLastNameUserInput,
       getSexUserInput,
       getEmailUserInput,
@@ -161,14 +164,15 @@ class Review extends React.Component {
     //const { name, role, price, building } = this.state;
     const {
       getBuildingUserInput,
-      getNetSizeMinUserInput,
+      getNetSizeUserInput,
 //      getPartitionUserInput,
       getNumOfRoom,
       getNumOfBathroom,
       getNumOfLivingroom,
       isPetAllowedBoolean,
       isBuyWithLeaseBoolean,
-      getBuyBudgetMaxInput,
+      getSalePriceInput,
+      getLevelOptions,
       getLastNameUserInput,
       getSexUserInput, 
       getEmailUserInput,
@@ -178,15 +182,17 @@ class Review extends React.Component {
       <div style={{ width: "100%", fontSize: "0.8rem" }}>
         尋找樓盤: {getBuildingUserInput.value}
         <br />
-        最少實用面積: {getNetSizeMinUserInput.value} 呎
+        實用面積: {getNetSizeUserInput.value} 呎
         <br />
-        付出預算上限: {getBuyBudgetMaxInput.value}
+        賣價: {getSalePriceInput.value}（萬元）
         <br />
         間隔: {getNumOfRoom.value}房,{getNumOfBathroom.vlaue}廁,{getNumOfLivingroom.value}廳
         <br />
         你會唔會養物: {isPetAllowedBoolean.value}
         <br />
         冇樓睇租左俾人會唔會買: {isBuyWithLeaseBoolean.value}
+        <br />
+        單位樓層 : {getLevelOptions.value}
         <br />
         姓名: {getLastNameUserInput.value} {getSexUserInput.value} 
         <br />
@@ -365,14 +371,15 @@ class AskChatbotSale extends React.Component {
 
     const {
       getBuildingUserInput,
-      getNetSizeMinUserInput,
+      getNetSizeUserInput,
 //      getPartitionUserInput,
       getNumOfRoom,
       getNumOfBathroom,
       getNumOfLivingroom,
+      getLevelOptions,
       isPetAllowedBoolean,
       isBuyWithLeaseBoolean,
-      getBuyBudgetMaxInput,
+      getSalePriceInput,
       getLastNameUserInput,
       getSexUserInput,
       getEmailUserInput,
@@ -399,9 +406,9 @@ class AskChatbotSale extends React.Component {
     p.numOfLivingroom = parseInt(getNumOfLivingroom.value);
 
     p.isBuyWithLease = isBuyWithLeaseBoolean.value;
-    p.netSizeMin = parseInt(getNetSizeMinUserInput.value);
+    p.netSize = parseInt(getNetSizeUserInput.value);
     //debugger
-    p.buyBudgetMax = parseInt(getBuyBudgetMaxInput.value);
+    p.salePrice = parseInt(getSalePriceInput.value);
     //    p.buyBudgetMax = 100;
 
     //p.isPreferPayAnnually = v.isPreferPayAnnually;
@@ -425,8 +432,8 @@ class AskChatbotSale extends React.Component {
       id = Fb.app.usersRef.push().key;
     }
     p.uid = MobxStore.app.uid;
-    p.typeFor = "sale";
-    p.typeTo = "buy";
+    p.typeFor = "buy";
+    p.typeTo = "sale";
     p.fbid = id; // Assign a reference
 
     Fb.app.usersRef.update({ [id]: p.serialize() });
@@ -437,7 +444,7 @@ class AskChatbotSale extends React.Component {
     // const id2 = Fb.propertys.push().key;
     // Fb.propertys.update( {[id2]:  p.serialize() });
 //    MobxStore.router.goTo(views.matchBuy, { keyID: id });
-    MobxStore.router.goTo(views.chatAgentSaleRespond, { keyID: id });
+    MobxStore.router.goTo(views.chatAgentBuyRespond, { keyID: id });
     
     // console.log(steps);
     // console.log(values);
@@ -562,21 +569,21 @@ class AskChatbotSale extends React.Component {
         //on.OPTION1 .. n
         id: "isBuyWithLeaseBoolean",
         options: [
-          { value: "true", label: "唔會買", trigger: "getNetSizeMin" },
-          { value: "false", label: "會買", trigger: "getNetSizeMin" }
+          { value: "true", label: "唔喺(NO)", trigger: "getNetSize" },
+          { value: "false", label: "喺(YES)", trigger: "getNetSize" }
         ]
       },
 
       {
         // getNetSizeMin
-        id: "getNetSizeMin",
+        id: "getNetSize",
         message: "你個單位實用面積幾大（呎）？",
-        trigger: "getNetSizeMinUserInput"
+        trigger: "getNetSizeUserInput"
         // MISSED " validation = false"
       },
       {
         // on.FILLED
-        id: "getNetSizeMinUserInput",
+        id: "getNetSizeUserInput",
 //              user: true,
         options: [
           { value: "200", label: "200", trigger: "getPartition" },
@@ -643,20 +650,17 @@ class AskChatbotSale extends React.Component {
       {
         id: "getLevel",
         message : "你個單位係屬於高層，中層定係低層？",
-        trigger: "levelOptions"
+        trigger: "getLevelOptions"
       },
       {
-        id: "levelOptions",
+        id: "getLevelOptions",
         options: [
           { value: "Hight", label: "高層", trigger: "isPetAllowed"},
           { value: "Middle", label: "中層", trigger: "isPetAllowed"},
           { value: "Low", label: "低層", trigger: "isPetAllowed"}
 
         ]
-        
-      }
-
-
+      },
       // toggle
       {
         //
@@ -668,27 +672,26 @@ class AskChatbotSale extends React.Component {
         //on.OPTION1 .. n
         id: "isPetAllowedBoolean",
         options: [
-          { value: "false", label: "絕對不會", trigger: "getBuyBudgetMax" },
-          { value: "true", label: "一定/可能啦", trigger: "getBuyBudgetMax" }
+          { value: "false", label: "唔可以", trigger: "getSalePrice" },
+          { value: "true", label: "可以", trigger: "getSalePrice" }
         ]
       },
-
-      // Input Field
-      {
-        // getXXX
-        id: "getBuyBudgetMax",
-        message: "付出預算上限/萬元💵? e.g. 300",
-        trigger: "getBuyBudgetMaxInput"
-        // MISSED " validation = false"
-      },
-      {
-        // on.FILLED
-        id: "getBuyBudgetMaxInput",
-        user: true,
-        inputType: 'number',
-        pattern : "[0-9]*",
-        trigger: "getEmail"
-      },
+            // Input Field
+            {
+              // getXXX
+              id: "getSalePrice",
+              message: "你嘅賣價係幾多（萬元）💵? e.g. 300",
+              trigger: "getSalePriceInput"
+              // MISSED " validation = false"
+            },
+            {
+              // on.FILLED
+              id: "getSalePriceInput",
+              user: true,
+              inputType: 'number',
+              pattern : "[0-9]*",
+              trigger: "getEmail"
+            },
 
       // Input Field
       {
@@ -778,9 +781,9 @@ class AskChatbotSale extends React.Component {
             trigger: "update-getBuildingUserInput"
           },
           {
-            value: "getnetSizeMinUserInput",
+            value: "getNetSizeUserInput",
             label: "實用面積/呎",
-            trigger: "update-getNetSizeMinUserInput"
+            trigger: "update-getNetSizeUserInput"
           },
           {
             value: "getPartitionUserInput",
@@ -798,9 +801,14 @@ class AskChatbotSale extends React.Component {
             trigger: "update-isBuyWithLeaseBoolean"
           },
           {
-            value: "getBuyBudgetMax",
+            value: "getLevelOptions",
+            label: "Level Options",
+            trigger: "update-getLevelOptions"
+          },
+          {
+            value: "getSalePriceInput",
             label: "預算上限",
-            trigger: "update-getBuyBudgetMaxInput"
+            trigger: "update-getSalePriceInput"
           },
           {
             value: "getLastNameUserInput",
@@ -829,8 +837,8 @@ class AskChatbotSale extends React.Component {
       // Update review
       {
         // update if previous ask no
-        id: "update-getNetSizeMinUserInput",
-        update: "getNetSizeMinUserInput",
+        id: "update-getNetSizeUserInput",
+        update: "getNetSizeUserInput",
         trigger: "review"
       },
       // Update review
@@ -858,11 +866,16 @@ class AskChatbotSale extends React.Component {
       // Update review
       {
         // update if previous ask no
-        id: "update-getBuyBudgetMaxInput",
-        update: "getBuyBudgetMaxInput",
+        id: "update-getSalePriceInput",
+        update: "getSalePriceInput",
         trigger: "review"
       },
-
+      {
+        // update if previous ask no
+        id: "update-getLevelOptions",
+        update: "getLevelOptions",
+        trigger: "review"
+      },
       {
         // update if previous ask no
         id: "update-getLastNameUserInput",
