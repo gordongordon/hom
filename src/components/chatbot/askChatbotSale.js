@@ -508,8 +508,8 @@ class AskChatbotSale extends React.Component {
       {
         // getBuilding
         id: "getBuilding",
-        message :  ({ previousValue, steps }) => {
-          return `${steps.getLastNameUserInput.value} ${steps.getSexUserInput.value} 好高興認識你呀☺  你暫時個心水樓盤喺邊度？`;
+        message :  ({ previousValue, steps }) => {  
+          return `${steps.getLastNameUserInput.value} ${steps.getSexUserInput.value} 好高興認識你呀☺  你想賣盤個單位喺邊度？`;
           },
         trigger: "getBuildingUserInput"
         // MISSED " validation = false"
@@ -555,7 +555,7 @@ class AskChatbotSale extends React.Component {
       {
         // isBuyWithLease
         id: "isBuyWithLease",
-        message: "想問你! 冇樓睇租左俾人會唔會買? (即係買賣連租賃嘅意思係個樓盤已經簽咗一份租約俾人)",
+        message: "想問你! 單位喺咪出售連租賃？",
         trigger: "isBuyWithLeaseBoolean"
       },
       {
@@ -570,7 +570,7 @@ class AskChatbotSale extends React.Component {
       {
         // getNetSizeMin
         id: "getNetSizeMin",
-        message: "你個心水樓盤最小要幾多實用面積（呎）?",
+        message: "你個單位實用面積幾大（呎）？",
         trigger: "getNetSizeMinUserInput"
         // MISSED " validation = false"
       },
@@ -597,7 +597,7 @@ class AskChatbotSale extends React.Component {
       {
         // getPartition
         id: "getPartition",
-        message: "你想要咩間隔？ e.g. 1房,1廁,1廳",
+        message: "單位間隔係點？ e.g. 1房,1廁,1廳",
         trigger: "getNumOfRoom"
         // MISSED " validation = false"
       },
@@ -631,20 +631,37 @@ class AskChatbotSale extends React.Component {
       {
         id: "getNumOfLivingroom",
         options: [
-          { value: "0", label: "0廳", trigger: "isPetAllowed" },
-          { value: "1", label: "1廳", trigger: "isPetAllowed" },
-          { value: "2", label: "2廳", trigger: "isPetAllowed" },
-          { value: "3", label: "3廳", trigger: "isPetAllowed" },
-          { value: "4", label: "4廳", trigger: "isPetAllowed" },
-          { value: "10", label: "共用廳", trigger: "isPetAllowed" },
+          { value: "0", label: "0廳", trigger: "getLevel" },
+          { value: "1", label: "1廳", trigger: "getLevel" },
+          { value: "2", label: "2廳", trigger: "getLevel" },
+          { value: "3", label: "3廳", trigger: "getLevel" },
+          { value: "4", label: "4廳", trigger: "getLevel" },
+          { value: "10", label: "共用廳", trigger: "getLevel" },
         ]
       },
+      // Level 
+      {
+        id: "getLevel",
+        message : "你個單位係屬於高層，中層定係低層？",
+        trigger: "levelOptions"
+      },
+      {
+        id: "levelOptions",
+        options: [
+          { value: "Hight", label: "高層", trigger: "isPetAllowed"},
+          { value: "Middle", label: "中層", trigger: "isPetAllowed"},
+          { value: "Low", label: "低層", trigger: "isPetAllowed"}
+
+        ]
+        
+      }
+
 
       // toggle
       {
         //
         id: "isPetAllowed",
-        message: "你會唔會養😺😺🐶🐶呢？",
+        message: "可唔可以養貓😺😺🐶🐶豿呢？",
         trigger: "isPetAllowedBoolean"
       },
       {
