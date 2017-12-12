@@ -110,9 +110,14 @@ class Review extends React.Component {
       getNumOfRoom: "",
       getNumOfBathroom: "",
       getNumOfLivingroom: "",
+      
+      hasHomeHardwareBoolean: "",
       isPetAllowedBoolean: "",
-      isBuyWithLeaseBoolean: "",
-      getBuyBudgetMaxInput: "",
+      getLeasingPeriodInput: "",
+      getNumOfPeopleLivingInput: "",
+      getJobNatureInput: "",
+
+      getRentBudgetMaxInput: "",
       getLastNameUserInput: "",
       getSexUserInput : "",
       getEmailUserInput: "",
@@ -131,12 +136,17 @@ class Review extends React.Component {
       getNumOfBathroom,
       getNumOfLivingroom,
       isPetAllowedBoolean,
-      isBuyWithLeaseBoolean,
-      getBuyBudgetMaxInput,
+      getRentBudgetMaxInput,
       getLastNameUserInput,
       getSexUserInput,
       getEmailUserInput,
-      getPhoneUserInput
+      getPhoneUserInput,
+
+      hasHomeHardwareBoolean,
+      getNumOfPeopleLivingInput,
+      getIncomeInput,
+      getLeasingPeriodInput,
+      getJobNatureInput
     } = steps;
 
     this.setState({
@@ -147,12 +157,18 @@ class Review extends React.Component {
       getNumOfBathroom,
       getNumOfLivingroom,
       isPetAllowedBoolean,
-      isBuyWithLeaseBoolean,
-      getBuyBudgetMaxInput,
+      getRentBudgetMaxInput,
       getLastNameUserInput,
       getSexUserInput,
       getEmailUserInput,
-      getPhoneUserInput
+      getPhoneUserInput,
+
+      hasHomeHardwareBoolean,
+      getNumOfPeopleLivingInput,
+      getIncomeInput,
+      getLeasingPeriodInput,
+      getJobNatureInput
+      
     });
     //    this.setState({ name, role, price, building, });
   }
@@ -167,26 +183,41 @@ class Review extends React.Component {
       getNumOfBathroom,
       getNumOfLivingroom,
       isPetAllowedBoolean,
-      isBuyWithLeaseBoolean,
-      getBuyBudgetMaxInput,
+      getRentBudgetMaxInput,
       getLastNameUserInput,
       getSexUserInput, 
       getEmailUserInput,
-      getPhoneUserInput 
+      getPhoneUserInput,
+
+      hasHomeHardwareBoolean,
+      getNumOfPeopleLivingInput,
+      getIncomeInput,
+      getLeasingPeriodInput,
+      getJobNatureInput
+
     } = this.state; 
+
     return (
       <div style={{ width: "100%", fontSize: "0.8rem" }}>
         尋找樓盤: {getBuildingUserInput.value}
         <br />
         最少實用面積: {getNetSizeMinUserInput.value} 呎
         <br />
-        付出預算上限: {getBuyBudgetMaxInput.value}
+        租金預算上限: {getRentBudgetMaxInput.value}
         <br />
         間隔: {getNumOfRoom.value}房,{getNumOfBathroom.vlaue}廁,{getNumOfLivingroom.value}廳
         <br />
         你會唔會養物: {isPetAllowedBoolean.value}
         <br />
-        冇樓睇租左俾人會唔會買: {isBuyWithLeaseBoolean.value}
+        收入範圍: {getIncomeInput.value}
+        <br />
+        需唔需要傢俬: {hasHomeHardwareBoolean.value}
+        <br />
+        職業: {getJobNatureInput.value}
+        <br />
+        打算租幾耐: {getLeasingPeriodInput.value} (月)
+        <br />
+        幾多人同住: {getNumOfPeopleLivingInput.value}人
         <br />
         姓名: {getLastNameUserInput.value} {getSexUserInput.value} 
         <br />
@@ -370,9 +401,14 @@ class AskChatbotRent extends React.Component {
       getNumOfRoom,
       getNumOfBathroom,
       getNumOfLivingroom,
+      hasHomeHardwareBoolean,
+      getNumOfLivingroomInput,
+      getNumOfPeopleLivingInput,
+      getLeasingPeriodInput,
       isPetAllowedBoolean,
-      isBuyWithLeaseBoolean,
-      getBuyBudgetMaxInput,
+      getIncomeInput,
+      getJobNatureInput,
+      getRentBudgetMaxInput,
       getLastNameUserInput,
       getSexUserInput,
       getEmailUserInput,
@@ -398,10 +434,17 @@ class AskChatbotRent extends React.Component {
     p.numOfBathroom = parseInt(getNumOfBathroom.value);
     p.numOfLivingroom = parseInt(getNumOfLivingroom.value);
 
-    p.isBuyWithLease = isBuyWithLeaseBoolean.value;
+    //p.isBuyWithLease = isBuyWithLeaseBoolean.value;
     p.netSizeMin = parseInt(getNetSizeMinUserInput.value);
     //debugger
-    p.buyBudgetMax = parseInt(getBuyBudgetMaxInput.value);
+    p.rentBudgetMax = parseInt(getRentBudgetMaxInput.value);
+
+    p.hasHomeHardware = hasHomeHardwareBoolean.value;
+    p.numOfPeopleLiving = parseInt( getNumOfPeopleLivingInput.value );
+    p.leasingPeriod = parseInt( getLeasingPeriodInput.value );
+    p.income = parseInt( getIncomeInput.value );
+    p.jobNature = parseInt( getJobNatureInput.value );
+
     //    p.buyBudgetMax = 100;
 
     //p.isPreferPayAnnually = v.isPreferPayAnnually;
@@ -425,19 +468,19 @@ class AskChatbotRent extends React.Component {
       id = Fb.app.usersRef.push().key;
     }
     p.uid = MobxStore.app.uid;
-    p.typeFor = "sale";
-    p.typeTo = "buy";
+    p.typeFor = "rent";
+    p.typeTo = "lease";
     p.fbid = id; // Assign a reference
 
     Fb.app.usersRef.update({ [id]: p.serialize() });
 
     Fb.propertys.child(id).set(p.serialize());
-    Fb.buy.child(id).set(p.serialize());
+    Fb.rent.child(id).set(p.serialize());
 
     // const id2 = Fb.propertys.push().key;
     // Fb.propertys.update( {[id2]:  p.serialize() });
 //    MobxStore.router.goTo(views.matchBuy, { keyID: id });
-    MobxStore.router.goTo(views.chatAgentSaleRespond, { keyID: id });
+    MobxStore.router.goTo(views.chatAgentLeaseRespond, { keyID: id });
     
     // console.log(steps);
     // console.log(values);
@@ -713,10 +756,10 @@ class AskChatbotRent extends React.Component {
      {
        id: "getJobNatureInput",
        options: [
-         { value: "A", label: "Job A", trigger: "getIncome" },
-         { value: "B", label: "Job B", trigger: "getIncome" },
-         { value: "C",  label:  "Job C", trigger: "getIncome" },
-         { value: "D",  label:  "Job D", trigger: "getIncome" },
+         { value: "1", label: "Job A", trigger: "getIncome" },
+         { value: "2", label: "Job B", trigger: "getIncome" },
+         { value: "3",  label:  "Job C", trigger: "getIncome" },
+         { value: "4",  label:  "Job D", trigger: "getIncome" },
        ]
      },
      {
@@ -825,7 +868,7 @@ class AskChatbotRent extends React.Component {
             trigger: "update-getBuildingUserInput"
           },
           {
-            value: "getnetSizeMinUserInput",
+            value: "getNetSizeMinUserInput",
             label: "實用面積/呎",
             trigger: "update-getNetSizeMinUserInput"
           },
@@ -835,9 +878,9 @@ class AskChatbotRent extends React.Component {
             trigger: "update-getPartitionUserInput"
           },
           {
-            value: "hasHardwareBoolean",
+            value: "hasHomeHardwareBoolean",
             label: "需唔需要傢俬",
-            trigger: "update-hasHardwareBoolean"
+            trigger: "update-hasHomeHardwareBoolean"
           },
           {
             value: "isPetAllowedBoolean",
@@ -845,13 +888,8 @@ class AskChatbotRent extends React.Component {
             trigger: "update-isPetAllowedBoolean"
           },
           {
-            value: "isBuyWithLeaseBoolean",
-            label: "賣買連租賃",
-            trigger: "update-isBuyWithLeaseBoolean"
-          },
-          {
             value: "getLeasingPeriodInput",
-            label: " 你打算租幾耐 (月)",
+            label: " 打算租幾耐 (月)",
             trigger: "update-getLeasingPeriodInput"
           },
           {
@@ -861,7 +899,7 @@ class AskChatbotRent extends React.Component {
           },
           {
             value: "getNumOfPeopleLivingInput",
-            label: "職業",
+            label: "幾多人同住",
             trigger: "update-getNumOfPeopleLivingInput"
           },
           {
@@ -871,9 +909,9 @@ class AskChatbotRent extends React.Component {
           },
 
           {
-            value: "getBuyBudgetMax",
-            label: "預算上限",
-            trigger: "update-getBuyBudgetMaxInput"
+            value: "getRentBudgetMax",
+            label: "租金預算",
+            trigger: "update-getRentBudgetMaxInput"
           },
           {
             value: "getLastNameUserInput",
@@ -916,8 +954,8 @@ class AskChatbotRent extends React.Component {
       // Update review
       {
         // update if previous ask no
-        id: "update-hasHardwareBoolean",
-        update: "hasHardwareBoolean",
+        id: "update-hasHomeHardwareBoolean",
+        update: "hasHomeHardwareBoolean",
         trigger: "review"
       },
       // Update review
@@ -951,13 +989,6 @@ class AskChatbotRent extends React.Component {
       // Update review
       {
         // update if previous ask no
-        id: "update-isBuyWithLeaseBoolean",
-        update: "isBuyWIthLeaseBoolean",
-        trigger: "review"
-      },
-      // Update review
-      {
-        // update if previous ask no
         id: "update-getNumOfPeopleLivingInput",
         update: "getNumOfPeopleLivingInput",
         trigger: "review"
@@ -966,8 +997,8 @@ class AskChatbotRent extends React.Component {
       // Update review
       {
         // update if previous ask no
-        id: "update-getBuyBudgetMaxInput",
-        update: "getBuyBudgetMaxInput",
+        id: "update-getRentBudgetMaxInput",
+        update: "getRentBudgetMaxInput",
         trigger: "review"
       },
 

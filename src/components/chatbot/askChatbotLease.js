@@ -425,14 +425,14 @@ class AskChatbotLease extends React.Component {
       id = Fb.app.usersRef.push().key;
     }
     p.uid = MobxStore.app.uid;
-    p.typeFor = "sale";
-    p.typeTo = "buy";
+    p.typeFor = "lease";
+    p.typeTo = "rent";
     p.fbid = id; // Assign a reference
 
     Fb.app.usersRef.update({ [id]: p.serialize() });
 
     Fb.propertys.child(id).set(p.serialize());
-    Fb.buy.child(id).set(p.serialize());
+    Fb.lease.child(id).set(p.serialize());
 
     // const id2 = Fb.propertys.push().key;
     // Fb.propertys.update( {[id2]:  p.serialize() });

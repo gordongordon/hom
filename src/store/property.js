@@ -912,11 +912,13 @@ export class Property {
       this.isViewAble = v.isViewAble, 
       this.isPreferPayAnnually =v.isPreferPayAnnually,
       this.hasHomeHardware = v.hasHomeHardware, 
-      (this.jobNature = v.jobNature), (this.isViewAbleNow =
-      v.isViewAbleNow), (this.isRentAbleNow =
-      v.isRentAbleNow), (this.isFreeForSevenDay =
-      v.isFreeForSevenDay), (this.dueDay = v.dueDay), (this.earlyTimeToView = //earlyTimeToView : this.earlyTimeToView.toJSON(), //            dueDay : this.dueDay.toJSON(),
-      v.earlyTimeToView), 
+      this.jobNature = v.jobNature, 
+      this.isViewAbleNow = v.isViewAbleNow, 
+      this.isRentAbleNow = v.isRentAbleNow, 
+      this.isFreeForSevenDay = v.isFreeForSevenDay, 
+      this.dueDay = v.dueDay, 
+      this.earlyTimeToView = v.earlyTimeToView, 
+      //earlyTimeToView : this.earlyTimeToView.toJSON(), //            dueDay : this.dueDay.toJSON(),
       this.income = v.income, 
       this.isBuyWithLease = v.isBuyWithLease,
 
