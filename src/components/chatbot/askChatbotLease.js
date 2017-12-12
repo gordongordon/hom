@@ -106,13 +106,16 @@ class Review extends React.Component {
 
     this.state = {
       getBuildingUserInput: "",
-      getNetSizeMinUserInput: "",
+      getNetSizeUserInput: "",
       getNumOfRoom: "",
       getNumOfBathroom: "",
       getNumOfLivingroom: "",
+      
+      hasHomeHardwareBoolean: "",
       isPetAllowedBoolean: "",
-      isBuyWithLeaseBoolean: "",
-      getBuyBudgetMaxInput: "",
+      getLeasingPeriodInput: "",
+
+      getLeasePriceInput: "",
       getLastNameUserInput: "",
       getSexUserInput : "",
       getEmailUserInput: "",
@@ -125,34 +128,39 @@ class Review extends React.Component {
     //const { name, role, price, building } = steps;
     const {
       getBuildingUserInput,
-      getNetSizeMinUserInput,
+      getNetSizeUserInput,
 //      getPartitionUserInput,
       getNumOfRoom,
       getNumOfBathroom,
       getNumOfLivingroom,
       isPetAllowedBoolean,
-      isBuyWithLeaseBoolean,
-      getBuyBudgetMaxInput,
+      getLeasePriceInput,
       getLastNameUserInput,
       getSexUserInput,
       getEmailUserInput,
-      getPhoneUserInput
+      getPhoneUserInput,
+
+      hasHomeHardwareBoolean,
+      getLeasingPeriodInput
     } = steps;
 
     this.setState({
       getBuildingUserInput,
-      getNetSizeMinUserInput,
+      getNetSizeUserInput,
 //      getPartitionUserInput,
       getNumOfRoom,
       getNumOfBathroom,
       getNumOfLivingroom,
       isPetAllowedBoolean,
-      isBuyWithLeaseBoolean,
-      getBuyBudgetMaxInput,
+      getLeasePriceInput,
       getLastNameUserInput,
       getSexUserInput,
       getEmailUserInput,
-      getPhoneUserInput
+      getPhoneUserInput,
+
+      hasHomeHardwareBoolean,
+      getLeasingPeriodInput
+      
     });
     //    this.setState({ name, role, price, building, });
   }
@@ -161,32 +169,38 @@ class Review extends React.Component {
     //const { name, role, price, building } = this.state;
     const {
       getBuildingUserInput,
-      getNetSizeMinUserInput,
+      getNetSizeUserInput,
 //      getPartitionUserInput,
       getNumOfRoom,
       getNumOfBathroom,
       getNumOfLivingroom,
       isPetAllowedBoolean,
-      isBuyWithLeaseBoolean,
-      getBuyBudgetMaxInput,
+      getLeasePriceInput,
       getLastNameUserInput,
       getSexUserInput, 
       getEmailUserInput,
-      getPhoneUserInput 
+      getPhoneUserInput,
+
+      hasHomeHardwareBoolean,
+      getLeasingPeriodInput
+
     } = this.state; 
+
     return (
       <div style={{ width: "100%", fontSize: "0.8rem" }}>
         尋找樓盤: {getBuildingUserInput.value}
         <br />
-        最少實用面積: {getNetSizeMinUserInput.value} 呎
+        實用面積: {getNetSizeUserInput.value} 呎
         <br />
-        付出預算上限: {getBuyBudgetMaxInput.value}
+        租金: {getLeasePriceInput.value}
         <br />
         間隔: {getNumOfRoom.value}房,{getNumOfBathroom.vlaue}廁,{getNumOfLivingroom.value}廳
         <br />
         你會唔會養物: {isPetAllowedBoolean.value}
         <br />
-        冇樓睇租左俾人會唔會買: {isBuyWithLeaseBoolean.value}
+        會唔會有傢俬提供: {hasHomeHardwareBoolean.value}
+        <br />
+        打算租幾耐: {getLeasingPeriodInput.value} (月)
         <br />
         姓名: {getLastNameUserInput.value} {getSexUserInput.value} 
         <br />
@@ -365,14 +379,18 @@ class AskChatbotLease extends React.Component {
 
     const {
       getBuildingUserInput,
-      getNetSizeMinUserInput,
+      getNetSizeUserInput,
 //      getPartitionUserInput,
       getNumOfRoom,
       getNumOfBathroom,
       getNumOfLivingroom,
+      hasHomeHardwareBoolean,
+      getNumOfLivingroomInput,
+
+      getLeasingPeriodInput,
       isPetAllowedBoolean,
-      isBuyWithLeaseBoolean,
-      getBuyBudgetMaxInput,
+      
+      getLeasePriceInput,
       getLastNameUserInput,
       getSexUserInput,
       getEmailUserInput,
@@ -398,10 +416,14 @@ class AskChatbotLease extends React.Component {
     p.numOfBathroom = parseInt(getNumOfBathroom.value);
     p.numOfLivingroom = parseInt(getNumOfLivingroom.value);
 
-    p.isBuyWithLease = isBuyWithLeaseBoolean.value;
-    p.netSizeMin = parseInt(getNetSizeMinUserInput.value);
+    //p.isBuyWithLease = isBuyWithLeaseBoolean.value;
+    p.netSize = parseInt(getNetSizeUserInput.value);
     //debugger
-    p.buyBudgetMax = parseInt(getBuyBudgetMaxInput.value);
+    p.leasePrice = parseInt(getLeasePriceInput.value);
+
+    p.hasHomeHardware = hasHomeHardwareBoolean.value;
+    p.leasingPeriod = parseInt( getLeasingPeriodInput.value );
+
     //    p.buyBudgetMax = 100;
 
     //p.isPreferPayAnnually = v.isPreferPayAnnually;
@@ -425,19 +447,19 @@ class AskChatbotLease extends React.Component {
       id = Fb.app.usersRef.push().key;
     }
     p.uid = MobxStore.app.uid;
-    p.typeFor = "sale";
-    p.typeTo = "buy";
+    p.typeFor = "lease";
+    p.typeTo = "rent";
     p.fbid = id; // Assign a reference
 
     Fb.app.usersRef.update({ [id]: p.serialize() });
 
     Fb.propertys.child(id).set(p.serialize());
-    Fb.buy.child(id).set(p.serialize());
+    Fb.lease.child(id).set(p.serialize());
 
     // const id2 = Fb.propertys.push().key;
     // Fb.propertys.update( {[id2]:  p.serialize() });
 //    MobxStore.router.goTo(views.matchBuy, { keyID: id });
-    MobxStore.router.goTo(views.chatAgentSaleRespond, { keyID: id });
+    MobxStore.router.goTo(views.chatAgentRentRespond, { keyID: id });
     
     // console.log(steps);
     // console.log(values);
@@ -466,9 +488,9 @@ class AskChatbotLease extends React.Component {
     const GetName = [
         {
             id: "welcome",
-            message: "Lets begin to lease ...",
+            message: "Lets begin to Rent ...",
             trigger: 'getSex'
-          },
+          },        
       {
         id: "getSex",
         message: "{previousValue} 我應該稱呼你先生(Mr)/ 小姐(Ms)?",
@@ -537,7 +559,7 @@ class AskChatbotLease extends React.Component {
         //on.OPTION1 .. n
         id: "validaBuildingBoolean",
         options: [
-          { value: "true", label: "👍🏻係", trigger: "isBuyWithLease" },
+          { value: "true", label: "👍🏻係", trigger: "getNetSize" },
           {
             value: "false",
             label: "👎🏻唔係",
@@ -551,48 +573,31 @@ class AskChatbotLease extends React.Component {
         update: "getBuildingUserInput",
         trigger: "validaBuildingUserInput"
       },
-
-      {
-        // isBuyWithLease
-        id: "isBuyWithLease",
-        message: "想問你! 冇樓睇租左俾人會唔會買? (即係買賣連租賃嘅意思係個樓盤已經簽咗一份租約俾人)",
-        trigger: "isBuyWithLeaseBoolean"
-      },
-      {
-        //on.OPTION1 .. n
-        id: "isBuyWithLeaseBoolean",
-        options: [
-          { value: "true", label: "唔會買", trigger: "getNetSizeMin" },
-          { value: "false", label: "會買", trigger: "getNetSizeMin" }
-        ]
-      },
-
       {
         // getNetSizeMin
-        id: "getNetSizeMin",
-        message: "你個心水樓盤最小要幾多實用面積（呎）?",
-        trigger: "getNetSizeMinUserInput"
+        id: "getNetSize",
+        message: "你個單位實用面積幾大（呎）？",
+        trigger: "getNetSizeUserInput"
         // MISSED " validation = false"
       },
       {
         // on.FILLED
-        id: "getNetSizeMinUserInput",
+        id: "getNetSizeUserInput",
 //              user: true,
         options: [
           { value: "200", label: "200", trigger: "getPartition" },
-          { value: "300", label: "300", trigger: "getPartition" },
-          { value: "500", label: "500", trigger: "getPartition" },
-          { value: "700", label: "700", trigger: "getPartition" },
-          { value: "900", label: "900", trigger: "getPartition" },
-          { value: "1100", label: "1100", trigger: "getPartition" },
-          { value: "1300", label: "1300", trigger: "getPartition" },
-          { value: "1500", label: "1500", trigger: "getPartition" },
-          { value: "1700", label: "1700", trigger: "getPartition" },
-          { value: "2000", label: "2000+", trigger: "getPartition" },
+          { value: "300", label: "300", trigger:  "getPartition" },
+          { value: "500", label: "500", trigger:  "getPartition" },
+          { value: "700", label: "700", trigger:  "getPartition" },
+          { value: "900", label: "900", trigger:  "getPartition" },
+          { value: "1100", label: "1100", trigger:  "getPartition" },
+          { value: "1300", label: "1300", trigger:  "getPartition" },
+          { value: "1500", label: "1500", trigger:  "getPartition" },
+          { value: "1700", label: "1700", trigger:  "getPartition"},
+          { value: "2000", label: "2000+", trigger:  "getPartition" },
         ]
         //trigger: "getPartition"
       },
-
       // Input Field
       {
         // getPartition
@@ -651,28 +656,57 @@ class AskChatbotLease extends React.Component {
         //on.OPTION1 .. n
         id: "isPetAllowedBoolean",
         options: [
-          { value: "false", label: "絕對不會", trigger: "getBuyBudgetMax" },
-          { value: "true", label: "一定/可能啦", trigger: "getBuyBudgetMax" }
+          { value: "false", label: "絕對不會", trigger: "hasHomeHardware" },
+          { value: "true", label: "一定/可能啦", trigger: "hasHomeHardware" }
+        ]
+      },
+      // toggle
+      {
+        //
+        id: "hasHomeHardware",
+        message: "需唔需要傢俬？",
+        trigger: "hasHomeHardwareBoolean"
+      },
+      {
+        //on.OPTION1 .. n
+        id: "hasHomeHardwareBoolean",
+        options: [
+          { value: "false" , label: "唔需要", trigger: "getLeasePrice" }, 
+          { value: "true" , label: "一定要", trigger: "getLeasePrice" }
         ]
       },
 
       // Input Field
       {
         // getXXX
-        id: "getBuyBudgetMax",
-        message: "付出預算上限/萬元💵? e.g. 300",
-        trigger: "getBuyBudgetMaxInput"
+        id: "getLeasePrice",
+        message: "你嘅租金係幾多（元）？ e.g. 8000",
+        trigger: "getLeasePriceInput"
         // MISSED " validation = false"
       },
       {
         // on.FILLED
-        id: "getBuyBudgetMaxInput",
+        id: "getLeasePriceInput",
         user: true,
         inputType: 'number',
         pattern : "[0-9]*",
-        trigger: "getEmail"
+        trigger: "getLeasingPeriod"
       },
-
+      {
+         id: "getLeasingPeriod",
+         message : "你打算租幾耐 (月)？",
+         trigger: "getLeasingPeriodInput"
+      },
+      {
+        id: "getLeasingPeriodInput",
+        options: [
+          { value: "12", label: "12月", trigger: "getEmail" },
+          { value: "24", label: "24月", trigger: "getEmail" },
+          { value: "2",  label:  "2月", trigger: "getEmail" },
+          { value: "4",  label:  "4月", trigger: "getEmail" },
+          { value: "6",  label:  "6月", trigger: "getEmail" },
+        ]
+      },
       // Input Field
       {
         // getXXX
@@ -744,7 +778,7 @@ class AskChatbotLease extends React.Component {
       },
       {
         id: "update-yes",
-        message: "你要更改邊個內容？？",
+        message: "你要更改邊個內容？",
         trigger: "update-fields"
       },
       {
@@ -761,9 +795,9 @@ class AskChatbotLease extends React.Component {
             trigger: "update-getBuildingUserInput"
           },
           {
-            value: "getnetSizeMinUserInput",
+            value: "getNetSizeUserInput",
             label: "實用面積/呎",
-            trigger: "update-getNetSizeMinUserInput"
+            trigger: "update-getNetSizeUserInput"
           },
           {
             value: "getPartitionUserInput",
@@ -771,19 +805,24 @@ class AskChatbotLease extends React.Component {
             trigger: "update-getPartitionUserInput"
           },
           {
+            value: "hasHomeHardwareBoolean",
+            label: "需唔需要傢俬",
+            trigger: "update-hasHomeHardwareBoolean"
+          },
+          {
             value: "isPetAllowedBoolean",
             label: "可養寵物",
             trigger: "update-isPetAllowedBoolean"
           },
           {
-            value: "isBuyWithLeaseBoolean",
-            label: "賣買連租賃",
-            trigger: "update-isBuyWithLeaseBoolean"
+            value: "getLeasingPeriodInput",
+            label: " 打算租幾耐 (月)",
+            trigger: "update-getLeasingPeriodInput"
           },
           {
-            value: "getBuyBudgetMax",
-            label: "預算上限",
-            trigger: "update-getBuyBudgetMaxInput"
+            value: "getLeasePriceInput",
+            label: "租金",
+            trigger: "update-getLeasePriceInput"
           },
           {
             value: "getLastNameUserInput",
@@ -791,7 +830,7 @@ class AskChatbotLease extends React.Component {
             trigger: "update-getLastNameUserInput"
           },
           {
-            value: "getEmailuserInput",
+            value: "getEmailUserInput",
             label: "eMail",
             trigger: "update-getEmailUserInput"
           },
@@ -812,8 +851,8 @@ class AskChatbotLease extends React.Component {
       // Update review
       {
         // update if previous ask no
-        id: "update-getNetSizeMinUserInput",
-        update: "getNetSizeMinUserInput",
+        id: "update-getNetSizeUserInput",
+        update: "getNetSizeUserInput",
         trigger: "review"
       },
       // Update review
@@ -826,6 +865,20 @@ class AskChatbotLease extends React.Component {
       // Update review
       {
         // update if previous ask no
+        id: "update-hasHomeHardwareBoolean",
+        update: "hasHomeHardwareBoolean",
+        trigger: "review"
+      },
+      // Update review
+      {
+        // update if previous ask no
+        id: "update-getLeasingPeriodInput",
+        update: "getLeasingPeriodInput",
+        trigger: "review"
+      },
+      // Update review
+      {
+        // update if previous ask no
         id: "update-isPetAllowedBoolean",
         update: "isPetAllowedBoolean",
         trigger: "review"
@@ -833,19 +886,10 @@ class AskChatbotLease extends React.Component {
       // Update review
       {
         // update if previous ask no
-        id: "update-isBuyWithLeaseBoolean",
-        update: "isBuyWIthLeaseBoolean",
+        id: "update-getLeasePriceInput",
+        update: "getLeaesPriceInput",
         trigger: "review"
       },
-      // Update review
-      // Update review
-      {
-        // update if previous ask no
-        id: "update-getBuyBudgetMaxInput",
-        update: "getBuyBudgetMaxInput",
-        trigger: "review"
-      },
-
       {
         // update if previous ask no
         id: "update-getLastNameUserInput",
