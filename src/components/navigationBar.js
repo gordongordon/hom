@@ -18,6 +18,7 @@ export default class NavigationBar extends React.Component {
        visible: false,
        selected: ''
      }
+     this.loginItem.bind( this );
    }
 
    onSelect = (opt) => {
@@ -143,7 +144,8 @@ render() {
 
    return (
      <div>
-       <NavBar iconName="false"
+       <NavBar 
+         iconName="false"
          mode="light"
          rightContent={[
            <div key="1">{this.loginItem()}</div>
