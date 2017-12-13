@@ -1,10 +1,10 @@
 import ChatBot from './ChatBot';
 import Loading from './steps/common/Loading';
-import Generic from './mrui/Generic';
-import AgentSaleProperty  from './mrui/AgentSaleProperty';
-import AgentBuyProperty   from './mrui/AgentBuyProperty';
-import AgentRentProperty  from './mrui/AgentRentProperty';
-import AgentLeaseProperty from './mrui/AgentLeaseProperty';
+//import Generic from './mrui/Generic';
+import AgentSaleProperty  from './mrui/AgentSaleProperty/AgentSaleProperty';
+import AgentBuyProperty   from './mrui/AgentBuyProperty/AgentBuyProperty';
+import AgentRentProperty  from './mrui/AgentRentProperty/AgentRentProperty';
+import AgentLeaseProperty from './mrui/AgentLeaseProperty/AgentLeaseProperty';
 
-export { ChatBot as default, Generic, AgentSaleProperty, AgentBuyProperty, AgentRentProperty, AgentLeaseProperty };
+export { ChatBot as default, AgentSaleProperty, AgentBuyProperty, AgentRentProperty, AgentLeaseProperty };
 export { Loading };

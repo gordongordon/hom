@@ -1,14 +1,18 @@
-import Title from './Title';
-import SubTitle from './SubTitle';
-import Footer from './Footer';
-import Content from './Content';
-import React from 'react';
-import Button from './Button';
-import ContentItem from './ContentItem';
-import GenericContainer from './GenericContainer';
 import PropTypes from 'prop-types';
-import LineText from './LineText';
-import Toggle from './Toggle';
+
+
+// import Title from './Title';
+// import SubTitle from './SubTitle';
+// import Footer from './Footer';
+// import Content from './Content';
+// import React from 'react';
+// import Button from './Button';
+// import ContentItem from './ContentItem';
+// import GenericContainer from './GenericContainer';
+// import LineText from './LineText';
+// import Toggle from './Toggle';
+
+import Carousel from './Carousel';
 
 export default class Generic extends React.Component {
     constructor( props ) {
@@ -35,12 +39,10 @@ export default class Generic extends React.Component {
 
     // // For Chatbot Custom Component Return 
     triggetNext() {
-        
         const label = 'gordon';
         console.log( 'triggetNext() ');
         this.setState({ trigger: true }, () => {
           this.props.triggerNextStep( { value: label, label : label });
-
         });
 
     }
@@ -56,40 +58,40 @@ export default class Generic extends React.Component {
         const isLast = this.props.isLast;
         
         return (
-             <GenericContainer 
+             <Carousel 
                className="cmui-GenericContainer"
                opened="true"
                width="100%"
              >
-                <Title className="cmui-Title" isFirst={isFirst} isLast={isLast}>{p.addressLocationLabel}/{p.nameOfBuildingLabel}</Title>
-                <SubTitle className="cmui-SubTitle">{p.roleName} : {p.contactNameLabel}</SubTitle>
-                <Content>
-                <LineText> Main </LineText>
-                <ContentItem>Size: {p.netSizeLabel}</ContentItem>
-                <ContentItem>Price: {p.salePriceLabel} </ContentItem>
-                <ContentItem>Pet: {p.isPetAllowedLabel}</ContentItem>
-                <ContentItem>View: {p.isViewAbleLabel}:</ContentItem
-                ><ContentItem>Partition {p.partitionLabel}</ContentItem>
-                <ContentItem>Level:  {p.levelLabel}</ContentItem>
-                <ContentItem>With lease:  {p.isSaleWithLeaseLabel}</ContentItem>
-                <LineText> Time </LineText>
-                <ContentItem>Due Day: {p.dueDayLabel}</ContentItem>
-                <ContentItem>Time: {p.earlyTimeToViewLabel}</ContentItem>
-                <ContentItem>Day Listed:  {p.dayListed}</ContentItem>
-                <ContentItem>Status: {p.howFresh}</ContentItem>
-                <ContentItem>f:{p.fbid}-r:{p.relatedFbid}</ContentItem>
-                <Toggle/>
-                </Content>
+                <Carousel.Title className="cmui-Title" isFirst={isFirst} isLast={isLast}>{p.addressLocationLabel}/{p.nameOfBuildingLabel}</Carousel.Title>
+                <Carousel.SubTitle className="cmui-SubTitle">{p.roleName} : {p.contactNameLabel}</Carousel.SubTitle>
+                <Carousel.Content>
+                <Carousel.LineText> Main </Carousel.LineText>
+                <Carousel.ContentItem>Size: {p.netSizeLabel}</Carousel.ContentItem>
+                <Carousel.ContentItem>Price: {p.salePriceLabel} </Carousel.ContentItem>
+                <Carousel.ContentItem>Pet: {p.isPetAllowedLabel}</Carousel.ContentItem>
+                <Carousel.ContentItem>View: {p.isViewAbleLabel}:</Carousel.ContentItem
+                ><Carousel.ContentItem>Partition {p.partitionLabel}</Carousel.ContentItem>
+                <Carousel.ContentItem>Level:  {p.levelLabel}</Carousel.ContentItem>
+                <Carousel.ContentItem>With lease:  {p.isSaleWithLeaseLabel}</Carousel.ContentItem>
+                <Carousel.LineText> Time </Carousel.LineText>
+                <Carousel.ContentItem>Due Day: {p.dueDayLabel}</Carousel.ContentItem>
+                <Carousel.ContentItem>Time: {p.earlyTimeToViewLabel}</Carousel.ContentItem>
+                <Carousel.ContentItem>Day Listed:  {p.dayListed}</Carousel.ContentItem>
+                <Carousel.ContentItem>Status: {p.howFresh}</Carousel.ContentItem>
+                <Carousel.ContentItem>f:{p.fbid}-r:{p.relatedFbid}</Carousel.ContentItem>
+                <Carousel.Toggle/>
+                </Carousel.Content>
                 {
                     onSharePhone()
                 }
                 {
-                    onCall && <Button className="cmui-Button" onClick={ () => onCall( status.contactPhone ) } first> { status.contactPhone} </Button>
+                    onCall && <Carousel.Button className="cmui-Button" onClick={ () => onCall( status.contactPhone ) } first> { status.contactPhone} </Carousel.Button>
                 }
                 {
-                    onTriggetNext && <Button className="cmui-Button" onClick={ () => onTriggetNext() } first> triggetNext </Button>
+                    onTriggetNext && <Carousel.Button className="cmui-Button" onClick={ () => onTriggetNext() } first> triggetNext </Carousel.Button>
                 }
-            </GenericContainer>
+            </Carousel.GenericContainer>
         );
 
     }
