@@ -389,7 +389,7 @@ class MrHouse extends React.Component {
 
       },
       { id: "welcome3",
-        message: "你好，我係Mr.House！我最鍾意幫人分擔房屋嘅問題！今日我可以點樣幫你呢？（按以下options就OK)",
+        message: "你好，我係Mr.House！我最鍾意幫人分擔房屋嘅問題！今日我可以點樣幫你呢？（按以下options)",
         trigger: "mrhouseOptions"
       },
       // {
@@ -447,12 +447,17 @@ class MrHouse extends React.Component {
         //on.OPTION1 .. n
         id: "mrhouseOptions",
         options: [
-          { value: "buy", label: "我想 買樓", trigger: "stop" },
-          { value: "sale", label: "我想 賣樓", trigger: "stop" },
-          { value: "rent", label: "我想 租屋", trigger: "stop" },
-          { value: "lease", label: "我想 放租", trigger: "stop" },
-          { value: "stop", label: "stop", trigger: "stop" }
+          { value: "buy", label: "我想 買樓", trigger: "processMessage" },
+          { value: "sale", label: "我想 賣樓", trigger: "processMessage" },
+          { value: "rent", label: "我想 租屋", trigger: "processMessage" },
+          { value: "lease", label: "我想 放租", trigger: "processMessage" },
+          { value: "stop", label: "stop", trigger: "processMessage" }
         ]
+      },
+      {
+        id: "processMessage",
+        message : "好, 請等等...",
+        trigger: "stop",
       }
     ];
    

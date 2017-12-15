@@ -2,7 +2,7 @@
 import React from "react";
 import { ActionSheet, Button, Toast, Icon } from "antd-mobile";
 import PropTypes from "prop-types";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 //import ChatBot from '../react-simple-chatbot/dist/react-simple-chatbot';
 import ChatBot from "react-simple-chatbot";
@@ -15,13 +15,12 @@ import views from "views";
 import PartitionPicker from "./partitionPicker";
 import { Fb } from "firebase-store";
 import { Property } from "property";
-import Key from './key';
+import Key from "./key";
 
-import Slick from './slick';
-import RCarouse from './rcarousel';
+import Slick from "./slick";
+import RCarouse from "./rcarousel";
 
 //import Generic from './chatbot-message-ui';
-
 
 // Green
 const theme = {
@@ -33,7 +32,7 @@ const theme = {
   botBubbleColor: "#e6e6e6",
   botFontColor: "#000",
   userBubbleColor: "#fecea8",
-  userFontColor: "#000" 
+  userFontColor: "#000"
 };
 
 // fix touch to scroll background page on iOS
@@ -110,16 +109,19 @@ class Review extends React.Component {
       getNumOfRoom: "",
       getNumOfBathroom: "",
       getNumOfLivingroom: "",
-      
+
       hasHomeHardwareBoolean: "",
       isPetAllowedBoolean: "",
       getLeasingPeriodInput: "",
 
       getLeasePriceInput: "",
-      getLastNameUserInput: "",
-      getSexUserInput : "",
+      getNameInput: "Mr.House",
+      getSexUserInput: "",
       getEmailUserInput: "",
-      getPhoneUserInput: ""
+      getPhoneUserInput: "",
+      isFreeForSevenDayBoolean: "no",
+      getDueDayInput : ""
+
     };
   }
 
@@ -129,38 +131,43 @@ class Review extends React.Component {
     const {
       getBuildingUserInput,
       getNetSizeUserInput,
-//      getPartitionUserInput,
+      //      getPartitionUserInput,
       getNumOfRoom,
       getNumOfBathroom,
       getNumOfLivingroom,
       isPetAllowedBoolean,
       getLeasePriceInput,
-      getLastNameUserInput,
+      getNameInput,
       getSexUserInput,
       getEmailUserInput,
       getPhoneUserInput,
 
       hasHomeHardwareBoolean,
-      getLeasingPeriodInput
+      getLeasingPeriodInput,
+      isFreeForSevenDayBoolean,
+      getDueDayInput
+      
     } = steps;
 
     this.setState({
       getBuildingUserInput,
       getNetSizeUserInput,
-//      getPartitionUserInput,
+      //      getPartitionUserInput,
       getNumOfRoom,
       getNumOfBathroom,
       getNumOfLivingroom,
       isPetAllowedBoolean,
       getLeasePriceInput,
-      getLastNameUserInput,
+      getNameInput,
       getSexUserInput,
       getEmailUserInput,
       getPhoneUserInput,
 
       hasHomeHardwareBoolean,
-      getLeasingPeriodInput
-      
+      getLeasingPeriodInput,
+      isFreeForSevenDayBoolean,
+      getDueDayInput,
+
     });
     //    this.setState({ name, role, price, building, });
   }
@@ -170,21 +177,23 @@ class Review extends React.Component {
     const {
       getBuildingUserInput,
       getNetSizeUserInput,
-//      getPartitionUserInput,
+      //      getPartitionUserInput,
       getNumOfRoom,
       getNumOfBathroom,
       getNumOfLivingroom,
       isPetAllowedBoolean,
       getLeasePriceInput,
-      getLastNameUserInput,
-      getSexUserInput, 
+      getNameInput,
+      getSexUserInput,
       getEmailUserInput,
       getPhoneUserInput,
 
       hasHomeHardwareBoolean,
-      getLeasingPeriodInput
+      getLeasingPeriodInput,
+      isFreeForSevenDayBoolean,
+      getDueDayInput,
 
-    } = this.state; 
+    } = this.state;
 
     return (
       <div style={{ width: "100%", fontSize: "0.8rem" }}>
@@ -194,15 +203,21 @@ class Review extends React.Component {
         <br />
         租金: {getLeasePriceInput.value}
         <br />
-        間隔: {getNumOfRoom.value}房,{getNumOfBathroom.vlaue}廁,{getNumOfLivingroom.value}廳
+        間隔: {getNumOfRoom.value}房,{getNumOfBathroom.vlaue}廁,{
+          getNumOfLivingroom.value
+        }廳
         <br />
         你會唔會養物: {isPetAllowedBoolean.value}
         <br />
         會唔會有傢俬提供: {hasHomeHardwareBoolean.value}
         <br />
+        提供7日免租期: {isFreeForSevenDayBoolean.value}
+        <br />
+        交吉日:  {getDueDayInput.value}
+        <Br />
         打算租幾耐: {getLeasingPeriodInput.value} (月)
         <br />
-        姓名: {getLastNameUserInput.value} {getSexUserInput.value} 
+        姓名: {getNameInput.value}
         <br />
         聯絡手機: {getPhoneUserInput.value}
         <br />
@@ -222,13 +237,11 @@ Review.defaultProps = {
 };
 
 class AskChatbotLease extends React.Component {
-
-
   constructor(props) {
     super(props);
 
     this.displayName = "MrHouse";
-    
+
     this.state = {
       clicked: "none",
       clicked1: "none",
@@ -380,7 +393,7 @@ class AskChatbotLease extends React.Component {
     const {
       getBuildingUserInput,
       getNetSizeUserInput,
-//      getPartitionUserInput,
+      //      getPartitionUserInput,
       getNumOfRoom,
       getNumOfBathroom,
       getNumOfLivingroom,
@@ -389,9 +402,12 @@ class AskChatbotLease extends React.Component {
 
       getLeasingPeriodInput,
       isPetAllowedBoolean,
-      
+      isFreeForSevenDayBoolean,
+      getDueDayInput,
+
+
       getLeasePriceInput,
-      getLastNameUserInput,
+      getNameInput,
       getSexUserInput,
       getEmailUserInput,
       getPhoneUserInput
@@ -416,14 +432,18 @@ class AskChatbotLease extends React.Component {
     p.numOfBathroom = parseInt(getNumOfBathroom.value);
     p.numOfLivingroom = parseInt(getNumOfLivingroom.value);
 
+
     //p.isBuyWithLease = isBuyWithLeaseBoolean.value;
     p.netSize = parseInt(getNetSizeUserInput.value);
     //debugger
     p.leasePrice = parseInt(getLeasePriceInput.value);
 
     p.hasHomeHardware = hasHomeHardwareBoolean.value;
-    p.leasingPeriod = parseInt( getLeasingPeriodInput.value );
+    p.leasingPeriod = parseInt(getLeasingPeriodInput.value);
 
+
+    p.dueDay = parseInt( getDueDayInput.value );
+    p.isFreeForSevenDay = isFreeForSevenDayBoolean.value;
     //    p.buyBudgetMax = 100;
 
     //p.isPreferPayAnnually = v.isPreferPayAnnually;
@@ -433,7 +453,7 @@ class AskChatbotLease extends React.Component {
     //p.hasHomeHardware = v.hasHomeHardware;
     //p.isViewAble = v.isViewAble;
     //    p.howToContact = parseInt( howToContact[0] );
-    p.contactName = getLastNameUserInput.value + getSexUserInput.value;
+    p.contactName = getNameInput.value;
     //debugger
     p.contactPhone = parseInt(getPhoneUserInput.value);
     p.contactEmail = getEmailUserInput.value;
@@ -458,9 +478,9 @@ class AskChatbotLease extends React.Component {
 
     // const id2 = Fb.propertys.push().key;
     // Fb.propertys.update( {[id2]:  p.serialize() });
-//    MobxStore.router.goTo(views.matchBuy, { keyID: id });
+    //    MobxStore.router.goTo(views.matchBuy, { keyID: id });
     MobxStore.router.goTo(views.chatAgentRentRespond, { keyID: id });
-    
+
     // console.log(steps);
     // console.log(values);
     // alert(`Chat handleEnd callback! Number: ${values[0]}`);
@@ -481,58 +501,40 @@ class AskChatbotLease extends React.Component {
   //     }
   // }
 
-
-
   render() {
-
     const GetName = [
-        {
-            id: "welcome",
-            message: "Lets begin to Rent ...",
-            trigger: 'getSex'
-          },        
       {
-        id: "getSex",
-        message: "{previousValue} 我應該稱呼你先生(Mr)/ 小姐(Ms)?",
-        trigger: "getSexUserInput"
-      },      
-      {
-        id: "getSexUserInput",
-        options: [
-          { value: "先生", label: "先生(Mr)", trigger: "getLastName" },
-          { value: "小姐", label: "小姐(Miss)", trigger: "getLastName" }
-        ]
+        id: "welcome",
+        message: "Ok, 你想放租的。",
+        trigger: "getName"
       },
-
-      // Input Field
       {
-        // getXXX
-        id: "getLastName",
-        message: " Ok, {previousValue} 明白。請問你貴姓？",
-        trigger: "getLastNameUserInput"
-        // MISSED " validation = false"
+        id: "getName",
+        message: "請問如何稱呼你？",
+        trigger: "getNameInput"
       },
       {
         // on.FILLED
-        id: "getLastNameUserInput",
+        id: "getNameInput",
         user: true,
-        inputType: 'text',
+        inputType: "text",
         trigger: "getBuilding"
-      }];
-
-    const Welcome = [
+      }
     ];
 
-    const AboutMrHouse = [
-    ];
+    const Welcome = [];
+
+    const AboutMrHouse = [];
 
     const MainSteps = [
       {
         // getBuilding
         id: "getBuilding",
-        message :  ({ previousValue, steps }) => {
-          return `${steps.getLastNameUserInput.value} ${steps.getSexUserInput.value} 好高興認識你呀☺  你暫時個心水樓盤喺邊度？`;
-          },
+        message: ({ previousValue, steps }) => {
+          return `${
+            steps.getNameInput.value
+          } 好高興認識你呀☺   你[放租]個單位喺邊度？`;
+        },
         trigger: "getBuildingUserInput"
         // MISSED " validation = false"
       },
@@ -583,18 +585,22 @@ class AskChatbotLease extends React.Component {
       {
         // on.FILLED
         id: "getNetSizeUserInput",
-//              user: true,
+        //              user: true,
         options: [
+          { value: "100", label: "100", trigger: "getPartition" },
           { value: "200", label: "200", trigger: "getPartition" },
-          { value: "300", label: "300", trigger:  "getPartition" },
-          { value: "500", label: "500", trigger:  "getPartition" },
-          { value: "700", label: "700", trigger:  "getPartition" },
-          { value: "900", label: "900", trigger:  "getPartition" },
-          { value: "1100", label: "1100", trigger:  "getPartition" },
-          { value: "1300", label: "1300", trigger:  "getPartition" },
-          { value: "1500", label: "1500", trigger:  "getPartition" },
-          { value: "1700", label: "1700", trigger:  "getPartition"},
-          { value: "2000", label: "2000+", trigger:  "getPartition" },
+          { value: "300", label: "300", trigger: "getPartition" },
+          { value: "400", label: "400", trigger: "getPartition" },
+          { value: "500", label: "500", trigger: "getPartition" },
+          { value: "600", label: "600", trigger: "getPartition" },
+          { value: "700", label: "700", trigger: "getPartition" },
+          { value: "800", label: "800", trigger: "getPartition" },
+          { value: "900", label: "900", trigger: "getPartition" },
+          { value: "1100", label: "1100", trigger: "getPartition" },
+          { value: "1300", label: "1300", trigger: "getPartition" },
+          { value: "1500", label: "1500", trigger: "getPartition" },
+          { value: "1700", label: "1700", trigger: "getPartition" },
+          { value: "2000", label: "2000+", trigger: "getPartition" },
         ]
         //trigger: "getPartition"
       },
@@ -606,12 +612,12 @@ class AskChatbotLease extends React.Component {
         trigger: "getNumOfRoom"
         // MISSED " validation = false"
       },
-//            {
-//            id: "getPartitionUserInput",
-//           component: <PartitionPicker />,
-//           waitAction: true,
-//          trigger: "getNumOfRoom"
-//        },
+      //            {
+      //            id: "getPartitionUserInput",
+      //           component: <PartitionPicker />,
+      //           waitAction: true,
+      //          trigger: "getNumOfRoom"
+      //        },
       {
         id: "getNumOfRoom",
         options: [
@@ -619,29 +625,27 @@ class AskChatbotLease extends React.Component {
           { value: "1", label: "1房", trigger: "getNumOfBathroom" },
           { value: "2", label: "2房", trigger: "getNumOfBathroom" },
           { value: "3", label: "3房", trigger: "getNumOfBathroom" },
-          { value: "4", label: "4房", trigger: "getNumOfBathroom" },
+          { value: "4", label: "4房", trigger: "getNumOfBathroom" }
         ]
       },
       {
         id: "getNumOfBathroom",
         options: [
-          { value: "0", label: "0廁", trigger: "getNumOfLivingroom" },
           { value: "1", label: "1廁", trigger: "getNumOfLivingroom" },
           { value: "2", label: "2廁", trigger: "getNumOfLivingroom" },
           { value: "3", label: "3廁", trigger: "getNumOfLivingroom" },
           { value: "4", label: "4廁", trigger: "getNumOfLivingroom" },
-          { value: "10", label: "共用廁", trigger: "getNumOfLivingroom" },
+          { value: "10", label: "共用廁", trigger: "getNumOfLivingroom" }
         ]
       },
       {
         id: "getNumOfLivingroom",
         options: [
-          { value: "0", label: "0廳", trigger: "isPetAllowed" },
           { value: "1", label: "1廳", trigger: "isPetAllowed" },
           { value: "2", label: "2廳", trigger: "isPetAllowed" },
           { value: "3", label: "3廳", trigger: "isPetAllowed" },
           { value: "4", label: "4廳", trigger: "isPetAllowed" },
-          { value: "10", label: "共用廳", trigger: "isPetAllowed" },
+          { value: "10", label: "共用廳", trigger: "isPetAllowed" }
         ]
       },
 
@@ -664,18 +668,52 @@ class AskChatbotLease extends React.Component {
       {
         //
         id: "hasHomeHardware",
-        message: "需唔需要傢俬？",
+        message: "會唔會有傢俬提供？",
         trigger: "hasHomeHardwareBoolean"
       },
       {
         //on.OPTION1 .. n
         id: "hasHomeHardwareBoolean",
         options: [
-          { value: "false" , label: "唔需要", trigger: "getLeasePrice" }, 
-          { value: "true" , label: "一定要", trigger: "getLeasePrice" }
+          { value:  "true", label: "單位有傢俬提供", trigger: "getLeasePrice" },
+          { value: "false", label: "冇傢俬", trigger: "getLeasePrice" }
         ]
       },
-
+      // toggle
+      {
+        //
+        id: "isPetAllowed",
+        message: "比唔比養貓😺🐶豿呢？",
+        trigger: "isPetAllowedBoolean"
+      },
+      {
+        //on.OPTION1 .. n
+        id: "isPetAllowedBoolean",
+        options: [
+          { value: "false", label: "絕對不會", trigger: "getLeasePrice" },
+          { value: "true", label: "一定/可能啦", trigger: "getLeasePrice" }
+        ]
+      },
+      {
+        id: "getLeasingPeriod",
+        message: "你嘅租期合約為期要幾耐(月) ？",
+        trigger: "getLeasingPeriodInput"
+      },
+      {
+        id: "getLeasingPeriodInput",
+        options: [
+          { value: "24", label: "24月", trigger: "getDueDay" },
+          { value: "12", label: "12月", trigger: "getDueDay" },
+          { value: "6", label: "6月", trigger: "getDueDay" },
+          { value: "4", label: "4月", trigger: "getDueDay" },
+          { value: "2", label: "2月", trigger: "getDueDay" },
+        ]
+      },
+      {
+        id: "getDueDay",
+        message: "你最快可以幾時交吉 (月/日）？, to be fixed!",
+        trigger: "getLeasePrice"
+      },
       // Input Field
       {
         // getXXX
@@ -688,48 +726,32 @@ class AskChatbotLease extends React.Component {
         // on.FILLED
         id: "getLeasePriceInput",
         user: true,
-        inputType: 'number',
-        pattern : "[0-9]*",
-        trigger: "getLeasingPeriod"
+        inputType: "number",
+        pattern: "[0-9]*",
+        trigger: "isFreeForSevenDay"
       },
       {
-         id: "getLeasingPeriod",
-         message : "你打算租幾耐 (月)？",
-         trigger: "getLeasingPeriodInput"
+        id: "isFreeForSevenDay",
+        message: "你會唔會提供7日免租期？",
+        trigger: "isFreeForSevenDayBoolean"
       },
       {
-        id: "getLeasingPeriodInput",
-        options: [
-          { value: "12", label: "12月", trigger: "getEmail" },
-          { value: "24", label: "24月", trigger: "getEmail" },
-          { value: "2",  label:  "2月", trigger: "getEmail" },
-          { value: "4",  label:  "4月", trigger: "getEmail" },
-          { value: "6",  label:  "6月", trigger: "getEmail" },
+        id: "isFreeForSevenDayBoolean",
+        options : [
+          { value : "true", label: "會(YES)", trigger: "getPhone"},
+          { value : "false", label: "唔會(NO)", trigger: "getPhone"}
         ]
       },
       // Input Field
       {
         // getXXX
-        id: "getEmail",
-        message :  ({ previousValue, steps }) => {
-                   return `hi,${steps.getLastNameUserInput.value} ${steps.getSexUserInput.value} ! 最後，可唔可以要你email ？（ 如果有正嘢我可以通知你，📧電郵絕對保密，放心！）e.g. info@mr.house` 
-                                },
-        trigger: "getEmailUserInput"
-        // MISSED " validation = false"
-      },
-      {
-        // on.FILLED
-        id: "getEmailUserInput",
-        user: true,
-        inputType: 'email',
-        pattern: "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$",
-        trigger: "getPhone"
-      },
-      // Input Field
-      {
-        // getXXX
         id: "getPhone",
-        message: "OK! 係我廣播你嘅房屋要求比所有地產agents之前，介唔介意比你📞電話號碼我？（當你想聯絡對方，你可以share電話比人。電話絕對保密 e.g. 96181448",
+
+        message: ({ previousValue, steps }) => {
+          return `OK, ${
+            steps.getNameInput.value
+          } 係我廣播你嘅房屋要求比所有地產agents之前，介唔介意留你電話號碼比我？（當你想對方聯絡你，你可以選擇share電話比佢，電話絕對保密）e.g. 96181448`;
+        },
         trigger: "getPhoneUserInput"
         // MISSED " validation = false"
       },
@@ -743,18 +765,36 @@ class AskChatbotLease extends React.Component {
           } else if (value < 0) {
             return "value must be positive";
           } else if (value > 100000000) {
-            return `${value}? Come on!`; 
+            return `${value}? Come on!`;
           }
 
           return true;
         },
-        inputType: 'number',
-        pattern : "[0-9]*",
+        inputType: "number",
+        pattern: "[0-9]*",
+        trigger: "getEmail"
+      },
+      // Input Field
+      {
+        // getXXX
+        id: "getEmail",
+        message:
+          "最後，可唔可以要你email ？（電郵用途是幫你保存你的過往房屋記錄，下次登入時你可以方便翻查。我們會將密碼send去你電郵，電郵絕對保密，放心！）e.g. info@mr.house",
+        trigger: "getEmailUserInput"
+        // MISSED " validation = false"
+      },
+      {
+        // on.FILLED
+        id: "getEmailUserInput",
+        user: true,
+        inputType: "email",
+        pattern:
+          "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$",
         trigger: "review"
       },
       {
         id: "review",
-        message: "請check一check以下你輸入啲資料係咪正確：",
+        message: "請檢查以下你輸入啲資料：",
         trigger: "isReview"
       },
       {
@@ -771,9 +811,12 @@ class AskChatbotLease extends React.Component {
       {
         id: "update-question",
         options: [
-          { value: "yes", label: "有野要更改", trigger: "update-yes" },
-          { value: "message", label: "冇呀，謝謝！請帶我到下一步/ 我要更改資料", trigger: "redirectMessage" },
-          { value: "next", label: "沒必要謝謝!直接去下一個屏幕!", trigger: "countDown" },
+          {
+            value: "false",
+            label: "冇呀，謝謝！請帶我到下一步",
+            trigger: "redirectMessage"
+          },
+          { value: "true", label: "我要更改資料", trigger: "update-yes" }
         ]
       },
       {
@@ -806,13 +849,23 @@ class AskChatbotLease extends React.Component {
           },
           {
             value: "hasHomeHardwareBoolean",
-            label: "需唔需要傢俬",
+            label: "有/冇 傢俬提供",
             trigger: "update-hasHomeHardwareBoolean"
           },
           {
             value: "isPetAllowedBoolean",
             label: "可養寵物",
             trigger: "update-isPetAllowedBoolean"
+          },
+          {
+            value: "getDueDayInput",
+            label: "交吉日",
+            trigger: "update-getDueDayInput"
+          },
+          {
+            value: "isFreeForSevenDay",
+            label: "唔會提供7日免租期",
+            trigger: "update-isFreeForSevenDay"
           },
           {
             value: "getLeasingPeriodInput",
@@ -886,6 +939,20 @@ class AskChatbotLease extends React.Component {
       // Update review
       {
         // update if previous ask no
+        id: "update-isFreeForSevenDay",
+        update: "isisFreeForSevenDayBoolean",
+        trigger: "review"
+      },
+      // Update review
+      {
+        // update if previous ask no
+        id: "update-getDueDayInput",
+        update: "getDueDayInput",
+        trigger: "review"
+      },
+      // Update review
+      {
+        // update if previous ask no
         id: "update-getLeasePriceInput",
         update: "getLeaesPriceInput",
         trigger: "review"
@@ -910,35 +977,30 @@ class AskChatbotLease extends React.Component {
       }
     ];
 
-   const EndOfSteps = [   
+    const EndOfSteps = [
       {
         id: "redirectMessage",
-        message: "太好了。 現在準備滿足您的要求！我們開始廣播你的請求比所有地產agents知。聊天將會關閉並重新定向到新屏幕。",
-        delay: 5000,
-        trigger: "matchingMessage2"
-      },
-      {
-        id: "matchingMessage2",
-        message: "在下一個屏幕，你可以係左上角揀取地產agents的回覆或右上角揀取Mr. House為你配對的業主。",
+        message:
+          "太好了。 現在我們開始廣播你的請求比所有地產agents知。你會被接駁到一個新的聊天。",
         delay: 5000,
         trigger: "countDown"
       },
       {
         id: "countDown",
         message: "3...你準備好未？",
-        delay : 2000,
+        delay: 2000,
         trigger: "countDown2"
       },
       {
         id: "countDown2",
-        message: "2..Yes! 快啲跳去下一頁",
-        delay : 1000,
+        message: "2..接駁中",
+        delay: 1000,
         trigger: "countDown1"
       },
       {
         id: "countDown1",
-        message: "1.",
-        delay : 1000,
+        message: "1 .",
+        delay: 1000,
         trigger: "stop"
       },
       {
@@ -956,34 +1018,32 @@ class AskChatbotLease extends React.Component {
 
     // Concat mesage into conversation
     //let ms1 = Welcome.concat( AboutMrHouse );
-    let ms1 = GetName.concat( MainSteps );
-    let conversation = ms1.concat( EndOfSteps );
+    let ms1 = GetName.concat(MainSteps);
+    let conversation = ms1.concat(EndOfSteps);
 
     //  garbage collection
     ms1 = null;
     //ms2 = null;
-    
+
     // console.log( conversation );
     //console.log( this.addPropertyForBuy );
     // debugger
     return (
       <div>
-      <ThemeProvider theme={theme}>
-        <ChatBot
-          headerTitle="Mr.House"
-          hideSubmitButton="false"
-          // hideBotAvatar="false"
-          placeholder="請輸入這裏"
-          handleEnd={this.handleEnd}
-          //cache="true"
-          //cacheName="mrhouse"
-          //floating="true"
-//          bubbleStyle={{ overflow: "visible", fontSize: "0.3rem" }}
-          steps={
-            conversation
-          }
-        />
-      </ThemeProvider>
+        <ThemeProvider theme={theme}>
+          <ChatBot
+            headerTitle="Mr.House"
+            hideSubmitButton="false"
+            // hideBotAvatar="false"
+            placeholder="請輸入這裏"
+            handleEnd={this.handleEnd}
+            //cache="true"
+            //cacheName="mrhouse"
+            //floating="true"
+            //          bubbleStyle={{ overflow: "visible", fontSize: "0.3rem" }}
+            steps={conversation}
+          />
+        </ThemeProvider>
       </div>
     );
   }

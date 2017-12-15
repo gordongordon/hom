@@ -81,15 +81,17 @@ class Chatpicker extends Component {
     if (first === undefined) {
       return 'first doesn\'t exist!';
     }
+
     second = first.children.find(element => element.value === second);
     
     if (second === undefined) {
       return 'second doesn\'t exist!';
     }
+
     // console.log( 'location', location )
     third = second.children.find(element => element.value === third);
 
-    return third.label;
+    return third.label + ' , ' + second.label;
   };
 
   triggetNext() {
