@@ -112,15 +112,14 @@ class Review extends React.Component {
 
       hasHomeHardwareBoolean: "",
       isPetAllowedBoolean: "",
-      getLeasingPeriodInput: "",
-
       getLeasePriceInput: "",
       getNameInput: "Mr.House",
       getSexUserInput: "",
       getEmailUserInput: "",
       getPhoneUserInput: "",
       isFreeForSevenDayBoolean: "no",
-      getDueDayInput : ""
+      getDueDayInput : "10th Oct, 2017",
+      getLeasingPeriodInput : ""
 
     };
   }
@@ -146,7 +145,7 @@ class Review extends React.Component {
       getLeasingPeriodInput,
       isFreeForSevenDayBoolean,
       getDueDayInput
-      
+
     } = steps;
 
     this.setState({
@@ -167,7 +166,7 @@ class Review extends React.Component {
       getLeasingPeriodInput,
       isFreeForSevenDayBoolean,
       getDueDayInput,
-
+      getLeasingPeriodInput
     });
     //    this.setState({ name, role, price, building, });
   }
@@ -211,8 +210,8 @@ class Review extends React.Component {
         <br />
         提供7日免租期: {isFreeForSevenDayBoolean.value}
         <br />
-        交吉日:  {getDueDayInput.value}
-        <Br />
+        交吉日:  {getDueDayInput}
+        <br />
         打算租幾耐: {getLeasingPeriodInput.value} (月)
         <br />
         姓名: {getNameInput.value}
@@ -443,6 +442,8 @@ class AskChatbotLease extends React.Component {
     p.dueDay = parseInt( getDueDayInput.value );
     p.isFreeForSevenDay = isFreeForSevenDayBoolean.value;
     //    p.buyBudgetMax = 100;
+
+    p.leasingPeriodInput = parseInt( getLeasePriceInput.value );
 
     //p.isPreferPayAnnually = v.isPreferPayAnnually;
     //p.isRentAbleNow = v.isRentAbleNow;

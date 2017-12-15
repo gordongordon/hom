@@ -161,9 +161,9 @@ var save = false;
 const views = {
   home: new Route({
     path: '/',
-    //component: <FrontPageView/>,
+    component: <FrontPageView/>,
 
-    component: <MrHouse />,
+    //component: <MrHouse />,
     // component: <ChatMatching />,
     onEnter: (route, params, store, queryParams) => {
       MobxStore.app.setTitle( '好 .. Matching');
