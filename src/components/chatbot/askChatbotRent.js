@@ -161,7 +161,7 @@ class Review extends React.Component {
       getSexUserInput,
       getEmailUserInput,
       getPhoneUserInput,
-
+    
       hasHomeHardwareBoolean,
       getNumOfPeopleLivingInput,
       getIncomeInput,
@@ -669,7 +669,7 @@ class AskChatbotRent extends React.Component {
       {
         //
         id: "isPetAllowed",
-        message: "你會唔會養😺😺🐶🐶呢？",
+        message: "你會唔會養貓😺🐶豿呢？",
         trigger: "isPetAllowedBoolean"
       },
       {

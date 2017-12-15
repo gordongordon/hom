@@ -203,9 +203,7 @@ class Review extends React.Component {
         <br />
         租金: {getLeasePriceInput.value}
         <br />
-        間隔: {getNumOfRoom.value}房,{getNumOfBathroom.vlaue}廁,{
-          getNumOfLivingroom.value
-        }廳
+        間隔: {getNumOfRoom.value}房,{getNumOfBathroom.vlaue}廁,{getNumOfLivingroom.value}廳
         <br />
         你會唔會養物: {isPetAllowedBoolean.value}
         <br />
@@ -653,15 +651,15 @@ class AskChatbotLease extends React.Component {
       {
         //
         id: "isPetAllowed",
-        message: "你會唔會養😺😺🐶🐶呢？",
+        message: " 比唔比養貓😺🐶豿呢?",
         trigger: "isPetAllowedBoolean"
       },
       {
         //on.OPTION1 .. n
         id: "isPetAllowedBoolean",
         options: [
-          { value: "false", label: "絕對不會", trigger: "hasHomeHardware" },
-          { value: "true", label: "一定/可能啦", trigger: "hasHomeHardware" }
+          { value: "true", label: "可以", trigger: "hasHomeHardware" },
+          { value: "false", label: "唔可以", trigger: "hasHomeHardware" }
         ]
       },
       // toggle

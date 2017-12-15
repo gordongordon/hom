@@ -649,7 +649,7 @@ class AskChatbotSale extends React.Component {
       {
         //
         id: "isPetAllowed",
-        message: "可唔可以養貓😺😺🐶🐶豿呢？",
+        message: "可唔可以養貓😺🐶豿呢？",
         trigger: "isPetAllowedBoolean"
       },
       {
