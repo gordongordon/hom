@@ -583,20 +583,20 @@ class AskChatbotRent extends React.Component {
         id: "getNetSizeMinUserInput",
         //              user: true,
         options: [
-          { value: "100", label: "100", trigger: "getPartition" },
-          { value: "200", label: "200", trigger: "getPartition" },
-          { value: "300", label: "300", trigger: "getPartition" },
-          { value: "400", label: "400", trigger: "getPartition" },
-          { value: "500", label: "500", trigger: "getPartition" },
-          { value: "600", label: "600", trigger: "getPartition" },
-          { value: "700", label: "700", trigger: "getPartition" },
-          { value: "800", label: "800", trigger: "getPartition" },
-          { value: "900", label: "900", trigger: "getPartition" },
-          { value: "1100", label: "1100", trigger: "getPartition" },
-          { value: "1300", label: "1300", trigger: "getPartition" },
-          { value: "1500", label: "1500", trigger: "getPartition" },
-          { value: "1700", label: "1700", trigger: "getPartition" },
-          { value: "2000", label: "2000+", trigger: "getPartition" }
+          { value: "100", label: "100", trigger: "getNumOfPeopleLiving" },
+          { value: "200", label: "200", trigger: "getNumOfPeopleLiving" },
+          { value: "300", label: "300", trigger: "getNumOfPeopleLiving" },
+          { value: "400", label: "400", trigger: "getNumOfPeopleLiving" },
+          { value: "500", label: "500", trigger: "getNumOfPeopleLiving" },
+          { value: "600", label: "600", trigger: "getNumOfPeopleLiving" },
+          { value: "700", label: "700", trigger: "getNumOfPeopleLiving" },
+          { value: "800", label: "800", trigger: "getNumOfPeopleLiving" },
+          { value: "900", label: "900", trigger: "getNumOfPeopleLiving" },
+          { value: "1100", label: "1100", trigger: "getNumOfPeopleLiving" },
+          { value: "1300", label: "1300", trigger: "getNumOfPeopleLiving" },
+          { value: "1500", label: "1500", trigger: "getNumOfPeopleLiving" },
+          { value: "1700", label: "1700", trigger: "getNumOfPeopleLiving" },
+          { value: "2000", label: "2000+", trigger: "getNumOfPeopleLiving" }
         ]
         //trigger: "getPartition"
       },
@@ -735,10 +735,11 @@ class AskChatbotRent extends React.Component {
       {
         id: "getJobNatureInput",
         options: [
-          { value: "1", label: "Job A", trigger: "getIncome" },
-          { value: "2", label: "Job B", trigger: "getIncome" },
-          { value: "3", label: "Job C", trigger: "getIncome" },
-          { value: "4", label: "Job D", trigger: "getIncome" }
+          { value: "1", label: "專業人士", trigger: "getIncome" },
+          { value: "2", label: "公務員", trigger: "getIncome" },
+          { value: "3", label: "私人機構", trigger: "getIncome" },
+          { value: "4", label: "學生", trigger: "getIncome" },
+          { value: "5", label: "其他", trigger: "getIncome" }
         ]
       },
       {

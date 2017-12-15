@@ -606,7 +606,7 @@ class AskChatbotLease extends React.Component {
       {
         // getPartition
         id: "getPartition",
-        message: "你想要咩間隔？ e.g. 1房,1廁,1廳",
+        message: "你想要咩間隔？ e.g. 1房,1廁,1廳 Gordon",
         trigger: "getNumOfRoom"
         // MISSED " validation = false"
       },
@@ -646,12 +646,10 @@ class AskChatbotLease extends React.Component {
           { value: "10", label: "共用廳", trigger: "isPetAllowed" }
         ]
       },
-
-      // toggle
       {
         //
         id: "isPetAllowed",
-        message: " 比唔比養貓😺🐶豿呢?",
+        message: " 比唔比養貓😺🐶豿呢? Gordon",
         trigger: "isPetAllowedBoolean"
       },
       {
@@ -675,21 +673,6 @@ class AskChatbotLease extends React.Component {
         options: [
           { value:  "true", label: "單位有傢俬提供", trigger: "getLeasePrice" },
           { value: "false", label: "冇傢俬", trigger: "getLeasePrice" }
-        ]
-      },
-      // toggle
-      {
-        //
-        id: "isPetAllowed",
-        message: "比唔比養貓😺🐶豿呢？",
-        trigger: "isPetAllowedBoolean"
-      },
-      {
-        //on.OPTION1 .. n
-        id: "isPetAllowedBoolean",
-        options: [
-          { value: "false", label: "絕對不會", trigger: "getLeasePrice" },
-          { value: "true", label: "一定/可能啦", trigger: "getLeasePrice" }
         ]
       },
       {
