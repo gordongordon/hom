@@ -378,11 +378,17 @@ class ChatAgentSaleRespond extends React.Component {
     //    R.isNil(getBuyBudgetMaxInput)
     console.log("handleEnd steps", steps);
 
-    //p.uid = MobxStore.app.uid;
+
+
+    let address = JSON.parse( getBuildingUserInput.value );
+    p.addressRegion = address.region;
+    p.addressLocation = address.location;
+    p.nameOfBuilding = address.building;
+        //p.uid = MobxStore.app.uid;
     //     ["NTTV", "MOS", "MOS0001"]
-    p.addressRegion = "NTTV";
-    p.addressLocation = "MOS";
-    p.nameOfBuilding = "MOS0001";
+    // p.addressRegion = "NTTV";
+    // p.addressLocation = "MOS";
+    // p.nameOfBuilding = "MOS0001";
 
     // p.dueDay = v.dueDay.toJSON();
     // p.earlyTimeToView = v.earlyTimeToView.toJSON();

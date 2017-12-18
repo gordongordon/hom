@@ -72,41 +72,46 @@ class Chatpicker extends Component {
   // }
 
 
-  getPickerLabel = (data, first, second, third) => {
+  getPickerLabel = (data, region, location, building) => {
     // debugger
     //var region = DISTRICK.find(element => element.value === region);
 
-    first = data.find(element => element.value === first);
+    region = data.find(element => element.value === region);
     // console.log( 'region', region)
-    if (first === undefined) {
+    if (region === undefined) {
       return 'first doesn\'t exist!';
     }
 
-    second = first.children.find(element => element.value === second);
+    location = region.children.find(element => element.value === location);
     
-    if (second === undefined) {
+    if (location === undefined) {
       return 'second doesn\'t exist!';
     }
 
     // console.log( 'location', location )
-    third = second.children.find(element => element.value === third);
+    building = location.children.find(element => element.value === building );
 
-    return third.label + ' , ' + second.label;
+    return building.label + ' , ' + location.label;
   };
 
   triggetNext() {
     const v = this.props.form.getFieldsValue();
-    const region = v.districk[0];
+    const region   = v.districk[0];
     const location = v.districk[1];
     const building = v.districk[2];
     const label =  this.getPickerLabel( DISTRICK, region, location, building );
-    const address = region + ',' + location + ',' + building;
-    // const obj = {
-    //   location : location,
-    //   building : building
-    // }
+
+    // Save json for firebase! 
+    let address = { 
+              "region" :  region,
+              "location" : location,
+              "building" : building,
+              "label" : label
+            };
+    const jsonAddress = JSON.stringify(address);
+
     this.setState({ trigger: true }, () => {
-      this.props.triggerNextStep( { value: address, label : label });
+      this.props.triggerNextStep( { value: jsonAddress, label : label });
     });
   }
 

@@ -177,9 +177,12 @@ class Review extends React.Component {
       getEmailUserInput,
       getPhoneUserInput
     } = this.state;
+
+    const address = JSON.parse( getBuildingUserInput.value );
+
     return (
       <div style={{ width: "100%", fontSize: "0.8rem" }}>
-        賣盤單位: {getBuildingUserInput.value}
+        賣盤單位: {address.label}
         <br />
         放售形式：Sale
         <br />
@@ -391,11 +394,17 @@ class AskChatbotSale extends React.Component {
     console.log("handleEnd steps", steps);
     console.log( "getBuildingUserInput",  getBuildingUserInput.value)
 
+    
+    const address = JSON.parse( getBuildingUserInput.value );
+    p.addressRegion = address.region;
+    p.addressLocation = address.location;
+    p.nameOfBuilding = address.building;
     //p.uid = MobxStore.app.uid;
     //     ["NTTV", "MOS", "MOS0001"]
-    p.addressRegion = "NTTV";
-    p.addressLocation = "MOS";
-    p.nameOfBuilding = "MOS0001";
+
+    // p.addressRegion = "NTTV";
+    // p.addressLocation = "MOS";
+    // p.nameOfBuilding = "MOS0001";
 
     // p.dueDay = v.dueDay.toJSON();
     // p.earlyTimeToView = v.earlyTimeToView.toJSON();
@@ -520,7 +529,14 @@ class AskChatbotSale extends React.Component {
       {
         //
         id: "validaBuildingUserInput",
-        message: "你選擇左 「{previousValue}」!",
+        //message: "你選擇左 「{previousValue}」!",
+        message: ({ previousValue, steps }) => {
+          const address = JSON.parse( previousValue);
+
+          return `你選擇左 「${
+              address.label
+          } 」!`;
+        },
         trigger: "validaBuildingBoolean"
       },
       {
@@ -952,7 +968,7 @@ class AskChatbotSale extends React.Component {
             placeholder="請輸入這裏"
             handleEnd={this.handleEnd}
             //cache="true"
-            //cacheName="mrhouse"
+            //cacheName="askChatbotSale"
             //floating="true"
             //          bubbleStyle={{ overflow: "visible", fontSize: "0.3rem" }}
             steps={conversation}

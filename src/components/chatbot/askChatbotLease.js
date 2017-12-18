@@ -188,9 +188,13 @@ class Review extends React.Component {
       getDueDayInput,
     } = this.state;
 
+
+    
+    const address = JSON.parse( getBuildingUserInput.value );
+
     return (
       <div style={{ width: "100%", fontSize: "0.8rem" }}>
-        房租單位: {getBuildingUserInput.value}
+        房租單位: {address.label}
         <br />
         實用面積: {getNetSizeUserInput.value} 呎
         <br />
@@ -411,9 +415,10 @@ class AskChatbotLease extends React.Component {
 
     //p.uid = MobxStore.app.uid;
     //     ["NTTV", "MOS", "MOS0001"]
-    p.addressRegion = "NTTV";
-    p.addressLocation = "MOS";
-    p.nameOfBuilding = "MOS0001";
+    const address = JSON.parse( getBuildingUserInput.value );
+    p.addressRegion = address.region;
+    p.addressLocation = address.location;
+    p.nameOfBuilding = address.building;
 
     // p.dueDay = v.dueDay.toJSON();
     // p.earlyTimeToView = v.earlyTimeToView.toJSON();

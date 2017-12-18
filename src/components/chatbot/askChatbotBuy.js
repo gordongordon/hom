@@ -174,9 +174,13 @@ class Review extends React.Component {
       getEmailUserInput,
       getPhoneUserInput 
     } = this.state; 
+
+
+    const address = JSON.parse( getBuildingUserInput.value );
+
     return (
       <div style={{ width: "100%", fontSize: "0.8rem" }}>
-        心水樓盤：{getBuildingUserInput.value}
+        心水樓盤：{address.label}
         <br />
         最少實用面積: {getNetSizeMinUserInput.value} 呎
         <br />
@@ -384,9 +388,10 @@ class AskChatbotBuy extends React.Component {
 
     //p.uid = MobxStore.app.uid;
     //     ["NTTV", "MOS", "MOS0001"]
-    p.addressRegion = "NTTV";
-    p.addressLocation = "MOS";
-    p.nameOfBuilding = "MOS0001";
+    const address = JSON.parse( getBuildingUserInput.value );
+    p.addressRegion = address.region;
+    p.addressLocation = address.location;
+    p.nameOfBuilding = address.building;
 
     // p.dueDay = v.dueDay.toJSON();
     // p.earlyTimeToView = v.earlyTimeToView.toJSON();
