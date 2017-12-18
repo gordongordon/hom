@@ -179,25 +179,27 @@ class Review extends React.Component {
     } = this.state;
     return (
       <div style={{ width: "100%", fontSize: "0.8rem" }}>
-        尋找樓盤: {getBuildingUserInput.value}
+        賣盤單位: {getBuildingUserInput.value}
+        <br />
+        放售形式：Sale
         <br />
         實用面積: {getNetSizeUserInput.value} 呎
         <br />
-        賣價: {getSalePriceInput.value}（萬元）
-        <br />
-        間隔: {getNumOfRoom.value}房,{getNumOfBathroom.vlaue}廁,{
+        單位間隔: {getNumOfRoom.value}房,{getNumOfBathroom.vlaue}廁,{
           getNumOfLivingroom.value
         }廳
         <br />
-        你會唔會養物: {isPetAllowedBoolean.value}
+        歡迎貓狗：{isPetAllowedBoolean.value}
         <br />
         冇樓睇租左俾人會唔會買: {isBuyWithLeaseBoolean.value}
         <br />
         單位樓層 : {getLevelOptions.value}
         <br />
+        賣價: {getSalePriceInput.value}（萬元）
+        <br />
         姓名: {getNameInput.value}
         <br />
-        聯絡手機: {getPhoneUserInput.value}
+        電話: {getPhoneUserInput.value}
         <br />
         電郵: {getEmailUserInput.value}
         <br />
@@ -387,6 +389,7 @@ class AskChatbotSale extends React.Component {
 
     //    R.isNil(getBuyBudgetMaxInput)
     console.log("handleEnd steps", steps);
+    console.log( "getBuildingUserInput",  getBuildingUserInput.value)
 
     //p.uid = MobxStore.app.uid;
     //     ["NTTV", "MOS", "MOS0001"]
