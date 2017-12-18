@@ -163,7 +163,6 @@ class Review extends React.Component {
       getPhoneUserInput,
 
       hasHomeHardwareBoolean,
-      getLeasingPeriodInput,
       isFreeForSevenDayBoolean,
       getDueDayInput,
       getLeasingPeriodInput
@@ -672,8 +671,8 @@ class AskChatbotLease extends React.Component {
         //on.OPTION1 .. n
         id: "hasHomeHardwareBoolean",
         options: [
-          { value:  "true", label: "單位有傢俬提供", trigger: "getLeasePrice" },
-          { value: "false", label: "冇傢俬", trigger: "getLeasePrice" }
+          { value:  "true", label: "單位有傢俬提供", trigger: "getLeasingPeriod" },
+          { value: "false", label: "冇傢俬", trigger: "getLeasingPeriod" }
         ]
       },
       {

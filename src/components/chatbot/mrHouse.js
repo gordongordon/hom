@@ -12,7 +12,7 @@ import { ThemeProvider } from "styled-components";
 import MobxStore from "mobxStore";
 import views from "views";
 
-import PartitionPicker from "./partitionPicker";
+// import PartitionPicker from "./partitionPicker";
 import { Fb } from "firebase-store";
 import { Property } from "property";
 import Key from './key';
