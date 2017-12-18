@@ -4,16 +4,15 @@ import { ActionSheet, Button, Toast, Icon } from "antd-mobile";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-//import ChatBot from '../react-simple-chatbot/dist/react-simple-chatbot';
+// import ChatBot from '../react-simple-chatbot/dist/react-simple-chatbot';
 import ChatBot from "react-simple-chatbot";
-import Chatpicker from "./chatpicker";
-import TabExample from "./TabExample";
+import Chatpicker   from "./chatpicker";
+import TabExample   from "./TabExample";
 import { ThemeProvider } from "styled-components";
-import MobxStore from "mobxStore";
-import views from "views";
-
+import MobxStore    from "mobxStore";
+import views        from "views";
 import PartitionPicker from "./partitionPicker";
-import { Fb } from "firebase-store";
+import { Fb }       from "firebase-store";
 import { Property } from "property";
 import Key from "./key";
 
@@ -109,7 +108,6 @@ class Review extends React.Component {
       getNumOfRoom: "",
       getNumOfBathroom: "",
       getNumOfLivingroom: "",
-
       hasHomeHardwareBoolean: "",
       isPetAllowedBoolean: "",
       getLeasePriceInput: "",
@@ -140,12 +138,10 @@ class Review extends React.Component {
       getSexUserInput,
       getEmailUserInput,
       getPhoneUserInput,
-
       hasHomeHardwareBoolean,
       getLeasingPeriodInput,
       isFreeForSevenDayBoolean,
       getDueDayInput
-
     } = steps;
 
     this.setState({
@@ -190,32 +186,33 @@ class Review extends React.Component {
       getLeasingPeriodInput,
       isFreeForSevenDayBoolean,
       getDueDayInput,
-
     } = this.state;
 
     return (
       <div style={{ width: "100%", fontSize: "0.8rem" }}>
-        尋找樓盤: {getBuildingUserInput.value}
+        房租單位: {getBuildingUserInput.value}
         <br />
         實用面積: {getNetSizeUserInput.value} 呎
         <br />
         租金: {getLeasePriceInput.value}
         <br />
-        間隔: {getNumOfRoom.value}房,{getNumOfBathroom.vlaue}廁,{getNumOfLivingroom.value}廳
+        單位間隔: {getNumOfRoom.value}房,{getNumOfBathroom.vlaue}廁,{getNumOfLivingroom.value}廳
         <br />
-        你會唔會養物: {isPetAllowedBoolean.value}
+        歡迎貓狗: {isPetAllowedBoolean.value}
         <br />
-        會唔會有傢俬提供: {hasHomeHardwareBoolean.value}
+        傢俬提供: {hasHomeHardwareBoolean.value}
         <br />
-        提供7日免租期: {isFreeForSevenDayBoolean.value}
+        七日免租期提供: {isFreeForSevenDayBoolean.value}
         <br />
-        交吉日:  {getDueDayInput}
+        租期 ：
         <br />
-        打算租幾耐: {getLeasingPeriodInput.value} (月)
+        交吉日期：{getDueDayInput}
+        <br />
+        租期: {getLeasingPeriodInput.value} (月)
         <br />
         姓名: {getNameInput.value}
         <br />
-        聯絡手機: {getPhoneUserInput.value}
+        電話: {getPhoneUserInput.value}
         <br />
         電郵: {getEmailUserInput.value}
         <br />

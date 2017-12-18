@@ -196,7 +196,7 @@ class Review extends React.Component {
 
     return (
       <div style={{ width: "100%", fontSize: "0.8rem" }}>
-        尋找樓盤: {getBuildingUserInput.value}
+      心水租盤: {getBuildingUserInput.value}
         <br />
         最少實用面積: {getNetSizeMinUserInput.value} 呎
         <br />
@@ -204,21 +204,21 @@ class Review extends React.Component {
         <br />
         間隔: {getNumOfRoom.value}房,{getNumOfBathroom.vlaue}廁,{getNumOfLivingroom.value}廳
         <br />
-        你會唔會養物: {isPetAllowedBoolean.value}
+        養貓狗需要: {isPetAllowedBoolean.value}
         <br />
         收入範圍: {getIncomeInput.value}
         <br />
-        需唔需要傢俬: {hasHomeHardwareBoolean.value}
+        傢俬需要: {hasHomeHardwareBoolean.value}
         <br />
         職業: {getJobNatureInput.value}
         <br />
-        打算租幾耐: {getLeasingPeriodInput.value} (月)
+        理想租期: {getLeasingPeriodInput.value} (月)
         <br />
-        幾多人同住: {getNumOfPeopleLivingInput.value}人
+        同居人數:{getNumOfPeopleLivingInput.value}人
         <br />
         姓名: {getNameInput.value}
         <br />
-        聯絡手機: {getPhoneUserInput.value}
+        電話: {getPhoneUserInput.value}
         <br />
         電郵: {getEmailUserInput.value}
         <br />

@@ -176,21 +176,21 @@ class Review extends React.Component {
     } = this.state; 
     return (
       <div style={{ width: "100%", fontSize: "0.8rem" }}>
-        尋找樓盤: {getBuildingUserInput.value}
+        心水樓盤：{getBuildingUserInput.value}
         <br />
         最少實用面積: {getNetSizeMinUserInput.value} 呎
         <br />
-        付出預算上限: {getBuyBudgetMaxInput.value}
+        預算上限: {getBuyBudgetMaxInput.value}
         <br />
-        間隔: {getNumOfRoom.value}房,{getNumOfBathroom.vlaue}廁,{getNumOfLivingroom.value}廳
+        單位間隔: {getNumOfRoom.value}房,{getNumOfBathroom.vlaue}廁,{getNumOfLivingroom.value}廳
         <br />
         你會唔會養物: {isPetAllowedBoolean.value}
         <br />
-        冇樓睇租左俾人會唔會買: {isBuyWithLeaseBoolean.value}
+        買已出租的樓盤: {isBuyWithLeaseBoolean.value}
         <br />
         姓名: {getNameInput.value} 
         <br />
-        聯絡手機: {getPhoneUserInput.value}
+        電話: {getPhoneUserInput.value}
         <br />
         電郵: {getEmailUserInput.value}
         <br />

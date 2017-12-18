@@ -99,10 +99,14 @@ class Chatpicker extends Component {
     const region = v.districk[0];
     const location = v.districk[1];
     const building = v.districk[2];
-    const label =  this.getPickerLabel( DISTRICK, region, location, building )
-    
+    const label =  this.getPickerLabel( DISTRICK, region, location, building );
+    const address = region + ',' + location + ',' + building;
+    // const obj = {
+    //   location : location,
+    //   building : building
+    // }
     this.setState({ trigger: true }, () => {
-      this.props.triggerNextStep( { value: label, label : label });
+      this.props.triggerNextStep( { value: address, label : label });
     });
   }
 
