@@ -549,7 +549,13 @@ class AskChatbotBuy extends React.Component {
       {
         //
         id: "validaBuildingUserInput",
-        message: "你選擇左 「{previousValue}」!",
+        message: ({ previousValue, steps }) => {
+          const address = JSON.parse( previousValue);
+
+          return `你選擇左 「${
+              address.label
+          } 」!`;
+        },
         trigger: "validaBuildingBoolean"
       },
       {
