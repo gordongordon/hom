@@ -233,6 +233,6 @@ module.exports = {
   //   contentBase: __dirname + '/src',
   // },  
   //devtool: "eval",
-  //devtool: 'source-map',
-  devtool: "cheap-module-source-map"
+  devtool: 'source-map',
+  //devtool: "cheap-module-source-map"
 };

@@ -58,6 +58,7 @@ Carousel.Button = Button;
 Carousel.ContentItem = ContentItem;
 Carousel.LineText = LineText;
 Carousel.Toggle = Toggle;
+Carousel.GenericContainer = GenericContainer;
 
 
 Carousel.defaultProps = {

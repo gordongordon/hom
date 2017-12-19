@@ -6,7 +6,7 @@ import {propertys} from 'userModelView';
 import {ListOfMatchOldSalePropertys} from '../listOfMatch/listOfMatchOldSalePropertys';
 import { SingleSaleUserMatchViewWrapper } from "../singlePropertyView/singleSaleUserMatchView";
 import {observer } from "mobx-react";
-import {AgentSaleProperty as ItemView } from "react-simple-chatbot";
+import {AgentSaleProperty as ItemView} from "react-simple-chatbot";
 
 
 const prompt = Modal.prompt;
@@ -119,7 +119,8 @@ export default class SlickAgentSaleProperty extends React.Component {
 
       if ( count == 0 ) {
       element.push(
-        <ItemView key={keyID}
+        <ItemView
+        key={keyID}
           status={status}
           filter={filter}
           property={property}
@@ -135,7 +136,8 @@ export default class SlickAgentSaleProperty extends React.Component {
     {
   
       element.push(
-        <ItemView key={keyID}
+        <ItemView 
+        key={keyID}
           status={status}
           filter={filter}
           property={property}

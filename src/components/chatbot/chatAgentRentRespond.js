@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 //import styled from 'styled-components';
 
 //import ChatBot from '../react-simple-chatbot/dist/react-simple-chatbot';
-import ChatBot, {Generic} from "react-simple-chatbot";
+import ChatBot from "react-simple-chatbot";
 import Chatpicker from "./chatpicker";
 import TabExample from "./TabExample";
 import { ThemeProvider } from "styled-components";
